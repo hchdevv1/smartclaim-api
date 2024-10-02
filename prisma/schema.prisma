@@ -1,0 +1,226 @@
+generator client {
+  provider = "prisma-client-js"
+   output   = "./generate-client-db"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model accidentcauseover45days {
+  id            Int       @id @default(autoincrement())
+  causeovercode String    @db.VarChar(255)
+  causeoverdesc String?   @db.VarChar(255)
+  insurerid     Int?
+  insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model accidentplace {
+  id                Int       @id @default(autoincrement())
+  accidentplacecode String    @db.VarChar(255)
+  accidentplacename String?   @db.VarChar(255)
+  insurerid         Int?
+  insurers          insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model causeofinjuryside {
+  id             Int       @id @default(autoincrement())
+  injurysidename String    @db.VarChar(255)
+  injurysidecode String?   @db.VarChar(255)
+  insurerid      Int?
+  insurers       insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model causeofinjurywoundtype {
+  id            Int       @id @default(autoincrement())
+  woundtypename String    @db.VarChar(255)
+  woundtypecode String?   @db.VarChar(255)
+  insurerid     Int?
+  insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model claimants {
+  id               Int       @id @default(autoincrement())
+  national_id      String?   @db.VarChar(13)
+  passportnumber   String?   @db.VarChar(15)
+  hn               String?   @db.VarChar(10)
+  patientid        Int?
+  title_th         String?   @db.VarChar(50)
+  givenname_th     String?   @db.VarChar(50)
+  surname_th       String?   @db.VarChar(50)
+  title_en         String?   @db.VarChar(50)
+  givenname_en     String?   @db.VarChar(50)
+  surname_en       String?   @db.VarChar(50)
+  mobilephone      String?   @db.VarChar(15)
+  statusactive     Boolean?
+  dateofbirth      String?   @db.VarChar(10)
+  gender           String?   @db.VarChar(10)
+  registrationdate DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamp(6)
+  insurerid        Int?
+  insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([hn, insurerid])
+}
+
+model claimdocuments {
+  id               Int       @id @default(autoincrement())
+  insurerid        Int?
+  refid            String?   @db.VarChar(255)
+  transactionno    String?   @db.VarChar(255)
+  hn               String?   @db.VarChar(10)
+  vn               String?   @db.VarChar(10)
+  documentname     String?   @db.VarChar(100)
+  documenttypecode String?   @db.VarChar(50)
+  documenttypename String?   @db.VarChar(100)
+  serverpath       String?   @db.VarChar(255)
+  filepath         String    @db.VarChar(255)
+  filesize         BigInt?
+  filemimetype     String?   @db.VarChar(100)
+  uploaddate       DateTime? @default(now()) @db.Timestamp(6)
+  uploadedby       String?   @db.VarChar(50)
+  insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model claimstatus {
+  id                     Int                      @id @default(autoincrement())
+  claimstatuscode        String                   @db.VarChar(255)
+  claimstatusdesc_th     String?                  @db.VarChar(255)
+  claimstatusdesc_en     String?                  @db.VarChar(255)
+  insurerid              Int?
+  insurers               insurers?                @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+  transactionclaimstatus transactionclaimstatus[]
+
+  @@unique([claimstatuscode, insurerid], map: "unique_claimstatuscode_per_insurer")
+}
+
+model diagnosistypemapping {
+  id                  Int       @id @default(autoincrement())
+  dxtypecodetrakcare  String    @db.VarChar(255)
+  dxtypenametrakcare  String?   @db.VarChar(255)
+  dxtypecodeinsurance String?   @db.VarChar(255)
+  dxtypenameinsurance String?   @db.VarChar(255)
+  insurerid           Int?
+  insurers            insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model documenttype {
+  id               Int       @id @default(autoincrement())
+  documenttypecode String    @db.VarChar(255)
+  documenttypename String?   @db.VarChar(255)
+  insurerid        Int?
+  insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model illnesssurgery {
+  id        Int       @id @default(autoincrement())
+  iscode    String    @db.VarChar(255)
+  isdesc    String?   @db.VarChar(255)
+  insurerid Int?
+  insurers  insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model illnesstype {
+  id              Int       @id @default(autoincrement())
+  illnesstypecode String    @db.VarChar(255)
+  illnesstypedesc String?   @db.VarChar(255)
+  insurerid       Int?
+  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model insurers {
+  id                      Int                       @id @default(autoincrement())
+  insurerid               Int                       @unique(map: "unique_insurerid")
+  insurercode             Int?
+  insurername             String?                   @db.VarChar(100)
+  accidentcauseover45days accidentcauseover45days[]
+  accidentplace           accidentplace[]
+  causeofinjuryside       causeofinjuryside[]
+  causeofinjurywoundtype  causeofinjurywoundtype[]
+  claimants               claimants[]
+  claimdocuments          claimdocuments[]
+  claimstatus             claimstatus[]
+  diagnosistypemapping    diagnosistypemapping[]
+  documenttype            documenttype[]
+  illnesssurgery          illnesssurgery[]
+  illnesstype             illnesstype[]
+  policytype              policytype[]
+  servicesetting          servicesetting[]
+}
+
+model medicaltransactions {
+  id                Int      @id @default(autoincrement())
+  insurerid         Int?
+  refid             String?  @db.VarChar(255)
+  transactionno     String?  @db.VarChar(255)
+  hn                String?  @db.VarChar(10)
+  vn                String?  @db.VarChar(10)
+  dxfreetext        String?  @db.VarChar(500)
+  presentillness    String?  @db.VarChar(500)
+  chiefcomplaint    String?  @db.VarChar(500)
+  accidentplacecode String?  @db.VarChar(50)
+  causeofinjury     String?  @db.VarChar(255)
+  commentofinjury   String?  @db.VarChar(255)
+  woundtypecode     String?  @db.VarChar(50)
+  injurysidecode    String?  @db.VarChar(50)
+  injuryarea        String?  @db.VarChar(255)
+  procedureedit     Boolean?
+}
+
+model policytype {
+  id             Int       @id @default(autoincrement())
+  policytypecode String    @db.VarChar(255)
+  policytypedesc String?   @db.VarChar(255)
+  insurerid      Int?
+  insurers       insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model servicesetting {
+  id                 Int       @id @default(autoincrement())
+  servicesettingcode String    @db.VarChar(255)
+  servicesettingdesc String    @db.VarChar(255)
+  insurerid          Int?
+  insurers           insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model transactionclaim {
+  id                  Int       @id @default(autoincrement())
+  insurerid           Int?
+  refid               String?   @db.VarChar(255)
+  transactionno       String?   @db.VarChar(255)
+  furtherclaimid      String?   @db.VarChar(255)
+  hn                  String?   @db.VarChar(10)
+  vn                  String?   @db.VarChar(10)
+  visitdate           String?   @db.VarChar(20)
+  accidentdate        String?   @db.VarChar(20)
+  messageclaim        String?   @db.VarChar(255)
+  messageth           String?   @db.VarChar(255)
+  claimno             String?   @db.VarChar(50)
+  claimstatuscode     String?   @db.VarChar(10)
+  status_changed_at   DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamp(6)
+  occurrenceno        String?   @db.VarChar(50)
+  totalapprovedamount Decimal?  @db.Decimal(10, 2)
+  totalexcessamount   Decimal?  @db.Decimal(10, 2)
+  isreimbursement     Boolean?
+  batchnumber         String?   @db.VarChar(50)
+  invoicenumber       String?   @db.VarChar(50)
+  otherinsurer        Boolean?
+}
+
+model transactionclaimstatus {
+  id                 Int          @id @default(autoincrement())
+  insurerid          Int?
+  refid              String?      @db.VarChar(255)
+  transactionno      String?      @db.VarChar(255)
+  hn                 String?      @db.VarChar(10)
+  vn                 String?      @db.VarChar(10)
+  batchnumber        String?      @db.VarChar(50)
+  claimno            String?      @db.VarChar(50)
+  invoicenumber      String?      @db.VarChar(50)
+  status_changed_at  DateTime?    @db.Timestamp(6)
+  note               String?
+  totalapproveamount String?      @db.VarChar(255)
+  paymentdate        String?      @db.VarChar(255)
+  claimstatuscode    String?      @db.VarChar(255)
+  claimstatus        claimstatus? @relation(fields: [claimstatuscode, insurerid], references: [claimstatuscode, insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
