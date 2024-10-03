@@ -1,12 +1,17 @@
-import { IsArray, IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsInt, IsOptional, IsString,ValidateNested  } from 'class-validator';
+import { Type } from 'class-transformer';
 import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 
 export class ResultCheckEligibleDto {
 
     HTTPStatus: HttpMessageDto;
-  // Result?: ResultInfo;
+   Result?: ResultInfo;
  }
-
+ export class ResultInfo{
+    InsuranceResult?:InsuranceResult;
+    InsuranceData?:InsuranceData;
+    InsuranceCustomerDetail?:InsuranceCustomerDetail;
+}
 
 export class InsuranceResult{
 
@@ -53,14 +58,20 @@ export class InsuranceData{
     @IsOptional()
     PolicyCoverageDesc?:[]
 
-    CoverageList:CoverageList[]
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoverageList)
+    @IsOptional()
+    CoverageList?: CoverageList[]
     
     @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => PolicyInfoList)
     @IsOptional()
     PolicyInfoList?: PolicyInfoList[];
     
   }
-  class PolicyInfoList{
+export class PolicyInfoList{
 
     @IsString()
     @IsOptional()
@@ -93,18 +104,21 @@ export class InsuranceData{
 
 }
 
- class CoverageList{
+ export class CoverageList{
     @IsString()
     @IsOptional()
     Type?: string;
     @IsString()
     @IsOptional()
     Status?: string;
+
     @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => MessageList)
     @IsOptional()
-    MessageList?: MessageList[]
+    MessageList?: MessageList[];
 }
-class MessageList{
+export class MessageList{
 
     @IsString()
     @IsOptional()
@@ -150,3 +164,141 @@ class MessageList{
     NationalId?: string;
     
   }
+
+  export class EligibleEpisodeListDto {
+
+    HTTPStatus: HttpMessageDto;
+    Result?: ResultPatientEpisodeInfo;
+ }
+ class ResultPatientEpisodeInfo{
+    PatientInfo?: FindPatientInfoResultInfo;
+    EpisodeInfo?: FindEpisodeInfoResultInfo;
+}
+export class FindPatientInfoResultInfo{
+    @IsInt()
+    @IsOptional()
+    PatientID?: number;
+
+    @IsString()
+    @IsOptional()
+    PID?: string;
+
+    @IsString()
+    @IsOptional()
+    PassportNumber?: string;
+
+    @IsString()
+    @IsOptional()
+    HN?: string;
+
+    @IsString()
+    @IsOptional()
+    TitleTH?: string;
+
+    @IsString()
+    @IsOptional()
+    GivenNameTH?: string;
+
+    @IsString()
+    @IsOptional()
+    SurnameTH?: string;
+
+    @IsString()
+    @IsOptional()
+    TitleEN?: string;
+
+    @IsString()
+    @IsOptional()
+    GivenNameEN?: string;
+
+    @IsString()
+    @IsOptional()
+    SurnameEN?: string;
+
+    @IsString()
+    @IsOptional()
+    DateOfBirth?: string;
+
+    @IsString()
+    @IsOptional()
+    Gender?: string;
+
+    @IsString()
+    @IsOptional()
+    MobilePhone?: string;
+}
+export class FindEpisodeInfoResultInfo{
+  
+
+    @IsString()
+    @IsOptional()
+    VN?: string;
+
+    @IsString()
+    @IsOptional()
+    EpisodeType?: string;
+
+    @IsString()
+    @IsOptional()
+    VisitDate?: string;
+
+    @IsString()
+    @IsOptional()
+    VisitTime?: string;
+
+    @IsString()
+    @IsOptional()
+    VisitDateTime?: string;
+
+    @IsString()
+    @IsOptional()
+    AccidentDate?: string;
+
+    @IsString()
+    @IsOptional()
+    LocationCode?: string;
+
+    @IsString()
+    @IsOptional()
+    LocationDesc?: string;
+
+    @IsString()
+    @IsOptional()
+    WardCode?: string;
+
+    @IsString()
+    @IsOptional()
+    WardDesc?: string;
+
+    @IsString()
+    @IsOptional()
+    BedCode?: string;
+
+    @IsString()
+    @IsOptional()
+    MainCareproviderCode?: string;
+
+    @IsString()
+    @IsOptional()
+    MainCareproviderDesc?: string;
+
+    @IsString()
+    @IsOptional()
+    DoctorLicense?: string;
+
+    @IsString()
+    @IsOptional()
+    DoctorFirstName?: string;
+
+    @IsString()
+    @IsOptional()
+    DoctorLastName?: string;
+
+    @IsString()
+    @IsOptional()
+    SurgeryType?: string;
+
+
+
+
+}

@@ -7,6 +7,13 @@ export class CheckEligibleController {
   constructor(private readonly checkEligibleService: CheckEligibleService) {}
 
 
+
+  @Post('/getEpisodeByHN')
+  async getEpisodeByHN(@Body() queryEligibleBodyDto:QueryEligibleBodyDto){
+        const result = this.checkEligibleService.getEpisodeByHN(queryEligibleBodyDto);
+        return result
+  }
+
   @Post('/checkeligible')
   async checkeligible(@Body() queryEligibleBodyDto:QueryEligibleBodyDto){
         const result = this.checkEligibleService.checkeligible(queryEligibleBodyDto);
