@@ -5,9 +5,9 @@ import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 export class ResultCheckEligibleDto {
 
     HTTPStatus: HttpMessageDto;
-   Result?: ResultInfo;
+   Result?: InsuranceResultInfo;
  }
- export class ResultInfo{
+  class InsuranceResultInfo{
     InsuranceResult?:InsuranceResult;
     InsuranceData?:InsuranceData;
     InsuranceCustomerDetail?:InsuranceCustomerDetail;
