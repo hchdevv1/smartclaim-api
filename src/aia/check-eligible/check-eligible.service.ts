@@ -324,8 +324,9 @@ export class CheckEligibleService {
     //console.log(xMessageList)
      //console.log("xCoverageList")
      const xCoverageList: CoverageList[] = responsefromAIA.data.Data.CoverageList ? responsefromAIA.data.Data.CoverageList.map((item) => {
+      const convertCoverageType =this.convertCoverageListType(item.Type)
       return {
-         Type: item.Type,  
+         Type: convertCoverageType,  
          Status:item.Status,
          MessageList: Array.isArray(xMessageList) ? xMessageList : [] , 
        };
@@ -455,6 +456,17 @@ export class CheckEligibleService {
      }
    }
 
+   convertCoverageListType(xType:string){
+
+    const coverageListTypes: { [key: string]: string } = {
+      HS: "ผลประโยชน์ค่ารักษาพยาบาล",
+      HB: "ผลประโยชน์ค่าชดเชยนอนรพ.",
+      AI: "ผลประโยชน์ค่าชดเชย",
+      HSBypass: "ผลประโยชน์ค่ารักษาพยาบาลที่ต้องตรวจสอบความคุ้มครองโดยเจ้าหน้าที่ AIA"
+    };
+  
+    return coverageListTypes[xType] || null;
+   }
    async generateRefId(inputVN:string,inputInsurerCode:number,inputServiceSettingCode:string){
    // console.log(inputVN+'---'+inputInsurerCode+'---'+inputServiceSettingCode)
     let count , xRefId
