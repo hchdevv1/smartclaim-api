@@ -93,7 +93,8 @@ async getFilemany(@Param('id') id: string) {
       cb(null, newFilename); // ส่งชื่อไฟล์ใหม่กลับไปยัง callback
     },
   }),
-}))
+}
+))
 async uploadFile(@UploadedFile()  file: Express.Multer.File ,@Body() body: QueryCreateClaimDocumentDtoBodyDto) {
 
   const result = await this.utilsService.saveFile(file,body)

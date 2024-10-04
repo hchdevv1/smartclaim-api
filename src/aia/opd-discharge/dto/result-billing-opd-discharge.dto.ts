@@ -2,7 +2,7 @@ import { IsArray, IsOptional, IsString,ValidateNested  } from 'class-validator';
 import { Type } from 'class-transformer';
 import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 
-export class ResultOpdDischargeOrderItemDto {
+export class ResultOpdDischargeBillingDto {
 
     HTTPStatus: HttpMessageDto;
     Result?: TrakcareResultInfo;
@@ -11,33 +11,13 @@ export class ResultOpdDischargeOrderItemDto {
  export class TrakcareResultInfo {
     @IsArray()
     @ValidateNested({ each: true })
-    @Type(() => QueryOrderItem)
+    @Type(() => QueryBilling)
     @IsOptional()
-    OrderItemInfo?: QueryOrderItem[];
+    BillingInfo?: QueryBilling[];
   }
 
 
-  export class QueryOrderItem{
-
-    @IsString()
-    @IsOptional()
-    ItemId?: string;
-
-    @IsString()
-    @IsOptional()
-    ItemName?: string;
-
-    @IsString()
-    @IsOptional()
-    ItemAmount?: string;
-
-    @IsString()
-    @IsOptional()
-    Discount?: string;
-
-    @IsString()
-    @IsOptional()
-    Initial?: string;
+  export class QueryBilling{
 
     @IsString()
     @IsOptional()
@@ -49,18 +29,22 @@ export class ResultOpdDischargeOrderItemDto {
 
     @IsString()
     @IsOptional()
-    Location?: string;
+    SimbBillingCode?: string;
 
     @IsString()
     @IsOptional()
-    NetAmount?: string;
+    PayorBillingCode?: string;
 
     @IsString()
     @IsOptional()
-    SimbVersion?: string;
+    BillingInitial?: string;
 
     @IsString()
     @IsOptional()
-    Terminology?: string;
+    BillingDiscount?: string;
+
+    @IsString()
+    @IsOptional()
+    BillingNetAmount?: string;
 
   }

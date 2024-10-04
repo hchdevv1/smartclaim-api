@@ -333,10 +333,10 @@ export class PatientinfoService {
     }
 
     const patientInfoArray = results.map((result) => ({
-        PID: result.pid,
+        PID: result.national_id||'',
         HN: result.hn,
         PassportNumber:result.passportnumber,
-        TitleTH: result.title_th,
+        TitleTHc: result.title_th,
         GivenNameTH: result.givenname_th,
         SurnameTH: result.surname_th,
         TitleEN: result.title_en,

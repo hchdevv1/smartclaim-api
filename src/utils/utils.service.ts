@@ -1230,10 +1230,7 @@ async getFileAsBase64(id: number) {
       };
     
 }
-async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyDto) {
-    console.log('22222')
-    console.log(file)
-    console.log('3333333')
+async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyDto) { 
     const fileRecord = await prismaProgest.claimdocuments.create({
       data: {
         hn: body.HN, // ปรับข้อมูลตามที่ต้องการ
@@ -1251,8 +1248,6 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
         uploadedby: body.UploadedBy
       },
     });
-    console.log('XXXXXX')
-  console.log(fileRecord)
     return fileRecord; // ส่งคืนข้อมูลที่บันทึกไว้
 }
   async getFilesAsBase64findMany(ids: string) {

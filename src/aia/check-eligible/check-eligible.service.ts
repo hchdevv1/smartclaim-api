@@ -183,7 +183,6 @@ export class CheckEligibleService {
     //checkEligibleBodyDto.PatientInfo.PID =dummyDataRequest.PatientInfo.DataJson.Id;
 
     let RequesetBody ,xResultInfo;
-    
      try{
        RequesetBody ={
          xRefID:checkEligibleBodyDto.PatientInfo.RefId||'',

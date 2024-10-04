@@ -26,4 +26,20 @@ export class OpdDischargeController {
         const result = this.opdDischargeService.getOPDDischargeInvestigation(queryOpdDischargeDto);
         return result
   }
+  @Post('/getOPDDischargeOrderItem')
+  async getOPDDischargeOrderItem(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+        const result = this.opdDischargeService.getOPDDischargeOrderItem(queryOpdDischargeDto);
+        return result
+  }
+  @Post('/getOPDDischargeBilling')
+  async getOPDDischargeBilling(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+        const result = this.opdDischargeService.getOPDDischargeBilling(queryOpdDischargeDto);
+        return result
+  }
+  @Post('/getOPDDischargeProcedure')
+  async getOPDDischargeProcedure(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+        const result = this.opdDischargeService.getOPDDischargeProcedure(queryOpdDischargeDto);
+        return result
+  }
+  
 }
