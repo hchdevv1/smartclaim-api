@@ -114,7 +114,7 @@ export class PolicyInfoList{
 
     @IsArray()
     @ValidateNested({ each: true })
-    @Type(() => MessageList)
+   @Type(() => MessageList)
     @IsOptional()
     MessageList?: MessageList[];
 }

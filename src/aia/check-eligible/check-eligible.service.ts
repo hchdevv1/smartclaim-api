@@ -309,7 +309,7 @@ export class CheckEligibleService {
       MessageTh:responsefromAIA.data.Result.MessageTh ||'',
      }
      //console.log(xInsuranceResult)
-     const xMessageList: MessageList = responsefromAIA.data.Data.CoverageList ? responsefromAIA.data.Data.CoverageList.map((coverageItem) => {
+     const xMessageList: MessageList[] = responsefromAIA.data.Data.CoverageList ? responsefromAIA.data.Data.CoverageList.flatMap((coverageItem) => {
        return coverageItem.MessageList.map((item) => {
         const decryptedPolicyNo = this.utilsService.DecryptAESECB(item.PolicyNo, AIA_APISecretkey) || '';
           return {
@@ -321,7 +321,7 @@ export class CheckEligibleService {
          };
        });
      }):[];
-    // console.log(xMessageList)
+    //console.log(xMessageList)
      //console.log("xCoverageList")
      const xCoverageList: CoverageList[] = responsefromAIA.data.Data.CoverageList ? responsefromAIA.data.Data.CoverageList.map((item) => {
       return {
