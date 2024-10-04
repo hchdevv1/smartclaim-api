@@ -1104,6 +1104,7 @@ async getAccidentCauseOver45Day(xInsurercode: string ) {
 }
 async getDiagnosisTypeMapping(xInsurercode: string ,xDxtypecodeTrakcare: string) {
   let diagnosistypemapping:any ;
+  
   try{
     diagnosistypemapping = await prismaProgest.diagnosistypemapping.findMany({ 
      
@@ -1138,6 +1139,7 @@ async getDiagnosisTypeMapping(xInsurercode: string ,xDxtypecodeTrakcare: string)
     }else{
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
     }
+
      return newDiagnosisTypeMappingDto  
     }catch(error)
     {
