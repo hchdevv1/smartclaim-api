@@ -2,6 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { OpdDischargeService } from './opd-discharge.service';
 
 import  { QueryOpdDischargeDto } from   './dto/query-opd-discharge.dto';
+import { QuerySubmitOpdDischargeDto } from './dto/query-submit-opd-discharge.dto'
 @Controller('/V1/opd-discharge')
 export class OpdDischargeController {
   constructor(private readonly opdDischargeService: OpdDischargeService) {}
@@ -53,4 +54,9 @@ export class OpdDischargeController {
         return result
   }
   
+  @Post('/SubmitOPDDischargeToAIA')
+  async SubmitOPDDischargeToAIA(@Body() querySubmitOpdDischargeDto:QuerySubmitOpdDischargeDto){
+        const result = this.opdDischargeService.SubmitOPDDischargeToAIA(querySubmitOpdDischargeDto);
+        return result
+  }
 }

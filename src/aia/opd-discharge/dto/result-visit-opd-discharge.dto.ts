@@ -1,4 +1,4 @@
-import {  IsOptional, IsString  } from 'class-validator';
+import {  IsBoolean, IsOptional, IsString  } from 'class-validator';
 
 import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 
@@ -28,9 +28,9 @@ export class ResultOpdDischargeVisitDto {
     @IsOptional()
     AdditionalNote?: string;
 
-    @IsString()
+    @IsBoolean()
     @IsOptional()
-    AlcoholRelated?: string;
+    AlcoholRelated?: boolean;
 
     @IsString()
     @IsOptional()
@@ -60,9 +60,9 @@ export class ResultOpdDischargeVisitDto {
     @IsOptional()
     PlanOfTreatment?: string;
 
-    @IsString()
+    @IsBoolean()
     @IsOptional()
-    Pregnant?: string;
+    Pregnant?: boolean;
 
     @IsString()
     @IsOptional()
@@ -76,9 +76,9 @@ export class ResultOpdDischargeVisitDto {
     @IsOptional()
     PreviousTreatmentDetail?: string;
 
-    @IsString()
+    @IsBoolean()
     @IsOptional()
-    PrivateCase?: string;
+    PrivateCase?: boolean;
 
     @IsString()
     @IsOptional()
