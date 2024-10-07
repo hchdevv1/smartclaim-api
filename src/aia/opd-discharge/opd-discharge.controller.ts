@@ -6,6 +6,12 @@ import  { QueryOpdDischargeDto } from   './dto/query-opd-discharge.dto';
 export class OpdDischargeController {
   constructor(private readonly opdDischargeService: OpdDischargeService) {}
 
+  @Post('/getOPDDischargeVisit')
+  async getOPDDischargeVisit(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+        const result = this.opdDischargeService.getOPDDischargeVisit(queryOpdDischargeDto);
+        return result
+  }
+  
   @Post('/getOPDDischargeVitalSign')
   async getOPDDischargeVitalSign(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
         const result = this.opdDischargeService.getOPDDischargeVitalSign(queryOpdDischargeDto);
@@ -39,6 +45,11 @@ export class OpdDischargeController {
   @Post('/getOPDDischargeProcedure')
   async getOPDDischargeProcedure(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
         const result = this.opdDischargeService.getOPDDischargeProcedure(queryOpdDischargeDto);
+        return result
+  }
+  @Post('/getOPDDischargeAccident')
+  async getOPDDischargeAccident(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+        const result = this.opdDischargeService.getOPDDischargeAccident(queryOpdDischargeDto);
         return result
   }
   

@@ -59,7 +59,6 @@ export class TrakcareController {
      return this.trakcareService.getOPDDischargeAccident(xVN);
   }
   
-  
   @Get('/getOPDDischargePatient/:xHN')
   getOPDDischargePatient(@Param('xHN') xHN: string) {
      return this.trakcareService.getOPDDischargePatient(xHN);
