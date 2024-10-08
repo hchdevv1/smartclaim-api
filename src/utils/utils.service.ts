@@ -4,7 +4,7 @@ import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-
+import { readFile } from 'fs/promises'; 
 import { prismaProgest } from '../database/database';
 import { Prisma } from '../../prisma/generate-client-db';
 import { HttpStatusMessageService } from './http-status-message/http-status-message.service';
@@ -1236,9 +1236,10 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
         hn: body.HN, // ปรับข้อมูลตามที่ต้องการ
         vn: body.VN,
         refid: body.RefId,
+        insurerid:13,
         transactionno: body.TransactionNo,
         documenttypecode: body.DocumenttypeCode,
-        documenttypename: 'example-doc-type-name',
+        documenttypename: '',
         documentname: body.VN+'-'+body.DocumenttypeCode+'-'+Math.round(Math.random() * 186).toString(3)+'.'+file.mimetype.split('/')[1],
         filesize: file.size,
         filemimetype: file.mimetype,
@@ -1344,14 +1345,15 @@ async getListDocumentByRefId(queryCreateClaimDocumentDtoBodyDto: QueryCreateClai
       // const HN =queryCreateClaimDocumentDtoBodyDto.HN;
        const VN = queryCreateClaimDocumentDtoBodyDto.VN;
        const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
-       const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
+      // const insurerid = queryCreateClaimDocumentDtoBodyDto.insurerid;
+       //const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
        //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
        //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
          const fileRecords = await prismaProgest.claimdocuments.findMany({
           where: {
              vn:VN,
              refid:RefId,
-             transactionno:TransactionNo
+           //  insurerid:insurerid
          }
          });
          if (fileRecords.length === 0) {
@@ -1377,6 +1379,78 @@ async getListDocumentByRefId(queryCreateClaimDocumentDtoBodyDto: QueryCreateClai
          
         
          return newResultAttachDocListInfoDto;
+}
+async getListDocumentByTransactionNo(queryCreateClaimDocumentDtoBodyDto: QueryCreateClaimDocumentDtoBodyDto) {
+  
+  // const HN =queryCreateClaimDocumentDtoBodyDto.HN;
+   const VN = queryCreateClaimDocumentDtoBodyDto.VN;
+   const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
+   const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
+   //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
+console.log(VN)
+console.log(RefId)
+console.log(TransactionNo)
+//console.log(InsurerCode)
+   //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
+   //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
+     const fileRecords = await prismaProgest.claimdocuments.findMany({
+      where: {
+         vn:VN,
+         refid:RefId,
+         transactionno:TransactionNo,
+         //insurerid:InsurerCode
+     }
+     });
+    
+     console.log(fileRecords)
+     if (fileRecords.length === 0) {
+       throw new NotFoundException('Files not found');
+     }
+     const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+
+    //  await Promise.all(
+    //    fileRecords.map(async (fileRecord) => {
+    //      const filePath = join(__dirname, '..', '..', fileRecord.filepath);
+    //      const fileBuffer = readFileSync(filePath);
+    //      const base64File = fileBuffer.toString('base64');
+        
+    //      newResultAttachDocListInfoDto = [
+    //        {
+    //          DocName: fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
+    //          Base64Data: base64File, // ข้อมูลไฟล์เป็น Base64
+           
+    //      }
+    //      ];
+    //    }),
+    //  );
+    //  console.log('00000')
+    //  console.log(newResultAttachDocListInfoDto)
+    //  console.log('ddddd')
+    //  return newResultAttachDocListInfoDto;
+    await Promise.all(
+      fileRecords.map(async (fileRecord) => {
+        const filePath = join(__dirname, '..', '..', fileRecord.filepath);
+        
+        try {
+          // ใช้ readFile แบบ async
+          const fileBuffer = await readFile(filePath);
+          const base64File = fileBuffer.toString('base64');
+          
+          // สร้าง object ของ document และเพิ่มเข้าไปใน array
+          newResultAttachDocListInfoDto.push({
+            DocName: fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
+            Base64Data: base64File, // ข้อมูลไฟล์เป็น Base64
+          });
+        } catch (error) {
+          console.error(`Error reading file ${fileRecord.filepath}:`, error);
+        }
+      }),
+    );
+ 
+    console.log('Result Attach Doc List:', newResultAttachDocListInfoDto);
+ 
+    return newResultAttachDocListInfoDto;
+ 
 }
 addFormatHTTPStatus(data: HttpMessageDto,inputstatusCode:number,inputmessage:string,inputerror:string):void{  
   if(inputstatusCode !==200){

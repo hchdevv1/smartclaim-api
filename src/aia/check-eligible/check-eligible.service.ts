@@ -357,7 +357,7 @@ export class CheckEligibleService {
       RefId:responsefromAIA.data.Data.RefId ||'',
       TransactionNo:responsefromAIA.data.Data.TransactionNo ||'',
       InsurerCode:responsefromAIA.data.Data.InsurerCode ||'',
-      CoverageClaimStatus:responsefromAIA.data.Data.CoverageClaimStatus ||'',
+      CoverageClaimStatus:Boolean(responsefromAIA.data.Data.CoverageClaimStatus) ||false,
       RemarkList:[],
       PolicyCoverageDesc:[],
       CoverageList:Array.isArray(xCoverageList) ? xCoverageList : [] ,

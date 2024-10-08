@@ -17,6 +17,7 @@ export class CreateClaimDocumentDto {
   @IsString()
   TransactionNo: string; // หมายเลขการทำธุรกรรม
 
+
   @IsNotEmpty()
   @IsString()
   DocumentTypeCode: string; // รหัสประเภทของเอกสาร
@@ -56,6 +57,7 @@ export class QueryCreateClaimDocumentDtoBodyDto {
     @IsString()
     @IsOptional()
     TransactionNo?: string;
+
 
     @IsString()
     @IsOptional()

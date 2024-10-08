@@ -3,6 +3,9 @@ import { OpdDischargeService } from './opd-discharge.service';
 
 import  { QueryOpdDischargeDto } from   './dto/query-opd-discharge.dto';
 import { QuerySubmitOpdDischargeDto } from './dto/query-submit-opd-discharge.dto'
+import { QueryProcedureDto } from './dto/query-procedure-opd-discharge.dto';
+import { QueryAccidentDto } from './dto/query-accident-opd-discharge.dto';
+ 
 @Controller('/V1/opd-discharge')
 export class OpdDischargeController {
   constructor(private readonly opdDischargeService: OpdDischargeService) {}
@@ -54,9 +57,22 @@ export class OpdDischargeController {
         return result
   }
   
+  @Post('/SubmitProcedure')
+  async SubmitProcedure(@Body() queryProcedureDto:QueryProcedureDto){
+        const result = this.opdDischargeService.SubmitProcedure(queryProcedureDto);
+        return result
+  }
+// 
+@Post('/SubmitAccident')
+async SubmitAccident(@Body() queryAccidentDto:QueryAccidentDto){
+      const result = this.opdDischargeService.SubmitAccident(queryAccidentDto);
+      return result
+}
   @Post('/SubmitOPDDischargeToAIA')
   async SubmitOPDDischargeToAIA(@Body() querySubmitOpdDischargeDto:QuerySubmitOpdDischargeDto){
         const result = this.opdDischargeService.SubmitOPDDischargeToAIA(querySubmitOpdDischargeDto);
         return result
   }
+
+
 }

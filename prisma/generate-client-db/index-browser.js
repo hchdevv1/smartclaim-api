@@ -243,13 +243,19 @@ exports.Prisma.MedicaltransactionsScalarFieldEnum = {
   dxfreetext: 'dxfreetext',
   presentillness: 'presentillness',
   chiefcomplaint: 'chiefcomplaint',
-  accidentplacecode: 'accidentplacecode',
-  causeofinjury: 'causeofinjury',
-  commentofinjury: 'commentofinjury',
-  woundtypecode: 'woundtypecode',
-  injurysidecode: 'injurysidecode',
-  injuryarea: 'injuryarea',
-  procedureedit: 'procedureedit'
+  accidentcauseover45days: 'accidentcauseover45days',
+  underlyingcondition: 'underlyingcondition',
+  physicalexam: 'physicalexam',
+  planoftreatment: 'planoftreatment',
+  procedurefreetext: 'procedurefreetext',
+  additionalnote: 'additionalnote',
+  haveprocedure: 'haveprocedure',
+  haveaccident: 'haveaccident',
+  signsymptomsdate: 'signsymptomsdate',
+  comascore: 'comascore',
+  expecteddayofrecovery: 'expecteddayofrecovery',
+  alcoholrelated: 'alcoholrelated',
+  pregnant: 'pregnant'
 };
 
 exports.Prisma.PolicytypeScalarFieldEnum = {
@@ -271,7 +277,6 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   insurerid: 'insurerid',
   refid: 'refid',
   transactionno: 'transactionno',
-  furtherclaimid: 'furtherclaimid',
   hn: 'hn',
   vn: 'vn',
   visitdate: 'visitdate',
@@ -287,7 +292,12 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   isreimbursement: 'isreimbursement',
   batchnumber: 'batchnumber',
   invoicenumber: 'invoicenumber',
-  otherinsurer: 'otherinsurer'
+  otherinsurer: 'otherinsurer',
+  furtherclaimid: 'furtherclaimid',
+  furtherclaimno: 'furtherclaimno',
+  privatecase: 'privatecase',
+  previoustreatmentdate: 'previoustreatmentdate',
+  previoustreatmentdetail: 'previoustreatmentdetail'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
@@ -305,6 +315,60 @@ exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
   totalapproveamount: 'totalapproveamount',
   paymentdate: 'paymentdate',
   claimstatuscode: 'claimstatuscode'
+};
+
+exports.Prisma.AccidenttransactionsScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  accidentplace: 'accidentplace',
+  accidentdate: 'accidentdate'
+};
+
+exports.Prisma.ProceduretransactionsScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  icd9: 'icd9',
+  procedurename: 'procedurename',
+  proceduredate: 'proceduredate'
+};
+
+exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  accidentplace: 'accidentplace',
+  accidentdate: 'accidentdate',
+  causeofinjury: 'causeofinjury',
+  commentofinjury: 'commentofinjury',
+  woundtype: 'woundtype',
+  injuryside: 'injuryside',
+  injuryarea: 'injuryarea'
+};
+
+exports.Prisma.CauseofinjurydetailScalarFieldEnum = {
+  id: 'id',
+  accidentid: 'accidentid',
+  causeofinjury: 'causeofinjury',
+  commentofinjury: 'commentofinjury'
+};
+
+exports.Prisma.InjurydetailScalarFieldEnum = {
+  id: 'id',
+  accidentid: 'accidentid',
+  woundtype: 'woundtype',
+  injuryside: 'injuryside',
+  injuryarea: 'injuryarea'
 };
 
 exports.Prisma.SortOrder = {
@@ -340,7 +404,12 @@ exports.Prisma.ModelName = {
   policytype: 'policytype',
   servicesetting: 'servicesetting',
   transactionclaim: 'transactionclaim',
-  transactionclaimstatus: 'transactionclaimstatus'
+  transactionclaimstatus: 'transactionclaimstatus',
+  accidenttransactions: 'accidenttransactions',
+  proceduretransactions: 'proceduretransactions',
+  accidenttransactions22: 'accidenttransactions22',
+  causeofinjurydetail: 'causeofinjurydetail',
+  injurydetail: 'injurydetail'
 };
 
 /**

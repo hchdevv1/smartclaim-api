@@ -14,6 +14,15 @@ export class ResultOpdDischargeBillingDto {
     @Type(() => QueryBilling)
     @IsOptional()
     BillingInfo?: QueryBilling[];
+
+    @IsString()
+    @IsOptional()
+    TotalBillAmount?: string;
+
+    @IsString()
+    @IsOptional()
+    InvoiceNumber?: string;
+
   }
 
 
