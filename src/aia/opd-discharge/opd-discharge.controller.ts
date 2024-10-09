@@ -5,7 +5,7 @@ import { QueryOpdDischargeDto } from   './dto/query-opd-discharge.dto';
 import { QuerySubmitOpdDischargeDto } from './dto/query-submit-opd-discharge.dto'
 import { QueryProcedureDto } from './dto/query-procedure-opd-discharge.dto';
 import { QueryAccidentDto } from './dto/query-accident-opd-discharge.dto';
- 
+ import { QueryVisitDto } from './dto/query-visit-opd-discharge.dto';
 @Controller('/V1/opd-discharge')
 export class OpdDischargeController {
   constructor(private readonly opdDischargeService: OpdDischargeService) {}
@@ -54,6 +54,11 @@ export class OpdDischargeController {
   @Post('/getOPDDischargeAccident')
   async getOPDDischargeAccident(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
         const result = this.opdDischargeService.getOPDDischargeAccident(queryOpdDischargeDto);
+        return result
+  }
+  @Post('/SubmitVisit')
+  async SubmitVisit(@Body() queryVisitDto:QueryVisitDto){
+        const result = this.opdDischargeService.SubmitVisit(queryVisitDto);
         return result
   }
   

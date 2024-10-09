@@ -28,6 +28,7 @@ import { ResultSubmitOpdDischargeDto , InsuranceResult, InsuranceData,
 } from './dto/result-submit-opd-discharge.dto';
 import { QueryProcedureDto ,ResultSubmitProcedureDto} from './dto/query-procedure-opd-discharge.dto';
 import { QueryAccidentDto ,ResultSubmitAccidentDto} from './dto/query-accident-opd-discharge.dto';
+import { QueryVisitDto } from './dto/query-visit-opd-discharge.dto';
 
 
 // import { DummyDataRequest1 }  from './dummyRequest';
@@ -1105,6 +1106,164 @@ return newResultOpdDischargeAccidentDto
     }
   }
 }
+}
+async SubmitVisit(queryVisitDto:QueryVisitDto){
+  let medicalTransaction;
+  try{
+    const xRefId =queryVisitDto.PatientInfo.RefId;
+    const xTransactionNo =queryVisitDto.PatientInfo.TransactionNo;
+    const xInsurerCode =queryVisitDto.PatientInfo.InsurerCode;
+    const xHN =queryVisitDto.PatientInfo.HN;
+    const xVN =queryVisitDto.PatientInfo.VN;
+
+   // const xVisitDateTime =queryVisitDto.PatientInfo.VisitDateTime||'';
+    const xDxFreeText =queryVisitDto.PatientInfo.DxFreeText||'';
+    const xPresentIllness =queryVisitDto.PatientInfo.PresentIllness||'';
+    const xChiefComplaint =queryVisitDto.PatientInfo.ChiefComplaint||'';
+    const xAccidentCauseOver45Days =queryVisitDto.PatientInfo.AccidentCauseOver45Days||'';
+    const xUnderlyingCondition =queryVisitDto.PatientInfo.UnderlyingCondition||'';
+    const xPhysicalExam =queryVisitDto.PatientInfo.PhysicalExam||'';
+    const xPlanOfTreatment =queryVisitDto.PatientInfo.PlanOfTreatment||'';
+    const xProcedureFreeText =queryVisitDto.PatientInfo.ProcedureFreeText||'';
+    const xAdditionalNote =queryVisitDto.PatientInfo.AdditionalNote||'';
+    const xSignSymptomsDate =queryVisitDto.PatientInfo.SignSymptomsDate||'';
+    const xComaScore =queryVisitDto.PatientInfo.ComaScore||'';
+    const xExpectedDayOfRecovery =queryVisitDto.PatientInfo.ExpectedDayOfRecovery||'';
+
+    const xHaveProcedure =Boolean(queryVisitDto.PatientInfo.HaveProcedure) || false;
+    const xHaveAccidentCauseOfInjuryDetail =Boolean(queryVisitDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false;
+    const xHaveAccidentInjuryDetail =Boolean(queryVisitDto.PatientInfo.HaveAccidentInjuryDetail) || false;
+    const xAlcoholRelated =Boolean(queryVisitDto.PatientInfo.AlcoholRelated) || false;
+    const xPregnant =Boolean(queryVisitDto.PatientInfo.Pregnant) || false;
+    const xPrivateCase =Boolean(queryVisitDto.PatientInfo.PrivateCase) || false;
+
+if (xTransactionNo){
+ 
+  try {
+
+    const existingTransaction = await prismaProgest.medicaltransactions.findFirst({
+      where: {
+        refid: xRefId,
+        transactionno: xTransactionNo,
+      },
+    });
+
+    // ถ้าพบข้อมูลที่ซ้ำกัน ให้ลบออกก่อน
+    if (existingTransaction) {
+      await prismaProgest.medicaltransactions.delete({
+        where: { id: existingTransaction.id },
+      });
+    }
+
+     medicalTransaction = await prismaProgest.medicaltransactions.create({
+      data: {
+        insurerid: xInsurerCode,
+        refid: xRefId,
+        transactionno: xTransactionNo,
+        hn: xHN,
+        vn: xVN,
+        dxfreetext: xDxFreeText,
+        presentillness:xPresentIllness,
+        chiefcomplaint: xChiefComplaint,
+        accidentcauseover45days: xAccidentCauseOver45Days,
+        underlyingcondition: xUnderlyingCondition,
+        physicalexam:xPhysicalExam,
+        planoftreatment: xPlanOfTreatment,
+        procedurefreetext: xProcedureFreeText,
+        additionalnote:xAdditionalNote,
+        signsymptomsdate: xSignSymptomsDate,
+        comascore: xComaScore,
+        expecteddayofrecovery: xExpectedDayOfRecovery,
+        pregnant:xPregnant,
+        alcoholrelated: xAlcoholRelated,
+        haveaccidentinjurydetail: xHaveAccidentInjuryDetail,
+        haveaccidentcauseofinjurydetail: xHaveAccidentCauseOfInjuryDetail,
+        haveprocedure: xHaveProcedure,
+        privatecase:xPrivateCase
+      },
+    });
+  }catch (error) {
+    throw new Error(`Error creating medical transaction: ${error.message}`);
+  }
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+}else{
+    this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid VisitDetail','')
+}
+
+    let newResultSubmitProcedureDto= new ResultSubmitProcedureDto();
+    newResultSubmitProcedureDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:medicalTransaction
+      }
+
+    return newResultSubmitProcedureDto
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+       
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
 }
 async SubmitProcedure(queryProcedureDto:QueryProcedureDto){
   //let ResponeTrakcareHTTPStatus;

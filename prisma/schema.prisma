@@ -152,28 +152,30 @@ model insurers {
 }
 
 model medicaltransactions {
-  id                      Int      @id @default(autoincrement())
-  insurerid               Int?
-  refid                   String?  @db.VarChar(255)
-  transactionno           String?  @db.VarChar(255)
-  hn                      String?  @db.VarChar(10)
-  vn                      String?  @db.VarChar(10)
-  dxfreetext              String?  @db.VarChar(500)
-  presentillness          String?  @db.VarChar(500)
-  chiefcomplaint          String?  @db.VarChar(500)
-  accidentcauseover45days String?  @db.VarChar(50)
-  underlyingcondition     String?  @db.VarChar(500)
-  physicalexam            String?  @db.VarChar(500)
-  planoftreatment         String?  @db.VarChar(500)
-  procedurefreetext       String?  @db.VarChar(500)
-  additionalnote          String?  @db.VarChar(500)
-  haveprocedure           Boolean?
-  haveaccident            Boolean?
-  signsymptomsdate        String?  @db.VarChar(20)
-  comascore               String?  @db.VarChar(3)
-  expecteddayofrecovery   String?  @db.VarChar(10)
-  alcoholrelated          String?  @db.VarChar(10)
-  pregnant                String?  @db.VarChar(10)
+  id                              Int      @id @default(autoincrement())
+  insurerid                       Int?
+  refid                           String?  @db.VarChar(255)
+  transactionno                   String?  @db.VarChar(255)
+  hn                              String?  @db.VarChar(10)
+  vn                              String?  @db.VarChar(10)
+  dxfreetext                      String?  @db.VarChar(500)
+  presentillness                  String?  @db.VarChar(500)
+  chiefcomplaint                  String?  @db.VarChar(500)
+  accidentcauseover45days         String?  @db.VarChar(50)
+  underlyingcondition             String?  @db.VarChar(500)
+  physicalexam                    String?  @db.VarChar(500)
+  planoftreatment                 String?  @db.VarChar(500)
+  procedurefreetext               String?  @db.VarChar(500)
+  additionalnote                  String?  @db.VarChar(500)
+  signsymptomsdate                String?  @db.VarChar(20)
+  comascore                       String?  @db.VarChar(3)
+  expecteddayofrecovery           String?  @db.VarChar(10)
+  pregnant                        Boolean?
+  alcoholrelated                  Boolean?
+  haveaccidentinjurydetail        Boolean?
+  haveaccidentcauseofinjurydetail Boolean?
+  haveprocedure                   Boolean?
+  privatecase                     Boolean?
 }
 
 model policytype {

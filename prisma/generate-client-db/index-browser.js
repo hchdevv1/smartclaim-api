@@ -249,13 +249,15 @@ exports.Prisma.MedicaltransactionsScalarFieldEnum = {
   planoftreatment: 'planoftreatment',
   procedurefreetext: 'procedurefreetext',
   additionalnote: 'additionalnote',
-  haveprocedure: 'haveprocedure',
-  haveaccident: 'haveaccident',
   signsymptomsdate: 'signsymptomsdate',
   comascore: 'comascore',
   expecteddayofrecovery: 'expecteddayofrecovery',
+  pregnant: 'pregnant',
   alcoholrelated: 'alcoholrelated',
-  pregnant: 'pregnant'
+  haveaccidentinjurydetail: 'haveaccidentinjurydetail',
+  haveaccidentcauseofinjurydetail: 'haveaccidentcauseofinjurydetail',
+  haveprocedure: 'haveprocedure',
+  privatecase: 'privatecase'
 };
 
 exports.Prisma.PolicytypeScalarFieldEnum = {

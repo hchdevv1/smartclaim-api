@@ -15333,13 +15333,15 @@ export namespace Prisma {
     planoftreatment: string | null
     procedurefreetext: string | null
     additionalnote: string | null
-    haveprocedure: boolean | null
-    haveaccident: boolean | null
     signsymptomsdate: string | null
     comascore: string | null
     expecteddayofrecovery: string | null
-    alcoholrelated: string | null
-    pregnant: string | null
+    pregnant: boolean | null
+    alcoholrelated: boolean | null
+    haveaccidentinjurydetail: boolean | null
+    haveaccidentcauseofinjurydetail: boolean | null
+    haveprocedure: boolean | null
+    privatecase: boolean | null
   }
 
   export type MedicaltransactionsMaxAggregateOutputType = {
@@ -15358,13 +15360,15 @@ export namespace Prisma {
     planoftreatment: string | null
     procedurefreetext: string | null
     additionalnote: string | null
-    haveprocedure: boolean | null
-    haveaccident: boolean | null
     signsymptomsdate: string | null
     comascore: string | null
     expecteddayofrecovery: string | null
-    alcoholrelated: string | null
-    pregnant: string | null
+    pregnant: boolean | null
+    alcoholrelated: boolean | null
+    haveaccidentinjurydetail: boolean | null
+    haveaccidentcauseofinjurydetail: boolean | null
+    haveprocedure: boolean | null
+    privatecase: boolean | null
   }
 
   export type MedicaltransactionsCountAggregateOutputType = {
@@ -15383,13 +15387,15 @@ export namespace Prisma {
     planoftreatment: number
     procedurefreetext: number
     additionalnote: number
-    haveprocedure: number
-    haveaccident: number
     signsymptomsdate: number
     comascore: number
     expecteddayofrecovery: number
-    alcoholrelated: number
     pregnant: number
+    alcoholrelated: number
+    haveaccidentinjurydetail: number
+    haveaccidentcauseofinjurydetail: number
+    haveprocedure: number
+    privatecase: number
     _all: number
   }
 
@@ -15420,13 +15426,15 @@ export namespace Prisma {
     planoftreatment?: true
     procedurefreetext?: true
     additionalnote?: true
-    haveprocedure?: true
-    haveaccident?: true
     signsymptomsdate?: true
     comascore?: true
     expecteddayofrecovery?: true
-    alcoholrelated?: true
     pregnant?: true
+    alcoholrelated?: true
+    haveaccidentinjurydetail?: true
+    haveaccidentcauseofinjurydetail?: true
+    haveprocedure?: true
+    privatecase?: true
   }
 
   export type MedicaltransactionsMaxAggregateInputType = {
@@ -15445,13 +15453,15 @@ export namespace Prisma {
     planoftreatment?: true
     procedurefreetext?: true
     additionalnote?: true
-    haveprocedure?: true
-    haveaccident?: true
     signsymptomsdate?: true
     comascore?: true
     expecteddayofrecovery?: true
-    alcoholrelated?: true
     pregnant?: true
+    alcoholrelated?: true
+    haveaccidentinjurydetail?: true
+    haveaccidentcauseofinjurydetail?: true
+    haveprocedure?: true
+    privatecase?: true
   }
 
   export type MedicaltransactionsCountAggregateInputType = {
@@ -15470,13 +15480,15 @@ export namespace Prisma {
     planoftreatment?: true
     procedurefreetext?: true
     additionalnote?: true
-    haveprocedure?: true
-    haveaccident?: true
     signsymptomsdate?: true
     comascore?: true
     expecteddayofrecovery?: true
-    alcoholrelated?: true
     pregnant?: true
+    alcoholrelated?: true
+    haveaccidentinjurydetail?: true
+    haveaccidentcauseofinjurydetail?: true
+    haveprocedure?: true
+    privatecase?: true
     _all?: true
   }
 
@@ -15582,13 +15594,15 @@ export namespace Prisma {
     planoftreatment: string | null
     procedurefreetext: string | null
     additionalnote: string | null
-    haveprocedure: boolean | null
-    haveaccident: boolean | null
     signsymptomsdate: string | null
     comascore: string | null
     expecteddayofrecovery: string | null
-    alcoholrelated: string | null
-    pregnant: string | null
+    pregnant: boolean | null
+    alcoholrelated: boolean | null
+    haveaccidentinjurydetail: boolean | null
+    haveaccidentcauseofinjurydetail: boolean | null
+    haveprocedure: boolean | null
+    privatecase: boolean | null
     _count: MedicaltransactionsCountAggregateOutputType | null
     _avg: MedicaltransactionsAvgAggregateOutputType | null
     _sum: MedicaltransactionsSumAggregateOutputType | null
@@ -15626,13 +15640,15 @@ export namespace Prisma {
     planoftreatment?: boolean
     procedurefreetext?: boolean
     additionalnote?: boolean
-    haveprocedure?: boolean
-    haveaccident?: boolean
     signsymptomsdate?: boolean
     comascore?: boolean
     expecteddayofrecovery?: boolean
-    alcoholrelated?: boolean
     pregnant?: boolean
+    alcoholrelated?: boolean
+    haveaccidentinjurydetail?: boolean
+    haveaccidentcauseofinjurydetail?: boolean
+    haveprocedure?: boolean
+    privatecase?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -15651,13 +15667,15 @@ export namespace Prisma {
     planoftreatment?: boolean
     procedurefreetext?: boolean
     additionalnote?: boolean
-    haveprocedure?: boolean
-    haveaccident?: boolean
     signsymptomsdate?: boolean
     comascore?: boolean
     expecteddayofrecovery?: boolean
-    alcoholrelated?: boolean
     pregnant?: boolean
+    alcoholrelated?: boolean
+    haveaccidentinjurydetail?: boolean
+    haveaccidentcauseofinjurydetail?: boolean
+    haveprocedure?: boolean
+    privatecase?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectScalar = {
@@ -15676,13 +15694,15 @@ export namespace Prisma {
     planoftreatment?: boolean
     procedurefreetext?: boolean
     additionalnote?: boolean
-    haveprocedure?: boolean
-    haveaccident?: boolean
     signsymptomsdate?: boolean
     comascore?: boolean
     expecteddayofrecovery?: boolean
-    alcoholrelated?: boolean
     pregnant?: boolean
+    alcoholrelated?: boolean
+    haveaccidentinjurydetail?: boolean
+    haveaccidentcauseofinjurydetail?: boolean
+    haveprocedure?: boolean
+    privatecase?: boolean
   }
 
 
@@ -15705,13 +15725,15 @@ export namespace Prisma {
       planoftreatment: string | null
       procedurefreetext: string | null
       additionalnote: string | null
-      haveprocedure: boolean | null
-      haveaccident: boolean | null
       signsymptomsdate: string | null
       comascore: string | null
       expecteddayofrecovery: string | null
-      alcoholrelated: string | null
-      pregnant: string | null
+      pregnant: boolean | null
+      alcoholrelated: boolean | null
+      haveaccidentinjurydetail: boolean | null
+      haveaccidentcauseofinjurydetail: boolean | null
+      haveprocedure: boolean | null
+      privatecase: boolean | null
     }, ExtArgs["result"]["medicaltransactions"]>
     composites: {}
   }
@@ -16120,13 +16142,15 @@ export namespace Prisma {
     readonly planoftreatment: FieldRef<"medicaltransactions", 'String'>
     readonly procedurefreetext: FieldRef<"medicaltransactions", 'String'>
     readonly additionalnote: FieldRef<"medicaltransactions", 'String'>
-    readonly haveprocedure: FieldRef<"medicaltransactions", 'Boolean'>
-    readonly haveaccident: FieldRef<"medicaltransactions", 'Boolean'>
     readonly signsymptomsdate: FieldRef<"medicaltransactions", 'String'>
     readonly comascore: FieldRef<"medicaltransactions", 'String'>
     readonly expecteddayofrecovery: FieldRef<"medicaltransactions", 'String'>
-    readonly alcoholrelated: FieldRef<"medicaltransactions", 'String'>
-    readonly pregnant: FieldRef<"medicaltransactions", 'String'>
+    readonly pregnant: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly alcoholrelated: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly haveaccidentinjurydetail: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly haveaccidentcauseofinjurydetail: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly haveprocedure: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly privatecase: FieldRef<"medicaltransactions", 'Boolean'>
   }
     
 
@@ -25946,13 +25970,15 @@ export namespace Prisma {
     planoftreatment: 'planoftreatment',
     procedurefreetext: 'procedurefreetext',
     additionalnote: 'additionalnote',
-    haveprocedure: 'haveprocedure',
-    haveaccident: 'haveaccident',
     signsymptomsdate: 'signsymptomsdate',
     comascore: 'comascore',
     expecteddayofrecovery: 'expecteddayofrecovery',
+    pregnant: 'pregnant',
     alcoholrelated: 'alcoholrelated',
-    pregnant: 'pregnant'
+    haveaccidentinjurydetail: 'haveaccidentinjurydetail',
+    haveaccidentcauseofinjurydetail: 'haveaccidentcauseofinjurydetail',
+    haveprocedure: 'haveprocedure',
+    privatecase: 'privatecase'
   };
 
   export type MedicaltransactionsScalarFieldEnum = (typeof MedicaltransactionsScalarFieldEnum)[keyof typeof MedicaltransactionsScalarFieldEnum]
@@ -27049,13 +27075,15 @@ export namespace Prisma {
     planoftreatment?: StringNullableFilter<"medicaltransactions"> | string | null
     procedurefreetext?: StringNullableFilter<"medicaltransactions"> | string | null
     additionalnote?: StringNullableFilter<"medicaltransactions"> | string | null
-    haveprocedure?: BoolNullableFilter<"medicaltransactions"> | boolean | null
-    haveaccident?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     signsymptomsdate?: StringNullableFilter<"medicaltransactions"> | string | null
     comascore?: StringNullableFilter<"medicaltransactions"> | string | null
     expecteddayofrecovery?: StringNullableFilter<"medicaltransactions"> | string | null
-    alcoholrelated?: StringNullableFilter<"medicaltransactions"> | string | null
-    pregnant?: StringNullableFilter<"medicaltransactions"> | string | null
+    pregnant?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    alcoholrelated?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveaccidentinjurydetail?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveaccidentcauseofinjurydetail?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveprocedure?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    privatecase?: BoolNullableFilter<"medicaltransactions"> | boolean | null
   }
 
   export type medicaltransactionsOrderByWithRelationInput = {
@@ -27074,13 +27102,15 @@ export namespace Prisma {
     planoftreatment?: SortOrderInput | SortOrder
     procedurefreetext?: SortOrderInput | SortOrder
     additionalnote?: SortOrderInput | SortOrder
-    haveprocedure?: SortOrderInput | SortOrder
-    haveaccident?: SortOrderInput | SortOrder
     signsymptomsdate?: SortOrderInput | SortOrder
     comascore?: SortOrderInput | SortOrder
     expecteddayofrecovery?: SortOrderInput | SortOrder
-    alcoholrelated?: SortOrderInput | SortOrder
     pregnant?: SortOrderInput | SortOrder
+    alcoholrelated?: SortOrderInput | SortOrder
+    haveaccidentinjurydetail?: SortOrderInput | SortOrder
+    haveaccidentcauseofinjurydetail?: SortOrderInput | SortOrder
+    haveprocedure?: SortOrderInput | SortOrder
+    privatecase?: SortOrderInput | SortOrder
   }
 
   export type medicaltransactionsWhereUniqueInput = Prisma.AtLeast<{
@@ -27102,13 +27132,15 @@ export namespace Prisma {
     planoftreatment?: StringNullableFilter<"medicaltransactions"> | string | null
     procedurefreetext?: StringNullableFilter<"medicaltransactions"> | string | null
     additionalnote?: StringNullableFilter<"medicaltransactions"> | string | null
-    haveprocedure?: BoolNullableFilter<"medicaltransactions"> | boolean | null
-    haveaccident?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     signsymptomsdate?: StringNullableFilter<"medicaltransactions"> | string | null
     comascore?: StringNullableFilter<"medicaltransactions"> | string | null
     expecteddayofrecovery?: StringNullableFilter<"medicaltransactions"> | string | null
-    alcoholrelated?: StringNullableFilter<"medicaltransactions"> | string | null
-    pregnant?: StringNullableFilter<"medicaltransactions"> | string | null
+    pregnant?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    alcoholrelated?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveaccidentinjurydetail?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveaccidentcauseofinjurydetail?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveprocedure?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    privatecase?: BoolNullableFilter<"medicaltransactions"> | boolean | null
   }, "id">
 
   export type medicaltransactionsOrderByWithAggregationInput = {
@@ -27127,13 +27159,15 @@ export namespace Prisma {
     planoftreatment?: SortOrderInput | SortOrder
     procedurefreetext?: SortOrderInput | SortOrder
     additionalnote?: SortOrderInput | SortOrder
-    haveprocedure?: SortOrderInput | SortOrder
-    haveaccident?: SortOrderInput | SortOrder
     signsymptomsdate?: SortOrderInput | SortOrder
     comascore?: SortOrderInput | SortOrder
     expecteddayofrecovery?: SortOrderInput | SortOrder
-    alcoholrelated?: SortOrderInput | SortOrder
     pregnant?: SortOrderInput | SortOrder
+    alcoholrelated?: SortOrderInput | SortOrder
+    haveaccidentinjurydetail?: SortOrderInput | SortOrder
+    haveaccidentcauseofinjurydetail?: SortOrderInput | SortOrder
+    haveprocedure?: SortOrderInput | SortOrder
+    privatecase?: SortOrderInput | SortOrder
     _count?: medicaltransactionsCountOrderByAggregateInput
     _avg?: medicaltransactionsAvgOrderByAggregateInput
     _max?: medicaltransactionsMaxOrderByAggregateInput
@@ -27160,13 +27194,15 @@ export namespace Prisma {
     planoftreatment?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     procedurefreetext?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     additionalnote?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
-    haveprocedure?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
-    haveaccident?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
     signsymptomsdate?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     comascore?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     expecteddayofrecovery?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
-    alcoholrelated?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
-    pregnant?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    pregnant?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    alcoholrelated?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    haveaccidentinjurydetail?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    haveaccidentcauseofinjurydetail?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    haveprocedure?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    privatecase?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
   }
 
   export type policytypeWhereInput = {
@@ -28703,13 +28739,15 @@ export namespace Prisma {
     planoftreatment?: string | null
     procedurefreetext?: string | null
     additionalnote?: string | null
-    haveprocedure?: boolean | null
-    haveaccident?: boolean | null
     signsymptomsdate?: string | null
     comascore?: string | null
     expecteddayofrecovery?: string | null
-    alcoholrelated?: string | null
-    pregnant?: string | null
+    pregnant?: boolean | null
+    alcoholrelated?: boolean | null
+    haveaccidentinjurydetail?: boolean | null
+    haveaccidentcauseofinjurydetail?: boolean | null
+    haveprocedure?: boolean | null
+    privatecase?: boolean | null
   }
 
   export type medicaltransactionsUncheckedCreateInput = {
@@ -28728,13 +28766,15 @@ export namespace Prisma {
     planoftreatment?: string | null
     procedurefreetext?: string | null
     additionalnote?: string | null
-    haveprocedure?: boolean | null
-    haveaccident?: boolean | null
     signsymptomsdate?: string | null
     comascore?: string | null
     expecteddayofrecovery?: string | null
-    alcoholrelated?: string | null
-    pregnant?: string | null
+    pregnant?: boolean | null
+    alcoholrelated?: boolean | null
+    haveaccidentinjurydetail?: boolean | null
+    haveaccidentcauseofinjurydetail?: boolean | null
+    haveprocedure?: boolean | null
+    privatecase?: boolean | null
   }
 
   export type medicaltransactionsUpdateInput = {
@@ -28752,13 +28792,15 @@ export namespace Prisma {
     planoftreatment?: NullableStringFieldUpdateOperationsInput | string | null
     procedurefreetext?: NullableStringFieldUpdateOperationsInput | string | null
     additionalnote?: NullableStringFieldUpdateOperationsInput | string | null
-    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    haveaccident?: NullableBoolFieldUpdateOperationsInput | boolean | null
     signsymptomsdate?: NullableStringFieldUpdateOperationsInput | string | null
     comascore?: NullableStringFieldUpdateOperationsInput | string | null
     expecteddayofrecovery?: NullableStringFieldUpdateOperationsInput | string | null
-    alcoholrelated?: NullableStringFieldUpdateOperationsInput | string | null
-    pregnant?: NullableStringFieldUpdateOperationsInput | string | null
+    pregnant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alcoholrelated?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentcauseofinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type medicaltransactionsUncheckedUpdateInput = {
@@ -28777,13 +28819,15 @@ export namespace Prisma {
     planoftreatment?: NullableStringFieldUpdateOperationsInput | string | null
     procedurefreetext?: NullableStringFieldUpdateOperationsInput | string | null
     additionalnote?: NullableStringFieldUpdateOperationsInput | string | null
-    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    haveaccident?: NullableBoolFieldUpdateOperationsInput | boolean | null
     signsymptomsdate?: NullableStringFieldUpdateOperationsInput | string | null
     comascore?: NullableStringFieldUpdateOperationsInput | string | null
     expecteddayofrecovery?: NullableStringFieldUpdateOperationsInput | string | null
-    alcoholrelated?: NullableStringFieldUpdateOperationsInput | string | null
-    pregnant?: NullableStringFieldUpdateOperationsInput | string | null
+    pregnant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alcoholrelated?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentcauseofinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type medicaltransactionsCreateManyInput = {
@@ -28802,13 +28846,15 @@ export namespace Prisma {
     planoftreatment?: string | null
     procedurefreetext?: string | null
     additionalnote?: string | null
-    haveprocedure?: boolean | null
-    haveaccident?: boolean | null
     signsymptomsdate?: string | null
     comascore?: string | null
     expecteddayofrecovery?: string | null
-    alcoholrelated?: string | null
-    pregnant?: string | null
+    pregnant?: boolean | null
+    alcoholrelated?: boolean | null
+    haveaccidentinjurydetail?: boolean | null
+    haveaccidentcauseofinjurydetail?: boolean | null
+    haveprocedure?: boolean | null
+    privatecase?: boolean | null
   }
 
   export type medicaltransactionsUpdateManyMutationInput = {
@@ -28826,13 +28872,15 @@ export namespace Prisma {
     planoftreatment?: NullableStringFieldUpdateOperationsInput | string | null
     procedurefreetext?: NullableStringFieldUpdateOperationsInput | string | null
     additionalnote?: NullableStringFieldUpdateOperationsInput | string | null
-    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    haveaccident?: NullableBoolFieldUpdateOperationsInput | boolean | null
     signsymptomsdate?: NullableStringFieldUpdateOperationsInput | string | null
     comascore?: NullableStringFieldUpdateOperationsInput | string | null
     expecteddayofrecovery?: NullableStringFieldUpdateOperationsInput | string | null
-    alcoholrelated?: NullableStringFieldUpdateOperationsInput | string | null
-    pregnant?: NullableStringFieldUpdateOperationsInput | string | null
+    pregnant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alcoholrelated?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentcauseofinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type medicaltransactionsUncheckedUpdateManyInput = {
@@ -28851,13 +28899,15 @@ export namespace Prisma {
     planoftreatment?: NullableStringFieldUpdateOperationsInput | string | null
     procedurefreetext?: NullableStringFieldUpdateOperationsInput | string | null
     additionalnote?: NullableStringFieldUpdateOperationsInput | string | null
-    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    haveaccident?: NullableBoolFieldUpdateOperationsInput | boolean | null
     signsymptomsdate?: NullableStringFieldUpdateOperationsInput | string | null
     comascore?: NullableStringFieldUpdateOperationsInput | string | null
     expecteddayofrecovery?: NullableStringFieldUpdateOperationsInput | string | null
-    alcoholrelated?: NullableStringFieldUpdateOperationsInput | string | null
-    pregnant?: NullableStringFieldUpdateOperationsInput | string | null
+    pregnant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    alcoholrelated?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveaccidentcauseofinjurydetail?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type policytypeCreateInput = {
@@ -30471,13 +30521,15 @@ export namespace Prisma {
     planoftreatment?: SortOrder
     procedurefreetext?: SortOrder
     additionalnote?: SortOrder
-    haveprocedure?: SortOrder
-    haveaccident?: SortOrder
     signsymptomsdate?: SortOrder
     comascore?: SortOrder
     expecteddayofrecovery?: SortOrder
-    alcoholrelated?: SortOrder
     pregnant?: SortOrder
+    alcoholrelated?: SortOrder
+    haveaccidentinjurydetail?: SortOrder
+    haveaccidentcauseofinjurydetail?: SortOrder
+    haveprocedure?: SortOrder
+    privatecase?: SortOrder
   }
 
   export type medicaltransactionsAvgOrderByAggregateInput = {
@@ -30501,13 +30553,15 @@ export namespace Prisma {
     planoftreatment?: SortOrder
     procedurefreetext?: SortOrder
     additionalnote?: SortOrder
-    haveprocedure?: SortOrder
-    haveaccident?: SortOrder
     signsymptomsdate?: SortOrder
     comascore?: SortOrder
     expecteddayofrecovery?: SortOrder
-    alcoholrelated?: SortOrder
     pregnant?: SortOrder
+    alcoholrelated?: SortOrder
+    haveaccidentinjurydetail?: SortOrder
+    haveaccidentcauseofinjurydetail?: SortOrder
+    haveprocedure?: SortOrder
+    privatecase?: SortOrder
   }
 
   export type medicaltransactionsMinOrderByAggregateInput = {
@@ -30526,13 +30580,15 @@ export namespace Prisma {
     planoftreatment?: SortOrder
     procedurefreetext?: SortOrder
     additionalnote?: SortOrder
-    haveprocedure?: SortOrder
-    haveaccident?: SortOrder
     signsymptomsdate?: SortOrder
     comascore?: SortOrder
     expecteddayofrecovery?: SortOrder
-    alcoholrelated?: SortOrder
     pregnant?: SortOrder
+    alcoholrelated?: SortOrder
+    haveaccidentinjurydetail?: SortOrder
+    haveaccidentcauseofinjurydetail?: SortOrder
+    haveprocedure?: SortOrder
+    privatecase?: SortOrder
   }
 
   export type medicaltransactionsSumOrderByAggregateInput = {
