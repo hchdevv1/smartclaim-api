@@ -12,9 +12,10 @@ import { PatientFindDto ,FindBodyDto ,FindPatientResultDto } from './dto/find-pa
 import { FindforUpdateDto ,FindforUpdatePatientDatabase ,FindforUpdatePatientTrakcare ,FindforUpdateBodyDto} from './dto/findforupdate-patientinfo.dto';
 import { PatientSearchDto ,SearchBodyDto} from './dto/search-patientinfo.dto';
 import { PatientUpdateDto ,UpdateBodyDto} from './dto/update-patientinfo.dto';
+import { FindTransectionByVNBodyDto ,ResultTransactionClaimDto ,ResultTransactionClaimInfo} from './dto/find-transection-vn.dto';
 
 const httpStatusMessageService = new HttpStatusMessageService();
-
+const newHttpMessageDto =new HttpMessageDto();
 @Injectable()
 export class PatientinfoService {
   constructor(
@@ -794,7 +795,122 @@ export class PatientinfoService {
       }
       
       }
+      // FindtransectionByVN
+ async FindtransectionByVN(findTransectionByVNBodyDto:FindTransectionByVNBodyDto){
       
+        // 
+          try {
+          // ดึงข้อมูลจากฐานข้อมูลด้วย VN ที่ต้องการ
+const transactionClaims = await prismaProgest.transactionclaim.findMany({
+  where: {
+    vn: findTransectionByVNBodyDto.PatientInfo.VN,
+    // OR: [
+    //   { claimstatuscode: null }, // กรณีที่ claimstatuscode เป็นค่าว่าง (null)
+    //   { claimstatuscode: '' },   // กรณีที่ claimstatuscode เป็นค่าว่าง (empty string)
+    //   { claimstatuscode: { not: null } },  // กรณีที่ claimstatuscode มีค่าไม่เป็น null
+    //   { claimstatuscode: findTransectionByVNBodyDto.PatientInfo.StatusClaimCode}   
+    // ]
+  },
+});
+
+// แปลงข้อมูลให้ตรงกับรูปแบบ DTO (TransactionClaimInfo)
+const xResultInfo: ResultTransactionClaimInfo = {
+  TransactionClaimInfo: transactionClaims.map((claim) => ({
+    RefId: claim.refid,
+    TransactionNo: claim.transactionno,
+    HN: claim.hn,
+    VN: claim.vn,
+    VisitDateTime: claim.visitdate,
+    ClaimNo: claim.claimno,
+    ClaimStatusCode: claim.claimstatuscode,
+    ClaimStatusDesc: claim.claimstatusdesc,
+    OccurrenceNo: claim.occurrenceno,
+    TotalApprovedAmount: claim.totalapprovedamount?.toString() || '0',
+    TotalExcessAmount: claim.totalexcessamount?.toString() || null,
+    IsReimbursement: claim.isreimbursement ?? false,
+    BatchNumber: claim.batchnumber,
+    InvoiceNumber: claim.invoicenumber,
+  })),
+};
+
+          
+            this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+            let newResultTransactionClaimDto= new ResultTransactionClaimDto();
+            newResultTransactionClaimDto={
+                  HTTPStatus:newHttpMessageDto,
+                  Result:xResultInfo
+          }
+            return newResultTransactionClaimDto
+          }catch(error)
+          {
+            if (error instanceof Prisma.PrismaClientInitializationError) {
+              throw new HttpException(
+               { 
+                HTTPStatus: {
+                  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                  message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+                  error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+                },
+                },HttpStatus.INTERNAL_SERVER_ERROR );
+            }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+                throw new HttpException(
+                  {  
+                    HTTPStatus: {
+                      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                      message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                      error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                   },
+                  },HttpStatus.INTERNAL_SERVER_ERROR ); 
+            }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+              if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+                throw new HttpException({
+                  HTTPStatus: {
+                  statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+                  message: 'Cannot connect to the database server. Please ensure it is running.',
+                  error: 'Cannot connect to the database server. Please ensure it is running.',
+                },
+                }, HttpStatus.SERVICE_UNAVAILABLE);
+              }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+                throw new HttpException({
+                  HTTPStatus: {
+                  statusCode: HttpStatus.BAD_REQUEST,
+                  message: 'Invalid data format or conversion error.',
+                  error: 'Invalid data format or conversion error.',
+                },
+                }, HttpStatus.BAD_REQUEST);
+              }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+                throw new HttpException({
+                  HTTPStatus: {
+                  statusCode: HttpStatus.FORBIDDEN,
+                  message: 'You do not have permission to perform this action.',
+                  error: 'You do not have permission to perform this action.',
+                },
+                }, HttpStatus.FORBIDDEN);
+              }else if (error.message.includes('Unable to fit integer value')) {
+                // Handle integer overflow or similar errors
+                throw new HttpException({
+                  HTTPStatus: {
+                  statusCode: HttpStatus.BAD_REQUEST,
+                  message: 'The integer value is too large for the database field.',
+                  error: 'The integer value is too large for the database field.',
+                },
+                }, HttpStatus.BAD_REQUEST);
+              }
+              else{
+                throw new HttpException({  
+                  HTTPStatus: {
+                     statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                     message: 'An unexpected error occurred.',
+                     error: 'An unexpected error occurred.',
+                    },
+                  },HttpStatus.INTERNAL_SERVER_ERROR,);
+              }
+            }
+          }
+          
+          }
+
+
   addFormatTransactionPatientCreateDto(data: TransactionQueryPatientCreateDto,
     inputInsurerCode:number,inputPatientID:number,inputPID:string,
     inputPassportNumber:string,inputHN:string,

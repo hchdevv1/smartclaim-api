@@ -1641,7 +1641,8 @@ try{
   xHN :querySubmitOpdDischargeDto.PatientInfo.HN ,//'62-027770',
   xInsurerCode: querySubmitOpdDischargeDto.PatientInfo.InsurerCode, //'13', 
   xVN: querySubmitOpdDischargeDto.PatientInfo.VN ,//'O415202-67',
-  xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode
+  xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode,
+  xVisitDateTime :querySubmitOpdDischargeDto.PatientInfo.VisitDateTime
  }
 ////////////////////////////////////////
 
@@ -2145,6 +2146,7 @@ if (existingRecord) {
       transactionno: RequesetBody.xTransactionNo,
       hn:RequesetBody.xHN,
       vn:RequesetBody.xVN,
+      visitdate:RequesetBody.xVisitDateTime,
       claimno:responsefromAIA.Data.ClaimNo,
       claimstatuscode:'03',
       claimstatusdesc:'กำลังพิจารณา',
