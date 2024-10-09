@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs'
 import { catchError, map } from 'rxjs/operators';
 import { HttpMessageDto } from '../../utils/dto/http-status-message.dto';
 import { UtilsService } from '../../utils/utils.service';
+import { prismaProgest } from '../../database/database';
 
 import { QueryBillingSubmissionBodyDto } from './dto/query-billing-submission.dto';
 import {ResultBillingSubmissionDto ,ResultAttachDocListInfoDto ,InsuranceResult,InsuranceData } from './dto/result-billing-submission.dto';
@@ -46,7 +47,7 @@ export class BillingSubmissionService {
 
 const QueryCreateClaimDocumentDtoBody={
   RefId:'ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=', //RequesetBody.xRefId,
-  TransactionNo: '7c3f0072-5675-40d9-be4f-537870987b67',//RequesetBody.xTransactionNo,
+  TransactionNo: 'f30c3f08-00db-4da2-ba33-3afbcf4a1546',//RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
   HN:RequesetBody.xHN,
   VN:'O415202-67',//RequesetBody.xVN,
@@ -131,6 +132,29 @@ const QueryCreateClaimDocumentDtoBody={
           InvoiceNumber:responsefromAIA.Data.InvoiceNumber||'',
          
         }
+/// save to database
+
+const existingRecord = await prismaProgest.transactionclaim.findFirst({
+  where: {
+    refid: RequesetBody.xRefId,
+    transactionno: RequesetBody.xTransactionNo,
+   
+  },
+});
+if (existingRecord) {
+
+  await prismaProgest.transactionclaim.update({
+    where: {
+      id: existingRecord.id, // Use the ID of the existing record
+    },
+    data: {
+      batchnumber: responsefromAIA.Data.BatchNumber,
+      invoicenumber:responsefromAIA.Data.InvoiceNumber
+    },
+  });
+}
+
+
     xResultInfo ={
         InsuranceResult: xInsuranceResult,
         InsuranceData: xInsuranceData,

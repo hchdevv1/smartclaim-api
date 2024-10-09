@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs'
 import { catchError, map } from 'rxjs/operators';
 import { HttpMessageDto } from '../../utils/dto/http-status-message.dto';
 import { UtilsService } from '../../utils/utils.service';
+import { prismaProgest } from '../../database/database';
 
 import { QueryCheckClaimStatusBodyDto } from './dto/query-check-claim-status.dto';
 import { ResultCheckClaimStatusDto ,InsuranceResult ,InsuranceData ,ResultAttachDocListInfoDto} from './dto/result-check-claim-status.dto';
@@ -27,8 +28,8 @@ export class CheckClaimStatusService {
   async Checkclaimstatus(queryCheckClaimStatusBodyDto:QueryCheckClaimStatusBodyDto){
     let xResultInfo;
     try{
-      queryCheckClaimStatusBodyDto.PatientInfo.RefId ='AAA-12345'
-      queryCheckClaimStatusBodyDto.PatientInfo.TransactionNo ='95ffe060-236c-4f35-b00c-a2ef9aa9e714'
+     // queryCheckClaimStatusBodyDto.PatientInfo.RefId ='AAA-12345'
+     // queryCheckClaimStatusBodyDto.PatientInfo.TransactionNo ='95ffe060-236c-4f35-b00c-a2ef9aa9e714'
     const  RequesetBody ={
       
          xRefId: queryCheckClaimStatusBodyDto.PatientInfo.RefId, 
@@ -94,6 +95,9 @@ export class CheckClaimStatusService {
          Message:responsefromAIA.Result.Message ||'',
          MessageTh:responsefromAIA.Result.MessageTh ||'',
         }
+
+
+
 let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
 xResultAttachDocListInfoDto = await Promise.all(
   responsefromAIA.Data.AttachDocList.map(async (doc) => {
@@ -118,6 +122,74 @@ xResultAttachDocListInfoDto = await Promise.all(
           InvoiceNumber:responsefromAIA.Data.InvoiceNumber||'',
           AttachDocList:xResultAttachDocListInfoDto
         }
+// save to database
+const xClaimStatusCode = await this.utilsService.getClaimStatusCodeByDescription('13', responsefromAIA.Data.ClaimStatus);
+const claimcode = xClaimStatusCode.Result[0].claimstatuscode;
+
+const existingRecord = await prismaProgest.transactionclaimstatus.findFirst({
+  where: {
+    refid: RequesetBody.xRefId,
+    transactionno: RequesetBody.xTransactionNo,
+    claimstatuscode:claimcode
+  },
+});
+
+if (existingRecord) {
+
+  await prismaProgest.transactionclaimstatus.update({
+    where: {
+      id: existingRecord.id, // Use the ID of the existing record
+    },
+    data: {
+      insurerid: RequesetBody.xInsurerCode ,
+      hn: RequesetBody.xHN,
+      vn: RequesetBody.xVN,
+      totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
+      paymentdate: responsefromAIA.Data.PaymentDate,
+      invoicenumber: responsefromAIA.Data.InvoiceNumber,
+      claimcancelnote:responsefromAIA.Data.ClaimStatus
+    },
+  });
+}else{
+
+    await prismaProgest.transactionclaimstatus.create({
+    data: {
+      insurerid: RequesetBody.xInsurerCode ,
+      refid: RequesetBody.xRefId,
+      transactionno: RequesetBody.xTransactionNo,
+      hn:RequesetBody.xHN,
+      vn:RequesetBody.xVN,
+     claimstatuscode: claimcode,
+     totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
+      paymentdate:responsefromAIA.Data.PaymentDate,
+      invoicenumber: responsefromAIA.Data.InvoiceNumber,
+      claimcancelnote:responsefromAIA.Data.ClaimStatus
+    },
+  });
+}
+
+const transactionclaimexistingRecord = await prismaProgest.transactionclaim.findFirst({
+  where: {
+    refid: RequesetBody.xRefId,
+    transactionno: RequesetBody.xTransactionNo,
+   
+  },
+});
+
+//console.log(transactionclaimexistingRecord.status_changed_at)
+if (transactionclaimexistingRecord) {
+
+  await prismaProgest.transactionclaim.update({
+    where: {
+      id: transactionclaimexistingRecord.id, // Use the ID of the existing record
+    },
+    data: {
+      claimstatuscode: claimcode
+    },
+  });
+}
+
+        /////////////////
     xResultInfo ={
         InsuranceResult: xInsuranceResult,
         InsuranceData: xInsuranceData,

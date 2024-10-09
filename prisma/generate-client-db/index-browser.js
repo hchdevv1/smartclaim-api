@@ -299,7 +299,8 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   furtherclaimno: 'furtherclaimno',
   privatecase: 'privatecase',
   previoustreatmentdate: 'previoustreatmentdate',
-  previoustreatmentdetail: 'previoustreatmentdetail'
+  previoustreatmentdetail: 'previoustreatmentdetail',
+  claimcancelnote: 'claimcancelnote'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
@@ -316,7 +317,8 @@ exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
   note: 'note',
   totalapproveamount: 'totalapproveamount',
   paymentdate: 'paymentdate',
-  claimstatuscode: 'claimstatuscode'
+  claimstatuscode: 'claimstatuscode',
+  claimcancelnote: 'claimcancelnote'
 };
 
 exports.Prisma.AccidenttransactionsScalarFieldEnum = {
