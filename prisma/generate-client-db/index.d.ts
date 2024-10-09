@@ -18440,6 +18440,7 @@ export namespace Prisma {
     previoustreatmentdate: string | null
     previoustreatmentdetail: string | null
     claimcancelnote: string | null
+    claimstatusdesc: string | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -18469,6 +18470,7 @@ export namespace Prisma {
     previoustreatmentdate: string | null
     previoustreatmentdetail: string | null
     claimcancelnote: string | null
+    claimstatusdesc: string | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -18498,6 +18500,7 @@ export namespace Prisma {
     previoustreatmentdate: number
     previoustreatmentdetail: number
     claimcancelnote: number
+    claimstatusdesc: number
     _all: number
   }
 
@@ -18543,6 +18546,7 @@ export namespace Prisma {
     previoustreatmentdate?: true
     previoustreatmentdetail?: true
     claimcancelnote?: true
+    claimstatusdesc?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -18572,6 +18576,7 @@ export namespace Prisma {
     previoustreatmentdate?: true
     previoustreatmentdetail?: true
     claimcancelnote?: true
+    claimstatusdesc?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -18601,6 +18606,7 @@ export namespace Prisma {
     previoustreatmentdate?: true
     previoustreatmentdetail?: true
     claimcancelnote?: true
+    claimstatusdesc?: true
     _all?: true
   }
 
@@ -18717,6 +18723,7 @@ export namespace Prisma {
     previoustreatmentdate: string | null
     previoustreatmentdetail: string | null
     claimcancelnote: string | null
+    claimstatusdesc: string | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -18765,6 +18772,7 @@ export namespace Prisma {
     previoustreatmentdate?: boolean
     previoustreatmentdetail?: boolean
     claimcancelnote?: boolean
+    claimstatusdesc?: boolean
   }, ExtArgs["result"]["transactionclaim"]>
 
   export type transactionclaimSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18794,6 +18802,7 @@ export namespace Prisma {
     previoustreatmentdate?: boolean
     previoustreatmentdetail?: boolean
     claimcancelnote?: boolean
+    claimstatusdesc?: boolean
   }, ExtArgs["result"]["transactionclaim"]>
 
   export type transactionclaimSelectScalar = {
@@ -18823,6 +18832,7 @@ export namespace Prisma {
     previoustreatmentdate?: boolean
     previoustreatmentdetail?: boolean
     claimcancelnote?: boolean
+    claimstatusdesc?: boolean
   }
 
 
@@ -18856,6 +18866,7 @@ export namespace Prisma {
       previoustreatmentdate: string | null
       previoustreatmentdetail: string | null
       claimcancelnote: string | null
+      claimstatusdesc: string | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -19275,6 +19286,7 @@ export namespace Prisma {
     readonly previoustreatmentdate: FieldRef<"transactionclaim", 'String'>
     readonly previoustreatmentdetail: FieldRef<"transactionclaim", 'String'>
     readonly claimcancelnote: FieldRef<"transactionclaim", 'String'>
+    readonly claimstatusdesc: FieldRef<"transactionclaim", 'String'>
   }
     
 
@@ -19601,6 +19613,7 @@ export namespace Prisma {
     paymentdate: string | null
     claimstatuscode: string | null
     claimcancelnote: string | null
+    claimstatusdesc: string | null
   }
 
   export type TransactionclaimstatusMaxAggregateOutputType = {
@@ -19619,6 +19632,7 @@ export namespace Prisma {
     paymentdate: string | null
     claimstatuscode: string | null
     claimcancelnote: string | null
+    claimstatusdesc: string | null
   }
 
   export type TransactionclaimstatusCountAggregateOutputType = {
@@ -19637,6 +19651,7 @@ export namespace Prisma {
     paymentdate: number
     claimstatuscode: number
     claimcancelnote: number
+    claimstatusdesc: number
     _all: number
   }
 
@@ -19667,6 +19682,7 @@ export namespace Prisma {
     paymentdate?: true
     claimstatuscode?: true
     claimcancelnote?: true
+    claimstatusdesc?: true
   }
 
   export type TransactionclaimstatusMaxAggregateInputType = {
@@ -19685,6 +19701,7 @@ export namespace Prisma {
     paymentdate?: true
     claimstatuscode?: true
     claimcancelnote?: true
+    claimstatusdesc?: true
   }
 
   export type TransactionclaimstatusCountAggregateInputType = {
@@ -19703,6 +19720,7 @@ export namespace Prisma {
     paymentdate?: true
     claimstatuscode?: true
     claimcancelnote?: true
+    claimstatusdesc?: true
     _all?: true
   }
 
@@ -19808,6 +19826,7 @@ export namespace Prisma {
     paymentdate: string | null
     claimstatuscode: string | null
     claimcancelnote: string | null
+    claimstatusdesc: string | null
     _count: TransactionclaimstatusCountAggregateOutputType | null
     _avg: TransactionclaimstatusAvgAggregateOutputType | null
     _sum: TransactionclaimstatusSumAggregateOutputType | null
@@ -19845,6 +19864,7 @@ export namespace Prisma {
     paymentdate?: boolean
     claimstatuscode?: boolean
     claimcancelnote?: boolean
+    claimstatusdesc?: boolean
     claimstatus?: boolean | transactionclaimstatus$claimstatusArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaimstatus"]>
 
@@ -19864,6 +19884,7 @@ export namespace Prisma {
     paymentdate?: boolean
     claimstatuscode?: boolean
     claimcancelnote?: boolean
+    claimstatusdesc?: boolean
     claimstatus?: boolean | transactionclaimstatus$claimstatusArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaimstatus"]>
 
@@ -19883,6 +19904,7 @@ export namespace Prisma {
     paymentdate?: boolean
     claimstatuscode?: boolean
     claimcancelnote?: boolean
+    claimstatusdesc?: boolean
   }
 
   export type transactionclaimstatusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19913,6 +19935,7 @@ export namespace Prisma {
       paymentdate: string | null
       claimstatuscode: string | null
       claimcancelnote: string | null
+      claimstatusdesc: string | null
     }, ExtArgs["result"]["transactionclaimstatus"]>
     composites: {}
   }
@@ -20322,6 +20345,7 @@ export namespace Prisma {
     readonly paymentdate: FieldRef<"transactionclaimstatus", 'String'>
     readonly claimstatuscode: FieldRef<"transactionclaimstatus", 'String'>
     readonly claimcancelnote: FieldRef<"transactionclaimstatus", 'String'>
+    readonly claimstatusdesc: FieldRef<"transactionclaimstatus", 'String'>
   }
     
 
@@ -26054,7 +26078,8 @@ export namespace Prisma {
     privatecase: 'privatecase',
     previoustreatmentdate: 'previoustreatmentdate',
     previoustreatmentdetail: 'previoustreatmentdetail',
-    claimcancelnote: 'claimcancelnote'
+    claimcancelnote: 'claimcancelnote',
+    claimstatusdesc: 'claimstatusdesc'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -26075,7 +26100,8 @@ export namespace Prisma {
     totalapproveamount: 'totalapproveamount',
     paymentdate: 'paymentdate',
     claimstatuscode: 'claimstatuscode',
-    claimcancelnote: 'claimcancelnote'
+    claimcancelnote: 'claimcancelnote',
+    claimstatusdesc: 'claimstatusdesc'
   };
 
   export type TransactionclaimstatusScalarFieldEnum = (typeof TransactionclaimstatusScalarFieldEnum)[keyof typeof TransactionclaimstatusScalarFieldEnum]
@@ -27365,6 +27391,7 @@ export namespace Prisma {
     previoustreatmentdate?: StringNullableFilter<"transactionclaim"> | string | null
     previoustreatmentdetail?: StringNullableFilter<"transactionclaim"> | string | null
     claimcancelnote?: StringNullableFilter<"transactionclaim"> | string | null
+    claimstatusdesc?: StringNullableFilter<"transactionclaim"> | string | null
   }
 
   export type transactionclaimOrderByWithRelationInput = {
@@ -27394,6 +27421,7 @@ export namespace Prisma {
     previoustreatmentdate?: SortOrderInput | SortOrder
     previoustreatmentdetail?: SortOrderInput | SortOrder
     claimcancelnote?: SortOrderInput | SortOrder
+    claimstatusdesc?: SortOrderInput | SortOrder
   }
 
   export type transactionclaimWhereUniqueInput = Prisma.AtLeast<{
@@ -27426,6 +27454,7 @@ export namespace Prisma {
     previoustreatmentdate?: StringNullableFilter<"transactionclaim"> | string | null
     previoustreatmentdetail?: StringNullableFilter<"transactionclaim"> | string | null
     claimcancelnote?: StringNullableFilter<"transactionclaim"> | string | null
+    claimstatusdesc?: StringNullableFilter<"transactionclaim"> | string | null
   }, "id">
 
   export type transactionclaimOrderByWithAggregationInput = {
@@ -27455,6 +27484,7 @@ export namespace Prisma {
     previoustreatmentdate?: SortOrderInput | SortOrder
     previoustreatmentdetail?: SortOrderInput | SortOrder
     claimcancelnote?: SortOrderInput | SortOrder
+    claimstatusdesc?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -27492,6 +27522,7 @@ export namespace Prisma {
     previoustreatmentdate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     previoustreatmentdetail?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     claimcancelnote?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    claimstatusdesc?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -27513,6 +27544,7 @@ export namespace Prisma {
     paymentdate?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimstatuscode?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimcancelnote?: StringNullableFilter<"transactionclaimstatus"> | string | null
+    claimstatusdesc?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimstatus?: XOR<ClaimstatusNullableRelationFilter, claimstatusWhereInput> | null
   }
 
@@ -27532,6 +27564,7 @@ export namespace Prisma {
     paymentdate?: SortOrderInput | SortOrder
     claimstatuscode?: SortOrderInput | SortOrder
     claimcancelnote?: SortOrderInput | SortOrder
+    claimstatusdesc?: SortOrderInput | SortOrder
     claimstatus?: claimstatusOrderByWithRelationInput
   }
 
@@ -27554,6 +27587,7 @@ export namespace Prisma {
     paymentdate?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimstatuscode?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimcancelnote?: StringNullableFilter<"transactionclaimstatus"> | string | null
+    claimstatusdesc?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimstatus?: XOR<ClaimstatusNullableRelationFilter, claimstatusWhereInput> | null
   }, "id">
 
@@ -27573,6 +27607,7 @@ export namespace Prisma {
     paymentdate?: SortOrderInput | SortOrder
     claimstatuscode?: SortOrderInput | SortOrder
     claimcancelnote?: SortOrderInput | SortOrder
+    claimstatusdesc?: SortOrderInput | SortOrder
     _count?: transactionclaimstatusCountOrderByAggregateInput
     _avg?: transactionclaimstatusAvgOrderByAggregateInput
     _max?: transactionclaimstatusMaxOrderByAggregateInput
@@ -27599,6 +27634,7 @@ export namespace Prisma {
     paymentdate?: StringNullableWithAggregatesFilter<"transactionclaimstatus"> | string | null
     claimstatuscode?: StringNullableWithAggregatesFilter<"transactionclaimstatus"> | string | null
     claimcancelnote?: StringNullableWithAggregatesFilter<"transactionclaimstatus"> | string | null
+    claimstatusdesc?: StringNullableWithAggregatesFilter<"transactionclaimstatus"> | string | null
   }
 
   export type accidenttransactionsWhereInput = {
@@ -29062,6 +29098,7 @@ export namespace Prisma {
     previoustreatmentdate?: string | null
     previoustreatmentdetail?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimUncheckedCreateInput = {
@@ -29091,6 +29128,7 @@ export namespace Prisma {
     previoustreatmentdate?: string | null
     previoustreatmentdetail?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -29119,6 +29157,7 @@ export namespace Prisma {
     previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
     previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateInput = {
@@ -29148,6 +29187,7 @@ export namespace Prisma {
     previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
     previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -29177,6 +29217,7 @@ export namespace Prisma {
     previoustreatmentdate?: string | null
     previoustreatmentdetail?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -29205,6 +29246,7 @@ export namespace Prisma {
     previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
     previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -29234,6 +29276,7 @@ export namespace Prisma {
     previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
     previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -29249,6 +29292,7 @@ export namespace Prisma {
     totalapproveamount?: string | null
     paymentdate?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
     claimstatus?: claimstatusCreateNestedOneWithoutTransactionclaimstatusInput
   }
 
@@ -29268,6 +29312,7 @@ export namespace Prisma {
     paymentdate?: string | null
     claimstatuscode?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimstatusUpdateInput = {
@@ -29283,6 +29328,7 @@ export namespace Prisma {
     totalapproveamount?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatus?: claimstatusUpdateOneWithoutTransactionclaimstatusNestedInput
   }
 
@@ -29302,6 +29348,7 @@ export namespace Prisma {
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatuscode?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateManyInput = {
@@ -29320,6 +29367,7 @@ export namespace Prisma {
     paymentdate?: string | null
     claimstatuscode?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimstatusUpdateManyMutationInput = {
@@ -29335,6 +29383,7 @@ export namespace Prisma {
     totalapproveamount?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusUncheckedUpdateManyInput = {
@@ -29353,6 +29402,7 @@ export namespace Prisma {
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatuscode?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type accidenttransactionsCreateInput = {
@@ -30746,6 +30796,7 @@ export namespace Prisma {
     previoustreatmentdate?: SortOrder
     previoustreatmentdetail?: SortOrder
     claimcancelnote?: SortOrder
+    claimstatusdesc?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -30782,6 +30833,7 @@ export namespace Prisma {
     previoustreatmentdate?: SortOrder
     previoustreatmentdetail?: SortOrder
     claimcancelnote?: SortOrder
+    claimstatusdesc?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -30811,6 +30863,7 @@ export namespace Prisma {
     previoustreatmentdate?: SortOrder
     previoustreatmentdetail?: SortOrder
     claimcancelnote?: SortOrder
+    claimstatusdesc?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -30857,6 +30910,7 @@ export namespace Prisma {
     paymentdate?: SortOrder
     claimstatuscode?: SortOrder
     claimcancelnote?: SortOrder
+    claimstatusdesc?: SortOrder
   }
 
   export type transactionclaimstatusAvgOrderByAggregateInput = {
@@ -30880,6 +30934,7 @@ export namespace Prisma {
     paymentdate?: SortOrder
     claimstatuscode?: SortOrder
     claimcancelnote?: SortOrder
+    claimstatusdesc?: SortOrder
   }
 
   export type transactionclaimstatusMinOrderByAggregateInput = {
@@ -30898,6 +30953,7 @@ export namespace Prisma {
     paymentdate?: SortOrder
     claimstatuscode?: SortOrder
     claimcancelnote?: SortOrder
+    claimstatusdesc?: SortOrder
   }
 
   export type transactionclaimstatusSumOrderByAggregateInput = {
@@ -33195,6 +33251,7 @@ export namespace Prisma {
     totalapproveamount?: string | null
     paymentdate?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimstatusUncheckedCreateWithoutClaimstatusInput = {
@@ -33211,6 +33268,7 @@ export namespace Prisma {
     totalapproveamount?: string | null
     paymentdate?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimstatusCreateOrConnectWithoutClaimstatusInput = {
@@ -33312,6 +33370,7 @@ export namespace Prisma {
     paymentdate?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimstatuscode?: StringNullableFilter<"transactionclaimstatus"> | string | null
     claimcancelnote?: StringNullableFilter<"transactionclaimstatus"> | string | null
+    claimstatusdesc?: StringNullableFilter<"transactionclaimstatus"> | string | null
   }
 
   export type insurersCreateWithoutDiagnosistypemappingInput = {
@@ -35406,6 +35465,7 @@ export namespace Prisma {
     totalapproveamount?: string | null
     paymentdate?: string | null
     claimcancelnote?: string | null
+    claimstatusdesc?: string | null
   }
 
   export type transactionclaimstatusUpdateWithoutClaimstatusInput = {
@@ -35421,6 +35481,7 @@ export namespace Prisma {
     totalapproveamount?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusUncheckedUpdateWithoutClaimstatusInput = {
@@ -35437,6 +35498,7 @@ export namespace Prisma {
     totalapproveamount?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusUncheckedUpdateManyWithoutClaimstatusInput = {
@@ -35453,6 +35515,7 @@ export namespace Prisma {
     totalapproveamount?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimcancelnote?: NullableStringFieldUpdateOperationsInput | string | null
+    claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type accidentcauseover45daysCreateManyInsurersInput = {

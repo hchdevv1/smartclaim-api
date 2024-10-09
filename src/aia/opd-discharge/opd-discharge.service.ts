@@ -2109,6 +2109,59 @@ xResultInfo ={
     InsuranceResult: xInsuranceResult,
     InsuranceData:xInsuranceData
   } 
+ /// save to database
+
+
+ const existingRecord = await prismaProgest.transactionclaim.findFirst({
+  where: {
+    refid: RequesetBody.xRefId,
+    transactionno: RequesetBody.xTransactionNo,
+   
+  },
+});
+if (existingRecord) {
+
+  await prismaProgest.transactionclaim.update({
+    where: {
+      id: existingRecord.id, // Use the ID of the existing record
+    },
+    data: {
+      claimno:responsefromAIA.Data.ClaimNo,
+      claimstatuscode:'03',
+      claimstatusdesc:'กำลังพิจารณา',
+      occurrenceno:responsefromAIA.Data.OccurrenceNo,
+      invoicenumber:responsefromAIA.Data.InvoiceNumber,
+      totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
+      totalexcessamount:responsefromAIA.Data.TotalExcessAmount,
+      isreimbursement:responsefromAIA.Data.IsReimbursement,
+    },
+  });
+}else{
+
+  await prismaProgest.transactionclaim.create({
+    data: {
+      insurerid: RequesetBody.xInsurerCode ,
+      refid: RequesetBody.xRefId,
+      transactionno: RequesetBody.xTransactionNo,
+      hn:RequesetBody.xHN,
+      vn:RequesetBody.xVN,
+      claimno:responsefromAIA.Data.ClaimNo,
+      claimstatuscode:'03',
+      claimstatusdesc:'กำลังพิจารณา',
+      occurrenceno:responsefromAIA.Data.OccurrenceNo,
+      invoicenumber:responsefromAIA.Data.InvoiceNumber,
+      totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
+      totalexcessamount:responsefromAIA.Data.TotalExcessAmount,
+      isreimbursement:responsefromAIA.Data.IsReimbursement,
+      //furtherclaimid:RequesetBody.
+     // furtherclaimno: responsefromAIA.Data.InvoiceNumber,
+     // claimcancelnote:responsefromAIA.Data.ClaimStatus
+    },
+  });
+
+}
+
+
   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
   }
   let newResultSubmitOpdDischargeDto= new ResultSubmitOpdDischargeDto();

@@ -147,7 +147,7 @@ if (existingRecord) {
       totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
       paymentdate: responsefromAIA.Data.PaymentDate,
       invoicenumber: responsefromAIA.Data.InvoiceNumber,
-      claimcancelnote:responsefromAIA.Data.ClaimStatus
+      claimstatusdesc:responsefromAIA.Data.ClaimStatus
     },
   });
 }else{
@@ -163,7 +163,7 @@ if (existingRecord) {
      totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
       paymentdate:responsefromAIA.Data.PaymentDate,
       invoicenumber: responsefromAIA.Data.InvoiceNumber,
-      claimcancelnote:responsefromAIA.Data.ClaimStatus
+      claimstatusdesc:responsefromAIA.Data.ClaimStatus
     },
   });
 }
@@ -184,7 +184,8 @@ if (transactionclaimexistingRecord) {
       id: transactionclaimexistingRecord.id, // Use the ID of the existing record
     },
     data: {
-      claimstatuscode: claimcode
+      claimstatuscode: claimcode ,
+      claimstatusdesc: responsefromAIA.Data.ClaimStatus
     },
   });
 }

@@ -221,6 +221,7 @@ model transactionclaim {
   previoustreatmentdate   String?   @db.VarChar(255)
   previoustreatmentdetail String?   @db.VarChar(255)
   claimcancelnote         String?   @db.VarChar(255)
+  claimstatusdesc         String?   @db.VarChar(255)
 }
 
 model transactionclaimstatus {
@@ -238,7 +239,8 @@ model transactionclaimstatus {
   totalapproveamount String?      @db.VarChar(255)
   paymentdate        String?      @db.VarChar(255)
   claimstatuscode    String?      @db.VarChar(255)
-  claimcancelnote    String?      @db.VarChar(255)
+  claimcancelnote    String?      @db.VarChar(500)
+  claimstatusdesc    String?      @db.VarChar(255)
   claimstatus        claimstatus? @relation(fields: [claimstatuscode, insurerid], references: [claimstatuscode, insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 
