@@ -1381,7 +1381,6 @@ async getListDocumentByRefId(queryCreateClaimDocumentDtoBodyDto: QueryCreateClai
          return newResultAttachDocListInfoDto;
 }
 async getListDocumentByTransactionNo(queryCreateClaimDocumentDtoBodyDto: QueryCreateClaimDocumentDtoBodyDto) {
-  
   // const HN =queryCreateClaimDocumentDtoBodyDto.HN;
    const VN = queryCreateClaimDocumentDtoBodyDto.VN;
    const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;

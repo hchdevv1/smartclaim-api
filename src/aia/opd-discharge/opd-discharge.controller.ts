@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { OpdDischargeService } from './opd-discharge.service';
 
-import  { QueryOpdDischargeDto } from   './dto/query-opd-discharge.dto';
+import { QueryOpdDischargeDto } from   './dto/query-opd-discharge.dto';
 import { QuerySubmitOpdDischargeDto } from './dto/query-submit-opd-discharge.dto'
 import { QueryProcedureDto } from './dto/query-procedure-opd-discharge.dto';
 import { QueryAccidentDto } from './dto/query-accident-opd-discharge.dto';
@@ -62,7 +62,6 @@ export class OpdDischargeController {
         const result = this.opdDischargeService.SubmitProcedure(queryProcedureDto);
         return result
   }
-// 
 @Post('/SubmitAccident')
 async SubmitAccident(@Body() queryAccidentDto:QueryAccidentDto){
       const result = this.opdDischargeService.SubmitAccident(queryAccidentDto);
