@@ -817,12 +817,12 @@ export class PatientinfoService {
     ...(xStatusClaimCode ? { claimstatuscode: { equals: xStatusClaimCode } } : {}),
     ...(xPID ? { claimants: { national_id: { equals: xPID } } } : {}),
     ...(xPassportNumber ? { claimants: { passportnumber: { equals: xPassportNumber } } } : {}),
-  //   ...(hasVisitDate ? {
-  //     visitdate: {
-  //         gte: xVisitDatefrom, 
-  //         lte: xVisitDateto  
-  //     }
-  // } : {}),
+    ...(hasVisitDate ? {
+      visitdate: {
+          gte: xVisitDatefrom, 
+          lte: xVisitDateto  
+      }
+  } : {}),
   };
       const   ResultQuery = await prismaProgest.transactionclaim.findMany({
           
@@ -972,12 +972,18 @@ export class PatientinfoService {
               
               }
    formatDateToYYYYMMDD(dateString) {
-                const date = new Date(dateString); // สร้าง Date object จาก string
-                const year = date.getFullYear(); // ปี
-                const month = String(date.getMonth() + 1).padStart(2, '0'); // เดือน (0-indexed, ต้อง +1)
-                const day = String(date.getDate()).padStart(2, '0'); // วัน
-            
-                return `${year}-${month}-${day}`; // คืนค่าในรูปแบบ YYYY-MM-DD
+    if (!dateString) {
+      return null; // คืนค่า null หาก dateString เป็นค่าว่าง
+    }
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return null; // คืนค่า null หากแปลงเป็น Date ไม่ได้
+    }
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
             }
   addFormatTransactionPatientCreateDto(data: TransactionQueryPatientCreateDto,
     inputInsurerCode:number,inputPatientID:number,inputPID:string,
