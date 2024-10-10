@@ -817,12 +817,12 @@ export class PatientinfoService {
     ...(xStatusClaimCode ? { claimstatuscode: { equals: xStatusClaimCode } } : {}),
     ...(xPID ? { claimants: { national_id: { equals: xPID } } } : {}),
     ...(xPassportNumber ? { claimants: { passportnumber: { equals: xPassportNumber } } } : {}),
-    ...(hasVisitDate ? {
-      visitdate: {
-          gte: xVisitDatefrom, 
-          lte: xVisitDateto  
-      }
-  } : {}),
+  //   ...(hasVisitDate ? {
+  //     visitdate: {
+  //         gte: xVisitDatefrom, 
+  //         lte: xVisitDateto  
+  //     }
+  // } : {}),
   };
       const   ResultQuery = await prismaProgest.transactionclaim.findMany({
           

@@ -2011,7 +2011,7 @@ let newResultDataJsonDto =new ResultDataJsonDto();
    TotalBillAmount:newTotalBillAmount,
    Pss: newResultPSSInfoDto
 }
-let newOPDDischargeResponseDto ={
+const newOPDDischargeResponseDto ={
 
   // RefId: 'OPD-008-Test-001',
   // TransactionNo: '13675055-0ed9-40f7-bd38-bec0754fe674',
@@ -2138,7 +2138,11 @@ if (existingRecord) {
     },
   });
 }else{
-
+  const effectiveDate = new Date(RequesetBody.xVisitDateTime);
+  const formattedEffectiveDate = effectiveDate.toISOString().split(' ')[0];
+  console.log('hhhhhhhh');
+  console.log(formattedEffectiveDate);
+  console.log('-----');
   await prismaProgest.transactionclaim.create({
     data: {
       insurerid: RequesetBody.xInsurerCode ,
@@ -2146,7 +2150,7 @@ if (existingRecord) {
       transactionno: RequesetBody.xTransactionNo,
       hn:RequesetBody.xHN,
       vn:RequesetBody.xVN,
-      visitdate:RequesetBody.xVisitDateTime,
+      visitdate:formattedEffectiveDate ,//RequesetBody.xVisitDateTime,
       claimno:responsefromAIA.Data.ClaimNo,
       claimstatuscode:'02',
       claimstatusdesc:'Approve',
