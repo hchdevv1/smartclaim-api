@@ -1642,10 +1642,12 @@ try{
   xInsurerCode: querySubmitOpdDischargeDto.PatientInfo.InsurerCode, //'13', 
   xVN: querySubmitOpdDischargeDto.PatientInfo.VN ,//'O415202-67',
   xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode,
-  xVisitDateTime :querySubmitOpdDischargeDto.PatientInfo.VisitDateTime
+  xVisitDateTime :querySubmitOpdDischargeDto.PatientInfo.VisitDateTime,
+  xFurtherClaimId : querySubmitOpdDischargeDto.PatientInfo.FurtherClaimId,
+  xFurtherClaimNo : querySubmitOpdDischargeDto.PatientInfo.FurtherClaimNo,
  }
 ////////////////////////////////////////
-
+console.log('kkkkk start kkkkkk')
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
 let newResultPatientInfoDto: ResultPatientInfoDto ;
@@ -1662,6 +1664,7 @@ if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischa
     Gender:''
   };
 }
+console.log('getOPDDischargePatient done')
 //console.log(newResultPatientInfoDto)
 // //--> get Visit  <--//
  const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
@@ -1692,6 +1695,7 @@ const newResultVisitInfoDto : ResultVisitInfoDto= {
   Vn:  await this.utilsService.EncryptAESECB( getOPDDischargeVisit.VisitInfo.VisitDateTime,AIA_APISecretkey) ,
   Weight: ''
 }
+console.log('getOPDDischargeVisit done')
 // //console.log(newResultVisitInfoDto)
 // //--> get VitalSignIn  <--//
 const getOPDDischargeVitalSign = await this.trakcareService.getOPDDischargeVitalSign(RequesetBody.xVN);
@@ -1724,7 +1728,7 @@ let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
     
   }];
 }
-
+console.log('getOPDDischargeVitalSign done')
 // //--> get Diagnosis  <--//
 const getOPDDischargeDiagnosis = await this.trakcareService.getOPDDischargeDiagnosis(RequesetBody.xVN);
 let getDiagnosisTypeMapping 
@@ -1804,6 +1808,7 @@ if (RequesetBody.xIllnessTypeCode='ACC'){
     ]
 }
 }
+console.log('getOPDDischargeDiagnosis done')
 // //--> get AccidentDetail  <--//
  
 // //--> get Procedure  <--//
@@ -1974,7 +1979,7 @@ const  newResultPSSInfoDto={
 // console.log('------')
 
 const QueryCreateClaimDocumentDtoBody={
-  RefId:RequesetBody.xRefId,
+  RefId:'gggg' ,//RequesetBody.xRefId,
   TransactionNo:RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
   HN:RequesetBody.xHN,
@@ -1983,6 +1988,8 @@ const QueryCreateClaimDocumentDtoBody={
   DocumenttypeCode:'',
   UploadedBy:''
 }
+
+
 const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
 let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
 newResultAttachDocListInfoDto = await Promise.all(
@@ -2139,10 +2146,7 @@ if (existingRecord) {
   });
 }else{
   const effectiveDate = new Date(RequesetBody.xVisitDateTime);
-  const formattedEffectiveDate = effectiveDate.toISOString().split(' ')[0];
-  console.log('hhhhhhhh');
-  console.log(formattedEffectiveDate);
-  console.log('-----');
+  const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
   await prismaProgest.transactionclaim.create({
     data: {
       insurerid: RequesetBody.xInsurerCode ,
@@ -2150,7 +2154,7 @@ if (existingRecord) {
       transactionno: RequesetBody.xTransactionNo,
       hn:RequesetBody.xHN,
       vn:RequesetBody.xVN,
-      visitdate:formattedEffectiveDate ,//RequesetBody.xVisitDateTime,
+      visitdate:formattedEffectiveDate ,
       claimno:responsefromAIA.Data.ClaimNo,
       claimstatuscode:'02',
       claimstatusdesc:'Approve',
@@ -2159,9 +2163,11 @@ if (existingRecord) {
       totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
       totalexcessamount:responsefromAIA.Data.TotalExcessAmount,
       isreimbursement:responsefromAIA.Data.IsReimbursement,
-      //furtherclaimid:RequesetBody.
-     // furtherclaimno: responsefromAIA.Data.InvoiceNumber,
+      furtherclaimid:RequesetBody.xFurtherClaimId,
+      furtherclaimno: RequesetBody.xFurtherClaimNo
+      
      // claimcancelnote:responsefromAIA.Data.ClaimStatus
+
     },
   });
 
