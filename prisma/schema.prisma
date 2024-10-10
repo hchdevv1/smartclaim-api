@@ -41,24 +41,25 @@ model causeofinjurywoundtype {
 }
 
 model claimants {
-  id               Int       @id @default(autoincrement())
-  national_id      String?   @db.VarChar(13)
-  passportnumber   String?   @db.VarChar(15)
-  hn               String?   @db.VarChar(10)
+  id               Int                @id @default(autoincrement())
+  national_id      String?            @db.VarChar(13)
+  passportnumber   String?            @db.VarChar(15)
+  hn               String?            @db.VarChar(10)
   patientid        Int?
-  title_th         String?   @db.VarChar(50)
-  givenname_th     String?   @db.VarChar(50)
-  surname_th       String?   @db.VarChar(50)
-  title_en         String?   @db.VarChar(50)
-  givenname_en     String?   @db.VarChar(50)
-  surname_en       String?   @db.VarChar(50)
-  mobilephone      String?   @db.VarChar(15)
+  title_th         String?            @db.VarChar(50)
+  givenname_th     String?            @db.VarChar(50)
+  surname_th       String?            @db.VarChar(50)
+  title_en         String?            @db.VarChar(50)
+  givenname_en     String?            @db.VarChar(50)
+  surname_en       String?            @db.VarChar(50)
+  mobilephone      String?            @db.VarChar(15)
   statusactive     Boolean?
-  dateofbirth      String?   @db.VarChar(10)
-  gender           String?   @db.VarChar(10)
-  registrationdate DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamp(6)
+  dateofbirth      String?            @db.VarChar(10)
+  gender           String?            @db.VarChar(10)
+  registrationdate DateTime?          @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamp(6)
   insurerid        Int?
-  insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+  insurers         insurers?          @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+  transactionclaim transactionclaim[]
 
   @@unique([hn, insurerid])
 }
@@ -195,33 +196,34 @@ model servicesetting {
 }
 
 model transactionclaim {
-  id                      Int       @id @default(autoincrement())
+  id                      Int        @id @default(autoincrement())
   insurerid               Int?
-  refid                   String?   @db.VarChar(255)
-  transactionno           String?   @db.VarChar(255)
-  hn                      String?   @db.VarChar(10)
-  vn                      String?   @db.VarChar(10)
-  visitdate               String?   @db.VarChar(20)
-  accidentdate            String?   @db.VarChar(20)
-  messageclaim            String?   @db.VarChar(255)
-  messageth               String?   @db.VarChar(255)
-  claimno                 String?   @db.VarChar(50)
-  claimstatuscode         String?   @db.VarChar(10)
-  status_changed_at       DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamp(6)
-  occurrenceno            String?   @db.VarChar(50)
-  totalapprovedamount     Decimal?  @db.Decimal(10, 2)
-  totalexcessamount       Decimal?  @db.Decimal(10, 2)
+  refid                   String?    @db.VarChar(255)
+  transactionno           String?    @db.VarChar(255)
+  hn                      String?    @db.VarChar(10)
+  vn                      String?    @db.VarChar(10)
+  visitdate               String?    @db.VarChar(20)
+  accidentdate            String?    @db.VarChar(20)
+  messageclaim            String?    @db.VarChar(255)
+  messageth               String?    @db.VarChar(255)
+  claimno                 String?    @db.VarChar(50)
+  claimstatuscode         String?    @db.VarChar(10)
+  status_changed_at       DateTime?  @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamp(6)
+  occurrenceno            String?    @db.VarChar(50)
+  totalapprovedamount     Decimal?   @db.Decimal(10, 2)
+  totalexcessamount       Decimal?   @db.Decimal(10, 2)
   isreimbursement         Boolean?
-  batchnumber             String?   @db.VarChar(50)
-  invoicenumber           String?   @db.VarChar(50)
+  batchnumber             String?    @db.VarChar(50)
+  invoicenumber           String?    @db.VarChar(50)
   otherinsurer            Boolean?
-  furtherclaimid          String?   @db.VarChar(100)
-  furtherclaimno          String?   @db.VarChar
+  furtherclaimid          String?    @db.VarChar(100)
+  furtherclaimno          String?    @db.VarChar
   privatecase             Boolean?
-  previoustreatmentdate   String?   @db.VarChar(255)
-  previoustreatmentdetail String?   @db.VarChar(255)
-  claimcancelnote         String?   @db.VarChar(255)
-  claimstatusdesc         String?   @db.VarChar(255)
+  previoustreatmentdate   String?    @db.VarChar(255)
+  previoustreatmentdetail String?    @db.VarChar(255)
+  claimcancelnote         String?    @db.VarChar(255)
+  claimstatusdesc         String?    @db.VarChar(255)
+  claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 
 model transactionclaimstatus {

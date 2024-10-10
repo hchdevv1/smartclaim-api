@@ -6,8 +6,7 @@ import { FindBodyDto} from './dto/find-patientinfo.dto';
 import { FindforUpdateBodyDto} from './dto/findforupdate-patientinfo.dto';
 import { SearchBodyDto} from './dto/search-patientinfo.dto';
 import { UpdateBodyDto} from './dto/update-patientinfo.dto';
-import { FindTransectionByVNBodyDto } from './dto/find-transection-vn.dto'
-
+import { QuerySearchTransection } from './dto/search -transection.dto';
 @Controller('/v1/patientinfo')
 export class PatientinfoController {
   constructor(private readonly patientinfoService: PatientinfoService) {}
@@ -42,10 +41,9 @@ export class PatientinfoController {
     return result
   }
 
-  @Post('/FindtransectionByVN')
-  async FindtransectionByVN(@Body() findTransectionByVNBodyDto:FindTransectionByVNBodyDto){
-        const result = this.patientinfoService.FindtransectionByVN(findTransectionByVNBodyDto);
+  @Post('/SearchTransection')
+  async SearchTransection(@Body() querySearchTransection:QuerySearchTransection){
+        const result = this.patientinfoService.SearchTransection(querySearchTransection);
         return result
   }
-
 }
