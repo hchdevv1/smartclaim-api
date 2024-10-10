@@ -71,7 +71,7 @@ const QueryCreateClaimDocumentDtoBody={
    
        const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
-       const apiURL= `${AIA_APIURL}/SmartClaim/submitBilling`;
+       const apiURL= `${AIA_APIURL}/SmartClaim/attachDocList`;
        const xUsername=AIA_APIHopitalUsername;
        const xHospitalCode =await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey);
        const xInsurerCode=RequesetBody.xInsurerCode;

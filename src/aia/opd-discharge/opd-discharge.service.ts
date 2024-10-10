@@ -213,7 +213,7 @@ async getOPDDischargeVitalSign(queryOpdDischargeDto:QueryOpdDischargeDto){
           VitalSignEntryDateTime: '',
        }
        xResultInfo ={
-        VitalSignInfo: xQueryVitalSign,
+        VitalSignInfo: [xQueryVitalSign],
        } 
     }else{
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -323,7 +323,7 @@ async getOPDDischargeDoctor(queryOpdDischargeDto:QueryOpdDischargeDto){
      
        }
        xResultInfo ={
-        DoctorInfo: xQueryDoctor,
+        DoctorInfo: [xQueryDoctor],
        } 
     }else{
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -431,7 +431,7 @@ async getOPDDischargeDiagnosis(queryOpdDischargeDto:QueryOpdDischargeDto){
         Dxtypenameinsurance: ''
        }]
        xResultInfo ={
-        DiagnosisInfo: xQueryDiagnosis,
+        DiagnosisInfo: [xQueryDiagnosis],
        } 
     }else{
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -548,7 +548,7 @@ try{
      } ]
     
      xResultInfo ={
-      InvestigationInfo: xQueryInvestigation,
+      InvestigationInfo: [xQueryInvestigation],
      } 
   }else{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -663,7 +663,7 @@ try{
       Terminology: ''
      }
      xResultInfo ={
-      OrderItemInfo: xQueryOrderItem,
+      OrderItemInfo: [xQueryOrderItem],
      } 
   }else{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -780,7 +780,7 @@ try{
       BillingNetAmount:''
      }
      xResultInfo ={
-      BillingInfo: xQueryBilling,
+      BillingInfo: [xQueryBilling],
      } 
   }else{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -891,7 +891,7 @@ try{
       ProcedureDate: '',
      }]
      xResultInfo ={
-      ProcedureInfo: xQueryProcedure,
+      ProcedureInfo: [xQueryProcedure],
      } 
   }else{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -1006,7 +1006,7 @@ try{
       InjuryDetail:xInjuryDetail
      }
      xResultInfo ={
-      AccidentDetailInfo: xQueryAccident,
+      AccidentDetailInfo: [xQueryAccident],
      } 
   }else{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -1979,7 +1979,7 @@ const  newResultPSSInfoDto={
 // console.log('------')
 
 const QueryCreateClaimDocumentDtoBody={
-  RefId:'gggg' ,//RequesetBody.xRefId,
+  RefId:RequesetBody.xRefId,
   TransactionNo:RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
   HN:RequesetBody.xHN,
@@ -2165,7 +2165,7 @@ if (existingRecord) {
       isreimbursement:responsefromAIA.Data.IsReimbursement,
       furtherclaimid:RequesetBody.xFurtherClaimId,
       furtherclaimno: RequesetBody.xFurtherClaimNo
-      
+
      // claimcancelnote:responsefromAIA.Data.ClaimStatus
 
     },
