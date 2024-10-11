@@ -1379,14 +1379,27 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
     const VN = queryCreateClaimDocumentDtoBodyDto.VN;
     const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
     const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
+    const DocumenttypeCode =queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode;
+
+    const whereConditions = {
+      ...(HN ? { hn: { equals: HN } } : {}),
+      ...(VN ? { vn: { equals: VN } } : {}),
+      ...(RefId ? { refid: { equals: RefId } } : {}),
+      ...(TransactionNo ? { transactionno: { equals: TransactionNo } } : {}),
+      ...(DocumenttypeCode ? { documenttypecode: { equals: DocumenttypeCode } } : {}),
+
+    
+    };
+   // console.log("whereConditions:", whereConditions);
+
+
     const fileRecords = await prismaProgest.claimdocuments.findMany({
-      where: {
-        hn: HN,
-        refid:RefId,
-        transactionno:TransactionNo,
-        vn:VN
-      },
+      where: whereConditions,
+      //where: { vn: { equals: 'O504393-67' } },
+      //select: {hn:true,documentname:true}
     });
+   // console.log(fileRecords);
+
     const filesAsBase64 = await Promise.all(
       fileRecords.map(async (fileRecord) => {
         //const filePath = join(__dirname, '..', '..', fileRecord.filepath);
