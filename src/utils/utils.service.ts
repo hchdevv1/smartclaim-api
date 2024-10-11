@@ -19,7 +19,7 @@ import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,Se
   ,CauseofInjurywoundtypeDto ,CauseofinjurysideDto ,AccidentplaceDto ,Accidentcauseover45daysDto ,DiagnosisTypeMappingDto
 } from './dto/utils.dto';
 import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto  ,QueryDeleteDocumentByDocNameDto
-  ,ResultDeleteDocumentByDocNameDto
+  ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto
 }from './dto/claim-documents.dto';
 
 const unlinkAsync = promisify(fs.unlink); 
@@ -1682,7 +1682,76 @@ async DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocume
 }
 
 
+async getListDocumentforAttachDocList(queryListDocumentforAttachDocListDto: QueryListDocumentforAttachDocListDto) {
+  console.log('getListDocumentforAttachDocList')
+   const xRefId = queryListDocumentforAttachDocListDto.PatientInfo.RefId;
+   const xDocumenttypeCode = queryListDocumentforAttachDocListDto.PatientInfo.DocumenttypeCode;
+   const xTransactionNo = queryListDocumentforAttachDocListDto.PatientInfo.TransactionNo;
+   //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
+console.log(xRefId)
+console.log(xDocumenttypeCode)
+console.log(xTransactionNo)
+//console.log(InsurerCode)
+   //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
+   //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
+     const fileRecords = await prismaProgest.claimdocuments.findMany({
+      where: {
+         refid:xRefId,
+         transactionno:xTransactionNo,
+         //insurerid:InsurerCode
+     }
+     });
+    
+     console.log(fileRecords)
+     if (fileRecords.length === 0) {
+       throw new NotFoundException('Files not found');
+     }
+     const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
 
+    //  await Promise.all(
+    //    fileRecords.map(async (fileRecord) => {
+    //      const filePath = join(__dirname, '..', '..', fileRecord.filepath);
+    //      const fileBuffer = readFileSync(filePath);
+    //      const base64File = fileBuffer.toString('base64');
+        
+    //      newResultAttachDocListInfoDto = [
+    //        {
+    //          DocName: fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
+    //          Base64Data: base64File, // ข้อมูลไฟล์เป็น Base64
+           
+    //      }
+    //      ];
+    //    }),
+    //  );
+    //  console.log('00000')
+    //  console.log(newResultAttachDocListInfoDto)
+    //  console.log('ddddd')
+    //  return newResultAttachDocListInfoDto;
+    await Promise.all(
+      fileRecords.map(async (fileRecord) => {
+        const filePath = join(__dirname, '..', '..', fileRecord.filepath);
+        
+        try {
+          // ใช้ readFile แบบ async
+          const fileBuffer = await readFile(filePath);
+          const base64File = fileBuffer.toString('base64');
+          
+          // สร้าง object ของ document และเพิ่มเข้าไปใน array
+          newResultAttachDocListInfoDto.push({
+            DocName: fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
+            Base64Data: base64File, // ข้อมูลไฟล์เป็น Base64
+          });
+        } catch (error) {
+          console.error(`Error reading file ${fileRecord.filepath}:`, error);
+        }
+      }),
+    );
+ 
+    console.log('Result Attach Doc List:', newResultAttachDocListInfoDto);
+ 
+    return newResultAttachDocListInfoDto;
+ 
+}
 
 async getListDocumentByTransactionNo(queryCreateClaimDocumentDtoBodyDto: QueryCreateClaimDocumentDtoBodyDto) {
   // const HN =queryCreateClaimDocumentDtoBodyDto.HN;

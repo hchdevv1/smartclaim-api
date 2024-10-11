@@ -42,13 +42,6 @@ export class ResultAttachDocListDto {
     @IsOptional()
     InsurerCode?: string;
 
-    @IsString()
-    @IsOptional()
-    BatchNumber?: string;
-
-    @IsString()
-    @IsOptional()
-    InvoiceNumber?: string;
 
   }
   export class ResultAttachDocListInfoDto {

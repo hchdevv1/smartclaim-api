@@ -4,10 +4,9 @@ import { lastValueFrom } from 'rxjs'
 import { catchError, map } from 'rxjs/operators';
 import { HttpMessageDto } from '../../utils/dto/http-status-message.dto';
 import { UtilsService } from '../../utils/utils.service';
-import { prismaProgest } from '../../database/database';
 
 import { QueryAttachBodyDto } from './dto/query-attach-doc-list.dto';
-import { ResultAttachDocListDto  ,ResultAttachDocListInfoDto} from './dto/result-attach-doc-list.dto';
+import { ResultAttachDocListDto  ,ResultAttachDocListInfoDto ,InsuranceResult ,InsuranceData} from './dto/result-attach-doc-list.dto';
 //import { DummyDataRespone1 } from './dummyRespone2';
 const newHttpMessageDto =new HttpMessageDto();
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -46,31 +45,31 @@ export class AttachDocListService {
        }
 
 
-const QueryCreateClaimDocumentDtoBody={
+const ListDocumentforAttachDocListBody={
+  PatientInfo:{
   RefId:RequesetBody.xRefId,
   TransactionNo: RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
-  HN:RequesetBody.xHN,
-  VN:RequesetBody.xVN,
-  DocumentName:'',
   DocumenttypeCode:RequesetBody.xDocumenttypeCode,
-  UploadedBy:''
+  }
 }
-console.log(QueryCreateClaimDocumentDtoBody)
-      //  const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
-      //  let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
-      //  newResultAttachDocListInfoDto = await Promise.all(
-      //    getListDocumentByTransection.map(async (doc) => {
-      //      const EncryptDocument = await this.utilsService.EncryptAESECB(doc.Base64Data, AIA_APISecretkey);
-      //      console.log(doc.DocName);
-      //      return {
-      //        Base64Data: EncryptDocument,
-      //        DocName: doc.DocName,
-      //      };
-      //    })
+console.log(ListDocumentforAttachDocListBody)
+       const getListDocumentByTransection = await this.utilsService.getListDocumentforAttachDocList(ListDocumentforAttachDocListBody); 
+       let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+       newResultAttachDocListInfoDto = await Promise.all(
+         getListDocumentByTransection.map(async (doc) => {
+           const EncryptDocument = await this.utilsService.EncryptAESECB(doc.Base64Data, AIA_APISecretkey);
+           console.log(doc.DocName);
+           return {
+             Base64Data: EncryptDocument,
+             DocName: doc.DocName,
+           };
+         })
          
-      //  );
-   
+       );
+   console.log(newResultAttachDocListInfoDto)
+
+   console.log('this is file')
        const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
        const apiURL= `${AIA_APIURL}/SmartClaim/attachDocList`;
@@ -91,9 +90,9 @@ console.log(QueryCreateClaimDocumentDtoBody)
          DataJsonType: xDataJsonType,
          DataJson: body_DataJson,
          InvoiceNumber:RequesetBody.xInvoiceNumber,
-         //AttachDocList:newResultAttachDocListInfoDto
+         AttachDocList:newResultAttachDocListInfoDto
        };
-       console.log('-----')
+       console.log('--kkk---')
        const headers = {
         'Content-Type': API_CONTENTTYPE,
         'Ocp-Apim-Subscription-Key': AIA_APISubscription,
@@ -118,48 +117,48 @@ console.log(QueryCreateClaimDocumentDtoBody)
       if (responeInputcode !=='S'){
        this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
       }else{
-        // let xInsuranceResult= new InsuranceResult();
-        // xInsuranceResult ={
-        //  Code:responsefromAIA.Result.Code ||'',
-        //  Message:responsefromAIA.Result.Message ||'',
-        //  MessageTh:responsefromAIA.Result.MessageTh ||'',
-        // }
+        let xInsuranceResult= new InsuranceResult();
+        xInsuranceResult ={
+         Code:responsefromAIA.Result.Code ||'',
+         Message:responsefromAIA.Result.Message ||'',
+         MessageTh:responsefromAIA.Result.MessageTh ||'',
+        }
 
-        // let xInsuranceData = new InsuranceData();
-        // xInsuranceData={
-        //   RefId:responsefromAIA.Data.RefId,
-        //   TransactionNo:responsefromAIA.Data.TransactionNo,
-        //   InsurerCode:responsefromAIA.Data.InsurerCode,
-        //   BatchNumber:responsefromAIA.Data.BatchNumber||'',
-        //   InvoiceNumber:responsefromAIA.Data.InvoiceNumber||'',
+        let xInsuranceData = new InsuranceData();
+        xInsuranceData={
+          RefId:responsefromAIA.Data.RefId,
+          TransactionNo:responsefromAIA.Data.TransactionNo,
+          InsurerCode:responsefromAIA.Data.InsurerCode,
          
-        // }
+        }
+
+ 
 /// save to database
 
-const existingRecord = await prismaProgest.transactionclaim.findFirst({
-  where: {
-    refid: RequesetBody.xRefId,
-    transactionno: RequesetBody.xTransactionNo,
+// const existingRecord = await prismaProgest.transactionclaim.findFirst({
+//   where: {
+//     refid: RequesetBody.xRefId,
+//     transactionno: RequesetBody.xTransactionNo,
    
-  },
-});
-if (existingRecord) {
+//   },
+// });
+// if (existingRecord) {
 
-  await prismaProgest.transactionclaim.update({
-    where: {
-      id: existingRecord.id, // Use the ID of the existing record
-    },
-    data: {
-      batchnumber: responsefromAIA.Data.BatchNumber,
-      invoicenumber:responsefromAIA.Data.InvoiceNumber
-    },
-  });
-}
+//   await prismaProgest.transactionclaim.update({
+//     where: {
+//       id: existingRecord.id, // Use the ID of the existing record
+//     },
+//     data: {
+//       batchnumber: responsefromAIA.Data.BatchNumber,
+//       invoicenumber:responsefromAIA.Data.InvoiceNumber
+//     },
+//   });
+// }
 
 
     xResultInfo ={
-        InsuranceResult: '', //xInsuranceResult,
-        InsuranceData:'', //xInsuranceData,
+        InsuranceResult: xInsuranceResult,
+        InsuranceData:xInsuranceData,
       } 
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       }

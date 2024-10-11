@@ -148,8 +148,6 @@ export class QueryCreateClaimDocumentDtoBodyDto {
     DocumenttypeCode?: string;
 
   }
-
-
 export class ResultDeleteDocumentByDocNameDto {
 
   HTTPStatus: HttpMessageDto;
@@ -157,4 +155,28 @@ export class ResultDeleteDocumentByDocNameDto {
 }
 export class DeleteDocumentInfo {
   DeleteDocumentInfo?:string
+}
+
+
+
+export class QueryListDocumentforAttachDocListDto {
+  PatientInfo:ListDocumentforAttachDocListDto
+}
+class ListDocumentforAttachDocListDto{
+@IsString()
+  @IsOptional()
+  RefId?: string;
+
+  @IsString()
+  @IsOptional()
+  TransactionNo?: string;
+  
+  @IsString()
+  @IsOptional()
+  DocumentName?: string;
+
+  @IsString()
+  @IsOptional()
+  DocumenttypeCode?: string;
+
 }
