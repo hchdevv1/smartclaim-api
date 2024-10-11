@@ -13,7 +13,7 @@ import { HttpMessageDto } from '../utils/dto/http-status-message.dto'
 import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,ServiceSettingDto ,ClaimStatusDto ,DocumentTypeDto
   ,CauseofInjurywoundtypeDto ,CauseofinjurysideDto ,AccidentplaceDto ,Accidentcauseover45daysDto ,DiagnosisTypeMappingDto
 } from './dto/utils.dto';
-import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto }from './dto/claim-documents.dto';
+import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto }from './dto/claim-documents.dto';
 
 
 const aesEcb = require('aes-ecb');
@@ -1373,14 +1373,14 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
     return filesAsBase64;
 }
 
- async getlistDocumentName(queryCreateClaimDocumentDtoBodyDto: QueryCreateClaimDocumentDtoBodyDto) {
+ async getlistDocumentName(querylistDocumentNameDtoBodyDto: QuerylistDocumentNameDtoBodyDto) {
   
-    const HN =queryCreateClaimDocumentDtoBodyDto.HN;
-    const VN = queryCreateClaimDocumentDtoBodyDto.VN;
-    const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
-    const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
-    const DocumenttypeCode =queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode;
-
+    const HN =querylistDocumentNameDtoBodyDto.PatientInfo.HN;
+    const VN = querylistDocumentNameDtoBodyDto.PatientInfo.VN;
+    const RefId = querylistDocumentNameDtoBodyDto.PatientInfo.RefId;
+    const TransactionNo = querylistDocumentNameDtoBodyDto.PatientInfo.TransactionNo;
+    const DocumenttypeCode =querylistDocumentNameDtoBodyDto.PatientInfo.DocumenttypeCode;
+    
     const whereConditions = {
       ...(HN ? { hn: { equals: HN } } : {}),
       ...(VN ? { vn: { equals: VN } } : {}),
@@ -1390,7 +1390,7 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
 
     
     };
-   // console.log("whereConditions:", whereConditions);
+   console.log("whereConditions:", whereConditions);
 
 
     const fileRecords = await prismaProgest.claimdocuments.findMany({

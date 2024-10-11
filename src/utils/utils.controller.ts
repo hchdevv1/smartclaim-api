@@ -5,7 +5,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 
-import { QueryCreateClaimDocumentDtoBodyDto }from './dto/claim-documents.dto';
+import { QueryCreateClaimDocumentDtoBodyDto ,QuerylistDocumentNameDtoBodyDto }from './dto/claim-documents.dto';
 
 
 @Controller('/v1/utils')
@@ -110,8 +110,8 @@ async uploadFile(@UploadedFile()  file: Express.Multer.File ,@Body() body: Query
   };
 }
 @Post('/getlistDocumentName') //prod
-async getlistDocumentName(@Body() queryCreateClaimDocumentDtoBodyDto:QueryCreateClaimDocumentDtoBodyDto){
-     const result = await this.utilsService.getlistDocumentName(queryCreateClaimDocumentDtoBodyDto);
+async getlistDocumentName(@Body() querylistDocumentNameDtoBodyDto:QuerylistDocumentNameDtoBodyDto){
+     const result = await this.utilsService.getlistDocumentName(querylistDocumentNameDtoBodyDto);
      return result
 }
 @Post('/getDocumentByDocname') //prod

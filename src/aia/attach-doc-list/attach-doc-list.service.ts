@@ -27,7 +27,7 @@ export class AttachDocListService {
   async AttachDocList(queryBillingSubmissionBodyDto:QueryAttachBodyDto){
     let xResultInfo;
     try{
-      console.log('666666')
+      console.log('--AttachDocListService--')
       //queryBillingSubmissionBodyDto.PatientInfo.RefId ='AAA-12345'
       //queryBillingSubmissionBodyDto.PatientInfo.TransactionNo ='95ffe060-236c-4f35-b00c-a2ef9aa9e714'
     const  RequesetBody ={
@@ -41,6 +41,7 @@ export class AttachDocListService {
          xHN :queryBillingSubmissionBodyDto.PatientInfo.HN||'',
          xVN: queryBillingSubmissionBodyDto.PatientInfo.VN||'',
          xInvoiceNumber :queryBillingSubmissionBodyDto.PatientInfo.InvoiceNumber,
+         xDocumenttypeCode :queryBillingSubmissionBodyDto.PatientInfo.DocumenttypeCode,
     
        }
 
@@ -50,24 +51,25 @@ const QueryCreateClaimDocumentDtoBody={
   TransactionNo: RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
   HN:RequesetBody.xHN,
-  VN:'O415202-67',//RequesetBody.xVN,
+  VN:RequesetBody.xVN,
   DocumentName:'',
-  DocumenttypeCode:'',
+  DocumenttypeCode:RequesetBody.xDocumenttypeCode,
   UploadedBy:''
 }
-       const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
-       let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
-       newResultAttachDocListInfoDto = await Promise.all(
-         getListDocumentByTransection.map(async (doc) => {
-           const EncryptDocument = await this.utilsService.EncryptAESECB(doc.Base64Data, AIA_APISecretkey);
-           console.log(doc.DocName);
-           return {
-             Base64Data: EncryptDocument,
-             DocName: doc.DocName,
-           };
-         })
+console.log(QueryCreateClaimDocumentDtoBody)
+      //  const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
+      //  let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+      //  newResultAttachDocListInfoDto = await Promise.all(
+      //    getListDocumentByTransection.map(async (doc) => {
+      //      const EncryptDocument = await this.utilsService.EncryptAESECB(doc.Base64Data, AIA_APISecretkey);
+      //      console.log(doc.DocName);
+      //      return {
+      //        Base64Data: EncryptDocument,
+      //        DocName: doc.DocName,
+      //      };
+      //    })
          
-       );
+      //  );
    
        const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
@@ -89,7 +91,7 @@ const QueryCreateClaimDocumentDtoBody={
          DataJsonType: xDataJsonType,
          DataJson: body_DataJson,
          InvoiceNumber:RequesetBody.xInvoiceNumber,
-         AttachDocList:newResultAttachDocListInfoDto
+         //AttachDocList:newResultAttachDocListInfoDto
        };
        console.log('-----')
        const headers = {

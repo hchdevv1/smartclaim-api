@@ -40,5 +40,9 @@ class SearchPatientBodyDto{
     @IsString()
     @IsOptional()
     InvoiceNumber?: string;
+
+    @IsString()
+    @IsOptional()
+    DocumenttypeCode?: string;
     
   }

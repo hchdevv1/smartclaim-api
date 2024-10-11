@@ -58,6 +58,9 @@ export class QueryCreateClaimDocumentDtoBodyDto {
     @IsOptional()
     TransactionNo?: string;
 
+    @IsInt()
+    @IsOptional()
+    InsurerCode:number
 
     @IsString()
     @IsOptional()
@@ -85,3 +88,39 @@ export class QueryCreateClaimDocumentDtoBodyDto {
     DocName: string;
   }
   
+
+
+  export class QuerylistDocumentNameDtoBodyDto {
+    PatientInfo:requestDocument
+  }
+  class requestDocument{
+ @IsString()
+    @IsOptional()
+    RefId?: string;
+
+    @IsString()
+    @IsOptional()
+    TransactionNo?: string;
+
+
+    @IsString()
+    @IsOptional()
+    HN?: string;
+    
+    @IsString()
+    @IsOptional()
+    VN?: string;
+    
+    @IsString()
+    @IsOptional()
+    DocumentName?: string;
+
+    @IsString()
+    @IsOptional()
+    DocumenttypeCode?: string;
+
+    @IsString()
+    @IsOptional()
+    UploadedBy?: string;
+
+  }
