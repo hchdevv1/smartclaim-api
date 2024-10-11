@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString, IsOptional, IsInt } from 'class-validator';
+import { HttpMessageDto } from './http-status-message.dto';
 
 export class CreateClaimDocumentDto {
   @IsNotEmpty()
@@ -124,3 +125,36 @@ export class QueryCreateClaimDocumentDtoBodyDto {
     UploadedBy?: string;
 
   }
+
+
+  export class QueryDeleteDocumentByDocNameDto {
+    PatientInfo:DeleteDocumentByDocName
+  }
+  class DeleteDocumentByDocName{
+ @IsString()
+    @IsOptional()
+    RefId?: string;
+
+    @IsString()
+    @IsOptional()
+    TransactionNo?: string;
+    
+    @IsString()
+    @IsOptional()
+    DocumentName?: string;
+
+    @IsString()
+    @IsOptional()
+    DocumenttypeCode?: string;
+
+  }
+
+
+export class ResultDeleteDocumentByDocNameDto {
+
+  HTTPStatus: HttpMessageDto;
+  Result?: DeleteDocumentInfo;
+}
+export class DeleteDocumentInfo {
+  DeleteDocumentInfo?:string
+}

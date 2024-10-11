@@ -3,8 +3,13 @@ import { Injectable ,NotFoundException, HttpException, HttpStatus} from '@nestjs
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { readFileSync } from 'fs';
+import { promisify } from 'util'; // Import promisify จาก util
+import * as fs from 'fs'; // Import fs แบบเต็ม
+
+
 import { join } from 'path';
 import { readFile } from 'fs/promises'; 
+
 import { prismaProgest } from '../database/database';
 import { Prisma } from '../../prisma/generate-client-db';
 import { HttpStatusMessageService } from './http-status-message/http-status-message.service';
@@ -13,9 +18,11 @@ import { HttpMessageDto } from '../utils/dto/http-status-message.dto'
 import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,ServiceSettingDto ,ClaimStatusDto ,DocumentTypeDto
   ,CauseofInjurywoundtypeDto ,CauseofinjurysideDto ,AccidentplaceDto ,Accidentcauseover45daysDto ,DiagnosisTypeMappingDto
 } from './dto/utils.dto';
-import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto }from './dto/claim-documents.dto';
+import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto  ,QueryDeleteDocumentByDocNameDto
+  ,ResultDeleteDocumentByDocNameDto
+}from './dto/claim-documents.dto';
 
-
+const unlinkAsync = promisify(fs.unlink); 
 const aesEcb = require('aes-ecb');
 const AIA_APIURL= process.env.AIA_APIURL;
 const API_CONTENTTYPE= process.env.API_CONTENTTYPE;
@@ -790,6 +797,112 @@ async getDocumentType(xInsurercode: string ) {
     }
 
 }
+async getdocumentTypeforAttachDocList(xInsurercode: string ) {
+  let documenttype:any ;
+  try{
+    documenttype = await prismaProgest.documenttype.findMany({ 
+     
+    where:{
+      insurers:{  insurercode : +xInsurercode },
+      documenttypecode: {
+        not: { in: ['003','007','008'] }, // ใช้ not กับ in เพื่อยกเว้นค่า '001'
+      }
+     },  
+    select:{
+      documenttypecode :true,
+      documenttypename:true,
+      insurerid:true,
+      insurers:{
+        select:{
+            insurercode:true,
+            insurername:true
+        }
+      }
+
+    },
+     })
+     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+     let  newDocumentTypeDto= new DocumentTypeDto();
+     newDocumentTypeDto={
+       HTTPStatus:newHttpMessageDto,
+      Result:documenttype
+     }
+     if (!documenttype || documenttype.length === 0) {
+      this.addFormatHTTPStatus(newHttpMessageDto,404,'documenttype not found','')
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    }
+     return newDocumentTypeDto  
+     
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+
+}
+
 async getCauseofInjurywoundtype(xInsurercode: string ) {
   let causeofinjurywoundtype:any ;
   try{
@@ -1325,6 +1438,8 @@ async getFileAsBase64(id: number) {
     
 }
 async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyDto) { 
+  const mimeTypeParts = file.mimetype.split('/');
+  const fileType = mimeTypeParts[mimeTypeParts.length - 1];
     const fileRecord = await prismaProgest.claimdocuments.create({
       data: {
         hn: body.HN, // ปรับข้อมูลตามที่ต้องการ
@@ -1333,7 +1448,8 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
         insurerid:13,
         transactionno: body.TransactionNo,
         documenttypecode: body.DocumenttypeCode,
-        documenttypename: '',
+        documenttypename:fileType,
+        originalname: file.originalname,
         documentname: body.VN+'-'+body.DocumenttypeCode+'-'+Math.round(Math.random() * 186).toString(3)+'.'+file.mimetype.split('/')[1],
         filesize: file.size,
         filemimetype: file.mimetype,
@@ -1390,7 +1506,7 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
 
     
     };
-   console.log("whereConditions:", whereConditions);
+   //console.log("whereConditions:", whereConditions);
 
 
     const fileRecords = await prismaProgest.claimdocuments.findMany({
@@ -1406,8 +1522,8 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
        // const fileBuffer = readFileSync(filePath);
         //const base64File = fileBuffer.toString('base64');
         return {
-          
-          filename: fileRecord.documentname //fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
+          filename: fileRecord.documentname ,
+          originalname: fileRecord.originalname //fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
           //base64: base64File, // ข้อมูลไฟล์เป็น Base64
         };
       }),
@@ -1464,6 +1580,7 @@ async getListDocumentByRefId(queryCreateClaimDocumentDtoBodyDto: QueryCreateClai
          }
          });
          if (fileRecords.length === 0) {
+          console.log('000000')
            throw new NotFoundException('Files not found');
          }
          let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
@@ -1487,6 +1604,86 @@ async getListDocumentByRefId(queryCreateClaimDocumentDtoBodyDto: QueryCreateClai
         
          return newResultAttachDocListInfoDto;
 }
+
+async DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocumentByDocNameDto) {
+
+   const xRefId = queryDeleteDocumentByDocNameDto.PatientInfo.RefId;
+   const xTransactionNo = queryDeleteDocumentByDocNameDto.PatientInfo.TransactionNo;
+   const xDocumentName = queryDeleteDocumentByDocNameDto.PatientInfo.DocumentName;
+
+    //  const fileRecords = await prismaProgest.claimdocuments.deleteMany({
+    //   where: {
+    //     refid:xRefId,
+    //      transactionno:xTransactionNo,
+    //      documentname:xDocumentName
+    //    //  insurerid:insurerid
+    //  }
+    //  });
+    let  DeleteDocumentInfo;
+    try{
+    // 1. ดึงข้อมูลไฟล์จากฐานข้อมูลก่อน (เพื่อเอา path ของไฟล์ที่จะลบ)
+    const fileRecord = await prismaProgest.claimdocuments.findFirst({
+      where: {
+        refid: xRefId,
+        transactionno: xTransactionNo,
+        documentname: xDocumentName,
+      },
+    });
+
+    if (!fileRecord) {
+      this.addFormatHTTPStatus(newHttpMessageDto,400,'File not found in database','File not found in database')
+      DeleteDocumentInfo={
+        status: "File not found in database",
+        documentname:xDocumentName
+        }  
+      // throw new Error('File not found in database');
+    }else{
+      const filePath = fileRecord.filepath; 
+      await unlinkAsync(filePath);
+      await prismaProgest.claimdocuments.deleteMany({
+        where: {
+          refid: xRefId,
+          transactionno: xTransactionNo,
+          documentname: xDocumentName,
+        },
+      });
+  
+      // 3. ลบไฟล์จากระบบไฟล์
+     
+     this.addFormatHTTPStatus(newHttpMessageDto,200,'File and record deleted successfully!','File and record deleted successfully!')
+
+     DeleteDocumentInfo={
+     status: "File and record deleted successfully",
+     documentname:xDocumentName
+     }
+
+      console.log('xxxx'+  fileRecord.filepath)
+    }
+    console.log('yyyy')
+
+
+  }catch (error) {
+    console.error('Error deleting file and record:', error);
+    this.addFormatHTTPStatus(newHttpMessageDto,500,'Error deleting file and record','Error deleting file and record')
+    DeleteDocumentInfo={
+      status: "Error deleting file and record",
+      documentname:xDocumentName
+      }  
+    //throw new Error('Failed to delete file or record');
+  }
+    
+  let newResultDeleteDocumentByDocNameDto= new ResultDeleteDocumentByDocNameDto();
+      newResultDeleteDocumentByDocNameDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:DeleteDocumentInfo
+    }
+
+     return newResultDeleteDocumentByDocNameDto ;
+}
+
+
+
+
 async getListDocumentByTransactionNo(queryCreateClaimDocumentDtoBodyDto: QueryCreateClaimDocumentDtoBodyDto) {
   // const HN =queryCreateClaimDocumentDtoBodyDto.HN;
    const VN = queryCreateClaimDocumentDtoBodyDto.VN;

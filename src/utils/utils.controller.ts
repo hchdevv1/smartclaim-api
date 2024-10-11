@@ -5,7 +5,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 
-import { QueryCreateClaimDocumentDtoBodyDto ,QuerylistDocumentNameDtoBodyDto }from './dto/claim-documents.dto';
+import { QueryCreateClaimDocumentDtoBodyDto ,QuerylistDocumentNameDtoBodyDto ,QueryDeleteDocumentByDocNameDto }from './dto/claim-documents.dto';
 
 
 @Controller('/v1/utils')
@@ -55,6 +55,12 @@ export class UtilsController {
 getDocumentType(@Param('InsuranceCode') InsuranceCode: string ) {
   return  this.utilsService.getDocumentType(InsuranceCode)
 }
+@Get('/documentTypeforAttachDocList/:InsuranceCode')
+getdocumentTypeforAttachDocList(@Param('InsuranceCode') InsuranceCode: string ) {
+  return  this.utilsService.getdocumentTypeforAttachDocList(InsuranceCode)
+}
+
+
 @Get('/injuryWoundtype/:InsuranceCode')
 getCauseofInjurywoundtype(@Param('InsuranceCode') InsuranceCode: string ) {
   return  this.utilsService.getCauseofInjurywoundtype(InsuranceCode)
@@ -93,9 +99,11 @@ async getFilemany(@Param('id') id: string) {
     destination: './uploads/pdf', // กำหนดโฟลเดอร์ที่เก็บไฟล์
     filename: (req, file, cb) => {
       // กำหนดชื่อไฟล์ใหม่ตาม timestamp และนามสกุลเดิม
+      //const originalName = file.originalname; 
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
       const ext = extname(file.originalname); // ดึงนามสกุลจากไฟล์เดิม
       const newFilename = `${uniqueSuffix}${ext}`;
+      
       cb(null, newFilename); // ส่งชื่อไฟล์ใหม่กลับไปยัง callback
     },
   }),
@@ -109,6 +117,7 @@ async uploadFile(@UploadedFile()  file: Express.Multer.File ,@Body() body: Query
    filename: result.documentname,
   };
 }
+
 @Post('/getlistDocumentName') //prod
 async getlistDocumentName(@Body() querylistDocumentNameDtoBodyDto:QuerylistDocumentNameDtoBodyDto){
      const result = await this.utilsService.getlistDocumentName(querylistDocumentNameDtoBodyDto);
@@ -128,6 +137,13 @@ async getListDocumentByRefId(@Body() queryCreateClaimDocumentDtoBodyDto:QueryCre
   return fileData;
 }
 
+// QueryDeleteDocumentByDocNameDto
+@Post('/DeleteDocumentByDocName') //prod
+async DeleteDocumentByDocName(@Body() queryDeleteDocumentByDocNameDto:QueryDeleteDocumentByDocNameDto){
+ 
+  const fileData = await this.utilsService.DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto);
+  return fileData;
+}
 
 
 }

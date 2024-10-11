@@ -8012,6 +8012,7 @@ export namespace Prisma {
     filemimetype: string | null
     uploaddate: Date | null
     uploadedby: string | null
+    originalname: string | null
   }
 
   export type ClaimdocumentsMaxAggregateOutputType = {
@@ -8030,6 +8031,7 @@ export namespace Prisma {
     filemimetype: string | null
     uploaddate: Date | null
     uploadedby: string | null
+    originalname: string | null
   }
 
   export type ClaimdocumentsCountAggregateOutputType = {
@@ -8048,6 +8050,7 @@ export namespace Prisma {
     filemimetype: number
     uploaddate: number
     uploadedby: number
+    originalname: number
     _all: number
   }
 
@@ -8080,6 +8083,7 @@ export namespace Prisma {
     filemimetype?: true
     uploaddate?: true
     uploadedby?: true
+    originalname?: true
   }
 
   export type ClaimdocumentsMaxAggregateInputType = {
@@ -8098,6 +8102,7 @@ export namespace Prisma {
     filemimetype?: true
     uploaddate?: true
     uploadedby?: true
+    originalname?: true
   }
 
   export type ClaimdocumentsCountAggregateInputType = {
@@ -8116,6 +8121,7 @@ export namespace Prisma {
     filemimetype?: true
     uploaddate?: true
     uploadedby?: true
+    originalname?: true
     _all?: true
   }
 
@@ -8221,6 +8227,7 @@ export namespace Prisma {
     filemimetype: string | null
     uploaddate: Date | null
     uploadedby: string | null
+    originalname: string | null
     _count: ClaimdocumentsCountAggregateOutputType | null
     _avg: ClaimdocumentsAvgAggregateOutputType | null
     _sum: ClaimdocumentsSumAggregateOutputType | null
@@ -8258,6 +8265,7 @@ export namespace Prisma {
     filemimetype?: boolean
     uploaddate?: boolean
     uploadedby?: boolean
+    originalname?: boolean
     insurers?: boolean | claimdocuments$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["claimdocuments"]>
 
@@ -8277,6 +8285,7 @@ export namespace Prisma {
     filemimetype?: boolean
     uploaddate?: boolean
     uploadedby?: boolean
+    originalname?: boolean
     insurers?: boolean | claimdocuments$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["claimdocuments"]>
 
@@ -8296,6 +8305,7 @@ export namespace Prisma {
     filemimetype?: boolean
     uploaddate?: boolean
     uploadedby?: boolean
+    originalname?: boolean
   }
 
   export type claimdocumentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8326,6 +8336,7 @@ export namespace Prisma {
       filemimetype: string | null
       uploaddate: Date | null
       uploadedby: string | null
+      originalname: string | null
     }, ExtArgs["result"]["claimdocuments"]>
     composites: {}
   }
@@ -8735,6 +8746,7 @@ export namespace Prisma {
     readonly filemimetype: FieldRef<"claimdocuments", 'String'>
     readonly uploaddate: FieldRef<"claimdocuments", 'DateTime'>
     readonly uploadedby: FieldRef<"claimdocuments", 'String'>
+    readonly originalname: FieldRef<"claimdocuments", 'String'>
   }
     
 
@@ -26060,7 +26072,8 @@ export namespace Prisma {
     filesize: 'filesize',
     filemimetype: 'filemimetype',
     uploaddate: 'uploaddate',
-    uploadedby: 'uploadedby'
+    uploadedby: 'uploadedby',
+    originalname: 'originalname'
   };
 
   export type ClaimdocumentsScalarFieldEnum = (typeof ClaimdocumentsScalarFieldEnum)[keyof typeof ClaimdocumentsScalarFieldEnum]
@@ -26774,6 +26787,7 @@ export namespace Prisma {
     filemimetype?: StringNullableFilter<"claimdocuments"> | string | null
     uploaddate?: DateTimeNullableFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableFilter<"claimdocuments"> | string | null
+    originalname?: StringNullableFilter<"claimdocuments"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
   }
 
@@ -26793,6 +26807,7 @@ export namespace Prisma {
     filemimetype?: SortOrderInput | SortOrder
     uploaddate?: SortOrderInput | SortOrder
     uploadedby?: SortOrderInput | SortOrder
+    originalname?: SortOrderInput | SortOrder
     insurers?: insurersOrderByWithRelationInput
   }
 
@@ -26815,6 +26830,7 @@ export namespace Prisma {
     filemimetype?: StringNullableFilter<"claimdocuments"> | string | null
     uploaddate?: DateTimeNullableFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableFilter<"claimdocuments"> | string | null
+    originalname?: StringNullableFilter<"claimdocuments"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
   }, "id">
 
@@ -26834,6 +26850,7 @@ export namespace Prisma {
     filemimetype?: SortOrderInput | SortOrder
     uploaddate?: SortOrderInput | SortOrder
     uploadedby?: SortOrderInput | SortOrder
+    originalname?: SortOrderInput | SortOrder
     _count?: claimdocumentsCountOrderByAggregateInput
     _avg?: claimdocumentsAvgOrderByAggregateInput
     _max?: claimdocumentsMaxOrderByAggregateInput
@@ -26860,6 +26877,7 @@ export namespace Prisma {
     filemimetype?: StringNullableWithAggregatesFilter<"claimdocuments"> | string | null
     uploaddate?: DateTimeNullableWithAggregatesFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableWithAggregatesFilter<"claimdocuments"> | string | null
+    originalname?: StringNullableWithAggregatesFilter<"claimdocuments"> | string | null
   }
 
   export type claimstatusWhereInput = {
@@ -28465,6 +28483,7 @@ export namespace Prisma {
     filemimetype?: string | null
     uploaddate?: Date | string | null
     uploadedby?: string | null
+    originalname?: string | null
     insurers?: insurersCreateNestedOneWithoutClaimdocumentsInput
   }
 
@@ -28484,6 +28503,7 @@ export namespace Prisma {
     filemimetype?: string | null
     uploaddate?: Date | string | null
     uploadedby?: string | null
+    originalname?: string | null
   }
 
   export type claimdocumentsUpdateInput = {
@@ -28500,6 +28520,7 @@ export namespace Prisma {
     filemimetype?: NullableStringFieldUpdateOperationsInput | string | null
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
+    originalname?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutClaimdocumentsNestedInput
   }
 
@@ -28519,6 +28540,7 @@ export namespace Prisma {
     filemimetype?: NullableStringFieldUpdateOperationsInput | string | null
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
+    originalname?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimdocumentsCreateManyInput = {
@@ -28537,6 +28559,7 @@ export namespace Prisma {
     filemimetype?: string | null
     uploaddate?: Date | string | null
     uploadedby?: string | null
+    originalname?: string | null
   }
 
   export type claimdocumentsUpdateManyMutationInput = {
@@ -28553,6 +28576,7 @@ export namespace Prisma {
     filemimetype?: NullableStringFieldUpdateOperationsInput | string | null
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
+    originalname?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimdocumentsUncheckedUpdateManyInput = {
@@ -28571,6 +28595,7 @@ export namespace Prisma {
     filemimetype?: NullableStringFieldUpdateOperationsInput | string | null
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
+    originalname?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimstatusCreateInput = {
@@ -30310,6 +30335,7 @@ export namespace Prisma {
     filemimetype?: SortOrder
     uploaddate?: SortOrder
     uploadedby?: SortOrder
+    originalname?: SortOrder
   }
 
   export type claimdocumentsAvgOrderByAggregateInput = {
@@ -30334,6 +30360,7 @@ export namespace Prisma {
     filemimetype?: SortOrder
     uploaddate?: SortOrder
     uploadedby?: SortOrder
+    originalname?: SortOrder
   }
 
   export type claimdocumentsMinOrderByAggregateInput = {
@@ -30352,6 +30379,7 @@ export namespace Prisma {
     filemimetype?: SortOrder
     uploaddate?: SortOrder
     uploadedby?: SortOrder
+    originalname?: SortOrder
   }
 
   export type claimdocumentsSumOrderByAggregateInput = {
@@ -34320,6 +34348,7 @@ export namespace Prisma {
     filemimetype?: string | null
     uploaddate?: Date | string | null
     uploadedby?: string | null
+    originalname?: string | null
   }
 
   export type claimdocumentsUncheckedCreateWithoutInsurersInput = {
@@ -34337,6 +34366,7 @@ export namespace Prisma {
     filemimetype?: string | null
     uploaddate?: Date | string | null
     uploadedby?: string | null
+    originalname?: string | null
   }
 
   export type claimdocumentsCreateOrConnectWithoutInsurersInput = {
@@ -34778,6 +34808,7 @@ export namespace Prisma {
     filemimetype?: StringNullableFilter<"claimdocuments"> | string | null
     uploaddate?: DateTimeNullableFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableFilter<"claimdocuments"> | string | null
+    originalname?: StringNullableFilter<"claimdocuments"> | string | null
   }
 
   export type claimstatusUpsertWithWhereUniqueWithoutInsurersInput = {
@@ -36128,6 +36159,7 @@ export namespace Prisma {
     filemimetype?: string | null
     uploaddate?: Date | string | null
     uploadedby?: string | null
+    originalname?: string | null
   }
 
   export type claimstatusCreateManyInsurersInput = {
@@ -36403,6 +36435,7 @@ export namespace Prisma {
     filemimetype?: NullableStringFieldUpdateOperationsInput | string | null
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
+    originalname?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimdocumentsUncheckedUpdateWithoutInsurersInput = {
@@ -36420,6 +36453,7 @@ export namespace Prisma {
     filemimetype?: NullableStringFieldUpdateOperationsInput | string | null
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
+    originalname?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimdocumentsUncheckedUpdateManyWithoutInsurersInput = {
@@ -36437,6 +36471,7 @@ export namespace Prisma {
     filemimetype?: NullableStringFieldUpdateOperationsInput | string | null
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
+    originalname?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimstatusUpdateWithoutInsurersInput = {

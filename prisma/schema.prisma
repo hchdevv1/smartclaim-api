@@ -80,6 +80,7 @@ model claimdocuments {
   filemimetype     String?   @db.VarChar(100)
   uploaddate       DateTime? @default(now()) @db.Timestamp(6)
   uploadedby       String?   @db.VarChar(50)
+  originalname     String?   @db.VarChar(255)
   insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 

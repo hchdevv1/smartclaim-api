@@ -185,7 +185,8 @@ exports.Prisma.ClaimdocumentsScalarFieldEnum = {
   filesize: 'filesize',
   filemimetype: 'filemimetype',
   uploaddate: 'uploaddate',
-  uploadedby: 'uploadedby'
+  uploadedby: 'uploadedby',
+  originalname: 'originalname'
 };
 
 exports.Prisma.ClaimstatusScalarFieldEnum = {
