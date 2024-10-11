@@ -46,8 +46,8 @@ export class AttachDocListService {
 
 
 const QueryCreateClaimDocumentDtoBody={
-  RefId:'ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=', //RequesetBody.xRefId,
-  TransactionNo: 'f30c3f08-00db-4da2-ba33-3afbcf4a1546',//RequesetBody.xTransactionNo,
+  RefId:RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
   HN:RequesetBody.xHN,
   VN:'O415202-67',//RequesetBody.xVN,

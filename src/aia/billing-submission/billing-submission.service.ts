@@ -27,7 +27,7 @@ export class BillingSubmissionService {
   async Billingsubmission(queryBillingSubmissionBodyDto:QueryBillingSubmissionBodyDto){
     let xResultInfo;
     try{
-      console.log('666666')
+     // console.log('666666')
       //queryBillingSubmissionBodyDto.PatientInfo.RefId ='AAA-12345'
       //queryBillingSubmissionBodyDto.PatientInfo.TransactionNo ='95ffe060-236c-4f35-b00c-a2ef9aa9e714'
     const  RequesetBody ={
@@ -41,20 +41,23 @@ export class BillingSubmissionService {
          xHN :queryBillingSubmissionBodyDto.PatientInfo.HN||'',
          xVN: queryBillingSubmissionBodyDto.PatientInfo.VN||'',
          xInvoiceNumber :queryBillingSubmissionBodyDto.PatientInfo.InvoiceNumber,
+         xDocumenttypeCode:queryBillingSubmissionBodyDto.PatientInfo.DocumenttypeCode
     
        }
 
 
 const QueryCreateClaimDocumentDtoBody={
-  RefId:'ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=', //RequesetBody.xRefId,
-  TransactionNo: 'f30c3f08-00db-4da2-ba33-3afbcf4a1546',//RequesetBody.xTransactionNo,
+  RefId:RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
   HN:RequesetBody.xHN,
-  VN:'O415202-67',//RequesetBody.xVN,
+  VN:RequesetBody.xVN,
   DocumentName:'',
-  DocumenttypeCode:'',
+  DocumenttypeCode:RequesetBody.xDocumenttypeCode,
   UploadedBy:''
 }
+//console.log(QueryCreateClaimDocumentDtoBody)
+ //console.log('start get doc')
        const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
        let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
        newResultAttachDocListInfoDto = await Promise.all(
@@ -69,6 +72,7 @@ const QueryCreateClaimDocumentDtoBody={
          
        );
    
+      // console.log('get doc done')
        const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
        const apiURL= `${AIA_APIURL}/SmartClaim/submitBilling`;
