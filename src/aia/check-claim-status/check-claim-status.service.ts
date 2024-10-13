@@ -26,6 +26,7 @@ export class CheckClaimStatusService {
   ) {}
 
   async Checkclaimstatus(queryCheckClaimStatusBodyDto:QueryCheckClaimStatusBodyDto){
+    console.log('check st')
     let xResultInfo;
     try{
      // queryCheckClaimStatusBodyDto.PatientInfo.RefId ='AAA-12345'
@@ -81,8 +82,8 @@ export class CheckClaimStatusService {
             })
           )
       );
-    //const xDummyDataRespone1 =new DummyDataRespone1();
-    //const responsefromAIA  =xDummyDataRespone1.res
+    // const xDummyDataRespone1 =new DummyDataRespone1();
+    // const responsefromAIA  =xDummyDataRespone1.res
       const responeInputcode =responsefromAIA.Result.Code
       console.log(responsefromAIA)
       if (responeInputcode !=='S'){
@@ -117,6 +118,8 @@ xResultAttachDocListInfoDto = await Promise.all(
           BatchNumber:responsefromAIA.Data.BatchNumber||'',
           ClaimStatus:responsefromAIA.Data.ClaimStatus||'',
           ClaimStatusDesc:responsefromAIA.Data.ClaimStatusDesc||'',
+          ClaimStatusDesc_EN:responsefromAIA.Data.ClaimStatus||'',
+          ClaimStatusDesc_TH:responsefromAIA.Data.ClaimStatusDesc||'',
           TotalApproveAmount:responsefromAIA.Data.TotalApproveAmount||'',
           PaymentDate:responsefromAIA.Data.PaymentDate||'',
           InvoiceNumber:responsefromAIA.Data.InvoiceNumber||'',
@@ -133,7 +136,8 @@ const existingRecord = await prismaProgest.transactionclaimstatus.findFirst({
     claimstatuscode:claimcode
   },
 });
-
+console.log('---')
+console.log(existingRecord)
 if (existingRecord) {
 
   await prismaProgest.transactionclaimstatus.update({
@@ -147,7 +151,9 @@ if (existingRecord) {
       totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
       paymentdate: responsefromAIA.Data.PaymentDate,
       invoicenumber: responsefromAIA.Data.InvoiceNumber,
-      claimstatusdesc:responsefromAIA.Data.ClaimStatus
+      claimstatusdesc:responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_en:responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_th:responsefromAIA.Data.ClaimStatusDesc,
     },
   });
 }else{
@@ -163,7 +169,9 @@ if (existingRecord) {
      totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
       paymentdate:responsefromAIA.Data.PaymentDate,
       invoicenumber: responsefromAIA.Data.InvoiceNumber,
-      claimstatusdesc:responsefromAIA.Data.ClaimStatus
+      claimstatusdesc:responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_en:responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_th:responsefromAIA.Data.ClaimStatusDesc,
     },
   });
 }
@@ -185,7 +193,10 @@ if (transactionclaimexistingRecord) {
     },
     data: {
       claimstatuscode: claimcode ,
-      claimstatusdesc: responsefromAIA.Data.ClaimStatus
+      claimstatusdesc: responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_en: responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_th: responsefromAIA.Data.ClaimStatusDesc
+      
     },
   });
 }

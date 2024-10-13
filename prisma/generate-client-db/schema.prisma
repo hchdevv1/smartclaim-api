@@ -224,6 +224,8 @@ model transactionclaim {
   previoustreatmentdetail String?    @db.VarChar(255)
   claimcancelnote         String?    @db.VarChar(255)
   claimstatusdesc         String?    @db.VarChar(255)
+  claimstatusdesc_th      String?    @db.VarChar(255)
+  claimstatusdesc_en      String?    @db.VarChar(255)
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 
@@ -244,6 +246,8 @@ model transactionclaimstatus {
   claimstatuscode    String?      @db.VarChar(255)
   claimcancelnote    String?      @db.VarChar(500)
   claimstatusdesc    String?      @db.VarChar(255)
+  claimstatusdesc_th String?      @db.VarChar(255)
+  claimstatusdesc_en String?      @db.VarChar(255)
   claimstatus        claimstatus? @relation(fields: [claimstatuscode, insurerid], references: [claimstatuscode, insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 

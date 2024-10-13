@@ -29,6 +29,7 @@ import { ResultSubmitOpdDischargeDto , InsuranceResult, InsuranceData,
 import { QueryProcedureDto ,ResultSubmitProcedureDto} from './dto/query-procedure-opd-discharge.dto';
 import { QueryAccidentDto ,ResultSubmitAccidentDto} from './dto/query-accident-opd-discharge.dto';
 import { QueryVisitDto } from './dto/query-visit-opd-discharge.dto';
+import { QueryReviewOpdDischargeDto } from './dto/review-opd-discharge.dto';
 
 
 // import { DummyDataRequest1 }  from './dummyRequest';
@@ -2250,6 +2251,441 @@ return newResultSubmitOpdDischargeDto
   }
 }
 }
+
+async ReviewOPDDischarge(queryReviewOpdDischargeDto:QueryReviewOpdDischargeDto){
+  let xResultInfo;
+ 
+try{
+ const RequesetBody ={
+  xRefId:queryReviewOpdDischargeDto.PatientInfo.RefId, //'oljhnklefhbilubsEFJKLb65255555',
+  xTransactionNo: queryReviewOpdDischargeDto.PatientInfo.TransactionNo,//'6f49b02c-4102-44e4-bd6a-c5bed5dc8b1c',
+  xHN :queryReviewOpdDischargeDto.PatientInfo.HN ,//'62-027770',
+  xInsurerCode: queryReviewOpdDischargeDto.PatientInfo.InsurerCode, //'13', 
+  xVN: queryReviewOpdDischargeDto.PatientInfo.VN ,//'O415202-67',
+  xHaveProcedure: queryReviewOpdDischargeDto.PatientInfo.VN ,//'O415202-67',
+  xHaveAccidentCauseOfInjuryDetail: queryReviewOpdDischargeDto.PatientInfo.HaveAccidentCauseOfInjuryDetail ,//'O415202-67',
+  xHaveAccidentInjuryDetail: queryReviewOpdDischargeDto.PatientInfo.HaveAccidentInjuryDetail ,//'O415202-67',
+
+ }
+
+//--> get Patient  <--//
+const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
+let newResultPatientInfoDto: ResultPatientInfoDto ;
+if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischargePatient.PatientInfo.HN.length > 0) {
+   newResultPatientInfoDto = {
+      Dob: await this.utilsService.EncryptAESECB(getOPDDischargePatient.PatientInfo.Dob,AIA_APISecretkey) ,
+      Hn: await this.utilsService.EncryptAESECB(getOPDDischargePatient.PatientInfo.HN,AIA_APISecretkey) ,
+      Gender: getOPDDischargePatient.PatientInfo.Gender
+ };
+}else{
+   newResultPatientInfoDto = {
+    Dob:'',
+    Hn:'',
+    Gender:''
+  };
+}
+console.log('getOPDDischargePatient done')
+//console.log(newResultPatientInfoDto)
+// //--> get Visit  <--//
+ const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
+// //let newResultVisitInfoDto : ResultVisitInfoDto;
+const newResultVisitInfoDto : ResultVisitInfoDto= {
+  FurtherClaimId: '',
+  AccidentCauseOver45Days: '',
+  AdditionalNote: getOPDDischargeVisit.VisitInfo.AdditionalNote,
+  AlcoholRelated: getOPDDischargeVisit.VisitInfo.AlcoholRelated,
+  ChiefComplaint: getOPDDischargeVisit.VisitInfo.ChiefComplaint,
+  ComaScore: getOPDDischargeVisit.VisitInfo.ComaScore,
+  DxFreeText: getOPDDischargeVisit.VisitInfo.DxFreeText,
+  ExpectedDayOfRecovery: '',
+  Height: '',
+  PhysicalExam: '',
+  PlanOfTreatment: '',
+  Pregnant: getOPDDischargeVisit.VisitInfo.Pregnant,
+  PresentIllness: '',
+  PreviousTreatmentDate: '',
+  PreviousTreatmentDetail: '',
+  PrivateCase: getOPDDischargeVisit.VisitInfo.PrivateCase,
+  ProcedureFreeText: getOPDDischargeVisit.VisitInfo.ProcedureFreeText,
+  SignSymptomsDate: '',
+  UnderlyingCondition: '',
+  VisitDateTime: getOPDDischargeVisit.VisitInfo.VisitDateTime,
+  Vn:  await this.utilsService.EncryptAESECB( getOPDDischargeVisit.VisitInfo.VisitDateTime,AIA_APISecretkey) ,
+  Weight: ''
+}
+console.log('getOPDDischargeVisit done')
+// //console.log(newResultVisitInfoDto)
+// //--> get VitalSignIn  <--//
+const getOPDDischargeVitalSign = await this.trakcareService.getOPDDischargeVitalSign(RequesetBody.xVN);
+let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
+  if (getOPDDischargeVitalSign && getOPDDischargeVitalSign.VitalSignInfo && getOPDDischargeVitalSign.VitalSignInfo.length > 0) {
+      newResultVitalSignInfoDto= await Promise.all(
+      getOPDDischargeVitalSign.VitalSignInfo.map(async (item) => {
+      return {
+        DiastolicBp: +item.DiastolicBp,
+        HeartRate:  +item.HeartRate,
+        OxygenSaturation:  +item.OxygenSaturation,
+        PainScore:  +item.PainScore,
+        RespiratoryRate: +item.RespiratoryRate,
+        SystolicBp:  +item.SystolicBp,
+        Temperature:  +parseFloat(item.Temperature).toFixed(2),
+        VitalSignEntryDateTime:  item.VitalSignEntryDateTime,
+      };
+    })
+  ); 
+} else {
+  newResultVitalSignInfoDto = [{
+    DiastolicBp: '',
+    HeartRate: '',
+    OxygenSaturation: '',
+    PainScore: '',
+    RespiratoryRate: '',
+    SystolicBp: '',
+    Temperature: '',
+    VitalSignEntryDateTime: '',
+    
+  }];
+}
+console.log('getOPDDischargeVitalSign done')
+// //--> get Diagnosis  <--//
+const getOPDDischargeDiagnosis = await this.trakcareService.getOPDDischargeDiagnosis(RequesetBody.xVN);
+let getDiagnosisTypeMapping 
+let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
+  if (getOPDDischargeDiagnosis && getOPDDischargeDiagnosis.DiagnosisInfo && getOPDDischargeDiagnosis.DiagnosisInfo.length > 0) {
+
+   newQueryDiagnosisInfoDto= await Promise.all(
+      getOPDDischargeDiagnosis.DiagnosisInfo.map(async (item) => {
+       getDiagnosisTypeMapping = await this.utilsService.getDiagnosisTypeMapping(
+        ''+RequesetBody.xInsurerCode, 
+        item.DxTypeCode
+      );
+      if (item.DxTypeCode === getDiagnosisTypeMapping.dxtypecodetrakcare) {
+        item.DxTypeCode = getDiagnosisTypeMapping.dxtypecodeinsurance;
+      }
+      return {
+        DxName: item.DxName,
+        DxType: item.DxTypeCode,
+        Icd10: item.DxCode,
+        
+      };
+    })
+  );
+  
+} else {
+  newQueryDiagnosisInfoDto = [{
+    DxName: '',
+    DxType: '',
+    Icd10: '',
+  }];
+}
+console.log('getOPDDischargeDiagnosis done')
+// //--> get AccidentDetail  <--//
+let newAccidentDetail
+// //--> get Procedure  <--//
+let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
+const getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
+  if (getOPDDischargeProcedure && getOPDDischargeProcedure.ProcedureInfo && getOPDDischargeProcedure.ProcedureInfo.length > 0) {
+     newResultProcedureInfoDto= await Promise.all(
+      getOPDDischargeProcedure.ProcedureInfo.map(async (item) => {
+      return {
+        Icd9: item.Icd9,
+        ProcedureName: item.ProcedureName,
+        ProcedureDate: item.ProcedureDate,
+        
+      };
+    })
+  );
+} else {
+  newResultProcedureInfoDto = [{
+    Icd9: '',
+    ProcedureName: '',
+    ProcedureDate: '',
+  }];
+}
+
+// //--> get Investigation  <--//
+let newResultInvestigationInfoDto: ResultInvestigationInfoDto[] = [];
+const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeInvestigation(RequesetBody.xVN); 
+  if (getOPDDischargeInvestigation && getOPDDischargeInvestigation.InvestigationInfo && getOPDDischargeInvestigation.InvestigationInfo.length > 0) {
+    newResultInvestigationInfoDto= await Promise.all(
+      getOPDDischargeInvestigation.InvestigationInfo.map(async (item) => {
+      return {
+        InvestigationCode: item.InvestigationCode,
+        InvestigationGroup: item.InvestigationGroup,
+        InvestigationName: item.InvestigationName,
+        InvestigationResult: item.InvestigationResult,
+        ResultDateTime: item.ResultDateTime,
+      };
+    })
+  );
+} else {
+  newResultInvestigationInfoDto = [{
+    InvestigationCode: '',
+    InvestigationGroup: '',
+    InvestigationName: '',
+    InvestigationResult: '',
+    ResultDateTime: ''
+  }];
+}
+console.log('Investigation done')
+// //--> get OrderItem  <--//
+let newResultOrderItemInfoDto : ResultOrderItemInfoDto[] = [];
+const getOPDDischargeOrderItem = await this.trakcareService.getOPDDischargeOrderItem(RequesetBody.xVN); 
+   if (getOPDDischargeOrderItem && getOPDDischargeOrderItem.OrderItemInfo && getOPDDischargeOrderItem.OrderItemInfo.length > 0) {
+    newResultOrderItemInfoDto= await Promise.all(
+      getOPDDischargeOrderItem.OrderItemInfo.map(async (item) => {
+      return {
+        ItemId: item.ItemId,
+        ItemName: item.ItemName,
+        ItemAmount: item.ItemAmount,
+        Discount: item.Discount,
+        Initial: item.Initial,
+
+        LocalBillingCode: item.LocalBillingCode,
+        LocalBillingName: item.LocalBillingName,
+        Location: item.Location,
+
+        NetAmount: item.NetAmount,
+        SimbVersion: item.SimbVersion,
+        Terminology: item.Terminology,
+
+      };
+    })
+  );
+} else {
+  newResultOrderItemInfoDto = [{
+
+    ItemId: '',
+    ItemName: '',
+    ItemAmount: '',
+    Discount: '',
+    Initial: '',
+    LocalBillingCode: '',
+    LocalBillingName: '',
+    Location: '',
+    NetAmount: '',
+    SimbVersion: '',
+    Terminology: ''
+  }];
+}
+console.log('OrderItem done')
+// //--> get Doctor  <--//
+let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
+const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(RequesetBody.xVN); 
+  if (getOPDDischargeDoctor && getOPDDischargeDoctor.DoctorInfo && getOPDDischargeDoctor.DoctorInfo.length > 0) {
+    newResultDoctorInfoDto= await Promise.all(
+      getOPDDischargeDoctor.DoctorInfo.map(async (item) => {
+      return {
+        DoctorLicense: item.DoctorLicense.toString().padStart(10, '0'),
+        DoctorRole: item.DoctorRole,
+        DoctorFirstName: await this.utilsService.EncryptAESECB( item.DoctorFirstName,AIA_APISecretkey) ,
+        DoctorLastName: '' //await this.utilsService.EncryptAESECB( item.DoctorLastName,AIA_APISecretkey) ,
+      };
+    })
+  );
+} else {
+  newResultDoctorInfoDto = [{
+    DoctorLicense: '',
+    DoctorRole: '',
+    DoctorFirstName: '',
+    DoctorLastName: '',
+  
+  }];
+}
+console.log('Doctor done')
+// //console.log(newResultDoctorInfoDto)
+//  // ResultBillingInfoDto ,ResultTotalBillAmountInfoDto
+// //--> get Billing  <--//
+let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
+let  newTotalBillAmount ;
+const getOPDDischargeBilling = await this.trakcareService.getOPDDischargeBilling(RequesetBody.xVN); 
+   if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
+       newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
+      newResultBillingInfoDto= await Promise.all(
+      getOPDDischargeBilling.BillingInfo.map(async (item) => {
+      return {
+        LocalBillingCode: item.LocalBillingCode,
+        LocalBillingName: item.LocalBillingName,
+        SimbBillingCode: item.SimbBillingCode,
+        PayorBillingCode: item.PayorBillingCode,
+        BillingInitial: item.BillingInitial,
+        BillingDiscount: item.BillingDiscount,
+        BillingNetAmount: item.BillingNetAmount,
+      };
+    })
+  );
+} else {
+  newResultBillingInfoDto = [{
+
+    LocalBillingCode: '',
+    LocalBillingName: '',
+    SimbBillingCode: '',
+    PayorBillingCode: '',
+    BillingInitial: '',
+    BillingDiscount: '',
+    BillingNetAmount: '',
+   
+  }];
+  newTotalBillAmount=0
+}
+console.log('billing done')
+//  //  
+
+let newResultDataJsonDto =new ResultDataJsonDto();
+//  newResultDataJsonDto ={
+//   Patient :newResultPatientInfoDto,
+//    Visit: newResultVisitInfoDto,
+//    VitalSign :newResultVitalSignInfoDto,
+//   Diagnosis :newQueryDiagnosisInfoDto,
+//   AccidentDetail:newAccidentDetail,
+//    Procedure :newResultProcedureInfoDto,
+//    Investigation :newResultInvestigationInfoDto,
+//   OrderItem :newResultOrderItemInfoDto,
+//   Doctor : newResultDoctorInfoDto,
+//   Billing :newResultBillingInfoDto,
+//    TotalBillAmount:newTotalBillAmount,
+// }
+
+//const dummyDataRequest =new DummyDataRequest1();
+//const newOPDDischargeResponseDto  =dummyDataRequest.PatientInfo
+// DummyDataRequest1
+
+
+ 
+    //const xDummyDataRespone1 =new DummyDataRespone1();
+//const responsefromAIA  =xDummyDataRespone1.res
+    
+  const responeInputcode = 'S'
+  if (responeInputcode !=='S'){
+  }else{
+
+    let xInsuranceResult= new InsuranceResult();
+    xInsuranceResult ={
+     Code:'200',
+     Message:'test',
+     MessageTh:'test'
+    }
+    let xInsuranceData= new InsuranceData();
+
+//     xInsuranceData ={
+//       RefId:responsefromAIA.Data.RefId ||'',
+//       TransactionNo:responsefromAIA.Data.TransactionNo ||'',
+//       InsurerCode:responsefromAIA.Data.InsurerCode ||'',
+
+//       Message:responsefromAIA.Data.Message ||'',
+//       MessageTh:responsefromAIA.Data.MessageTh ||'',
+//       ClaimNo:responsefromAIA.Data.ClaimNo ||'',
+//       OccurrenceNo:responsefromAIA.Data.OccurrenceNo ||'',
+//       TotalApprovedAmount:responsefromAIA.Data.TotalApprovedAmount ||'',
+//       TotalExcessAmount:responsefromAIA.Data.TotalExcessAmount ||'',
+//       IsReimbursement:Boolean(responsefromAIA.Data.IsReimbursement),
+//       CoverageList: responsefromAIA.Data.CoverageList 
+//       ? responsefromAIA.Data.CoverageList.map((Coverage) => ({
+//         type: Coverage.type || '',
+//         status: Boolean(Coverage.status), // แปลงค่าให้เป็น boolean เสมอ
+//       }))
+//     : [],
+
+//        MessageList: responsefromAIA.Data.MessageList 
+//        ? responsefromAIA.Data.MessageList.map((message) => (
+        
+//         {
+          
+//         policyNo: message.policyNo ?  this.utilsService.DecryptAESECB(message.policyNo, AIA_APISecretkey) :'' ,
+//         planName: message.planName || '',
+//         messageTh: message.messageTh || '',
+//         messageEn: message.messageEn || '',
+//        }))
+//      : [],
+//      }
+// xResultInfo ={
+//     InsuranceResult: xInsuranceResult,
+//     InsuranceData:xInsuranceData
+//   } 
+ /// save to database
+
+
+
+
+  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+  }
+  let newResultSubmitOpdDischargeDto= new ResultSubmitOpdDischargeDto();
+  newResultSubmitOpdDischargeDto={
+          HTTPStatus:newHttpMessageDto,
+         // Result:xResultInfo
+    }
+
+return newResultDataJsonDto //newResultSubmitOpdDischargeDto
+}catch(error)
+{
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    throw new HttpException(
+     { 
+      HTTPStatus: {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+      },
+      },HttpStatus.INTERNAL_SERVER_ERROR );
+  }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new HttpException(
+        {  
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+         },
+        },HttpStatus.INTERNAL_SERVER_ERROR ); 
+  }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+    if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        message: 'Cannot connect to the database server. Please ensure it is running.',
+        error: 'Cannot connect to the database server. Please ensure it is running.',
+      },
+      }, HttpStatus.SERVICE_UNAVAILABLE);
+    }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Invalid data format or conversion error.',
+        error: 'Invalid data format or conversion error.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.FORBIDDEN,
+        message: 'You do not have permission to perform this action.',
+        error: 'You do not have permission to perform this action.',
+      },
+      }, HttpStatus.FORBIDDEN);
+    }else if (error.message.includes('Unable to fit integer value')) {
+      // Handle integer overflow or similar errors
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'The integer value is too large for the database field.',
+        error: 'The integer value is too large for the database field.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }
+    else{
+      throw new HttpException({  
+        HTTPStatus: {
+           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+           message: 'An unexpected error occurred.',
+           error: 'An unexpected error occurred.',
+          },
+        },HttpStatus.INTERNAL_SERVER_ERROR,);
+    }
+  }
+}
+}
+
+
+
 async convertDxTypeCode(inputInsurerCode:string,inputdxTypeCodeTrakcare:string) {
     const convertDxtypename = await this.utilsService.getDiagnosisTypeMapping(inputInsurerCode,inputdxTypeCodeTrakcare);
    return convertDxtypename

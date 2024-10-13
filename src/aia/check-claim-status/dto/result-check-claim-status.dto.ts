@@ -53,6 +53,14 @@ export class ResultCheckClaimStatusDto {
     @IsString()
     @IsOptional()
     ClaimStatusDesc?: string;
+    
+    @IsString()
+    @IsOptional()
+    ClaimStatusDesc_TH?: string;
+
+    @IsString()
+    @IsOptional()
+    ClaimStatusDesc_EN?: string;
 
     @IsString()
     @IsOptional()
