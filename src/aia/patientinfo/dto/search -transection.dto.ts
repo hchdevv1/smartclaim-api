@@ -114,6 +114,14 @@ export class ResultTransactionClaimDto {
     @IsString()
     @IsOptional()
     ClaimStatusDesc?: string;
+    
+    @IsString()
+    @IsOptional()
+    ClaimStatusDesc_EN?: string;
+    @IsString()
+    @IsOptional()
+    ClaimStatusDesc_TH?: string;
+
 
     @IsString()
     @IsNotEmpty()

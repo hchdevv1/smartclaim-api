@@ -858,6 +858,8 @@ export class PatientinfoService {
             VN: claim.vn || '',  // Default to empty string if undefined
             VisitDate: claim.visitdate || '', // Default to empty string if undefined
             ClaimNo: claim.claimno || '', // Default to empty string if undefined
+            ClaimStatusDesc_EN:claim.claimstatusdesc_en,
+            ClaimStatusDesc_TH:claim.claimstatusdesc_th,
             ClaimStatusCode: claim.claimstatuscode || '', // Default to empty string if undefined
             ClaimStatusDesc: claim.claimstatusdesc || '', // Default to empty string if undefined
             OccurrenceNo: claim.occurrenceno || '', // Default to empty string if undefined
@@ -868,7 +870,13 @@ export class PatientinfoService {
             InvoiceNumber: claim.invoicenumber || '', // Default to empty string if undefined
         })),
     };
-       
+       /*
+
+        "ClaimStatusCode": "06",
+            "ClaimStatusDesc": "ยกเลิกรายการ",
+            "ClaimStatusDesc_EN": "Cancelled",
+            "ClaimStatusDesc_TH": "ยกเลิกรายการ",
+       */
     } else {
       const xQueryVisit = {    
         RefId: '', 
