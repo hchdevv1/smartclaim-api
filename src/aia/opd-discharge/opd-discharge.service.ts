@@ -1826,11 +1826,62 @@ console.log('getOPDDischargeDiagnosis done')
 // //--> get AccidentDetail  <--//
  
 // //--> get Procedure  <--//
-const getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
+// step 1 query in database
+
+    const whereConditions = {
+    
+      ...(RequesetBody.xVN ? { vn: { equals: RequesetBody.xVN } } : {}),
+      ...(RequesetBody.xRefId ? { refid: { equals: RequesetBody.xRefId } } : {}),
+      ...(RequesetBody.xTransactionNo ? { transactionno: { equals: RequesetBody.xTransactionNo } } : {}),
+      
+
+    
+    };
 let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
-  if (getOPDDischargeProcedure && getOPDDischargeProcedure.ProcedureInfo && getOPDDischargeProcedure.ProcedureInfo.length > 0) {
+const existingProcedureRecord = await prismaProgest.proceduretransactions.findFirst({
+  where: whereConditions
+});
+let getOPDDischargeProcedure ;
+if(existingProcedureRecord){
+  console.log('new procedure')
+   getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
+   let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
+   if (getOPDDischargeProcedure && getOPDDischargeProcedure.ProcedureInfo && getOPDDischargeProcedure.ProcedureInfo.length > 0) {
+      newResultProcedureInfoDto= await Promise.all(
+       getOPDDischargeProcedure.ProcedureInfo.map(async (item) => {
+       return {
+         Icd9: item.Icd9,
+         ProcedureName: item.ProcedureName,
+         ProcedureDate: item.ProcedureDate,
+         
+       };
+     })
+   );
+ } else {
+   newResultProcedureInfoDto = [{
+     Icd9: '',
+     ProcedureName: '',
+     ProcedureDate: '',
+   }];
+ }
+}else{
+  console.log('old procedure')
+  RequesetBody.xRefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
+  RequesetBody.xTransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
+  RequesetBody.xVN ='O415202-67'
+  const newQueryProcedeureDatabaseBodyDto ={
+    RefId:RequesetBody.xRefId,
+    TransactionNo:RequesetBody.xTransactionNo,
+    InsurerCode:RequesetBody.xInsurerCode,
+    HN:RequesetBody.xHN,
+    VN:RequesetBody.xVN
+  }
+ 
+   getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
+   console.log('33333')
+  if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
      newResultProcedureInfoDto= await Promise.all(
-      getOPDDischargeProcedure.ProcedureInfo.map(async (item) => {
+      getOPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
       return {
         Icd9: item.Icd9,
         ProcedureName: item.ProcedureName,
@@ -1839,13 +1890,32 @@ let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
       };
     })
   );
+  console.log('555555')
+  console.log(newResultProcedureInfoDto)
+  console.log('555555')
+
 } else {
+  console.log('4444')
   newResultProcedureInfoDto = [{
     Icd9: '',
     ProcedureName: '',
     ProcedureDate: '',
   }];
 }
+/*
+{
+  HTTPStatus: HttpMessageDto { statusCode: 200, message: 'success', error: '' },
+  Result: ProcedeureDatabaseResultInfo {
+    ProcedureInfo: [ [Object], [Object] ]
+  }
+}
+*/
+}
+console.log('*******')
+console.log(getOPDDischargeProcedure.Result)
+console.log('*******')
+ //getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
+
 
 // //--> get Investigation  <--//
 const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeInvestigation(RequesetBody.xVN); 
@@ -2400,9 +2470,18 @@ console.log('getOPDDischargeDiagnosis done')
 // //--> get Procedure  <--//
 
 let newResultProcedureDatabaseInfoDto: ResultProcedureDatabaseInfoDto[] = [];
-const newQueryProcedeureDatabaseBodyDto = new QueryProcedeureDatabaseBodyDto();
+let newQueryProcedeureDatabaseBodyDto = new QueryProcedeureDatabaseBodyDto();
+newQueryProcedeureDatabaseBodyDto ={
+ 
+  RefId: RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN: RequesetBody.xHN,
+  VN: RequesetBody.xVN,
+
+}
+
 const getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
-//console.log(getOPDDischargeProcedure)
 
 if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
   newResultProcedureDatabaseInfoDto = await Promise.all(

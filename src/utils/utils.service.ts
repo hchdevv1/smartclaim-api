@@ -913,6 +913,10 @@ async getProcedureformDatabase(queryProcedeureDatabaseBodyDto: QueryProcedeureDa
   const xRefId =queryProcedeureDatabaseBodyDto.RefId;
   const xTransactionNo = queryProcedeureDatabaseBodyDto.TransactionNo;
   const xVN =queryProcedeureDatabaseBodyDto.VN;
+  console.log('yyyyyy')
+  console.log(xRefId)
+  console.log(xTransactionNo)
+  console.log(xVN)
   let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeProcedurDto();
 // ดึงข้อมูลจากฐานข้อมูล
 const proceduretransactionsInfo = await prismaProgest.proceduretransactions.findMany({ 
@@ -927,6 +931,8 @@ const proceduretransactionsInfo = await prismaProgest.proceduretransactions.find
     proceduredate: true,
   },
 });
+console.log(proceduretransactionsInfo)
+console.log('yyyyyy')
 if(proceduretransactionsInfo){
   const procedureInfoInstance = new ProcedeureDatabaseResultInfo();
   procedureInfoInstance.ProcedureInfo = proceduretransactionsInfo.map(item => ({
