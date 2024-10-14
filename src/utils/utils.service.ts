@@ -906,7 +906,7 @@ async getProcedureformDatabase(queryProcedeureDatabaseBodyDto: QueryProcedeureDa
   
   const xRefId =queryProcedeureDatabaseBodyDto.RefId;
   const xTransactionNo = queryProcedeureDatabaseBodyDto.TransactionNo;
-  const xVN ='123'// queryProcedeureDatabaseBodyDto.VN;
+  const xVN =queryProcedeureDatabaseBodyDto.VN;
   
 // ดึงข้อมูลจากฐานข้อมูล
 const proceduretransactionsInfo = await prismaProgest.proceduretransactions.findMany({ 
