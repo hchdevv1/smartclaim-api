@@ -54,7 +54,8 @@ const QueryCreateClaimDocumentDtoBody={
   VN:RequesetBody.xVN,
   DocumentName:'',
   DocumenttypeCode:RequesetBody.xDocumenttypeCode,
-  UploadedBy:''
+  UploadedBy:'',
+  Runningdocument:0
 }
 //console.log(QueryCreateClaimDocumentDtoBody)
  //console.log('start get doc')

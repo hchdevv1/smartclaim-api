@@ -7988,12 +7988,14 @@ export namespace Prisma {
     id: number | null
     insurerid: number | null
     filesize: number | null
+    runningdocument: Decimal | null
   }
 
   export type ClaimdocumentsSumAggregateOutputType = {
     id: number | null
     insurerid: number | null
     filesize: bigint | null
+    runningdocument: Decimal | null
   }
 
   export type ClaimdocumentsMinAggregateOutputType = {
@@ -8013,6 +8015,7 @@ export namespace Prisma {
     uploaddate: Date | null
     uploadedby: string | null
     originalname: string | null
+    runningdocument: Decimal | null
   }
 
   export type ClaimdocumentsMaxAggregateOutputType = {
@@ -8032,6 +8035,7 @@ export namespace Prisma {
     uploaddate: Date | null
     uploadedby: string | null
     originalname: string | null
+    runningdocument: Decimal | null
   }
 
   export type ClaimdocumentsCountAggregateOutputType = {
@@ -8051,6 +8055,7 @@ export namespace Prisma {
     uploaddate: number
     uploadedby: number
     originalname: number
+    runningdocument: number
     _all: number
   }
 
@@ -8059,12 +8064,14 @@ export namespace Prisma {
     id?: true
     insurerid?: true
     filesize?: true
+    runningdocument?: true
   }
 
   export type ClaimdocumentsSumAggregateInputType = {
     id?: true
     insurerid?: true
     filesize?: true
+    runningdocument?: true
   }
 
   export type ClaimdocumentsMinAggregateInputType = {
@@ -8084,6 +8091,7 @@ export namespace Prisma {
     uploaddate?: true
     uploadedby?: true
     originalname?: true
+    runningdocument?: true
   }
 
   export type ClaimdocumentsMaxAggregateInputType = {
@@ -8103,6 +8111,7 @@ export namespace Prisma {
     uploaddate?: true
     uploadedby?: true
     originalname?: true
+    runningdocument?: true
   }
 
   export type ClaimdocumentsCountAggregateInputType = {
@@ -8122,6 +8131,7 @@ export namespace Prisma {
     uploaddate?: true
     uploadedby?: true
     originalname?: true
+    runningdocument?: true
     _all?: true
   }
 
@@ -8228,6 +8238,7 @@ export namespace Prisma {
     uploaddate: Date | null
     uploadedby: string | null
     originalname: string | null
+    runningdocument: Decimal | null
     _count: ClaimdocumentsCountAggregateOutputType | null
     _avg: ClaimdocumentsAvgAggregateOutputType | null
     _sum: ClaimdocumentsSumAggregateOutputType | null
@@ -8266,6 +8277,7 @@ export namespace Prisma {
     uploaddate?: boolean
     uploadedby?: boolean
     originalname?: boolean
+    runningdocument?: boolean
     insurers?: boolean | claimdocuments$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["claimdocuments"]>
 
@@ -8286,6 +8298,7 @@ export namespace Prisma {
     uploaddate?: boolean
     uploadedby?: boolean
     originalname?: boolean
+    runningdocument?: boolean
     insurers?: boolean | claimdocuments$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["claimdocuments"]>
 
@@ -8306,6 +8319,7 @@ export namespace Prisma {
     uploaddate?: boolean
     uploadedby?: boolean
     originalname?: boolean
+    runningdocument?: boolean
   }
 
   export type claimdocumentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8337,6 +8351,7 @@ export namespace Prisma {
       uploaddate: Date | null
       uploadedby: string | null
       originalname: string | null
+      runningdocument: Prisma.Decimal | null
     }, ExtArgs["result"]["claimdocuments"]>
     composites: {}
   }
@@ -8747,6 +8762,7 @@ export namespace Prisma {
     readonly uploaddate: FieldRef<"claimdocuments", 'DateTime'>
     readonly uploadedby: FieldRef<"claimdocuments", 'String'>
     readonly originalname: FieldRef<"claimdocuments", 'String'>
+    readonly runningdocument: FieldRef<"claimdocuments", 'Decimal'>
   }
     
 
@@ -26121,7 +26137,8 @@ export namespace Prisma {
     filemimetype: 'filemimetype',
     uploaddate: 'uploaddate',
     uploadedby: 'uploadedby',
-    originalname: 'originalname'
+    originalname: 'originalname',
+    runningdocument: 'runningdocument'
   };
 
   export type ClaimdocumentsScalarFieldEnum = (typeof ClaimdocumentsScalarFieldEnum)[keyof typeof ClaimdocumentsScalarFieldEnum]
@@ -26840,6 +26857,7 @@ export namespace Prisma {
     uploaddate?: DateTimeNullableFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableFilter<"claimdocuments"> | string | null
     originalname?: StringNullableFilter<"claimdocuments"> | string | null
+    runningdocument?: DecimalNullableFilter<"claimdocuments"> | Decimal | DecimalJsLike | number | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
   }
 
@@ -26860,6 +26878,7 @@ export namespace Prisma {
     uploaddate?: SortOrderInput | SortOrder
     uploadedby?: SortOrderInput | SortOrder
     originalname?: SortOrderInput | SortOrder
+    runningdocument?: SortOrderInput | SortOrder
     insurers?: insurersOrderByWithRelationInput
   }
 
@@ -26883,6 +26902,7 @@ export namespace Prisma {
     uploaddate?: DateTimeNullableFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableFilter<"claimdocuments"> | string | null
     originalname?: StringNullableFilter<"claimdocuments"> | string | null
+    runningdocument?: DecimalNullableFilter<"claimdocuments"> | Decimal | DecimalJsLike | number | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
   }, "id">
 
@@ -26903,6 +26923,7 @@ export namespace Prisma {
     uploaddate?: SortOrderInput | SortOrder
     uploadedby?: SortOrderInput | SortOrder
     originalname?: SortOrderInput | SortOrder
+    runningdocument?: SortOrderInput | SortOrder
     _count?: claimdocumentsCountOrderByAggregateInput
     _avg?: claimdocumentsAvgOrderByAggregateInput
     _max?: claimdocumentsMaxOrderByAggregateInput
@@ -26930,6 +26951,7 @@ export namespace Prisma {
     uploaddate?: DateTimeNullableWithAggregatesFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableWithAggregatesFilter<"claimdocuments"> | string | null
     originalname?: StringNullableWithAggregatesFilter<"claimdocuments"> | string | null
+    runningdocument?: DecimalNullableWithAggregatesFilter<"claimdocuments"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimstatusWhereInput = {
@@ -28556,6 +28578,7 @@ export namespace Prisma {
     uploaddate?: Date | string | null
     uploadedby?: string | null
     originalname?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
     insurers?: insurersCreateNestedOneWithoutClaimdocumentsInput
   }
 
@@ -28576,6 +28599,7 @@ export namespace Prisma {
     uploaddate?: Date | string | null
     uploadedby?: string | null
     originalname?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsUpdateInput = {
@@ -28593,6 +28617,7 @@ export namespace Prisma {
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
     originalname?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     insurers?: insurersUpdateOneWithoutClaimdocumentsNestedInput
   }
 
@@ -28613,6 +28638,7 @@ export namespace Prisma {
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
     originalname?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsCreateManyInput = {
@@ -28632,6 +28658,7 @@ export namespace Prisma {
     uploaddate?: Date | string | null
     uploadedby?: string | null
     originalname?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsUpdateManyMutationInput = {
@@ -28649,6 +28676,7 @@ export namespace Prisma {
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
     originalname?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsUncheckedUpdateManyInput = {
@@ -28668,6 +28696,7 @@ export namespace Prisma {
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
     originalname?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimstatusCreateInput = {
@@ -30419,6 +30448,17 @@ export namespace Prisma {
     not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
   }
 
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type claimdocumentsCountOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
@@ -30436,12 +30476,14 @@ export namespace Prisma {
     uploaddate?: SortOrder
     uploadedby?: SortOrder
     originalname?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type claimdocumentsAvgOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
     filesize?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type claimdocumentsMaxOrderByAggregateInput = {
@@ -30461,6 +30503,7 @@ export namespace Prisma {
     uploaddate?: SortOrder
     uploadedby?: SortOrder
     originalname?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type claimdocumentsMinOrderByAggregateInput = {
@@ -30480,12 +30523,14 @@ export namespace Prisma {
     uploaddate?: SortOrder
     uploadedby?: SortOrder
     originalname?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type claimdocumentsSumOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
     filesize?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -30502,6 +30547,22 @@ export namespace Prisma {
     _sum?: NestedBigIntNullableFilter<$PrismaModel>
     _min?: NestedBigIntNullableFilter<$PrismaModel>
     _max?: NestedBigIntNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type TransactionclaimstatusListRelationFilter = {
@@ -31029,17 +31090,6 @@ export namespace Prisma {
     insurerid?: SortOrder
   }
 
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
   export type ClaimantsNullableRelationFilter = {
     is?: claimantsWhereInput | null
     isNot?: claimantsWhereInput | null
@@ -31153,22 +31203,6 @@ export namespace Prisma {
     insurerid?: SortOrder
     totalapprovedamount?: SortOrder
     totalexcessamount?: SortOrder
-  }
-
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type ClaimstatusNullableRelationFilter = {
@@ -31652,6 +31686,14 @@ export namespace Prisma {
     decrement?: bigint | number
     multiply?: bigint | number
     divide?: bigint | number
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type insurersUpdateOneWithoutClaimdocumentsNestedInput = {
@@ -32496,14 +32538,6 @@ export namespace Prisma {
     connect?: claimantsWhereUniqueInput
   }
 
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
-  }
-
   export type claimantsUpdateOneWithoutTransactionclaimNestedInput = {
     create?: XOR<claimantsCreateWithoutTransactionclaimInput, claimantsUncheckedCreateWithoutTransactionclaimInput>
     connectOrCreate?: claimantsCreateOrConnectWithoutTransactionclaimInput
@@ -32881,6 +32915,17 @@ export namespace Prisma {
     not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
   }
 
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
@@ -32895,17 +32940,6 @@ export namespace Prisma {
     _sum?: NestedBigIntNullableFilter<$PrismaModel>
     _min?: NestedBigIntNullableFilter<$PrismaModel>
     _max?: NestedBigIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -34473,6 +34507,7 @@ export namespace Prisma {
     uploaddate?: Date | string | null
     uploadedby?: string | null
     originalname?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsUncheckedCreateWithoutInsurersInput = {
@@ -34491,6 +34526,7 @@ export namespace Prisma {
     uploaddate?: Date | string | null
     uploadedby?: string | null
     originalname?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsCreateOrConnectWithoutInsurersInput = {
@@ -34933,6 +34969,7 @@ export namespace Prisma {
     uploaddate?: DateTimeNullableFilter<"claimdocuments"> | Date | string | null
     uploadedby?: StringNullableFilter<"claimdocuments"> | string | null
     originalname?: StringNullableFilter<"claimdocuments"> | string | null
+    runningdocument?: DecimalNullableFilter<"claimdocuments"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimstatusUpsertWithWhereUniqueWithoutInsurersInput = {
@@ -36300,6 +36337,7 @@ export namespace Prisma {
     uploaddate?: Date | string | null
     uploadedby?: string | null
     originalname?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimstatusCreateManyInsurersInput = {
@@ -36576,6 +36614,7 @@ export namespace Prisma {
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
     originalname?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsUncheckedUpdateWithoutInsurersInput = {
@@ -36594,6 +36633,7 @@ export namespace Prisma {
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
     originalname?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimdocumentsUncheckedUpdateManyWithoutInsurersInput = {
@@ -36612,6 +36652,7 @@ export namespace Prisma {
     uploaddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     uploadedby?: NullableStringFieldUpdateOperationsInput | string | null
     originalname?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type claimstatusUpdateWithoutInsurersInput = {

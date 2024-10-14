@@ -41,7 +41,7 @@ export class AttachDocListService {
          xVN: queryBillingSubmissionBodyDto.PatientInfo.VN||'',
          xInvoiceNumber :queryBillingSubmissionBodyDto.PatientInfo.InvoiceNumber,
          xDocumenttypeCode :queryBillingSubmissionBodyDto.PatientInfo.DocumenttypeCode,
-    
+         xRunningdocument :queryBillingSubmissionBodyDto.PatientInfo.Runningdocument,
        }
 
 
@@ -51,6 +51,7 @@ const ListDocumentforAttachDocListBody={
   TransactionNo: RequesetBody.xTransactionNo,
   InsurerCode:13, //RequesetBody.xInsurerCode,
   DocumenttypeCode:RequesetBody.xDocumenttypeCode,
+  Runningdocument:RequesetBody.xRunningdocument
   }
 }
 console.log(ListDocumentforAttachDocListBody)
@@ -67,9 +68,7 @@ console.log(ListDocumentforAttachDocListBody)
          })
          
        );
-   console.log(newResultAttachDocListInfoDto)
 
-   console.log('this is file')
        const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
        const apiURL= `${AIA_APIURL}/SmartClaim/attachDocList`;

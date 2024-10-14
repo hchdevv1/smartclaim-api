@@ -1438,6 +1438,9 @@ async getFileAsBase64(id: number) {
     
 }
 async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyDto) { 
+  console.log('dddd')
+  console.log(body.Runningdocument)
+  console.log('-----')
   const mimeTypeParts = file.mimetype.split('/');
   const fileType = mimeTypeParts[mimeTypeParts.length - 1];
     const fileRecord = await prismaProgest.claimdocuments.create({
@@ -1456,7 +1459,8 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
         serverpath: 'path-to-server', 
         filepath: `./uploads/pdf/${file.filename}`, // เส้นทางที่เก็บไฟล์
         uploaddate: new Date(),
-        uploadedby: body.UploadedBy
+        uploadedby: body.UploadedBy,
+       runningdocument:body.Runningdocument
       },
     });
     return fileRecord; // ส่งคืนข้อมูลที่บันทึกไว้
@@ -1685,21 +1689,18 @@ async DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocume
 async getListDocumentforAttachDocList(queryListDocumentforAttachDocListDto: QueryListDocumentforAttachDocListDto) {
   console.log('getListDocumentforAttachDocList')
    const xRefId = queryListDocumentforAttachDocListDto.PatientInfo.RefId;
-   const xDocumenttypeCode = queryListDocumentforAttachDocListDto.PatientInfo.DocumenttypeCode;
+   //const xDocumenttypeCode = queryListDocumentforAttachDocListDto.PatientInfo.DocumenttypeCode;
    const xTransactionNo = queryListDocumentforAttachDocListDto.PatientInfo.TransactionNo;
-   //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
-console.log(xRefId)
-console.log(xDocumenttypeCode)
-console.log(xTransactionNo)
-//console.log(InsurerCode)
-   //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
-   //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
+   const xRunningdocument =queryListDocumentforAttachDocListDto.PatientInfo.Runningdocument;
+   const whereConditions = {
+
+  ...(xRefId ? { refid: { equals: xRefId } } : {}),
+  ...(xTransactionNo ? { transactionno: { equals: xTransactionNo } } : {}),
+  ...(xRunningdocument ? { runningdocument: { equals: xRunningdocument } } : {}),
+};
+
      const fileRecords = await prismaProgest.claimdocuments.findMany({
-      where: {
-         refid:xRefId,
-         transactionno:xTransactionNo,
-         //insurerid:InsurerCode
-     }
+      where: whereConditions
      });
     
      console.log(fileRecords)
@@ -1707,26 +1708,6 @@ console.log(xTransactionNo)
        throw new NotFoundException('Files not found');
      }
      const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
-
-    //  await Promise.all(
-    //    fileRecords.map(async (fileRecord) => {
-    //      const filePath = join(__dirname, '..', '..', fileRecord.filepath);
-    //      const fileBuffer = readFileSync(filePath);
-    //      const base64File = fileBuffer.toString('base64');
-        
-    //      newResultAttachDocListInfoDto = [
-    //        {
-    //          DocName: fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
-    //          Base64Data: base64File, // ข้อมูลไฟล์เป็น Base64
-           
-    //      }
-    //      ];
-    //    }),
-    //  );
-    //  console.log('00000')
-    //  console.log(newResultAttachDocListInfoDto)
-    //  console.log('ddddd')
-    //  return newResultAttachDocListInfoDto;
     await Promise.all(
       fileRecords.map(async (fileRecord) => {
         const filePath = join(__dirname, '..', '..', fileRecord.filepath);
@@ -1755,24 +1736,24 @@ console.log(xTransactionNo)
 
 async getListDocumentByTransactionNo(queryCreateClaimDocumentDtoBodyDto: QueryCreateClaimDocumentDtoBodyDto) {
   // const HN =queryCreateClaimDocumentDtoBodyDto.HN;
-   const VN = queryCreateClaimDocumentDtoBodyDto.VN;
-   const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
-   const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
-   //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
+  const VN = queryCreateClaimDocumentDtoBodyDto.VN;
+  const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
+  const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
+  //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
 console.log(VN)
 console.log(RefId)
 console.log(TransactionNo)
 //console.log(InsurerCode)
-   //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
-   //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
-     const fileRecords = await prismaProgest.claimdocuments.findMany({
-      where: {
-         vn:VN,
-         refid:RefId,
-         transactionno:TransactionNo,
-         //insurerid:InsurerCode
-     }
-     });
+  //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
+  //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
+    const fileRecords = await prismaProgest.claimdocuments.findMany({
+     where: {
+        vn:VN,
+        refid:RefId,
+        transactionno:TransactionNo,
+        //insurerid:InsurerCode
+    }
+    });
     
      console.log(fileRecords)
      if (fileRecords.length === 0) {

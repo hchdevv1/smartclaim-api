@@ -81,6 +81,7 @@ model claimdocuments {
   uploaddate       DateTime? @default(now()) @db.Timestamp(6)
   uploadedby       String?   @db.VarChar(50)
   originalname     String?   @db.VarChar(255)
+  runningdocument  Decimal?  @db.Decimal
   insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 

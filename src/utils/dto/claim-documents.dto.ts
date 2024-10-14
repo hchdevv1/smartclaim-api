@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString, IsOptional, IsInt } from 'class-validator';
 import { HttpMessageDto } from './http-status-message.dto';
+import { Transform } from 'class-transformer';
 
 export class CreateClaimDocumentDto {
   @IsNotEmpty()
@@ -46,6 +47,12 @@ export class CreateClaimDocumentDto {
   @IsOptional()
   @IsString()
   UploadedBy?: string; // ผู้ที่ทำการอัพโหลดไฟล์
+
+
+  @IsInt()
+  @Transform(({ value }) => parseInt(value)) // แปลง string เป็น number
+  @IsOptional()
+  Runningdocument: number;
 }
 
 
@@ -82,6 +89,11 @@ export class QueryCreateClaimDocumentDtoBodyDto {
     @IsString()
     @IsOptional()
     UploadedBy?: string;
+
+    @IsInt()
+  @Transform(({ value }) => parseInt(value)) // แปลง string เป็น number
+  @IsOptional()
+  Runningdocument: number;
   }
 
   export class ResultAttachDocListInfoDto {
@@ -123,6 +135,11 @@ export class QueryCreateClaimDocumentDtoBodyDto {
     @IsString()
     @IsOptional()
     UploadedBy?: string;
+
+    @IsInt()
+    @Transform(({ value }) => parseInt(value)) // แปลง string เป็น number
+    @IsOptional()
+    Runningdocument: number;
 
   }
 
@@ -178,5 +195,9 @@ class ListDocumentforAttachDocListDto{
   @IsString()
   @IsOptional()
   DocumenttypeCode?: string;
+
+  @IsInt()
+  @IsOptional()
+  Runningdocument?: number;
 
 }

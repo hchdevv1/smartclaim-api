@@ -29,7 +29,11 @@ import { ResultSubmitOpdDischargeDto , InsuranceResult, InsuranceData,
 import { QueryProcedureDto ,ResultSubmitProcedureDto} from './dto/query-procedure-opd-discharge.dto';
 import { QueryAccidentDto ,ResultSubmitAccidentDto} from './dto/query-accident-opd-discharge.dto';
 import { QueryVisitDto } from './dto/query-visit-opd-discharge.dto';
-import { QueryReviewOpdDischargeDto } from './dto/review-opd-discharge.dto';
+import { QueryReviewOpdDischargeDto ,ResultReviewOpdDischargeDto,ResultReviewDataJsonDto,
+  ResultReviewPatientInfoDto,ResultReviewVitalSignInfoDto,ResultReviewDiagnosisInfoDto,
+  ResultReviewInvestigationInfoDto,ResultReviewOrderItemInfoDto,ResultReviewDoctorInfoDto,
+  ResultReviewBillingInfoDto
+} from './dto/review-opd-discharge.dto';
 
 
 // import { DummyDataRequest1 }  from './dummyRequest';
@@ -1987,7 +1991,8 @@ const QueryCreateClaimDocumentDtoBody={
   VN:RequesetBody.xVN,
   DocumentName:'',
   DocumenttypeCode:'',
-  UploadedBy:''
+  UploadedBy:'',
+  Runningdocument:0
 }
 
 
@@ -2270,15 +2275,17 @@ try{
 
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
-let newResultPatientInfoDto: ResultPatientInfoDto ;
+let newResultReviewPatientInfoDto: ResultReviewPatientInfoDto ;
 if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischargePatient.PatientInfo.HN.length > 0) {
-   newResultPatientInfoDto = {
-      Dob: await this.utilsService.EncryptAESECB(getOPDDischargePatient.PatientInfo.Dob,AIA_APISecretkey) ,
-      Hn: await this.utilsService.EncryptAESECB(getOPDDischargePatient.PatientInfo.HN,AIA_APISecretkey) ,
-      Gender: getOPDDischargePatient.PatientInfo.Gender
+ let convertgender =getOPDDischargePatient.PatientInfo.Gender
+ if (convertgender==='F'){convertgender = 'Female'}else{convertgender ='Male'}
+  newResultReviewPatientInfoDto = {
+      Dob: getOPDDischargePatient.PatientInfo.Dob ,
+      Hn: getOPDDischargePatient.PatientInfo.HN ,
+      Gender: convertgender //getOPDDischargePatient.PatientInfo.Gender
  };
 }else{
-   newResultPatientInfoDto = {
+  newResultReviewPatientInfoDto = {
     Dob:'',
     Hn:'',
     Gender:''
@@ -2317,9 +2324,9 @@ console.log('getOPDDischargeVisit done')
 // //console.log(newResultVisitInfoDto)
 // //--> get VitalSignIn  <--//
 const getOPDDischargeVitalSign = await this.trakcareService.getOPDDischargeVitalSign(RequesetBody.xVN);
-let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
+let newResultReviewVitalSignInfoDto: ResultReviewVitalSignInfoDto[] = [];
   if (getOPDDischargeVitalSign && getOPDDischargeVitalSign.VitalSignInfo && getOPDDischargeVitalSign.VitalSignInfo.length > 0) {
-      newResultVitalSignInfoDto= await Promise.all(
+    newResultReviewVitalSignInfoDto= await Promise.all(
       getOPDDischargeVitalSign.VitalSignInfo.map(async (item) => {
       return {
         DiastolicBp: +item.DiastolicBp,
@@ -2334,7 +2341,7 @@ let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
     })
   ); 
 } else {
-  newResultVitalSignInfoDto = [{
+  newResultReviewVitalSignInfoDto = [{
     DiastolicBp: '',
     HeartRate: '',
     OxygenSaturation: '',
@@ -2350,10 +2357,10 @@ console.log('getOPDDischargeVitalSign done')
 // //--> get Diagnosis  <--//
 const getOPDDischargeDiagnosis = await this.trakcareService.getOPDDischargeDiagnosis(RequesetBody.xVN);
 let getDiagnosisTypeMapping 
-let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
+let newResultReviewDiagnosisInfoDto: ResultReviewDiagnosisInfoDto[] = [];
   if (getOPDDischargeDiagnosis && getOPDDischargeDiagnosis.DiagnosisInfo && getOPDDischargeDiagnosis.DiagnosisInfo.length > 0) {
 
-   newQueryDiagnosisInfoDto= await Promise.all(
+   newResultReviewDiagnosisInfoDto= await Promise.all(
       getOPDDischargeDiagnosis.DiagnosisInfo.map(async (item) => {
        getDiagnosisTypeMapping = await this.utilsService.getDiagnosisTypeMapping(
         ''+RequesetBody.xInsurerCode, 
@@ -2372,7 +2379,7 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
   );
   
 } else {
-  newQueryDiagnosisInfoDto = [{
+  newResultReviewDiagnosisInfoDto = [{
     DxName: '',
     DxType: '',
     Icd10: '',
@@ -2404,10 +2411,10 @@ const getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProce
 }
 
 // //--> get Investigation  <--//
-let newResultInvestigationInfoDto: ResultInvestigationInfoDto[] = [];
+let newResultReviewInvestigationInfoDto: ResultReviewInvestigationInfoDto[] = [];
 const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeInvestigation(RequesetBody.xVN); 
   if (getOPDDischargeInvestigation && getOPDDischargeInvestigation.InvestigationInfo && getOPDDischargeInvestigation.InvestigationInfo.length > 0) {
-    newResultInvestigationInfoDto= await Promise.all(
+    newResultReviewInvestigationInfoDto= await Promise.all(
       getOPDDischargeInvestigation.InvestigationInfo.map(async (item) => {
       return {
         InvestigationCode: item.InvestigationCode,
@@ -2419,7 +2426,7 @@ const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeI
     })
   );
 } else {
-  newResultInvestigationInfoDto = [{
+  newResultReviewInvestigationInfoDto = [{
     InvestigationCode: '',
     InvestigationGroup: '',
     InvestigationName: '',
@@ -2429,10 +2436,10 @@ const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeI
 }
 console.log('Investigation done')
 // //--> get OrderItem  <--//
-let newResultOrderItemInfoDto : ResultOrderItemInfoDto[] = [];
+let newResultReviewOrderItemInfoDto : ResultReviewOrderItemInfoDto[] = [];
 const getOPDDischargeOrderItem = await this.trakcareService.getOPDDischargeOrderItem(RequesetBody.xVN); 
    if (getOPDDischargeOrderItem && getOPDDischargeOrderItem.OrderItemInfo && getOPDDischargeOrderItem.OrderItemInfo.length > 0) {
-    newResultOrderItemInfoDto= await Promise.all(
+    newResultReviewOrderItemInfoDto= await Promise.all(
       getOPDDischargeOrderItem.OrderItemInfo.map(async (item) => {
       return {
         ItemId: item.ItemId,
@@ -2453,7 +2460,7 @@ const getOPDDischargeOrderItem = await this.trakcareService.getOPDDischargeOrder
     })
   );
 } else {
-  newResultOrderItemInfoDto = [{
+  newResultReviewOrderItemInfoDto = [{
 
     ItemId: '',
     ItemName: '',
@@ -2470,10 +2477,10 @@ const getOPDDischargeOrderItem = await this.trakcareService.getOPDDischargeOrder
 }
 console.log('OrderItem done')
 // //--> get Doctor  <--//
-let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
+let newResultReviewDoctorInfoDto: ResultReviewDoctorInfoDto[] = [];
 const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(RequesetBody.xVN); 
   if (getOPDDischargeDoctor && getOPDDischargeDoctor.DoctorInfo && getOPDDischargeDoctor.DoctorInfo.length > 0) {
-    newResultDoctorInfoDto= await Promise.all(
+    newResultReviewDoctorInfoDto= await Promise.all(
       getOPDDischargeDoctor.DoctorInfo.map(async (item) => {
       return {
         DoctorLicense: item.DoctorLicense.toString().padStart(10, '0'),
@@ -2484,7 +2491,7 @@ const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(R
     })
   );
 } else {
-  newResultDoctorInfoDto = [{
+  newResultReviewDoctorInfoDto = [{
     DoctorLicense: '',
     DoctorRole: '',
     DoctorFirstName: '',
@@ -2496,12 +2503,12 @@ console.log('Doctor done')
 // //console.log(newResultDoctorInfoDto)
 //  // ResultBillingInfoDto ,ResultTotalBillAmountInfoDto
 // //--> get Billing  <--//
-let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
+let newResultReviewBillingInfoDto : ResultReviewBillingInfoDto[] = [];
 let  newTotalBillAmount ;
 const getOPDDischargeBilling = await this.trakcareService.getOPDDischargeBilling(RequesetBody.xVN); 
    if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
        newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
-      newResultBillingInfoDto= await Promise.all(
+       newResultReviewBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
       return {
         LocalBillingCode: item.LocalBillingCode,
@@ -2515,7 +2522,7 @@ const getOPDDischargeBilling = await this.trakcareService.getOPDDischargeBilling
     })
   );
 } else {
-  newResultBillingInfoDto = [{
+  newResultReviewBillingInfoDto = [{
 
     LocalBillingCode: '',
     LocalBillingName: '',
@@ -2531,38 +2538,27 @@ const getOPDDischargeBilling = await this.trakcareService.getOPDDischargeBilling
 console.log('billing done')
 //  //  
 
-let newResultDataJsonDto =new ResultDataJsonDto();
-//  newResultDataJsonDto ={
-//   Patient :newResultPatientInfoDto,
-//    Visit: newResultVisitInfoDto,
-//    VitalSign :newResultVitalSignInfoDto,
-//   Diagnosis :newQueryDiagnosisInfoDto,
-//   AccidentDetail:newAccidentDetail,
-//    Procedure :newResultProcedureInfoDto,
-//    Investigation :newResultInvestigationInfoDto,
-//   OrderItem :newResultOrderItemInfoDto,
-//   Doctor : newResultDoctorInfoDto,
-//   Billing :newResultBillingInfoDto,
-//    TotalBillAmount:newTotalBillAmount,
-// }
+let newResultReviewDataJsonDto =new ResultReviewDataJsonDto();
+newResultReviewDataJsonDto ={
+  Patient :newResultReviewPatientInfoDto,
+   Visit: newResultVisitInfoDto,  // --->>>>> Here
+   VitalSign :newResultReviewVitalSignInfoDto,
+  Diagnosis :newResultReviewDiagnosisInfoDto,
+  AccidentDetail:newAccidentDetail,  // --->>>>> Here
+   Procedure :newResultProcedureInfoDto,  // --->>>>> Here
+   Investigation :newResultReviewInvestigationInfoDto,
+  OrderItem :newResultReviewOrderItemInfoDto,
+  Doctor : newResultReviewDoctorInfoDto,
+  Billing :newResultReviewBillingInfoDto,
+   TotalBillAmount:newTotalBillAmount,
+}
+console.log(newResultReviewDataJsonDto)
 
-//const dummyDataRequest =new DummyDataRequest1();
-//const newOPDDischargeResponseDto  =dummyDataRequest.PatientInfo
-// DummyDataRequest1
-
-
- 
-    //const xDummyDataRespone1 =new DummyDataRespone1();
-//const responsefromAIA  =xDummyDataRespone1.res
-    
-  const responeInputcode = 'S'
-  if (responeInputcode !=='S'){
-  }else{
 
     let xInsuranceResult= new InsuranceResult();
     xInsuranceResult ={
      Code:'200',
-     Message:'test',
+     Message:'sucess',
      MessageTh:'test'
     }
     let xInsuranceData= new InsuranceData();
@@ -2598,24 +2594,22 @@ let newResultDataJsonDto =new ResultDataJsonDto();
 //        }))
 //      : [],
 //      }
-// xResultInfo ={
-//     InsuranceResult: xInsuranceResult,
-//     InsuranceData:xInsuranceData
-//   } 
- /// save to database
-
+xResultInfo ={
+    InsuranceResult: xInsuranceResult,
+    InsuranceData:newResultReviewDataJsonDto
+  } 
 
 
 
   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-  }
-  let newResultSubmitOpdDischargeDto= new ResultSubmitOpdDischargeDto();
-  newResultSubmitOpdDischargeDto={
+  
+  let newResultReviewOpdDischargeDto= new ResultReviewOpdDischargeDto();
+  newResultReviewOpdDischargeDto={
           HTTPStatus:newHttpMessageDto,
-         // Result:xResultInfo
+          Result:xResultInfo
     }
 
-return newResultDataJsonDto //newResultSubmitOpdDischargeDto
+return newResultReviewOpdDischargeDto
 }catch(error)
 {
   if (error instanceof Prisma.PrismaClientInitializationError) {

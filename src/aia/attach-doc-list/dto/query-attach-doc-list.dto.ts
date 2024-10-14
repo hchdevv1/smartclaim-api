@@ -44,5 +44,9 @@ class SearchPatientBodyDto{
     @IsString()
     @IsOptional()
     DocumenttypeCode?: string;
+
+    @IsInt()
+    @IsOptional()
+    Runningdocument?:number
     
   }

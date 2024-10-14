@@ -95,6 +95,7 @@ async getFilemany(@Param('id') id: string) {
 }
 @Post('/uploadDocuments') //prod
 @UseInterceptors(FileInterceptor('file', {
+  
   storage: diskStorage({
     destination: './uploads/pdf', // กำหนดโฟลเดอร์ที่เก็บไฟล์
     filename: (req, file, cb) => {
@@ -103,13 +104,14 @@ async getFilemany(@Param('id') id: string) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
       const ext = extname(file.originalname); // ดึงนามสกุลจากไฟล์เดิม
       const newFilename = `${uniqueSuffix}${ext}`;
-      
       cb(null, newFilename); // ส่งชื่อไฟล์ใหม่กลับไปยัง callback
     },
   }),
 }
 ))
 async uploadFile(@UploadedFile()  file: Express.Multer.File ,@Body() body: QueryCreateClaimDocumentDtoBodyDto) {
+ console.log('File received:', file);  // แสดงข้อมูลของไฟล์
+console.log('Body received:', body);  // แสดงข้อมูลที่ส่งมาพร้อมกับไฟล์
 
   const result = await this.utilsService.saveFile(file,body)
   return {
