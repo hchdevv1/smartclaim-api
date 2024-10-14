@@ -2502,7 +2502,20 @@ else {
   }];
 }
  
-const newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
+let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
+
+newQueryAccidentDatabaseBodyDto ={
+ 
+  RefId: RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN: RequesetBody.xHN,
+  VN: RequesetBody.xVN,
+
+}
+console.log('newQueryAccidentDatabaseBodyDto')
+console.log(newQueryAccidentDatabaseBodyDto)
+console.log('fffff')
 const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
 
 // ตรวจสอบว่า accidentDatabase ถูกกำหนด
