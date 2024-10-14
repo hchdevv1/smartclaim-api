@@ -889,7 +889,62 @@ return newResultOpdDischargeBillingDto
 async getOPDDischargeProcedure(queryOpdDischargeDto:QueryOpdDischargeDto){
   let xResultInfo;
 try{
- 
+
+  const whereConditions = {
+    
+    ...(queryOpdDischargeDto.PatientInfo.VN ? { vn: { equals: queryOpdDischargeDto.PatientInfo.VN } } : {}),
+    ...(queryOpdDischargeDto.PatientInfo.RefId ? { refid: { equals: queryOpdDischargeDto.PatientInfo.RefId  } } : {}),
+    ...(queryOpdDischargeDto .PatientInfo. TransactionNo ? { transactionno: { equals: queryOpdDischargeDto .PatientInfo. TransactionNo } } : {}),
+
+  };
+  const existingProcedureRecord = await prismaProgest.proceduretransactions.findFirst({
+    where: whereConditions
+  });
+ if (existingProcedureRecord){
+// queryOpdDischargeDto.PatientInfo.RefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
+// queryOpdDischargeDto.PatientInfo.TransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
+//   queryOpdDischargeDto.PatientInfo.VN ='O415202-67'
+  const newQueryProcedeureDatabaseBodyDto ={
+    RefId:queryOpdDischargeDto.PatientInfo.RefId,
+    TransactionNo: queryOpdDischargeDto.PatientInfo.TransactionNo,
+    InsurerCode:queryOpdDischargeDto.PatientInfo.InsurerCode,
+    HN:queryOpdDischargeDto.PatientInfo.HN,
+    VN:queryOpdDischargeDto.PatientInfo.VN
+  }
+  //const getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
+   let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
+   const getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
+console .log("getOPDDischargeProcedure")
+console .log(getOPDDischargeProcedure)
+   if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
+      newResultProcedureInfoDto= await Promise.all(
+       getOPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
+       return {
+         Icd9: item.Icd9,
+         ProcedureName: item.ProcedureName,
+         ProcedureDate: item.ProcedureDate,
+         
+       };
+     })
+   );
+   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+   xResultInfo ={
+    ProcedureInfo: newResultProcedureInfoDto,
+   } 
+  
+ } else {
+   newResultProcedureInfoDto = [{
+     Icd9: '',
+     ProcedureName: '',
+     ProcedureDate: '',
+   }];
+   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+   xResultInfo ={
+    ProcedureInfo: newResultProcedureInfoDto,
+   } 
+ }
+ }else{
+
   const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeProcedure(queryOpdDischargeDto.PatientInfo.VN);
   console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
@@ -917,6 +972,8 @@ try{
       ProcedureInfo: xQueryProcedure,
      } 
   }
+ }
+
   let newResultOpdDischargeProcedurDto= new ResultOpdDischargeProcedurDto();
   newResultOpdDischargeProcedurDto={
           HTTPStatus:newHttpMessageDto,
