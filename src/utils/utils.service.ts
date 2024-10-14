@@ -22,6 +22,12 @@ import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,Queryli
   ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto
 }from './dto/claim-documents.dto';
 import { QueryProcedeureDatabaseBodyDto , ResultOpdDischargeProcedurDto ,ProcedeureDatabaseResultInfo } from './dto/result-procedure-databse.dto';
+import { QueryAccidentDatabaseBodyDto ,ResultAccidentDatabaseDto
+,AccidentDatabaseResultInfo
+
+
+} from './dto/result-accident-databse.dto';
+
 const unlinkAsync = promisify(fs.unlink); 
 const aesEcb = require('aes-ecb');
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -907,7 +913,7 @@ async getProcedureformDatabase(queryProcedeureDatabaseBodyDto: QueryProcedeureDa
   const xRefId =queryProcedeureDatabaseBodyDto.RefId;
   const xTransactionNo = queryProcedeureDatabaseBodyDto.TransactionNo;
   const xVN =queryProcedeureDatabaseBodyDto.VN;
-  
+  let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeProcedurDto();
 // ดึงข้อมูลจากฐานข้อมูล
 const proceduretransactionsInfo = await prismaProgest.proceduretransactions.findMany({ 
   where: {
@@ -921,33 +927,144 @@ const proceduretransactionsInfo = await prismaProgest.proceduretransactions.find
     proceduredate: true,
   },
 });
+if(proceduretransactionsInfo){
+  const procedureInfoInstance = new ProcedeureDatabaseResultInfo();
+  procedureInfoInstance.ProcedureInfo = proceduretransactionsInfo.map(item => ({
+    Icd9: item.icd9, // สร้าง object ใหม่ตามโครงสร้างที่ต้องการ
+    ProcedureName: item.procedurename,
+    ProcedureDate: item.proceduredate,
+  }));
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      
+       newResultOpdDischargeProcedurDto={
+         HTTPStatus:newHttpMessageDto,
+         Result:procedureInfoInstance
+       }
+       if (!proceduretransactionsInfo || proceduretransactionsInfo.length === 0) {
+      
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'Procedure not found','')
+      }else{
+    
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
 
-// สร้าง instance ของ ProcedeureDatabaseResultInfo
-const procedureInfoInstance = new ProcedeureDatabaseResultInfo();
-procedureInfoInstance.ProcedureInfo = proceduretransactionsInfo.map(item => ({
-  Icd9: item.icd9, // สร้าง object ใหม่ตามโครงสร้างที่ต้องการ
-  ProcedureName: item.procedurename,
-  ProcedureDate: item.proceduredate,
-}));
-     console.log('00000000098888')
-     console.log(proceduretransactionsInfo)
-     console.log('5555555')
-     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-     let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeProcedurDto();
-     newResultOpdDischargeProcedurDto={
-       HTTPStatus:newHttpMessageDto,
-       Result:procedureInfoInstance
-     }
-     if (!proceduretransactionsInfo || proceduretransactionsInfo.length === 0) {
-      console.log('No    oooo have')
-      this.addFormatHTTPStatus(newHttpMessageDto,404,'Servicesetting not found','')
-    }else{
-      console.log('oooo have')
-      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-    }
+}else{
+  newResultOpdDischargeProcedurDto =
+  {
+      HTTPStatus: {
+        statusCode: 200, message: 'Procedure not found', error: '' 
+      },
+      Result:{
+        ProcedureInfo:[   {
+          Icd9: '',
+          ProcedureName: '',
+          ProcedureDate:''
+        }
+            
+        ]
+        
+      }
+}
+}
+
      return newResultOpdDischargeProcedurDto  
 
 }
+
+async getAccidentformDatabase(queryAccidentDatabaseBodyDto: QueryAccidentDatabaseBodyDto) {
+  
+  const xRefId =queryAccidentDatabaseBodyDto.RefId; //'111ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=a';//
+  const xTransactionNo = queryAccidentDatabaseBodyDto.TransactionNo; //'1115c5aabb3-b919-4ee8-ac42-848ae4d5f55aa';//
+  const xVN =queryAccidentDatabaseBodyDto.VN; //'O415203-64';//
+  console.log('start accident')
+  let  newResultAccidentDatabaseDto= new ResultAccidentDatabaseDto();
+const accidentTransactionInfo = await prismaProgest.accidenttransactions.findFirst({
+  where: {
+    refid: xRefId,
+    transactionno: xTransactionNo,
+    vn: xVN,
+  },
+  select: {
+    accidentplace: true,
+    accidentdate: true,
+    causeofinjurydetail: {
+      select: {
+        causeofinjury: true,
+        commentofinjury: true,
+      },
+    },
+    injurydetail: {
+      select: {
+        woundtype: true,
+        injuryside: true,
+        injuryarea: true,
+      },
+    },
+  },
+});
+console.log("accidentTransactionInfo")
+console.log(accidentTransactionInfo)
+if (accidentTransactionInfo){
+  console.log("accidentTransactionInfo")
+  const accidentInfoInstance = new AccidentDatabaseResultInfo();
+  accidentInfoInstance.AccidentDetailInfo = {
+   AccidentPlace: accidentTransactionInfo.accidentplace || '',
+   AccidentDate: accidentTransactionInfo.accidentdate || '',
+   CauseOfInjuryDetail: accidentTransactionInfo.causeofinjurydetail.map(cause => ({
+     CauseOfInjury: cause.causeofinjury || '',
+     CommentOfInjury: cause.commentofinjury || ''
+   })),
+   InjuryDetail: accidentTransactionInfo.injurydetail.map(injury => ({
+     WoundType: injury.woundtype || '',
+     InjurySide: injury.injuryside || '',
+     InjuryArea: injury.injuryarea || ''
+   }))
+ };
+ this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+ 
+ newResultAccidentDatabaseDto={
+   HTTPStatus:newHttpMessageDto,
+   Result:accidentInfoInstance
+ }
+ if (!accidentInfoInstance) {
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'Accident not found','')
+      }else{
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+}else{
+  newResultAccidentDatabaseDto =
+      {
+          HTTPStatus: {
+            statusCode: 200, message: 'Accident not found', error: '' 
+          },
+          Result:{
+            AccidentDetailInfo:{      
+                AccidentPlace: '',
+                AccidentDate: '',
+                CauseOfInjuryDetail : [],
+                 InjuryDetail: []
+            }
+            
+          }
+  }
+}
+
+
+
+// ตอนนี้ accidentInfoInstance จะเก็บข้อมูลที่สร้างจาก accidentTransactionInfo
+// console.log(accidentInfoInstance);
+// console.log('accidentInfoInstance.AccidentDetailInfo')
+// console.log(accidentInfoInstance)
+   
+   
+console.log('111111')
+    console.log(newResultAccidentDatabaseDto)
+    console.log('11111122222222')
+    console.log('end feed  accident')
+     return newResultAccidentDatabaseDto
+
+}
+
 async getCauseofInjurywoundtype(xInsurercode: string ) {
   let causeofinjurywoundtype:any ;
   try{
@@ -1545,13 +1662,14 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
     const RefId = querylistDocumentNameDtoBodyDto.PatientInfo.RefId;
     const TransactionNo = querylistDocumentNameDtoBodyDto.PatientInfo.TransactionNo;
     const DocumenttypeCode =querylistDocumentNameDtoBodyDto.PatientInfo.DocumenttypeCode;
-    
+    const Runningdocument =querylistDocumentNameDtoBodyDto.PatientInfo.Runningdocument;
     const whereConditions = {
       ...(HN ? { hn: { equals: HN } } : {}),
       ...(VN ? { vn: { equals: VN } } : {}),
       ...(RefId ? { refid: { equals: RefId } } : {}),
       ...(TransactionNo ? { transactionno: { equals: TransactionNo } } : {}),
       ...(DocumenttypeCode ? { documenttypecode: { equals: DocumenttypeCode } } : {}),
+      ...(Runningdocument ? { runningdocument: { equals: Runningdocument } } : {}),
 
     
     };

@@ -1,4 +1,7 @@
-import { IsObject,IsBoolean, IsInt, IsArray, IsString ,IsOptional} from 'class-validator';
+import { IsObject,IsBoolean, IsInt, IsArray, IsString ,IsOptional,ValidateNested} from 'class-validator';
+
+import { Type } from 'class-transformer';
+
 import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 export class QueryReviewOpdDischargeDto {
     PatientInfo?: SearchPatientBodyDto
@@ -152,26 +155,27 @@ class DiagnosisDto {
     @IsString()
     Icd10: string;
 }
-class AccidentDetailDto {
-    @IsString()
-    AccidentPlace: string;
+export class AccidentDetailDto {
+  @IsString()
+  @IsOptional()
+  AccidentPlace?: string;
 
-    @IsString()
-    AccidentDate: string;
+  @IsString()
+  @IsOptional()
+  AccidentDate?: string;
 
-    @IsArray()
-    CauseOfInjuryDetail: Array<{
-        CauseOfInjury: string;
-        CommentOfInjury: string;
-    }>;
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CauseOfInjuryDetail)
+  CauseOfInjuryDetail: CauseOfInjuryDetail[]; // รายละเอียดเกี่ยวกับสาเหตุการบาดเจ็บ (ต้องไม่ใช้ @IsOptional)
 
-    @IsArray()
-    InjuryDetail: Array<{
-        WoundType: string;
-        InjurySide: string;
-        InjuryArea: string;
-    }>;
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => InjuryDetail)
+  @IsOptional()
+  InjuryDetail?: InjuryDetail[]; // รายละเอียดเกี่ยวกับบาดแผล
 }
+
 class ProcedureDto {
     @IsString()
     Icd9: string;
@@ -373,39 +377,105 @@ export class InsuranceResult{
   }
  
 
-export class ResultReviewDataJsonDto {
-    @IsObject()
-    Patient: PatientDto;
-
-    @IsObject()
-    Visit: VisitDto;
-
-    @IsArray()
-    VitalSign: VitalSignDto[];
-
-    @IsArray()
-    Diagnosis: DiagnosisDto[];
-
-    @IsObject()
-    AccidentDetail: AccidentDetailDto;
-
-    @IsArray()
-    Procedure: ProcedureDto[];
-
-    @IsArray()
-    Investigation: InvestigationDto[];
-
-    @IsArray()
-    OrderItem: OrderItemDto[];
-
-    @IsArray()
-   Doctor: DoctorDto[];
-
-    @IsArray()
-    Billing: BillingDto[];
+  export class AccidentDatabase {
+    @IsString()
+    @IsOptional()
+    AccidentPlace?: string;
 
     @IsString()
-    TotalBillAmount: string;
+    @IsOptional()
+    AccidentDate?: string;
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CauseOfInjuryDetail)
+    @IsOptional()
+    CauseOfInjuryDetail?: CauseOfInjuryDetail[];
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => InjuryDetail)
+    @IsOptional()
+    InjuryDetail?: InjuryDetail[];
+}
+
+
+
+export class CauseOfInjuryDetail {
+  @IsString()
+  @IsOptional()
+  CauseOfInjury?: string; // สาเหตุของการบาดเจ็บ
+
+  @IsString()
+  @IsOptional()
+  CommentOfInjury?: string; // ความคิดเห็นเกี่ยวกับการบาดเจ็บ
+}
+
+export class InjuryDetail {
+  @IsString()
+  @IsOptional()
+  WoundType?: string; // ประเภทของบาดแผล
+
+  @IsString()
+  @IsOptional()
+  InjurySide?: string; // ด้านของบาดแผล
+
+  @IsString()
+  @IsOptional()
+  InjuryArea?: string; // พื้นที่ของบาดแผล
+}
+
+export class AccidentDatabaseResultInfo {
+  @ValidateNested() // ใช้สำหรับการตรวจสอบการซ้อนกัน
+  @Type(() => AccidentDetailDto)
+  AccidentDetailInfo?: AccidentDetailDto; // เปลี่ยนประเภทเป็น AccidentDetailDto
+}
+
+
+  ////
+export class ResultReviewDataJsonDto {
+    @IsObject()
+    @IsOptional()
+    Patient?: PatientDto;
+
+    @IsObject()
+    @IsOptional()
+    Visit?: VisitDto;
+
+    @IsArray()
+    @IsOptional()
+    VitalSign?: VitalSignDto[];
+
+    @IsArray()
+    @IsOptional()
+    Diagnosis?: DiagnosisDto[];
+
+    @IsOptional()
+   AccidentDetail?: AccidentDetailDto //AccidentDatabaseResultInfo;
+
+    @IsArray()
+    @IsOptional()
+    Procedure?: ProcedureDto[];
+
+    @IsArray()
+    @IsOptional()
+    Investigation?: InvestigationDto[];
+
+    @IsArray()
+    @IsOptional()
+    OrderItem?: OrderItemDto[];
+
+    @IsArray()
+    @IsOptional()
+   Doctor?: DoctorDto[];
+
+    @IsArray()
+    @IsOptional()
+    Billing?: BillingDto[];
+
+    @IsString()
+    @IsOptional()
+    TotalBillAmount?: string;
 
 }
 

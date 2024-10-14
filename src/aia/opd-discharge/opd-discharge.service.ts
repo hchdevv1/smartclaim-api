@@ -32,10 +32,12 @@ import { QueryVisitDto } from './dto/query-visit-opd-discharge.dto';
 import { QueryReviewOpdDischargeDto ,ResultReviewOpdDischargeDto,ResultReviewDataJsonDto,
   ResultReviewPatientInfoDto,ResultReviewVisitInfoDto ,ResultReviewVitalSignInfoDto,ResultReviewDiagnosisInfoDto,
   ResultReviewInvestigationInfoDto,ResultReviewOrderItemInfoDto,ResultReviewDoctorInfoDto,
-  ResultReviewBillingInfoDto
+  ResultReviewBillingInfoDto ,AccidentDetailDto
 } from './dto/review-opd-discharge.dto';
 import { QueryProcedeureDatabaseBodyDto ,ResultProcedureDatabaseInfoDto } from '../../utils/dto/result-procedure-databse.dto';
-
+import { QueryAccidentDatabaseBodyDto  ,
+  CauseOfInjuryDetail,InjuryDetail
+}  from '../../utils/dto/result-accident-databse.dto';
 
 // import { DummyDataRequest1 }  from './dummyRequest';
 // import { DummyDataRespone1 } from './dummyRespone';
@@ -787,6 +789,8 @@ try{
      }
      xResultInfo ={
       BillingInfo: [xQueryBilling],
+      TotalBillAmount:'',
+      InvoiceNumber:''
      } 
   }else{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -1422,7 +1426,7 @@ ProcedureList = [
 }
 
 async SubmitAccident(queryAccidentDto:QueryAccidentDto){
-  //let ResponeTrakcareHTTPStatus;
+  let xResultInfo,xCauseOfInjuryDetail ,xInjuryDetail;
   try{
     const xRefId =queryAccidentDto.PatientInfo.RefId;
     const xTransactionNo =queryAccidentDto.PatientInfo.TransactionNo;
@@ -1431,69 +1435,16 @@ async SubmitAccident(queryAccidentDto:QueryAccidentDto){
     const xVN =queryAccidentDto.PatientInfo.VN;
     const xHaveAccidentCauseOfInjuryDetail =Boolean(queryAccidentDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false
     const xHaveAccidentInjuryDetail =Boolean(queryAccidentDto.PatientInfo.HaveAccidentInjuryDetail) || false
-   // const aaa =queryAccidentDto.PatientInfo.AccidentDetailInfo.
-let AccidentList;
+    const xAccidentPlace =queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentPlace;
+    const xAccidentDate =queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentDate;
 if ((xHaveAccidentCauseOfInjuryDetail ==true)||(xHaveAccidentInjuryDetail ==true)){
   
-/*
-  const result = await prismaProgest.$transaction(async (prisma) => {
-  
-    const accidentTransaction = await prisma.accidenttransactions.create({
-      data: {
-        insurerid: queryAccidentDto.PatientInfo.InsurerCode,
-        refid: queryAccidentDto.PatientInfo.RefId,
-        transactionno: queryAccidentDto.PatientInfo.TransactionNo,
-        hn: queryAccidentDto.PatientInfo.HN,
-        vn: queryAccidentDto.PatientInfo.VN,
-        accidentplace: queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentPlace,
-        accidentdate: queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentDate,
-      },
-    });
-  console.log('aaaa')
-    if (queryAccidentDto.PatientInfo.AccidentDetailInfo.CauseOfInjuryDetail) {
-      const causeOfInjuryDetails = queryAccidentDto.PatientInfo.AccidentDetailInfo.CauseOfInjuryDetail.map((cause) => ({
-        accidentid: accidentTransaction.id,
-        causeofinjury: cause.CauseOfInjury, // ชื่อฟิลด์ต้องตรงกัน
-        commentofinjury: cause.CommentOfInjury,
-      }));
-      console.log('bbbbbb')
-      try {
-        await prisma.causeofinjurydetail.createMany({
-          data: causeOfInjuryDetails,
-        });
-        console.log('ddddoooo')
-      } catch (error) {
-        console.error('Error while saving cause of injury details:', error);
-      }
-    }
-  
-    if (queryAccidentDto.PatientInfo.HaveAccidentInjuryDetail) {
-      const injuryDetails = queryAccidentDto.PatientInfo.AccidentDetailInfo.InjuryDetail.map((injury) => ({
-        accidentid: accidentTransaction.id, // ใช้ accidentid ให้ตรงกับชื่อฟิลด์ในโมเดล
-        woundtype: injury.WoundType,
-        injuryside: injury.InjurySide,
-        injuryarea: injury.InjuryArea,
-      }));
-  
-      try {
-        await prisma.injurydetail.createMany({
-          data: injuryDetails,
-        });
-      } catch (error) {
-        console.error('Error while saving injury details:', error);
-      }
-    }
-  
-    return accidentTransaction;
-  });
-  */
-  
-   AccidentList = await prismaProgest.$transaction(async (prisma) => {
+    await prismaProgest.$transaction(async (prisma) => {
     // ตรวจสอบว่ามีข้อมูลอยู่ใน accidenttransactions หรือไม่
     const existingTransaction = await prisma.accidenttransactions.findFirst({
       where: {
-        refid: queryAccidentDto.PatientInfo.RefId,
-        transactionno: queryAccidentDto.PatientInfo.TransactionNo,
+        refid: xRefId ,//queryAccidentDto.PatientInfo.RefId,
+        transactionno:  xTransactionNo //queryAccidentDto.PatientInfo.TransactionNo,
       },
     }); 
     // ถ้ามีข้อมูลให้ลบข้อมูลเก่า
@@ -1516,34 +1467,44 @@ if ((xHaveAccidentCauseOfInjuryDetail ==true)||(xHaveAccidentInjuryDetail ==true
     }
   
     // บันทึกข้อมูลใหม่ใน accidenttransactions
-    const accidentTransaction = await prisma.accidenttransactions.create({
+  const accidentTransaction = await prisma.accidenttransactions.create({
       data: {
-        insurerid: queryAccidentDto.PatientInfo.InsurerCode,
-        refid: queryAccidentDto.PatientInfo.RefId,
-        transactionno: queryAccidentDto.PatientInfo.TransactionNo,
-        hn: queryAccidentDto.PatientInfo.HN,
-        vn: queryAccidentDto.PatientInfo.VN,
-        accidentplace: queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentPlace,
-        accidentdate: queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentDate,
+        insurerid: xInsurerCode ,//queryAccidentDto.PatientInfo.InsurerCode,
+        refid: xRefId ,//queryAccidentDto.PatientInfo.RefId,
+        transactionno: xTransactionNo,//queryAccidentDto.PatientInfo.TransactionNo,
+        hn: xHN ,//queryAccidentDto.PatientInfo.HN,
+        vn: xVN ,//queryAccidentDto.PatientInfo.VN,
+        accidentplace: xAccidentPlace ,//queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentPlace,
+        accidentdate: xAccidentDate //queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentDate,
       },
     });
-  
-    // ตรวจสอบและบันทึก CauseOfInjuryDetail
+  if(xHaveAccidentCauseOfInjuryDetail ==true){
     if (queryAccidentDto.PatientInfo.AccidentDetailInfo.CauseOfInjuryDetail) {
-      const causeOfInjuryDetails = queryAccidentDto.PatientInfo.AccidentDetailInfo.CauseOfInjuryDetail.map((cause) => ({
+      xCauseOfInjuryDetail = queryAccidentDto.PatientInfo.AccidentDetailInfo.CauseOfInjuryDetail.map((cause) => ({
         accidentid: accidentTransaction.id,
         causeofinjury: cause.CauseOfInjury,
         commentofinjury: cause.CommentOfInjury,
       }));
   
       await prisma.causeofinjurydetail.createMany({
-        data: causeOfInjuryDetails,
+        data: xCauseOfInjuryDetail,
       });
     }
-  
-    // ตรวจสอบและบันทึก InjuryDetail
+  }else{
+      await prisma.causeofinjurydetail.deleteMany({
+        where: {
+          accidentid: existingTransaction.id,
+        },
+      });
+    xCauseOfInjuryDetail =[{
+      CauseOfInjury: '',
+      CommentOfInjury: '',
+     } ]
+  }
+    
+  if(xHaveAccidentInjuryDetail ==true){
     if (queryAccidentDto.PatientInfo.HaveAccidentInjuryDetail) {
-      const injuryDetails = queryAccidentDto.PatientInfo.AccidentDetailInfo.InjuryDetail.map((injury) => ({
+      xInjuryDetail = queryAccidentDto.PatientInfo.AccidentDetailInfo.InjuryDetail.map((injury) => ({
         accidentid: accidentTransaction.id,
         woundtype: injury.WoundType,
         injuryside: injury.InjurySide,
@@ -1551,26 +1512,65 @@ if ((xHaveAccidentCauseOfInjuryDetail ==true)||(xHaveAccidentInjuryDetail ==true
       }));
   
       await prisma.injurydetail.createMany({
-        data: injuryDetails,
+        data: xInjuryDetail,
       });
     }
-  
-    return accidentTransaction;
-  });
+  }else{
+    if ((xHaveAccidentInjuryDetail ==false)){
+      await prisma.injurydetail.deleteMany({
+        where: {
+          accidentid: existingTransaction.id,
+        },
+      });
+
+      xInjuryDetail =[{
+       WoundType: '',
+       InjurySide: '',
+       InjuryArea: '',
+      } ]
+     }
+  }
+   });
   
   
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
 }else{
- 
-    this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid Accident','')
+  if ((xHaveAccidentCauseOfInjuryDetail ==false)){
+     xCauseOfInjuryDetail =[{
+      CauseOfInjury: '',
+      CommentOfInjury: '',
+     } ]
+
+  }
+  if ((xHaveAccidentInjuryDetail ==false)){
+     xInjuryDetail =[{
+      WoundType: '',
+      InjurySide: '',
+      InjuryArea: '',
+     } ]
+    }
+  
+  
+
+
+  
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'Invalid Accident','')
 }
 
   
-    
-    let newResultSubmitAccidentDto= new ResultSubmitAccidentDto();
+const xQueryAccident ={    
+  AccidentPlace: xAccidentPlace, 
+  AccidentDate: xAccidentDate,
+  CauseOfInjuryDetail:xCauseOfInjuryDetail,
+  InjuryDetail:xInjuryDetail
+ }
+ xResultInfo ={
+  AccidentDetailInfo: xQueryAccident,
+ } 
+ let newResultSubmitAccidentDto= new ResultSubmitAccidentDto();
     newResultSubmitAccidentDto={
             HTTPStatus:newHttpMessageDto,
-            Result:AccidentList
+            Result:xResultInfo
       }
 
     return newResultSubmitAccidentDto
@@ -2396,13 +2396,13 @@ let newResultReviewDiagnosisInfoDto: ResultReviewDiagnosisInfoDto[] = [];
 }
 console.log('getOPDDischargeDiagnosis done')
 // //--> get AccidentDetail  <--//
-let newAccidentDetail
+
 // //--> get Procedure  <--//
 
 let newResultProcedureDatabaseInfoDto: ResultProcedureDatabaseInfoDto[] = [];
 const newQueryProcedeureDatabaseBodyDto = new QueryProcedeureDatabaseBodyDto();
 const getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
-console.log(getOPDDischargeProcedure)
+//console.log(getOPDDischargeProcedure)
 
 if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
   newResultProcedureDatabaseInfoDto = await Promise.all(
@@ -2422,9 +2422,68 @@ else {
     ProcedureDate: '',
   }];
 }
- ////////////////
+ 
+const newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
+const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
+
+// ตรวจสอบว่า accidentDatabase ถูกกำหนด
+if (!accidentDatabase) {
+    throw new Error('accidentDatabase is required.');
+}
+
+const accidentDetailInfo = new AccidentDetailDto();
+accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+
+// จัดการ CauseOfInjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+    accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+        const causeDetail = new CauseOfInjuryDetail();
+        causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+        causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+        return causeDetail;
+    });
+} else {
+    throw new Error('CauseOfInjuryDetail is required.');
+}
+
+// จัดการ InjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+    accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+        const injuryDetail = new InjuryDetail();
+        injuryDetail.WoundType = injury.WoundType || '';
+        injuryDetail.InjurySide = injury.InjurySide || '';
+        injuryDetail.InjuryArea = injury.InjuryArea || '';
+        return injuryDetail;
+    });
+}
+
+console.log('88888888')
+console.log(accidentDetailInfo)
+console.log('9999999999')
 
 
+
+// newAccidentDatabaseResultInfo.AccidentDetailInfo ={
+
+//   AccidentPlace:'string',
+//   AccidentDate: 'string',
+//   CauseOfInjuryDetail: newCauseOfInjuryDetail,
+//    InjuryDetail:newInjuryDetail
+// }
+
+
+
+//   if (getAccidentformDatabase && getAccidentformDatabase.Result && getAccidentformDatabase.Result.AccidentDetailInfo && getAccidentformDatabase.Result.AccidentDetailInfo > 0) {
+  
+//   // newAccidentDatabaseResultInfo = {
+//   //  // AccidentDetailInfo: accidentDetailInfoArray
+//   // };
+// console.log('kkkkkoooo')
+//   console.log(getAccidentformDatabase)
+// }else {
+ 
+// }
 // //--> get Investigation  <--//
 let newResultReviewInvestigationInfoDto: ResultReviewInvestigationInfoDto[] = [];
 const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeInvestigation(RequesetBody.xVN); 
@@ -2500,7 +2559,7 @@ const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(R
       return {
         DoctorLicense: item.DoctorLicense.toString().padStart(10, '0'),
         DoctorRole: item.DoctorRole,
-        DoctorFirstName: await this.utilsService.EncryptAESECB( item.DoctorFirstName,AIA_APISecretkey) ,
+        DoctorFirstName: item.DoctorFirstName,
         DoctorLastName: '' //await this.utilsService.EncryptAESECB( item.DoctorLastName,AIA_APISecretkey) ,
       };
     })
@@ -2559,8 +2618,8 @@ newResultReviewDataJsonDto ={
    Visit: newResultReviewVisitInfoDto,  // --->>>>> Here
    VitalSign :newResultReviewVitalSignInfoDto,
   Diagnosis :newResultReviewDiagnosisInfoDto,
-  AccidentDetail:newAccidentDetail,  // --->>>>> Here
-   Procedure :newResultProcedureDatabaseInfoDto,  // --->>>>> Here
+  AccidentDetail:accidentDetailInfo,  // --->>>>> Here
+   Procedure :newResultProcedureDatabaseInfoDto,  // --->>>>> Here  done
    Investigation :newResultReviewInvestigationInfoDto,
   OrderItem :newResultReviewOrderItemInfoDto,
   Doctor : newResultReviewDoctorInfoDto,
@@ -2576,39 +2635,7 @@ newResultReviewDataJsonDto ={
      Message:'sucess',
      MessageTh:'test'
     }
-    let xInsuranceData= new InsuranceData();
-
-//     xInsuranceData ={
-//       RefId:responsefromAIA.Data.RefId ||'',
-//       TransactionNo:responsefromAIA.Data.TransactionNo ||'',
-//       InsurerCode:responsefromAIA.Data.InsurerCode ||'',
-
-//       Message:responsefromAIA.Data.Message ||'',
-//       MessageTh:responsefromAIA.Data.MessageTh ||'',
-//       ClaimNo:responsefromAIA.Data.ClaimNo ||'',
-//       OccurrenceNo:responsefromAIA.Data.OccurrenceNo ||'',
-//       TotalApprovedAmount:responsefromAIA.Data.TotalApprovedAmount ||'',
-//       TotalExcessAmount:responsefromAIA.Data.TotalExcessAmount ||'',
-//       IsReimbursement:Boolean(responsefromAIA.Data.IsReimbursement),
-//       CoverageList: responsefromAIA.Data.CoverageList 
-//       ? responsefromAIA.Data.CoverageList.map((Coverage) => ({
-//         type: Coverage.type || '',
-//         status: Boolean(Coverage.status), // แปลงค่าให้เป็น boolean เสมอ
-//       }))
-//     : [],
-
-//        MessageList: responsefromAIA.Data.MessageList 
-//        ? responsefromAIA.Data.MessageList.map((message) => (
-        
-//         {
-          
-//         policyNo: message.policyNo ?  this.utilsService.DecryptAESECB(message.policyNo, AIA_APISecretkey) :'' ,
-//         planName: message.planName || '',
-//         messageTh: message.messageTh || '',
-//         messageEn: message.messageEn || '',
-//        }))
-//      : [],
-//      }
+   
 xResultInfo ={
     InsuranceResult: xInsuranceResult,
     InsuranceData:newResultReviewDataJsonDto
