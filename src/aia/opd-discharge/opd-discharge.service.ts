@@ -30,10 +30,11 @@ import { QueryProcedureDto ,ResultSubmitProcedureDto} from './dto/query-procedur
 import { QueryAccidentDto ,ResultSubmitAccidentDto} from './dto/query-accident-opd-discharge.dto';
 import { QueryVisitDto } from './dto/query-visit-opd-discharge.dto';
 import { QueryReviewOpdDischargeDto ,ResultReviewOpdDischargeDto,ResultReviewDataJsonDto,
-  ResultReviewPatientInfoDto,ResultReviewVitalSignInfoDto,ResultReviewDiagnosisInfoDto,
+  ResultReviewPatientInfoDto,ResultReviewVisitInfoDto ,ResultReviewVitalSignInfoDto,ResultReviewDiagnosisInfoDto,
   ResultReviewInvestigationInfoDto,ResultReviewOrderItemInfoDto,ResultReviewDoctorInfoDto,
   ResultReviewBillingInfoDto
 } from './dto/review-opd-discharge.dto';
+import { QueryProcedeureDatabaseBodyDto ,ResultProcedureDatabaseInfoDto } from '../../utils/dto/result-procedure-databse.dto';
 
 
 // import { DummyDataRequest1 }  from './dummyRequest';
@@ -1328,10 +1329,18 @@ if (xHaveProcedure ==true){
          ProcedureList = [];
     }
     console.log(xHaveProcedure)
+    
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
 }else{
+ProcedureList = [
+        {
+            "Icd9": "",
+            "ProcedureName": "",
+            "ProcedureDate": ""
+        }
+    ]
   console.log(xHaveProcedure)
-    this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid Procedure','')
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'Invalid Procedure','')
 }
 
   
@@ -2296,7 +2305,7 @@ console.log('getOPDDischargePatient done')
 // //--> get Visit  <--//
  const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
 // //let newResultVisitInfoDto : ResultVisitInfoDto;
-const newResultVisitInfoDto : ResultVisitInfoDto= {
+const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
   FurtherClaimId: '',
   AccidentCauseOver45Days: '',
   AdditionalNote: getOPDDischargeVisit.VisitInfo.AdditionalNote,
@@ -2317,7 +2326,7 @@ const newResultVisitInfoDto : ResultVisitInfoDto= {
   SignSymptomsDate: '',
   UnderlyingCondition: '',
   VisitDateTime: getOPDDischargeVisit.VisitInfo.VisitDateTime,
-  Vn:  await this.utilsService.EncryptAESECB( getOPDDischargeVisit.VisitInfo.VisitDateTime,AIA_APISecretkey) ,
+  VN:  '',
   Weight: ''
 }
 console.log('getOPDDischargeVisit done')
@@ -2389,26 +2398,32 @@ console.log('getOPDDischargeDiagnosis done')
 // //--> get AccidentDetail  <--//
 let newAccidentDetail
 // //--> get Procedure  <--//
-let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
-const getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
-  if (getOPDDischargeProcedure && getOPDDischargeProcedure.ProcedureInfo && getOPDDischargeProcedure.ProcedureInfo.length > 0) {
-     newResultProcedureInfoDto= await Promise.all(
-      getOPDDischargeProcedure.ProcedureInfo.map(async (item) => {
-      return {
-        Icd9: item.Icd9,
-        ProcedureName: item.ProcedureName,
-        ProcedureDate: item.ProcedureDate,
-        
-      };
-    })
+
+let newResultProcedureDatabaseInfoDto: ResultProcedureDatabaseInfoDto[] = [];
+const newQueryProcedeureDatabaseBodyDto = new QueryProcedeureDatabaseBodyDto();
+const getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
+console.log(getOPDDischargeProcedure)
+
+if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
+  newResultProcedureDatabaseInfoDto = await Promise.all(
+      getOPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
+          return {
+              Icd9: item.Icd9,
+              ProcedureName: item.ProcedureName,
+              ProcedureDate: item.ProcedureDate,
+          };
+      })
   );
-} else {
-  newResultProcedureInfoDto = [{
+}
+else {
+  newResultProcedureDatabaseInfoDto = [{
     Icd9: '',
     ProcedureName: '',
     ProcedureDate: '',
   }];
 }
+ ////////////////
+
 
 // //--> get Investigation  <--//
 let newResultReviewInvestigationInfoDto: ResultReviewInvestigationInfoDto[] = [];
@@ -2541,18 +2556,18 @@ console.log('billing done')
 let newResultReviewDataJsonDto =new ResultReviewDataJsonDto();
 newResultReviewDataJsonDto ={
   Patient :newResultReviewPatientInfoDto,
-   Visit: newResultVisitInfoDto,  // --->>>>> Here
+   Visit: newResultReviewVisitInfoDto,  // --->>>>> Here
    VitalSign :newResultReviewVitalSignInfoDto,
   Diagnosis :newResultReviewDiagnosisInfoDto,
   AccidentDetail:newAccidentDetail,  // --->>>>> Here
-   Procedure :newResultProcedureInfoDto,  // --->>>>> Here
+   Procedure :newResultProcedureDatabaseInfoDto,  // --->>>>> Here
    Investigation :newResultReviewInvestigationInfoDto,
   OrderItem :newResultReviewOrderItemInfoDto,
   Doctor : newResultReviewDoctorInfoDto,
   Billing :newResultReviewBillingInfoDto,
    TotalBillAmount:newTotalBillAmount,
 }
-console.log(newResultReviewDataJsonDto)
+//console.log(newResultReviewDataJsonDto)
 
 
     let xInsuranceResult= new InsuranceResult();
@@ -2695,7 +2710,7 @@ addFormatHTTPStatus(data: HttpMessageDto,inputstatusCode:number,inputmessage:str
       else{
         if(data){
           data.statusCode=200
-          data.message='success'
+          data.message=inputmessage||'success'
           data.error=''
         }
       }

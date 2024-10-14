@@ -21,7 +21,7 @@ import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,Se
 import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto  ,QueryDeleteDocumentByDocNameDto
   ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto
 }from './dto/claim-documents.dto';
-
+import { QueryProcedeureDatabaseBodyDto , ResultOpdDischargeProcedurDto ,ProcedeureDatabaseResultInfo } from './dto/result-procedure-databse.dto';
 const unlinkAsync = promisify(fs.unlink); 
 const aesEcb = require('aes-ecb');
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -902,7 +902,52 @@ async getdocumentTypeforAttachDocList(xInsurercode: string ) {
     }
 
 }
+async getProcedureformDatabase(queryProcedeureDatabaseBodyDto: QueryProcedeureDatabaseBodyDto) {
+  
+  const xRefId =queryProcedeureDatabaseBodyDto.RefId;
+  const xTransactionNo = queryProcedeureDatabaseBodyDto.TransactionNo;
+  const xVN ='123'// queryProcedeureDatabaseBodyDto.VN;
+  
+// ดึงข้อมูลจากฐานข้อมูล
+const proceduretransactionsInfo = await prismaProgest.proceduretransactions.findMany({ 
+  where: {
+    vn: xVN,
+    refid: xRefId,
+    transactionno: xTransactionNo,
+  },  
+  select: {
+    icd9: true,
+    procedurename: true,
+    proceduredate: true,
+  },
+});
 
+// สร้าง instance ของ ProcedeureDatabaseResultInfo
+const procedureInfoInstance = new ProcedeureDatabaseResultInfo();
+procedureInfoInstance.ProcedureInfo = proceduretransactionsInfo.map(item => ({
+  Icd9: item.icd9, // สร้าง object ใหม่ตามโครงสร้างที่ต้องการ
+  ProcedureName: item.procedurename,
+  ProcedureDate: item.proceduredate,
+}));
+     console.log('00000000098888')
+     console.log(proceduretransactionsInfo)
+     console.log('5555555')
+     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+     let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeProcedurDto();
+     newResultOpdDischargeProcedurDto={
+       HTTPStatus:newHttpMessageDto,
+       Result:procedureInfoInstance
+     }
+     if (!proceduretransactionsInfo || proceduretransactionsInfo.length === 0) {
+      console.log('No    oooo have')
+      this.addFormatHTTPStatus(newHttpMessageDto,404,'Servicesetting not found','')
+    }else{
+      console.log('oooo have')
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    }
+     return newResultOpdDischargeProcedurDto  
+
+}
 async getCauseofInjurywoundtype(xInsurercode: string ) {
   let causeofinjurywoundtype:any ;
   try{

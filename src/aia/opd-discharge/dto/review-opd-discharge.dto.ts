@@ -110,7 +110,7 @@ class VisitDto {
     VisitDateTime: string;
 
     @IsString()
-    Vn: string;
+    VN: string;
 
     @IsString()
     Weight: string;
@@ -265,6 +265,31 @@ class BillingDto {
     Gender: string; // ประเภทของโรค (ใช้ dxtypecodeinsurance ถ้ามีการแมป)
     Hn: string; // รหัสโรค Icd10
   }
+  export class ResultReviewVisitInfoDto {
+    FurtherClaimId: string; 
+    AccidentCauseOver45Days: string;
+    AdditionalNote: string;
+    AlcoholRelated: boolean;
+    ChiefComplaint: string;
+    ComaScore: string;
+    DxFreeText: string;
+    ExpectedDayOfRecovery: string;
+    Height: string;
+    PhysicalExam: string;
+    PlanOfTreatment: string;
+    Pregnant: boolean;
+    PresentIllness: string;
+    PreviousTreatmentDate: string;
+    PreviousTreatmentDetail: string;
+    PrivateCase: boolean;
+    ProcedureFreeText: string;
+    SignSymptomsDate: string;
+    UnderlyingCondition: string;
+    VisitDateTime: string;
+    VN: string;
+    Weight: string;
+
+  }
   export class ResultReviewVitalSignInfoDto {
     DiastolicBp: string; 
     HeartRate: string; 
@@ -279,6 +304,12 @@ class BillingDto {
     DxName: string; 
     DxType: string; 
     Icd10: string; 
+  }
+
+  export class ResultReviewProcedureInfoDto {
+    Icd9: string; 
+    ProcedureDate: string; 
+    ProcedureName: string; 
   }
   export class ResultReviewInvestigationInfoDto {
     InvestigationCode: string; 
