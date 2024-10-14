@@ -1739,20 +1739,28 @@ async getListDocumentByTransactionNo(queryCreateClaimDocumentDtoBodyDto: QueryCr
   const VN = queryCreateClaimDocumentDtoBodyDto.VN;
   const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
   const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
+  const Runningdocument = queryCreateClaimDocumentDtoBodyDto.Runningdocument;
   //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
 console.log(VN)
 console.log(RefId)
 console.log(TransactionNo)
+const whereConditions = {
+  ...(VN ? { vn: { equals: VN } } : {}),
+  ...(RefId ? { refid: { equals: RefId } } : {}),
+  ...(TransactionNo ? { transactionno: { equals: TransactionNo } } : {}),
+  ...(Runningdocument ? { runningdocument: { equals: Runningdocument } } : {}),
+};
 //console.log(InsurerCode)
   //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
   //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
     const fileRecords = await prismaProgest.claimdocuments.findMany({
-     where: {
-        vn:VN,
-        refid:RefId,
-        transactionno:TransactionNo,
-        //insurerid:InsurerCode
-    }
+    //  where: {
+    //     vn:VN,
+    //     refid:RefId,
+    //     transactionno:TransactionNo,
+    //     //insurerid:InsurerCode
+    // }
+    where :whereConditions
     });
     
      console.log(fileRecords)

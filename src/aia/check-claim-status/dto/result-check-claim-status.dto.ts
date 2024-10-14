@@ -52,8 +52,12 @@ export class ResultCheckClaimStatusDto {
 
     @IsString()
     @IsOptional()
+    ClaimStatusCode?: string;
+
+    @IsString()
+    @IsOptional()
     ClaimStatusDesc?: string;
-    
+
     @IsString()
     @IsOptional()
     ClaimStatusDesc_TH?: string;

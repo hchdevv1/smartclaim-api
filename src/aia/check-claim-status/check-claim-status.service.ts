@@ -110,6 +110,9 @@ xResultAttachDocListInfoDto = await Promise.all(
   })
 );
 
+const xClaimStatusCode = await this.utilsService.getClaimStatusCodeByDescription('13', responsefromAIA.Data.ClaimStatus);
+const claimcode = xClaimStatusCode.Result[0].claimstatuscode;
+
         let xInsuranceData = new InsuranceData();
         xInsuranceData={
           RefId:responsefromAIA.Data.RefId,
@@ -117,6 +120,7 @@ xResultAttachDocListInfoDto = await Promise.all(
           InsurerCode:responsefromAIA.Data.InsurerCode,
           BatchNumber:responsefromAIA.Data.BatchNumber||'',
           ClaimStatus:responsefromAIA.Data.ClaimStatus||'',
+          ClaimStatusCode:claimcode,
           ClaimStatusDesc:responsefromAIA.Data.ClaimStatusDesc||'',
           ClaimStatusDesc_EN:responsefromAIA.Data.ClaimStatus||'',
           ClaimStatusDesc_TH:responsefromAIA.Data.ClaimStatusDesc||'',
@@ -126,9 +130,6 @@ xResultAttachDocListInfoDto = await Promise.all(
           AttachDocList:xResultAttachDocListInfoDto
         }
 // save to database
-const xClaimStatusCode = await this.utilsService.getClaimStatusCodeByDescription('13', responsefromAIA.Data.ClaimStatus);
-const claimcode = xClaimStatusCode.Result[0].claimstatuscode;
-
 const existingRecord = await prismaProgest.transactionclaimstatus.findFirst({
   where: {
     refid: RequesetBody.xRefId,
