@@ -868,15 +868,18 @@ export class PatientinfoService {
             IsReimbursement: claim.isreimbursement ?? false, // Default to false if undefined
             BatchNumber: claim.batchnumber || '', // Default to empty string if undefined
             InvoiceNumber: claim.invoicenumber || '', // Default to empty string if undefined
+            PolicyTypeCode:claim.policytypecode||'',
+            IdType:claim.idtype||'',
+            IllnessTypeCode:claim.illnesstypecode||'',
+            ServiceSettingCode:claim.servicesettingcode||'',
+            SurgeryTypeCode:claim.surgerytypecode||'',
+            FurtherClaimNo:claim.furtherclaimno||'',
+            FurtherClaimId:claim.furtherclaimid||'',
+            AccidentDate:claim.accidentdate||'',
+            VisitDateTime:claim.visitdatetime||'',
         })),
     };
-       /*
-
-        "ClaimStatusCode": "06",
-            "ClaimStatusDesc": "ยกเลิกรายการ",
-            "ClaimStatusDesc_EN": "Cancelled",
-            "ClaimStatusDesc_TH": "ยกเลิกรายการ",
-       */
+       
     } else {
       const xQueryVisit = {    
         RefId: '', 
@@ -898,6 +901,15 @@ export class PatientinfoService {
         IsReimbursement: false,
         BatchNumber: '',
         InvoiceNumber: '',
+        PolicyTypeCode:'',
+        IdType:'',
+        IllnessTypeCode:'',
+        ServiceSettingCode:'',
+        SurgeryTypeCode:'',
+        FurtherClaimNo:'',
+        FurtherClaimId:'',
+        AccidentDate:'',
+        VisitDateTime:'',
     };
         xResultInfo = {
         TransactionClaimInfo: [xQueryVisit],

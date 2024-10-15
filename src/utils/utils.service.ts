@@ -22,10 +22,9 @@ import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,Queryli
   ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto
 }from './dto/claim-documents.dto';
 import { QueryProcedeureDatabaseBodyDto , ResultOpdDischargeProcedurDto ,ProcedeureDatabaseResultInfo } from './dto/result-procedure-databse.dto';
+import { QueryVisitDatabaseBodyDto ,ResultOpdDischargeVisitDto ,VisitDatabaseResultInfo} from './dto/result-visit-databse.dto';
 import { QueryAccidentDatabaseBodyDto ,ResultAccidentDatabaseDto
 ,AccidentDatabaseResultInfo
-
-
 } from './dto/result-accident-databse.dto';
 
 const unlinkAsync = promisify(fs.unlink); 
@@ -908,6 +907,131 @@ async getdocumentTypeforAttachDocList(xInsurercode: string ) {
     }
 
 }
+
+async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto) {
+  
+  const xRefId =queryVisitDatabaseBodyDto.RefId;
+  const xTransactionNo = queryVisitDatabaseBodyDto.TransactionNo;
+  const xVN =queryVisitDatabaseBodyDto.VN;
+  console.log('yyyyyy')
+  console.log('yyyyyy')
+  console.log(xRefId)
+  console.log(xTransactionNo)
+  console.log(xVN)
+  console.log('yyyyyy')
+  console.log('yyyyyy')
+  let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeVisitDto();
+// ดึงข้อมูลจากฐานข้อมูล
+const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst({ 
+  where: {
+    vn: xVN,
+    refid: xRefId,
+    transactionno: xTransactionNo,
+  },  
+  select: {
+    dxfreetext: true,
+     presentillness: true, chiefcomplaint: true,
+      accidentcauseover45days: true, underlyingcondition: true, 
+      physicalexam: true, planoftreatment: true, procedurefreetext: true,
+       additionalnote: true, signsymptomsdate: true, comascore: true,
+        expecteddayofrecovery: true, pregnant: true, alcoholrelated: true,
+         haveaccidentinjurydetail: true, haveaccidentcauseofinjurydetail: true, haveprocedure: true,
+          privatecase: true
+   
+  },
+});
+console.log(visittransactionsInfo)
+console.log('yyyyyy')
+if(visittransactionsInfo){
+  console.log('yyy111yyy')
+  const visitDatabaseResultInfo = new VisitDatabaseResultInfo();
+  visitDatabaseResultInfo.VisitInfo = {
+ 
+    //FurtherClaimId:visittransactionsInfo.fu
+
+    AccidentCauseOver45Days:visittransactionsInfo.accidentcauseover45days,
+    AdditionalNote:visittransactionsInfo.additionalnote,
+    AlcoholRelated:visittransactionsInfo.alcoholrelated,
+    ChiefComplaint:visittransactionsInfo.chiefcomplaint,
+    ComaScore:visittransactionsInfo.comascore,
+    DxFreeText:visittransactionsInfo.dxfreetext,
+    ExpectedDayOfRecovery:visittransactionsInfo.expecteddayofrecovery,
+  // Height:visittransactionsInfo
+  PhysicalExam:visittransactionsInfo.physicalexam,
+  PlanOfTreatment:visittransactionsInfo.planoftreatment,
+   Pregnant:visittransactionsInfo.pregnant,
+   PresentIllness:visittransactionsInfo.presentillness,
+    // PreviousTreatmentDate?: string;
+    //PreviousTreatmentDetail?: string;
+    PrivateCase:visittransactionsInfo.privatecase,
+    ProcedureFreeText:visittransactionsInfo.procedurefreetext,
+    SignSymptomsDate:visittransactionsInfo.signsymptomsdate,
+    UnderlyingCondition:visittransactionsInfo.underlyingcondition,
+
+   // VisitDateTime:visittransactionsInfo.
+
+   // VN:visittransactionsInfo.
+
+   // Weight:visittransactionsInfo.
+
+  };
+  console.log(visitDatabaseResultInfo)
+  console.log('yyy222yyy')
+      // this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      
+     
+       if (!visitDatabaseResultInfo.VisitInfo) {
+      
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'VisitInfo not found','')
+      }else{
+    
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+      newResultOpdDischargeProcedurDto={
+        HTTPStatus:newHttpMessageDto,
+        Result:visitDatabaseResultInfo 
+      }
+}else{
+  newResultOpdDischargeProcedurDto =
+  {
+      HTTPStatus: {
+        statusCode: 200, message: 'VisitInfo not found', error: '' 
+      },
+      // // Result:{
+      // //   visitDatabaseResultInfo:   {
+      // //     AccidentCauseOver45Days:'',
+      // //     AdditionalNote:'',
+      // //     AlcoholRelated:'',
+      // //     ChiefComplaint:'',
+      // //     ComaScore:'',
+      // //     DxFreeText:'',
+      // //     ExpectedDayOfRecovery:'',
+      // //     Height:'',
+      // //   // Height:visittransactionsInfo
+      // //   PhysicalExam:'',
+      // //   PlanOfTreatment:'',
+      // //    Pregnant:false,
+      // //    PresentIllness:'',
+      // //    PreviousTreatmentDate:'',
+      // //    PreviousTreatmentDetail:'',
+      // //     // PreviousTreatmentDate?: string;
+      // //     //PreviousTreatmentDetail?: string;
+      // //     PrivateCase:false,
+      // //     ProcedureFreeText:'',
+      // //     SignSymptomsDate:'',
+      // //     UnderlyingCondition:'',
+      // //     VN:'',
+      // //   }
+            
+       
+        
+      // }
+}
+}
+
+     return newResultOpdDischargeProcedurDto  
+
+}
 async getProcedureformDatabase(queryProcedeureDatabaseBodyDto: QueryProcedeureDatabaseBodyDto) {
   
   const xRefId =queryProcedeureDatabaseBodyDto.RefId;
@@ -976,7 +1100,6 @@ if(proceduretransactionsInfo){
      return newResultOpdDischargeProcedurDto  
 
 }
-
 async getAccidentformDatabase(queryAccidentDatabaseBodyDto: QueryAccidentDatabaseBodyDto) {
   
   const xRefId =queryAccidentDatabaseBodyDto.RefId; //'111ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=a';//

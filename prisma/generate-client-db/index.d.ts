@@ -18528,6 +18528,12 @@ export namespace Prisma {
     claimstatusdesc: string | null
     claimstatusdesc_th: string | null
     claimstatusdesc_en: string | null
+    policytypecode: string | null
+    idtype: string | null
+    illnesstypecode: string | null
+    servicesettingcode: string | null
+    surgerytypecode: string | null
+    visitdatetime: string | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -18560,6 +18566,12 @@ export namespace Prisma {
     claimstatusdesc: string | null
     claimstatusdesc_th: string | null
     claimstatusdesc_en: string | null
+    policytypecode: string | null
+    idtype: string | null
+    illnesstypecode: string | null
+    servicesettingcode: string | null
+    surgerytypecode: string | null
+    visitdatetime: string | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -18592,6 +18604,12 @@ export namespace Prisma {
     claimstatusdesc: number
     claimstatusdesc_th: number
     claimstatusdesc_en: number
+    policytypecode: number
+    idtype: number
+    illnesstypecode: number
+    servicesettingcode: number
+    surgerytypecode: number
+    visitdatetime: number
     _all: number
   }
 
@@ -18640,6 +18658,12 @@ export namespace Prisma {
     claimstatusdesc?: true
     claimstatusdesc_th?: true
     claimstatusdesc_en?: true
+    policytypecode?: true
+    idtype?: true
+    illnesstypecode?: true
+    servicesettingcode?: true
+    surgerytypecode?: true
+    visitdatetime?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -18672,6 +18696,12 @@ export namespace Prisma {
     claimstatusdesc?: true
     claimstatusdesc_th?: true
     claimstatusdesc_en?: true
+    policytypecode?: true
+    idtype?: true
+    illnesstypecode?: true
+    servicesettingcode?: true
+    surgerytypecode?: true
+    visitdatetime?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -18704,6 +18734,12 @@ export namespace Prisma {
     claimstatusdesc?: true
     claimstatusdesc_th?: true
     claimstatusdesc_en?: true
+    policytypecode?: true
+    idtype?: true
+    illnesstypecode?: true
+    servicesettingcode?: true
+    surgerytypecode?: true
+    visitdatetime?: true
     _all?: true
   }
 
@@ -18823,6 +18859,12 @@ export namespace Prisma {
     claimstatusdesc: string | null
     claimstatusdesc_th: string | null
     claimstatusdesc_en: string | null
+    policytypecode: string | null
+    idtype: string | null
+    illnesstypecode: string | null
+    servicesettingcode: string | null
+    surgerytypecode: string | null
+    visitdatetime: string | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -18874,6 +18916,12 @@ export namespace Prisma {
     claimstatusdesc?: boolean
     claimstatusdesc_th?: boolean
     claimstatusdesc_en?: boolean
+    policytypecode?: boolean
+    idtype?: boolean
+    illnesstypecode?: boolean
+    servicesettingcode?: boolean
+    surgerytypecode?: boolean
+    visitdatetime?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -18907,6 +18955,12 @@ export namespace Prisma {
     claimstatusdesc?: boolean
     claimstatusdesc_th?: boolean
     claimstatusdesc_en?: boolean
+    policytypecode?: boolean
+    idtype?: boolean
+    illnesstypecode?: boolean
+    servicesettingcode?: boolean
+    surgerytypecode?: boolean
+    visitdatetime?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -18940,6 +18994,12 @@ export namespace Prisma {
     claimstatusdesc?: boolean
     claimstatusdesc_th?: boolean
     claimstatusdesc_en?: boolean
+    policytypecode?: boolean
+    idtype?: boolean
+    illnesstypecode?: boolean
+    servicesettingcode?: boolean
+    surgerytypecode?: boolean
+    visitdatetime?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18984,6 +19044,12 @@ export namespace Prisma {
       claimstatusdesc: string | null
       claimstatusdesc_th: string | null
       claimstatusdesc_en: string | null
+      policytypecode: string | null
+      idtype: string | null
+      illnesstypecode: string | null
+      servicesettingcode: string | null
+      surgerytypecode: string | null
+      visitdatetime: string | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -19407,6 +19473,12 @@ export namespace Prisma {
     readonly claimstatusdesc: FieldRef<"transactionclaim", 'String'>
     readonly claimstatusdesc_th: FieldRef<"transactionclaim", 'String'>
     readonly claimstatusdesc_en: FieldRef<"transactionclaim", 'String'>
+    readonly policytypecode: FieldRef<"transactionclaim", 'String'>
+    readonly idtype: FieldRef<"transactionclaim", 'String'>
+    readonly illnesstypecode: FieldRef<"transactionclaim", 'String'>
+    readonly servicesettingcode: FieldRef<"transactionclaim", 'String'>
+    readonly surgerytypecode: FieldRef<"transactionclaim", 'String'>
+    readonly visitdatetime: FieldRef<"transactionclaim", 'String'>
   }
     
 
@@ -26286,7 +26358,13 @@ export namespace Prisma {
     claimcancelnote: 'claimcancelnote',
     claimstatusdesc: 'claimstatusdesc',
     claimstatusdesc_th: 'claimstatusdesc_th',
-    claimstatusdesc_en: 'claimstatusdesc_en'
+    claimstatusdesc_en: 'claimstatusdesc_en',
+    policytypecode: 'policytypecode',
+    idtype: 'idtype',
+    illnesstypecode: 'illnesstypecode',
+    servicesettingcode: 'servicesettingcode',
+    surgerytypecode: 'surgerytypecode',
+    visitdatetime: 'visitdatetime'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -27616,6 +27694,12 @@ export namespace Prisma {
     claimstatusdesc?: StringNullableFilter<"transactionclaim"> | string | null
     claimstatusdesc_th?: StringNullableFilter<"transactionclaim"> | string | null
     claimstatusdesc_en?: StringNullableFilter<"transactionclaim"> | string | null
+    policytypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    idtype?: StringNullableFilter<"transactionclaim"> | string | null
+    illnesstypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    servicesettingcode?: StringNullableFilter<"transactionclaim"> | string | null
+    surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -27649,6 +27733,12 @@ export namespace Prisma {
     claimstatusdesc?: SortOrderInput | SortOrder
     claimstatusdesc_th?: SortOrderInput | SortOrder
     claimstatusdesc_en?: SortOrderInput | SortOrder
+    policytypecode?: SortOrderInput | SortOrder
+    idtype?: SortOrderInput | SortOrder
+    illnesstypecode?: SortOrderInput | SortOrder
+    servicesettingcode?: SortOrderInput | SortOrder
+    surgerytypecode?: SortOrderInput | SortOrder
+    visitdatetime?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -27685,6 +27775,12 @@ export namespace Prisma {
     claimstatusdesc?: StringNullableFilter<"transactionclaim"> | string | null
     claimstatusdesc_th?: StringNullableFilter<"transactionclaim"> | string | null
     claimstatusdesc_en?: StringNullableFilter<"transactionclaim"> | string | null
+    policytypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    idtype?: StringNullableFilter<"transactionclaim"> | string | null
+    illnesstypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    servicesettingcode?: StringNullableFilter<"transactionclaim"> | string | null
+    surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -27718,6 +27814,12 @@ export namespace Prisma {
     claimstatusdesc?: SortOrderInput | SortOrder
     claimstatusdesc_th?: SortOrderInput | SortOrder
     claimstatusdesc_en?: SortOrderInput | SortOrder
+    policytypecode?: SortOrderInput | SortOrder
+    idtype?: SortOrderInput | SortOrder
+    illnesstypecode?: SortOrderInput | SortOrder
+    servicesettingcode?: SortOrderInput | SortOrder
+    surgerytypecode?: SortOrderInput | SortOrder
+    visitdatetime?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -27758,6 +27860,12 @@ export namespace Prisma {
     claimstatusdesc?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     claimstatusdesc_th?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     claimstatusdesc_en?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    policytypecode?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    idtype?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    illnesstypecode?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    servicesettingcode?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    surgerytypecode?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    visitdatetime?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -29362,6 +29470,12 @@ export namespace Prisma {
     claimstatusdesc?: string | null
     claimstatusdesc_th?: string | null
     claimstatusdesc_en?: string | null
+    policytypecode?: string | null
+    idtype?: string | null
+    illnesstypecode?: string | null
+    servicesettingcode?: string | null
+    surgerytypecode?: string | null
+    visitdatetime?: string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -29395,6 +29509,12 @@ export namespace Prisma {
     claimstatusdesc?: string | null
     claimstatusdesc_th?: string | null
     claimstatusdesc_en?: string | null
+    policytypecode?: string | null
+    idtype?: string | null
+    illnesstypecode?: string | null
+    servicesettingcode?: string | null
+    surgerytypecode?: string | null
+    visitdatetime?: string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -29424,6 +29544,12 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+    policytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    idtype?: NullableStringFieldUpdateOperationsInput | string | null
+    illnesstypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -29457,6 +29583,12 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+    policytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    idtype?: NullableStringFieldUpdateOperationsInput | string | null
+    illnesstypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -29489,6 +29621,12 @@ export namespace Prisma {
     claimstatusdesc?: string | null
     claimstatusdesc_th?: string | null
     claimstatusdesc_en?: string | null
+    policytypecode?: string | null
+    idtype?: string | null
+    illnesstypecode?: string | null
+    servicesettingcode?: string | null
+    surgerytypecode?: string | null
+    visitdatetime?: string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -29518,6 +29656,12 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+    policytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    idtype?: NullableStringFieldUpdateOperationsInput | string | null
+    illnesstypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -29550,6 +29694,12 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+    policytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    idtype?: NullableStringFieldUpdateOperationsInput | string | null
+    illnesstypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -31125,6 +31275,12 @@ export namespace Prisma {
     claimstatusdesc?: SortOrder
     claimstatusdesc_th?: SortOrder
     claimstatusdesc_en?: SortOrder
+    policytypecode?: SortOrder
+    idtype?: SortOrder
+    illnesstypecode?: SortOrder
+    servicesettingcode?: SortOrder
+    surgerytypecode?: SortOrder
+    visitdatetime?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -31164,6 +31320,12 @@ export namespace Prisma {
     claimstatusdesc?: SortOrder
     claimstatusdesc_th?: SortOrder
     claimstatusdesc_en?: SortOrder
+    policytypecode?: SortOrder
+    idtype?: SortOrder
+    illnesstypecode?: SortOrder
+    servicesettingcode?: SortOrder
+    surgerytypecode?: SortOrder
+    visitdatetime?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -31196,6 +31358,12 @@ export namespace Prisma {
     claimstatusdesc?: SortOrder
     claimstatusdesc_th?: SortOrder
     claimstatusdesc_en?: SortOrder
+    policytypecode?: SortOrder
+    idtype?: SortOrder
+    illnesstypecode?: SortOrder
+    servicesettingcode?: SortOrder
+    surgerytypecode?: SortOrder
+    visitdatetime?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -33441,6 +33609,12 @@ export namespace Prisma {
     claimstatusdesc?: string | null
     claimstatusdesc_th?: string | null
     claimstatusdesc_en?: string | null
+    policytypecode?: string | null
+    idtype?: string | null
+    illnesstypecode?: string | null
+    servicesettingcode?: string | null
+    surgerytypecode?: string | null
+    visitdatetime?: string | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -33471,6 +33645,12 @@ export namespace Prisma {
     claimstatusdesc?: string | null
     claimstatusdesc_th?: string | null
     claimstatusdesc_en?: string | null
+    policytypecode?: string | null
+    idtype?: string | null
+    illnesstypecode?: string | null
+    servicesettingcode?: string | null
+    surgerytypecode?: string | null
+    visitdatetime?: string | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -33586,6 +33766,12 @@ export namespace Prisma {
     claimstatusdesc?: StringNullableFilter<"transactionclaim"> | string | null
     claimstatusdesc_th?: StringNullableFilter<"transactionclaim"> | string | null
     claimstatusdesc_en?: StringNullableFilter<"transactionclaim"> | string | null
+    policytypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    idtype?: StringNullableFilter<"transactionclaim"> | string | null
+    illnesstypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    servicesettingcode?: StringNullableFilter<"transactionclaim"> | string | null
+    surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
+    visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -36087,6 +36273,12 @@ export namespace Prisma {
     claimstatusdesc?: string | null
     claimstatusdesc_th?: string | null
     claimstatusdesc_en?: string | null
+    policytypecode?: string | null
+    idtype?: string | null
+    illnesstypecode?: string | null
+    servicesettingcode?: string | null
+    surgerytypecode?: string | null
+    visitdatetime?: string | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -36116,6 +36308,12 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+    policytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    idtype?: NullableStringFieldUpdateOperationsInput | string | null
+    illnesstypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -36146,6 +36344,12 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+    policytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    idtype?: NullableStringFieldUpdateOperationsInput | string | null
+    illnesstypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -36176,6 +36380,12 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+    policytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    idtype?: NullableStringFieldUpdateOperationsInput | string | null
+    illnesstypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
+    visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {

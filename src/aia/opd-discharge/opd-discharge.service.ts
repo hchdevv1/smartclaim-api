@@ -128,6 +128,7 @@ try{
       VisitInfo: xQueryVisit,
      } 
   }
+
   let newResultOpdDischargeVisitDto= new ResultOpdDischargeVisitDto();
   newResultOpdDischargeVisitDto={
           HTTPStatus:newHttpMessageDto,
@@ -1051,55 +1052,126 @@ return newResultOpdDischargeProcedurDto
 async getOPDDischargeAccident(queryOpdDischargeDto:QueryOpdDischargeDto){
   let xResultInfo;
 try{
+// queryOpdDischargeDto.PatientInfo.RefId  ='pEKhwJse+NHAEc0sSghKp8bNr83caECQjC+vvuEaIKY=';
+// queryOpdDischargeDto.PatientInfo.TransactionNo  ='63bf82e4-9f86-4d69-a1f2-8adbb49646e3';
+//   queryOpdDischargeDto.PatientInfo.VN ='O405187-67'
+  const whereConditions = {
+    
+    ...(queryOpdDischargeDto.PatientInfo.VN ? { vn: { equals: queryOpdDischargeDto.PatientInfo.VN } } : {}),
+    ...(queryOpdDischargeDto.PatientInfo.RefId ? { refid: { equals: queryOpdDischargeDto.PatientInfo.RefId  } } : {}),
+    ...(queryOpdDischargeDto .PatientInfo. TransactionNo ? { transactionno: { equals: queryOpdDischargeDto .PatientInfo. TransactionNo } } : {}),
+
+  };
+  console.log(whereConditions)
+  const existingAccidentRecord = await prismaProgest.accidenttransactions.findFirst({
+    where: whereConditions
+  });
+  if (existingAccidentRecord){
+   // console.log('acc from db')
+   const newQueryAccidentDatabaseBodyDto ={
  
-  const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeAccident(queryOpdDischargeDto.PatientInfo.VN);
-  console.log(TrakcarepatientInfo)
- const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
-  if (TrakcarepatientInfoStatusCode !==200){
-    this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
-   const xCauseOfInjuryDetail =[{
-      CauseOfInjury: '',
-      CommentOfInjury: '',
-     } ]
-     const xInjuryDetail =[{
-      WoundType: '',
-      InjurySide: '',
-      InjuryArea: '',
-     } ]
-    const xQueryAccident ={    
-      AccidentPlace: '', 
-      AccidentDate: '',
-      CauseOfInjuryDetail:xCauseOfInjuryDetail,
-      InjuryDetail:xInjuryDetail
-     }
-     xResultInfo ={
-      AccidentDetailInfo: [xQueryAccident],
-     } 
-  }else{
-    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-    const xQueryAccident:QueryAccident= TrakcarepatientInfo.AccidentDetailInfo ? {
-      AccidentPlace: TrakcarepatientInfo.AccidentDetailInfo.AccidentPlace || '', 
-      AccidentDate: TrakcarepatientInfo.AccidentDetailInfo.AccidentDate || '',
-      CauseOfInjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail 
-        ? TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail.map((cause) => ({
-            CauseOfInjury: cause.CauseOfInjury || '',
-            CommentOfInjury: cause.CommentOfInjury || ''
-          }))
-        : [],
-      InjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail 
-        ? TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail.map((injury) => ({
-            WoundType: injury.WoundType || '',
-            InjurySide: injury.InjurySide || '',
-            InjuryArea: injury.InjuryArea || ''
-          }))
-        : []
+      RefId: queryOpdDischargeDto.PatientInfo.RefId,
+      TransactionNo:queryOpdDischargeDto.PatientInfo.TransactionNo,
+      InsurerCode:queryOpdDischargeDto.PatientInfo.InsurerCode,
+      HN: queryOpdDischargeDto.PatientInfo.HN,
+      VN: queryOpdDischargeDto.PatientInfo.VN,
+    
     }
-  : {};
-    xResultInfo ={
-      AccidentDetailInfo: xQueryAccident,
-     } 
-   
+    const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
+    // console.log('66666')
+    // console.log(accidentDatabase)
+    // console.log('66666')
+// ตรวจสอบว่า accidentDatabase ถูกกำหนด
+const accidentDetailInfo = new AccidentDetailDto();
+accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+const causeDetail = new CauseOfInjuryDetail();
+const injuryDetail = new InjuryDetail();
+// จัดการ CauseOfInjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+    accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+        
+        causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+        causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+        return causeDetail;
+    });
+} else {
+    throw new Error('CauseOfInjuryDetail is required.');
+}
+
+// จัดการ InjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+    accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+         
+        injuryDetail.WoundType = injury.WoundType || '';
+        injuryDetail.InjurySide = injury.InjurySide || '';
+        injuryDetail.InjuryArea = injury.InjuryArea || '';
+        return injuryDetail;
+    });
+}
+this.addFormatHTTPStatus(newHttpMessageDto,200,'suceess','')
+const xQueryAccident ={    
+  AccidentPlace: '', 
+  AccidentDate: '',
+  CauseOfInjuryDetail:causeDetail ,
+  InjuryDetail:injuryDetail
+ }
+ xResultInfo ={
+  AccidentDetailInfo: [xQueryAccident],
+ } 
+
+  }else{
+    console.log('acc from trakcare')
+    const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeAccident(queryOpdDischargeDto.PatientInfo.VN);
+    console.log(TrakcarepatientInfo)
+   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
+    if (TrakcarepatientInfoStatusCode !==200){
+      this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+     const xCauseOfInjuryDetail =[{
+        CauseOfInjury: '',
+        CommentOfInjury: '',
+       } ]
+       const xInjuryDetail =[{
+        WoundType: '',
+        InjurySide: '',
+        InjuryArea: '',
+       } ]
+      const xQueryAccident ={    
+        AccidentPlace: '', 
+        AccidentDate: '',
+        CauseOfInjuryDetail:xCauseOfInjuryDetail,
+        InjuryDetail:xInjuryDetail
+       }
+       xResultInfo ={
+        AccidentDetailInfo: [xQueryAccident],
+       } 
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      const xQueryAccident:QueryAccident= TrakcarepatientInfo.AccidentDetailInfo ? {
+        AccidentPlace: TrakcarepatientInfo.AccidentDetailInfo.AccidentPlace || '', 
+        AccidentDate: TrakcarepatientInfo.AccidentDetailInfo.AccidentDate || '',
+        CauseOfInjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail 
+          ? TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail.map((cause) => ({
+              CauseOfInjury: cause.CauseOfInjury || '',
+              CommentOfInjury: cause.CommentOfInjury || ''
+            }))
+          : [],
+        InjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail 
+          ? TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail.map((injury) => ({
+              WoundType: injury.WoundType || '',
+              InjurySide: injury.InjurySide || '',
+              InjuryArea: injury.InjuryArea || ''
+            }))
+          : []
+      }
+    : {};
+      xResultInfo ={
+        AccidentDetailInfo: xQueryAccident,
+       } 
+     
+    }
   }
+  
   let newResultOpdDischargeAccidentDto= new ResultOpdDischargeAccidentDto();
   newResultOpdDischargeAccidentDto={
           HTTPStatus:newHttpMessageDto,
@@ -1712,10 +1784,17 @@ try{
   xHN :querySubmitOpdDischargeDto.PatientInfo.HN ,//'62-027770',
   xInsurerCode: querySubmitOpdDischargeDto.PatientInfo.InsurerCode, //'13', 
   xVN: querySubmitOpdDischargeDto.PatientInfo.VN ,//'O415202-67',
-  xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode,
   xVisitDateTime :querySubmitOpdDischargeDto.PatientInfo.VisitDateTime,
   xFurtherClaimId : querySubmitOpdDischargeDto.PatientInfo.FurtherClaimId,
   xFurtherClaimNo : querySubmitOpdDischargeDto.PatientInfo.FurtherClaimNo,
+  xAccidentDate:querySubmitOpdDischargeDto.PatientInfo.AccidentDate,
+  xAccidentPlaceCode :querySubmitOpdDischargeDto.PatientInfo.AccidentPlaceCode,
+  xIdType:querySubmitOpdDischargeDto.PatientInfo.IdType,
+  xPolicyTypeCode :querySubmitOpdDischargeDto.PatientInfo.PolicyTypeCode,
+  xServiceSettingCode:querySubmitOpdDischargeDto.PatientInfo.ServiceSettingCode,
+  xSurgeryTypeCode:querySubmitOpdDischargeDto.PatientInfo.SurgeryTypeCode,
+  xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode
+
  }
 ////////////////////////////////////////
 console.log('kkkkk start kkkkkk')
@@ -1833,9 +1912,8 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
 }
 let newAccidentDetail
 if (RequesetBody.xIllnessTypeCode='ACC'){
- 
   // xAccidentDate:queryAccidentBodyDto.PatientInfo.AccidentDate||'', 
-  //   xAccidentPlaceCode:queryAccidentBodyDto.PatientInfo.AccidentPlaceCode||null, 
+//  xAccidentPlaceCode:queryAccidentBodyDto.PatientInfo.AccidentPlaceCode||null, 
   //   xAccidentInjuryWoundtypeCode:queryAccidentBodyDto.PatientInfo.AccidentInjuryWoundtypeCode||'', 
   //   xAccidentInjurySideCode:queryAccidentBodyDto.PatientInfo.AccidentInjurySideCode||'', 
   let TrakcareCauseOfInjury =""
@@ -1843,19 +1921,19 @@ if (RequesetBody.xIllnessTypeCode='ACC'){
   let TrakcareInjuryArea =""
   if (TrakcareInjuryArea.length<1){TrakcareInjuryArea ='T140'}
   newAccidentDetail= {
-    "AccidentPlace": '',//RequesetBody.xAccidentPlaceCode,
-    "AccidentDate": '',//RequesetBody.xAccidentDate,
+    "AccidentPlace": RequesetBody.xAccidentPlaceCode,
+    "AccidentDate": RequesetBody.xAccidentDate,
     "CauseOfInjuryDetail": [
         {
-            "CauseOfInjury": '',//TrakcareCauseOfInjury,
-            "CommentOfInjury":'',//RequesetBody.xWoundDetails
+            "CauseOfInjury": TrakcareCauseOfInjury,
+            "CommentOfInjury":''//RequesetBody.xWoundDetails
         }
     ],
     "InjuryDetail": [
         {
             "WoundType": '',//RequesetBody.xAccidentInjuryWoundtypeCode,
             "InjurySide": '',//RequesetBody.xAccidentInjurySideCode,
-            "InjuryArea": '',//TrakcareInjuryArea
+            "InjuryArea": TrakcareInjuryArea
         }
     ]
 }
@@ -1922,10 +2000,10 @@ if(existingProcedureRecord){
    }];
  }
 }else{
-  console.log('old procedure')
-  RequesetBody.xRefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
-  RequesetBody.xTransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
-  RequesetBody.xVN ='O415202-67'
+ // console.log('old procedure')
+  // RequesetBody.xRefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
+  // RequesetBody.xTransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
+  // RequesetBody.xVN ='O415202-67'
   const newQueryProcedeureDatabaseBodyDto ={
     RefId:RequesetBody.xRefId,
     TransactionNo:RequesetBody.xTransactionNo,
@@ -1935,7 +2013,7 @@ if(existingProcedureRecord){
   }
  
    getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
-   console.log('33333')
+  // console.log('33333')
   if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
      newResultProcedureInfoDto= await Promise.all(
       getOPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
@@ -1947,12 +2025,12 @@ if(existingProcedureRecord){
       };
     })
   );
-  console.log('555555')
-  console.log(newResultProcedureInfoDto)
-  console.log('555555')
+  // console.log('555555')
+  // console.log(newResultProcedureInfoDto)
+  // console.log('555555')
 
 } else {
-  console.log('4444')
+ // console.log('4444')
   newResultProcedureInfoDto = [{
     Icd9: '',
     ProcedureName: '',
@@ -1968,9 +2046,9 @@ if(existingProcedureRecord){
 }
 */
 }
-console.log('*******')
-console.log(getOPDDischargeProcedure.Result)
-console.log('*******')
+// console.log('*******')
+// console.log(getOPDDischargeProcedure.Result)
+// console.log('*******')
  //getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
 
 
@@ -2160,6 +2238,7 @@ let newResultDataJsonDto =new ResultDataJsonDto();
    TotalBillAmount:newTotalBillAmount,
    Pss: newResultPSSInfoDto
 }
+
 const newOPDDischargeResponseDto ={
 
   // RefId: 'OPD-008-Test-001',
@@ -2189,7 +2268,7 @@ const newOPDDischargeResponseDto ={
       //  const xElectronicSignature='';
       //  const xDataJsonType =3;
       //  const body_DataJson = {}
-  console.log(newOPDDischargeResponseDto)
+  //console.log(newOPDDischargeResponseDto)
   const body = newOPDDischargeResponseDto
   const headers = {
    'Content-Type': API_CONTENTTYPE,
@@ -2279,6 +2358,8 @@ if (existingRecord) {
       claimno:responsefromAIA.Data.ClaimNo,
       claimstatuscode:'02',
       claimstatusdesc:'Approve',
+      claimstatusdesc_en:'Approve',
+      claimstatusdesc_th:'อนุมัติการเรียกร้องสินไหม',
       occurrenceno:responsefromAIA.Data.OccurrenceNo,
       invoicenumber:responsefromAIA.Data.InvoiceNumber,
       totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
@@ -2300,16 +2381,22 @@ if (existingRecord) {
       claimno:responsefromAIA.Data.ClaimNo,
       claimstatuscode:'02',
       claimstatusdesc:'Approve',
+      claimstatusdesc_en:'Approve',
+      claimstatusdesc_th:'อนุมัติการเรียกร้องสินไหม',
       occurrenceno:responsefromAIA.Data.OccurrenceNo,
       invoicenumber:responsefromAIA.Data.InvoiceNumber,
       totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
       totalexcessamount:responsefromAIA.Data.TotalExcessAmount,
       isreimbursement:responsefromAIA.Data.IsReimbursement,
       furtherclaimid:RequesetBody.xFurtherClaimId,
-      furtherclaimno: RequesetBody.xFurtherClaimNo
-
-     // claimcancelnote:responsefromAIA.Data.ClaimStatus
-
+      furtherclaimno: RequesetBody.xFurtherClaimNo,
+      visitdatetime:RequesetBody.xVisitDateTime,
+      accidentdate:RequesetBody.xAccidentDate,
+      policytypecode:RequesetBody.xPolicyTypeCode,
+      idtype:RequesetBody.xIdType,
+      illnesstypecode:RequesetBody.xIllnessTypeCode,
+      servicesettingcode:RequesetBody.xServiceSettingCode,
+      surgerytypecode:RequesetBody.xSurgeryTypeCode
     },
   });
 
@@ -2456,6 +2543,20 @@ const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
   VN:  '',
   Weight: ''
 }
+//
+const newQueryVisitDatabaseBodyDto ={
+ 
+  RefId: RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN: RequesetBody.xHN,
+  VN: RequesetBody.xVN,
+
+}
+
+const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
+
+
 console.log('getOPDDischargeVisit done')
 // //console.log(newResultVisitInfoDto)
 // //--> get VitalSignIn  <--//

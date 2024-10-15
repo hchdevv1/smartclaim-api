@@ -227,6 +227,12 @@ model transactionclaim {
   claimstatusdesc         String?    @db.VarChar(255)
   claimstatusdesc_th      String?    @db.VarChar(255)
   claimstatusdesc_en      String?    @db.VarChar(255)
+  policytypecode          String?    @db.VarChar(255)
+  idtype                  String?    @db.VarChar(255)
+  illnesstypecode         String?    @db.VarChar(255)
+  servicesettingcode      String?    @db.VarChar(255)
+  surgerytypecode         String?    @db.VarChar(255)
+  visitdatetime           String?    @db.VarChar(255)
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 

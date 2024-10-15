@@ -147,6 +147,32 @@ export class ResultTransactionClaimDto {
     @IsOptional()
     InvoiceNumber?: string;
 
-
+    @IsString()
+    @IsOptional()
+    PolicyTypeCode?: string;
+    @IsString()
+    @IsOptional()
+    IdType?: string;
+    @IsString()
+    @IsOptional()
+    IllnessTypeCode?: string;
+    @IsString()
+    @IsOptional()
+    ServiceSettingCode?: string;
+    @IsString()
+    @IsOptional()
+    SurgeryTypeCode?: string;
+    @IsString()
+    @IsOptional()
+    FurtherClaimNo?: string;
+    @IsString()
+    @IsOptional()
+    FurtherClaimId?: string;
+    @IsString()
+    @IsOptional()
+    AccidentDate?: string;
+    @IsString()
+    @IsOptional()
+    VisitDateTime?: string;
 
   }

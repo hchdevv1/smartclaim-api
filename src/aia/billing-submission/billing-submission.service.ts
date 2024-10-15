@@ -41,7 +41,9 @@ export class BillingSubmissionService {
          xHN :queryBillingSubmissionBodyDto.PatientInfo.HN||'',
          xVN: queryBillingSubmissionBodyDto.PatientInfo.VN||'',
          xInvoiceNumber :queryBillingSubmissionBodyDto.PatientInfo.InvoiceNumber,
-         xDocumenttypeCode:queryBillingSubmissionBodyDto.PatientInfo.DocumenttypeCode
+         xDocumenttypeCode:queryBillingSubmissionBodyDto.PatientInfo.DocumenttypeCode,
+         xRunningdocument:queryBillingSubmissionBodyDto.PatientInfo.Runningdocument
+         
     
        }
 
