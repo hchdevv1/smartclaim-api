@@ -1978,9 +1978,7 @@ const existingProcedureRecord = await prismaProgest.proceduretransactions.findFi
 });
 let getOPDDischargeProcedure ;
 if(existingProcedureRecord){
-  console.log('new procedure')
    getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
-   let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
    if (getOPDDischargeProcedure && getOPDDischargeProcedure.ProcedureInfo && getOPDDischargeProcedure.ProcedureInfo.length > 0) {
       newResultProcedureInfoDto= await Promise.all(
        getOPDDischargeProcedure.ProcedureInfo.map(async (item) => {
@@ -1993,7 +1991,7 @@ if(existingProcedureRecord){
      })
    );
  } else {
-   newResultProcedureInfoDto = [{
+ newResultProcedureInfoDto = [{
      Icd9: '',
      ProcedureName: '',
      ProcedureDate: '',
@@ -2517,33 +2515,6 @@ if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischa
 console.log('getOPDDischargePatient done')
 //console.log(newResultPatientInfoDto)
 // //--> get Visit  <--//
- const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
-// //let newResultVisitInfoDto : ResultVisitInfoDto;
-const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
-  FurtherClaimId: '',
-  AccidentCauseOver45Days: '',
-  AdditionalNote: getOPDDischargeVisit.VisitInfo.AdditionalNote,
-  AlcoholRelated: getOPDDischargeVisit.VisitInfo.AlcoholRelated,
-  ChiefComplaint: getOPDDischargeVisit.VisitInfo.ChiefComplaint,
-  ComaScore: getOPDDischargeVisit.VisitInfo.ComaScore,
-  DxFreeText: getOPDDischargeVisit.VisitInfo.DxFreeText,
-  ExpectedDayOfRecovery: '',
-  Height: '',
-  PhysicalExam: '',
-  PlanOfTreatment: '',
-  Pregnant: getOPDDischargeVisit.VisitInfo.Pregnant,
-  PresentIllness: '',
-  PreviousTreatmentDate: '',
-  PreviousTreatmentDetail: '',
-  PrivateCase: getOPDDischargeVisit.VisitInfo.PrivateCase,
-  ProcedureFreeText: getOPDDischargeVisit.VisitInfo.ProcedureFreeText,
-  SignSymptomsDate: '',
-  UnderlyingCondition: '',
-  VisitDateTime: getOPDDischargeVisit.VisitInfo.VisitDateTime,
-  VN:  '',
-  Weight: ''
-}
-//
 const newQueryVisitDatabaseBodyDto ={
  
   RefId: RequesetBody.xRefId,
@@ -2555,6 +2526,60 @@ const newQueryVisitDatabaseBodyDto ={
 }
 
 const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
+const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
+  FurtherClaimId: getvisitformDatabase.Result.VisitInfo.FurtherClaimId||'',
+  AccidentCauseOver45Days: getvisitformDatabase.Result.VisitInfo.AccidentCauseOver45Days||'',
+  AdditionalNote: getvisitformDatabase.Result.VisitInfo.AdditionalNote||'',
+  AlcoholRelated: getvisitformDatabase.Result.VisitInfo.AlcoholRelated||false,
+  ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint||'',
+  ComaScore: getvisitformDatabase.Result.VisitInfo.ComaScore||'',
+  DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText||'',
+  ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
+  Height: getvisitformDatabase.Result.VisitInfo.Height||'',
+  PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
+  PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
+  Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
+  PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness||'',
+  PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
+  PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail||'',
+  PrivateCase: getvisitformDatabase.Result.VisitInfo.PrivateCase||false,
+  ProcedureFreeText: getvisitformDatabase.Result.VisitInfo.ProcedureFreeText,
+  SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
+  UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
+  VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
+  VN:  getvisitformDatabase.Result.VisitInfo.VN||'',
+  Weight: getvisitformDatabase.Result.VisitInfo.Weight||''
+}
+
+
+
+ //const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
+// //let newResultVisitInfoDto : ResultVisitInfoDto;
+// const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
+//   FurtherClaimId: '',
+//   AccidentCauseOver45Days: '',
+//   AdditionalNote: getOPDDischargeVisit.VisitInfo.AdditionalNote,
+//   AlcoholRelated: getOPDDischargeVisit.VisitInfo.AlcoholRelated,
+//   ChiefComplaint: getOPDDischargeVisit.VisitInfo.ChiefComplaint,
+//   ComaScore: getOPDDischargeVisit.VisitInfo.ComaScore,
+//   DxFreeText: getOPDDischargeVisit.VisitInfo.DxFreeText,
+//   ExpectedDayOfRecovery: '',
+//   Height: '',
+//   PhysicalExam: '',
+//   PlanOfTreatment: '',
+//   Pregnant: getOPDDischargeVisit.VisitInfo.Pregnant,
+//   PresentIllness: '',
+//   PreviousTreatmentDate: '',
+//   PreviousTreatmentDetail: '',
+//   PrivateCase: getOPDDischargeVisit.VisitInfo.PrivateCase,
+//   ProcedureFreeText: getOPDDischargeVisit.VisitInfo.ProcedureFreeText,
+//   SignSymptomsDate: '',
+//   UnderlyingCondition: '',
+//   VisitDateTime: getOPDDischargeVisit.VisitInfo.VisitDateTime,
+//   VN:  '',
+//   Weight: ''
+// }
+//
 
 
 console.log('getOPDDischargeVisit done')

@@ -22,7 +22,7 @@ import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,Queryli
   ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto
 }from './dto/claim-documents.dto';
 import { QueryProcedeureDatabaseBodyDto , ResultOpdDischargeProcedurDto ,ProcedeureDatabaseResultInfo } from './dto/result-procedure-databse.dto';
-import { QueryVisitDatabaseBodyDto ,ResultOpdDischargeVisitDto ,VisitDatabaseResultInfo} from './dto/result-visit-databse.dto';
+import { QueryVisitDatabaseBodyDto ,ResultOpdDischargeVisitDto ,VisitDatabaseResultInfo ,QueryVisitDatabse } from './dto/result-visit-databse.dto';
 import { QueryAccidentDatabaseBodyDto ,ResultAccidentDatabaseDto
 ,AccidentDatabaseResultInfo
 } from './dto/result-accident-databse.dto';
@@ -913,13 +913,6 @@ async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto)
   const xRefId =queryVisitDatabaseBodyDto.RefId;
   const xTransactionNo = queryVisitDatabaseBodyDto.TransactionNo;
   const xVN =queryVisitDatabaseBodyDto.VN;
-  console.log('yyyyyy')
-  console.log('yyyyyy')
-  console.log(xRefId)
-  console.log(xTransactionNo)
-  console.log(xVN)
-  console.log('yyyyyy')
-  console.log('yyyyyy')
   let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeVisitDto();
 // ดึงข้อมูลจากฐานข้อมูล
 const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst({ 
@@ -940,10 +933,10 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
    
   },
 });
-console.log(visittransactionsInfo)
-console.log('yyyyyy')
+//console.log(visittransactionsInfo)
+//console.log('yyyyyy')
 if(visittransactionsInfo){
-  console.log('yyy111yyy')
+  //console.log('yyy111yyy')
   const visitDatabaseResultInfo = new VisitDatabaseResultInfo();
   visitDatabaseResultInfo.VisitInfo = {
  
@@ -975,8 +968,8 @@ if(visittransactionsInfo){
    // Weight:visittransactionsInfo.
 
   };
-  console.log(visitDatabaseResultInfo)
-  console.log('yyy222yyy')
+  //console.log(visitDatabaseResultInfo)
+  //console.log('yyy222yyy')
       // this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       
      
@@ -992,43 +985,46 @@ if(visittransactionsInfo){
         Result:visitDatabaseResultInfo 
       }
 }else{
+
+  let newQueryVisitDatabse =new QueryVisitDatabse();
+  newQueryVisitDatabse={
+          AccidentCauseOver45Days:'',
+          AdditionalNote:'',
+          AlcoholRelated:false,
+          ChiefComplaint:'',
+          ComaScore:'',
+          DxFreeText:'',
+          ExpectedDayOfRecovery:'',
+          Height:'',
+        PhysicalExam:'',
+        PlanOfTreatment:'',
+         Pregnant:false,
+         PresentIllness:'',
+         PreviousTreatmentDate:'',
+         PreviousTreatmentDetail:'',
+          PrivateCase:false,
+          ProcedureFreeText:'',
+          SignSymptomsDate:'',
+          UnderlyingCondition:'',
+          VN:'',
+        }
+      let newVisitDatabaseResultInfo =new VisitDatabaseResultInfo();
+      newVisitDatabaseResultInfo={ VisitInfo: newQueryVisitDatabse}
   newResultOpdDischargeProcedurDto =
   {
       HTTPStatus: {
         statusCode: 200, message: 'VisitInfo not found', error: '' 
       },
-      // // Result:{
-      // //   visitDatabaseResultInfo:   {
-      // //     AccidentCauseOver45Days:'',
-      // //     AdditionalNote:'',
-      // //     AlcoholRelated:'',
-      // //     ChiefComplaint:'',
-      // //     ComaScore:'',
-      // //     DxFreeText:'',
-      // //     ExpectedDayOfRecovery:'',
-      // //     Height:'',
-      // //   // Height:visittransactionsInfo
-      // //   PhysicalExam:'',
-      // //   PlanOfTreatment:'',
-      // //    Pregnant:false,
-      // //    PresentIllness:'',
-      // //    PreviousTreatmentDate:'',
-      // //    PreviousTreatmentDetail:'',
-      // //     // PreviousTreatmentDate?: string;
-      // //     //PreviousTreatmentDetail?: string;
-      // //     PrivateCase:false,
-      // //     ProcedureFreeText:'',
-      // //     SignSymptomsDate:'',
-      // //     UnderlyingCondition:'',
-      // //     VN:'',
-      // //   }
-            
-       
-        
-      // }
+      Result : newVisitDatabaseResultInfo 
+    }
 }
-}
-
+console.log('yyyyyy')
+console.log('yyyyyy')
+console.log('yyyyyy')
+console.log(newResultOpdDischargeProcedurDto)
+console.log('yyyyyy')
+console.log('yyyyyy')
+console.log('yyyyyy')
      return newResultOpdDischargeProcedurDto  
 
 }
@@ -1729,9 +1725,7 @@ async getFileAsBase64(id: number) {
     
 }
 async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyDto) { 
-  console.log('dddd')
-  console.log(body.Runningdocument)
-  console.log('-----')
+
   const mimeTypeParts = file.mimetype.split('/');
   const fileType = mimeTypeParts[mimeTypeParts.length - 1];
     const fileRecord = await prismaProgest.claimdocuments.create({
@@ -1757,7 +1751,6 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
     return fileRecord; // ส่งคืนข้อมูลที่บันทึกไว้
 }
   async getFilesAsBase64findMany(ids: string) {
-    console.log(ids)
     const fileRecords = await prismaProgest.claimdocuments.findMany({
       where: {
        // id: { in: ids }, // ดึงไฟล์ตามอาเรย์ของ ID
