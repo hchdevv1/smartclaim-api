@@ -107,7 +107,7 @@ try{
         AlcoholRelated: Boolean(TrakcarepatientInfo.VisitInfo.AlcoholRelated) || false,
         ChiefComplaint: TrakcarepatientInfo.VisitInfo.ChiefComplaint || '',
         ComaScore: TrakcarepatientInfo.VisitInfo.ComaScore || '',
-        DxFreeText: 'fix for test ',///TrakcarepatientInfo.VisitInfo.DxFreeText || '',
+        DxFreeText: TrakcarepatientInfo.VisitInfo.DxFreeText || '',
         ExpectedDayOfRecovery: TrakcarepatientInfo.VisitInfo.ExpectedDayOfRecovery || '',
         Height: TrakcarepatientInfo.VisitInfo.Height || '',
         PhysicalExam: TrakcarepatientInfo.VisitInfo.PhysicalExam || '',
