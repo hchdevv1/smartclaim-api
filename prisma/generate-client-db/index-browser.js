@@ -311,7 +311,8 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   illnesstypecode: 'illnesstypecode',
   servicesettingcode: 'servicesettingcode',
   surgerytypecode: 'surgerytypecode',
-  visitdatetime: 'visitdatetime'
+  visitdatetime: 'visitdatetime',
+  runningdocument: 'runningdocument'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {

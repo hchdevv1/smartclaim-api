@@ -177,6 +177,11 @@ class SearchPatientBodyDto{
     @Type(() => QueryProcedure)
     @IsOptional()
     ProcedureInfo?: QueryProcedure[];
+
+       
+    @IsInt()
+    @IsOptional()
+    Runningdocument:number
   }
 class QueryProcedure{
 

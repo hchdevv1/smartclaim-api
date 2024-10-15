@@ -233,6 +233,7 @@ model transactionclaim {
   servicesettingcode      String?    @db.VarChar(255)
   surgerytypecode         String?    @db.VarChar(255)
   visitdatetime           String?    @db.VarChar(255)
+  runningdocument         Decimal?   @db.Decimal
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 

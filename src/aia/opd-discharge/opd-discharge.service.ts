@@ -1815,11 +1815,10 @@ try{
   xPolicyTypeCode :querySubmitOpdDischargeDto.PatientInfo.PolicyTypeCode,
   xServiceSettingCode:querySubmitOpdDischargeDto.PatientInfo.ServiceSettingCode,
   xSurgeryTypeCode:querySubmitOpdDischargeDto.PatientInfo.SurgeryTypeCode,
-  xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode
-
+  xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode,
+  xRunningdocument:querySubmitOpdDischargeDto.PatientInfo.Runningdocument
  }
 ////////////////////////////////////////
-console.log('kkkkk start kkkkkk')
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
 let newResultPatientInfoDto: ResultPatientInfoDto ;
@@ -2452,7 +2451,8 @@ if (existingRecord) {
       idtype:RequesetBody.xIdType,
       illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
-      surgerytypecode:RequesetBody.xSurgeryTypeCode
+      surgerytypecode:RequesetBody.xSurgeryTypeCode,
+      runningdocument:RequesetBody.xRunningdocument
     },
   });
 

@@ -174,5 +174,8 @@ export class ResultTransactionClaimDto {
     @IsString()
     @IsOptional()
     VisitDateTime?: string;
+    @IsInt()
+    @IsOptional()
+    Runningdocument?:number
 
   }

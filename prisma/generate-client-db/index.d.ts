@@ -18489,6 +18489,7 @@ export namespace Prisma {
     insurerid: number | null
     totalapprovedamount: Decimal | null
     totalexcessamount: Decimal | null
+    runningdocument: Decimal | null
   }
 
   export type TransactionclaimSumAggregateOutputType = {
@@ -18496,6 +18497,7 @@ export namespace Prisma {
     insurerid: number | null
     totalapprovedamount: Decimal | null
     totalexcessamount: Decimal | null
+    runningdocument: Decimal | null
   }
 
   export type TransactionclaimMinAggregateOutputType = {
@@ -18534,6 +18536,7 @@ export namespace Prisma {
     servicesettingcode: string | null
     surgerytypecode: string | null
     visitdatetime: string | null
+    runningdocument: Decimal | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -18572,6 +18575,7 @@ export namespace Prisma {
     servicesettingcode: string | null
     surgerytypecode: string | null
     visitdatetime: string | null
+    runningdocument: Decimal | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -18610,6 +18614,7 @@ export namespace Prisma {
     servicesettingcode: number
     surgerytypecode: number
     visitdatetime: number
+    runningdocument: number
     _all: number
   }
 
@@ -18619,6 +18624,7 @@ export namespace Prisma {
     insurerid?: true
     totalapprovedamount?: true
     totalexcessamount?: true
+    runningdocument?: true
   }
 
   export type TransactionclaimSumAggregateInputType = {
@@ -18626,6 +18632,7 @@ export namespace Prisma {
     insurerid?: true
     totalapprovedamount?: true
     totalexcessamount?: true
+    runningdocument?: true
   }
 
   export type TransactionclaimMinAggregateInputType = {
@@ -18664,6 +18671,7 @@ export namespace Prisma {
     servicesettingcode?: true
     surgerytypecode?: true
     visitdatetime?: true
+    runningdocument?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -18702,6 +18710,7 @@ export namespace Prisma {
     servicesettingcode?: true
     surgerytypecode?: true
     visitdatetime?: true
+    runningdocument?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -18740,6 +18749,7 @@ export namespace Prisma {
     servicesettingcode?: true
     surgerytypecode?: true
     visitdatetime?: true
+    runningdocument?: true
     _all?: true
   }
 
@@ -18865,6 +18875,7 @@ export namespace Prisma {
     servicesettingcode: string | null
     surgerytypecode: string | null
     visitdatetime: string | null
+    runningdocument: Decimal | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -18922,6 +18933,7 @@ export namespace Prisma {
     servicesettingcode?: boolean
     surgerytypecode?: boolean
     visitdatetime?: boolean
+    runningdocument?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -18961,6 +18973,7 @@ export namespace Prisma {
     servicesettingcode?: boolean
     surgerytypecode?: boolean
     visitdatetime?: boolean
+    runningdocument?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -19000,6 +19013,7 @@ export namespace Prisma {
     servicesettingcode?: boolean
     surgerytypecode?: boolean
     visitdatetime?: boolean
+    runningdocument?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19050,6 +19064,7 @@ export namespace Prisma {
       servicesettingcode: string | null
       surgerytypecode: string | null
       visitdatetime: string | null
+      runningdocument: Prisma.Decimal | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -19479,6 +19494,7 @@ export namespace Prisma {
     readonly servicesettingcode: FieldRef<"transactionclaim", 'String'>
     readonly surgerytypecode: FieldRef<"transactionclaim", 'String'>
     readonly visitdatetime: FieldRef<"transactionclaim", 'String'>
+    readonly runningdocument: FieldRef<"transactionclaim", 'Decimal'>
   }
     
 
@@ -26364,7 +26380,8 @@ export namespace Prisma {
     illnesstypecode: 'illnesstypecode',
     servicesettingcode: 'servicesettingcode',
     surgerytypecode: 'surgerytypecode',
-    visitdatetime: 'visitdatetime'
+    visitdatetime: 'visitdatetime',
+    runningdocument: 'runningdocument'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -27700,6 +27717,7 @@ export namespace Prisma {
     servicesettingcode?: StringNullableFilter<"transactionclaim"> | string | null
     surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
+    runningdocument?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -27739,6 +27757,7 @@ export namespace Prisma {
     servicesettingcode?: SortOrderInput | SortOrder
     surgerytypecode?: SortOrderInput | SortOrder
     visitdatetime?: SortOrderInput | SortOrder
+    runningdocument?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -27781,6 +27800,7 @@ export namespace Prisma {
     servicesettingcode?: StringNullableFilter<"transactionclaim"> | string | null
     surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
+    runningdocument?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -27820,6 +27840,7 @@ export namespace Prisma {
     servicesettingcode?: SortOrderInput | SortOrder
     surgerytypecode?: SortOrderInput | SortOrder
     visitdatetime?: SortOrderInput | SortOrder
+    runningdocument?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -27866,6 +27887,7 @@ export namespace Prisma {
     servicesettingcode?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     surgerytypecode?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    runningdocument?: DecimalNullableWithAggregatesFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -29476,6 +29498,7 @@ export namespace Prisma {
     servicesettingcode?: string | null
     surgerytypecode?: string | null
     visitdatetime?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -29515,6 +29538,7 @@ export namespace Prisma {
     servicesettingcode?: string | null
     surgerytypecode?: string | null
     visitdatetime?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -29550,6 +29574,7 @@ export namespace Prisma {
     servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -29589,6 +29614,7 @@ export namespace Prisma {
     servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -29627,6 +29653,7 @@ export namespace Prisma {
     servicesettingcode?: string | null
     surgerytypecode?: string | null
     visitdatetime?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -29662,6 +29689,7 @@ export namespace Prisma {
     servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -29700,6 +29728,7 @@ export namespace Prisma {
     servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -31281,6 +31310,7 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     surgerytypecode?: SortOrder
     visitdatetime?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -31288,6 +31318,7 @@ export namespace Prisma {
     insurerid?: SortOrder
     totalapprovedamount?: SortOrder
     totalexcessamount?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type transactionclaimMaxOrderByAggregateInput = {
@@ -31326,6 +31357,7 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     surgerytypecode?: SortOrder
     visitdatetime?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -31364,6 +31396,7 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     surgerytypecode?: SortOrder
     visitdatetime?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -31371,6 +31404,7 @@ export namespace Prisma {
     insurerid?: SortOrder
     totalapprovedamount?: SortOrder
     totalexcessamount?: SortOrder
+    runningdocument?: SortOrder
   }
 
   export type ClaimstatusNullableRelationFilter = {
@@ -33615,6 +33649,7 @@ export namespace Prisma {
     servicesettingcode?: string | null
     surgerytypecode?: string | null
     visitdatetime?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -33651,6 +33686,7 @@ export namespace Prisma {
     servicesettingcode?: string | null
     surgerytypecode?: string | null
     visitdatetime?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -33772,6 +33808,7 @@ export namespace Prisma {
     servicesettingcode?: StringNullableFilter<"transactionclaim"> | string | null
     surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
+    runningdocument?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -36279,6 +36316,7 @@ export namespace Prisma {
     servicesettingcode?: string | null
     surgerytypecode?: string | null
     visitdatetime?: string | null
+    runningdocument?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -36314,6 +36352,7 @@ export namespace Prisma {
     servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -36350,6 +36389,7 @@ export namespace Prisma {
     servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -36386,6 +36426,7 @@ export namespace Prisma {
     servicesettingcode?: NullableStringFieldUpdateOperationsInput | string | null
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {
