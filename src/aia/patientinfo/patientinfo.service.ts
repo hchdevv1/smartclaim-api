@@ -843,7 +843,8 @@ export class PatientinfoService {
         });
     
     let xResultInfo: ResultTransactionInfo;
-    
+    // console.log('------')
+    // console.log(ResultQuery)
     if (ResultQuery.length>0) {
       xResultInfo = {
         TransactionClaimInfo: ResultQuery.map((claim) => ({

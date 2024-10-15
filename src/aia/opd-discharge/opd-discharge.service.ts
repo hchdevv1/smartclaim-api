@@ -1975,34 +1975,78 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
     Icd10: '',
   }];
 }
+console.log('getOPDDischargeDiagnosis done')
 
 let newAccidentDetail
 if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
-  // xAccidentDate:queryAccidentBodyDto.PatientInfo.AccidentDate||'', 
-//  xAccidentPlaceCode:queryAccidentBodyDto.PatientInfo.AccidentPlaceCode||null, 
-  //   xAccidentInjuryWoundtypeCode:queryAccidentBodyDto.PatientInfo.AccidentInjuryWoundtypeCode||'', 
-  //   xAccidentInjurySideCode:queryAccidentBodyDto.PatientInfo.AccidentInjurySideCode||'', 
-  let TrakcareCauseOfInjury =""
-  if (TrakcareCauseOfInjury.length<1){TrakcareCauseOfInjury ='X599'}
-  let TrakcareInjuryArea =""
-  if (TrakcareInjuryArea.length<1){TrakcareInjuryArea ='T140'}
-  newAccidentDetail= {
-    "AccidentPlace": RequesetBody.xAccidentPlaceCode,
-    "AccidentDate": RequesetBody.xAccidentDate,
-    "CauseOfInjuryDetail": [
-        {
-            "CauseOfInjury": TrakcareCauseOfInjury,
-            "CommentOfInjury":''//RequesetBody.xWoundDetails
-        }
-    ],
-    "InjuryDetail": [
-        {
-            "WoundType": '',//RequesetBody.xAccidentInjuryWoundtypeCode,
-            "InjurySide": '',//RequesetBody.xAccidentInjurySideCode,
-            "InjuryArea": TrakcareInjuryArea
-        }
-    ]
+
+
+  console.log('Start --> getAccident ')
+let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
+newQueryAccidentDatabaseBodyDto ={
+  RefId: RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN: RequesetBody.xHN,
+  VN: RequesetBody.xVN,
 }
+console.log('newQueryAccidentDatabaseBodyDto')
+console.log(newQueryAccidentDatabaseBodyDto)
+console.log('fffff')
+const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
+
+// ตรวจสอบว่า accidentDatabase ถูกกำหนด
+if (!accidentDatabase) {
+    throw new Error('accidentDatabase is required.');
+}
+
+const newAccidentDetail = new AccidentDetailDto();
+newAccidentDetail.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+newAccidentDetail.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+
+// จัดการ CauseOfInjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+  newAccidentDetail.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+        const causeDetail = new CauseOfInjuryDetail();
+        causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+        causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+        return causeDetail;
+    });
+} else {
+    throw new Error('CauseOfInjuryDetail is required.');
+}
+
+// จัดการ InjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+  newAccidentDetail.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+        const injuryDetail = new InjuryDetail();
+        injuryDetail.WoundType = injury.WoundType || '';
+        injuryDetail.InjurySide = injury.InjurySide || '';
+        injuryDetail.InjuryArea = injury.InjuryArea || '';
+        return injuryDetail;
+    });
+}
+
+
+
+  
+//   newAccidentDetail= {
+//     "AccidentPlace": RequesetBody.xAccidentPlaceCode,
+//     "AccidentDate": RequesetBody.xAccidentDate,
+//     "CauseOfInjuryDetail": [
+//         {
+//             "CauseOfInjury": TrakcareCauseOfInjury,
+//             "CommentOfInjury":''//RequesetBody.xWoundDetails
+//         }
+//     ],
+//     "InjuryDetail": [
+//         {
+//             "WoundType": '',//RequesetBody.xAccidentInjuryWoundtypeCode,
+//             "InjurySide": '',//RequesetBody.xAccidentInjurySideCode,
+//             "InjuryArea": TrakcareInjuryArea
+//         }
+//     ]
+// }
 }else{
 
   newAccidentDetail= {
@@ -2023,9 +2067,8 @@ if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER'))
     ]
 }
 }
-console.log('getOPDDischargeDiagnosis done')
 // //--> get AccidentDetail  <--//
- 
+
 // //--> get Procedure  <--//
 // step 1 query in database
 
