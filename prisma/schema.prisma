@@ -179,6 +179,7 @@ model medicaltransactions {
   haveaccidentcauseofinjurydetail Boolean?
   haveprocedure                   Boolean?
   privatecase                     Boolean?
+  visitdatetime                   String?  @db.VarChar(255)
 }
 
 model policytype {

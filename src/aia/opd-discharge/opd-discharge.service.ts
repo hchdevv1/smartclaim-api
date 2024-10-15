@@ -1277,7 +1277,7 @@ async SubmitVisit(queryVisitDto:QueryVisitDto){
     const xHN =queryVisitDto.PatientInfo.HN;
     const xVN =queryVisitDto.PatientInfo.VN;
 
-   // const xVisitDateTime =queryVisitDto.PatientInfo.VisitDateTime||'';
+    const xVisitDateTime =queryVisitDto.PatientInfo.VisitDateTime||'';
     const xDxFreeText =queryVisitDto.PatientInfo.DxFreeText||'';
     const xPresentIllness =queryVisitDto.PatientInfo.PresentIllness||'';
     const xChiefComplaint =queryVisitDto.PatientInfo.ChiefComplaint||'';
@@ -1340,7 +1340,8 @@ if (xTransactionNo){
         haveaccidentinjurydetail: xHaveAccidentInjuryDetail,
         haveaccidentcauseofinjurydetail: xHaveAccidentCauseOfInjuryDetail,
         haveprocedure: xHaveProcedure,
-        privatecase:xPrivateCase
+        privatecase:xPrivateCase,
+        visitdatetime:xVisitDateTime
       },
     });
   }catch (error) {

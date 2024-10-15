@@ -259,7 +259,8 @@ exports.Prisma.MedicaltransactionsScalarFieldEnum = {
   haveaccidentinjurydetail: 'haveaccidentinjurydetail',
   haveaccidentcauseofinjurydetail: 'haveaccidentcauseofinjurydetail',
   haveprocedure: 'haveprocedure',
-  privatecase: 'privatecase'
+  privatecase: 'privatecase',
+  visitdatetime: 'visitdatetime'
 };
 
 exports.Prisma.PolicytypeScalarFieldEnum = {

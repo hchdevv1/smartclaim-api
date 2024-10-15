@@ -929,7 +929,7 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
        additionalnote: true, signsymptomsdate: true, comascore: true,
         expecteddayofrecovery: true, pregnant: true, alcoholrelated: true,
          haveaccidentinjurydetail: true, haveaccidentcauseofinjurydetail: true, haveprocedure: true,
-          privatecase: true
+          privatecase: true,visitdatetime:true
    
   },
 });
@@ -961,7 +961,7 @@ if(visittransactionsInfo){
     SignSymptomsDate:visittransactionsInfo.signsymptomsdate,
     UnderlyingCondition:visittransactionsInfo.underlyingcondition,
 
-   // VisitDateTime:visittransactionsInfo.
+   VisitDateTime:visittransactionsInfo.visitdatetime,
 
    // VN:visittransactionsInfo.
 
@@ -1018,13 +1018,13 @@ if(visittransactionsInfo){
       Result : newVisitDatabaseResultInfo 
     }
 }
-console.log('yyyyyy')
-console.log('yyyyyy')
-console.log('yyyyyy')
-console.log(newResultOpdDischargeProcedurDto)
-console.log('yyyyyy')
-console.log('yyyyyy')
-console.log('yyyyyy')
+// console.log('yyyyyy')
+// console.log('yyyyyy')
+// console.log('yyyyyy')
+// console.log(newResultOpdDischargeProcedurDto)
+// console.log('yyyyyy')
+// console.log('yyyyyy')
+// console.log('yyyyyy')
      return newResultOpdDischargeProcedurDto  
 
 }
@@ -2048,7 +2048,7 @@ const whereConditions = {
     where :whereConditions
     });
     
-     console.log(fileRecords)
+     //console.log(fileRecords)
      if (fileRecords.length === 0) {
        throw new NotFoundException('Files not found');
      }
@@ -2093,7 +2093,7 @@ const whereConditions = {
       }),
     );
  
-    console.log('Result Attach Doc List:', newResultAttachDocListInfoDto);
+    //console.log('Result Attach Doc List:', newResultAttachDocListInfoDto);
  
     return newResultAttachDocListInfoDto;
  
