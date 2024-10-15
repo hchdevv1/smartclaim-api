@@ -1121,27 +1121,49 @@ const xQueryAccident ={
  } 
 
   }else{
-    console.log('acc from trakcare')
+    //console.log('acc from trakcare')
     const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeAccident(queryOpdDischargeDto.PatientInfo.VN);
-    console.log(TrakcarepatientInfo)
-   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
+    const xAccientdata =queryOpdDischargeDto.PatientInfo.AccidentDate
+    const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
     if (TrakcarepatientInfoStatusCode !==200){
       this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
-     const xCauseOfInjuryDetail =[{
-        CauseOfInjury: '',
+      let xCauseOfInjuryDetail,xInjuryDetail,xQueryAccident
+     if (xAccientdata){
+
+       xCauseOfInjuryDetail =[{
+        CauseOfInjury: 'X599',
         CommentOfInjury: '',
        } ]
-       const xInjuryDetail =[{
+        xInjuryDetail =[{
         WoundType: '',
         InjurySide: '',
-        InjuryArea: '',
+        InjuryArea: 'T149',
        } ]
-      const xQueryAccident ={    
+       xQueryAccident ={    
         AccidentPlace: '', 
         AccidentDate: '',
         CauseOfInjuryDetail:xCauseOfInjuryDetail,
         InjuryDetail:xInjuryDetail
        }
+     }else{
+
+       xCauseOfInjuryDetail =[{
+        CauseOfInjury: '',
+        CommentOfInjury: '',
+       } ]
+        xInjuryDetail =[{
+        WoundType: '',
+        InjurySide: '',
+        InjuryArea: '',
+       } ]
+       xQueryAccident ={    
+        AccidentPlace: '', 
+        AccidentDate: '',
+        CauseOfInjuryDetail:xCauseOfInjuryDetail,
+        InjuryDetail:xInjuryDetail
+       }
+     }
+      
        xResultInfo ={
         AccidentDetailInfo: [xQueryAccident],
        } 
@@ -1817,35 +1839,79 @@ if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischa
 console.log('getOPDDischargePatient done')
 //console.log(newResultPatientInfoDto)
 // //--> get Visit  <--//
- const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
-// console.log(getOPDDischargeVisit)
-// console.log('xxxxxxxxx')
-// //let newResultVisitInfoDto : ResultVisitInfoDto;
-const newResultVisitInfoDto : ResultVisitInfoDto= {
-  FurtherClaimId: '',
-  AccidentCauseOver45Days: '',
-  AdditionalNote: getOPDDischargeVisit.VisitInfo.AdditionalNote,
-  AlcoholRelated: getOPDDischargeVisit.VisitInfo.AlcoholRelated,
-  ChiefComplaint: getOPDDischargeVisit.VisitInfo.ChiefComplaint,
-  ComaScore: getOPDDischargeVisit.VisitInfo.ComaScore,
-  DxFreeText: getOPDDischargeVisit.VisitInfo.DxFreeText,
-  ExpectedDayOfRecovery: '',
-  Height: '',
-  PhysicalExam: '',
-  PlanOfTreatment: '',
-  Pregnant: getOPDDischargeVisit.VisitInfo.Pregnant,
-  PresentIllness: '',
-  PreviousTreatmentDate: '',
-  PreviousTreatmentDetail: '',
-  PrivateCase: getOPDDischargeVisit.VisitInfo.PrivateCase,
-  ProcedureFreeText: getOPDDischargeVisit.VisitInfo.ProcedureFreeText,
-  SignSymptomsDate: '',
-  UnderlyingCondition: '',
-  VisitDateTime: getOPDDischargeVisit.VisitInfo.VisitDateTime,
-  Vn:  await this.utilsService.EncryptAESECB( getOPDDischargeVisit.VisitInfo.VisitDateTime,AIA_APISecretkey) ,
-  Weight: ''
+const whereConditionsGetVisit = {
+  ...(RequesetBody.xVN ? { vn: { equals: RequesetBody.xVN } } : {}),
+  ...(RequesetBody.xRefId ? { refid: { equals: RequesetBody.xRefId } } : {}),
+  ...(RequesetBody.xTransactionNo ? { transactionno: { equals: RequesetBody.xTransactionNo } } : {}),
+};
+const existingVisitRecord = await prismaProgest.medicaltransactions.findFirst({
+where: whereConditionsGetVisit
+});
+let newResultVisitInfoDto = new ResultVisitInfoDto()
+if (existingVisitRecord){
+  const newQueryVisitDatabaseBodyDto ={
+    RefId: RequesetBody.xRefId,
+    TransactionNo: RequesetBody.xTransactionNo,
+    InsurerCode:RequesetBody.xInsurerCode,
+    HN: RequesetBody.xHN,
+    VN: RequesetBody.xVN,
+  }
+  const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
+   newResultVisitInfoDto= {
+    FurtherClaimId: getvisitformDatabase.Result.VisitInfo.FurtherClaimId||'',
+    AccidentCauseOver45Days: getvisitformDatabase.Result.VisitInfo.AccidentCauseOver45Days||'',
+    AdditionalNote: getvisitformDatabase.Result.VisitInfo.AdditionalNote||'',
+    AlcoholRelated: getvisitformDatabase.Result.VisitInfo.AlcoholRelated||false,
+    ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint||'',
+    ComaScore: getvisitformDatabase.Result.VisitInfo.ComaScore||'',
+    DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText||'',
+    ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
+    Height: getvisitformDatabase.Result.VisitInfo.Height||'',
+    PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
+    PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
+    Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
+    PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness||'',
+    PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
+    PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail||'',
+    PrivateCase: getvisitformDatabase.Result.VisitInfo.PrivateCase||false,
+    ProcedureFreeText: getvisitformDatabase.Result.VisitInfo.ProcedureFreeText,
+    SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
+    UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
+    VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
+    Vn:  getvisitformDatabase.Result.VisitInfo.VN||'',
+    Weight: getvisitformDatabase.Result.VisitInfo.Weight||''
+  }
+  console.log('getOPDDischargeVisit done from database')
+}else{
+  const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
+  newResultVisitInfoDto= {
+    FurtherClaimId: '',
+    AccidentCauseOver45Days: '',
+    AdditionalNote: getOPDDischargeVisit.VisitInfo.AdditionalNote,
+    AlcoholRelated: getOPDDischargeVisit.VisitInfo.AlcoholRelated,
+    ChiefComplaint: getOPDDischargeVisit.VisitInfo.ChiefComplaint,
+    ComaScore: getOPDDischargeVisit.VisitInfo.ComaScore,
+    DxFreeText: getOPDDischargeVisit.VisitInfo.DxFreeText,
+    ExpectedDayOfRecovery: '',
+    Height: '',
+    PhysicalExam: '',
+    PlanOfTreatment: '',
+    Pregnant: getOPDDischargeVisit.VisitInfo.Pregnant,
+    PresentIllness: '',
+    PreviousTreatmentDate: '',
+    PreviousTreatmentDetail: '',
+    PrivateCase: getOPDDischargeVisit.VisitInfo.PrivateCase,
+    ProcedureFreeText: getOPDDischargeVisit.VisitInfo.ProcedureFreeText,
+    SignSymptomsDate: '',
+    UnderlyingCondition: '',
+    VisitDateTime: getOPDDischargeVisit.VisitInfo.VisitDateTime,
+    Vn:  await this.utilsService.EncryptAESECB( getOPDDischargeVisit.VisitInfo.VisitDateTime,AIA_APISecretkey) ,
+    Weight: ''
+  }
+  console.log('getOPDDischargeVisit done from trakcare')
 }
-console.log('getOPDDischargeVisit done')
+
+
 // //console.log(newResultVisitInfoDto)
 // //--> get VitalSignIn  <--//
 const getOPDDischargeVitalSign = await this.trakcareService.getOPDDischargeVitalSign(RequesetBody.xVN);
@@ -1910,8 +1976,9 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
     Icd10: '',
   }];
 }
+
 let newAccidentDetail
-if (RequesetBody.xIllnessTypeCode='ACC'){
+if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
   // xAccidentDate:queryAccidentBodyDto.PatientInfo.AccidentDate||'', 
 //  xAccidentPlaceCode:queryAccidentBodyDto.PatientInfo.AccidentPlaceCode||null, 
   //   xAccidentInjuryWoundtypeCode:queryAccidentBodyDto.PatientInfo.AccidentInjuryWoundtypeCode||'', 
@@ -1968,9 +2035,6 @@ console.log('getOPDDischargeDiagnosis done')
       ...(RequesetBody.xVN ? { vn: { equals: RequesetBody.xVN } } : {}),
       ...(RequesetBody.xRefId ? { refid: { equals: RequesetBody.xRefId } } : {}),
       ...(RequesetBody.xTransactionNo ? { transactionno: { equals: RequesetBody.xTransactionNo } } : {}),
-      
-
-    
     };
 let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
 const existingProcedureRecord = await prismaProgest.proceduretransactions.findFirst({
@@ -2260,13 +2324,7 @@ const newOPDDischargeResponseDto ={
       const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
        const apiURL= `${AIA_APIURL}/SmartClaim/opdDischarge`;
-      //  const xUsername=AIA_APIHopitalUsername;
-      //  const xHospitalCode =await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey);
-      //  const xInsurerCode=RequesetBody;
-      //  const xElectronicSignature='';
-      //  const xDataJsonType =3;
-      //  const body_DataJson = {}
-  //console.log(newOPDDischargeResponseDto)
+
   const body = newOPDDischargeResponseDto
   const headers = {
    'Content-Type': API_CONTENTTYPE,
@@ -2516,7 +2574,6 @@ console.log('getOPDDischargePatient done')
 //console.log(newResultPatientInfoDto)
 // //--> get Visit  <--//
 const newQueryVisitDatabaseBodyDto ={
- 
   RefId: RequesetBody.xRefId,
   TransactionNo: RequesetBody.xTransactionNo,
   InsurerCode:RequesetBody.xInsurerCode,
@@ -2524,7 +2581,6 @@ const newQueryVisitDatabaseBodyDto ={
   VN: RequesetBody.xVN,
 
 }
-
 const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
 const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
   FurtherClaimId: getvisitformDatabase.Result.VisitInfo.FurtherClaimId||'',
@@ -2550,9 +2606,6 @@ const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
   VN:  getvisitformDatabase.Result.VisitInfo.VN||'',
   Weight: getvisitformDatabase.Result.VisitInfo.Weight||''
 }
-
-
-
  //const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
 // //let newResultVisitInfoDto : ResultVisitInfoDto;
 // const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
@@ -2686,15 +2739,12 @@ else {
 }
  
 let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
-
 newQueryAccidentDatabaseBodyDto ={
- 
   RefId: RequesetBody.xRefId,
   TransactionNo: RequesetBody.xTransactionNo,
   InsurerCode:RequesetBody.xInsurerCode,
   HN: RequesetBody.xHN,
   VN: RequesetBody.xVN,
-
 }
 console.log('newQueryAccidentDatabaseBodyDto')
 console.log(newQueryAccidentDatabaseBodyDto)
@@ -2737,28 +2787,6 @@ console.log('88888888')
 console.log(accidentDetailInfo)
 console.log('9999999999')
 
-
-
-// newAccidentDatabaseResultInfo.AccidentDetailInfo ={
-
-//   AccidentPlace:'string',
-//   AccidentDate: 'string',
-//   CauseOfInjuryDetail: newCauseOfInjuryDetail,
-//    InjuryDetail:newInjuryDetail
-// }
-
-
-
-//   if (getAccidentformDatabase && getAccidentformDatabase.Result && getAccidentformDatabase.Result.AccidentDetailInfo && getAccidentformDatabase.Result.AccidentDetailInfo > 0) {
-  
-//   // newAccidentDatabaseResultInfo = {
-//   //  // AccidentDetailInfo: accidentDetailInfoArray
-//   // };
-// console.log('kkkkkoooo')
-//   console.log(getAccidentformDatabase)
-// }else {
- 
-// }
 // //--> get Investigation  <--//
 let newResultReviewInvestigationInfoDto: ResultReviewInvestigationInfoDto[] = [];
 const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeInvestigation(RequesetBody.xVN); 
