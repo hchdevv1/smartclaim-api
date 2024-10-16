@@ -2447,6 +2447,8 @@ xResultInfo ={
    
   },
 });
+const effectiveDate = new Date(RequesetBody.xVisitDateTime);
+const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
 if (existingRecord) {
 
   await prismaProgest.transactionclaim.update({
@@ -2455,20 +2457,35 @@ if (existingRecord) {
     },
     data: {
       claimno:responsefromAIA.Data.ClaimNo,
-      claimstatuscode:'02',
-      claimstatusdesc:'Approve',
-      claimstatusdesc_en:'Approve',
-      claimstatusdesc_th:'อนุมัติการเรียกร้องสินไหม',
+      // claimstatuscode:'',
+      // claimstatusdesc:'Approve',
+      // claimstatusdesc_en:'Approve',
+      // claimstatusdesc_th:'อนุมัติการเรียกร้องสินไหม',
       occurrenceno:responsefromAIA.Data.OccurrenceNo,
       invoicenumber:responsefromAIA.Data.InvoiceNumber,
       totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
       totalexcessamount:responsefromAIA.Data.TotalExcessAmount,
       isreimbursement:responsefromAIA.Data.IsReimbursement,
+      insurerid: RequesetBody.xInsurerCode ,
+      refid: RequesetBody.xRefId,
+      transactionno: RequesetBody.xTransactionNo,
+      hn:RequesetBody.xHN,
+      vn:RequesetBody.xVN,
+      visitdate:formattedEffectiveDate ,
+      furtherclaimid:RequesetBody.xFurtherClaimId,
+      furtherclaimno: RequesetBody.xFurtherClaimNo,
+      visitdatetime:RequesetBody.xVisitDateTime,
+      accidentdate:RequesetBody.xAccidentDate,
+      policytypecode:RequesetBody.xPolicyTypeCode,
+      idtype:RequesetBody.xIdType,
+      illnesstypecode:RequesetBody.xIllnessTypeCode,
+      servicesettingcode:RequesetBody.xServiceSettingCode,
+      surgerytypecode:RequesetBody.xSurgeryTypeCode,
+      runningdocument:RequesetBody.xRunningdocument
     },
   });
 }else{
-  const effectiveDate = new Date(RequesetBody.xVisitDateTime);
-  const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
+  
   await prismaProgest.transactionclaim.create({
     data: {
       insurerid: RequesetBody.xInsurerCode ,
@@ -2478,10 +2495,10 @@ if (existingRecord) {
       vn:RequesetBody.xVN,
       visitdate:formattedEffectiveDate ,
       claimno:responsefromAIA.Data.ClaimNo,
-      claimstatuscode:'02',
-      claimstatusdesc:'Approve',
-      claimstatusdesc_en:'Approve',
-      claimstatusdesc_th:'อนุมัติการเรียกร้องสินไหม',
+      // claimstatuscode:'02',
+      // claimstatusdesc:'Approve',
+      // claimstatusdesc_en:'Approve',
+      // claimstatusdesc_th:'อนุมัติการเรียกร้องสินไหม',
       occurrenceno:responsefromAIA.Data.OccurrenceNo,
       invoicenumber:responsefromAIA.Data.InvoiceNumber,
       totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
