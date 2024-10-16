@@ -24,7 +24,7 @@ const AIA_APIHospitalCode =process.env.AIA_APIHospitalCode;
 const AIA_APIHopitalUsername=process.env.AIA_APIHopitalUsername;
 const AIA_APISubscription =process.env.AIA_APISubscription;
 const API_CONTENTTYPE = process.env.API_CONTENTTYPE
-const DUMMY_National_ID = process.env.DUMMY_National_ID
+//const DUMMY_National_ID = process.env.DUMMY_National_ID
 @Injectable()
 export class CheckEligibleService {
   constructor(
