@@ -7,6 +7,14 @@ export class ResultCheckEligibleDto {
     HTTPStatus: HttpMessageDto;
    Result?: InsuranceResultInfo;
  }
+
+ export class CreateTransactionDto {
+
+  HTTPStatus: HttpMessageDto;
+  @IsString()
+  @IsOptional()
+  Result?: string;
+}
   class InsuranceResultInfo{
     InsuranceResult?:InsuranceResult;
     InsuranceData?:InsuranceData;

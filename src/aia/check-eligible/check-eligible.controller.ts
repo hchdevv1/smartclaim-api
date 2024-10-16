@@ -19,4 +19,9 @@ export class CheckEligibleController {
         const result = this.checkEligibleService.checkeligible(queryEligibleBodyDto);
         return result
   }
+  @Post('/crateTransaction')
+  async crateTransaction(@Body() queryEligibleBodyDto:QueryEligibleBodyDto){
+        const result = this.checkEligibleService.crateTransaction(queryEligibleBodyDto);
+        return result
+  }
 }

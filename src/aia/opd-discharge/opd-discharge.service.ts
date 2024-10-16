@@ -1113,11 +1113,11 @@ this.addFormatHTTPStatus(newHttpMessageDto,200,'suceess','')
 const xQueryAccident ={    
   AccidentPlace: '', 
   AccidentDate: '',
-  CauseOfInjuryDetail:causeDetail ,
-  InjuryDetail:injuryDetail
+  CauseOfInjuryDetail:[causeDetail] ,
+  InjuryDetail:[injuryDetail]
  }
  xResultInfo ={
-  AccidentDetailInfo: [xQueryAccident],
+  AccidentDetailInfo: xQueryAccident,
  } 
 
   }else{

@@ -11,7 +11,8 @@ import { UtilsService } from '../../utils/utils.service';
 
 import { QueryEligibleBodyDto } from './dto/query-check-eligible.dto';
 import { ResultCheckEligibleDto ,EligibleEpisodeListDto ,FindPatientInfoResultInfo ,FindEpisodeInfoResultInfo
-  ,InsuranceResult ,CoverageList ,MessageList ,InsuranceData ,InsuranceCustomerDetail ,PolicyInfoList
+  ,InsuranceResult ,CoverageList ,MessageList ,InsuranceData ,InsuranceCustomerDetail ,PolicyInfoList,
+  CreateTransactionDto
 } from './dto/result-check-eligible.dto';
 
 //import { DummyDataRequest1 }  from './dummy1-req-check-eligible';
@@ -455,6 +456,142 @@ export class CheckEligibleService {
        }
      }
    }
+
+   async crateTransaction(checkEligibleBodyDto:QueryEligibleBodyDto){
+     let RequesetBody ;
+      try{
+        RequesetBody ={
+          xRefID:checkEligibleBodyDto.PatientInfo.RefId,
+          xTransactionNo:checkEligibleBodyDto.PatientInfo.TransactionNo,
+          xPID : checkEligibleBodyDto.PatientInfo.PID||'',
+          xPassportnumber : checkEligibleBodyDto.PatientInfo.PassportNumber||'',
+          xIdType:checkEligibleBodyDto.PatientInfo.IdType||'',
+          xServiceSettingCode:checkEligibleBodyDto.PatientInfo.ServiceSettingCode||'',
+          xInsurerCode:checkEligibleBodyDto.PatientInfo.InsurerCode||null,
+          xHN :checkEligibleBodyDto.PatientInfo.HN||'',
+          xFirstName :checkEligibleBodyDto.PatientInfo.GivenNameTH||'',
+          xLastName :checkEligibleBodyDto.PatientInfo.SurnameTH||'',
+          xDob :checkEligibleBodyDto.PatientInfo.DateOfBirth||'',
+          xVN: checkEligibleBodyDto.PatientInfo.VN||'',
+          xPolicyTypeCode:checkEligibleBodyDto.PatientInfo.PolicyTypeCode||'',
+          xIllnessTypeCode:checkEligibleBodyDto.PatientInfo.IllnessTypeCode||'',
+          xSurgeryTypeCode:checkEligibleBodyDto.PatientInfo.SurgeryTypeCode||'',
+          xVisitDateTime:checkEligibleBodyDto.PatientInfo.VisitDateTime||'',
+          xAccidentDate:checkEligibleBodyDto.PatientInfo.AccidentDate||'',
+        }
+
+    let newCreateTransactionDto= new CreateTransactionDto();
+        const existingRecord = await prismaProgest.transactionclaim.findFirst({
+          where: {
+            refid: RequesetBody.xRefID,
+            transactionno: RequesetBody.xTransactionNo,       
+          },
+        });
+        if (!existingRecord) {
+        
+          const effectiveDate = new Date(RequesetBody.xVisitDateTime);
+          const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
+          await prismaProgest.transactionclaim.create({
+            data: {
+              
+              visitdate:formattedEffectiveDate ,
+              insurerid: RequesetBody.xInsurerCode ,
+              refid: RequesetBody.xRefID,
+              transactionno: RequesetBody.xTransactionNo,
+              hn:RequesetBody.xHN,
+              vn:RequesetBody.xVN,
+              idtype:RequesetBody.xIdType,
+              servicesettingcode:RequesetBody.xServiceSettingCode,
+              policytypecode:RequesetBody.xPolicyTypeCode,
+              illnesstypecode:RequesetBody.xIllnessTypeCode,
+              surgerytypecode:RequesetBody.xSurgeryTypeCode,
+              visitdatetime:RequesetBody.xVisitDateTime,
+              accidentdate:RequesetBody.xAccidentDate,
+
+            },
+          });
+          this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+          newCreateTransactionDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:'sucess'
+          }
+        }else{
+          this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+          newCreateTransactionDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:'Have refid, transactionno'
+          }
+        }
+
+  
+    return newCreateTransactionDto
+      }catch(error)
+      {
+        if (error instanceof Prisma.PrismaClientInitializationError) {
+          throw new HttpException(
+           { 
+            HTTPStatus: {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            },
+            },HttpStatus.INTERNAL_SERVER_ERROR );
+        }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new HttpException(
+              {  
+                HTTPStatus: {
+                  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                  message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                  error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+               },
+              },HttpStatus.INTERNAL_SERVER_ERROR ); 
+        }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+          if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+              message: 'Cannot connect to the database server. Please ensure it is running.',
+              error: 'Cannot connect to the database server. Please ensure it is running.',
+            },
+            }, HttpStatus.SERVICE_UNAVAILABLE);
+          }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.BAD_REQUEST,
+              message: 'Invalid data format or conversion error.',
+              error: 'Invalid data format or conversion error.',
+            },
+            }, HttpStatus.BAD_REQUEST);
+          }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.FORBIDDEN,
+              message: 'You do not have permission to perform this action.',
+              error: 'You do not have permission to perform this action.',
+            },
+            }, HttpStatus.FORBIDDEN);
+          }else if (error.message.includes('Unable to fit integer value')) {
+            // Handle integer overflow or similar errors
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.BAD_REQUEST,
+              message: 'The integer value is too large for the database field.',
+              error: 'The integer value is too large for the database field.',
+            },
+            }, HttpStatus.BAD_REQUEST);
+          }
+          else{
+            throw new HttpException({  
+              HTTPStatus: {
+                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                 message: 'An unexpected error occurred.',
+                 error: 'An unexpected error occurred.',
+                },
+              },HttpStatus.INTERNAL_SERVER_ERROR,);
+          }
+        }
+      }
+    }
 
    convertCoverageListType(xType:string){
 
