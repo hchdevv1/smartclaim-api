@@ -139,7 +139,6 @@ model insurers {
   accidentcauseover45days accidentcauseover45days[]
   accidentplace           accidentplace[]
   accidenttransactions    accidenttransactions[]
-  accidenttransactions22  accidenttransactions22[]
   causeofinjuryside       causeofinjuryside[]
   causeofinjurywoundtype  causeofinjurywoundtype[]
   claimants               claimants[]
@@ -285,23 +284,6 @@ model proceduretransactions {
   procedurename String?   @db.VarChar(500)
   proceduredate String?   @db.VarChar(20)
   insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model accidenttransactions22 {
-  id              Int       @id(map: "accidenttransactions_pkey") @default(autoincrement())
-  insurerid       Int?
-  refid           String?   @db.VarChar(255)
-  transactionno   String?   @db.VarChar(255)
-  hn              String?   @db.VarChar(10)
-  vn              String?   @db.VarChar(10)
-  accidentplace   String?   @db.VarChar(10)
-  accidentdate    String?   @db.VarChar(20)
-  causeofinjury   String?   @db.VarChar(500)
-  commentofinjury String?   @db.VarChar(500)
-  woundtype       String?   @db.VarChar(500)
-  injuryside      String?   @db.VarChar(500)
-  injuryarea      String?   @db.VarChar(500)
-  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "accidenttransactions_insurerid_fkey")
 }
 
 model causeofinjurydetail {

@@ -360,22 +360,6 @@ exports.Prisma.ProceduretransactionsScalarFieldEnum = {
   proceduredate: 'proceduredate'
 };
 
-exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
-  id: 'id',
-  insurerid: 'insurerid',
-  refid: 'refid',
-  transactionno: 'transactionno',
-  hn: 'hn',
-  vn: 'vn',
-  accidentplace: 'accidentplace',
-  accidentdate: 'accidentdate',
-  causeofinjury: 'causeofinjury',
-  commentofinjury: 'commentofinjury',
-  woundtype: 'woundtype',
-  injuryside: 'injuryside',
-  injuryarea: 'injuryarea'
-};
-
 exports.Prisma.CauseofinjurydetailScalarFieldEnum = {
   id: 'id',
   accidentid: 'accidentid',
@@ -427,7 +411,6 @@ exports.Prisma.ModelName = {
   transactionclaimstatus: 'transactionclaimstatus',
   accidenttransactions: 'accidenttransactions',
   proceduretransactions: 'proceduretransactions',
-  accidenttransactions22: 'accidenttransactions22',
   causeofinjurydetail: 'causeofinjurydetail',
   injurydetail: 'injurydetail'
 };

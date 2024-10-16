@@ -187,7 +187,7 @@ export class CheckEligibleService {
        RequesetBody ={
          xRefID:checkEligibleBodyDto.PatientInfo.RefId||'',
          xTransactionNo:checkEligibleBodyDto.PatientInfo.TransactionNo||'',
-         xPID : DUMMY_National_ID ,//checkEligibleBodyDto.PatientInfo.PID||'',
+         xPID : checkEligibleBodyDto.PatientInfo.PID||'', //DUMMY_National_ID ,
          xPassportnumber : checkEligibleBodyDto.PatientInfo.PassportNumber||'',
          xIdType:checkEligibleBodyDto.PatientInfo.IdType||'',
          xServiceSettingCode:checkEligibleBodyDto.PatientInfo.ServiceSettingCode||'',
