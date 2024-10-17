@@ -9,10 +9,10 @@ import { HttpStatusMessageService } from '../../utils/http-status-message/http-s
 import { TrakcareService} from '../../trakcare/trakcare.service';
 import { UtilsService } from '../../utils/utils.service';
 
-import { QueryEligibleBodyDto } from './dto/query-check-eligible.dto';
+import { QueryEligibleBodyDto ,QueryCreateTransactionBodyDto} from './dto/query-check-eligible.dto';
 import { ResultCheckEligibleDto ,EligibleEpisodeListDto ,FindPatientInfoResultInfo ,FindEpisodeInfoResultInfo
   ,InsuranceResult ,CoverageList ,MessageList ,InsuranceData ,InsuranceCustomerDetail ,PolicyInfoList,
-  CreateTransactionDto
+  CreateTransactionDto 
 } from './dto/result-check-eligible.dto';
 
 //import { DummyDataRequest1 }  from './dummy1-req-check-eligible';
@@ -457,27 +457,28 @@ export class CheckEligibleService {
      }
    }
 
-   async crateTransaction(checkEligibleBodyDto:QueryEligibleBodyDto){
+   async crateTransaction(queryCreateTransactionBodyDto:QueryCreateTransactionBodyDto){
      let RequesetBody ;
       try{
         RequesetBody ={
-          xRefID:checkEligibleBodyDto.PatientInfo.RefId,
-          xTransactionNo:checkEligibleBodyDto.PatientInfo.TransactionNo,
-          xPID : checkEligibleBodyDto.PatientInfo.PID||'',
-          xPassportnumber : checkEligibleBodyDto.PatientInfo.PassportNumber||'',
-          xIdType:checkEligibleBodyDto.PatientInfo.IdType||'',
-          xServiceSettingCode:checkEligibleBodyDto.PatientInfo.ServiceSettingCode||'',
-          xInsurerCode:checkEligibleBodyDto.PatientInfo.InsurerCode||null,
-          xHN :checkEligibleBodyDto.PatientInfo.HN||'',
-          xFirstName :checkEligibleBodyDto.PatientInfo.GivenNameTH||'',
-          xLastName :checkEligibleBodyDto.PatientInfo.SurnameTH||'',
-          xDob :checkEligibleBodyDto.PatientInfo.DateOfBirth||'',
-          xVN: checkEligibleBodyDto.PatientInfo.VN||'',
-          xPolicyTypeCode:checkEligibleBodyDto.PatientInfo.PolicyTypeCode||'',
-          xIllnessTypeCode:checkEligibleBodyDto.PatientInfo.IllnessTypeCode||'',
-          xSurgeryTypeCode:checkEligibleBodyDto.PatientInfo.SurgeryTypeCode||'',
-          xVisitDateTime:checkEligibleBodyDto.PatientInfo.VisitDateTime||'',
-          xAccidentDate:checkEligibleBodyDto.PatientInfo.AccidentDate||'',
+          xRefID:queryCreateTransactionBodyDto.PatientInfo.RefId,
+          xTransactionNo:queryCreateTransactionBodyDto.PatientInfo.TransactionNo,
+          xPID : queryCreateTransactionBodyDto.PatientInfo.PID||'',
+          xPassportnumber : queryCreateTransactionBodyDto.PatientInfo.PassportNumber||'',
+          xIdType:queryCreateTransactionBodyDto.PatientInfo.IdType||'',
+          xServiceSettingCode:queryCreateTransactionBodyDto.PatientInfo.ServiceSettingCode||'',
+          xInsurerCode:queryCreateTransactionBodyDto.PatientInfo.InsurerCode||null,
+          xHN :queryCreateTransactionBodyDto.PatientInfo.HN||'',
+          xFirstName :queryCreateTransactionBodyDto.PatientInfo.GivenNameTH||'',
+          xLastName :queryCreateTransactionBodyDto.PatientInfo.SurnameTH||'',
+          xDob :queryCreateTransactionBodyDto.PatientInfo.DateOfBirth||'',
+          xVN: queryCreateTransactionBodyDto.PatientInfo.VN||'',
+          xPolicyTypeCode:queryCreateTransactionBodyDto.PatientInfo.PolicyTypeCode||'',
+          xIllnessTypeCode:queryCreateTransactionBodyDto.PatientInfo.IllnessTypeCode||'',
+          xSurgeryTypeCode:queryCreateTransactionBodyDto.PatientInfo.SurgeryTypeCode||'',
+          xVisitDateTime:queryCreateTransactionBodyDto.PatientInfo.VisitDateTime||'',
+          xAccidentDate:queryCreateTransactionBodyDto.PatientInfo.AccidentDate||'',
+          xRunningdocument:queryCreateTransactionBodyDto.PatientInfo.Runningdocument||'00000'
         }
 
     let newCreateTransactionDto= new CreateTransactionDto();
@@ -507,7 +508,7 @@ export class CheckEligibleService {
               surgerytypecode:RequesetBody.xSurgeryTypeCode,
               visitdatetime:RequesetBody.xVisitDateTime,
               accidentdate:RequesetBody.xAccidentDate,
-
+              runningdocument:RequesetBody.xRunningdocument
             },
           });
           this.addFormatHTTPStatus(newHttpMessageDto,200,'','')

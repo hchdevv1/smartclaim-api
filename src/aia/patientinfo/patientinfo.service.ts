@@ -841,11 +841,14 @@ export class PatientinfoService {
             }
           }
         });
+   
+     
     
     let xResultInfo: ResultTransactionInfo;
-    // console.log('------')
-    // console.log(ResultQuery)
+    //console.log('------')
+    //console.log(ResultQuery)
     if (ResultQuery.length>0) {
+     // console.log('------')
       xResultInfo = {
         TransactionClaimInfo: ResultQuery.map((claim) => ({
             RefId: claim.refid ,  // Default value if refid is undefined
@@ -881,7 +884,9 @@ export class PatientinfoService {
             Runningdocument:claim.runningdocument.toNumber(), 
         })),
     };
-       
+    // console.log('===xxxx===')
+    // console.log(xResultInfo)
+    // console.log('===xxxx===')
     } else {
       const xQueryVisit = {    
         RefId: '', 
