@@ -478,7 +478,10 @@ export class CheckEligibleService {
           xSurgeryTypeCode:queryCreateTransactionBodyDto.PatientInfo.SurgeryTypeCode||'',
           xVisitDateTime:queryCreateTransactionBodyDto.PatientInfo.VisitDateTime||'',
           xAccidentDate:queryCreateTransactionBodyDto.PatientInfo.AccidentDate||'',
-          xRunningdocument:queryCreateTransactionBodyDto.PatientInfo.Runningdocument||'00000'
+          xRunningdocument:queryCreateTransactionBodyDto.PatientInfo.Runningdocument||'00000',
+          xFurtherClaimId: queryCreateTransactionBodyDto.PatientInfo.FurtherClaimId||'',
+          xFurtherClaimNo: queryCreateTransactionBodyDto.PatientInfo.FurtherClaimNo||'',
+     
         }
 
     let newCreateTransactionDto= new CreateTransactionDto();
@@ -508,7 +511,9 @@ export class CheckEligibleService {
               surgerytypecode:RequesetBody.xSurgeryTypeCode,
               visitdatetime:RequesetBody.xVisitDateTime,
               accidentdate:RequesetBody.xAccidentDate,
-              runningdocument:RequesetBody.xRunningdocument
+              runningdocument:RequesetBody.xRunningdocument,
+              furtherclaimid:RequesetBody.xFurtherClaimId,
+              furtherclaimno:RequesetBody.xFurtherClaimNo
             },
           });
           this.addFormatHTTPStatus(newHttpMessageDto,200,'','')

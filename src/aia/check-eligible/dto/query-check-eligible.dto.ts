@@ -171,4 +171,14 @@ class CreateTransactionBodyDto{
     @IsInt()
     @IsOptional()
     Runningdocument:number
+
+
+    @IsString()
+    @IsOptional()
+    FurtherClaimId?: string;
+
+    @IsString()
+    @IsOptional()
+    FurtherClaimNo?: string;
+    
   }
