@@ -150,6 +150,7 @@ model insurers {
   claimstatus             claimstatus[]
   diagnosistypemapping    diagnosistypemapping[]
   documenttype            documenttype[]
+  idtype                  idtype[]
   illnesssurgery          illnesssurgery[]
   illnesstype             illnesstype[]
   policytype              policytype[]
@@ -326,4 +327,13 @@ model accidenttransactions22 {
   injuryside      String?   @db.VarChar(500)
   injuryarea      String?   @db.VarChar(500)
   insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "accidenttransactions_insurerid_fkey")
+}
+
+model idtype {
+  id            Int       @id @default(autoincrement())
+  idtypecode    String    @db.VarChar(255)
+  idtypedesc_th String?   @db.VarChar(255)
+  idtypedesc_en String?   @db.VarChar(255)
+  insurerid     Int?
+  insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
 }

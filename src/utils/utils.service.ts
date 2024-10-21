@@ -15,7 +15,7 @@ import { Prisma } from '../../prisma/generate-client-db';
 import { HttpStatusMessageService } from './http-status-message/http-status-message.service';
 import { HttpMessageDto } from '../utils/dto/http-status-message.dto'
 
-import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,ServiceSettingDto ,ClaimStatusDto ,DocumentTypeDto
+import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,ServiceSettingDto ,ClaimStatusDto ,IdTypeDto ,DocumentTypeDto
   ,CauseofInjurywoundtypeDto ,CauseofinjurysideDto ,AccidentplaceDto ,Accidentcauseover45daysDto ,DiagnosisTypeMappingDto
 } from './dto/utils.dto';
 import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto  ,QueryDeleteDocumentByDocNameDto
@@ -537,6 +537,111 @@ async getClaimStatus(xInsurercode: string ) {
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
     }
      return newClaimStatusDto  
+    
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+
+}
+
+
+async getIdType(xInsurercode: string ) {
+  let idtype:any ;
+  try{
+    idtype = await prismaProgest.idtype.findMany({ 
+     
+    where:{
+      insurers:{  insurercode : +xInsurercode }
+     },  
+    select:{
+      idtypecode :true,
+      idtypedesc_th:true,
+      idtypedesc_en:true,
+      insurerid:true,
+      insurers:{
+        select:{
+            insurercode:true,
+            insurername:true
+        }
+      }
+
+    },
+     })
+     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+     let  newIdTypeDto= new IdTypeDto();
+     newIdTypeDto={
+       HTTPStatus:newHttpMessageDto,
+      Result:idtype
+     }
+     if (!idtype || idtype.length === 0) {
+      this.addFormatHTTPStatus(newHttpMessageDto,404,'IdType not found','')
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    }
+     return newIdTypeDto  
     
     }catch(error)
     {

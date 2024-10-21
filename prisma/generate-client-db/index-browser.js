@@ -398,6 +398,14 @@ exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
   injuryarea: 'injuryarea'
 };
 
+exports.Prisma.IdtypeScalarFieldEnum = {
+  id: 'id',
+  idtypecode: 'idtypecode',
+  idtypedesc_th: 'idtypedesc_th',
+  idtypedesc_en: 'idtypedesc_en',
+  insurerid: 'insurerid'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -436,7 +444,8 @@ exports.Prisma.ModelName = {
   proceduretransactions: 'proceduretransactions',
   causeofinjurydetail: 'causeofinjurydetail',
   injurydetail: 'injurydetail',
-  accidenttransactions22: 'accidenttransactions22'
+  accidenttransactions22: 'accidenttransactions22',
+  idtype: 'idtype'
 };
 
 /**

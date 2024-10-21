@@ -108,6 +108,27 @@ class ResultClaimStatusInfo{
  insurers: InsurerDto;
 }
 
+export class IdTypeDto {
+
+  HTTPStatus: HttpMessageDto;
+   Result?: ResultIdTypeInfo;
+}
+class ResultIdTypeInfo{
+
+ @IsString()
+ idtypecode: string;
+
+ @IsString()
+ idtypedesc_th: string;
+
+ @IsString()
+ idtypedesc_en: string;
+
+ @IsInt()
+ insurerid: number;
+
+ insurers: InsurerDto;
+}
 export class DocumentTypeDto {
 
   HTTPStatus: HttpMessageDto;

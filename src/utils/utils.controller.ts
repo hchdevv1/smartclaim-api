@@ -45,6 +45,10 @@ export class UtilsController {
   getClaimStatus(@Param('InsuranceCode') InsuranceCode: string ) {
     return  this.utilsService.getClaimStatus(InsuranceCode)
   }
+  @Get('/idtype/:InsuranceCode')
+  getIdType(@Param('InsuranceCode') InsuranceCode: string ) {
+    return  this.utilsService.getIdType(InsuranceCode)
+  }
  
   @Get('/getClaimStatusCodeByDescription/:InsuranceCode/:claimstatusdesc')
   getClaimStatusCodeByDescription(@Param('InsuranceCode') InsuranceCode: string ,@Param('claimstatusdesc') claimstatusdesc: string  ) {
