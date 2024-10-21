@@ -589,7 +589,6 @@ export class CheckEligibleService {
             },
           });
           }
-         
          updateMembershipId = queryCreateTransactionBodyDto?.PatientInfo?.MembershipId;
          updatePolicyNumber = queryCreateTransactionBodyDto?.PatientInfo?.PolicyNumber;
          QueryUpdateClaimants = {
