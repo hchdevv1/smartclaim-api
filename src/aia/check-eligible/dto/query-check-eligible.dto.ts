@@ -91,6 +91,10 @@ class SearchPatientBodyDto{
     @IsOptional()
     PolicyNumber?: string;
 
+    @IsString()
+    @IsOptional()
+    CustomerId?: string;
+  
   }
 
 

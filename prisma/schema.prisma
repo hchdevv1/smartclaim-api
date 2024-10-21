@@ -60,6 +60,7 @@ model claimants {
   insurerid        Int?
   policynumber     String?            @db.VarChar
   membershipid     String?            @db.VarChar
+  customerid       String?            @db.VarChar
   insurers         insurers?          @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
   transactionclaim transactionclaim[]
 
@@ -240,6 +241,7 @@ model transactionclaim {
   policynumber            String?    @db.VarChar
   membershipid            String?    @db.VarChar
   furtherclaimvn          String?    @db.VarChar
+  customerid              String?    @db.VarChar
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 

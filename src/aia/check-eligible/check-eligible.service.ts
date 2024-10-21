@@ -204,6 +204,7 @@ export class CheckEligibleService {
          xAccidentDate:checkEligibleBodyDto.PatientInfo.AccidentDate||'',
          xMembershipId:checkEligibleBodyDto.PatientInfo.MembershipId||'',
          xPolicyNumber:checkEligibleBodyDto.PatientInfo.PolicyNumber||'',
+         xCustomerId:checkEligibleBodyDto.PatientInfo.CustomerId||'',
        }
        const xRefId= await this.generateRefId(RequesetBody.xVN,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
        const xUsername=AIA_APIHopitalUsername;
@@ -214,9 +215,10 @@ export class CheckEligibleService {
        let DataJson_Id;
        const xDataJson_IdType =RequesetBody.xIdType
       if (xDataJson_IdType==='NATIONAL_ID'){DataJson_Id =RequesetBody.xPID;}
-      else if (xDataJson_IdType==='PassportNumber'){DataJson_Id =RequesetBody.xPassportnumber;}
+      else if (xDataJson_IdType==='PASSPORT'){DataJson_Id =RequesetBody.xPassportnumber;}
       else if (xDataJson_IdType==='MEMBERSHIP_ID'){DataJson_Id =RequesetBody.xMembershipId;}
       else if (xDataJson_IdType==='POLICY_NUMBER'){DataJson_Id =RequesetBody.xPolicyNumber;}
+      else if (xDataJson_IdType==='CUSTOMER_ID'){DataJson_Id =RequesetBody.xCustomerId;}
       else{DataJson_Id =RequesetBody.xPID;}
       
        const xDataJson_Id =await this.utilsService.EncryptAESECB(DataJson_Id,AIA_APISecretkey);

@@ -347,7 +347,8 @@ export class PatientinfoService {
         DateOfBirth: result.dateofbirth,
         Gender: result.gender,
         PolicyNumber:result.policynumber,
-        MembershipId:result.membershipid
+        MembershipId:result.membershipid,
+        CustomerId:result.customerid
         
       }));
       let httpcode,xmessageReturn
@@ -512,7 +513,8 @@ export class PatientinfoService {
         patientid:true,
         statusactive:true,
         policynumber:true,
-        membershipid:true
+        membershipid:true,
+        customerid:true
       }
     })
     console.log(DatabasePatientInfo)

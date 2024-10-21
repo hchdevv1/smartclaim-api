@@ -61,7 +61,7 @@ const QueryCreateClaimDocumentDtoBody={
 }
 //console.log(QueryCreateClaimDocumentDtoBody)
  //console.log('start get doc')
-       const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
+       const getListDocumentByTransection = await this.utilsService.getListDocumentBillingByTransactionNo(QueryCreateClaimDocumentDtoBody); 
        let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
        newResultAttachDocListInfoDto = await Promise.all(
          getListDocumentByTransection.map(async (doc) => {

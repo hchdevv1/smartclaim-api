@@ -525,7 +525,7 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.20.0
+   * Prisma Client JS version: 5.21.1
    * Query Engine version: bf0e5e8a04cada8225617067eaa03d041e2bba36
    */
   export type PrismaVersion = {
@@ -6856,6 +6856,7 @@ export namespace Prisma {
     insurerid: number | null
     policynumber: string | null
     membershipid: string | null
+    customerid: string | null
   }
 
   export type ClaimantsMaxAggregateOutputType = {
@@ -6878,6 +6879,7 @@ export namespace Prisma {
     insurerid: number | null
     policynumber: string | null
     membershipid: string | null
+    customerid: string | null
   }
 
   export type ClaimantsCountAggregateOutputType = {
@@ -6900,6 +6902,7 @@ export namespace Prisma {
     insurerid: number
     policynumber: number
     membershipid: number
+    customerid: number
     _all: number
   }
 
@@ -6936,6 +6939,7 @@ export namespace Prisma {
     insurerid?: true
     policynumber?: true
     membershipid?: true
+    customerid?: true
   }
 
   export type ClaimantsMaxAggregateInputType = {
@@ -6958,6 +6962,7 @@ export namespace Prisma {
     insurerid?: true
     policynumber?: true
     membershipid?: true
+    customerid?: true
   }
 
   export type ClaimantsCountAggregateInputType = {
@@ -6980,6 +6985,7 @@ export namespace Prisma {
     insurerid?: true
     policynumber?: true
     membershipid?: true
+    customerid?: true
     _all?: true
   }
 
@@ -7089,6 +7095,7 @@ export namespace Prisma {
     insurerid: number | null
     policynumber: string | null
     membershipid: string | null
+    customerid: string | null
     _count: ClaimantsCountAggregateOutputType | null
     _avg: ClaimantsAvgAggregateOutputType | null
     _sum: ClaimantsSumAggregateOutputType | null
@@ -7130,6 +7137,7 @@ export namespace Prisma {
     insurerid?: boolean
     policynumber?: boolean
     membershipid?: boolean
+    customerid?: boolean
     insurers?: boolean | claimants$insurersArgs<ExtArgs>
     transactionclaim?: boolean | claimants$transactionclaimArgs<ExtArgs>
     _count?: boolean | ClaimantsCountOutputTypeDefaultArgs<ExtArgs>
@@ -7155,6 +7163,7 @@ export namespace Prisma {
     insurerid?: boolean
     policynumber?: boolean
     membershipid?: boolean
+    customerid?: boolean
     insurers?: boolean | claimants$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["claimants"]>
 
@@ -7178,6 +7187,7 @@ export namespace Prisma {
     insurerid?: boolean
     policynumber?: boolean
     membershipid?: boolean
+    customerid?: boolean
   }
 
   export type claimantsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7215,6 +7225,7 @@ export namespace Prisma {
       insurerid: number | null
       policynumber: string | null
       membershipid: string | null
+      customerid: string | null
     }, ExtArgs["result"]["claimants"]>
     composites: {}
   }
@@ -7629,6 +7640,7 @@ export namespace Prisma {
     readonly insurerid: FieldRef<"claimants", 'Int'>
     readonly policynumber: FieldRef<"claimants", 'String'>
     readonly membershipid: FieldRef<"claimants", 'String'>
+    readonly customerid: FieldRef<"claimants", 'String'>
   }
     
 
@@ -18576,6 +18588,7 @@ export namespace Prisma {
     policynumber: string | null
     membershipid: string | null
     furtherclaimvn: string | null
+    customerid: string | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -18618,6 +18631,7 @@ export namespace Prisma {
     policynumber: string | null
     membershipid: string | null
     furtherclaimvn: string | null
+    customerid: string | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -18660,6 +18674,7 @@ export namespace Prisma {
     policynumber: number
     membershipid: number
     furtherclaimvn: number
+    customerid: number
     _all: number
   }
 
@@ -18720,6 +18735,7 @@ export namespace Prisma {
     policynumber?: true
     membershipid?: true
     furtherclaimvn?: true
+    customerid?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -18762,6 +18778,7 @@ export namespace Prisma {
     policynumber?: true
     membershipid?: true
     furtherclaimvn?: true
+    customerid?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -18804,6 +18821,7 @@ export namespace Prisma {
     policynumber?: true
     membershipid?: true
     furtherclaimvn?: true
+    customerid?: true
     _all?: true
   }
 
@@ -18933,6 +18951,7 @@ export namespace Prisma {
     policynumber: string | null
     membershipid: string | null
     furtherclaimvn: string | null
+    customerid: string | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -18994,6 +19013,7 @@ export namespace Prisma {
     policynumber?: boolean
     membershipid?: boolean
     furtherclaimvn?: boolean
+    customerid?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -19037,6 +19057,7 @@ export namespace Prisma {
     policynumber?: boolean
     membershipid?: boolean
     furtherclaimvn?: boolean
+    customerid?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -19080,6 +19101,7 @@ export namespace Prisma {
     policynumber?: boolean
     membershipid?: boolean
     furtherclaimvn?: boolean
+    customerid?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19134,6 +19156,7 @@ export namespace Prisma {
       policynumber: string | null
       membershipid: string | null
       furtherclaimvn: string | null
+      customerid: string | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -19567,6 +19590,7 @@ export namespace Prisma {
     readonly policynumber: FieldRef<"transactionclaim", 'String'>
     readonly membershipid: FieldRef<"transactionclaim", 'String'>
     readonly furtherclaimvn: FieldRef<"transactionclaim", 'String'>
+    readonly customerid: FieldRef<"transactionclaim", 'String'>
   }
     
 
@@ -26277,7 +26301,8 @@ export namespace Prisma {
     registrationdate: 'registrationdate',
     insurerid: 'insurerid',
     policynumber: 'policynumber',
-    membershipid: 'membershipid'
+    membershipid: 'membershipid',
+    customerid: 'customerid'
   };
 
   export type ClaimantsScalarFieldEnum = (typeof ClaimantsScalarFieldEnum)[keyof typeof ClaimantsScalarFieldEnum]
@@ -26459,7 +26484,8 @@ export namespace Prisma {
     runningdocument: 'runningdocument',
     policynumber: 'policynumber',
     membershipid: 'membershipid',
-    furtherclaimvn: 'furtherclaimvn'
+    furtherclaimvn: 'furtherclaimvn',
+    customerid: 'customerid'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -26912,6 +26938,7 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"claimants"> | number | null
     policynumber?: StringNullableFilter<"claimants"> | string | null
     membershipid?: StringNullableFilter<"claimants"> | string | null
+    customerid?: StringNullableFilter<"claimants"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
     transactionclaim?: TransactionclaimListRelationFilter
   }
@@ -26936,6 +26963,7 @@ export namespace Prisma {
     insurerid?: SortOrderInput | SortOrder
     policynumber?: SortOrderInput | SortOrder
     membershipid?: SortOrderInput | SortOrder
+    customerid?: SortOrderInput | SortOrder
     insurers?: insurersOrderByWithRelationInput
     transactionclaim?: transactionclaimOrderByRelationAggregateInput
   }
@@ -26964,6 +26992,7 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"claimants"> | number | null
     policynumber?: StringNullableFilter<"claimants"> | string | null
     membershipid?: StringNullableFilter<"claimants"> | string | null
+    customerid?: StringNullableFilter<"claimants"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
     transactionclaim?: TransactionclaimListRelationFilter
   }, "id" | "hn_insurerid">
@@ -26988,6 +27017,7 @@ export namespace Prisma {
     insurerid?: SortOrderInput | SortOrder
     policynumber?: SortOrderInput | SortOrder
     membershipid?: SortOrderInput | SortOrder
+    customerid?: SortOrderInput | SortOrder
     _count?: claimantsCountOrderByAggregateInput
     _avg?: claimantsAvgOrderByAggregateInput
     _max?: claimantsMaxOrderByAggregateInput
@@ -27018,6 +27048,7 @@ export namespace Prisma {
     insurerid?: IntNullableWithAggregatesFilter<"claimants"> | number | null
     policynumber?: StringNullableWithAggregatesFilter<"claimants"> | string | null
     membershipid?: StringNullableWithAggregatesFilter<"claimants"> | string | null
+    customerid?: StringNullableWithAggregatesFilter<"claimants"> | string | null
   }
 
   export type claimdocumentsWhereInput = {
@@ -27814,6 +27845,7 @@ export namespace Prisma {
     policynumber?: StringNullableFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
+    customerid?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -27857,6 +27889,7 @@ export namespace Prisma {
     policynumber?: SortOrderInput | SortOrder
     membershipid?: SortOrderInput | SortOrder
     furtherclaimvn?: SortOrderInput | SortOrder
+    customerid?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -27903,6 +27936,7 @@ export namespace Prisma {
     policynumber?: StringNullableFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
+    customerid?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -27946,6 +27980,7 @@ export namespace Prisma {
     policynumber?: SortOrderInput | SortOrder
     membershipid?: SortOrderInput | SortOrder
     furtherclaimvn?: SortOrderInput | SortOrder
+    customerid?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -27996,6 +28031,7 @@ export namespace Prisma {
     policynumber?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    customerid?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -28679,6 +28715,7 @@ export namespace Prisma {
     registrationdate?: Date | string | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
     insurers?: insurersCreateNestedOneWithoutClaimantsInput
     transactionclaim?: transactionclaimCreateNestedManyWithoutClaimantsInput
   }
@@ -28703,6 +28740,7 @@ export namespace Prisma {
     insurerid?: number | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
     transactionclaim?: transactionclaimUncheckedCreateNestedManyWithoutClaimantsInput
   }
 
@@ -28724,6 +28762,7 @@ export namespace Prisma {
     registrationdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutClaimantsNestedInput
     transactionclaim?: transactionclaimUpdateManyWithoutClaimantsNestedInput
   }
@@ -28748,6 +28787,7 @@ export namespace Prisma {
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
     transactionclaim?: transactionclaimUncheckedUpdateManyWithoutClaimantsNestedInput
   }
 
@@ -28771,6 +28811,7 @@ export namespace Prisma {
     insurerid?: number | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
   }
 
   export type claimantsUpdateManyMutationInput = {
@@ -28791,6 +28832,7 @@ export namespace Prisma {
     registrationdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimantsUncheckedUpdateManyInput = {
@@ -28813,6 +28855,7 @@ export namespace Prisma {
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimdocumentsCreateInput = {
@@ -29631,6 +29674,7 @@ export namespace Prisma {
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
+    customerid?: string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -29674,6 +29718,7 @@ export namespace Prisma {
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
+    customerid?: string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -29713,6 +29758,7 @@ export namespace Prisma {
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -29756,6 +29802,7 @@ export namespace Prisma {
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -29798,6 +29845,7 @@ export namespace Prisma {
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
+    customerid?: string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -29837,6 +29885,7 @@ export namespace Prisma {
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -29879,6 +29928,7 @@ export namespace Prisma {
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -30692,6 +30742,7 @@ export namespace Prisma {
     insurerid?: SortOrder
     policynumber?: SortOrder
     membershipid?: SortOrder
+    customerid?: SortOrder
   }
 
   export type claimantsAvgOrderByAggregateInput = {
@@ -30720,6 +30771,7 @@ export namespace Prisma {
     insurerid?: SortOrder
     policynumber?: SortOrder
     membershipid?: SortOrder
+    customerid?: SortOrder
   }
 
   export type claimantsMinOrderByAggregateInput = {
@@ -30742,6 +30794,7 @@ export namespace Prisma {
     insurerid?: SortOrder
     policynumber?: SortOrder
     membershipid?: SortOrder
+    customerid?: SortOrder
   }
 
   export type claimantsSumOrderByAggregateInput = {
@@ -31473,6 +31526,7 @@ export namespace Prisma {
     policynumber?: SortOrder
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
+    customerid?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -31523,6 +31577,7 @@ export namespace Prisma {
     policynumber?: SortOrder
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
+    customerid?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -31565,6 +31620,7 @@ export namespace Prisma {
     policynumber?: SortOrder
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
+    customerid?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -33821,6 +33877,7 @@ export namespace Prisma {
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
+    customerid?: string | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -33861,6 +33918,7 @@ export namespace Prisma {
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
+    customerid?: string | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -33986,6 +34044,7 @@ export namespace Prisma {
     policynumber?: StringNullableFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
+    customerid?: StringNullableFilter<"transactionclaim"> | string | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -34861,6 +34920,7 @@ export namespace Prisma {
     registrationdate?: Date | string | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
     transactionclaim?: transactionclaimCreateNestedManyWithoutClaimantsInput
   }
 
@@ -34883,6 +34943,7 @@ export namespace Prisma {
     registrationdate?: Date | string | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
     transactionclaim?: transactionclaimUncheckedCreateNestedManyWithoutClaimantsInput
   }
 
@@ -35337,6 +35398,7 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"claimants"> | number | null
     policynumber?: StringNullableFilter<"claimants"> | string | null
     membershipid?: StringNullableFilter<"claimants"> | string | null
+    customerid?: StringNullableFilter<"claimants"> | string | null
   }
 
   export type claimdocumentsUpsertWithWhereUniqueWithoutInsurersInput = {
@@ -35816,6 +35878,7 @@ export namespace Prisma {
     registrationdate?: Date | string | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
     insurers?: insurersCreateNestedOneWithoutClaimantsInput
   }
 
@@ -35839,6 +35902,7 @@ export namespace Prisma {
     insurerid?: number | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
   }
 
   export type claimantsCreateOrConnectWithoutTransactionclaimInput = {
@@ -35875,6 +35939,7 @@ export namespace Prisma {
     registrationdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutClaimantsNestedInput
   }
 
@@ -35898,6 +35963,7 @@ export namespace Prisma {
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimstatusCreateWithoutTransactionclaimstatusInput = {
@@ -36511,6 +36577,7 @@ export namespace Prisma {
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
+    customerid?: string | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -36550,6 +36617,7 @@ export namespace Prisma {
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -36590,6 +36658,7 @@ export namespace Prisma {
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -36630,6 +36699,7 @@ export namespace Prisma {
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {
@@ -36775,6 +36845,7 @@ export namespace Prisma {
     registrationdate?: Date | string | null
     policynumber?: string | null
     membershipid?: string | null
+    customerid?: string | null
   }
 
   export type claimdocumentsCreateManyInsurersInput = {
@@ -37015,6 +37086,7 @@ export namespace Prisma {
     registrationdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
     transactionclaim?: transactionclaimUpdateManyWithoutClaimantsNestedInput
   }
 
@@ -37037,6 +37109,7 @@ export namespace Prisma {
     registrationdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
     transactionclaim?: transactionclaimUncheckedUpdateManyWithoutClaimantsNestedInput
   }
 
@@ -37059,6 +37132,7 @@ export namespace Prisma {
     registrationdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
+    customerid?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type claimdocumentsUpdateWithoutInsurersInput = {

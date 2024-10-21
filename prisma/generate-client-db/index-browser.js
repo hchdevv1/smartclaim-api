@@ -17,11 +17,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.20.0
+ * Prisma Client JS version: 5.21.1
  * Query Engine version: bf0e5e8a04cada8225617067eaa03d041e2bba36
  */
 Prisma.prismaVersion = {
-  client: "5.20.0",
+  client: "5.21.1",
   engine: "bf0e5e8a04cada8225617067eaa03d041e2bba36"
 }
 
@@ -169,7 +169,8 @@ exports.Prisma.ClaimantsScalarFieldEnum = {
   registrationdate: 'registrationdate',
   insurerid: 'insurerid',
   policynumber: 'policynumber',
-  membershipid: 'membershipid'
+  membershipid: 'membershipid',
+  customerid: 'customerid'
 };
 
 exports.Prisma.ClaimdocumentsScalarFieldEnum = {
@@ -318,7 +319,8 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   runningdocument: 'runningdocument',
   policynumber: 'policynumber',
   membershipid: 'membershipid',
-  furtherclaimvn: 'furtherclaimvn'
+  furtherclaimvn: 'furtherclaimvn',
+  customerid: 'customerid'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {

@@ -121,13 +121,6 @@ declare interface BinaryTargetsEnvValue {
     native?: boolean;
 }
 
-declare interface BoundDriverAdapter extends Queryable, WithTransaction {
-    /**
-     * Optional method that returns extra connection info
-     */
-    getConnectionInfo?(): Result_4<ConnectionInfo>;
-}
-
 export declare type Call<F extends Fn, P> = (F & {
     params: P;
 })['returns'];
@@ -875,7 +868,11 @@ export declare namespace DMMF {
     }
 }
 
-export declare interface DriverAdapter extends Queryable, WithTransactionDeprecated, WithTransaction {
+export declare interface DriverAdapter extends Queryable {
+    /**
+     * Starts new transaction.
+     */
+    transactionContext(): Promise<Result_4<TransactionContext>>;
     /**
      * Optional method that returns extra connection info
      */
@@ -1187,7 +1184,7 @@ declare type Error_2 = {
     message: string;
 };
 
-declare interface ErrorCapturingDriverAdapter extends BoundDriverAdapter {
+declare interface ErrorCapturingDriverAdapter extends DriverAdapter {
     readonly errorRegistry: ErrorRegistry;
 }
 
@@ -3377,21 +3374,5 @@ declare type WasmLoadingConfig = {
      */
     getQueryEngineWasmModule: () => Promise<unknown>;
 };
-
-declare interface WithTransaction extends Queryable {
-    /**
-     * Starts new transaction.
-     * If `startTransaction` is not defined, `transactionContext` must be defined.
-     */
-    transactionContext?(): Promise<Result_4<TransactionContext>>;
-}
-
-declare interface WithTransactionDeprecated extends Queryable {
-    /**
-     * Starts new transaction.
-     * @deprecated Use `transactionContext` instead.
-     */
-    startTransaction?(): Promise<Result_4<Transaction>>;
-}
 
 export { }

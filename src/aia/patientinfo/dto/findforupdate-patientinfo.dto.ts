@@ -176,4 +176,9 @@ export class FindforUpdatePatientDatabase{
     @IsString()
     @IsOptional()
     PolicyNumber?: string;
+
+
+    @IsString()
+    @IsOptional()
+    CustomerId?: string;
   }
