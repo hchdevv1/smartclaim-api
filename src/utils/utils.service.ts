@@ -19,7 +19,7 @@ import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,Se
   ,CauseofInjurywoundtypeDto ,CauseofinjurysideDto ,AccidentplaceDto ,Accidentcauseover45daysDto ,DiagnosisTypeMappingDto
 } from './dto/utils.dto';
 import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto  ,QueryDeleteDocumentByDocNameDto
-  ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto
+  ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto ,ResultUpdateDocumentByDocNameDto
 }from './dto/claim-documents.dto';
 import { QueryProcedeureDatabaseBodyDto , ResultOpdDischargeProcedurDto ,ProcedeureDatabaseResultInfo } from './dto/result-procedure-databse.dto';
 import { QueryVisitDatabaseBodyDto ,ResultOpdDischargeVisitDto ,VisitDatabaseResultInfo ,QueryVisitDatabse } from './dto/result-visit-databse.dto';
@@ -1893,6 +1893,39 @@ async getListDocumentByRefId(queryCreateClaimDocumentDtoBodyDto: QueryCreateClai
         
          return newResultAttachDocListInfoDto;
 }
+
+
+async UpdateDocumentTypeCode(querylistDocumentNameDtoBodyDto: QuerylistDocumentNameDtoBodyDto) {
+
+  const RefId = querylistDocumentNameDtoBodyDto.PatientInfo.RefId;
+  const TransactionNo = querylistDocumentNameDtoBodyDto.PatientInfo.TransactionNo;
+  const DocumenttypeCode =querylistDocumentNameDtoBodyDto.PatientInfo.DocumenttypeCode;
+  const DocumentName = querylistDocumentNameDtoBodyDto.PatientInfo.DocumentName;
+  await prismaProgest.claimdocuments.updateMany({
+    where: {
+        refid:RefId,
+        transactionno:TransactionNo,
+        documentname:DocumentName
+    },
+    data: {
+      documenttypecode: DocumenttypeCode,
+    }
+   
+  });
+
+  this.addFormatHTTPStatus(newHttpMessageDto,200,'File update documenttype successfully!','File update documenttype successfully!')
+  
+
+  let newResultUpdateDocumentByDocNameDto= new ResultUpdateDocumentByDocNameDto();
+  newResultUpdateDocumentByDocNameDto={
+        HTTPStatus:newHttpMessageDto,
+        Result:{ UpdateDocumentInfo :'update documenttype  successfully' }
+}
+
+return newResultUpdateDocumentByDocNameDto
+}
+
+
 
 async DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocumentByDocNameDto) {
 

@@ -174,6 +174,14 @@ export class DeleteDocumentInfo {
   DeleteDocumentInfo?:string
 }
 
+export class ResultUpdateDocumentByDocNameDto {
+
+  HTTPStatus: HttpMessageDto;
+  Result?: UpdateDocumentInfo;
+}
+export class UpdateDocumentInfo {
+  UpdateDocumentInfo?:string
+}
 
 
 export class QueryListDocumentforAttachDocListDto {

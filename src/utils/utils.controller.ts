@@ -146,6 +146,12 @@ async DeleteDocumentByDocName(@Body() queryDeleteDocumentByDocNameDto:QueryDelet
   const fileData = await this.utilsService.DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto);
   return fileData;
 }
+@Post('/UpdateDocumentTypeCode') //prod
+async UpdateDocumentTypeCode(@Body() querylistDocumentNameDtoBodyDto:QuerylistDocumentNameDtoBodyDto){
+ 
+  const fileData = await this.utilsService.UpdateDocumentTypeCode(querylistDocumentNameDtoBodyDto);
+  return fileData;
+}
 
 
 }
