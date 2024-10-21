@@ -1,0 +1,47 @@
+{
+    "Result": {
+        "Code": "MSGCODE01",
+        "Message": "ขออภัย มีค่าใช้จ่ายส่วนที่เกินวงเงินคุ้มครอง ที่ลูกค้าต้องชำระเพิ่ม (Q500061337/1)",
+        "MessageTh": "ขออภัย มีค่าใช้จ่ายส่วนที่เกินวงเงินคุ้มครอง ที่ลูกค้าต้องชำระเพิ่ม (Q500061337/1)"
+    },
+    "Data": {
+        "RefId": "OPD-008-Test-001",
+        "TransactionNo": "13675055-0ed9-40f7-bd38-bec0754fe674",
+        "InsurerCode": "13",
+        "Message": "ขออภัย มีค่าใช้จ่ายส่วนที่เกินวงเงินคุ้มครอง ที่ลูกค้าต้องชำระเพิ่ม (Q500061337/1)",
+        "MessageTh": "ขออภัย มีค่าใช้จ่ายส่วนที่เกินวงเงินคุ้มครอง ที่ลูกค้าต้องชำระเพิ่ม (Q500061337/1)",
+        "ClaimNo": null,
+        "OccurrenceNo": null,
+        "TotalApprovedAmount": null,
+        "TotalExcessAmount": null,
+        "IsReimbursement": null,
+        "CoverageList": [
+            {
+                "type": "HS",
+                "status": false
+            },
+            {
+                "type": "HSBypass",
+                "status": false
+            },
+            {
+                "type": "Reimbursement",
+                "status": false
+            }
+        ],
+        "MessageList": [
+            {
+                "policyNo": "P330004860",
+                "planName": "ME",
+                "messageTh": "กรมธรรม์ไม่สามารถใช้บริการ AIA Healthcare ได้เนื่องจากจำเป็นต้องพิจารณารายละอียดทางการแพทย์และรายละเอียดการทำประกัน กรุณาเรียกร้องสินไหมปกติ หากมีข้อสงสัย กรุณาติดต่อ Call Center 1581",
+                "messageEn": "AI030"
+            },
+            {
+                "policyNo": "T205955662",
+                "planName": "H&S Plus gold",
+                "messageTh": "กรมธรรม์ไม่สามารถใช้บริการ AIA Healthcare ได้เนื่องจากจำเป็นต้องพิจารณารายละอียดทางการแพทย์และรายละเอียดการทำประกัน กรุณาเรียกร้องสินไหมปกติ หากมีข้อสงสัย กรุณาติดต่อ Call Center 1581",
+                "messageEn": "AI030"
+            }
+        ]
+    }
+}
