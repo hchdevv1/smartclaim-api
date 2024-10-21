@@ -44,8 +44,6 @@ export class CheckClaimStatusService {
     
        }
 
-
-
        const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
        const apiURL= `${AIA_APIURL}/SmartClaim/checkClaimStatus`;
@@ -201,6 +199,8 @@ if (transactionclaimexistingRecord) {
       
     },
   });
+}else{
+
 }
 
         /////////////////

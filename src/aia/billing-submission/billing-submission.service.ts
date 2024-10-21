@@ -59,9 +59,11 @@ const QueryCreateClaimDocumentDtoBody={
   UploadedBy:'',
   Runningdocument:0
 }
-//console.log(QueryCreateClaimDocumentDtoBody)
- //console.log('start get doc')
+
        const getListDocumentByTransection = await this.utilsService.getListDocumentBillingByTransactionNo(QueryCreateClaimDocumentDtoBody); 
+   
+      if (Array.isArray(getListDocumentByTransection) && getListDocumentByTransection.length > 0) {
+
        let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
        newResultAttachDocListInfoDto = await Promise.all(
          getListDocumentByTransection.map(async (doc) => {
@@ -72,10 +74,7 @@ const QueryCreateClaimDocumentDtoBody={
              DocName: doc.DocName,
            };
          })
-         
        );
-   
-      // console.log('get doc done')
        const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
        const apiURL= `${AIA_APIURL}/SmartClaim/submitBilling`;
@@ -168,6 +167,9 @@ if (existingRecord) {
       } 
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       }
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,400,'Files not found','Files not found')
+    }
 
    let newResultBillingSubmissionDto= new ResultBillingSubmissionDto();
    newResultBillingSubmissionDto={

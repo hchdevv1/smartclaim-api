@@ -2242,18 +2242,19 @@ async getListDocumentBillingByTransactionNo(queryCreateClaimDocumentDtoBodyDto: 
   const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
   const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
   const Runningdocument = queryCreateClaimDocumentDtoBodyDto.Runningdocument;
-  //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
-  console.log('getListDocumentBillingByTransactionNo')
-console.log(VN)
-console.log(RefId)
-console.log(TransactionNo)
+  const DocumenttypeCode = '003';
+//   console.log('getListDocumentBillingByTransactionNo')
+// console.log(VN)
+// console.log(RefId)
+// console.log(TransactionNo)
 const whereConditions = {
   ...(VN ? { vn: { equals: VN } } : {}),
   ...(RefId ? { refid: { equals: RefId } } : {}),
   ...(TransactionNo ? { transactionno: { equals: TransactionNo } } : {}),
   ...(Runningdocument ? { runningdocument: { equals: Runningdocument } } : {}),
+  ...(DocumenttypeCode ? { documenttypecode: { equals: DocumenttypeCode } } : {}),
 };
-//console.log(InsurerCode)
+//console.log(InsurerCode)  
   //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
   //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
     const fileRecords = await prismaProgest.claimdocuments.findMany({
@@ -2265,33 +2266,14 @@ const whereConditions = {
     // }
     where :whereConditions
     });
-    
+    const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+
      //console.log(fileRecords)
      if (fileRecords.length === 0) {
-      console.log('HEERERERE')
-       throw new NotFoundException('Files not found');
+      //newResultAttachDocListInfoDto:{}
+      
+      throw new NotFoundException('Files not found');
      }
-     const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
-
-    //  await Promise.all(
-    //    fileRecords.map(async (fileRecord) => {
-    //      const filePath = join(__dirname, '..', '..', fileRecord.filepath);
-    //      const fileBuffer = readFileSync(filePath);
-    //      const base64File = fileBuffer.toString('base64');
-        
-    //      newResultAttachDocListInfoDto = [
-    //        {
-    //          DocName: fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
-    //          Base64Data: base64File, // ข้อมูลไฟล์เป็น Base64
-           
-    //      }
-    //      ];
-    //    }),
-    //  );
-    //  console.log('00000')
-    //  console.log(newResultAttachDocListInfoDto)
-    //  console.log('ddddd')
-    //  return newResultAttachDocListInfoDto;
     await Promise.all(
       fileRecords.map(async (fileRecord) => {
         const filePath = join(__dirname, '..', '..', fileRecord.filepath);
