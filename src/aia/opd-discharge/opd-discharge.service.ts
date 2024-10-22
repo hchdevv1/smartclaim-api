@@ -99,7 +99,6 @@ try{
      } 
   }else{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-    console.log(TrakcarepatientInfo.VisitInfo)
       const xQueryVisit: QueryVisit = TrakcarepatientInfo.VisitInfo ? {
         FurtherClaimId: TrakcarepatientInfo.VisitInfo.FurtherClaimId || '', 
         AccidentCauseOver45Days: TrakcarepatientInfo.VisitInfo.AccidentCauseOver45Days || '',
