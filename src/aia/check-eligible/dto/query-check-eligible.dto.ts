@@ -204,5 +204,10 @@ class CreateTransactionBodyDto{
     @IsString()
     @IsOptional()
     PolicyNumber?: string;
+
+    @IsString()
+    @IsOptional()
+    CustomerId?: string;
+  
     
   }

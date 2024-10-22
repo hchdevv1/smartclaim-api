@@ -461,7 +461,12 @@ export class CheckEligibleService {
 
    async crateTransaction(queryCreateTransactionBodyDto:QueryCreateTransactionBodyDto){
      let RequesetBody ;
-     let updateMembershipId,updatePolicyNumber,QueryUpdateClaimants,filteredData;
+    //  let updatexRefID,updatexTransactionNo,updatexPID,updatexPassportnumber
+    //  ,updatexIdType,updatexServiceSettingCode,updatexInsurerCode,updatexHN,updatexFirstName,updatexLastName
+    //  ,updatexDob,updatexVN,updatexPolicyTypeCode,updatexIllnessTypeCode,updatexSurgeryTypeCode,updatexVisitDateTime
+    //  ,updatexAccidentDate,updatexRunningdocument,updatexFurtherClaimId,updatexFurtherClaimNo,updatexFurtherClaimVN
+    //  ,updatexMembershipId,updatexPolicyNumber,updatexCustomerId;
+     let updateMembershipId,updatePolicyNumber,QueryUpdateClaimants,filteredQueryUpdateClaimants ,QueryUpdatetransactionclaim,filteredQueryUpdatetransactionclaim;
       try{
         RequesetBody ={
           xRefID:queryCreateTransactionBodyDto.PatientInfo.RefId,
@@ -487,9 +492,9 @@ export class CheckEligibleService {
           xFurtherClaimVN: queryCreateTransactionBodyDto.PatientInfo.FurtherClaimVN||'',
           xMembershipId: queryCreateTransactionBodyDto.PatientInfo.MembershipId||'',
           xPolicyNumber: queryCreateTransactionBodyDto.PatientInfo.PolicyNumber||'',
+          xCustomerId: queryCreateTransactionBodyDto.PatientInfo.CustomerId||'',
 
         }
-        console.log('kkkk')
         let newCreateTransactionDto= new CreateTransactionDto();
         const existingRecord = await prismaProgest.transactionclaim.findFirst({
           where: {
@@ -523,6 +528,7 @@ export class CheckEligibleService {
               furtherclaimvn:RequesetBody.xFurtherClaimVN,
               membershipid:RequesetBody.xMembershipId,
               policynumber:RequesetBody.xPolicyNumber,
+              customerid:RequesetBody.xCustomerId,
               claimstatusdesc:'waitting for discharge',
               claimstatusdesc_en:'waitting for discharge',
               claimstatusdesc_th:'waitting for discharge'
@@ -536,7 +542,7 @@ export class CheckEligibleService {
             ...(updatePolicyNumber ? { policynumber: updatePolicyNumber } : {}),
         };
         if (QueryUpdateClaimants){
-         filteredData = Object.fromEntries(
+          filteredQueryUpdateClaimants = Object.fromEntries(
             Object.entries(QueryUpdateClaimants).filter(([, value]) => value !== null && value !== undefined)
         );
      
@@ -546,7 +552,7 @@ export class CheckEligibleService {
               hn:RequesetBody.xHN,
               insurerid:RequesetBody.xInsurerCode 
             },
-          },data: filteredData 
+          },data: filteredQueryUpdateClaimants 
         })
       }
           this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -555,6 +561,29 @@ export class CheckEligibleService {
             Result:'sucess'
           }
         }else{
+       
+   const  updatexRefID = RequesetBody.xRefID;
+   const  updatexTransactionNo = RequesetBody.xTransactionNo;
+   const  updatexInsurerCode = RequesetBody.xInsurerCode;
+  //  const  updatexPID= RequesetBody.xTransactionNo;
+  //  const  updatexPassportnumber= RequesetBody.xPassportnumber;
+   const  updatexIdType= RequesetBody.xIdType;
+   const  updatexServiceSettingCode= RequesetBody.xServiceSettingCode;
+   const  updatexHN= RequesetBody.xHN;
+   const  updatexVN= RequesetBody.xVN;
+   const  updatexPolicyTypeCode= RequesetBody.xPolicyTypeCode;
+   const  updatexIllnessTypeCode= RequesetBody.xIllnessTypeCode;
+   const  updatexSurgeryTypeCode= RequesetBody.xSurgeryTypeCode;
+   const  updatexVisitDateTime= RequesetBody.xVisitDateTime;
+   const  updatexAccidentDate= RequesetBody.xAccidentDate;
+   const  updatexRunningdocument= RequesetBody.xRunningdocument;
+   const  updatexFurtherClaimId= RequesetBody.xFurtherClaimId;
+   const  updatexFurtherClaimNo= RequesetBody.xFurtherClaimNo;
+   const  updatexFurtherClaimVN= RequesetBody.xFurtherClaimVN;
+   const  updatexMembershipId= RequesetBody.xMembershipId;
+   const  updatexPolicyNumber= RequesetBody.xPolicyNumber;
+   const  updatexCustomerId= RequesetBody.updatexCustomerId;
+
           const existingRecord = await prismaProgest.transactionclaim.findFirst({
             where: {
               refid: RequesetBody.xRefID,
@@ -562,33 +591,42 @@ export class CheckEligibleService {
             },
           });
           if (existingRecord) {
+
+            QueryUpdatetransactionclaim = {
+              ...(updatexTransactionNo ? { transactionno:  updatexTransactionNo }  : {}),
+              ...(updatexRefID ? { refid: updatexRefID } : {}),
+              ...(updatexHN ? { hn: updatexHN } : {}),
+              ...(updatexVN ? { vn: updatexVN } : {}),
+              ...(updatexInsurerCode ? { insurerid: updatexInsurerCode } : {}),
+              ...(updatexFurtherClaimId ? { furtherclaimid: updatexFurtherClaimId } : {}),
+              ...(updatexFurtherClaimNo ? { furtherclaimno: updatexFurtherClaimNo } : {}),
+              ...(updatexVisitDateTime ? { visitdatetime: updatexVisitDateTime } : {}),
+              ...(updatexAccidentDate ? { accidentdate: updatexAccidentDate } : {}),
+              ...(updatexPolicyTypeCode ? { policytypecode: updatexPolicyTypeCode } : {}),
+              ...(updatexIdType ? { idtype: updatexIdType } : {}),
+              ...(updatexIllnessTypeCode ? { illnesstypecode: updatexIllnessTypeCode } : {}),
+              ...(updatexServiceSettingCode ? { servicesettingcode: updatexServiceSettingCode } : {}),
+              ...(updatexSurgeryTypeCode ? { surgerytypecode: updatexSurgeryTypeCode } : {}),
+              ...(updatexRunningdocument ? { runningdocument: updatexRunningdocument } : {}),
+              ...(updatexFurtherClaimVN ? { furtherclaimvn: updatexFurtherClaimVN } : {}),
+              ...(updatexMembershipId ? { membershipid: updatexMembershipId } : {}),
+              ...(updatexPolicyNumber ? { policynumber: updatexPolicyNumber } : {}),
+              ...(updatexCustomerId ? { customerid: updatexCustomerId } : {}),
+              claimstatusdesc:'waitting for discharge',
+              claimstatusdesc_en:'waitting for discharge',
+              claimstatusdesc_th:'waitting for discharge',
+          };
+          if (QueryUpdatetransactionclaim){
+            filteredQueryUpdatetransactionclaim = Object.fromEntries(
+               Object.entries(QueryUpdatetransactionclaim).filter(([, value]) => value !== null && value !== undefined)
+           );
+          }
+
           await prismaProgest.transactionclaim.update({
             where: {
               id: existingRecord.id, 
             },
-            data: {
-              
-              // claimstatuscode:'',
-               claimstatusdesc:'waitting for discharge',
-               claimstatusdesc_en:'waitting for discharge',
-               claimstatusdesc_th:'waitting for discharge',
-              insurerid: RequesetBody.xInsurerCode ,
-              refid: RequesetBody.xRefId,
-              transactionno: RequesetBody.xTransactionNo,
-              furtherclaimid:RequesetBody.xFurtherClaimId,
-              furtherclaimno: RequesetBody.xFurtherClaimNo,
-              visitdatetime:RequesetBody.xVisitDateTime,
-              accidentdate:RequesetBody.xAccidentDate,
-              policytypecode:RequesetBody.xPolicyTypeCode,
-              idtype:RequesetBody.xIdType,
-              illnesstypecode:RequesetBody.xIllnessTypeCode,
-              servicesettingcode:RequesetBody.xServiceSettingCode,
-              surgerytypecode:RequesetBody.xSurgeryTypeCode,
-              runningdocument:RequesetBody.xRunningdocument,
-              furtherclaimvn:RequesetBody.xFurtherClaimVN,
-              membershipid:RequesetBody.xMembershipId,
-              policynumber:RequesetBody.xPolicyNumber
-            },
+            data: filteredQueryUpdatetransactionclaim
           });
           }
          updateMembershipId = queryCreateTransactionBodyDto?.PatientInfo?.MembershipId;
@@ -598,7 +636,7 @@ export class CheckEligibleService {
             ...(updatePolicyNumber ? { policynumber: updatePolicyNumber } : {}),
         };
         if (QueryUpdateClaimants){
-         filteredData = Object.fromEntries(
+         filteredQueryUpdateClaimants = Object.fromEntries(
             Object.entries(QueryUpdateClaimants).filter(([, value]) => value !== null && value !== undefined)
         );
      
@@ -608,7 +646,7 @@ export class CheckEligibleService {
               hn:RequesetBody.xHN,
               insurerid:RequesetBody.xInsurerCode 
             },
-          },data: filteredData 
+          },data: filteredQueryUpdateClaimants 
         })
       }
           this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -709,7 +747,7 @@ export class CheckEligibleService {
         insurerid: +inputInsurerCode,
         NOT:{
           claimstatuscode:{
-            in:['05','06']
+            in:['05','06','11']
           }
         }
       }
