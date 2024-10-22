@@ -93,6 +93,28 @@ async getEpisodeByHN( xHN: string , xEpiDate: string , xEpiType: string) {
     }
  return PatientInfo
 }
+
+async getEpisodeInfoByVN( xVN: string ) {
+  let response:any ;
+  let EpisodeInfo ;
+  try{
+
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getEpisodeInfoByVN/${xVN}`)
+    );
+    EpisodeInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+return EpisodeInfo
+}
 async getOPDDischargeVisit( xVN: string ) {
   let response:any ;
   let PatientInfo ;

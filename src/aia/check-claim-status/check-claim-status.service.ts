@@ -192,7 +192,7 @@ if (transactionclaimexistingRecord) {
     },
     data: {
       claimstatuscode: claimcode ,
-      totalapprovedamount:responsefromAIA.Data.TotalApproveAmount,
+     // totalapprovedamount:responsefromAIA.Data.TotalApproveAmount,
       claimstatusdesc: responsefromAIA.Data.ClaimStatus,
       claimstatusdesc_en: responsefromAIA.Data.ClaimStatus,
       claimstatusdesc_th: responsefromAIA.Data.ClaimStatusDesc

@@ -25,6 +25,10 @@ export class TrakcareController {
      return this.trakcareService.getEpisodeByHN(xHN,xEpiDate,xEpiType);
   }
      
+  @Get('/getEpisodeInfoByVN/:xVN')
+  getEpisodeInfoByVN(@Param('xVN') xVN: string) {
+     return this.trakcareService.getEpisodeInfoByVN(xVN);
+  }
   @Get('/getOPDDischargeVisit/:xVN')
   getOPDDischargeVisit(@Param('xVN') xVN: string) {
      return this.trakcareService.getOPDDischargeVisit(xVN);

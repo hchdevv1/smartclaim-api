@@ -477,6 +477,9 @@ export class ResultReviewDataJsonDto {
     @IsOptional()
     TotalBillAmount?: string;
 
+    @IsString()
+    @IsOptional()
+    InvoiceNumber?: string;
 }
 
 ////////////////////////////

@@ -1014,12 +1014,29 @@ async getdocumentTypeforAttachDocList(xInsurercode: string ) {
 }
 
 async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto) {
-  
+  console.log('--------^^^^^^^^^----------')
   const xRefId =queryVisitDatabaseBodyDto.RefId;
   const xTransactionNo = queryVisitDatabaseBodyDto.TransactionNo;
   const xVN =queryVisitDatabaseBodyDto.VN;
   let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeVisitDto();
-// ดึงข้อมูลจากฐานข้อมูล
+
+
+  const visittransactionclaim = await prismaProgest.transactionclaim.findFirst({ 
+    where: {
+      vn: xVN,
+      refid: xRefId,
+      transactionno: xTransactionNo,
+    },  
+    select: {
+      previoustreatmentdate: true,
+      previoustreatmentdetail: true, 
+      isreimbursement: true, batchnumber: true, 
+      invoicenumber: true, otherinsurer: true, furtherclaimid: true,
+      furtherclaimno: true, furtherclaimvn: true,
+     
+    },
+  });
+///////////////////  
 const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst({ 
   where: {
     vn: xVN,
@@ -1034,18 +1051,19 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
        additionalnote: true, signsymptomsdate: true, comascore: true,
         expecteddayofrecovery: true, pregnant: true, alcoholrelated: true,
          haveaccidentinjurydetail: true, haveaccidentcauseofinjurydetail: true, haveprocedure: true,
-          privatecase: true,visitdatetime:true
+          privatecase: true,visitdatetime:true,
+          weight:true,height:true,
    
   },
 });
-//console.log(visittransactionsInfo)
-//console.log('yyyyyy')
+console.log(visittransactionsInfo)
+console.log('yyyyyy')
 if(visittransactionsInfo){
   //console.log('yyy111yyy')
   const visitDatabaseResultInfo = new VisitDatabaseResultInfo();
   visitDatabaseResultInfo.VisitInfo = {
  
-    //FurtherClaimId:visittransactionsInfo.fu
+    FurtherClaimId:visittransactionclaim.furtherclaimid,
 
     AccidentCauseOver45Days:visittransactionsInfo.accidentcauseover45days,
     AdditionalNote:visittransactionsInfo.additionalnote,
@@ -1054,13 +1072,13 @@ if(visittransactionsInfo){
     ComaScore:visittransactionsInfo.comascore,
     DxFreeText:visittransactionsInfo.dxfreetext,
     ExpectedDayOfRecovery:visittransactionsInfo.expecteddayofrecovery,
-  // Height:visittransactionsInfo
+  Height:visittransactionsInfo.height,
   PhysicalExam:visittransactionsInfo.physicalexam,
   PlanOfTreatment:visittransactionsInfo.planoftreatment,
    Pregnant:visittransactionsInfo.pregnant,
    PresentIllness:visittransactionsInfo.presentillness,
-    // PreviousTreatmentDate?: string;
-    //PreviousTreatmentDetail?: string;
+     PreviousTreatmentDate: visittransactionclaim.previoustreatmentdate,
+    PreviousTreatmentDetail: visittransactionclaim.previoustreatmentdetail,
     PrivateCase:visittransactionsInfo.privatecase,
     ProcedureFreeText:visittransactionsInfo.procedurefreetext,
     SignSymptomsDate:visittransactionsInfo.signsymptomsdate,
@@ -1070,7 +1088,7 @@ if(visittransactionsInfo){
 
    // VN:visittransactionsInfo.
 
-   // Weight:visittransactionsInfo.
+    Weight:visittransactionsInfo.weight,
 
   };
   //console.log(visitDatabaseResultInfo)
@@ -1126,10 +1144,12 @@ if(visittransactionsInfo){
 // console.log('yyyyyy')
 // console.log('yyyyyy')
 // console.log('yyyyyy')
-// console.log(newResultOpdDischargeProcedurDto)
+ console.log(newResultOpdDischargeProcedurDto)
 // console.log('yyyyyy')
 // console.log('yyyyyy')
 // console.log('yyyyyy')
+
+console.log('--------^^^^^^^^^----------')
      return newResultOpdDischargeProcedurDto  
 
 }
@@ -1917,7 +1937,9 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
         //const base64File = fileBuffer.toString('base64');
         return {
           filename: fileRecord.documentname ,
-          originalname: fileRecord.originalname //fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
+          originalname: fileRecord.originalname,
+          documenttypecode : fileRecord.documenttypecode
+           //fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
           //base64: base64File, // ข้อมูลไฟล์เป็น Base64
         };
       }),

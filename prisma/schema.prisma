@@ -184,6 +184,8 @@ model medicaltransactions {
   haveprocedure                   Boolean?
   privatecase                     Boolean?
   visitdatetime                   String?  @db.VarChar(255)
+  height                          String?  @db.VarChar(6)
+  weight                          String?  @db.VarChar(6)
 }
 
 model policytype {
@@ -243,6 +245,7 @@ model transactionclaim {
   membershipid            String?    @db.VarChar
   furtherclaimvn          String?    @db.VarChar
   customerid              String?    @db.VarChar
+  totalbillamount         Decimal?   @db.Decimal(10, 2)
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 

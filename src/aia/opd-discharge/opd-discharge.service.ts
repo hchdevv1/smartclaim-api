@@ -98,6 +98,13 @@ try{
       VisitInfo: xQueryVisit,
      } 
   }else{
+    
+    if (FurtherClaimVN){
+      
+      const getVisitDateTimeCurrentVN = await this.trakcareService.getEpisodeInfoByVN(queryOpdDischargeDto.PatientInfo.VN);
+      const CurrentVisitDateTime =getVisitDateTimeCurrentVN?.VisitInfo?.VisitDateTime
+      TrakcarepatientInfo.VisitInfo.VisitDateTime =CurrentVisitDateTime
+    }
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       const xQueryVisit: QueryVisit = TrakcarepatientInfo.VisitInfo ? {
         FurtherClaimId: TrakcarepatientInfo.VisitInfo.FurtherClaimId || '', 
@@ -319,6 +326,8 @@ return newResultOpdDischargeVitalSignDto
 async getOPDDischargeDoctor(queryOpdDischargeDto:QueryOpdDischargeDto){
     let xResultInfo;
  try{
+  const FurtherClaimVN =queryOpdDischargeDto.PatientInfo.FurtherClaimVN
+  if (FurtherClaimVN){queryOpdDischargeDto.PatientInfo.VN = FurtherClaimVN}
    
     const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeDoctor(queryOpdDischargeDto.PatientInfo.VN);
     const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
@@ -426,7 +435,8 @@ return newResultOpdDischargeDoctorDto
 async getOPDDischargeDiagnosis(queryOpdDischargeDto:QueryOpdDischargeDto){
     let xResultInfo;
  try{
-   
+  const FurtherClaimVN =queryOpdDischargeDto.PatientInfo.FurtherClaimVN
+  if (FurtherClaimVN){queryOpdDischargeDto.PatientInfo.VN = FurtherClaimVN}
     const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeDiagnosis(queryOpdDischargeDto.PatientInfo.VN);
     const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
     if (TrakcarepatientInfoStatusCode !==200){
@@ -1297,6 +1307,9 @@ async SubmitVisit(queryVisitDto:QueryVisitDto){
     const xAlcoholRelated =Boolean(queryVisitDto.PatientInfo.AlcoholRelated) || false;
     const xPregnant =Boolean(queryVisitDto.PatientInfo.Pregnant) || false;
     const xPrivateCase =Boolean(queryVisitDto.PatientInfo.PrivateCase) || false;
+    const xHeight =queryVisitDto.PatientInfo.Height||'';
+    const xWeight =queryVisitDto.PatientInfo.Weight||'';
+
 
 if (xTransactionNo){
  
@@ -1341,7 +1354,9 @@ if (xTransactionNo){
         haveaccidentcauseofinjurydetail: xHaveAccidentCauseOfInjuryDetail,
         haveprocedure: xHaveProcedure,
         privatecase:xPrivateCase,
-        visitdatetime:xVisitDateTime
+        visitdatetime:xVisitDateTime,
+        height:xHeight,
+        weight:xWeight
       },
     });
   }catch (error) {
@@ -2943,9 +2958,11 @@ console.log('Doctor done')
 // //--> get Billing  <--//
 let newResultReviewBillingInfoDto : ResultReviewBillingInfoDto[] = [];
 let  newTotalBillAmount ;
+let newInvoiceNumber ;
 const getOPDDischargeBilling = await this.trakcareService.getOPDDischargeBilling(RequesetBody.xVN); 
    if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
        newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
+       newInvoiceNumber =getOPDDischargeBilling.InvoiceNumber
        newResultReviewBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
       return {
@@ -2989,8 +3006,8 @@ newResultReviewDataJsonDto ={
   Doctor : newResultReviewDoctorInfoDto,
   Billing :newResultReviewBillingInfoDto,
    TotalBillAmount:newTotalBillAmount,
+   InvoiceNumber:newInvoiceNumber
 }
-//console.log(newResultReviewDataJsonDto)
 
 
     let xInsuranceResult= new InsuranceResult();
@@ -3004,6 +3021,50 @@ xResultInfo ={
     InsuranceResult: xInsuranceResult,
     InsuranceData:newResultReviewDataJsonDto
   } 
+
+if ((newResultReviewDataJsonDto.TotalBillAmount)||(newResultReviewDataJsonDto.InvoiceNumber)){
+
+  
+
+//   const QueryUpdateBill = {
+    
+//     ...(newResultReviewDataJsonDto.TotalBillAmount ? { vn: { equals: newResultReviewDataJsonDto.TotalBillAmount } } : {}),
+//     ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: { equals: newResultReviewDataJsonDto.InvoiceNumber  } } : {}),
+//   };
+//   if (QueryUpdateBill){
+//     let filteredQueryUpdateBill = Object.fromEntries(
+//       Object.entries(QueryUpdateBill).filter(([, value]) => value !== null && value !== undefined)
+//   );
+// }
+
+const QueryUpdateBill = {
+    
+  ...(newResultReviewDataJsonDto.TotalBillAmount ? { totalbillamount: { equals: newResultReviewDataJsonDto.TotalBillAmount } } : {}),
+  ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: { equals: newResultReviewDataJsonDto.InvoiceNumber  } } : {}),
+};
+if (QueryUpdateBill){
+  const filteredQueryUpdateBill = Object.fromEntries(
+   Object.entries(QueryUpdateBill).filter(([, value]) => value !== null && value !== undefined)
+);
+
+await prismaProgest.transactionclaim.updateMany({
+   where: {
+        refid: RequesetBody.xRefId,
+        transactionno: RequesetBody.xTransactionNo,
+       vn:RequesetBody.xVN
+      },data: filteredQueryUpdateBill 
+})
+}
+
+  // await prismaProgest.transactionclaim.update({
+  //    where: {
+  //       refid: RequesetBody.xRefId,
+  //       transactionno: RequesetBody.xTransactionNo,
+  //      vn:RequesetBody.xVN
+  //     },data:filteredQueryUpdateBill
+  // });
+
+}
 
 
 

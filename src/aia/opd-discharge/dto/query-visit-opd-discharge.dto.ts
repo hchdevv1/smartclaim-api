@@ -98,7 +98,12 @@ export class QueryVisitDto {
     @IsBoolean()
     PrivateCase: boolean;
 
-
+    @IsString()
+    @IsOptional()
+    Height?: string;
+    @IsString()
+    @IsOptional()
+    Weight?: string;
   }
 
 

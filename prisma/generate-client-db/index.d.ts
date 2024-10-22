@@ -15583,6 +15583,8 @@ export namespace Prisma {
     haveprocedure: boolean | null
     privatecase: boolean | null
     visitdatetime: string | null
+    height: string | null
+    weight: string | null
   }
 
   export type MedicaltransactionsMaxAggregateOutputType = {
@@ -15611,6 +15613,8 @@ export namespace Prisma {
     haveprocedure: boolean | null
     privatecase: boolean | null
     visitdatetime: string | null
+    height: string | null
+    weight: string | null
   }
 
   export type MedicaltransactionsCountAggregateOutputType = {
@@ -15639,6 +15643,8 @@ export namespace Prisma {
     haveprocedure: number
     privatecase: number
     visitdatetime: number
+    height: number
+    weight: number
     _all: number
   }
 
@@ -15679,6 +15685,8 @@ export namespace Prisma {
     haveprocedure?: true
     privatecase?: true
     visitdatetime?: true
+    height?: true
+    weight?: true
   }
 
   export type MedicaltransactionsMaxAggregateInputType = {
@@ -15707,6 +15715,8 @@ export namespace Prisma {
     haveprocedure?: true
     privatecase?: true
     visitdatetime?: true
+    height?: true
+    weight?: true
   }
 
   export type MedicaltransactionsCountAggregateInputType = {
@@ -15735,6 +15745,8 @@ export namespace Prisma {
     haveprocedure?: true
     privatecase?: true
     visitdatetime?: true
+    height?: true
+    weight?: true
     _all?: true
   }
 
@@ -15850,6 +15862,8 @@ export namespace Prisma {
     haveprocedure: boolean | null
     privatecase: boolean | null
     visitdatetime: string | null
+    height: string | null
+    weight: string | null
     _count: MedicaltransactionsCountAggregateOutputType | null
     _avg: MedicaltransactionsAvgAggregateOutputType | null
     _sum: MedicaltransactionsSumAggregateOutputType | null
@@ -15897,6 +15911,8 @@ export namespace Prisma {
     haveprocedure?: boolean
     privatecase?: boolean
     visitdatetime?: boolean
+    height?: boolean
+    weight?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -15925,6 +15941,8 @@ export namespace Prisma {
     haveprocedure?: boolean
     privatecase?: boolean
     visitdatetime?: boolean
+    height?: boolean
+    weight?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectScalar = {
@@ -15953,6 +15971,8 @@ export namespace Prisma {
     haveprocedure?: boolean
     privatecase?: boolean
     visitdatetime?: boolean
+    height?: boolean
+    weight?: boolean
   }
 
 
@@ -15985,6 +16005,8 @@ export namespace Prisma {
       haveprocedure: boolean | null
       privatecase: boolean | null
       visitdatetime: string | null
+      height: string | null
+      weight: string | null
     }, ExtArgs["result"]["medicaltransactions"]>
     composites: {}
   }
@@ -16403,6 +16425,8 @@ export namespace Prisma {
     readonly haveprocedure: FieldRef<"medicaltransactions", 'Boolean'>
     readonly privatecase: FieldRef<"medicaltransactions", 'Boolean'>
     readonly visitdatetime: FieldRef<"medicaltransactions", 'String'>
+    readonly height: FieldRef<"medicaltransactions", 'String'>
+    readonly weight: FieldRef<"medicaltransactions", 'String'>
   }
     
 
@@ -18657,6 +18681,7 @@ export namespace Prisma {
     totalapprovedamount: Decimal | null
     totalexcessamount: Decimal | null
     runningdocument: Decimal | null
+    totalbillamount: Decimal | null
   }
 
   export type TransactionclaimSumAggregateOutputType = {
@@ -18665,6 +18690,7 @@ export namespace Prisma {
     totalapprovedamount: Decimal | null
     totalexcessamount: Decimal | null
     runningdocument: Decimal | null
+    totalbillamount: Decimal | null
   }
 
   export type TransactionclaimMinAggregateOutputType = {
@@ -18708,6 +18734,7 @@ export namespace Prisma {
     membershipid: string | null
     furtherclaimvn: string | null
     customerid: string | null
+    totalbillamount: Decimal | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -18751,6 +18778,7 @@ export namespace Prisma {
     membershipid: string | null
     furtherclaimvn: string | null
     customerid: string | null
+    totalbillamount: Decimal | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -18794,6 +18822,7 @@ export namespace Prisma {
     membershipid: number
     furtherclaimvn: number
     customerid: number
+    totalbillamount: number
     _all: number
   }
 
@@ -18804,6 +18833,7 @@ export namespace Prisma {
     totalapprovedamount?: true
     totalexcessamount?: true
     runningdocument?: true
+    totalbillamount?: true
   }
 
   export type TransactionclaimSumAggregateInputType = {
@@ -18812,6 +18842,7 @@ export namespace Prisma {
     totalapprovedamount?: true
     totalexcessamount?: true
     runningdocument?: true
+    totalbillamount?: true
   }
 
   export type TransactionclaimMinAggregateInputType = {
@@ -18855,6 +18886,7 @@ export namespace Prisma {
     membershipid?: true
     furtherclaimvn?: true
     customerid?: true
+    totalbillamount?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -18898,6 +18930,7 @@ export namespace Prisma {
     membershipid?: true
     furtherclaimvn?: true
     customerid?: true
+    totalbillamount?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -18941,6 +18974,7 @@ export namespace Prisma {
     membershipid?: true
     furtherclaimvn?: true
     customerid?: true
+    totalbillamount?: true
     _all?: true
   }
 
@@ -19071,6 +19105,7 @@ export namespace Prisma {
     membershipid: string | null
     furtherclaimvn: string | null
     customerid: string | null
+    totalbillamount: Decimal | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -19133,6 +19168,7 @@ export namespace Prisma {
     membershipid?: boolean
     furtherclaimvn?: boolean
     customerid?: boolean
+    totalbillamount?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -19177,6 +19213,7 @@ export namespace Prisma {
     membershipid?: boolean
     furtherclaimvn?: boolean
     customerid?: boolean
+    totalbillamount?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -19221,6 +19258,7 @@ export namespace Prisma {
     membershipid?: boolean
     furtherclaimvn?: boolean
     customerid?: boolean
+    totalbillamount?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19276,6 +19314,7 @@ export namespace Prisma {
       membershipid: string | null
       furtherclaimvn: string | null
       customerid: string | null
+      totalbillamount: Prisma.Decimal | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -19710,6 +19749,7 @@ export namespace Prisma {
     readonly membershipid: FieldRef<"transactionclaim", 'String'>
     readonly furtherclaimvn: FieldRef<"transactionclaim", 'String'>
     readonly customerid: FieldRef<"transactionclaim", 'String'>
+    readonly totalbillamount: FieldRef<"transactionclaim", 'Decimal'>
   }
     
 
@@ -27524,7 +27564,9 @@ export namespace Prisma {
     haveaccidentcauseofinjurydetail: 'haveaccidentcauseofinjurydetail',
     haveprocedure: 'haveprocedure',
     privatecase: 'privatecase',
-    visitdatetime: 'visitdatetime'
+    visitdatetime: 'visitdatetime',
+    height: 'height',
+    weight: 'weight'
   };
 
   export type MedicaltransactionsScalarFieldEnum = (typeof MedicaltransactionsScalarFieldEnum)[keyof typeof MedicaltransactionsScalarFieldEnum]
@@ -27590,7 +27632,8 @@ export namespace Prisma {
     policynumber: 'policynumber',
     membershipid: 'membershipid',
     furtherclaimvn: 'furtherclaimvn',
-    customerid: 'customerid'
+    customerid: 'customerid',
+    totalbillamount: 'totalbillamount'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -28692,6 +28735,8 @@ export namespace Prisma {
     haveprocedure?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     privatecase?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     visitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
+    height?: StringNullableFilter<"medicaltransactions"> | string | null
+    weight?: StringNullableFilter<"medicaltransactions"> | string | null
   }
 
   export type medicaltransactionsOrderByWithRelationInput = {
@@ -28720,6 +28765,8 @@ export namespace Prisma {
     haveprocedure?: SortOrderInput | SortOrder
     privatecase?: SortOrderInput | SortOrder
     visitdatetime?: SortOrderInput | SortOrder
+    height?: SortOrderInput | SortOrder
+    weight?: SortOrderInput | SortOrder
   }
 
   export type medicaltransactionsWhereUniqueInput = Prisma.AtLeast<{
@@ -28751,6 +28798,8 @@ export namespace Prisma {
     haveprocedure?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     privatecase?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     visitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
+    height?: StringNullableFilter<"medicaltransactions"> | string | null
+    weight?: StringNullableFilter<"medicaltransactions"> | string | null
   }, "id">
 
   export type medicaltransactionsOrderByWithAggregationInput = {
@@ -28779,6 +28828,8 @@ export namespace Prisma {
     haveprocedure?: SortOrderInput | SortOrder
     privatecase?: SortOrderInput | SortOrder
     visitdatetime?: SortOrderInput | SortOrder
+    height?: SortOrderInput | SortOrder
+    weight?: SortOrderInput | SortOrder
     _count?: medicaltransactionsCountOrderByAggregateInput
     _avg?: medicaltransactionsAvgOrderByAggregateInput
     _max?: medicaltransactionsMaxOrderByAggregateInput
@@ -28815,6 +28866,8 @@ export namespace Prisma {
     haveprocedure?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
     privatecase?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
     visitdatetime?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    height?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    weight?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
   }
 
   export type policytypeWhereInput = {
@@ -28965,6 +29018,7 @@ export namespace Prisma {
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -29009,6 +29063,7 @@ export namespace Prisma {
     membershipid?: SortOrderInput | SortOrder
     furtherclaimvn?: SortOrderInput | SortOrder
     customerid?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -29056,6 +29111,7 @@ export namespace Prisma {
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -29100,6 +29156,7 @@ export namespace Prisma {
     membershipid?: SortOrderInput | SortOrder
     furtherclaimvn?: SortOrderInput | SortOrder
     customerid?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -29151,6 +29208,7 @@ export namespace Prisma {
     membershipid?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     customerid?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableWithAggregatesFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -30559,6 +30617,8 @@ export namespace Prisma {
     haveprocedure?: boolean | null
     privatecase?: boolean | null
     visitdatetime?: string | null
+    height?: string | null
+    weight?: string | null
   }
 
   export type medicaltransactionsUncheckedCreateInput = {
@@ -30587,6 +30647,8 @@ export namespace Prisma {
     haveprocedure?: boolean | null
     privatecase?: boolean | null
     visitdatetime?: string | null
+    height?: string | null
+    weight?: string | null
   }
 
   export type medicaltransactionsUpdateInput = {
@@ -30614,6 +30676,8 @@ export namespace Prisma {
     haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
     privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    height?: NullableStringFieldUpdateOperationsInput | string | null
+    weight?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateInput = {
@@ -30642,6 +30706,8 @@ export namespace Prisma {
     haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
     privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    height?: NullableStringFieldUpdateOperationsInput | string | null
+    weight?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsCreateManyInput = {
@@ -30670,6 +30736,8 @@ export namespace Prisma {
     haveprocedure?: boolean | null
     privatecase?: boolean | null
     visitdatetime?: string | null
+    height?: string | null
+    weight?: string | null
   }
 
   export type medicaltransactionsUpdateManyMutationInput = {
@@ -30697,6 +30765,8 @@ export namespace Prisma {
     haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
     privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    height?: NullableStringFieldUpdateOperationsInput | string | null
+    weight?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateManyInput = {
@@ -30725,6 +30795,8 @@ export namespace Prisma {
     haveprocedure?: NullableBoolFieldUpdateOperationsInput | boolean | null
     privatecase?: NullableBoolFieldUpdateOperationsInput | boolean | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    height?: NullableStringFieldUpdateOperationsInput | string | null
+    weight?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type policytypeCreateInput = {
@@ -30855,6 +30927,7 @@ export namespace Prisma {
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -30899,6 +30972,7 @@ export namespace Prisma {
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -30939,6 +31013,7 @@ export namespace Prisma {
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -30983,6 +31058,7 @@ export namespace Prisma {
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -31026,6 +31102,7 @@ export namespace Prisma {
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -31066,6 +31143,7 @@ export namespace Prisma {
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -31109,6 +31187,7 @@ export namespace Prisma {
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -32593,6 +32672,8 @@ export namespace Prisma {
     haveprocedure?: SortOrder
     privatecase?: SortOrder
     visitdatetime?: SortOrder
+    height?: SortOrder
+    weight?: SortOrder
   }
 
   export type medicaltransactionsAvgOrderByAggregateInput = {
@@ -32626,6 +32707,8 @@ export namespace Prisma {
     haveprocedure?: SortOrder
     privatecase?: SortOrder
     visitdatetime?: SortOrder
+    height?: SortOrder
+    weight?: SortOrder
   }
 
   export type medicaltransactionsMinOrderByAggregateInput = {
@@ -32654,6 +32737,8 @@ export namespace Prisma {
     haveprocedure?: SortOrder
     privatecase?: SortOrder
     visitdatetime?: SortOrder
+    height?: SortOrder
+    weight?: SortOrder
   }
 
   export type medicaltransactionsSumOrderByAggregateInput = {
@@ -32769,6 +32854,7 @@ export namespace Prisma {
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
     customerid?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -32777,6 +32863,7 @@ export namespace Prisma {
     totalapprovedamount?: SortOrder
     totalexcessamount?: SortOrder
     runningdocument?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type transactionclaimMaxOrderByAggregateInput = {
@@ -32820,6 +32907,7 @@ export namespace Prisma {
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
     customerid?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -32863,6 +32951,7 @@ export namespace Prisma {
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
     customerid?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -32871,6 +32960,7 @@ export namespace Prisma {
     totalapprovedamount?: SortOrder
     totalexcessamount?: SortOrder
     runningdocument?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type ClaimstatusNullableRelationFilter = {
@@ -35230,6 +35320,7 @@ export namespace Prisma {
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -35271,6 +35362,7 @@ export namespace Prisma {
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -35399,6 +35491,7 @@ export namespace Prisma {
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -38132,6 +38225,7 @@ export namespace Prisma {
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -38172,6 +38266,7 @@ export namespace Prisma {
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -38213,6 +38308,7 @@ export namespace Prisma {
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -38254,6 +38350,7 @@ export namespace Prisma {
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {

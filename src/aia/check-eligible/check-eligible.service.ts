@@ -466,7 +466,7 @@ export class CheckEligibleService {
     //  ,updatexDob,updatexVN,updatexPolicyTypeCode,updatexIllnessTypeCode,updatexSurgeryTypeCode,updatexVisitDateTime
     //  ,updatexAccidentDate,updatexRunningdocument,updatexFurtherClaimId,updatexFurtherClaimNo,updatexFurtherClaimVN
     //  ,updatexMembershipId,updatexPolicyNumber,updatexCustomerId;
-     let updateMembershipId,updatePolicyNumber,QueryUpdateClaimants,filteredQueryUpdateClaimants ,QueryUpdatetransactionclaim,filteredQueryUpdatetransactionclaim;
+     let updateMembershipId,updatePolicyNumber,updateCustomerId ,QueryUpdateClaimants,filteredQueryUpdateClaimants ,QueryUpdatetransactionclaim,filteredQueryUpdatetransactionclaim;
       try{
         RequesetBody ={
           xRefID:queryCreateTransactionBodyDto.PatientInfo.RefId,
@@ -534,12 +534,16 @@ export class CheckEligibleService {
               claimstatusdesc_th:'waitting for discharge'
             },
           });
-          
+
          updateMembershipId = queryCreateTransactionBodyDto?.PatientInfo?.MembershipId;
          updatePolicyNumber = queryCreateTransactionBodyDto?.PatientInfo?.PolicyNumber;
+         updateCustomerId = queryCreateTransactionBodyDto?.PatientInfo?.CustomerId;
+
          QueryUpdateClaimants = {
             ...(updateMembershipId ? { membershipid:  updateMembershipId }  : {}),
             ...(updatePolicyNumber ? { policynumber: updatePolicyNumber } : {}),
+            ...(updateCustomerId ? { customerid: updateCustomerId } : {}),
+
         };
         if (QueryUpdateClaimants){
           filteredQueryUpdateClaimants = Object.fromEntries(
@@ -631,9 +635,11 @@ export class CheckEligibleService {
           }
          updateMembershipId = queryCreateTransactionBodyDto?.PatientInfo?.MembershipId;
          updatePolicyNumber = queryCreateTransactionBodyDto?.PatientInfo?.PolicyNumber;
+         updateCustomerId = queryCreateTransactionBodyDto?.PatientInfo?.CustomerId;
          QueryUpdateClaimants = {
             ...(updateMembershipId ? { membershipid:  updateMembershipId }  : {}),
             ...(updatePolicyNumber ? { policynumber: updatePolicyNumber } : {}),
+            ...(updateCustomerId ? { customerid: updateCustomerId } : {}),
         };
         if (QueryUpdateClaimants){
          filteredQueryUpdateClaimants = Object.fromEntries(
