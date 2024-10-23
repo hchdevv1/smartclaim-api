@@ -2276,16 +2276,7 @@ const whereConditions = {
   ...(Runningdocument ? { runningdocument: { equals: Runningdocument } } : {}),
   ...(DocumenttypeCode ? { documenttypecode: { equals: DocumenttypeCode } } : {}),
 };
-//console.log(InsurerCode)  
-  //const DocumentName = queryCreateClaimDocumentDtoBodyDto.DocumentName;
-  //const DocumenttypeCode = queryCreateClaimDocumentDtoBodyDto.DocumenttypeCode||'';
     const fileRecords = await prismaProgest.claimdocuments.findMany({
-    //  where: {
-    //     vn:VN,
-    //     refid:RefId,
-    //     transactionno:TransactionNo,
-    //     //insurerid:InsurerCode
-    // }
     where :whereConditions
     });
     const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
@@ -2293,8 +2284,8 @@ const whereConditions = {
      //console.log(fileRecords)
      if (fileRecords.length === 0) {
       //newResultAttachDocListInfoDto:{}
-      
-      throw new NotFoundException('Files not found');
+      console.log('-------^^^^^---------')
+     //throw new NotFoundException('Files,,, not found');
      }
     await Promise.all(
       fileRecords.map(async (fileRecord) => {
@@ -2311,6 +2302,7 @@ const whereConditions = {
             Base64Data: base64File, // ข้อมูลไฟล์เป็น Base64
           });
         } catch (error) {
+          
           console.error(`Error reading file ${fileRecord.filepath}:`, error);
         }
       }),

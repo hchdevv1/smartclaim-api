@@ -9,7 +9,7 @@ import { prismaProgest } from '../../database/database';
 import { QueryBillingSubmissionBodyDto } from './dto/query-billing-submission.dto';
 import {ResultBillingSubmissionDto ,ResultAttachDocListInfoDto ,InsuranceResult,InsuranceData } from './dto/result-billing-submission.dto';
 
-//import { DummyDataRespone1 } from './dummyRespone2';
+//import { DummyDataRespone1 } from './dummyRespone';
 const newHttpMessageDto =new HttpMessageDto();
 const AIA_APIURL= process.env.AIA_APIURL;
 const AIA_APISecretkey = process.env.AIA_APISecretkey;
@@ -114,10 +114,10 @@ const QueryCreateClaimDocumentDtoBody={
             })
           )
       );
-//     const xDummyDataRespone1 =new DummyDataRespone1();
-// const responsefromAIA  =xDummyDataRespone1.res
-       const responeInputcode =responsefromAIA.Result.Code
-       console.log(responsefromAIA)
+   // const xDummyDataRespone1 =new DummyDataRespone1();
+  // const responsefromAIA  =xDummyDataRespone1.res
+      const responeInputcode =responsefromAIA.Result.Code
+       //console.log(responsefromAIA)
       //const responeInputcode ='S'
       if (responeInputcode !=='S'){
        this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
@@ -168,7 +168,7 @@ if (existingRecord) {
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       }
     }else{
-      this.addFormatHTTPStatus(newHttpMessageDto,400,'Files not found','Files not found')
+      this.addFormatHTTPStatus(newHttpMessageDto,400,'Billing file type not found.','Billing file type not found.')
     }
 
    let newResultBillingSubmissionDto= new ResultBillingSubmissionDto();

@@ -848,6 +848,8 @@ export class PatientinfoService {
                 surname_th: true,
               }
             }
+          },orderBy: {
+            status_changed_at: 'asc', // จัดเรียงตามลำดับเวลาแบบ ascending (จากเก่ามาใหม่)
           }
         });
    
