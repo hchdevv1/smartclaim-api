@@ -1132,6 +1132,8 @@ const xQueryAccident ={
 
   }else{
     //console.log('acc from trakcare')
+    const FurtherClaimVN =queryOpdDischargeDto.PatientInfo.FurtherClaimVN
+    if (FurtherClaimVN){queryOpdDischargeDto.PatientInfo.VN = FurtherClaimVN}
     const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeAccident(queryOpdDischargeDto.PatientInfo.VN);
     const xAccientdata =queryOpdDischargeDto.PatientInfo.AccidentDate
     const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
@@ -1832,8 +1834,11 @@ try{
   xServiceSettingCode:querySubmitOpdDischargeDto.PatientInfo.ServiceSettingCode,
   xSurgeryTypeCode:querySubmitOpdDischargeDto.PatientInfo.SurgeryTypeCode,
   xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode,
-  xRunningdocument:querySubmitOpdDischargeDto.PatientInfo.Runningdocument
+  xRunningdocument:querySubmitOpdDischargeDto.PatientInfo.Runningdocument,
+  xFurtherClaimVN :querySubmitOpdDischargeDto.PatientInfo.FurtherClaimVN
  }
+ const FurtherClaimVN =RequesetBody.xFurtherClaimVN
+
 ////////////////////////////////////////
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
@@ -1898,7 +1903,11 @@ if (existingVisitRecord){
   }
   console.log('getOPDDischargeVisit done from database')
 }else{
-  const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(RequesetBody.xVN);
+  let VNForVisitinfo ;
+  if (FurtherClaimVN){VNForVisitinfo = FurtherClaimVN}
+  else {VNForVisitinfo =RequesetBody.xVN}
+ 
+  const getOPDDischargeVisit = await this.trakcareService.getOPDDischargeVisit(VNForVisitinfo);
   newResultVisitInfoDto= {
     FurtherClaimId: '',
     AccidentCauseOver45Days: '',
@@ -1961,7 +1970,10 @@ let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
 }
 console.log('getOPDDischargeVitalSign done')
 // //--> get Diagnosis  <--//
-const getOPDDischargeDiagnosis = await this.trakcareService.getOPDDischargeDiagnosis(RequesetBody.xVN);
+let VNForDiagnosisinfo ;
+if (FurtherClaimVN){VNForDiagnosisinfo = FurtherClaimVN}
+else {VNForDiagnosisinfo =RequesetBody.xVN}
+const getOPDDischargeDiagnosis = await this.trakcareService.getOPDDischargeDiagnosis(VNForDiagnosisinfo);
 let getDiagnosisTypeMapping 
 let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
   if (getOPDDischargeDiagnosis && getOPDDischargeDiagnosis.DiagnosisInfo && getOPDDischargeDiagnosis.DiagnosisInfo.length > 0) {
@@ -2239,7 +2251,10 @@ let newResultOrderItemInfoDto : ResultOrderItemInfoDto[] = [];
 }
 console.log('OrderItem done')
 // //--> get Doctor  <--//
-const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(RequesetBody.xVN); 
+let VNForDoctorinfo ;
+if (FurtherClaimVN){VNForDoctorinfo = FurtherClaimVN}
+else {VNForDoctorinfo =RequesetBody.xVN}
+const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(VNForDoctorinfo); 
 let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
   if (getOPDDischargeDoctor && getOPDDischargeDoctor.DoctorInfo && getOPDDischargeDoctor.DoctorInfo.length > 0) {
     newResultDoctorInfoDto= await Promise.all(

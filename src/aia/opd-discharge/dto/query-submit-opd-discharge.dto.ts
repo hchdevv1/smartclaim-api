@@ -182,6 +182,11 @@ class SearchPatientBodyDto{
     @IsInt()
     @IsOptional()
     Runningdocument:number
+
+
+    @IsString()
+    @IsOptional()
+    FurtherClaimVN?: string;
   }
 class QueryProcedure{
 

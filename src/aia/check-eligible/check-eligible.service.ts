@@ -532,7 +532,7 @@ export class CheckEligibleService {
               claimstatusdesc:'waitting for discharge',
               claimstatusdesc_en:'waitting for discharge',
               claimstatusdesc_th:'waitting for discharge',
-              visitlocation:''
+              visitlocation:RequesetBody.xVisitlocation,
             },
           });
 
@@ -588,7 +588,7 @@ export class CheckEligibleService {
    const  updatexMembershipId= RequesetBody.xMembershipId;
    const  updatexPolicyNumber= RequesetBody.xPolicyNumber;
    const  updatexCustomerId= RequesetBody.updatexCustomerId;
-
+   const  updatexVisitlocation= RequesetBody.xVisitlocation;
           const existingRecord = await prismaProgest.transactionclaim.findFirst({
             where: {
               refid: RequesetBody.xRefID,
@@ -620,6 +620,8 @@ export class CheckEligibleService {
               claimstatusdesc:'waitting for discharge',
               claimstatusdesc_en:'waitting for discharge',
               claimstatusdesc_th:'waitting for discharge',
+              ...(updatexVisitlocation ? { visitlocation : updatexVisitlocation } : {}),
+              
           };
           if (QueryUpdatetransactionclaim){
             filteredQueryUpdatetransactionclaim = Object.fromEntries(
