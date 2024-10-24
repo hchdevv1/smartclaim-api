@@ -323,7 +323,8 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   membershipid: 'membershipid',
   furtherclaimvn: 'furtherclaimvn',
   customerid: 'customerid',
-  totalbillamount: 'totalbillamount'
+  totalbillamount: 'totalbillamount',
+  visitlocation: 'visitlocation'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {

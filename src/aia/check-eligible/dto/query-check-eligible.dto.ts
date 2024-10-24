@@ -208,6 +208,10 @@ class CreateTransactionBodyDto{
     @IsString()
     @IsOptional()
     CustomerId?: string;
+
+    @IsString()
+    @IsOptional()
+    Visitlocation?: string;
   
     
   }

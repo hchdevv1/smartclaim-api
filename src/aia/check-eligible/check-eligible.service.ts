@@ -493,7 +493,7 @@ export class CheckEligibleService {
           xMembershipId: queryCreateTransactionBodyDto.PatientInfo.MembershipId||'',
           xPolicyNumber: queryCreateTransactionBodyDto.PatientInfo.PolicyNumber||'',
           xCustomerId: queryCreateTransactionBodyDto.PatientInfo.CustomerId||'',
-
+          xVisitlocation :queryCreateTransactionBodyDto.PatientInfo.Visitlocation||'',
         }
         let newCreateTransactionDto= new CreateTransactionDto();
         const existingRecord = await prismaProgest.transactionclaim.findFirst({
@@ -531,7 +531,8 @@ export class CheckEligibleService {
               customerid:RequesetBody.xCustomerId,
               claimstatusdesc:'waitting for discharge',
               claimstatusdesc_en:'waitting for discharge',
-              claimstatusdesc_th:'waitting for discharge'
+              claimstatusdesc_th:'waitting for discharge',
+              visitlocation:''
             },
           });
 

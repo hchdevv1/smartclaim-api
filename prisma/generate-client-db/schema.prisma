@@ -246,6 +246,7 @@ model transactionclaim {
   furtherclaimvn          String?    @db.VarChar
   customerid              String?    @db.VarChar
   totalbillamount         Decimal?   @db.Decimal(10, 2)
+  visitlocation           String?    @db.VarChar(255)
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 
