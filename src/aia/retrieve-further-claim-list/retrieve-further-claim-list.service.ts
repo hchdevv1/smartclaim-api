@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs'
 import { catchError, map } from 'rxjs/operators';
 import { HttpMessageDto } from '../../utils/dto/http-status-message.dto';
 import { UtilsService } from '../../utils/utils.service';
+import { TrakcareService} from '../../trakcare/trakcare.service';
 
 import { QueryRetrieveFurtherClaimBodyDto } from './dto/query-retrieve-further-claim-list.dto';
 import { ResultRetrieveFurtherClaimDto ,InsuranceResult ,InsuranceData ,FurtherClaimList} from './dto/result-retrieve-further-claim-list.dto';
@@ -20,6 +21,7 @@ const API_CONTENTTYPE = process.env.API_CONTENTTYPE
 export class RetrieveFurtherClaimListService {
   constructor(
     private readonly httpService: HttpService,
+    private readonly trakcareService:TrakcareService,
     private readonly utilsService:UtilsService
   ) {}
   
@@ -93,13 +95,20 @@ export class RetrieveFurtherClaimListService {
          MessageTh:responsefromAIA.Result.MessageTh ||'',
         }
 
-        const xFurtherClaimList: FurtherClaimList[] = responsefromAIA.Data.FurtherClaimList ? responsefromAIA.Data.FurtherClaimList.map((item) => {
-          
+        const xFurtherClaimList: FurtherClaimList[] = responsefromAIA.Data.FurtherClaimList 
+        ? await Promise.all(
+        responsefromAIA.Data.FurtherClaimList.map(async(item) => {
+          let furtherclaimvn;
           //const effectiveDate = new Date(item.EffectiveDate);
           const formattedDscDateTime = new Date(item.DscDateTime).toISOString().split('T')[0];
           const formattedVisitDateTime = new Date(item.DscDateTime).toISOString().split('T')[0];
           const formattedAccidentDate = new Date(item.DscDateTime).toISOString().split('T')[0];
-
+          const TrakcarepatientInfo = await this.trakcareService.getEpisodeByHN(RequesetBody.xHN, formattedVisitDateTime, 'O');
+          if (TrakcarepatientInfo && TrakcarepatientInfo.EpisodeInfo && TrakcarepatientInfo.EpisodeInfo.length > 0) {
+            // ดึง VN จากทุกตัวใน EpisodeInfo
+            // vns = TrakcarepatientInfo.EpisodeInfo.map(episode => episode.VN);
+            furtherclaimvn = TrakcarepatientInfo.EpisodeInfo[0].VN;
+          }
           return {
             FurtherClaimId: item.FurtherClaimId,  
             ClaimNo:item.ClaimNo,
@@ -109,9 +118,11 @@ export class RetrieveFurtherClaimListService {
             DscDateTime:formattedDscDateTime,
             VisitDateTime: formattedVisitDateTime,  
             AccidentDate: formattedAccidentDate,
-            
+            FurtherClaimVN:furtherclaimvn||''
            };
-         }):[];
+         })
+        )
+         :[];
 
         let xInsuranceData = new InsuranceData();
         xInsuranceData={

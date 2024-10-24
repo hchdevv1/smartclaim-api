@@ -32,7 +32,6 @@ export class CheckClaimStatusService {
   ) {}
 
   async Checkclaimstatus(queryCheckClaimStatusBodyDto:QueryCheckClaimStatusBodyDto){
-    console.log('check st')
     let xResultInfo;
     try{
      // queryCheckClaimStatusBodyDto.PatientInfo.RefId ='AAA-12345'
@@ -45,8 +44,8 @@ export class CheckClaimStatusService {
          xPassportnumber : queryCheckClaimStatusBodyDto.PatientInfo.PassportNumber||'',
          xIdType:queryCheckClaimStatusBodyDto.PatientInfo.IdType||'',
          xInsurerCode:queryCheckClaimStatusBodyDto.PatientInfo.InsurerCode||null,
-         xHN :queryCheckClaimStatusBodyDto.PatientInfo.HN||'',
-         xVN: queryCheckClaimStatusBodyDto.PatientInfo.VN||'',
+         xHN :queryCheckClaimStatusBodyDto.PatientInfo.HN,
+         xVN: queryCheckClaimStatusBodyDto.PatientInfo.VN,
     
        }
 
@@ -101,8 +100,6 @@ export class CheckClaimStatusService {
          MessageTh:responsefromAIA.Result.MessageTh ||'',
         }
 
-
-
 let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
 xResultAttachDocListInfoDto = await Promise.all(
   responsefromAIA.Data.AttachDocList.map(async (doc) => {
@@ -134,32 +131,83 @@ const claimcode = xClaimStatusCode.Result[0].claimstatuscode;
           AttachDocList:xResultAttachDocListInfoDto
         }
 // save to database
-const existingRecord = await prismaProgest.transactionclaimstatus.findFirst({
+const transactionclaimexistingRecord = await prismaProgest.transactionclaim.findFirst({
+  where: {
+    refid: RequesetBody.xRefId,
+    transactionno: RequesetBody.xTransactionNo,
+   
+  },
+});
+
+if (transactionclaimexistingRecord) {
+  const updateclaimcode =claimcode
+  const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus
+  const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc
+  const updatebatchnumber =responsefromAIA.Data.BatchNumber
+  const updatetotalapprovedamount =responsefromAIA.Data.TotalApproveAmount
+  const updatepaymentdate =responsefromAIA.Data.PaymentDate
+
+
+  const QueryUpdate = {
+    ...(updateclaimcode ? { claimstatuscode: updateclaimcode } : {}),
+    ...(updateclaimstatusdesc ? { claimstatusdesc: updateclaimstatusdesc } : {}),
+    ...(updateclaimstatusdesc_th ? { claimstatusdesc_th: updateclaimstatusdesc_th } : {}),
+    ...(updateclaimstatusdesc ? { claimstatusdesc_en: updateclaimstatusdesc } : {}),
+    ...(updatebatchnumber ? { batchnumber: updatebatchnumber } : {}),
+    ...(updatetotalapprovedamount ? { totalapprovedamount: updatetotalapprovedamount } : {}),
+    ...(updatepaymentdate ? { paymentdate: updatepaymentdate } : {}),
+
+  };
+  if (QueryUpdate){
+    const filteredQueryUpdate = Object.fromEntries(
+     Object.entries(QueryUpdate).filter(([, value]) => value !== null && value !== undefined)
+  );
+  await prismaProgest.transactionclaim.update({
+    where: {
+      id: transactionclaimexistingRecord.id, // Use the ID of the existing record
+    },
+    data: filteredQueryUpdate
+  });
+}
+}
+
+const transactionclaimstatusexistingRecord = await prismaProgest.transactionclaimstatus.findFirst({
   where: {
     refid: RequesetBody.xRefId,
     transactionno: RequesetBody.xTransactionNo,
     claimstatuscode:claimcode
   },
 });
-console.log('---')
-console.log(existingRecord)
-if (existingRecord) {
+if (transactionclaimstatusexistingRecord) {
+  
+  const updateclaimcode =claimcode;
+  const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus;
+  const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc;
+  const updatebatchnumber =responsefromAIA.Data.BatchNumber;
+  const updatehn =RequesetBody.xHN;
+  const updatevn =RequesetBody.xVN;
+  const updatetotalapprovedamount =responsefromAIA.Data.TotalApproveAmount;
+  const updatepaymentdate =responsefromAIA.Data.PaymentDate;
+  const updateinvoicenumber =responsefromAIA.Data.InvoiceNumber;
+
+  const QueryUpdatetransactionclaimstatus = {
+    ...(updatehn ? { hn: updatehn } : {}),
+    ...(updatevn ? { vn: updatevn } : {}),
+    ...(updateclaimcode ? { claimstatuscode: updateclaimcode } : {}),
+    ...(updateclaimstatusdesc ? { claimstatusdesc: updateclaimstatusdesc } : {}),
+    ...(updateclaimstatusdesc_th ? { claimstatusdesc_th: updateclaimstatusdesc_th } : {}),
+    ...(updateclaimstatusdesc ? { claimstatusdesc_en: updateclaimstatusdesc } : {}),
+    ...(updatebatchnumber ? { batchnumber: updatebatchnumber } : {}),
+    ...(updatetotalapprovedamount ? { totalapprovedamount: updatetotalapprovedamount } : {}),
+    ...(updatepaymentdate ? { paymentdate: updatepaymentdate } : {}),
+    ...(updateinvoicenumber ? { invoicenumber: updateinvoicenumber } : {}),
+  };
 
   await prismaProgest.transactionclaimstatus.update({
     where: {
-      id: existingRecord.id, // Use the ID of the existing record
+      id: transactionclaimstatusexistingRecord.id, // Use the ID of the existing record
     },
-    data: {
-      insurerid: RequesetBody.xInsurerCode ,
-      hn: RequesetBody.xHN,
-      vn: RequesetBody.xVN,
-      totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
-      paymentdate: responsefromAIA.Data.PaymentDate,
-      invoicenumber: responsefromAIA.Data.InvoiceNumber,
-      claimstatusdesc:responsefromAIA.Data.ClaimStatus,
-      claimstatusdesc_en:responsefromAIA.Data.ClaimStatus,
-      claimstatusdesc_th:responsefromAIA.Data.ClaimStatusDesc,
-    },
+    data: QueryUpdatetransactionclaimstatus
   });
 }else{
 
@@ -180,53 +228,7 @@ if (existingRecord) {
     },
   });
 }
-
-const transactionclaimexistingRecord = await prismaProgest.transactionclaim.findFirst({
-  where: {
-    refid: RequesetBody.xRefId,
-    transactionno: RequesetBody.xTransactionNo,
-   
-  },
-});
-
-//console.log(transactionclaimexistingRecord.status_changed_at)
-if (transactionclaimexistingRecord) {
-
-
-  const QueryUpdate = {
-    ...(claimcode ? { claimstatuscode: { equals: claimcode } } : {}),
-    ...(responsefromAIA.Data.ClaimStatus ? { claimstatusdesc: { equals: responsefromAIA.Data.ClaimStatus  } } : {}),
-    ...(responsefromAIA.Data.ClaimStatus ? { claimstatusdesc_en: { equals: responsefromAIA.Data.ClaimStatus  } } : {}),
-    ...(responsefromAIA.Data.ClaimStatusDesc ? { claimstatusdesc_th: { equals: responsefromAIA.Data.ClaimStatusDesc } } : {}),
-    ...(responsefromAIA.Data.BatchNumber ? { batchnumber: { equals: responsefromAIA.Data.BatchNumber  } } : {}),
-    ...(responsefromAIA.Data.TotalApproveAmount  ? { totalapprovedamount: { equals: responsefromAIA.Data.TotalApproveAmount   } } : {}),
-    ...(responsefromAIA.Data.PaymentDate  ? { paymentdate: { equals: responsefromAIA.Data.PaymentDate   } } : {}),
-
-  };
-  if (QueryUpdate){
-    const filteredQueryUpdate = Object.fromEntries(
-     Object.entries(QueryUpdate).filter(([, value]) => value !== null && value !== undefined)
-  );
-
-  await prismaProgest.transactionclaim.update({
-    where: {
-      id: transactionclaimexistingRecord.id, // Use the ID of the existing record
-    },
-    data: filteredQueryUpdate
-    // {
-    //   claimstatuscode: claimcode ,
-    //  // totalapprovedamount:responsefromAIA.Data.TotalApproveAmount,
-    //   claimstatusdesc: responsefromAIA.Data.ClaimStatus,
-    //   claimstatusdesc_en: responsefromAIA.Data.ClaimStatus,
-    //   claimstatusdesc_th: responsefromAIA.Data.ClaimStatusDesc
-      
-    // },
-  });
-}
-}else{
-
-}
-
+console.log(transactionclaimstatusexistingRecord)
         /////////////////
     xResultInfo ={
         InsuranceResult: xInsuranceResult,

@@ -1177,7 +1177,7 @@ const xQueryAccident ={
      }
       
        xResultInfo ={
-        AccidentDetailInfo: [xQueryAccident],
+        AccidentDetailInfo: xQueryAccident,
        } 
     }else{
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -2095,6 +2095,11 @@ if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
     ]
 }
 }
+console.log('newAccidentDetail')
+
+console.log(newAccidentDetail)
+console.log('================')
+
 // //--> get AccidentDetail  <--//
 
 // //--> get Procedure  <--//

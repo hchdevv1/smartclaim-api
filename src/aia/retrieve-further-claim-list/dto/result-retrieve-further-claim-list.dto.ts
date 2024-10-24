@@ -49,6 +49,11 @@ export class ResultRetrieveFurtherClaimDto {
     @IsString()
     @TransformDateString()
     AccidentDate?: string;
+
+    @IsOptional()
+    @IsString()
+    @TransformDateString()
+    FurtherClaimVN?: string;
   }
   
   export class InsuranceResultInfo{
