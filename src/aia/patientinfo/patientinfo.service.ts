@@ -894,6 +894,7 @@ export class PatientinfoService {
             VisitDateTime:claim.visitdatetime||'',
             Runningdocument:claim.runningdocument.toNumber(),
             FurtherClaimVN:claim.furtherclaimvn||'',
+            VisitLocation:claim.visitlocation||''
         })),
     };
     // console.log('===xxxx===')
@@ -930,7 +931,8 @@ export class PatientinfoService {
         AccidentDate:'',
         VisitDateTime:'',
         Runningdocument:0,
-        FurtherClaimVN:''
+        FurtherClaimVN:'',
+        VisitLocation:''
     };
         xResultInfo = {
         TransactionClaimInfo: [xQueryVisit],
