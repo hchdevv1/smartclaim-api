@@ -324,7 +324,8 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   furtherclaimvn: 'furtherclaimvn',
   customerid: 'customerid',
   totalbillamount: 'totalbillamount',
-  visitlocation: 'visitlocation'
+  visitlocation: 'visitlocation',
+  paymentdate: 'paymentdate'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {

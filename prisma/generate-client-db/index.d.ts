@@ -18736,6 +18736,7 @@ export namespace Prisma {
     customerid: string | null
     totalbillamount: Decimal | null
     visitlocation: string | null
+    paymentdate: string | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -18781,6 +18782,7 @@ export namespace Prisma {
     customerid: string | null
     totalbillamount: Decimal | null
     visitlocation: string | null
+    paymentdate: string | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -18826,6 +18828,7 @@ export namespace Prisma {
     customerid: number
     totalbillamount: number
     visitlocation: number
+    paymentdate: number
     _all: number
   }
 
@@ -18891,6 +18894,7 @@ export namespace Prisma {
     customerid?: true
     totalbillamount?: true
     visitlocation?: true
+    paymentdate?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -18936,6 +18940,7 @@ export namespace Prisma {
     customerid?: true
     totalbillamount?: true
     visitlocation?: true
+    paymentdate?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -18981,6 +18986,7 @@ export namespace Prisma {
     customerid?: true
     totalbillamount?: true
     visitlocation?: true
+    paymentdate?: true
     _all?: true
   }
 
@@ -19113,6 +19119,7 @@ export namespace Prisma {
     customerid: string | null
     totalbillamount: Decimal | null
     visitlocation: string | null
+    paymentdate: string | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -19177,6 +19184,7 @@ export namespace Prisma {
     customerid?: boolean
     totalbillamount?: boolean
     visitlocation?: boolean
+    paymentdate?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -19223,6 +19231,7 @@ export namespace Prisma {
     customerid?: boolean
     totalbillamount?: boolean
     visitlocation?: boolean
+    paymentdate?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -19269,6 +19278,7 @@ export namespace Prisma {
     customerid?: boolean
     totalbillamount?: boolean
     visitlocation?: boolean
+    paymentdate?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19326,6 +19336,7 @@ export namespace Prisma {
       customerid: string | null
       totalbillamount: Prisma.Decimal | null
       visitlocation: string | null
+      paymentdate: string | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -19762,6 +19773,7 @@ export namespace Prisma {
     readonly customerid: FieldRef<"transactionclaim", 'String'>
     readonly totalbillamount: FieldRef<"transactionclaim", 'Decimal'>
     readonly visitlocation: FieldRef<"transactionclaim", 'String'>
+    readonly paymentdate: FieldRef<"transactionclaim", 'String'>
   }
     
 
@@ -27646,7 +27658,8 @@ export namespace Prisma {
     furtherclaimvn: 'furtherclaimvn',
     customerid: 'customerid',
     totalbillamount: 'totalbillamount',
-    visitlocation: 'visitlocation'
+    visitlocation: 'visitlocation',
+    paymentdate: 'paymentdate'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -29033,6 +29046,7 @@ export namespace Prisma {
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
     totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
+    paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -29079,6 +29093,7 @@ export namespace Prisma {
     customerid?: SortOrderInput | SortOrder
     totalbillamount?: SortOrderInput | SortOrder
     visitlocation?: SortOrderInput | SortOrder
+    paymentdate?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -29128,6 +29143,7 @@ export namespace Prisma {
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
     totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
+    paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -29174,6 +29190,7 @@ export namespace Prisma {
     customerid?: SortOrderInput | SortOrder
     totalbillamount?: SortOrderInput | SortOrder
     visitlocation?: SortOrderInput | SortOrder
+    paymentdate?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -29227,6 +29244,7 @@ export namespace Prisma {
     customerid?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     totalbillamount?: DecimalNullableWithAggregatesFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    paymentdate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -30947,6 +30965,7 @@ export namespace Prisma {
     customerid?: string | null
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
+    paymentdate?: string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -30993,6 +31012,7 @@ export namespace Prisma {
     customerid?: string | null
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
+    paymentdate?: string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -31035,6 +31055,7 @@ export namespace Prisma {
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -31081,6 +31102,7 @@ export namespace Prisma {
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -31126,6 +31148,7 @@ export namespace Prisma {
     customerid?: string | null
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
+    paymentdate?: string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -31168,6 +31191,7 @@ export namespace Prisma {
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -31213,6 +31237,7 @@ export namespace Prisma {
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -32881,6 +32906,7 @@ export namespace Prisma {
     customerid?: SortOrder
     totalbillamount?: SortOrder
     visitlocation?: SortOrder
+    paymentdate?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -32935,6 +32961,7 @@ export namespace Prisma {
     customerid?: SortOrder
     totalbillamount?: SortOrder
     visitlocation?: SortOrder
+    paymentdate?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -32980,6 +33007,7 @@ export namespace Prisma {
     customerid?: SortOrder
     totalbillamount?: SortOrder
     visitlocation?: SortOrder
+    paymentdate?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -35350,6 +35378,7 @@ export namespace Prisma {
     customerid?: string | null
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
+    paymentdate?: string | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -35393,6 +35422,7 @@ export namespace Prisma {
     customerid?: string | null
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
+    paymentdate?: string | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -35523,6 +35553,7 @@ export namespace Prisma {
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
     totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
+    paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -38258,6 +38289,7 @@ export namespace Prisma {
     customerid?: string | null
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
+    paymentdate?: string | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -38300,6 +38332,7 @@ export namespace Prisma {
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -38343,6 +38376,7 @@ export namespace Prisma {
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -38386,6 +38420,7 @@ export namespace Prisma {
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {

@@ -192,19 +192,37 @@ const transactionclaimexistingRecord = await prismaProgest.transactionclaim.find
 //console.log(transactionclaimexistingRecord.status_changed_at)
 if (transactionclaimexistingRecord) {
 
+
+  const QueryUpdate = {
+    ...(claimcode ? { claimstatuscode: { equals: claimcode } } : {}),
+    ...(responsefromAIA.Data.ClaimStatus ? { claimstatusdesc: { equals: responsefromAIA.Data.ClaimStatus  } } : {}),
+    ...(responsefromAIA.Data.ClaimStatus ? { claimstatusdesc_en: { equals: responsefromAIA.Data.ClaimStatus  } } : {}),
+    ...(responsefromAIA.Data.ClaimStatusDesc ? { claimstatusdesc_th: { equals: responsefromAIA.Data.ClaimStatusDesc } } : {}),
+    ...(responsefromAIA.Data.BatchNumber ? { batchnumber: { equals: responsefromAIA.Data.BatchNumber  } } : {}),
+    ...(responsefromAIA.Data.TotalApproveAmount  ? { totalapprovedamount: { equals: responsefromAIA.Data.TotalApproveAmount   } } : {}),
+    ...(responsefromAIA.Data.PaymentDate  ? { paymentdate: { equals: responsefromAIA.Data.PaymentDate   } } : {}),
+
+  };
+  if (QueryUpdate){
+    const filteredQueryUpdate = Object.fromEntries(
+     Object.entries(QueryUpdate).filter(([, value]) => value !== null && value !== undefined)
+  );
+
   await prismaProgest.transactionclaim.update({
     where: {
       id: transactionclaimexistingRecord.id, // Use the ID of the existing record
     },
-    data: {
-      claimstatuscode: claimcode ,
-     // totalapprovedamount:responsefromAIA.Data.TotalApproveAmount,
-      claimstatusdesc: responsefromAIA.Data.ClaimStatus,
-      claimstatusdesc_en: responsefromAIA.Data.ClaimStatus,
-      claimstatusdesc_th: responsefromAIA.Data.ClaimStatusDesc
+    data: filteredQueryUpdate
+    // {
+    //   claimstatuscode: claimcode ,
+    //  // totalapprovedamount:responsefromAIA.Data.TotalApproveAmount,
+    //   claimstatusdesc: responsefromAIA.Data.ClaimStatus,
+    //   claimstatusdesc_en: responsefromAIA.Data.ClaimStatus,
+    //   claimstatusdesc_th: responsefromAIA.Data.ClaimStatusDesc
       
-    },
+    // },
   });
+}
 }else{
 
 }
@@ -433,6 +451,8 @@ async getcheckclaimstatusListAll(queryCheckClaimStatusListAllBodyDto:QueryCheckC
               ...(responsefromAIA.Data.ClaimStatusDesc ? { claimstatusdesc_th: { equals: responsefromAIA.Data.ClaimStatusDesc } } : {}),
               ...(responsefromAIA.Data.BatchNumber ? { batchnumber: { equals: responsefromAIA.Data.BatchNumber  } } : {}),
               ...(responsefromAIA.Data.TotalApproveAmount  ? { totalapprovedamount: { equals: responsefromAIA.Data.TotalApproveAmount   } } : {}),
+              ...(responsefromAIA.Data.PaymentDate  ? { paymentdate: { equals: responsefromAIA.Data.PaymentDate   } } : {}),
+
             };
             if (QueryUpdate){
               const filteredQueryUpdate = Object.fromEntries(
