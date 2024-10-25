@@ -2479,7 +2479,6 @@ xResultInfo ={
   where: {
     refid: RequesetBody.xRefId,
     transactionno: RequesetBody.xTransactionNo,
-   
   },
 });
 const effectiveDate = new Date(RequesetBody.xVisitDateTime);
@@ -3028,8 +3027,6 @@ newResultReviewDataJsonDto ={
    TotalBillAmount:newTotalBillAmount,
    InvoiceNumber:newInvoiceNumber
 }
-
-
     let xInsuranceResult= new InsuranceResult();
     xInsuranceResult ={
      Code:'200',
@@ -3044,37 +3041,22 @@ xResultInfo ={
 
 if ((newResultReviewDataJsonDto.TotalBillAmount)||(newResultReviewDataJsonDto.InvoiceNumber)){
 
-  
+  const QueryUpdateBill = {
+    ...(newResultReviewDataJsonDto.TotalBillAmount ? { totalbillamount: newResultReviewDataJsonDto.TotalBillAmount } : {}),
+    ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: newResultReviewDataJsonDto.InvoiceNumber } : {}),
+  };
 
-//   const QueryUpdateBill = {
-    
-//     ...(newResultReviewDataJsonDto.TotalBillAmount ? { vn: { equals: newResultReviewDataJsonDto.TotalBillAmount } } : {}),
-//     ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: { equals: newResultReviewDataJsonDto.InvoiceNumber  } } : {}),
-//   };
-//   if (QueryUpdateBill){
-//     let filteredQueryUpdateBill = Object.fromEntries(
-//       Object.entries(QueryUpdateBill).filter(([, value]) => value !== null && value !== undefined)
-//   );
-// }
 
-const QueryUpdateBill = {
-    
-  ...(newResultReviewDataJsonDto.TotalBillAmount ? { totalbillamount: { equals: newResultReviewDataJsonDto.TotalBillAmount } } : {}),
-  ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: { equals: newResultReviewDataJsonDto.InvoiceNumber  } } : {}),
-};
-if (QueryUpdateBill){
-  const filteredQueryUpdateBill = Object.fromEntries(
-   Object.entries(QueryUpdateBill).filter(([, value]) => value !== null && value !== undefined)
-);
+  await prismaProgest.transactionclaim.updateMany({
+    where: {
+      refid: RequesetBody.xRefId,
+      transactionno: RequesetBody.xTransactionNo,
+      vn: RequesetBody.xVN
+    },
+    data: QueryUpdateBill  // ใช้ filteredQueryUpdateBill ที่ถูกต้อง
+  });
 
-await prismaProgest.transactionclaim.updateMany({
-   where: {
-        refid: RequesetBody.xRefId,
-        transactionno: RequesetBody.xTransactionNo,
-       vn:RequesetBody.xVN
-      },data: filteredQueryUpdateBill 
-})
-}
+
 
   // await prismaProgest.transactionclaim.update({
   //    where: {
@@ -3085,8 +3067,6 @@ await prismaProgest.transactionclaim.updateMany({
   // });
 
 }
-
-
 
   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
   
