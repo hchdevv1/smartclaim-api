@@ -1014,7 +1014,6 @@ async getdocumentTypeforAttachDocList(xInsurercode: string ) {
 }
 
 async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto) {
-  console.log('--------^^^^^^^^^----------')
   const xRefId =queryVisitDatabaseBodyDto.RefId;
   const xTransactionNo = queryVisitDatabaseBodyDto.TransactionNo;
   const xVN =queryVisitDatabaseBodyDto.VN;
@@ -1033,10 +1032,41 @@ async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto)
       isreimbursement: true, batchnumber: true, 
       invoicenumber: true, otherinsurer: true, furtherclaimid: true,
       furtherclaimno: true, furtherclaimvn: true,
+
      
     },
   });
 ///////////////////  
+// console.log(xVN)
+// console.log(xRefId)
+// console.log(xTransactionNo)
+
+// Query by vn only
+// const queryByVN = await prismaProgest.medicaltransactions.findMany({
+//   where: {
+//     vn: xVN,
+//   },
+// });
+// console.log('Query by VN:', queryByVN);
+
+// // Query by refid only
+// const queryByRefId = await prismaProgest.medicaltransactions.findMany({
+//   where: {
+//     refid: xRefId,
+//   },
+// });
+// console.log('Query by RefId:', queryByRefId);
+
+// // Query by transactionno only
+// const queryByTransactionNo = await prismaProgest.medicaltransactions.findMany({
+//   where: {
+//     transactionno: xTransactionNo,
+//   },
+// });
+// console.log('Query by TransactionNo:', queryByTransactionNo);
+
+
+//////
 const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst({ 
   where: {
     vn: xVN,
@@ -1044,6 +1074,7 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
     transactionno: xTransactionNo,
   },  
   select: {
+    refid:true,
     dxfreetext: true,
      presentillness: true, chiefcomplaint: true,
       accidentcauseover45days: true, underlyingcondition: true, 
@@ -1056,8 +1087,9 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
    
   },
 });
-console.log(visittransactionsInfo)
-console.log('yyyyyy')
+// console.log('========xxxxxxx============')
+// console.log(visittransactionsInfo)
+// console.log('========yyyyyy============')
 if(visittransactionsInfo){
   //console.log('yyy111yyy')
   const visitDatabaseResultInfo = new VisitDatabaseResultInfo();
@@ -1141,15 +1173,7 @@ if(visittransactionsInfo){
       Result : newVisitDatabaseResultInfo 
     }
 }
-// console.log('yyyyyy')
-// console.log('yyyyyy')
-// console.log('yyyyyy')
- console.log(newResultOpdDischargeProcedurDto)
-// console.log('yyyyyy')
-// console.log('yyyyyy')
-// console.log('yyyyyy')
 
-console.log('--------^^^^^^^^^----------')
      return newResultOpdDischargeProcedurDto  
 
 }
@@ -1252,10 +1276,8 @@ const accidentTransactionInfo = await prismaProgest.accidenttransactions.findFir
     },
   },
 });
-console.log("accidentTransactionInfo")
 console.log(accidentTransactionInfo)
 if (accidentTransactionInfo){
-  console.log("accidentTransactionInfo")
   const accidentInfoInstance = new AccidentDatabaseResultInfo();
   accidentInfoInstance.AccidentDetailInfo = {
    AccidentPlace: accidentTransactionInfo.accidentplace || '',
@@ -1307,10 +1329,7 @@ if (accidentTransactionInfo){
 // console.log(accidentInfoInstance)
    
    
-console.log('111111')
-    console.log(newResultAccidentDatabaseDto)
-    console.log('11111122222222')
-    console.log('end feed  accident')
+
      return newResultAccidentDatabaseDto
 
 }
