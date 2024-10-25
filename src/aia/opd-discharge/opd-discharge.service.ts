@@ -73,7 +73,7 @@ try{
   
   }
   const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
-  if (getvisitformDatabase){ 
+  if (getvisitformDatabase.Result.VisitInfo.VisitDateTime.length >0){ 
     const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
       FurtherClaimId: getvisitformDatabase.Result.VisitInfo.FurtherClaimId||'',
       AccidentCauseOver45Days: getvisitformDatabase.Result.VisitInfo.AccidentCauseOver45Days||'',
@@ -1112,7 +1112,7 @@ const newQueryAccidentDatabaseBodyDto ={
 
 }
 const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
-if (accidentDatabase){
+if (accidentDatabase.Result.AccidentDetailInfo.AccidentPlace.length>0){
 
   const accidentDetailInfo = new AccidentDetailDto();
   accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
@@ -2022,7 +2022,7 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
 console.log('getOPDDischargeDiagnosis done')
 
 let newAccidentDetail
-if ((RequesetBody.xIllnessTypeCode==='ACC')||(RequesetBody.xIllnessTypeCode==='ER')){
+if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
 
   let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
 newQueryAccidentDatabaseBodyDto ={

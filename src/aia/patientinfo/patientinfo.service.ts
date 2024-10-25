@@ -894,7 +894,8 @@ export class PatientinfoService {
             VisitDateTime:claim.visitdatetime||'',
             Runningdocument:claim.runningdocument.toNumber(),
             FurtherClaimVN:claim.furtherclaimvn||'',
-            VisitLocation:claim.visitlocation||''
+            VisitLocation:claim.visitlocation||'',
+            TotalBillAmount:claim.totalbillamount,
         })),
     };
     // console.log('===xxxx===')
