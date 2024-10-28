@@ -88,7 +88,7 @@ export class CheckClaimStatusService {
     // const xDummyDataRespone1 =new DummyDataRespone1();
     // const responsefromAIA  =xDummyDataRespone1.res
       const responeInputcode =responsefromAIA.Result.Code
-      console.log(responsefromAIA)
+     // console.log(responsefromAIA)
       if (responeInputcode !=='S'){
         this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
       }else{
