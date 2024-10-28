@@ -24,7 +24,7 @@ import { ResultOpdDischargeVisitDto ,QueryVisit} from './dto/result-visit-opd-di
 import { ResultSubmitOpdDischargeDto , InsuranceResult, InsuranceData,
   ResultDataJsonDto ,ResultPatientInfoDto ,ResultVisitInfoDto ,ResultVitalSignInfoDto,ResultDiagnosisInfoDto ,ResultDoctorInfoDto,
   ResultProcedureInfoDto ,ResultInvestigationInfoDto,ResultOrderItemInfoDto ,ResultBillingInfoDto,
-  ResultAttachDocListInfoDto ,ResultAccidentDetailDto
+  ResultAttachDocListInfoDto 
 } from './dto/result-submit-opd-discharge.dto';
 import { QueryProcedureDto ,ResultSubmitProcedureDto} from './dto/query-procedure-opd-discharge.dto';
 import { QueryAccidentDto ,ResultSubmitAccidentDto} from './dto/query-accident-opd-discharge.dto';
@@ -73,7 +73,8 @@ try{
   
   }
   const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
-  if (getvisitformDatabase.Result.VisitInfo.VisitDateTime.length >0){ 
+  if (getvisitformDatabase?.Result?.VisitInfo?.VisitDateTime?.length >0){ 
+//    console.log('AAAAA')
     const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
       FurtherClaimId: getvisitformDatabase.Result.VisitInfo.FurtherClaimId||'',
       AccidentCauseOver45Days: getvisitformDatabase.Result.VisitInfo.AccidentCauseOver45Days||'',
@@ -103,7 +104,7 @@ try{
       VisitInfo: newResultReviewVisitInfoDto,
      } 
    // console.log(newResultReviewVisitInfoDto)
-    console.log('----get visit from database---')
+    // console.log('----get visit from database---')
   }else{
     const FurtherClaimVN =queryOpdDischargeDto.PatientInfo.FurtherClaimVN
     if (FurtherClaimVN){queryOpdDischargeDto.PatientInfo.VN = FurtherClaimVN}
@@ -140,7 +141,6 @@ try{
        } 
     }else{
       if (FurtherClaimVN){
-        
         const getVisitDateTimeCurrentVN = await this.trakcareService.getEpisodeInfoByVN(queryOpdDischargeDto.PatientInfo.VN);
         const CurrentVisitDateTime =getVisitDateTimeCurrentVN?.VisitInfo?.VisitDateTime
         TrakcarepatientInfo.VisitInfo.VisitDateTime =CurrentVisitDateTime
@@ -175,7 +175,7 @@ try{
         VisitInfo: xQueryVisit,
        } 
     }
-    console.log(' -----get data from trakcare ----')
+   // console.log(' -----get data from trakcare ----')
   }
   let newResultOpdDischargeVisitDto= new ResultOpdDischargeVisitDto();
   newResultOpdDischargeVisitDto={
@@ -594,7 +594,7 @@ async getOPDDischargeInvestigation(queryOpdDischargeDto:QueryOpdDischargeDto){
 try{
  
   const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeInvestigation(queryOpdDischargeDto.PatientInfo.VN);
-  console.log(TrakcarepatientInfo)
+  // console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
@@ -705,7 +705,7 @@ async getOPDDischargeOrderItem(queryOpdDischargeDto:QueryOpdDischargeDto){
 try{
  
   const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeOrderItem(queryOpdDischargeDto.PatientInfo.VN);
-  console.log(TrakcarepatientInfo)
+  // console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
@@ -826,7 +826,7 @@ async getOPDDischargeBilling(queryOpdDischargeDto:QueryOpdDischargeDto){
 try{
  
   const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeBilling(queryOpdDischargeDto.PatientInfo.VN);
-  console.log(TrakcarepatientInfo)
+  // console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
@@ -1117,12 +1117,11 @@ if (accidentDatabase.Result.AccidentDetailInfo.AccidentPlace.length>0){
   const accidentDetailInfo = new AccidentDetailDto();
   accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
   accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
-  const causeDetail = new CauseOfInjuryDetail();
-  const injuryDetail = new InjuryDetail();
- 
+  //const causeDetail = new CauseOfInjuryDetail();
   if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
     accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
-        
+      const causeDetail = new CauseOfInjuryDetail();
+
         causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
         causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
         return causeDetail;
@@ -1130,7 +1129,8 @@ if (accidentDatabase.Result.AccidentDetailInfo.AccidentPlace.length>0){
 } 
 if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
     accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
-         
+      const injuryDetail = new InjuryDetail();
+
         injuryDetail.WoundType = injury.WoundType || '';
         injuryDetail.InjurySide = injury.InjurySide || '';
         injuryDetail.InjuryArea = injury.InjuryArea || '';
@@ -1138,11 +1138,12 @@ if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
     });
 }
 const xQueryAccident ={    
-  AccidentPlace: '', 
-  AccidentDate: '',
-  CauseOfInjuryDetail:[causeDetail] ,
-  InjuryDetail:[injuryDetail]
+  AccidentPlace: accidentDetailInfo.AccidentPlace , 
+  AccidentDate: accidentDetailInfo.AccidentDate ,
+  CauseOfInjuryDetail:accidentDetailInfo.CauseOfInjuryDetail,  //[causeDetail] ,
+  InjuryDetail: accidentDetailInfo.InjuryDetail //[injuryDetail]
  }
+ //console.log(xQueryAccident)
  xResultInfo ={
   AccidentDetailInfo: xQueryAccident,
  } 
@@ -1830,9 +1831,9 @@ const xQueryAccident ={
 
 async SubmitOPDDischargeToAIA(querySubmitOpdDischargeDto:QuerySubmitOpdDischargeDto){
   let xResultInfo;
-  console.log('--------0000000--------')
-  console.log(querySubmitOpdDischargeDto)
-  console.log('--------1111111--------')
+  // console.log('--------0000000--------')
+  // console.log(querySubmitOpdDischargeDto)
+  // console.log('--------1111111--------')
 try{
  const RequesetBody ={
   xRefId:querySubmitOpdDischargeDto.PatientInfo.RefId, //'oljhnklefhbilubsEFJKLb65255555',
@@ -2021,7 +2022,8 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
 }
 console.log('getOPDDischargeDiagnosis done')
 
-let newAccidentDetail = new ResultAccidentDetailDto();if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
+let newAccidentDetail ; //= new ResultAccidentDetailDto();
+if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
 
   let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
 newQueryAccidentDatabaseBodyDto ={
@@ -2032,29 +2034,58 @@ newQueryAccidentDatabaseBodyDto ={
   VN: RequesetBody.xVN,
 }
 const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
+const accidentDetailInfo = new AccidentDetailDto();
+accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
 
-  if (accidentDatabase){
-    newAccidentDetail.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
-    newAccidentDetail.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+  accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+    const causeDetail = new CauseOfInjuryDetail();
+
+      causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+      causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+      return causeDetail;
+  });
+} 
+if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+  accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+    const injuryDetail = new InjuryDetail();
+
+      injuryDetail.WoundType = injury.WoundType || '';
+      injuryDetail.InjurySide = injury.InjurySide || '';
+      injuryDetail.InjuryArea = injury.InjuryArea || '';
+      return injuryDetail;
+  });
+}
+ newAccidentDetail = {    
+  AccidentPlace: accidentDetailInfo.AccidentPlace,
+  AccidentDate: accidentDetailInfo.AccidentDate,
+  CauseOfInjuryDetail: accidentDetailInfo.CauseOfInjuryDetail,
+  InjuryDetail: accidentDetailInfo.InjuryDetail
+};
+
+  // if (accidentDatabase){
+  //   newAccidentDetail.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+  //   newAccidentDetail.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
      
-    newAccidentDetail= {
-      "AccidentPlace": accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '',
-      "AccidentDate": accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '',
-      "CauseOfInjuryDetail": [
-          {
-              "CauseOfInjury": 'W1099',
-              "CommentOfInjury": ''
-          }
-      ],
-      "InjuryDetail": [
-          {
-              "WoundType": "",
-              "InjurySide": "",
-              "InjuryArea":'S099'
-          }
-      ]
-  }
-  }
+  //   newAccidentDetail= {
+  //     "AccidentPlace": accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '',
+  //     "AccidentDate": accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '',
+  //     "CauseOfInjuryDetail": [
+  //         {
+  //             "CauseOfInjury": 'W1099',
+  //             "CommentOfInjury": ''
+  //         }
+  //     ],
+  //     "InjuryDetail": [
+  //         {
+  //             "WoundType": "",
+  //             "InjurySide": "",
+  //             "InjuryArea":'S099'
+  //         }
+  //     ]
+  // }
+  // }
   
  
 //   if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
@@ -2074,7 +2105,7 @@ const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQuer
 //         return injuryDetail;
 //     });
 // }
-console.log(newAccidentDetail)
+//console.log(newAccidentDetail)
 // const xQueryAccident ={    
 //   AccidentPlace: '', 
 //   AccidentDate: '',
@@ -2102,11 +2133,6 @@ console.log(newAccidentDetail)
     ]
 }
 }
-
-console.log('newAccidentDetail')
-
-console.log(newAccidentDetail)
-console.log('================')
 
 // //--> get AccidentDetail  <--//
 
@@ -2389,10 +2415,8 @@ let newResultDataJsonDto =new ResultDataJsonDto();
 
 const newOPDDischargeResponseDto ={
 
-  // RefId: 'OPD-008-Test-001',
-  // TransactionNo: '13675055-0ed9-40f7-bd38-bec0754fe674',
-  RefId: RequesetBody.xRefId ,//'oljhnklefhbilubsEFJKLb65255555',
-  TransactionNo:RequesetBody.xTransactionNo, //'6f49b02c-4102-44e4-bd6a-c5bed5dc8b1c',
+  RefId: RequesetBody.xRefId ,
+  TransactionNo:RequesetBody.xTransactionNo, 
   Username:AIA_APIHopitalUsername,
   HospitalCode:await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey),
   InsurerCode: RequesetBody.xInsurerCode,
@@ -2433,6 +2457,8 @@ const newOPDDischargeResponseDto ={
 //const responsefromAIA  =xDummyDataRespone1.res
     
   const responeInputcode = responsefromAIA.Result.Code
+  // console.log('======> responeInputcode =')
+  // console.log(responeInputcode)
   if (responeInputcode !=='S'){
     this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
   }else{

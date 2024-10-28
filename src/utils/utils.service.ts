@@ -1017,7 +1017,7 @@ async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto)
   const xRefId =queryVisitDatabaseBodyDto.RefId;
   const xTransactionNo = queryVisitDatabaseBodyDto.TransactionNo;
   const xVN =queryVisitDatabaseBodyDto.VN;
-  let  newResultOpdDischargeProcedurDto= new ResultOpdDischargeVisitDto();
+  let  newResultOpdDischargeVisitDto= new ResultOpdDischargeVisitDto();
 
 
   const visittransactionclaim = await prismaProgest.transactionclaim.findFirst({ 
@@ -1091,6 +1091,8 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
 // console.log(visittransactionsInfo)
 // console.log('========yyyyyy============')
 if(visittransactionsInfo){
+  console.log('AAAAA 11111111')
+
   //console.log('yyy111yyy')
   const visitDatabaseResultInfo = new VisitDatabaseResultInfo();
   visitDatabaseResultInfo.VisitInfo = {
@@ -1135,11 +1137,13 @@ if(visittransactionsInfo){
     
         this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       }
-      newResultOpdDischargeProcedurDto={
+      newResultOpdDischargeVisitDto={
         HTTPStatus:newHttpMessageDto,
         Result:visitDatabaseResultInfo 
       }
-}else{
+}
+else{
+  console.log('AAAAA 22222')
 
   let newQueryVisitDatabse =new QueryVisitDatabse();
   newQueryVisitDatabse={
@@ -1165,7 +1169,7 @@ if(visittransactionsInfo){
         }
       let newVisitDatabaseResultInfo =new VisitDatabaseResultInfo();
       newVisitDatabaseResultInfo={ VisitInfo: newQueryVisitDatabse}
-  newResultOpdDischargeProcedurDto =
+      newResultOpdDischargeVisitDto =
   {
       HTTPStatus: {
         statusCode:400, message: 'VisitInfo not found', error: '' 
@@ -1174,7 +1178,7 @@ if(visittransactionsInfo){
     }
 }
 
-     return newResultOpdDischargeProcedurDto  
+     return newResultOpdDischargeVisitDto  
 
 }
 async getProcedureformDatabase(queryProcedeureDatabaseBodyDto: QueryProcedeureDatabaseBodyDto) {
@@ -1250,7 +1254,7 @@ async getAccidentformDatabase(queryAccidentDatabaseBodyDto: QueryAccidentDatabas
   const xRefId =queryAccidentDatabaseBodyDto.RefId; //'111ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=a';//
   const xTransactionNo = queryAccidentDatabaseBodyDto.TransactionNo; //'1115c5aabb3-b919-4ee8-ac42-848ae4d5f55aa';//
   const xVN =queryAccidentDatabaseBodyDto.VN; //'O415203-64';//
-  console.log('start accident')
+  //console.log('start accident')
   let  newResultAccidentDatabaseDto= new ResultAccidentDatabaseDto();
 const accidentTransactionInfo = await prismaProgest.accidenttransactions.findFirst({
   where: {
@@ -1276,7 +1280,7 @@ const accidentTransactionInfo = await prismaProgest.accidenttransactions.findFir
     },
   },
 });
-console.log(accidentTransactionInfo)
+//console.log(accidentTransactionInfo)
 if (accidentTransactionInfo){
   const accidentInfoInstance = new AccidentDatabaseResultInfo();
   accidentInfoInstance.AccidentDetailInfo = {
