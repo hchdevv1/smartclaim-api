@@ -228,7 +228,7 @@ if (transactionclaimstatusexistingRecord) {
     },
   });
 }
-console.log(transactionclaimstatusexistingRecord)
+// console.log(transactionclaimstatusexistingRecord)
         /////////////////
     xResultInfo ={
         InsuranceResult: xInsuranceResult,
@@ -391,8 +391,8 @@ async getcheckclaimstatusListAll(queryCheckClaimStatusListAllBodyDto:QueryCheckC
         );
         
          apiResponses.push(responsefromAIA);
-         console.log('--------00')
-         console.log(responsefromAIA)
+        //  console.log('--------00')
+        //  console.log(responsefromAIA)
         const responeInputcode =responsefromAIA.Result.Code
         // console.log(responsefromAIA)
          if (responeInputcode =='S'){

@@ -97,7 +97,7 @@ const QueryCreateClaimDocumentDtoBody={
          InvoiceNumber:RequesetBody.xInvoiceNumber,
          AttachDocList:newResultAttachDocListInfoDto
        };
-       console.log('-----')
+      //  console.log('-----')
        const headers = {
         'Content-Type': API_CONTENTTYPE,
         'Ocp-Apim-Subscription-Key': AIA_APISubscription,

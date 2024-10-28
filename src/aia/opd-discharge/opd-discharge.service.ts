@@ -2546,7 +2546,7 @@ if (existingRecord) {
       accidentdate:RequesetBody.xAccidentDate,
       policytypecode:RequesetBody.xPolicyTypeCode,
       idtype:RequesetBody.xIdType,
-      illnesstypecode:RequesetBody.xIllnessTypeCode,
+      //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
       runningdocument:RequesetBody.xRunningdocument
@@ -2578,7 +2578,7 @@ if (existingRecord) {
       accidentdate:RequesetBody.xAccidentDate,
       policytypecode:RequesetBody.xPolicyTypeCode,
       idtype:RequesetBody.xIdType,
-      illnesstypecode:RequesetBody.xIllnessTypeCode,
+      //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
       runningdocument:RequesetBody.xRunningdocument

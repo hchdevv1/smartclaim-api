@@ -26,7 +26,7 @@ export class AttachDocListService {
   async AttachDocList(queryBillingSubmissionBodyDto:QueryAttachBodyDto){
     let xResultInfo;
     try{
-      console.log('--AttachDocListService--')
+     // console.log('--AttachDocListService--')
       //queryBillingSubmissionBodyDto.PatientInfo.RefId ='AAA-12345'
       //queryBillingSubmissionBodyDto.PatientInfo.TransactionNo ='95ffe060-236c-4f35-b00c-a2ef9aa9e714'
     const  RequesetBody ={
@@ -54,7 +54,7 @@ const ListDocumentforAttachDocListBody={
   Runningdocument:RequesetBody.xRunningdocument
   }
 }
-console.log(ListDocumentforAttachDocListBody)
+// console.log(ListDocumentforAttachDocListBody)
        const getListDocumentByTransection = await this.utilsService.getListDocumentforAttachDocList(ListDocumentforAttachDocListBody); 
        let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
        newResultAttachDocListInfoDto = await Promise.all(
@@ -91,7 +91,7 @@ console.log(ListDocumentforAttachDocListBody)
          InvoiceNumber:RequesetBody.xInvoiceNumber,
          AttachDocList:newResultAttachDocListInfoDto
        };
-       console.log('--kkk---')
+      //  console.log('--kkk---')
        const headers = {
         'Content-Type': API_CONTENTTYPE,
         'Ocp-Apim-Subscription-Key': AIA_APISubscription,
@@ -111,7 +111,7 @@ console.log(ListDocumentforAttachDocListBody)
 //     const xDummyDataRespone1 =new DummyDataRespone1();
 // const responsefromAIA  =xDummyDataRespone1.res
        const responeInputcode =responsefromAIA.Result.Code
-       console.log(responsefromAIA)
+      //  console.log(responsefromAIA)
       //const responeInputcode ='S'
       if (responeInputcode !=='S'){
        this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)

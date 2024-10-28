@@ -933,7 +933,8 @@ export class PatientinfoService {
         VisitDateTime:'',
         Runningdocument:0,
         FurtherClaimVN:'',
-        VisitLocation:''
+        VisitLocation:'',
+        TotalBillAmount:''
     };
         xResultInfo = {
         TransactionClaimInfo: [xQueryVisit],
