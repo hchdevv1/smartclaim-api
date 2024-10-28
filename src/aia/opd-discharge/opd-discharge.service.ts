@@ -2021,8 +2021,7 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
 }
 console.log('getOPDDischargeDiagnosis done')
 
-let newAccidentDetail
-if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
+let newAccidentDetail = new ResultAccidentDetailDto();if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
 
   let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
 newQueryAccidentDatabaseBodyDto ={
@@ -2034,27 +2033,29 @@ newQueryAccidentDatabaseBodyDto ={
 }
 const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
 
-  let newAccidentDetail = new ResultAccidentDetailDto();
-  newAccidentDetail.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
-  newAccidentDetail.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
-   
-  newAccidentDetail= {
-    "AccidentPlace": accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '',
-    "AccidentDate": accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '',
-    "CauseOfInjuryDetail": [
-        {
-            "CauseOfInjury": '',
-            "CommentOfInjury": ''
-        }
-    ],
-    "InjuryDetail": [
-        {
-            "WoundType": "",
-            "InjurySide": "",
-            "InjuryArea":''
-        }
-    ]
-}
+  if (accidentDatabase){
+    newAccidentDetail.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+    newAccidentDetail.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+     
+    newAccidentDetail= {
+      "AccidentPlace": accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '',
+      "AccidentDate": accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '',
+      "CauseOfInjuryDetail": [
+          {
+              "CauseOfInjury": 'W1099',
+              "CommentOfInjury": ''
+          }
+      ],
+      "InjuryDetail": [
+          {
+              "WoundType": "",
+              "InjurySide": "",
+              "InjuryArea":'S099'
+          }
+      ]
+  }
+  }
+  
  
 //   if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
 //     newAccidentDetail.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {

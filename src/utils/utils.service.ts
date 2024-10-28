@@ -1025,7 +1025,6 @@ async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto)
       vn: xVN,
       refid: xRefId,
       transactionno: xTransactionNo,
-      claimstatuscode :{not:null} 
     },  
     select: {
       previoustreatmentdate: true,
