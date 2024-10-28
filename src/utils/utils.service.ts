@@ -1204,8 +1204,8 @@ const proceduretransactionsInfo = await prismaProgest.proceduretransactions.find
     proceduredate: true,
   },
 });
-console.log(proceduretransactionsInfo)
-console.log('yyyyyy')
+// console.log(proceduretransactionsInfo)
+// console.log('yyyyyy')
 if(proceduretransactionsInfo){
   const procedureInfoInstance = new ProcedeureDatabaseResultInfo();
   procedureInfoInstance.ProcedureInfo = proceduretransactionsInfo.map(item => ({
