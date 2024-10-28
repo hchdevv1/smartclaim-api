@@ -24,7 +24,7 @@ import { ResultOpdDischargeVisitDto ,QueryVisit} from './dto/result-visit-opd-di
 import { ResultSubmitOpdDischargeDto , InsuranceResult, InsuranceData,
   ResultDataJsonDto ,ResultPatientInfoDto ,ResultVisitInfoDto ,ResultVitalSignInfoDto,ResultDiagnosisInfoDto ,ResultDoctorInfoDto,
   ResultProcedureInfoDto ,ResultInvestigationInfoDto,ResultOrderItemInfoDto ,ResultBillingInfoDto,
-  ResultAttachDocListInfoDto
+  ResultAttachDocListInfoDto ,ResultAccidentDetailDto
 } from './dto/result-submit-opd-discharge.dto';
 import { QueryProcedureDto ,ResultSubmitProcedureDto} from './dto/query-procedure-opd-discharge.dto';
 import { QueryAccidentDto ,ResultSubmitAccidentDto} from './dto/query-accident-opd-discharge.dto';
@@ -2034,29 +2034,45 @@ newQueryAccidentDatabaseBodyDto ={
 }
 const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
 
-  const newAccidentDetail = new AccidentDetailDto();
+  let newAccidentDetail = new ResultAccidentDetailDto();
   newAccidentDetail.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
   newAccidentDetail.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
-   const causeDetail = new CauseOfInjuryDetail();
-   const injuryDetail = new InjuryDetail();
- 
-  if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
-    newAccidentDetail.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
-        
-        causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
-        causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
-        return causeDetail;
-    });
-} 
-if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
-  newAccidentDetail.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
-         
-        injuryDetail.WoundType = injury.WoundType || '';
-        injuryDetail.InjurySide = injury.InjurySide || '';
-        injuryDetail.InjuryArea = injury.InjuryArea || '';
-        return injuryDetail;
-    });
+   
+  newAccidentDetail= {
+    "AccidentPlace": accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '',
+    "AccidentDate": accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '',
+    "CauseOfInjuryDetail": [
+        {
+            "CauseOfInjury": '',
+            "CommentOfInjury": ''
+        }
+    ],
+    "InjuryDetail": [
+        {
+            "WoundType": "",
+            "InjurySide": "",
+            "InjuryArea":''
+        }
+    ]
 }
+ 
+//   if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+//     newAccidentDetail.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+        
+//         causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+//         causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+//         return causeDetail;
+//     });
+// } 
+// if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+//   newAccidentDetail.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+         
+//         injuryDetail.WoundType = injury.WoundType || '';
+//         injuryDetail.InjurySide = injury.InjurySide || '';
+//         injuryDetail.InjuryArea = injury.InjuryArea || '';
+//         return injuryDetail;
+//     });
+// }
 console.log(newAccidentDetail)
 // const xQueryAccident ={    
 //   AccidentPlace: '', 
@@ -2067,7 +2083,6 @@ console.log(newAccidentDetail)
 
 
 }else{
-
   newAccidentDetail= {
     "AccidentPlace": '',
     "AccidentDate": '',
@@ -2086,6 +2101,7 @@ console.log(newAccidentDetail)
     ]
 }
 }
+
 console.log('newAccidentDetail')
 
 console.log(newAccidentDetail)

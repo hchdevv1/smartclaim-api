@@ -377,7 +377,7 @@ export class InsuranceResult{
   }
  
 
-  export class AccidentDatabase {
+  export class ReviewAccidentDatabase {
     @IsString()
     @IsOptional()
     AccidentPlace?: string;

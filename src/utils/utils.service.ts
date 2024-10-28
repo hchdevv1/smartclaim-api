@@ -1169,7 +1169,7 @@ if(visittransactionsInfo){
   newResultOpdDischargeProcedurDto =
   {
       HTTPStatus: {
-        statusCode: 200, message: 'VisitInfo not found', error: '' 
+        statusCode:400, message: 'VisitInfo not found', error: '' 
       },
       Result : newVisitDatabaseResultInfo 
     }

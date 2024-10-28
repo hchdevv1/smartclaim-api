@@ -221,7 +221,7 @@ class DiagnosisDto {
     Icd10: string;
 }
 
-class AccidentDetailDto {
+ class AccidentDetailDto {
     @IsString()
     AccidentPlace: string;
 
@@ -452,6 +452,26 @@ export class ResultPatientInfoDto {
     BillingNetAmount: string;
 
   }
+  export class ResultAccidentDetailDto {
+    @IsString()
+    AccidentPlace: string;
+
+    @IsString()
+    AccidentDate: string;
+
+    @IsArray()
+    CauseOfInjuryDetail: Array<{
+        CauseOfInjury: string;
+        CommentOfInjury: string;
+    }>;
+
+    @IsArray()
+    InjuryDetail: Array<{
+        WoundType: string;
+        InjurySide: string;
+        InjuryArea: string;
+    }>;
+}
   
   export class ResultAttachDocListInfoDto {
     Base64Data: string; 
