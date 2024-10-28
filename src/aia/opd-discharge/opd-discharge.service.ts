@@ -966,8 +966,8 @@ try{
   //const getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
    let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
    const getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
-console .log("getOPDDischargeProcedure")
-console .log(getOPDDischargeProcedure)
+// console .log("getOPDDischargeProcedure")
+// console .log(getOPDDischargeProcedure)
    if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
       newResultProcedureInfoDto= await Promise.all(
        getOPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {

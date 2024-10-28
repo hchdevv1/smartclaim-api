@@ -1091,7 +1091,7 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
 // console.log(visittransactionsInfo)
 // console.log('========yyyyyy============')
 if(visittransactionsInfo){
-  console.log('AAAAA 11111111')
+  // console.log('AAAAA 11111111')
 
   //console.log('yyy111yyy')
   const visitDatabaseResultInfo = new VisitDatabaseResultInfo();
@@ -1143,7 +1143,7 @@ if(visittransactionsInfo){
       }
 }
 else{
-  console.log('AAAAA 22222')
+  // console.log('AAAAA 22222')
 
   let newQueryVisitDatabse =new QueryVisitDatabse();
   newQueryVisitDatabse={
@@ -1860,7 +1860,7 @@ async getFileAsBase64(id: number) {
       if (!fileRecord) {
         throw new NotFoundException('File not found');
       }
-  console.log('kkkkk')
+  // console.log('kkkkk')
   console.log(fileRecord)
   const filePath = join(__dirname, '..', '..', fileRecord.filepath);
       const fileBuffer = readFileSync(filePath);
