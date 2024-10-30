@@ -18,11 +18,13 @@ import { PreauthSubmissionModule } from './aia/preauth-submission/preauth-submis
 import { RetrieveFurtherClaimListModule } from './aia/retrieve-further-claim-list/retrieve-further-claim-list.module';
 import { RetrievePreauthListModule } from './aia/retrieve-preauth-list/retrieve-preauth-list.module';
 import { PatientinfoModule} from './aia/patientinfo/patientinfo.module';
+import { CheckOpdBalanceModule } from './aia/check-opd-balance/check-opd-balance.module';
 @Module({
   imports: [UtilsModule, TrakcareModule 
     ,AttachDocListModule,BillingSubmissionModule, CheckClaimStatusModule, CheckEligibleModule ,ClaimCancelModule
     ,IpdAdmissionModule,IpdDischargeModule,OpdDischargeModule
     ,PreauthSubmissionModule,RetrieveFurtherClaimListModule,RetrievePreauthListModule,PatientinfoModule
+    ,CheckOpdBalanceModule
   ],
   controllers: [AppController],
   providers: [AppService],

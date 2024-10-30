@@ -75,5 +75,9 @@ export class TrakcareController {
 getOPDDischargeBilling(@Param('xVN') xVN: string) {
  return this.trakcareService.getOPDDischargeBilling(xVN);
 }
+@Get('/getOPDCheckBalance/:xVN')
+getOPDCheckBalance(@Param('xVN') xVN: string) {
+ return this.trakcareService.getOPDCheckBalance(xVN);
+}
 
 }

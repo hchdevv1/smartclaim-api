@@ -38,7 +38,7 @@ import { QueryProcedeureDatabaseBodyDto ,ResultProcedureDatabaseInfoDto } from '
 import { QueryAccidentDatabaseBodyDto  ,
   CauseOfInjuryDetail,InjuryDetail
 }  from '../../utils/dto/result-accident-databse.dto';
-
+import { QueryUpdateFurtherClaimVNBodyDto  ,ResultSubmitUpdateFurtherClaimVNDto} from './dto/query-updatefurtherclaimvn-opd-discharge.dto'
 // import { DummyDataRequest1 }  from './dummyRequest';
 // import { DummyDataRespone1 } from './dummyRespone';
 const httpStatusMessageService = new HttpStatusMessageService();
@@ -2324,6 +2324,8 @@ let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
 let  newTotalBillAmount ;
    if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
        newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
+       console.log('----- newTotalBillAmount')
+       console.log(newTotalBillAmount)
       newResultBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
       return {
@@ -2534,6 +2536,7 @@ if (existingRecord) {
       totalapprovedamount:responsefromAIA.Data.TotalApprovedAmount,
       totalexcessamount:responsefromAIA.Data.TotalExcessAmount,
       isreimbursement:responsefromAIA.Data.IsReimbursement,
+      totalbillamount: newTotalBillAmount,
       insurerid: RequesetBody.xInsurerCode ,
       refid: RequesetBody.xRefId,
       transactionno: RequesetBody.xTransactionNo,
@@ -3159,7 +3162,123 @@ return newResultReviewOpdDischargeDto
 }
 }
 
+async UpdateFurtherClaimVN(queryVisitDto:QueryUpdateFurtherClaimVNBodyDto){
+  let updatestatus;
+  try{
+    const xRefId =queryVisitDto.PatientInfo.RefId;
+    const xTransactionNo =queryVisitDto.PatientInfo.TransactionNo;
+    const xHN =queryVisitDto.PatientInfo.HN;
+    const xVN =queryVisitDto.PatientInfo.VN
+    const xFurtherClaimVN =queryVisitDto.PatientInfo.FurtherClaimVN;
+if ((xTransactionNo)&&(xFurtherClaimVN)){
+  try {
 
+    const existingTransaction = await prismaProgest.transactionclaim.findFirst({
+      where: {
+        refid: xRefId,
+        transactionno: xTransactionNo,
+        vn :xVN,
+        hn :xHN
+      },
+    });
+
+    if (existingTransaction) {
+
+      await prismaProgest.transactionclaim.update({
+        where: {
+          id: existingTransaction.id, // Use the ID of the existing record
+        },
+        data: {
+          furtherclaimvn:xFurtherClaimVN
+        },
+      });
+    }
+
+  }catch (error) {
+    throw new Error(`Error creating medical transaction: ${error.message}`);
+  }
+  updatestatus = 'The record has been successfully updated.'
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+}else{
+  updatestatus = 'The record has not been updated.'
+    this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid FurtherClaimVN','')
+}
+
+    let newResultSubmitUpdateFurtherClaimVNDto= new ResultSubmitUpdateFurtherClaimVNDto();
+    newResultSubmitUpdateFurtherClaimVNDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:updatestatus
+      }
+
+    return newResultSubmitUpdateFurtherClaimVNDto
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+       
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
+}
 
 async convertDxTypeCode(inputInsurerCode:string,inputdxTypeCodeTrakcare:string) {
     const convertDxtypename = await this.utilsService.getDiagnosisTypeMapping(inputInsurerCode,inputdxTypeCodeTrakcare);
