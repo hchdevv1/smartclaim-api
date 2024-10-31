@@ -1,7 +1,7 @@
-import { Controller, Get,Param } from '@nestjs/common';
+import { Controller, Body ,Post,Get,Param } from '@nestjs/common';
 
 import { CheckOpdBalanceService } from './check-opd-balance.service';
-
+import {  QuerySubmitOpdDischargeDto } from './dto/result-BillingCheckBalance.dto';
 @Controller('/v1/check-opd-balance')
 export class CheckOpdBalanceController {
   constructor(private readonly checkOpdBalanceService: CheckOpdBalanceService) {}
@@ -11,5 +11,9 @@ export class CheckOpdBalanceController {
     return  this.checkOpdBalanceService.listBillingCheckBalance(xVN);
   }
 
-  
+  @Post('/SubmitBillingCheckBalance')
+  async SubmitBillingCheckBalance(@Body() querySubmitOpdDischargeDto:QuerySubmitOpdDischargeDto){
+        const result = this.checkOpdBalanceService.SubmitBillingCheckBalance(querySubmitOpdDischargeDto);
+        return result
+  }
 }
