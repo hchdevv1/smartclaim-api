@@ -131,10 +131,31 @@ if (existingRecord) {
           Status:responsefromAIA.Data.Status||'',
           
         }
+        
     xResultInfo ={
         InsuranceResult: xInsuranceResult,
         InsuranceData: xInsuranceData,
       } 
+
+      const existingRecord = await prismaProgest.transactionclaim.findFirst({
+        where: {
+          refid: RequesetBody.xRefId,
+          transactionno: RequesetBody.xTransactionNo,
+        },
+      });
+      if (existingRecord) {
+      
+        await prismaProgest.transactionclaim.update({
+          where: {
+            id: existingRecord.id, // Use the ID of the existing record
+          },
+          data: {
+            claimstatuscode:'06',
+            claimstatusdesc:'Cancelled',
+            claimstatusdesc_th:'ยกเลิกรายการ',
+            claimstatusdesc_en:'Cancelled'
+          }});
+        }
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       }
 

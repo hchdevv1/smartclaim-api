@@ -3171,34 +3171,42 @@ async UpdateFurtherClaimVN(queryVisitDto:QueryUpdateFurtherClaimVNBodyDto){
     const xVN =queryVisitDto.PatientInfo.VN
     const xFurtherClaimVN =queryVisitDto.PatientInfo.FurtherClaimVN;
 if ((xTransactionNo)&&(xFurtherClaimVN)){
-  try {
-
-    const existingTransaction = await prismaProgest.transactionclaim.findFirst({
-      where: {
-        refid: xRefId,
-        transactionno: xTransactionNo,
-        vn :xVN,
-        hn :xHN
-      },
-    });
-
-    if (existingTransaction) {
-
-      await prismaProgest.transactionclaim.update({
+ 
+    const checkVisitNumberAvailable = await this.trakcareService.checkVisitNumberAvailable(xHN ,xFurtherClaimVN); 
+    const checkVisitNumberStatusCode =checkVisitNumberAvailable.statusCode ? checkVisitNumberAvailable.statusCode :400
+    console.log(checkVisitNumberAvailable)
+    if (checkVisitNumberStatusCode !==200){
+      this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid VisitNumber','Invalid VisitNumber')
+    }else{
+      const existingTransaction = await prismaProgest.transactionclaim.findFirst({
         where: {
-          id: existingTransaction.id, // Use the ID of the existing record
-        },
-        data: {
-          furtherclaimvn:xFurtherClaimVN
+          refid: xRefId,
+          transactionno: xTransactionNo,
+          vn :xVN,
+          hn :xHN
         },
       });
+  
+      if (existingTransaction) {
+  
+        await prismaProgest.transactionclaim.update({
+          where: {
+            id: existingTransaction.id, // Use the ID of the existing record
+          },
+          data: {
+            furtherclaimvn:xFurtherClaimVN
+          },
+        });
+        updatestatus = 'The record has been successfully updated.'
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }else{
+        updatestatus = 'The record has not been updated.'
+        this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid FurtherClaimVN','')
+      }
     }
+  
 
-  }catch (error) {
-    throw new Error(`Error creating medical transaction: ${error.message}`);
-  }
-  updatestatus = 'The record has been successfully updated.'
-    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+ 
 }else{
   updatestatus = 'The record has not been updated.'
     this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid FurtherClaimVN','')

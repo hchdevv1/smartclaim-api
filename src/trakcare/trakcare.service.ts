@@ -123,7 +123,20 @@ async getOPDDischargeVisit( xVN: string ) {
      response = await firstValueFrom(
       this.httpService.get(`${TRAKCARE_APIURL}/getOPDDischargeVisit/${xVN}`)
     );
+    // if (response.data && response.data.VisitInfo && response.data.VisitInfo.PresentIllness) {
+    //   const presentIllness = response.data.VisitInfo.PresentIllness;
+    //   // ตรวจสอบว่า PresentIllness มีค่าหรือไม่ก่อนแปลง
+    //   if (presentIllness.trim() !== "") {
+    //     response.data.VisitInfo.PresentIllness = this.cleanSpecialCharacters(presentIllness);
+    //   }
+    // }
+    const presentIllness = response.data?.VisitInfo?.PresentIllness ?? "";
+    response.data.VisitInfo.PresentIllness = presentIllness 
+      ? this.cleanSpecialCharacters(presentIllness) 
+      : presentIllness;
+
     PatientInfo = response.data
+
   } catch(error)
     {
         if (error instanceof HttpException) {
@@ -324,7 +337,26 @@ async getOPDCheckBalance( xVN: string ) {
  return PatientInfo
 }
 
-
+async checkVisitNumberAvailable( xHN: string ,xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/checkVisitNumberAvailable/${xHN}/${xVN}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
 async getOPDDischargePatient( xHN: string ) {
   let response:any ;
   let PatientInfo ;
@@ -344,5 +376,14 @@ async getOPDDischargePatient( xHN: string ) {
         
     }
  return PatientInfo
+}
+
+cleanSpecialCharacters(text: string): string {
+  return text
+    .replace(/\r\n/g, ' ')        // ลบ \r\n แทนที่ด้วยช่องว่าง
+    .replace(/&quot;/g, '"')      // แทนที่ &quot; ด้วยเครื่องหมายคำพูดคู่
+    .replace(/&lt;/g, '<')        // แทนที่ &lt; ด้วยเครื่องหมาย <
+    .replace(/&gt;/g, '>')        // แทนที่ &gt; ด้วยเครื่องหมาย >
+    .replace(/&amp;/g, '&');      // แทนที่ &amp; ด้วยเครื่องหมาย &
 }
 }

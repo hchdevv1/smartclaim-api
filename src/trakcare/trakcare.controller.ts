@@ -79,5 +79,8 @@ getOPDDischargeBilling(@Param('xVN') xVN: string) {
 getOPDCheckBalance(@Param('xVN') xVN: string) {
  return this.trakcareService.getOPDCheckBalance(xVN);
 }
-
+@Get('/checkVisitNumberAvailable/:xHN/:xVN')
+checkVisitNumberAvailable(@Param('xHN') xHN: string,@Param('xVN') xVN: string) {
+ return this.trakcareService.checkVisitNumberAvailable(xHN,xVN);
+}
 }

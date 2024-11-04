@@ -433,7 +433,7 @@ export class CheckOpdBalanceService {
     if (responeInputcode !=='S'){
       
       const responeInputMessageTh = responsefromAIA.Result.MessageTh
-      this.addFormatHTTPStatus(newHttpMessageDto,400,responeInputcode,responeInputMessageTh)
+      this.addFormatHTTPStatus(newHttpMessageDto,400,responeInputMessageTh,responeInputcode)
     }else{
   
 
