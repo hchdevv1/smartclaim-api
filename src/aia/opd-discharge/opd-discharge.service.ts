@@ -1518,7 +1518,7 @@ if (xHaveProcedure ==true){
     } else {
          ProcedureList = [];
     }
-    console.log(xHaveProcedure)
+   // console.log(xHaveProcedure)
     
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
 }else{
@@ -1529,7 +1529,7 @@ ProcedureList = [
             "ProcedureDate": ""
         }
     ]
-  console.log(xHaveProcedure)
+ // console.log(xHaveProcedure)
     this.addFormatHTTPStatus(newHttpMessageDto,200,'Invalid Procedure','')
 }
 
@@ -2325,7 +2325,7 @@ let  newTotalBillAmount ;
    if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
        newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
        console.log('----- newTotalBillAmount')
-       console.log(newTotalBillAmount)
+      // console.log(newTotalBillAmount)
       newResultBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
       return {
@@ -3174,7 +3174,7 @@ if ((xTransactionNo)&&(xFurtherClaimVN)){
  
     const checkVisitNumberAvailable = await this.trakcareService.checkVisitNumberAvailable(xHN ,xFurtherClaimVN); 
     const checkVisitNumberStatusCode =checkVisitNumberAvailable.statusCode ? checkVisitNumberAvailable.statusCode :400
-    console.log(checkVisitNumberAvailable)
+    //console.log(checkVisitNumberAvailable)
     if (checkVisitNumberStatusCode !==200){
       this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid VisitNumber','Invalid VisitNumber')
     }else{

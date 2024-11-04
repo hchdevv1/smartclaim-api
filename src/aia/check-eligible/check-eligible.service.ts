@@ -468,6 +468,8 @@ export class CheckEligibleService {
     //  ,updatexMembershipId,updatexPolicyNumber,updatexCustomerId;
      let updateMembershipId,updatePolicyNumber,updateCustomerId ,QueryUpdateClaimants,filteredQueryUpdateClaimants ,QueryUpdatetransactionclaim,filteredQueryUpdatetransactionclaim;
       try{
+        let newCreateTransactionDto= new CreateTransactionDto();
+
         RequesetBody ={
           xRefID:queryCreateTransactionBodyDto.PatientInfo.RefId,
           xTransactionNo:queryCreateTransactionBodyDto.PatientInfo.TransactionNo,
@@ -495,7 +497,19 @@ export class CheckEligibleService {
           xCustomerId: queryCreateTransactionBodyDto.PatientInfo.CustomerId||'',
           xVisitlocation :queryCreateTransactionBodyDto.PatientInfo.Visitlocation||'',
         }
-        let newCreateTransactionDto= new CreateTransactionDto();
+        let checkVisitNumberStatusCode=200
+        if (RequesetBody.xFurtherClaimVN.length >0){
+          const checkVisitNumberAvailable = await this.trakcareService.checkVisitNumberAvailable(RequesetBody.xHN ,RequesetBody.xFurtherClaimVN); 
+           checkVisitNumberStatusCode =checkVisitNumberAvailable.statusCode ? checkVisitNumberAvailable.statusCode :400
+         
+        }
+        //console.log(checkVisitNumberAvailable)
+      //  if ((checkVisitNumberStatusCode !==200)&&(RequesetBody.xFurtherClaimVN.length >0)){
+          if ((checkVisitNumberStatusCode !==200)){
+
+          this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid VisitNumber','Invalid VisitNumber')
+        }else{
+          
         const existingRecord = await prismaProgest.transactionclaim.findFirst({
           where: {
             refid: RequesetBody.xRefID,
@@ -659,13 +673,12 @@ export class CheckEligibleService {
         })
       }
           this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-          newCreateTransactionDto={
-            HTTPStatus:newHttpMessageDto,
-            Result:'Have refid, transactionno'
-          }
+    }
+   }
+        newCreateTransactionDto={
+          HTTPStatus:newHttpMessageDto,
+          Result:''
         }
-
-  
     return newCreateTransactionDto
       }catch(error)
       {
