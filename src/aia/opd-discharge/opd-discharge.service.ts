@@ -1855,7 +1855,7 @@ try{
   xFurtherClaimVN :querySubmitOpdDischargeDto.PatientInfo.FurtherClaimVN
  }
  const FurtherClaimVN =RequesetBody.xFurtherClaimVN
-
+ 
 ////////////////////////////////////////
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
@@ -2001,15 +2001,29 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
         ''+RequesetBody.xInsurerCode, 
         item.DxTypeCode
       );
-      if (item.DxTypeCode === getDiagnosisTypeMapping.dxtypecodetrakcare) {
-        item.DxTypeCode = getDiagnosisTypeMapping.dxtypecodeinsurance;
+      if (item.DxTypeCode === getDiagnosisTypeMapping.Result.dxtypecodetrakcare) {
+        item.DxTypeCode = getDiagnosisTypeMapping.Result.dxtypecodeinsurance;
       }
-      return {
-        DxName: item.DxName,
-        DxType: item.DxTypeCode,
-        Icd10: item.DxCode,
-        
-      };
+      const countDiag =getOPDDischargeDiagnosis.DiagnosisInfo.length
+      const FirstTextDxCode = item.DxCode[0]
+      if ((countDiag ===1) &&(FirstTextDxCode ==='Z')){
+        return {
+          DxName: item.DxName,
+          DxType: item.DxTypeCode,
+          Icd10: '0000000000',
+          
+        };
+      }else{
+
+        return {
+          DxName: item.DxName,
+          DxType: item.DxTypeCode,
+          Icd10: item.DxCode,
+          
+        };
+      }
+
+     
     })
   );
   
@@ -2020,6 +2034,8 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
     Icd10: '',
   }];
 }
+console.log("newQueryDiagnosisInfoDto")
+console.log(newQueryDiagnosisInfoDto)
 console.log('getOPDDischargeDiagnosis done')
 
 let newAccidentDetail ; //= new ResultAccidentDetailDto();
@@ -2517,8 +2533,10 @@ xResultInfo ={
     transactionno: RequesetBody.xTransactionNo,
   },
 });
-const effectiveDate = new Date(RequesetBody.xVisitDateTime);
-const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
+//const effectiveDate = new Date(RequesetBody.xVisitDateTime);
+//const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
+const formattedEffectiveDate = RequesetBody.xVisitDateTime.split(' ')[0];
+
 if (existingRecord) {
 
   await prismaProgest.transactionclaim.update({

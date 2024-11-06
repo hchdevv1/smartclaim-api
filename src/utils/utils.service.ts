@@ -1748,7 +1748,7 @@ async getDiagnosisTypeMapping(xInsurercode: string ,xDxtypecodeTrakcare: string)
   let diagnosistypemapping:any ;
   
   try{
-    diagnosistypemapping = await prismaProgest.diagnosistypemapping.findMany({ 
+    diagnosistypemapping = await prismaProgest.diagnosistypemapping.findFirst({ 
      
     where:{
       dxtypecodetrakcare:xDxtypecodeTrakcare,
@@ -1781,7 +1781,6 @@ async getDiagnosisTypeMapping(xInsurercode: string ,xDxtypecodeTrakcare: string)
     }else{
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
     }
-
      return newDiagnosisTypeMappingDto  
     }catch(error)
     {

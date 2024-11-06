@@ -518,8 +518,10 @@ export class CheckEligibleService {
         });
         if (!existingRecord) {
         
-          const effectiveDate = new Date(RequesetBody.xVisitDateTime);
-          const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
+          //const effectiveDate = new Date(RequesetBody.xVisitDateTime);
+          //const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
+          const formattedEffectiveDate = RequesetBody.xVisitDateTime.split(' ')[0];
+
           await prismaProgest.transactionclaim.create({
             data: {
               

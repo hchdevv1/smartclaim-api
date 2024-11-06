@@ -816,12 +816,14 @@ export class PatientinfoService {
     const xVN =querySearchTransection.PatientInfo.VN
     const xInvoiceNumber =querySearchTransection.PatientInfo.InvoiceNumber
     const xStatusClaimCode =querySearchTransection.PatientInfo.StatusClaimCode
+    const xServiceSettingCode =querySearchTransection.PatientInfo.ServiceSettingCode
     const xVisitDatefrom = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDatefrom);
     const xVisitDateto = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDateto);
     const hasVisitDate = xVisitDatefrom && xVisitDateto && xVisitDatefrom !== "" && xVisitDateto !== "";
     const whereConditions = {
     ...(xHN ? { hn: { equals: xHN } } : {}),
     ...(xVN ? { vn: { equals: xVN } } : {}),
+    ...(xServiceSettingCode ? { servicesettingcode: { equals: xServiceSettingCode } } : {}),
     ...(xInvoiceNumber ? { invoicenumber: { equals: xInvoiceNumber } } : {}),
     ...(xStatusClaimCode ? { claimstatuscode: { equals: xStatusClaimCode } } : {}),
     ...(xPID ? { claimants: { national_id: { equals: xPID } } } : {}),

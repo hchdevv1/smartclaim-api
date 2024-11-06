@@ -43,6 +43,10 @@ export class QuerySearchTransection {
     @IsDate()
     @IsOptional()
     VisitDateto?: string;
+    
+    @IsString()
+    @IsOptional()
+    ServiceSettingCode?: string;
   }
 
 export class ResultTransactionClaimDto {
