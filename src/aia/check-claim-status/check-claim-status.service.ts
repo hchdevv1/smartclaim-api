@@ -180,34 +180,44 @@ const transactionclaimstatusexistingRecord = await prismaProgest.transactionclai
 });
 if (transactionclaimstatusexistingRecord) {
   
-  const updateclaimcode =claimcode;
-  const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus;
-  const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc;
-  const updatebatchnumber =responsefromAIA.Data.BatchNumber;
-  const updatehn =RequesetBody.xHN;
-  const updatevn =RequesetBody.xVN;
-  const updatetotalapprovedamount =responsefromAIA.Data.TotalApproveAmount;
-  const updatepaymentdate =responsefromAIA.Data.PaymentDate;
-  const updateinvoicenumber =responsefromAIA.Data.InvoiceNumber;
+  // const updateclaimcode =claimcode;
+  // const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus;
+  // const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc;
+  // const updatebatchnumber =responsefromAIA.Data.BatchNumber;
+  // const updatehn =RequesetBody.xHN;
+  // const updatevn =RequesetBody.xVN;
+  // const updatetotalapprovedamount =responsefromAIA.Data.TotalApproveAmount;
+  // const updatepaymentdate =responsefromAIA.Data.PaymentDate;
+  // const updateinvoicenumber =responsefromAIA.Data.InvoiceNumber;
 
-  const QueryUpdatetransactionclaimstatus = {
-    ...(updatehn ? { hn: updatehn } : {}),
-    ...(updatevn ? { vn: updatevn } : {}),
-    ...(updateclaimcode ? { claimstatuscode: updateclaimcode } : {}),
-    ...(updateclaimstatusdesc ? { claimstatusdesc: updateclaimstatusdesc } : {}),
-    ...(updateclaimstatusdesc_th ? { claimstatusdesc_th: updateclaimstatusdesc_th } : {}),
-    ...(updateclaimstatusdesc ? { claimstatusdesc_en: updateclaimstatusdesc } : {}),
-    ...(updatebatchnumber ? { batchnumber: updatebatchnumber } : {}),
-    ...(updatetotalapprovedamount ? { totalapprovedamount: updatetotalapprovedamount } : {}),
-    ...(updatepaymentdate ? { paymentdate: updatepaymentdate } : {}),
-    ...(updateinvoicenumber ? { invoicenumber: updateinvoicenumber } : {}),
-  };
+  // const QueryUpdatetransactionclaimstatus = {
+  //   ...(updatehn ? { hn: updatehn } : {}),
+  //   ...(updatevn ? { vn: updatevn } : {}),
+  //   ...(updateclaimcode ? { claimstatuscode: updateclaimcode } : {}),
+  //   ...(updateclaimstatusdesc ? { claimstatusdesc: updateclaimstatusdesc } : {}),
+  //   ...(updateclaimstatusdesc_th ? { claimstatusdesc_th: updateclaimstatusdesc_th } : {}),
+  //   ...(updateclaimstatusdesc ? { claimstatusdesc_en: updateclaimstatusdesc } : {}),
+  //   ...(updatebatchnumber ? { batchnumber: updatebatchnumber } : {}),
+  //   ...(updatetotalapprovedamount ? { totalapprovedamount: updatetotalapprovedamount } : {}),
+  //   ...(updatepaymentdate ? { paymentdate: updatepaymentdate } : {}),
+  //   ...(updateinvoicenumber ? { invoicenumber: updateinvoicenumber } : {}),
+  // };
 
   await prismaProgest.transactionclaimstatus.update({
     where: {
       id: transactionclaimstatusexistingRecord.id, // Use the ID of the existing record
     },
-    data: QueryUpdatetransactionclaimstatus
+    data:{
+      hn:RequesetBody.xHN,
+      vn:RequesetBody.xVN,
+      claimstatuscode: claimcode,
+      claimstatusdesc:responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_en:responsefromAIA.Data.ClaimStatus,
+      claimstatusdesc_th:responsefromAIA.Data.ClaimStatusDesc,
+      paymentdate:responsefromAIA.Data.PaymentDate,
+
+    },
+    // QueryUpdatetransactionclaimstatus
   });
 }else{
 
