@@ -1,26 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePreauthSubmissionDto } from './dto/create-preauth-submission.dto';
-import { UpdatePreauthSubmissionDto } from './dto/update-preauth-submission.dto';
+import { HttpMessageDto } from '../../utils/dto/http-status-message.dto';
+
+//const newHttpMessageDto =new HttpMessageDto();
 
 @Injectable()
 export class PreauthSubmissionService {
-  create(createPreauthSubmissionDto: CreatePreauthSubmissionDto) {
-    return 'This action adds a new preauthSubmission';
-  }
+ 
 
-  findAll() {
-    return `This action returns all preauthSubmission`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} preauthSubmission`;
-  }
-
-  update(id: number, updatePreauthSubmissionDto: UpdatePreauthSubmissionDto) {
-    return `This action updates a #${id} preauthSubmission`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} preauthSubmission`;
+  addFormatHTTPStatus(data: HttpMessageDto,inputstatusCode:number,inputmessage:string,inputerror:string):void{  
+    if(inputstatusCode !==200){
+        if(data){
+          data.statusCode=inputstatusCode
+          data.message=inputmessage||''
+          data.error=inputerror||''
+        }
+      }
+      else{
+        if(data){
+          data.statusCode=200
+          data.message='success'
+          data.error=''
+        }
+      }
+      
   }
 }

@@ -220,6 +220,64 @@ class ResultAccidentcauseover45daysInfo{
 
  insurers: InsurerDto;
 }
+export class AnesthesiaListDto {
+
+  HTTPStatus: HttpMessageDto;
+   Result?: ResultAnesthesiaListInfo;
+}
+class ResultAnesthesiaListInfo{
+
+ @IsString()
+ aneslistcode: string;
+
+ @IsString()
+ aneslistname: string;
+
+ @IsInt()
+ insurerid: number;
+
+ insurers: InsurerDto;
+}
+
+
+export class OpeartionisPackageDto {
+
+  HTTPStatus: HttpMessageDto;
+   Result?: ResultOpeartionisPackageInfo;
+}
+class ResultOpeartionisPackageInfo{
+
+ @IsString()
+ oiscode: string;
+
+ @IsString()
+ oisname: string;
+
+ @IsInt()
+ insurerid: number;
+
+ insurers: InsurerDto;
+}
+export class IndicationsForAdmissionDto {
+
+  HTTPStatus: HttpMessageDto;
+   Result?: ResultIndicationsForAdmissionInfo;
+}
+class ResultIndicationsForAdmissionInfo{
+
+ @IsString()
+ ifacode: string;
+
+ @IsString()
+ ifaname: string;
+
+ @IsInt()
+ insurerid: number;
+
+ insurers: InsurerDto;
+}
+
+
 
 export class DiagnosisTypeMappingDto {
   HTTPStatus: HttpMessageDto;

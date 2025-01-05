@@ -123,6 +123,26 @@ export type transactionclaim = $Result.DefaultSelection<Prisma.$transactionclaim
  * 
  */
 export type transactionclaimstatus = $Result.DefaultSelection<Prisma.$transactionclaimstatusPayload>
+/**
+ * Model accidenttransactions22
+ * 
+ */
+export type accidenttransactions22 = $Result.DefaultSelection<Prisma.$accidenttransactions22Payload>
+/**
+ * Model anesthesialist
+ * 
+ */
+export type anesthesialist = $Result.DefaultSelection<Prisma.$anesthesialistPayload>
+/**
+ * Model indicationsforadmission
+ * 
+ */
+export type indicationsforadmission = $Result.DefaultSelection<Prisma.$indicationsforadmissionPayload>
+/**
+ * Model opeartionispackage
+ * 
+ */
+export type opeartionispackage = $Result.DefaultSelection<Prisma.$opeartionispackagePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -466,6 +486,46 @@ export class PrismaClient<
     * ```
     */
   get transactionclaimstatus(): Prisma.transactionclaimstatusDelegate<ExtArgs>;
+
+  /**
+   * `prisma.accidenttransactions22`: Exposes CRUD operations for the **accidenttransactions22** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Accidenttransactions22s
+    * const accidenttransactions22s = await prisma.accidenttransactions22.findMany()
+    * ```
+    */
+  get accidenttransactions22(): Prisma.accidenttransactions22Delegate<ExtArgs>;
+
+  /**
+   * `prisma.anesthesialist`: Exposes CRUD operations for the **anesthesialist** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Anesthesialists
+    * const anesthesialists = await prisma.anesthesialist.findMany()
+    * ```
+    */
+  get anesthesialist(): Prisma.anesthesialistDelegate<ExtArgs>;
+
+  /**
+   * `prisma.indicationsforadmission`: Exposes CRUD operations for the **indicationsforadmission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Indicationsforadmissions
+    * const indicationsforadmissions = await prisma.indicationsforadmission.findMany()
+    * ```
+    */
+  get indicationsforadmission(): Prisma.indicationsforadmissionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.opeartionispackage`: Exposes CRUD operations for the **opeartionispackage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Opeartionispackages
+    * const opeartionispackages = await prisma.opeartionispackage.findMany()
+    * ```
+    */
+  get opeartionispackage(): Prisma.opeartionispackageDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -928,7 +988,11 @@ export namespace Prisma {
     proceduretransactions: 'proceduretransactions',
     servicesetting: 'servicesetting',
     transactionclaim: 'transactionclaim',
-    transactionclaimstatus: 'transactionclaimstatus'
+    transactionclaimstatus: 'transactionclaimstatus',
+    accidenttransactions22: 'accidenttransactions22',
+    anesthesialist: 'anesthesialist',
+    indicationsforadmission: 'indicationsforadmission',
+    opeartionispackage: 'opeartionispackage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -944,7 +1008,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus"
+      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "accidenttransactions22" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2488,6 +2552,286 @@ export namespace Prisma {
           }
         }
       }
+      accidenttransactions22: {
+        payload: Prisma.$accidenttransactions22Payload<ExtArgs>
+        fields: Prisma.accidenttransactions22FieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.accidenttransactions22FindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.accidenttransactions22FindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>
+          }
+          findFirst: {
+            args: Prisma.accidenttransactions22FindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.accidenttransactions22FindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>
+          }
+          findMany: {
+            args: Prisma.accidenttransactions22FindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>[]
+          }
+          create: {
+            args: Prisma.accidenttransactions22CreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>
+          }
+          createMany: {
+            args: Prisma.accidenttransactions22CreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.accidenttransactions22CreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>[]
+          }
+          delete: {
+            args: Prisma.accidenttransactions22DeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>
+          }
+          update: {
+            args: Prisma.accidenttransactions22UpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>
+          }
+          deleteMany: {
+            args: Prisma.accidenttransactions22DeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.accidenttransactions22UpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.accidenttransactions22UpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$accidenttransactions22Payload>
+          }
+          aggregate: {
+            args: Prisma.Accidenttransactions22AggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccidenttransactions22>
+          }
+          groupBy: {
+            args: Prisma.accidenttransactions22GroupByArgs<ExtArgs>
+            result: $Utils.Optional<Accidenttransactions22GroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.accidenttransactions22CountArgs<ExtArgs>
+            result: $Utils.Optional<Accidenttransactions22CountAggregateOutputType> | number
+          }
+        }
+      }
+      anesthesialist: {
+        payload: Prisma.$anesthesialistPayload<ExtArgs>
+        fields: Prisma.anesthesialistFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.anesthesialistFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.anesthesialistFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>
+          }
+          findFirst: {
+            args: Prisma.anesthesialistFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.anesthesialistFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>
+          }
+          findMany: {
+            args: Prisma.anesthesialistFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>[]
+          }
+          create: {
+            args: Prisma.anesthesialistCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>
+          }
+          createMany: {
+            args: Prisma.anesthesialistCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.anesthesialistCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>[]
+          }
+          delete: {
+            args: Prisma.anesthesialistDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>
+          }
+          update: {
+            args: Prisma.anesthesialistUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>
+          }
+          deleteMany: {
+            args: Prisma.anesthesialistDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.anesthesialistUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.anesthesialistUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anesthesialistPayload>
+          }
+          aggregate: {
+            args: Prisma.AnesthesialistAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnesthesialist>
+          }
+          groupBy: {
+            args: Prisma.anesthesialistGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnesthesialistGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.anesthesialistCountArgs<ExtArgs>
+            result: $Utils.Optional<AnesthesialistCountAggregateOutputType> | number
+          }
+        }
+      }
+      indicationsforadmission: {
+        payload: Prisma.$indicationsforadmissionPayload<ExtArgs>
+        fields: Prisma.indicationsforadmissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.indicationsforadmissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.indicationsforadmissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>
+          }
+          findFirst: {
+            args: Prisma.indicationsforadmissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.indicationsforadmissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>
+          }
+          findMany: {
+            args: Prisma.indicationsforadmissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>[]
+          }
+          create: {
+            args: Prisma.indicationsforadmissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>
+          }
+          createMany: {
+            args: Prisma.indicationsforadmissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.indicationsforadmissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>[]
+          }
+          delete: {
+            args: Prisma.indicationsforadmissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>
+          }
+          update: {
+            args: Prisma.indicationsforadmissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.indicationsforadmissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.indicationsforadmissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.indicationsforadmissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$indicationsforadmissionPayload>
+          }
+          aggregate: {
+            args: Prisma.IndicationsforadmissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIndicationsforadmission>
+          }
+          groupBy: {
+            args: Prisma.indicationsforadmissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IndicationsforadmissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.indicationsforadmissionCountArgs<ExtArgs>
+            result: $Utils.Optional<IndicationsforadmissionCountAggregateOutputType> | number
+          }
+        }
+      }
+      opeartionispackage: {
+        payload: Prisma.$opeartionispackagePayload<ExtArgs>
+        fields: Prisma.opeartionispackageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.opeartionispackageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.opeartionispackageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>
+          }
+          findFirst: {
+            args: Prisma.opeartionispackageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.opeartionispackageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>
+          }
+          findMany: {
+            args: Prisma.opeartionispackageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>[]
+          }
+          create: {
+            args: Prisma.opeartionispackageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>
+          }
+          createMany: {
+            args: Prisma.opeartionispackageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.opeartionispackageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>[]
+          }
+          delete: {
+            args: Prisma.opeartionispackageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>
+          }
+          update: {
+            args: Prisma.opeartionispackageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>
+          }
+          deleteMany: {
+            args: Prisma.opeartionispackageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.opeartionispackageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.opeartionispackageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$opeartionispackagePayload>
+          }
+          aggregate: {
+            args: Prisma.OpeartionispackageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOpeartionispackage>
+          }
+          groupBy: {
+            args: Prisma.opeartionispackageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OpeartionispackageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.opeartionispackageCountArgs<ExtArgs>
+            result: $Utils.Optional<OpeartionispackageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2754,6 +3098,8 @@ export namespace Prisma {
     accidentcauseover45days: number
     accidentplace: number
     accidenttransactions: number
+    accidenttransactions22: number
+    anesthesialist: number
     causeofinjuryside: number
     causeofinjurywoundtype: number
     claimants: number
@@ -2764,6 +3110,8 @@ export namespace Prisma {
     idtype: number
     illnesssurgery: number
     illnesstype: number
+    indicationsforadmission: number
+    opeartionispackage: number
     policytype: number
     proceduretransactions: number
     servicesetting: number
@@ -2773,6 +3121,8 @@ export namespace Prisma {
     accidentcauseover45days?: boolean | InsurersCountOutputTypeCountAccidentcauseover45daysArgs
     accidentplace?: boolean | InsurersCountOutputTypeCountAccidentplaceArgs
     accidenttransactions?: boolean | InsurersCountOutputTypeCountAccidenttransactionsArgs
+    accidenttransactions22?: boolean | InsurersCountOutputTypeCountAccidenttransactions22Args
+    anesthesialist?: boolean | InsurersCountOutputTypeCountAnesthesialistArgs
     causeofinjuryside?: boolean | InsurersCountOutputTypeCountCauseofinjurysideArgs
     causeofinjurywoundtype?: boolean | InsurersCountOutputTypeCountCauseofinjurywoundtypeArgs
     claimants?: boolean | InsurersCountOutputTypeCountClaimantsArgs
@@ -2783,6 +3133,8 @@ export namespace Prisma {
     idtype?: boolean | InsurersCountOutputTypeCountIdtypeArgs
     illnesssurgery?: boolean | InsurersCountOutputTypeCountIllnesssurgeryArgs
     illnesstype?: boolean | InsurersCountOutputTypeCountIllnesstypeArgs
+    indicationsforadmission?: boolean | InsurersCountOutputTypeCountIndicationsforadmissionArgs
+    opeartionispackage?: boolean | InsurersCountOutputTypeCountOpeartionispackageArgs
     policytype?: boolean | InsurersCountOutputTypeCountPolicytypeArgs
     proceduretransactions?: boolean | InsurersCountOutputTypeCountProceduretransactionsArgs
     servicesetting?: boolean | InsurersCountOutputTypeCountServicesettingArgs
@@ -2818,6 +3170,20 @@ export namespace Prisma {
    */
   export type InsurersCountOutputTypeCountAccidenttransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: accidenttransactionsWhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
+  export type InsurersCountOutputTypeCountAccidenttransactions22Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: accidenttransactions22WhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
+  export type InsurersCountOutputTypeCountAnesthesialistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: anesthesialistWhereInput
   }
 
   /**
@@ -2888,6 +3254,20 @@ export namespace Prisma {
    */
   export type InsurersCountOutputTypeCountIllnesstypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: illnesstypeWhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
+  export type InsurersCountOutputTypeCountIndicationsforadmissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: indicationsforadmissionWhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
+  export type InsurersCountOutputTypeCountOpeartionispackageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: opeartionispackageWhereInput
   }
 
   /**
@@ -18297,6 +18677,8 @@ export namespace Prisma {
     accidentcauseover45days?: boolean | insurers$accidentcauseover45daysArgs<ExtArgs>
     accidentplace?: boolean | insurers$accidentplaceArgs<ExtArgs>
     accidenttransactions?: boolean | insurers$accidenttransactionsArgs<ExtArgs>
+    accidenttransactions22?: boolean | insurers$accidenttransactions22Args<ExtArgs>
+    anesthesialist?: boolean | insurers$anesthesialistArgs<ExtArgs>
     causeofinjuryside?: boolean | insurers$causeofinjurysideArgs<ExtArgs>
     causeofinjurywoundtype?: boolean | insurers$causeofinjurywoundtypeArgs<ExtArgs>
     claimants?: boolean | insurers$claimantsArgs<ExtArgs>
@@ -18307,6 +18689,8 @@ export namespace Prisma {
     idtype?: boolean | insurers$idtypeArgs<ExtArgs>
     illnesssurgery?: boolean | insurers$illnesssurgeryArgs<ExtArgs>
     illnesstype?: boolean | insurers$illnesstypeArgs<ExtArgs>
+    indicationsforadmission?: boolean | insurers$indicationsforadmissionArgs<ExtArgs>
+    opeartionispackage?: boolean | insurers$opeartionispackageArgs<ExtArgs>
     policytype?: boolean | insurers$policytypeArgs<ExtArgs>
     proceduretransactions?: boolean | insurers$proceduretransactionsArgs<ExtArgs>
     servicesetting?: boolean | insurers$servicesettingArgs<ExtArgs>
@@ -18331,6 +18715,8 @@ export namespace Prisma {
     accidentcauseover45days?: boolean | insurers$accidentcauseover45daysArgs<ExtArgs>
     accidentplace?: boolean | insurers$accidentplaceArgs<ExtArgs>
     accidenttransactions?: boolean | insurers$accidenttransactionsArgs<ExtArgs>
+    accidenttransactions22?: boolean | insurers$accidenttransactions22Args<ExtArgs>
+    anesthesialist?: boolean | insurers$anesthesialistArgs<ExtArgs>
     causeofinjuryside?: boolean | insurers$causeofinjurysideArgs<ExtArgs>
     causeofinjurywoundtype?: boolean | insurers$causeofinjurywoundtypeArgs<ExtArgs>
     claimants?: boolean | insurers$claimantsArgs<ExtArgs>
@@ -18341,6 +18727,8 @@ export namespace Prisma {
     idtype?: boolean | insurers$idtypeArgs<ExtArgs>
     illnesssurgery?: boolean | insurers$illnesssurgeryArgs<ExtArgs>
     illnesstype?: boolean | insurers$illnesstypeArgs<ExtArgs>
+    indicationsforadmission?: boolean | insurers$indicationsforadmissionArgs<ExtArgs>
+    opeartionispackage?: boolean | insurers$opeartionispackageArgs<ExtArgs>
     policytype?: boolean | insurers$policytypeArgs<ExtArgs>
     proceduretransactions?: boolean | insurers$proceduretransactionsArgs<ExtArgs>
     servicesetting?: boolean | insurers$servicesettingArgs<ExtArgs>
@@ -18354,6 +18742,8 @@ export namespace Prisma {
       accidentcauseover45days: Prisma.$accidentcauseover45daysPayload<ExtArgs>[]
       accidentplace: Prisma.$accidentplacePayload<ExtArgs>[]
       accidenttransactions: Prisma.$accidenttransactionsPayload<ExtArgs>[]
+      accidenttransactions22: Prisma.$accidenttransactions22Payload<ExtArgs>[]
+      anesthesialist: Prisma.$anesthesialistPayload<ExtArgs>[]
       causeofinjuryside: Prisma.$causeofinjurysidePayload<ExtArgs>[]
       causeofinjurywoundtype: Prisma.$causeofinjurywoundtypePayload<ExtArgs>[]
       claimants: Prisma.$claimantsPayload<ExtArgs>[]
@@ -18364,6 +18754,8 @@ export namespace Prisma {
       idtype: Prisma.$idtypePayload<ExtArgs>[]
       illnesssurgery: Prisma.$illnesssurgeryPayload<ExtArgs>[]
       illnesstype: Prisma.$illnesstypePayload<ExtArgs>[]
+      indicationsforadmission: Prisma.$indicationsforadmissionPayload<ExtArgs>[]
+      opeartionispackage: Prisma.$opeartionispackagePayload<ExtArgs>[]
       policytype: Prisma.$policytypePayload<ExtArgs>[]
       proceduretransactions: Prisma.$proceduretransactionsPayload<ExtArgs>[]
       servicesetting: Prisma.$servicesettingPayload<ExtArgs>[]
@@ -18740,6 +19132,8 @@ export namespace Prisma {
     accidentcauseover45days<T extends insurers$accidentcauseover45daysArgs<ExtArgs> = {}>(args?: Subset<T, insurers$accidentcauseover45daysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accidentcauseover45daysPayload<ExtArgs>, T, "findMany"> | Null>
     accidentplace<T extends insurers$accidentplaceArgs<ExtArgs> = {}>(args?: Subset<T, insurers$accidentplaceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accidentplacePayload<ExtArgs>, T, "findMany"> | Null>
     accidenttransactions<T extends insurers$accidenttransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$accidenttransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accidenttransactionsPayload<ExtArgs>, T, "findMany"> | Null>
+    accidenttransactions22<T extends insurers$accidenttransactions22Args<ExtArgs> = {}>(args?: Subset<T, insurers$accidenttransactions22Args<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "findMany"> | Null>
+    anesthesialist<T extends insurers$anesthesialistArgs<ExtArgs> = {}>(args?: Subset<T, insurers$anesthesialistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "findMany"> | Null>
     causeofinjuryside<T extends insurers$causeofinjurysideArgs<ExtArgs> = {}>(args?: Subset<T, insurers$causeofinjurysideArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$causeofinjurysidePayload<ExtArgs>, T, "findMany"> | Null>
     causeofinjurywoundtype<T extends insurers$causeofinjurywoundtypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$causeofinjurywoundtypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$causeofinjurywoundtypePayload<ExtArgs>, T, "findMany"> | Null>
     claimants<T extends insurers$claimantsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$claimantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$claimantsPayload<ExtArgs>, T, "findMany"> | Null>
@@ -18750,6 +19144,8 @@ export namespace Prisma {
     idtype<T extends insurers$idtypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$idtypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$idtypePayload<ExtArgs>, T, "findMany"> | Null>
     illnesssurgery<T extends insurers$illnesssurgeryArgs<ExtArgs> = {}>(args?: Subset<T, insurers$illnesssurgeryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$illnesssurgeryPayload<ExtArgs>, T, "findMany"> | Null>
     illnesstype<T extends insurers$illnesstypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$illnesstypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$illnesstypePayload<ExtArgs>, T, "findMany"> | Null>
+    indicationsforadmission<T extends insurers$indicationsforadmissionArgs<ExtArgs> = {}>(args?: Subset<T, insurers$indicationsforadmissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "findMany"> | Null>
+    opeartionispackage<T extends insurers$opeartionispackageArgs<ExtArgs> = {}>(args?: Subset<T, insurers$opeartionispackageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "findMany"> | Null>
     policytype<T extends insurers$policytypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$policytypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$policytypePayload<ExtArgs>, T, "findMany"> | Null>
     proceduretransactions<T extends insurers$proceduretransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$proceduretransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$proceduretransactionsPayload<ExtArgs>, T, "findMany"> | Null>
     servicesetting<T extends insurers$servicesettingArgs<ExtArgs> = {}>(args?: Subset<T, insurers$servicesettingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$servicesettingPayload<ExtArgs>, T, "findMany"> | Null>
@@ -19160,6 +19556,46 @@ export namespace Prisma {
   }
 
   /**
+   * insurers.accidenttransactions22
+   */
+  export type insurers$accidenttransactions22Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    where?: accidenttransactions22WhereInput
+    orderBy?: accidenttransactions22OrderByWithRelationInput | accidenttransactions22OrderByWithRelationInput[]
+    cursor?: accidenttransactions22WhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Accidenttransactions22ScalarFieldEnum | Accidenttransactions22ScalarFieldEnum[]
+  }
+
+  /**
+   * insurers.anesthesialist
+   */
+  export type insurers$anesthesialistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    where?: anesthesialistWhereInput
+    orderBy?: anesthesialistOrderByWithRelationInput | anesthesialistOrderByWithRelationInput[]
+    cursor?: anesthesialistWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnesthesialistScalarFieldEnum | AnesthesialistScalarFieldEnum[]
+  }
+
+  /**
    * insurers.causeofinjuryside
    */
   export type insurers$causeofinjurysideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19357,6 +19793,46 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: IllnesstypeScalarFieldEnum | IllnesstypeScalarFieldEnum[]
+  }
+
+  /**
+   * insurers.indicationsforadmission
+   */
+  export type insurers$indicationsforadmissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    where?: indicationsforadmissionWhereInput
+    orderBy?: indicationsforadmissionOrderByWithRelationInput | indicationsforadmissionOrderByWithRelationInput[]
+    cursor?: indicationsforadmissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IndicationsforadmissionScalarFieldEnum | IndicationsforadmissionScalarFieldEnum[]
+  }
+
+  /**
+   * insurers.opeartionispackage
+   */
+  export type insurers$opeartionispackageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    where?: opeartionispackageWhereInput
+    orderBy?: opeartionispackageOrderByWithRelationInput | opeartionispackageOrderByWithRelationInput[]
+    cursor?: opeartionispackageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OpeartionispackageScalarFieldEnum | OpeartionispackageScalarFieldEnum[]
   }
 
   /**
@@ -23663,11 +24139,11 @@ export namespace Prisma {
     surgerytypecode: string | null
     visitdatetime: string | null
     runningdocument: Decimal | null
-    totalbillamount: Decimal | null
     policynumber: string | null
     membershipid: string | null
     furtherclaimvn: string | null
     customerid: string | null
+    totalbillamount: Decimal | null
     visitlocation: string | null
     paymentdate: string | null
   }
@@ -23709,11 +24185,11 @@ export namespace Prisma {
     surgerytypecode: string | null
     visitdatetime: string | null
     runningdocument: Decimal | null
-    totalbillamount: Decimal | null
     policynumber: string | null
     membershipid: string | null
     furtherclaimvn: string | null
     customerid: string | null
+    totalbillamount: Decimal | null
     visitlocation: string | null
     paymentdate: string | null
   }
@@ -23755,11 +24231,11 @@ export namespace Prisma {
     surgerytypecode: number
     visitdatetime: number
     runningdocument: number
-    totalbillamount: number
     policynumber: number
     membershipid: number
     furtherclaimvn: number
     customerid: number
+    totalbillamount: number
     visitlocation: number
     paymentdate: number
     _all: number
@@ -23821,11 +24297,11 @@ export namespace Prisma {
     surgerytypecode?: true
     visitdatetime?: true
     runningdocument?: true
-    totalbillamount?: true
     policynumber?: true
     membershipid?: true
     furtherclaimvn?: true
     customerid?: true
+    totalbillamount?: true
     visitlocation?: true
     paymentdate?: true
   }
@@ -23867,11 +24343,11 @@ export namespace Prisma {
     surgerytypecode?: true
     visitdatetime?: true
     runningdocument?: true
-    totalbillamount?: true
     policynumber?: true
     membershipid?: true
     furtherclaimvn?: true
     customerid?: true
+    totalbillamount?: true
     visitlocation?: true
     paymentdate?: true
   }
@@ -23913,11 +24389,11 @@ export namespace Prisma {
     surgerytypecode?: true
     visitdatetime?: true
     runningdocument?: true
-    totalbillamount?: true
     policynumber?: true
     membershipid?: true
     furtherclaimvn?: true
     customerid?: true
+    totalbillamount?: true
     visitlocation?: true
     paymentdate?: true
     _all?: true
@@ -24046,11 +24522,11 @@ export namespace Prisma {
     surgerytypecode: string | null
     visitdatetime: string | null
     runningdocument: Decimal | null
-    totalbillamount: Decimal | null
     policynumber: string | null
     membershipid: string | null
     furtherclaimvn: string | null
     customerid: string | null
+    totalbillamount: Decimal | null
     visitlocation: string | null
     paymentdate: string | null
     _count: TransactionclaimCountAggregateOutputType | null
@@ -24111,11 +24587,11 @@ export namespace Prisma {
     surgerytypecode?: boolean
     visitdatetime?: boolean
     runningdocument?: boolean
-    totalbillamount?: boolean
     policynumber?: boolean
     membershipid?: boolean
     furtherclaimvn?: boolean
     customerid?: boolean
+    totalbillamount?: boolean
     visitlocation?: boolean
     paymentdate?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
@@ -24158,11 +24634,11 @@ export namespace Prisma {
     surgerytypecode?: boolean
     visitdatetime?: boolean
     runningdocument?: boolean
-    totalbillamount?: boolean
     policynumber?: boolean
     membershipid?: boolean
     furtherclaimvn?: boolean
     customerid?: boolean
+    totalbillamount?: boolean
     visitlocation?: boolean
     paymentdate?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
@@ -24205,11 +24681,11 @@ export namespace Prisma {
     surgerytypecode?: boolean
     visitdatetime?: boolean
     runningdocument?: boolean
-    totalbillamount?: boolean
     policynumber?: boolean
     membershipid?: boolean
     furtherclaimvn?: boolean
     customerid?: boolean
+    totalbillamount?: boolean
     visitlocation?: boolean
     paymentdate?: boolean
   }
@@ -24263,11 +24739,11 @@ export namespace Prisma {
       surgerytypecode: string | null
       visitdatetime: string | null
       runningdocument: Prisma.Decimal | null
-      totalbillamount: Prisma.Decimal | null
       policynumber: string | null
       membershipid: string | null
       furtherclaimvn: string | null
       customerid: string | null
+      totalbillamount: Prisma.Decimal | null
       visitlocation: string | null
       paymentdate: string | null
     }, ExtArgs["result"]["transactionclaim"]>
@@ -24700,11 +25176,11 @@ export namespace Prisma {
     readonly surgerytypecode: FieldRef<"transactionclaim", 'String'>
     readonly visitdatetime: FieldRef<"transactionclaim", 'String'>
     readonly runningdocument: FieldRef<"transactionclaim", 'Decimal'>
-    readonly totalbillamount: FieldRef<"transactionclaim", 'Decimal'>
     readonly policynumber: FieldRef<"transactionclaim", 'String'>
     readonly membershipid: FieldRef<"transactionclaim", 'String'>
     readonly furtherclaimvn: FieldRef<"transactionclaim", 'String'>
     readonly customerid: FieldRef<"transactionclaim", 'String'>
+    readonly totalbillamount: FieldRef<"transactionclaim", 'Decimal'>
     readonly visitlocation: FieldRef<"transactionclaim", 'String'>
     readonly paymentdate: FieldRef<"transactionclaim", 'String'>
   }
@@ -26197,6 +26673,4010 @@ export namespace Prisma {
 
 
   /**
+   * Model accidenttransactions22
+   */
+
+  export type AggregateAccidenttransactions22 = {
+    _count: Accidenttransactions22CountAggregateOutputType | null
+    _avg: Accidenttransactions22AvgAggregateOutputType | null
+    _sum: Accidenttransactions22SumAggregateOutputType | null
+    _min: Accidenttransactions22MinAggregateOutputType | null
+    _max: Accidenttransactions22MaxAggregateOutputType | null
+  }
+
+  export type Accidenttransactions22AvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type Accidenttransactions22SumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type Accidenttransactions22MinAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    accidentplace: string | null
+    accidentdate: string | null
+    causeofinjury: string | null
+    commentofinjury: string | null
+    woundtype: string | null
+    injuryside: string | null
+    injuryarea: string | null
+  }
+
+  export type Accidenttransactions22MaxAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    accidentplace: string | null
+    accidentdate: string | null
+    causeofinjury: string | null
+    commentofinjury: string | null
+    woundtype: string | null
+    injuryside: string | null
+    injuryarea: string | null
+  }
+
+  export type Accidenttransactions22CountAggregateOutputType = {
+    id: number
+    insurerid: number
+    refid: number
+    transactionno: number
+    hn: number
+    vn: number
+    accidentplace: number
+    accidentdate: number
+    causeofinjury: number
+    commentofinjury: number
+    woundtype: number
+    injuryside: number
+    injuryarea: number
+    _all: number
+  }
+
+
+  export type Accidenttransactions22AvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type Accidenttransactions22SumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type Accidenttransactions22MinAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    accidentplace?: true
+    accidentdate?: true
+    causeofinjury?: true
+    commentofinjury?: true
+    woundtype?: true
+    injuryside?: true
+    injuryarea?: true
+  }
+
+  export type Accidenttransactions22MaxAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    accidentplace?: true
+    accidentdate?: true
+    causeofinjury?: true
+    commentofinjury?: true
+    woundtype?: true
+    injuryside?: true
+    injuryarea?: true
+  }
+
+  export type Accidenttransactions22CountAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    accidentplace?: true
+    accidentdate?: true
+    causeofinjury?: true
+    commentofinjury?: true
+    woundtype?: true
+    injuryside?: true
+    injuryarea?: true
+    _all?: true
+  }
+
+  export type Accidenttransactions22AggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which accidenttransactions22 to aggregate.
+     */
+    where?: accidenttransactions22WhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of accidenttransactions22s to fetch.
+     */
+    orderBy?: accidenttransactions22OrderByWithRelationInput | accidenttransactions22OrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: accidenttransactions22WhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` accidenttransactions22s from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` accidenttransactions22s.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned accidenttransactions22s
+    **/
+    _count?: true | Accidenttransactions22CountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Accidenttransactions22AvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Accidenttransactions22SumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Accidenttransactions22MinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Accidenttransactions22MaxAggregateInputType
+  }
+
+  export type GetAccidenttransactions22AggregateType<T extends Accidenttransactions22AggregateArgs> = {
+        [P in keyof T & keyof AggregateAccidenttransactions22]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAccidenttransactions22[P]>
+      : GetScalarType<T[P], AggregateAccidenttransactions22[P]>
+  }
+
+
+
+
+  export type accidenttransactions22GroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: accidenttransactions22WhereInput
+    orderBy?: accidenttransactions22OrderByWithAggregationInput | accidenttransactions22OrderByWithAggregationInput[]
+    by: Accidenttransactions22ScalarFieldEnum[] | Accidenttransactions22ScalarFieldEnum
+    having?: accidenttransactions22ScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Accidenttransactions22CountAggregateInputType | true
+    _avg?: Accidenttransactions22AvgAggregateInputType
+    _sum?: Accidenttransactions22SumAggregateInputType
+    _min?: Accidenttransactions22MinAggregateInputType
+    _max?: Accidenttransactions22MaxAggregateInputType
+  }
+
+  export type Accidenttransactions22GroupByOutputType = {
+    id: number
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    accidentplace: string | null
+    accidentdate: string | null
+    causeofinjury: string | null
+    commentofinjury: string | null
+    woundtype: string | null
+    injuryside: string | null
+    injuryarea: string | null
+    _count: Accidenttransactions22CountAggregateOutputType | null
+    _avg: Accidenttransactions22AvgAggregateOutputType | null
+    _sum: Accidenttransactions22SumAggregateOutputType | null
+    _min: Accidenttransactions22MinAggregateOutputType | null
+    _max: Accidenttransactions22MaxAggregateOutputType | null
+  }
+
+  type GetAccidenttransactions22GroupByPayload<T extends accidenttransactions22GroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Accidenttransactions22GroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Accidenttransactions22GroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Accidenttransactions22GroupByOutputType[P]>
+            : GetScalarType<T[P], Accidenttransactions22GroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type accidenttransactions22Select<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    accidentplace?: boolean
+    accidentdate?: boolean
+    causeofinjury?: boolean
+    commentofinjury?: boolean
+    woundtype?: boolean
+    injuryside?: boolean
+    injuryarea?: boolean
+    insurers?: boolean | accidenttransactions22$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["accidenttransactions22"]>
+
+  export type accidenttransactions22SelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    accidentplace?: boolean
+    accidentdate?: boolean
+    causeofinjury?: boolean
+    commentofinjury?: boolean
+    woundtype?: boolean
+    injuryside?: boolean
+    injuryarea?: boolean
+    insurers?: boolean | accidenttransactions22$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["accidenttransactions22"]>
+
+  export type accidenttransactions22SelectScalar = {
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    accidentplace?: boolean
+    accidentdate?: boolean
+    causeofinjury?: boolean
+    commentofinjury?: boolean
+    woundtype?: boolean
+    injuryside?: boolean
+    injuryarea?: boolean
+  }
+
+  export type accidenttransactions22Include<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | accidenttransactions22$insurersArgs<ExtArgs>
+  }
+  export type accidenttransactions22IncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | accidenttransactions22$insurersArgs<ExtArgs>
+  }
+
+  export type $accidenttransactions22Payload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "accidenttransactions22"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      insurerid: number | null
+      refid: string | null
+      transactionno: string | null
+      hn: string | null
+      vn: string | null
+      accidentplace: string | null
+      accidentdate: string | null
+      causeofinjury: string | null
+      commentofinjury: string | null
+      woundtype: string | null
+      injuryside: string | null
+      injuryarea: string | null
+    }, ExtArgs["result"]["accidenttransactions22"]>
+    composites: {}
+  }
+
+  type accidenttransactions22GetPayload<S extends boolean | null | undefined | accidenttransactions22DefaultArgs> = $Result.GetResult<Prisma.$accidenttransactions22Payload, S>
+
+  type accidenttransactions22CountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<accidenttransactions22FindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Accidenttransactions22CountAggregateInputType | true
+    }
+
+  export interface accidenttransactions22Delegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['accidenttransactions22'], meta: { name: 'accidenttransactions22' } }
+    /**
+     * Find zero or one Accidenttransactions22 that matches the filter.
+     * @param {accidenttransactions22FindUniqueArgs} args - Arguments to find a Accidenttransactions22
+     * @example
+     * // Get one Accidenttransactions22
+     * const accidenttransactions22 = await prisma.accidenttransactions22.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends accidenttransactions22FindUniqueArgs>(args: SelectSubset<T, accidenttransactions22FindUniqueArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Accidenttransactions22 that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {accidenttransactions22FindUniqueOrThrowArgs} args - Arguments to find a Accidenttransactions22
+     * @example
+     * // Get one Accidenttransactions22
+     * const accidenttransactions22 = await prisma.accidenttransactions22.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends accidenttransactions22FindUniqueOrThrowArgs>(args: SelectSubset<T, accidenttransactions22FindUniqueOrThrowArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Accidenttransactions22 that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {accidenttransactions22FindFirstArgs} args - Arguments to find a Accidenttransactions22
+     * @example
+     * // Get one Accidenttransactions22
+     * const accidenttransactions22 = await prisma.accidenttransactions22.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends accidenttransactions22FindFirstArgs>(args?: SelectSubset<T, accidenttransactions22FindFirstArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Accidenttransactions22 that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {accidenttransactions22FindFirstOrThrowArgs} args - Arguments to find a Accidenttransactions22
+     * @example
+     * // Get one Accidenttransactions22
+     * const accidenttransactions22 = await prisma.accidenttransactions22.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends accidenttransactions22FindFirstOrThrowArgs>(args?: SelectSubset<T, accidenttransactions22FindFirstOrThrowArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Accidenttransactions22s that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {accidenttransactions22FindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Accidenttransactions22s
+     * const accidenttransactions22s = await prisma.accidenttransactions22.findMany()
+     * 
+     * // Get first 10 Accidenttransactions22s
+     * const accidenttransactions22s = await prisma.accidenttransactions22.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const accidenttransactions22WithIdOnly = await prisma.accidenttransactions22.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends accidenttransactions22FindManyArgs>(args?: SelectSubset<T, accidenttransactions22FindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Accidenttransactions22.
+     * @param {accidenttransactions22CreateArgs} args - Arguments to create a Accidenttransactions22.
+     * @example
+     * // Create one Accidenttransactions22
+     * const Accidenttransactions22 = await prisma.accidenttransactions22.create({
+     *   data: {
+     *     // ... data to create a Accidenttransactions22
+     *   }
+     * })
+     * 
+     */
+    create<T extends accidenttransactions22CreateArgs>(args: SelectSubset<T, accidenttransactions22CreateArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Accidenttransactions22s.
+     * @param {accidenttransactions22CreateManyArgs} args - Arguments to create many Accidenttransactions22s.
+     * @example
+     * // Create many Accidenttransactions22s
+     * const accidenttransactions22 = await prisma.accidenttransactions22.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends accidenttransactions22CreateManyArgs>(args?: SelectSubset<T, accidenttransactions22CreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Accidenttransactions22s and returns the data saved in the database.
+     * @param {accidenttransactions22CreateManyAndReturnArgs} args - Arguments to create many Accidenttransactions22s.
+     * @example
+     * // Create many Accidenttransactions22s
+     * const accidenttransactions22 = await prisma.accidenttransactions22.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Accidenttransactions22s and only return the `id`
+     * const accidenttransactions22WithIdOnly = await prisma.accidenttransactions22.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends accidenttransactions22CreateManyAndReturnArgs>(args?: SelectSubset<T, accidenttransactions22CreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Accidenttransactions22.
+     * @param {accidenttransactions22DeleteArgs} args - Arguments to delete one Accidenttransactions22.
+     * @example
+     * // Delete one Accidenttransactions22
+     * const Accidenttransactions22 = await prisma.accidenttransactions22.delete({
+     *   where: {
+     *     // ... filter to delete one Accidenttransactions22
+     *   }
+     * })
+     * 
+     */
+    delete<T extends accidenttransactions22DeleteArgs>(args: SelectSubset<T, accidenttransactions22DeleteArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Accidenttransactions22.
+     * @param {accidenttransactions22UpdateArgs} args - Arguments to update one Accidenttransactions22.
+     * @example
+     * // Update one Accidenttransactions22
+     * const accidenttransactions22 = await prisma.accidenttransactions22.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends accidenttransactions22UpdateArgs>(args: SelectSubset<T, accidenttransactions22UpdateArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Accidenttransactions22s.
+     * @param {accidenttransactions22DeleteManyArgs} args - Arguments to filter Accidenttransactions22s to delete.
+     * @example
+     * // Delete a few Accidenttransactions22s
+     * const { count } = await prisma.accidenttransactions22.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends accidenttransactions22DeleteManyArgs>(args?: SelectSubset<T, accidenttransactions22DeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Accidenttransactions22s.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {accidenttransactions22UpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Accidenttransactions22s
+     * const accidenttransactions22 = await prisma.accidenttransactions22.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends accidenttransactions22UpdateManyArgs>(args: SelectSubset<T, accidenttransactions22UpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Accidenttransactions22.
+     * @param {accidenttransactions22UpsertArgs} args - Arguments to update or create a Accidenttransactions22.
+     * @example
+     * // Update or create a Accidenttransactions22
+     * const accidenttransactions22 = await prisma.accidenttransactions22.upsert({
+     *   create: {
+     *     // ... data to create a Accidenttransactions22
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Accidenttransactions22 we want to update
+     *   }
+     * })
+     */
+    upsert<T extends accidenttransactions22UpsertArgs>(args: SelectSubset<T, accidenttransactions22UpsertArgs<ExtArgs>>): Prisma__accidenttransactions22Client<$Result.GetResult<Prisma.$accidenttransactions22Payload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Accidenttransactions22s.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {accidenttransactions22CountArgs} args - Arguments to filter Accidenttransactions22s to count.
+     * @example
+     * // Count the number of Accidenttransactions22s
+     * const count = await prisma.accidenttransactions22.count({
+     *   where: {
+     *     // ... the filter for the Accidenttransactions22s we want to count
+     *   }
+     * })
+    **/
+    count<T extends accidenttransactions22CountArgs>(
+      args?: Subset<T, accidenttransactions22CountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Accidenttransactions22CountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Accidenttransactions22.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Accidenttransactions22AggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Accidenttransactions22AggregateArgs>(args: Subset<T, Accidenttransactions22AggregateArgs>): Prisma.PrismaPromise<GetAccidenttransactions22AggregateType<T>>
+
+    /**
+     * Group by Accidenttransactions22.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {accidenttransactions22GroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends accidenttransactions22GroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: accidenttransactions22GroupByArgs['orderBy'] }
+        : { orderBy?: accidenttransactions22GroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, accidenttransactions22GroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccidenttransactions22GroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the accidenttransactions22 model
+   */
+  readonly fields: accidenttransactions22FieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for accidenttransactions22.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__accidenttransactions22Client<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends accidenttransactions22$insurersArgs<ExtArgs> = {}>(args?: Subset<T, accidenttransactions22$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the accidenttransactions22 model
+   */ 
+  interface accidenttransactions22FieldRefs {
+    readonly id: FieldRef<"accidenttransactions22", 'Int'>
+    readonly insurerid: FieldRef<"accidenttransactions22", 'Int'>
+    readonly refid: FieldRef<"accidenttransactions22", 'String'>
+    readonly transactionno: FieldRef<"accidenttransactions22", 'String'>
+    readonly hn: FieldRef<"accidenttransactions22", 'String'>
+    readonly vn: FieldRef<"accidenttransactions22", 'String'>
+    readonly accidentplace: FieldRef<"accidenttransactions22", 'String'>
+    readonly accidentdate: FieldRef<"accidenttransactions22", 'String'>
+    readonly causeofinjury: FieldRef<"accidenttransactions22", 'String'>
+    readonly commentofinjury: FieldRef<"accidenttransactions22", 'String'>
+    readonly woundtype: FieldRef<"accidenttransactions22", 'String'>
+    readonly injuryside: FieldRef<"accidenttransactions22", 'String'>
+    readonly injuryarea: FieldRef<"accidenttransactions22", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * accidenttransactions22 findUnique
+   */
+  export type accidenttransactions22FindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * Filter, which accidenttransactions22 to fetch.
+     */
+    where: accidenttransactions22WhereUniqueInput
+  }
+
+  /**
+   * accidenttransactions22 findUniqueOrThrow
+   */
+  export type accidenttransactions22FindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * Filter, which accidenttransactions22 to fetch.
+     */
+    where: accidenttransactions22WhereUniqueInput
+  }
+
+  /**
+   * accidenttransactions22 findFirst
+   */
+  export type accidenttransactions22FindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * Filter, which accidenttransactions22 to fetch.
+     */
+    where?: accidenttransactions22WhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of accidenttransactions22s to fetch.
+     */
+    orderBy?: accidenttransactions22OrderByWithRelationInput | accidenttransactions22OrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for accidenttransactions22s.
+     */
+    cursor?: accidenttransactions22WhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` accidenttransactions22s from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` accidenttransactions22s.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of accidenttransactions22s.
+     */
+    distinct?: Accidenttransactions22ScalarFieldEnum | Accidenttransactions22ScalarFieldEnum[]
+  }
+
+  /**
+   * accidenttransactions22 findFirstOrThrow
+   */
+  export type accidenttransactions22FindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * Filter, which accidenttransactions22 to fetch.
+     */
+    where?: accidenttransactions22WhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of accidenttransactions22s to fetch.
+     */
+    orderBy?: accidenttransactions22OrderByWithRelationInput | accidenttransactions22OrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for accidenttransactions22s.
+     */
+    cursor?: accidenttransactions22WhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` accidenttransactions22s from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` accidenttransactions22s.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of accidenttransactions22s.
+     */
+    distinct?: Accidenttransactions22ScalarFieldEnum | Accidenttransactions22ScalarFieldEnum[]
+  }
+
+  /**
+   * accidenttransactions22 findMany
+   */
+  export type accidenttransactions22FindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * Filter, which accidenttransactions22s to fetch.
+     */
+    where?: accidenttransactions22WhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of accidenttransactions22s to fetch.
+     */
+    orderBy?: accidenttransactions22OrderByWithRelationInput | accidenttransactions22OrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing accidenttransactions22s.
+     */
+    cursor?: accidenttransactions22WhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` accidenttransactions22s from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` accidenttransactions22s.
+     */
+    skip?: number
+    distinct?: Accidenttransactions22ScalarFieldEnum | Accidenttransactions22ScalarFieldEnum[]
+  }
+
+  /**
+   * accidenttransactions22 create
+   */
+  export type accidenttransactions22CreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * The data needed to create a accidenttransactions22.
+     */
+    data?: XOR<accidenttransactions22CreateInput, accidenttransactions22UncheckedCreateInput>
+  }
+
+  /**
+   * accidenttransactions22 createMany
+   */
+  export type accidenttransactions22CreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many accidenttransactions22s.
+     */
+    data: accidenttransactions22CreateManyInput | accidenttransactions22CreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * accidenttransactions22 createManyAndReturn
+   */
+  export type accidenttransactions22CreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22SelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many accidenttransactions22s.
+     */
+    data: accidenttransactions22CreateManyInput | accidenttransactions22CreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22IncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * accidenttransactions22 update
+   */
+  export type accidenttransactions22UpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * The data needed to update a accidenttransactions22.
+     */
+    data: XOR<accidenttransactions22UpdateInput, accidenttransactions22UncheckedUpdateInput>
+    /**
+     * Choose, which accidenttransactions22 to update.
+     */
+    where: accidenttransactions22WhereUniqueInput
+  }
+
+  /**
+   * accidenttransactions22 updateMany
+   */
+  export type accidenttransactions22UpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update accidenttransactions22s.
+     */
+    data: XOR<accidenttransactions22UpdateManyMutationInput, accidenttransactions22UncheckedUpdateManyInput>
+    /**
+     * Filter which accidenttransactions22s to update
+     */
+    where?: accidenttransactions22WhereInput
+  }
+
+  /**
+   * accidenttransactions22 upsert
+   */
+  export type accidenttransactions22UpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * The filter to search for the accidenttransactions22 to update in case it exists.
+     */
+    where: accidenttransactions22WhereUniqueInput
+    /**
+     * In case the accidenttransactions22 found by the `where` argument doesn't exist, create a new accidenttransactions22 with this data.
+     */
+    create: XOR<accidenttransactions22CreateInput, accidenttransactions22UncheckedCreateInput>
+    /**
+     * In case the accidenttransactions22 was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<accidenttransactions22UpdateInput, accidenttransactions22UncheckedUpdateInput>
+  }
+
+  /**
+   * accidenttransactions22 delete
+   */
+  export type accidenttransactions22DeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+    /**
+     * Filter which accidenttransactions22 to delete.
+     */
+    where: accidenttransactions22WhereUniqueInput
+  }
+
+  /**
+   * accidenttransactions22 deleteMany
+   */
+  export type accidenttransactions22DeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which accidenttransactions22s to delete
+     */
+    where?: accidenttransactions22WhereInput
+  }
+
+  /**
+   * accidenttransactions22.insurers
+   */
+  export type accidenttransactions22$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * accidenttransactions22 without action
+   */
+  export type accidenttransactions22DefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the accidenttransactions22
+     */
+    select?: accidenttransactions22Select<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: accidenttransactions22Include<ExtArgs> | null
+  }
+
+
+  /**
+   * Model anesthesialist
+   */
+
+  export type AggregateAnesthesialist = {
+    _count: AnesthesialistCountAggregateOutputType | null
+    _avg: AnesthesialistAvgAggregateOutputType | null
+    _sum: AnesthesialistSumAggregateOutputType | null
+    _min: AnesthesialistMinAggregateOutputType | null
+    _max: AnesthesialistMaxAggregateOutputType | null
+  }
+
+  export type AnesthesialistAvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type AnesthesialistSumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type AnesthesialistMinAggregateOutputType = {
+    id: number | null
+    aneslistcode: string | null
+    aneslistname: string | null
+    insurerid: number | null
+  }
+
+  export type AnesthesialistMaxAggregateOutputType = {
+    id: number | null
+    aneslistcode: string | null
+    aneslistname: string | null
+    insurerid: number | null
+  }
+
+  export type AnesthesialistCountAggregateOutputType = {
+    id: number
+    aneslistcode: number
+    aneslistname: number
+    insurerid: number
+    _all: number
+  }
+
+
+  export type AnesthesialistAvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type AnesthesialistSumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type AnesthesialistMinAggregateInputType = {
+    id?: true
+    aneslistcode?: true
+    aneslistname?: true
+    insurerid?: true
+  }
+
+  export type AnesthesialistMaxAggregateInputType = {
+    id?: true
+    aneslistcode?: true
+    aneslistname?: true
+    insurerid?: true
+  }
+
+  export type AnesthesialistCountAggregateInputType = {
+    id?: true
+    aneslistcode?: true
+    aneslistname?: true
+    insurerid?: true
+    _all?: true
+  }
+
+  export type AnesthesialistAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which anesthesialist to aggregate.
+     */
+    where?: anesthesialistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anesthesialists to fetch.
+     */
+    orderBy?: anesthesialistOrderByWithRelationInput | anesthesialistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: anesthesialistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anesthesialists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anesthesialists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned anesthesialists
+    **/
+    _count?: true | AnesthesialistCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AnesthesialistAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AnesthesialistSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnesthesialistMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnesthesialistMaxAggregateInputType
+  }
+
+  export type GetAnesthesialistAggregateType<T extends AnesthesialistAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnesthesialist]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnesthesialist[P]>
+      : GetScalarType<T[P], AggregateAnesthesialist[P]>
+  }
+
+
+
+
+  export type anesthesialistGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: anesthesialistWhereInput
+    orderBy?: anesthesialistOrderByWithAggregationInput | anesthesialistOrderByWithAggregationInput[]
+    by: AnesthesialistScalarFieldEnum[] | AnesthesialistScalarFieldEnum
+    having?: anesthesialistScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnesthesialistCountAggregateInputType | true
+    _avg?: AnesthesialistAvgAggregateInputType
+    _sum?: AnesthesialistSumAggregateInputType
+    _min?: AnesthesialistMinAggregateInputType
+    _max?: AnesthesialistMaxAggregateInputType
+  }
+
+  export type AnesthesialistGroupByOutputType = {
+    id: number
+    aneslistcode: string
+    aneslistname: string | null
+    insurerid: number | null
+    _count: AnesthesialistCountAggregateOutputType | null
+    _avg: AnesthesialistAvgAggregateOutputType | null
+    _sum: AnesthesialistSumAggregateOutputType | null
+    _min: AnesthesialistMinAggregateOutputType | null
+    _max: AnesthesialistMaxAggregateOutputType | null
+  }
+
+  type GetAnesthesialistGroupByPayload<T extends anesthesialistGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnesthesialistGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnesthesialistGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnesthesialistGroupByOutputType[P]>
+            : GetScalarType<T[P], AnesthesialistGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type anesthesialistSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    aneslistcode?: boolean
+    aneslistname?: boolean
+    insurerid?: boolean
+    insurers?: boolean | anesthesialist$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["anesthesialist"]>
+
+  export type anesthesialistSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    aneslistcode?: boolean
+    aneslistname?: boolean
+    insurerid?: boolean
+    insurers?: boolean | anesthesialist$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["anesthesialist"]>
+
+  export type anesthesialistSelectScalar = {
+    id?: boolean
+    aneslistcode?: boolean
+    aneslistname?: boolean
+    insurerid?: boolean
+  }
+
+  export type anesthesialistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | anesthesialist$insurersArgs<ExtArgs>
+  }
+  export type anesthesialistIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | anesthesialist$insurersArgs<ExtArgs>
+  }
+
+  export type $anesthesialistPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "anesthesialist"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      aneslistcode: string
+      aneslistname: string | null
+      insurerid: number | null
+    }, ExtArgs["result"]["anesthesialist"]>
+    composites: {}
+  }
+
+  type anesthesialistGetPayload<S extends boolean | null | undefined | anesthesialistDefaultArgs> = $Result.GetResult<Prisma.$anesthesialistPayload, S>
+
+  type anesthesialistCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<anesthesialistFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AnesthesialistCountAggregateInputType | true
+    }
+
+  export interface anesthesialistDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['anesthesialist'], meta: { name: 'anesthesialist' } }
+    /**
+     * Find zero or one Anesthesialist that matches the filter.
+     * @param {anesthesialistFindUniqueArgs} args - Arguments to find a Anesthesialist
+     * @example
+     * // Get one Anesthesialist
+     * const anesthesialist = await prisma.anesthesialist.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends anesthesialistFindUniqueArgs>(args: SelectSubset<T, anesthesialistFindUniqueArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Anesthesialist that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {anesthesialistFindUniqueOrThrowArgs} args - Arguments to find a Anesthesialist
+     * @example
+     * // Get one Anesthesialist
+     * const anesthesialist = await prisma.anesthesialist.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends anesthesialistFindUniqueOrThrowArgs>(args: SelectSubset<T, anesthesialistFindUniqueOrThrowArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Anesthesialist that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anesthesialistFindFirstArgs} args - Arguments to find a Anesthesialist
+     * @example
+     * // Get one Anesthesialist
+     * const anesthesialist = await prisma.anesthesialist.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends anesthesialistFindFirstArgs>(args?: SelectSubset<T, anesthesialistFindFirstArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Anesthesialist that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anesthesialistFindFirstOrThrowArgs} args - Arguments to find a Anesthesialist
+     * @example
+     * // Get one Anesthesialist
+     * const anesthesialist = await prisma.anesthesialist.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends anesthesialistFindFirstOrThrowArgs>(args?: SelectSubset<T, anesthesialistFindFirstOrThrowArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Anesthesialists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anesthesialistFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Anesthesialists
+     * const anesthesialists = await prisma.anesthesialist.findMany()
+     * 
+     * // Get first 10 Anesthesialists
+     * const anesthesialists = await prisma.anesthesialist.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const anesthesialistWithIdOnly = await prisma.anesthesialist.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends anesthesialistFindManyArgs>(args?: SelectSubset<T, anesthesialistFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Anesthesialist.
+     * @param {anesthesialistCreateArgs} args - Arguments to create a Anesthesialist.
+     * @example
+     * // Create one Anesthesialist
+     * const Anesthesialist = await prisma.anesthesialist.create({
+     *   data: {
+     *     // ... data to create a Anesthesialist
+     *   }
+     * })
+     * 
+     */
+    create<T extends anesthesialistCreateArgs>(args: SelectSubset<T, anesthesialistCreateArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Anesthesialists.
+     * @param {anesthesialistCreateManyArgs} args - Arguments to create many Anesthesialists.
+     * @example
+     * // Create many Anesthesialists
+     * const anesthesialist = await prisma.anesthesialist.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends anesthesialistCreateManyArgs>(args?: SelectSubset<T, anesthesialistCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Anesthesialists and returns the data saved in the database.
+     * @param {anesthesialistCreateManyAndReturnArgs} args - Arguments to create many Anesthesialists.
+     * @example
+     * // Create many Anesthesialists
+     * const anesthesialist = await prisma.anesthesialist.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Anesthesialists and only return the `id`
+     * const anesthesialistWithIdOnly = await prisma.anesthesialist.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends anesthesialistCreateManyAndReturnArgs>(args?: SelectSubset<T, anesthesialistCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Anesthesialist.
+     * @param {anesthesialistDeleteArgs} args - Arguments to delete one Anesthesialist.
+     * @example
+     * // Delete one Anesthesialist
+     * const Anesthesialist = await prisma.anesthesialist.delete({
+     *   where: {
+     *     // ... filter to delete one Anesthesialist
+     *   }
+     * })
+     * 
+     */
+    delete<T extends anesthesialistDeleteArgs>(args: SelectSubset<T, anesthesialistDeleteArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Anesthesialist.
+     * @param {anesthesialistUpdateArgs} args - Arguments to update one Anesthesialist.
+     * @example
+     * // Update one Anesthesialist
+     * const anesthesialist = await prisma.anesthesialist.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends anesthesialistUpdateArgs>(args: SelectSubset<T, anesthesialistUpdateArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Anesthesialists.
+     * @param {anesthesialistDeleteManyArgs} args - Arguments to filter Anesthesialists to delete.
+     * @example
+     * // Delete a few Anesthesialists
+     * const { count } = await prisma.anesthesialist.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends anesthesialistDeleteManyArgs>(args?: SelectSubset<T, anesthesialistDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Anesthesialists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anesthesialistUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Anesthesialists
+     * const anesthesialist = await prisma.anesthesialist.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends anesthesialistUpdateManyArgs>(args: SelectSubset<T, anesthesialistUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Anesthesialist.
+     * @param {anesthesialistUpsertArgs} args - Arguments to update or create a Anesthesialist.
+     * @example
+     * // Update or create a Anesthesialist
+     * const anesthesialist = await prisma.anesthesialist.upsert({
+     *   create: {
+     *     // ... data to create a Anesthesialist
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Anesthesialist we want to update
+     *   }
+     * })
+     */
+    upsert<T extends anesthesialistUpsertArgs>(args: SelectSubset<T, anesthesialistUpsertArgs<ExtArgs>>): Prisma__anesthesialistClient<$Result.GetResult<Prisma.$anesthesialistPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Anesthesialists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anesthesialistCountArgs} args - Arguments to filter Anesthesialists to count.
+     * @example
+     * // Count the number of Anesthesialists
+     * const count = await prisma.anesthesialist.count({
+     *   where: {
+     *     // ... the filter for the Anesthesialists we want to count
+     *   }
+     * })
+    **/
+    count<T extends anesthesialistCountArgs>(
+      args?: Subset<T, anesthesialistCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnesthesialistCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Anesthesialist.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnesthesialistAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnesthesialistAggregateArgs>(args: Subset<T, AnesthesialistAggregateArgs>): Prisma.PrismaPromise<GetAnesthesialistAggregateType<T>>
+
+    /**
+     * Group by Anesthesialist.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anesthesialistGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends anesthesialistGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: anesthesialistGroupByArgs['orderBy'] }
+        : { orderBy?: anesthesialistGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, anesthesialistGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnesthesialistGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the anesthesialist model
+   */
+  readonly fields: anesthesialistFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for anesthesialist.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__anesthesialistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends anesthesialist$insurersArgs<ExtArgs> = {}>(args?: Subset<T, anesthesialist$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the anesthesialist model
+   */ 
+  interface anesthesialistFieldRefs {
+    readonly id: FieldRef<"anesthesialist", 'Int'>
+    readonly aneslistcode: FieldRef<"anesthesialist", 'String'>
+    readonly aneslistname: FieldRef<"anesthesialist", 'String'>
+    readonly insurerid: FieldRef<"anesthesialist", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * anesthesialist findUnique
+   */
+  export type anesthesialistFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * Filter, which anesthesialist to fetch.
+     */
+    where: anesthesialistWhereUniqueInput
+  }
+
+  /**
+   * anesthesialist findUniqueOrThrow
+   */
+  export type anesthesialistFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * Filter, which anesthesialist to fetch.
+     */
+    where: anesthesialistWhereUniqueInput
+  }
+
+  /**
+   * anesthesialist findFirst
+   */
+  export type anesthesialistFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * Filter, which anesthesialist to fetch.
+     */
+    where?: anesthesialistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anesthesialists to fetch.
+     */
+    orderBy?: anesthesialistOrderByWithRelationInput | anesthesialistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for anesthesialists.
+     */
+    cursor?: anesthesialistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anesthesialists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anesthesialists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of anesthesialists.
+     */
+    distinct?: AnesthesialistScalarFieldEnum | AnesthesialistScalarFieldEnum[]
+  }
+
+  /**
+   * anesthesialist findFirstOrThrow
+   */
+  export type anesthesialistFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * Filter, which anesthesialist to fetch.
+     */
+    where?: anesthesialistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anesthesialists to fetch.
+     */
+    orderBy?: anesthesialistOrderByWithRelationInput | anesthesialistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for anesthesialists.
+     */
+    cursor?: anesthesialistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anesthesialists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anesthesialists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of anesthesialists.
+     */
+    distinct?: AnesthesialistScalarFieldEnum | AnesthesialistScalarFieldEnum[]
+  }
+
+  /**
+   * anesthesialist findMany
+   */
+  export type anesthesialistFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * Filter, which anesthesialists to fetch.
+     */
+    where?: anesthesialistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anesthesialists to fetch.
+     */
+    orderBy?: anesthesialistOrderByWithRelationInput | anesthesialistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing anesthesialists.
+     */
+    cursor?: anesthesialistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anesthesialists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anesthesialists.
+     */
+    skip?: number
+    distinct?: AnesthesialistScalarFieldEnum | AnesthesialistScalarFieldEnum[]
+  }
+
+  /**
+   * anesthesialist create
+   */
+  export type anesthesialistCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * The data needed to create a anesthesialist.
+     */
+    data: XOR<anesthesialistCreateInput, anesthesialistUncheckedCreateInput>
+  }
+
+  /**
+   * anesthesialist createMany
+   */
+  export type anesthesialistCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many anesthesialists.
+     */
+    data: anesthesialistCreateManyInput | anesthesialistCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * anesthesialist createManyAndReturn
+   */
+  export type anesthesialistCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many anesthesialists.
+     */
+    data: anesthesialistCreateManyInput | anesthesialistCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * anesthesialist update
+   */
+  export type anesthesialistUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * The data needed to update a anesthesialist.
+     */
+    data: XOR<anesthesialistUpdateInput, anesthesialistUncheckedUpdateInput>
+    /**
+     * Choose, which anesthesialist to update.
+     */
+    where: anesthesialistWhereUniqueInput
+  }
+
+  /**
+   * anesthesialist updateMany
+   */
+  export type anesthesialistUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update anesthesialists.
+     */
+    data: XOR<anesthesialistUpdateManyMutationInput, anesthesialistUncheckedUpdateManyInput>
+    /**
+     * Filter which anesthesialists to update
+     */
+    where?: anesthesialistWhereInput
+  }
+
+  /**
+   * anesthesialist upsert
+   */
+  export type anesthesialistUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * The filter to search for the anesthesialist to update in case it exists.
+     */
+    where: anesthesialistWhereUniqueInput
+    /**
+     * In case the anesthesialist found by the `where` argument doesn't exist, create a new anesthesialist with this data.
+     */
+    create: XOR<anesthesialistCreateInput, anesthesialistUncheckedCreateInput>
+    /**
+     * In case the anesthesialist was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<anesthesialistUpdateInput, anesthesialistUncheckedUpdateInput>
+  }
+
+  /**
+   * anesthesialist delete
+   */
+  export type anesthesialistDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+    /**
+     * Filter which anesthesialist to delete.
+     */
+    where: anesthesialistWhereUniqueInput
+  }
+
+  /**
+   * anesthesialist deleteMany
+   */
+  export type anesthesialistDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which anesthesialists to delete
+     */
+    where?: anesthesialistWhereInput
+  }
+
+  /**
+   * anesthesialist.insurers
+   */
+  export type anesthesialist$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * anesthesialist without action
+   */
+  export type anesthesialistDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anesthesialist
+     */
+    select?: anesthesialistSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anesthesialistInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model indicationsforadmission
+   */
+
+  export type AggregateIndicationsforadmission = {
+    _count: IndicationsforadmissionCountAggregateOutputType | null
+    _avg: IndicationsforadmissionAvgAggregateOutputType | null
+    _sum: IndicationsforadmissionSumAggregateOutputType | null
+    _min: IndicationsforadmissionMinAggregateOutputType | null
+    _max: IndicationsforadmissionMaxAggregateOutputType | null
+  }
+
+  export type IndicationsforadmissionAvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type IndicationsforadmissionSumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type IndicationsforadmissionMinAggregateOutputType = {
+    id: number | null
+    ifacode: string | null
+    ifaname: string | null
+    insurerid: number | null
+  }
+
+  export type IndicationsforadmissionMaxAggregateOutputType = {
+    id: number | null
+    ifacode: string | null
+    ifaname: string | null
+    insurerid: number | null
+  }
+
+  export type IndicationsforadmissionCountAggregateOutputType = {
+    id: number
+    ifacode: number
+    ifaname: number
+    insurerid: number
+    _all: number
+  }
+
+
+  export type IndicationsforadmissionAvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type IndicationsforadmissionSumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type IndicationsforadmissionMinAggregateInputType = {
+    id?: true
+    ifacode?: true
+    ifaname?: true
+    insurerid?: true
+  }
+
+  export type IndicationsforadmissionMaxAggregateInputType = {
+    id?: true
+    ifacode?: true
+    ifaname?: true
+    insurerid?: true
+  }
+
+  export type IndicationsforadmissionCountAggregateInputType = {
+    id?: true
+    ifacode?: true
+    ifaname?: true
+    insurerid?: true
+    _all?: true
+  }
+
+  export type IndicationsforadmissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which indicationsforadmission to aggregate.
+     */
+    where?: indicationsforadmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of indicationsforadmissions to fetch.
+     */
+    orderBy?: indicationsforadmissionOrderByWithRelationInput | indicationsforadmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: indicationsforadmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` indicationsforadmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` indicationsforadmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned indicationsforadmissions
+    **/
+    _count?: true | IndicationsforadmissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: IndicationsforadmissionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: IndicationsforadmissionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IndicationsforadmissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IndicationsforadmissionMaxAggregateInputType
+  }
+
+  export type GetIndicationsforadmissionAggregateType<T extends IndicationsforadmissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateIndicationsforadmission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIndicationsforadmission[P]>
+      : GetScalarType<T[P], AggregateIndicationsforadmission[P]>
+  }
+
+
+
+
+  export type indicationsforadmissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: indicationsforadmissionWhereInput
+    orderBy?: indicationsforadmissionOrderByWithAggregationInput | indicationsforadmissionOrderByWithAggregationInput[]
+    by: IndicationsforadmissionScalarFieldEnum[] | IndicationsforadmissionScalarFieldEnum
+    having?: indicationsforadmissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IndicationsforadmissionCountAggregateInputType | true
+    _avg?: IndicationsforadmissionAvgAggregateInputType
+    _sum?: IndicationsforadmissionSumAggregateInputType
+    _min?: IndicationsforadmissionMinAggregateInputType
+    _max?: IndicationsforadmissionMaxAggregateInputType
+  }
+
+  export type IndicationsforadmissionGroupByOutputType = {
+    id: number
+    ifacode: string
+    ifaname: string | null
+    insurerid: number | null
+    _count: IndicationsforadmissionCountAggregateOutputType | null
+    _avg: IndicationsforadmissionAvgAggregateOutputType | null
+    _sum: IndicationsforadmissionSumAggregateOutputType | null
+    _min: IndicationsforadmissionMinAggregateOutputType | null
+    _max: IndicationsforadmissionMaxAggregateOutputType | null
+  }
+
+  type GetIndicationsforadmissionGroupByPayload<T extends indicationsforadmissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IndicationsforadmissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IndicationsforadmissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IndicationsforadmissionGroupByOutputType[P]>
+            : GetScalarType<T[P], IndicationsforadmissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type indicationsforadmissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ifacode?: boolean
+    ifaname?: boolean
+    insurerid?: boolean
+    insurers?: boolean | indicationsforadmission$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["indicationsforadmission"]>
+
+  export type indicationsforadmissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ifacode?: boolean
+    ifaname?: boolean
+    insurerid?: boolean
+    insurers?: boolean | indicationsforadmission$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["indicationsforadmission"]>
+
+  export type indicationsforadmissionSelectScalar = {
+    id?: boolean
+    ifacode?: boolean
+    ifaname?: boolean
+    insurerid?: boolean
+  }
+
+  export type indicationsforadmissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | indicationsforadmission$insurersArgs<ExtArgs>
+  }
+  export type indicationsforadmissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | indicationsforadmission$insurersArgs<ExtArgs>
+  }
+
+  export type $indicationsforadmissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "indicationsforadmission"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      ifacode: string
+      ifaname: string | null
+      insurerid: number | null
+    }, ExtArgs["result"]["indicationsforadmission"]>
+    composites: {}
+  }
+
+  type indicationsforadmissionGetPayload<S extends boolean | null | undefined | indicationsforadmissionDefaultArgs> = $Result.GetResult<Prisma.$indicationsforadmissionPayload, S>
+
+  type indicationsforadmissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<indicationsforadmissionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: IndicationsforadmissionCountAggregateInputType | true
+    }
+
+  export interface indicationsforadmissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['indicationsforadmission'], meta: { name: 'indicationsforadmission' } }
+    /**
+     * Find zero or one Indicationsforadmission that matches the filter.
+     * @param {indicationsforadmissionFindUniqueArgs} args - Arguments to find a Indicationsforadmission
+     * @example
+     * // Get one Indicationsforadmission
+     * const indicationsforadmission = await prisma.indicationsforadmission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends indicationsforadmissionFindUniqueArgs>(args: SelectSubset<T, indicationsforadmissionFindUniqueArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Indicationsforadmission that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {indicationsforadmissionFindUniqueOrThrowArgs} args - Arguments to find a Indicationsforadmission
+     * @example
+     * // Get one Indicationsforadmission
+     * const indicationsforadmission = await prisma.indicationsforadmission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends indicationsforadmissionFindUniqueOrThrowArgs>(args: SelectSubset<T, indicationsforadmissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Indicationsforadmission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {indicationsforadmissionFindFirstArgs} args - Arguments to find a Indicationsforadmission
+     * @example
+     * // Get one Indicationsforadmission
+     * const indicationsforadmission = await prisma.indicationsforadmission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends indicationsforadmissionFindFirstArgs>(args?: SelectSubset<T, indicationsforadmissionFindFirstArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Indicationsforadmission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {indicationsforadmissionFindFirstOrThrowArgs} args - Arguments to find a Indicationsforadmission
+     * @example
+     * // Get one Indicationsforadmission
+     * const indicationsforadmission = await prisma.indicationsforadmission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends indicationsforadmissionFindFirstOrThrowArgs>(args?: SelectSubset<T, indicationsforadmissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Indicationsforadmissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {indicationsforadmissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Indicationsforadmissions
+     * const indicationsforadmissions = await prisma.indicationsforadmission.findMany()
+     * 
+     * // Get first 10 Indicationsforadmissions
+     * const indicationsforadmissions = await prisma.indicationsforadmission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const indicationsforadmissionWithIdOnly = await prisma.indicationsforadmission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends indicationsforadmissionFindManyArgs>(args?: SelectSubset<T, indicationsforadmissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Indicationsforadmission.
+     * @param {indicationsforadmissionCreateArgs} args - Arguments to create a Indicationsforadmission.
+     * @example
+     * // Create one Indicationsforadmission
+     * const Indicationsforadmission = await prisma.indicationsforadmission.create({
+     *   data: {
+     *     // ... data to create a Indicationsforadmission
+     *   }
+     * })
+     * 
+     */
+    create<T extends indicationsforadmissionCreateArgs>(args: SelectSubset<T, indicationsforadmissionCreateArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Indicationsforadmissions.
+     * @param {indicationsforadmissionCreateManyArgs} args - Arguments to create many Indicationsforadmissions.
+     * @example
+     * // Create many Indicationsforadmissions
+     * const indicationsforadmission = await prisma.indicationsforadmission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends indicationsforadmissionCreateManyArgs>(args?: SelectSubset<T, indicationsforadmissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Indicationsforadmissions and returns the data saved in the database.
+     * @param {indicationsforadmissionCreateManyAndReturnArgs} args - Arguments to create many Indicationsforadmissions.
+     * @example
+     * // Create many Indicationsforadmissions
+     * const indicationsforadmission = await prisma.indicationsforadmission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Indicationsforadmissions and only return the `id`
+     * const indicationsforadmissionWithIdOnly = await prisma.indicationsforadmission.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends indicationsforadmissionCreateManyAndReturnArgs>(args?: SelectSubset<T, indicationsforadmissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Indicationsforadmission.
+     * @param {indicationsforadmissionDeleteArgs} args - Arguments to delete one Indicationsforadmission.
+     * @example
+     * // Delete one Indicationsforadmission
+     * const Indicationsforadmission = await prisma.indicationsforadmission.delete({
+     *   where: {
+     *     // ... filter to delete one Indicationsforadmission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends indicationsforadmissionDeleteArgs>(args: SelectSubset<T, indicationsforadmissionDeleteArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Indicationsforadmission.
+     * @param {indicationsforadmissionUpdateArgs} args - Arguments to update one Indicationsforadmission.
+     * @example
+     * // Update one Indicationsforadmission
+     * const indicationsforadmission = await prisma.indicationsforadmission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends indicationsforadmissionUpdateArgs>(args: SelectSubset<T, indicationsforadmissionUpdateArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Indicationsforadmissions.
+     * @param {indicationsforadmissionDeleteManyArgs} args - Arguments to filter Indicationsforadmissions to delete.
+     * @example
+     * // Delete a few Indicationsforadmissions
+     * const { count } = await prisma.indicationsforadmission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends indicationsforadmissionDeleteManyArgs>(args?: SelectSubset<T, indicationsforadmissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Indicationsforadmissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {indicationsforadmissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Indicationsforadmissions
+     * const indicationsforadmission = await prisma.indicationsforadmission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends indicationsforadmissionUpdateManyArgs>(args: SelectSubset<T, indicationsforadmissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Indicationsforadmission.
+     * @param {indicationsforadmissionUpsertArgs} args - Arguments to update or create a Indicationsforadmission.
+     * @example
+     * // Update or create a Indicationsforadmission
+     * const indicationsforadmission = await prisma.indicationsforadmission.upsert({
+     *   create: {
+     *     // ... data to create a Indicationsforadmission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Indicationsforadmission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends indicationsforadmissionUpsertArgs>(args: SelectSubset<T, indicationsforadmissionUpsertArgs<ExtArgs>>): Prisma__indicationsforadmissionClient<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Indicationsforadmissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {indicationsforadmissionCountArgs} args - Arguments to filter Indicationsforadmissions to count.
+     * @example
+     * // Count the number of Indicationsforadmissions
+     * const count = await prisma.indicationsforadmission.count({
+     *   where: {
+     *     // ... the filter for the Indicationsforadmissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends indicationsforadmissionCountArgs>(
+      args?: Subset<T, indicationsforadmissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IndicationsforadmissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Indicationsforadmission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicationsforadmissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IndicationsforadmissionAggregateArgs>(args: Subset<T, IndicationsforadmissionAggregateArgs>): Prisma.PrismaPromise<GetIndicationsforadmissionAggregateType<T>>
+
+    /**
+     * Group by Indicationsforadmission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {indicationsforadmissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends indicationsforadmissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: indicationsforadmissionGroupByArgs['orderBy'] }
+        : { orderBy?: indicationsforadmissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, indicationsforadmissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIndicationsforadmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the indicationsforadmission model
+   */
+  readonly fields: indicationsforadmissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for indicationsforadmission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__indicationsforadmissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends indicationsforadmission$insurersArgs<ExtArgs> = {}>(args?: Subset<T, indicationsforadmission$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the indicationsforadmission model
+   */ 
+  interface indicationsforadmissionFieldRefs {
+    readonly id: FieldRef<"indicationsforadmission", 'Int'>
+    readonly ifacode: FieldRef<"indicationsforadmission", 'String'>
+    readonly ifaname: FieldRef<"indicationsforadmission", 'String'>
+    readonly insurerid: FieldRef<"indicationsforadmission", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * indicationsforadmission findUnique
+   */
+  export type indicationsforadmissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which indicationsforadmission to fetch.
+     */
+    where: indicationsforadmissionWhereUniqueInput
+  }
+
+  /**
+   * indicationsforadmission findUniqueOrThrow
+   */
+  export type indicationsforadmissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which indicationsforadmission to fetch.
+     */
+    where: indicationsforadmissionWhereUniqueInput
+  }
+
+  /**
+   * indicationsforadmission findFirst
+   */
+  export type indicationsforadmissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which indicationsforadmission to fetch.
+     */
+    where?: indicationsforadmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of indicationsforadmissions to fetch.
+     */
+    orderBy?: indicationsforadmissionOrderByWithRelationInput | indicationsforadmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for indicationsforadmissions.
+     */
+    cursor?: indicationsforadmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` indicationsforadmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` indicationsforadmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of indicationsforadmissions.
+     */
+    distinct?: IndicationsforadmissionScalarFieldEnum | IndicationsforadmissionScalarFieldEnum[]
+  }
+
+  /**
+   * indicationsforadmission findFirstOrThrow
+   */
+  export type indicationsforadmissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which indicationsforadmission to fetch.
+     */
+    where?: indicationsforadmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of indicationsforadmissions to fetch.
+     */
+    orderBy?: indicationsforadmissionOrderByWithRelationInput | indicationsforadmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for indicationsforadmissions.
+     */
+    cursor?: indicationsforadmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` indicationsforadmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` indicationsforadmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of indicationsforadmissions.
+     */
+    distinct?: IndicationsforadmissionScalarFieldEnum | IndicationsforadmissionScalarFieldEnum[]
+  }
+
+  /**
+   * indicationsforadmission findMany
+   */
+  export type indicationsforadmissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which indicationsforadmissions to fetch.
+     */
+    where?: indicationsforadmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of indicationsforadmissions to fetch.
+     */
+    orderBy?: indicationsforadmissionOrderByWithRelationInput | indicationsforadmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing indicationsforadmissions.
+     */
+    cursor?: indicationsforadmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` indicationsforadmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` indicationsforadmissions.
+     */
+    skip?: number
+    distinct?: IndicationsforadmissionScalarFieldEnum | IndicationsforadmissionScalarFieldEnum[]
+  }
+
+  /**
+   * indicationsforadmission create
+   */
+  export type indicationsforadmissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a indicationsforadmission.
+     */
+    data: XOR<indicationsforadmissionCreateInput, indicationsforadmissionUncheckedCreateInput>
+  }
+
+  /**
+   * indicationsforadmission createMany
+   */
+  export type indicationsforadmissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many indicationsforadmissions.
+     */
+    data: indicationsforadmissionCreateManyInput | indicationsforadmissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * indicationsforadmission createManyAndReturn
+   */
+  export type indicationsforadmissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many indicationsforadmissions.
+     */
+    data: indicationsforadmissionCreateManyInput | indicationsforadmissionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * indicationsforadmission update
+   */
+  export type indicationsforadmissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a indicationsforadmission.
+     */
+    data: XOR<indicationsforadmissionUpdateInput, indicationsforadmissionUncheckedUpdateInput>
+    /**
+     * Choose, which indicationsforadmission to update.
+     */
+    where: indicationsforadmissionWhereUniqueInput
+  }
+
+  /**
+   * indicationsforadmission updateMany
+   */
+  export type indicationsforadmissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update indicationsforadmissions.
+     */
+    data: XOR<indicationsforadmissionUpdateManyMutationInput, indicationsforadmissionUncheckedUpdateManyInput>
+    /**
+     * Filter which indicationsforadmissions to update
+     */
+    where?: indicationsforadmissionWhereInput
+  }
+
+  /**
+   * indicationsforadmission upsert
+   */
+  export type indicationsforadmissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the indicationsforadmission to update in case it exists.
+     */
+    where: indicationsforadmissionWhereUniqueInput
+    /**
+     * In case the indicationsforadmission found by the `where` argument doesn't exist, create a new indicationsforadmission with this data.
+     */
+    create: XOR<indicationsforadmissionCreateInput, indicationsforadmissionUncheckedCreateInput>
+    /**
+     * In case the indicationsforadmission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<indicationsforadmissionUpdateInput, indicationsforadmissionUncheckedUpdateInput>
+  }
+
+  /**
+   * indicationsforadmission delete
+   */
+  export type indicationsforadmissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+    /**
+     * Filter which indicationsforadmission to delete.
+     */
+    where: indicationsforadmissionWhereUniqueInput
+  }
+
+  /**
+   * indicationsforadmission deleteMany
+   */
+  export type indicationsforadmissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which indicationsforadmissions to delete
+     */
+    where?: indicationsforadmissionWhereInput
+  }
+
+  /**
+   * indicationsforadmission.insurers
+   */
+  export type indicationsforadmission$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * indicationsforadmission without action
+   */
+  export type indicationsforadmissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the indicationsforadmission
+     */
+    select?: indicationsforadmissionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: indicationsforadmissionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model opeartionispackage
+   */
+
+  export type AggregateOpeartionispackage = {
+    _count: OpeartionispackageCountAggregateOutputType | null
+    _avg: OpeartionispackageAvgAggregateOutputType | null
+    _sum: OpeartionispackageSumAggregateOutputType | null
+    _min: OpeartionispackageMinAggregateOutputType | null
+    _max: OpeartionispackageMaxAggregateOutputType | null
+  }
+
+  export type OpeartionispackageAvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type OpeartionispackageSumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type OpeartionispackageMinAggregateOutputType = {
+    id: number | null
+    oiscode: string | null
+    oisname: string | null
+    insurerid: number | null
+  }
+
+  export type OpeartionispackageMaxAggregateOutputType = {
+    id: number | null
+    oiscode: string | null
+    oisname: string | null
+    insurerid: number | null
+  }
+
+  export type OpeartionispackageCountAggregateOutputType = {
+    id: number
+    oiscode: number
+    oisname: number
+    insurerid: number
+    _all: number
+  }
+
+
+  export type OpeartionispackageAvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type OpeartionispackageSumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type OpeartionispackageMinAggregateInputType = {
+    id?: true
+    oiscode?: true
+    oisname?: true
+    insurerid?: true
+  }
+
+  export type OpeartionispackageMaxAggregateInputType = {
+    id?: true
+    oiscode?: true
+    oisname?: true
+    insurerid?: true
+  }
+
+  export type OpeartionispackageCountAggregateInputType = {
+    id?: true
+    oiscode?: true
+    oisname?: true
+    insurerid?: true
+    _all?: true
+  }
+
+  export type OpeartionispackageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which opeartionispackage to aggregate.
+     */
+    where?: opeartionispackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of opeartionispackages to fetch.
+     */
+    orderBy?: opeartionispackageOrderByWithRelationInput | opeartionispackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: opeartionispackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` opeartionispackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` opeartionispackages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned opeartionispackages
+    **/
+    _count?: true | OpeartionispackageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OpeartionispackageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OpeartionispackageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OpeartionispackageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OpeartionispackageMaxAggregateInputType
+  }
+
+  export type GetOpeartionispackageAggregateType<T extends OpeartionispackageAggregateArgs> = {
+        [P in keyof T & keyof AggregateOpeartionispackage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOpeartionispackage[P]>
+      : GetScalarType<T[P], AggregateOpeartionispackage[P]>
+  }
+
+
+
+
+  export type opeartionispackageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: opeartionispackageWhereInput
+    orderBy?: opeartionispackageOrderByWithAggregationInput | opeartionispackageOrderByWithAggregationInput[]
+    by: OpeartionispackageScalarFieldEnum[] | OpeartionispackageScalarFieldEnum
+    having?: opeartionispackageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OpeartionispackageCountAggregateInputType | true
+    _avg?: OpeartionispackageAvgAggregateInputType
+    _sum?: OpeartionispackageSumAggregateInputType
+    _min?: OpeartionispackageMinAggregateInputType
+    _max?: OpeartionispackageMaxAggregateInputType
+  }
+
+  export type OpeartionispackageGroupByOutputType = {
+    id: number
+    oiscode: string
+    oisname: string | null
+    insurerid: number | null
+    _count: OpeartionispackageCountAggregateOutputType | null
+    _avg: OpeartionispackageAvgAggregateOutputType | null
+    _sum: OpeartionispackageSumAggregateOutputType | null
+    _min: OpeartionispackageMinAggregateOutputType | null
+    _max: OpeartionispackageMaxAggregateOutputType | null
+  }
+
+  type GetOpeartionispackageGroupByPayload<T extends opeartionispackageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OpeartionispackageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OpeartionispackageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OpeartionispackageGroupByOutputType[P]>
+            : GetScalarType<T[P], OpeartionispackageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type opeartionispackageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    oiscode?: boolean
+    oisname?: boolean
+    insurerid?: boolean
+    insurers?: boolean | opeartionispackage$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["opeartionispackage"]>
+
+  export type opeartionispackageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    oiscode?: boolean
+    oisname?: boolean
+    insurerid?: boolean
+    insurers?: boolean | opeartionispackage$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["opeartionispackage"]>
+
+  export type opeartionispackageSelectScalar = {
+    id?: boolean
+    oiscode?: boolean
+    oisname?: boolean
+    insurerid?: boolean
+  }
+
+  export type opeartionispackageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | opeartionispackage$insurersArgs<ExtArgs>
+  }
+  export type opeartionispackageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | opeartionispackage$insurersArgs<ExtArgs>
+  }
+
+  export type $opeartionispackagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "opeartionispackage"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      oiscode: string
+      oisname: string | null
+      insurerid: number | null
+    }, ExtArgs["result"]["opeartionispackage"]>
+    composites: {}
+  }
+
+  type opeartionispackageGetPayload<S extends boolean | null | undefined | opeartionispackageDefaultArgs> = $Result.GetResult<Prisma.$opeartionispackagePayload, S>
+
+  type opeartionispackageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<opeartionispackageFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: OpeartionispackageCountAggregateInputType | true
+    }
+
+  export interface opeartionispackageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['opeartionispackage'], meta: { name: 'opeartionispackage' } }
+    /**
+     * Find zero or one Opeartionispackage that matches the filter.
+     * @param {opeartionispackageFindUniqueArgs} args - Arguments to find a Opeartionispackage
+     * @example
+     * // Get one Opeartionispackage
+     * const opeartionispackage = await prisma.opeartionispackage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends opeartionispackageFindUniqueArgs>(args: SelectSubset<T, opeartionispackageFindUniqueArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Opeartionispackage that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {opeartionispackageFindUniqueOrThrowArgs} args - Arguments to find a Opeartionispackage
+     * @example
+     * // Get one Opeartionispackage
+     * const opeartionispackage = await prisma.opeartionispackage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends opeartionispackageFindUniqueOrThrowArgs>(args: SelectSubset<T, opeartionispackageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Opeartionispackage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {opeartionispackageFindFirstArgs} args - Arguments to find a Opeartionispackage
+     * @example
+     * // Get one Opeartionispackage
+     * const opeartionispackage = await prisma.opeartionispackage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends opeartionispackageFindFirstArgs>(args?: SelectSubset<T, opeartionispackageFindFirstArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Opeartionispackage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {opeartionispackageFindFirstOrThrowArgs} args - Arguments to find a Opeartionispackage
+     * @example
+     * // Get one Opeartionispackage
+     * const opeartionispackage = await prisma.opeartionispackage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends opeartionispackageFindFirstOrThrowArgs>(args?: SelectSubset<T, opeartionispackageFindFirstOrThrowArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Opeartionispackages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {opeartionispackageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Opeartionispackages
+     * const opeartionispackages = await prisma.opeartionispackage.findMany()
+     * 
+     * // Get first 10 Opeartionispackages
+     * const opeartionispackages = await prisma.opeartionispackage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const opeartionispackageWithIdOnly = await prisma.opeartionispackage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends opeartionispackageFindManyArgs>(args?: SelectSubset<T, opeartionispackageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Opeartionispackage.
+     * @param {opeartionispackageCreateArgs} args - Arguments to create a Opeartionispackage.
+     * @example
+     * // Create one Opeartionispackage
+     * const Opeartionispackage = await prisma.opeartionispackage.create({
+     *   data: {
+     *     // ... data to create a Opeartionispackage
+     *   }
+     * })
+     * 
+     */
+    create<T extends opeartionispackageCreateArgs>(args: SelectSubset<T, opeartionispackageCreateArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Opeartionispackages.
+     * @param {opeartionispackageCreateManyArgs} args - Arguments to create many Opeartionispackages.
+     * @example
+     * // Create many Opeartionispackages
+     * const opeartionispackage = await prisma.opeartionispackage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends opeartionispackageCreateManyArgs>(args?: SelectSubset<T, opeartionispackageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Opeartionispackages and returns the data saved in the database.
+     * @param {opeartionispackageCreateManyAndReturnArgs} args - Arguments to create many Opeartionispackages.
+     * @example
+     * // Create many Opeartionispackages
+     * const opeartionispackage = await prisma.opeartionispackage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Opeartionispackages and only return the `id`
+     * const opeartionispackageWithIdOnly = await prisma.opeartionispackage.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends opeartionispackageCreateManyAndReturnArgs>(args?: SelectSubset<T, opeartionispackageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Opeartionispackage.
+     * @param {opeartionispackageDeleteArgs} args - Arguments to delete one Opeartionispackage.
+     * @example
+     * // Delete one Opeartionispackage
+     * const Opeartionispackage = await prisma.opeartionispackage.delete({
+     *   where: {
+     *     // ... filter to delete one Opeartionispackage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends opeartionispackageDeleteArgs>(args: SelectSubset<T, opeartionispackageDeleteArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Opeartionispackage.
+     * @param {opeartionispackageUpdateArgs} args - Arguments to update one Opeartionispackage.
+     * @example
+     * // Update one Opeartionispackage
+     * const opeartionispackage = await prisma.opeartionispackage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends opeartionispackageUpdateArgs>(args: SelectSubset<T, opeartionispackageUpdateArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Opeartionispackages.
+     * @param {opeartionispackageDeleteManyArgs} args - Arguments to filter Opeartionispackages to delete.
+     * @example
+     * // Delete a few Opeartionispackages
+     * const { count } = await prisma.opeartionispackage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends opeartionispackageDeleteManyArgs>(args?: SelectSubset<T, opeartionispackageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Opeartionispackages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {opeartionispackageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Opeartionispackages
+     * const opeartionispackage = await prisma.opeartionispackage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends opeartionispackageUpdateManyArgs>(args: SelectSubset<T, opeartionispackageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Opeartionispackage.
+     * @param {opeartionispackageUpsertArgs} args - Arguments to update or create a Opeartionispackage.
+     * @example
+     * // Update or create a Opeartionispackage
+     * const opeartionispackage = await prisma.opeartionispackage.upsert({
+     *   create: {
+     *     // ... data to create a Opeartionispackage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Opeartionispackage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends opeartionispackageUpsertArgs>(args: SelectSubset<T, opeartionispackageUpsertArgs<ExtArgs>>): Prisma__opeartionispackageClient<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Opeartionispackages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {opeartionispackageCountArgs} args - Arguments to filter Opeartionispackages to count.
+     * @example
+     * // Count the number of Opeartionispackages
+     * const count = await prisma.opeartionispackage.count({
+     *   where: {
+     *     // ... the filter for the Opeartionispackages we want to count
+     *   }
+     * })
+    **/
+    count<T extends opeartionispackageCountArgs>(
+      args?: Subset<T, opeartionispackageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OpeartionispackageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Opeartionispackage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpeartionispackageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OpeartionispackageAggregateArgs>(args: Subset<T, OpeartionispackageAggregateArgs>): Prisma.PrismaPromise<GetOpeartionispackageAggregateType<T>>
+
+    /**
+     * Group by Opeartionispackage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {opeartionispackageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends opeartionispackageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: opeartionispackageGroupByArgs['orderBy'] }
+        : { orderBy?: opeartionispackageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, opeartionispackageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOpeartionispackageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the opeartionispackage model
+   */
+  readonly fields: opeartionispackageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for opeartionispackage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__opeartionispackageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends opeartionispackage$insurersArgs<ExtArgs> = {}>(args?: Subset<T, opeartionispackage$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the opeartionispackage model
+   */ 
+  interface opeartionispackageFieldRefs {
+    readonly id: FieldRef<"opeartionispackage", 'Int'>
+    readonly oiscode: FieldRef<"opeartionispackage", 'String'>
+    readonly oisname: FieldRef<"opeartionispackage", 'String'>
+    readonly insurerid: FieldRef<"opeartionispackage", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * opeartionispackage findUnique
+   */
+  export type opeartionispackageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * Filter, which opeartionispackage to fetch.
+     */
+    where: opeartionispackageWhereUniqueInput
+  }
+
+  /**
+   * opeartionispackage findUniqueOrThrow
+   */
+  export type opeartionispackageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * Filter, which opeartionispackage to fetch.
+     */
+    where: opeartionispackageWhereUniqueInput
+  }
+
+  /**
+   * opeartionispackage findFirst
+   */
+  export type opeartionispackageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * Filter, which opeartionispackage to fetch.
+     */
+    where?: opeartionispackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of opeartionispackages to fetch.
+     */
+    orderBy?: opeartionispackageOrderByWithRelationInput | opeartionispackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for opeartionispackages.
+     */
+    cursor?: opeartionispackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` opeartionispackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` opeartionispackages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of opeartionispackages.
+     */
+    distinct?: OpeartionispackageScalarFieldEnum | OpeartionispackageScalarFieldEnum[]
+  }
+
+  /**
+   * opeartionispackage findFirstOrThrow
+   */
+  export type opeartionispackageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * Filter, which opeartionispackage to fetch.
+     */
+    where?: opeartionispackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of opeartionispackages to fetch.
+     */
+    orderBy?: opeartionispackageOrderByWithRelationInput | opeartionispackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for opeartionispackages.
+     */
+    cursor?: opeartionispackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` opeartionispackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` opeartionispackages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of opeartionispackages.
+     */
+    distinct?: OpeartionispackageScalarFieldEnum | OpeartionispackageScalarFieldEnum[]
+  }
+
+  /**
+   * opeartionispackage findMany
+   */
+  export type opeartionispackageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * Filter, which opeartionispackages to fetch.
+     */
+    where?: opeartionispackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of opeartionispackages to fetch.
+     */
+    orderBy?: opeartionispackageOrderByWithRelationInput | opeartionispackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing opeartionispackages.
+     */
+    cursor?: opeartionispackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` opeartionispackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` opeartionispackages.
+     */
+    skip?: number
+    distinct?: OpeartionispackageScalarFieldEnum | OpeartionispackageScalarFieldEnum[]
+  }
+
+  /**
+   * opeartionispackage create
+   */
+  export type opeartionispackageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a opeartionispackage.
+     */
+    data: XOR<opeartionispackageCreateInput, opeartionispackageUncheckedCreateInput>
+  }
+
+  /**
+   * opeartionispackage createMany
+   */
+  export type opeartionispackageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many opeartionispackages.
+     */
+    data: opeartionispackageCreateManyInput | opeartionispackageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * opeartionispackage createManyAndReturn
+   */
+  export type opeartionispackageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many opeartionispackages.
+     */
+    data: opeartionispackageCreateManyInput | opeartionispackageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * opeartionispackage update
+   */
+  export type opeartionispackageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a opeartionispackage.
+     */
+    data: XOR<opeartionispackageUpdateInput, opeartionispackageUncheckedUpdateInput>
+    /**
+     * Choose, which opeartionispackage to update.
+     */
+    where: opeartionispackageWhereUniqueInput
+  }
+
+  /**
+   * opeartionispackage updateMany
+   */
+  export type opeartionispackageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update opeartionispackages.
+     */
+    data: XOR<opeartionispackageUpdateManyMutationInput, opeartionispackageUncheckedUpdateManyInput>
+    /**
+     * Filter which opeartionispackages to update
+     */
+    where?: opeartionispackageWhereInput
+  }
+
+  /**
+   * opeartionispackage upsert
+   */
+  export type opeartionispackageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the opeartionispackage to update in case it exists.
+     */
+    where: opeartionispackageWhereUniqueInput
+    /**
+     * In case the opeartionispackage found by the `where` argument doesn't exist, create a new opeartionispackage with this data.
+     */
+    create: XOR<opeartionispackageCreateInput, opeartionispackageUncheckedCreateInput>
+    /**
+     * In case the opeartionispackage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<opeartionispackageUpdateInput, opeartionispackageUncheckedUpdateInput>
+  }
+
+  /**
+   * opeartionispackage delete
+   */
+  export type opeartionispackageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+    /**
+     * Filter which opeartionispackage to delete.
+     */
+    where: opeartionispackageWhereUniqueInput
+  }
+
+  /**
+   * opeartionispackage deleteMany
+   */
+  export type opeartionispackageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which opeartionispackages to delete
+     */
+    where?: opeartionispackageWhereInput
+  }
+
+  /**
+   * opeartionispackage.insurers
+   */
+  export type opeartionispackage$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * opeartionispackage without action
+   */
+  export type opeartionispackageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the opeartionispackage
+     */
+    select?: opeartionispackageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: opeartionispackageInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -26513,11 +30993,11 @@ export namespace Prisma {
     surgerytypecode: 'surgerytypecode',
     visitdatetime: 'visitdatetime',
     runningdocument: 'runningdocument',
-    totalbillamount: 'totalbillamount',
     policynumber: 'policynumber',
     membershipid: 'membershipid',
     furtherclaimvn: 'furtherclaimvn',
     customerid: 'customerid',
+    totalbillamount: 'totalbillamount',
     visitlocation: 'visitlocation',
     paymentdate: 'paymentdate'
   };
@@ -26547,6 +31027,55 @@ export namespace Prisma {
   };
 
   export type TransactionclaimstatusScalarFieldEnum = (typeof TransactionclaimstatusScalarFieldEnum)[keyof typeof TransactionclaimstatusScalarFieldEnum]
+
+
+  export const Accidenttransactions22ScalarFieldEnum: {
+    id: 'id',
+    insurerid: 'insurerid',
+    refid: 'refid',
+    transactionno: 'transactionno',
+    hn: 'hn',
+    vn: 'vn',
+    accidentplace: 'accidentplace',
+    accidentdate: 'accidentdate',
+    causeofinjury: 'causeofinjury',
+    commentofinjury: 'commentofinjury',
+    woundtype: 'woundtype',
+    injuryside: 'injuryside',
+    injuryarea: 'injuryarea'
+  };
+
+  export type Accidenttransactions22ScalarFieldEnum = (typeof Accidenttransactions22ScalarFieldEnum)[keyof typeof Accidenttransactions22ScalarFieldEnum]
+
+
+  export const AnesthesialistScalarFieldEnum: {
+    id: 'id',
+    aneslistcode: 'aneslistcode',
+    aneslistname: 'aneslistname',
+    insurerid: 'insurerid'
+  };
+
+  export type AnesthesialistScalarFieldEnum = (typeof AnesthesialistScalarFieldEnum)[keyof typeof AnesthesialistScalarFieldEnum]
+
+
+  export const IndicationsforadmissionScalarFieldEnum: {
+    id: 'id',
+    ifacode: 'ifacode',
+    ifaname: 'ifaname',
+    insurerid: 'insurerid'
+  };
+
+  export type IndicationsforadmissionScalarFieldEnum = (typeof IndicationsforadmissionScalarFieldEnum)[keyof typeof IndicationsforadmissionScalarFieldEnum]
+
+
+  export const OpeartionispackageScalarFieldEnum: {
+    id: 'id',
+    oiscode: 'oiscode',
+    oisname: 'oisname',
+    insurerid: 'insurerid'
+  };
+
+  export type OpeartionispackageScalarFieldEnum = (typeof OpeartionispackageScalarFieldEnum)[keyof typeof OpeartionispackageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -27667,6 +32196,8 @@ export namespace Prisma {
     accidentcauseover45days?: Accidentcauseover45daysListRelationFilter
     accidentplace?: AccidentplaceListRelationFilter
     accidenttransactions?: AccidenttransactionsListRelationFilter
+    accidenttransactions22?: Accidenttransactions22ListRelationFilter
+    anesthesialist?: AnesthesialistListRelationFilter
     causeofinjuryside?: CauseofinjurysideListRelationFilter
     causeofinjurywoundtype?: CauseofinjurywoundtypeListRelationFilter
     claimants?: ClaimantsListRelationFilter
@@ -27677,6 +32208,8 @@ export namespace Prisma {
     idtype?: IdtypeListRelationFilter
     illnesssurgery?: IllnesssurgeryListRelationFilter
     illnesstype?: IllnesstypeListRelationFilter
+    indicationsforadmission?: IndicationsforadmissionListRelationFilter
+    opeartionispackage?: OpeartionispackageListRelationFilter
     policytype?: PolicytypeListRelationFilter
     proceduretransactions?: ProceduretransactionsListRelationFilter
     servicesetting?: ServicesettingListRelationFilter
@@ -27690,6 +32223,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysOrderByRelationAggregateInput
     accidentplace?: accidentplaceOrderByRelationAggregateInput
     accidenttransactions?: accidenttransactionsOrderByRelationAggregateInput
+    accidenttransactions22?: accidenttransactions22OrderByRelationAggregateInput
+    anesthesialist?: anesthesialistOrderByRelationAggregateInput
     causeofinjuryside?: causeofinjurysideOrderByRelationAggregateInput
     causeofinjurywoundtype?: causeofinjurywoundtypeOrderByRelationAggregateInput
     claimants?: claimantsOrderByRelationAggregateInput
@@ -27700,6 +32235,8 @@ export namespace Prisma {
     idtype?: idtypeOrderByRelationAggregateInput
     illnesssurgery?: illnesssurgeryOrderByRelationAggregateInput
     illnesstype?: illnesstypeOrderByRelationAggregateInput
+    indicationsforadmission?: indicationsforadmissionOrderByRelationAggregateInput
+    opeartionispackage?: opeartionispackageOrderByRelationAggregateInput
     policytype?: policytypeOrderByRelationAggregateInput
     proceduretransactions?: proceduretransactionsOrderByRelationAggregateInput
     servicesetting?: servicesettingOrderByRelationAggregateInput
@@ -27716,6 +32253,8 @@ export namespace Prisma {
     accidentcauseover45days?: Accidentcauseover45daysListRelationFilter
     accidentplace?: AccidentplaceListRelationFilter
     accidenttransactions?: AccidenttransactionsListRelationFilter
+    accidenttransactions22?: Accidenttransactions22ListRelationFilter
+    anesthesialist?: AnesthesialistListRelationFilter
     causeofinjuryside?: CauseofinjurysideListRelationFilter
     causeofinjurywoundtype?: CauseofinjurywoundtypeListRelationFilter
     claimants?: ClaimantsListRelationFilter
@@ -27726,6 +32265,8 @@ export namespace Prisma {
     idtype?: IdtypeListRelationFilter
     illnesssurgery?: IllnesssurgeryListRelationFilter
     illnesstype?: IllnesstypeListRelationFilter
+    indicationsforadmission?: IndicationsforadmissionListRelationFilter
+    opeartionispackage?: OpeartionispackageListRelationFilter
     policytype?: PolicytypeListRelationFilter
     proceduretransactions?: ProceduretransactionsListRelationFilter
     servicesetting?: ServicesettingListRelationFilter
@@ -28138,11 +32679,11 @@ export namespace Prisma {
     surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
     runningdocument?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     policynumber?: StringNullableFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
@@ -28185,11 +32726,11 @@ export namespace Prisma {
     surgerytypecode?: SortOrderInput | SortOrder
     visitdatetime?: SortOrderInput | SortOrder
     runningdocument?: SortOrderInput | SortOrder
-    totalbillamount?: SortOrderInput | SortOrder
     policynumber?: SortOrderInput | SortOrder
     membershipid?: SortOrderInput | SortOrder
     furtherclaimvn?: SortOrderInput | SortOrder
     customerid?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
     visitlocation?: SortOrderInput | SortOrder
     paymentdate?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
@@ -28235,11 +32776,11 @@ export namespace Prisma {
     surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
     runningdocument?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     policynumber?: StringNullableFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
@@ -28282,11 +32823,11 @@ export namespace Prisma {
     surgerytypecode?: SortOrderInput | SortOrder
     visitdatetime?: SortOrderInput | SortOrder
     runningdocument?: SortOrderInput | SortOrder
-    totalbillamount?: SortOrderInput | SortOrder
     policynumber?: SortOrderInput | SortOrder
     membershipid?: SortOrderInput | SortOrder
     furtherclaimvn?: SortOrderInput | SortOrder
     customerid?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
     visitlocation?: SortOrderInput | SortOrder
     paymentdate?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
@@ -28336,11 +32877,11 @@ export namespace Prisma {
     surgerytypecode?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     runningdocument?: DecimalNullableWithAggregatesFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: DecimalNullableWithAggregatesFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     policynumber?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     customerid?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableWithAggregatesFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
@@ -28465,6 +33006,259 @@ export namespace Prisma {
     claimstatusdesc?: StringNullableWithAggregatesFilter<"transactionclaimstatus"> | string | null
     claimstatusdesc_th?: StringNullableWithAggregatesFilter<"transactionclaimstatus"> | string | null
     claimstatusdesc_en?: StringNullableWithAggregatesFilter<"transactionclaimstatus"> | string | null
+  }
+
+  export type accidenttransactions22WhereInput = {
+    AND?: accidenttransactions22WhereInput | accidenttransactions22WhereInput[]
+    OR?: accidenttransactions22WhereInput[]
+    NOT?: accidenttransactions22WhereInput | accidenttransactions22WhereInput[]
+    id?: IntFilter<"accidenttransactions22"> | number
+    insurerid?: IntNullableFilter<"accidenttransactions22"> | number | null
+    refid?: StringNullableFilter<"accidenttransactions22"> | string | null
+    transactionno?: StringNullableFilter<"accidenttransactions22"> | string | null
+    hn?: StringNullableFilter<"accidenttransactions22"> | string | null
+    vn?: StringNullableFilter<"accidenttransactions22"> | string | null
+    accidentplace?: StringNullableFilter<"accidenttransactions22"> | string | null
+    accidentdate?: StringNullableFilter<"accidenttransactions22"> | string | null
+    causeofinjury?: StringNullableFilter<"accidenttransactions22"> | string | null
+    commentofinjury?: StringNullableFilter<"accidenttransactions22"> | string | null
+    woundtype?: StringNullableFilter<"accidenttransactions22"> | string | null
+    injuryside?: StringNullableFilter<"accidenttransactions22"> | string | null
+    injuryarea?: StringNullableFilter<"accidenttransactions22"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type accidenttransactions22OrderByWithRelationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    accidentplace?: SortOrderInput | SortOrder
+    accidentdate?: SortOrderInput | SortOrder
+    causeofinjury?: SortOrderInput | SortOrder
+    commentofinjury?: SortOrderInput | SortOrder
+    woundtype?: SortOrderInput | SortOrder
+    injuryside?: SortOrderInput | SortOrder
+    injuryarea?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type accidenttransactions22WhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: accidenttransactions22WhereInput | accidenttransactions22WhereInput[]
+    OR?: accidenttransactions22WhereInput[]
+    NOT?: accidenttransactions22WhereInput | accidenttransactions22WhereInput[]
+    insurerid?: IntNullableFilter<"accidenttransactions22"> | number | null
+    refid?: StringNullableFilter<"accidenttransactions22"> | string | null
+    transactionno?: StringNullableFilter<"accidenttransactions22"> | string | null
+    hn?: StringNullableFilter<"accidenttransactions22"> | string | null
+    vn?: StringNullableFilter<"accidenttransactions22"> | string | null
+    accidentplace?: StringNullableFilter<"accidenttransactions22"> | string | null
+    accidentdate?: StringNullableFilter<"accidenttransactions22"> | string | null
+    causeofinjury?: StringNullableFilter<"accidenttransactions22"> | string | null
+    commentofinjury?: StringNullableFilter<"accidenttransactions22"> | string | null
+    woundtype?: StringNullableFilter<"accidenttransactions22"> | string | null
+    injuryside?: StringNullableFilter<"accidenttransactions22"> | string | null
+    injuryarea?: StringNullableFilter<"accidenttransactions22"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type accidenttransactions22OrderByWithAggregationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    accidentplace?: SortOrderInput | SortOrder
+    accidentdate?: SortOrderInput | SortOrder
+    causeofinjury?: SortOrderInput | SortOrder
+    commentofinjury?: SortOrderInput | SortOrder
+    woundtype?: SortOrderInput | SortOrder
+    injuryside?: SortOrderInput | SortOrder
+    injuryarea?: SortOrderInput | SortOrder
+    _count?: accidenttransactions22CountOrderByAggregateInput
+    _avg?: accidenttransactions22AvgOrderByAggregateInput
+    _max?: accidenttransactions22MaxOrderByAggregateInput
+    _min?: accidenttransactions22MinOrderByAggregateInput
+    _sum?: accidenttransactions22SumOrderByAggregateInput
+  }
+
+  export type accidenttransactions22ScalarWhereWithAggregatesInput = {
+    AND?: accidenttransactions22ScalarWhereWithAggregatesInput | accidenttransactions22ScalarWhereWithAggregatesInput[]
+    OR?: accidenttransactions22ScalarWhereWithAggregatesInput[]
+    NOT?: accidenttransactions22ScalarWhereWithAggregatesInput | accidenttransactions22ScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"accidenttransactions22"> | number
+    insurerid?: IntNullableWithAggregatesFilter<"accidenttransactions22"> | number | null
+    refid?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    transactionno?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    hn?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    vn?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    accidentplace?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    accidentdate?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    causeofinjury?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    commentofinjury?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    woundtype?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    injuryside?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+    injuryarea?: StringNullableWithAggregatesFilter<"accidenttransactions22"> | string | null
+  }
+
+  export type anesthesialistWhereInput = {
+    AND?: anesthesialistWhereInput | anesthesialistWhereInput[]
+    OR?: anesthesialistWhereInput[]
+    NOT?: anesthesialistWhereInput | anesthesialistWhereInput[]
+    id?: IntFilter<"anesthesialist"> | number
+    aneslistcode?: StringFilter<"anesthesialist"> | string
+    aneslistname?: StringNullableFilter<"anesthesialist"> | string | null
+    insurerid?: IntNullableFilter<"anesthesialist"> | number | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type anesthesialistOrderByWithRelationInput = {
+    id?: SortOrder
+    aneslistcode?: SortOrder
+    aneslistname?: SortOrderInput | SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type anesthesialistWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: anesthesialistWhereInput | anesthesialistWhereInput[]
+    OR?: anesthesialistWhereInput[]
+    NOT?: anesthesialistWhereInput | anesthesialistWhereInput[]
+    aneslistcode?: StringFilter<"anesthesialist"> | string
+    aneslistname?: StringNullableFilter<"anesthesialist"> | string | null
+    insurerid?: IntNullableFilter<"anesthesialist"> | number | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type anesthesialistOrderByWithAggregationInput = {
+    id?: SortOrder
+    aneslistcode?: SortOrder
+    aneslistname?: SortOrderInput | SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    _count?: anesthesialistCountOrderByAggregateInput
+    _avg?: anesthesialistAvgOrderByAggregateInput
+    _max?: anesthesialistMaxOrderByAggregateInput
+    _min?: anesthesialistMinOrderByAggregateInput
+    _sum?: anesthesialistSumOrderByAggregateInput
+  }
+
+  export type anesthesialistScalarWhereWithAggregatesInput = {
+    AND?: anesthesialistScalarWhereWithAggregatesInput | anesthesialistScalarWhereWithAggregatesInput[]
+    OR?: anesthesialistScalarWhereWithAggregatesInput[]
+    NOT?: anesthesialistScalarWhereWithAggregatesInput | anesthesialistScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"anesthesialist"> | number
+    aneslistcode?: StringWithAggregatesFilter<"anesthesialist"> | string
+    aneslistname?: StringNullableWithAggregatesFilter<"anesthesialist"> | string | null
+    insurerid?: IntNullableWithAggregatesFilter<"anesthesialist"> | number | null
+  }
+
+  export type indicationsforadmissionWhereInput = {
+    AND?: indicationsforadmissionWhereInput | indicationsforadmissionWhereInput[]
+    OR?: indicationsforadmissionWhereInput[]
+    NOT?: indicationsforadmissionWhereInput | indicationsforadmissionWhereInput[]
+    id?: IntFilter<"indicationsforadmission"> | number
+    ifacode?: StringFilter<"indicationsforadmission"> | string
+    ifaname?: StringNullableFilter<"indicationsforadmission"> | string | null
+    insurerid?: IntNullableFilter<"indicationsforadmission"> | number | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type indicationsforadmissionOrderByWithRelationInput = {
+    id?: SortOrder
+    ifacode?: SortOrder
+    ifaname?: SortOrderInput | SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type indicationsforadmissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: indicationsforadmissionWhereInput | indicationsforadmissionWhereInput[]
+    OR?: indicationsforadmissionWhereInput[]
+    NOT?: indicationsforadmissionWhereInput | indicationsforadmissionWhereInput[]
+    ifacode?: StringFilter<"indicationsforadmission"> | string
+    ifaname?: StringNullableFilter<"indicationsforadmission"> | string | null
+    insurerid?: IntNullableFilter<"indicationsforadmission"> | number | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type indicationsforadmissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    ifacode?: SortOrder
+    ifaname?: SortOrderInput | SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    _count?: indicationsforadmissionCountOrderByAggregateInput
+    _avg?: indicationsforadmissionAvgOrderByAggregateInput
+    _max?: indicationsforadmissionMaxOrderByAggregateInput
+    _min?: indicationsforadmissionMinOrderByAggregateInput
+    _sum?: indicationsforadmissionSumOrderByAggregateInput
+  }
+
+  export type indicationsforadmissionScalarWhereWithAggregatesInput = {
+    AND?: indicationsforadmissionScalarWhereWithAggregatesInput | indicationsforadmissionScalarWhereWithAggregatesInput[]
+    OR?: indicationsforadmissionScalarWhereWithAggregatesInput[]
+    NOT?: indicationsforadmissionScalarWhereWithAggregatesInput | indicationsforadmissionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"indicationsforadmission"> | number
+    ifacode?: StringWithAggregatesFilter<"indicationsforadmission"> | string
+    ifaname?: StringNullableWithAggregatesFilter<"indicationsforadmission"> | string | null
+    insurerid?: IntNullableWithAggregatesFilter<"indicationsforadmission"> | number | null
+  }
+
+  export type opeartionispackageWhereInput = {
+    AND?: opeartionispackageWhereInput | opeartionispackageWhereInput[]
+    OR?: opeartionispackageWhereInput[]
+    NOT?: opeartionispackageWhereInput | opeartionispackageWhereInput[]
+    id?: IntFilter<"opeartionispackage"> | number
+    oiscode?: StringFilter<"opeartionispackage"> | string
+    oisname?: StringNullableFilter<"opeartionispackage"> | string | null
+    insurerid?: IntNullableFilter<"opeartionispackage"> | number | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type opeartionispackageOrderByWithRelationInput = {
+    id?: SortOrder
+    oiscode?: SortOrder
+    oisname?: SortOrderInput | SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type opeartionispackageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: opeartionispackageWhereInput | opeartionispackageWhereInput[]
+    OR?: opeartionispackageWhereInput[]
+    NOT?: opeartionispackageWhereInput | opeartionispackageWhereInput[]
+    oiscode?: StringFilter<"opeartionispackage"> | string
+    oisname?: StringNullableFilter<"opeartionispackage"> | string | null
+    insurerid?: IntNullableFilter<"opeartionispackage"> | number | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type opeartionispackageOrderByWithAggregationInput = {
+    id?: SortOrder
+    oiscode?: SortOrder
+    oisname?: SortOrderInput | SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    _count?: opeartionispackageCountOrderByAggregateInput
+    _avg?: opeartionispackageAvgOrderByAggregateInput
+    _max?: opeartionispackageMaxOrderByAggregateInput
+    _min?: opeartionispackageMinOrderByAggregateInput
+    _sum?: opeartionispackageSumOrderByAggregateInput
+  }
+
+  export type opeartionispackageScalarWhereWithAggregatesInput = {
+    AND?: opeartionispackageScalarWhereWithAggregatesInput | opeartionispackageScalarWhereWithAggregatesInput[]
+    OR?: opeartionispackageScalarWhereWithAggregatesInput[]
+    NOT?: opeartionispackageScalarWhereWithAggregatesInput | opeartionispackageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"opeartionispackage"> | number
+    oiscode?: StringWithAggregatesFilter<"opeartionispackage"> | string
+    oisname?: StringNullableWithAggregatesFilter<"opeartionispackage"> | string | null
+    insurerid?: IntNullableWithAggregatesFilter<"opeartionispackage"> | number | null
   }
 
   export type accidentcauseover45daysCreateInput = {
@@ -29431,6 +34225,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -29441,6 +34237,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -29454,6 +34252,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -29464,6 +34264,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -29476,6 +34278,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -29486,6 +34290,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -29499,6 +34305,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -29509,6 +34317,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -29945,11 +34755,11 @@ export namespace Prisma {
     surgerytypecode?: string | null
     visitdatetime?: string | null
     runningdocument?: Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
@@ -29992,11 +34802,11 @@ export namespace Prisma {
     surgerytypecode?: string | null
     visitdatetime?: string | null
     runningdocument?: Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
   }
@@ -30035,11 +34845,11 @@ export namespace Prisma {
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
@@ -30082,11 +34892,11 @@ export namespace Prisma {
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -30128,11 +34938,11 @@ export namespace Prisma {
     surgerytypecode?: string | null
     visitdatetime?: string | null
     runningdocument?: Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
   }
@@ -30171,11 +34981,11 @@ export namespace Prisma {
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -30217,11 +35027,11 @@ export namespace Prisma {
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -30364,6 +35174,249 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type accidenttransactions22CreateInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    accidentplace?: string | null
+    accidentdate?: string | null
+    causeofinjury?: string | null
+    commentofinjury?: string | null
+    woundtype?: string | null
+    injuryside?: string | null
+    injuryarea?: string | null
+    insurers?: insurersCreateNestedOneWithoutAccidenttransactions22Input
+  }
+
+  export type accidenttransactions22UncheckedCreateInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    accidentplace?: string | null
+    accidentdate?: string | null
+    causeofinjury?: string | null
+    commentofinjury?: string | null
+    woundtype?: string | null
+    injuryside?: string | null
+    injuryarea?: string | null
+  }
+
+  export type accidenttransactions22UpdateInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    causeofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    commentofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    woundtype?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryside?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryarea?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutAccidenttransactions22NestedInput
+  }
+
+  export type accidenttransactions22UncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    causeofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    commentofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    woundtype?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryside?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryarea?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type accidenttransactions22CreateManyInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    accidentplace?: string | null
+    accidentdate?: string | null
+    causeofinjury?: string | null
+    commentofinjury?: string | null
+    woundtype?: string | null
+    injuryside?: string | null
+    injuryarea?: string | null
+  }
+
+  export type accidenttransactions22UpdateManyMutationInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    causeofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    commentofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    woundtype?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryside?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryarea?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type accidenttransactions22UncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    causeofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    commentofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    woundtype?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryside?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryarea?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type anesthesialistCreateInput = {
+    aneslistcode: string
+    aneslistname?: string | null
+    insurers?: insurersCreateNestedOneWithoutAnesthesialistInput
+  }
+
+  export type anesthesialistUncheckedCreateInput = {
+    id?: number
+    aneslistcode: string
+    aneslistname?: string | null
+    insurerid?: number | null
+  }
+
+  export type anesthesialistUpdateInput = {
+    aneslistcode?: StringFieldUpdateOperationsInput | string
+    aneslistname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutAnesthesialistNestedInput
+  }
+
+  export type anesthesialistUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    aneslistcode?: StringFieldUpdateOperationsInput | string
+    aneslistname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type anesthesialistCreateManyInput = {
+    id?: number
+    aneslistcode: string
+    aneslistname?: string | null
+    insurerid?: number | null
+  }
+
+  export type anesthesialistUpdateManyMutationInput = {
+    aneslistcode?: StringFieldUpdateOperationsInput | string
+    aneslistname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type anesthesialistUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    aneslistcode?: StringFieldUpdateOperationsInput | string
+    aneslistname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type indicationsforadmissionCreateInput = {
+    ifacode: string
+    ifaname?: string | null
+    insurers?: insurersCreateNestedOneWithoutIndicationsforadmissionInput
+  }
+
+  export type indicationsforadmissionUncheckedCreateInput = {
+    id?: number
+    ifacode: string
+    ifaname?: string | null
+    insurerid?: number | null
+  }
+
+  export type indicationsforadmissionUpdateInput = {
+    ifacode?: StringFieldUpdateOperationsInput | string
+    ifaname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutIndicationsforadmissionNestedInput
+  }
+
+  export type indicationsforadmissionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ifacode?: StringFieldUpdateOperationsInput | string
+    ifaname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type indicationsforadmissionCreateManyInput = {
+    id?: number
+    ifacode: string
+    ifaname?: string | null
+    insurerid?: number | null
+  }
+
+  export type indicationsforadmissionUpdateManyMutationInput = {
+    ifacode?: StringFieldUpdateOperationsInput | string
+    ifaname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type indicationsforadmissionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ifacode?: StringFieldUpdateOperationsInput | string
+    ifaname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type opeartionispackageCreateInput = {
+    oiscode: string
+    oisname?: string | null
+    insurers?: insurersCreateNestedOneWithoutOpeartionispackageInput
+  }
+
+  export type opeartionispackageUncheckedCreateInput = {
+    id?: number
+    oiscode: string
+    oisname?: string | null
+    insurerid?: number | null
+  }
+
+  export type opeartionispackageUpdateInput = {
+    oiscode?: StringFieldUpdateOperationsInput | string
+    oisname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutOpeartionispackageNestedInput
+  }
+
+  export type opeartionispackageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    oiscode?: StringFieldUpdateOperationsInput | string
+    oisname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type opeartionispackageCreateManyInput = {
+    id?: number
+    oiscode: string
+    oisname?: string | null
+    insurerid?: number | null
+  }
+
+  export type opeartionispackageUpdateManyMutationInput = {
+    oiscode?: StringFieldUpdateOperationsInput | string
+    oisname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type opeartionispackageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    oiscode?: StringFieldUpdateOperationsInput | string
+    oisname?: NullableStringFieldUpdateOperationsInput | string | null
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -31246,6 +36299,18 @@ export namespace Prisma {
     none?: accidenttransactionsWhereInput
   }
 
+  export type Accidenttransactions22ListRelationFilter = {
+    every?: accidenttransactions22WhereInput
+    some?: accidenttransactions22WhereInput
+    none?: accidenttransactions22WhereInput
+  }
+
+  export type AnesthesialistListRelationFilter = {
+    every?: anesthesialistWhereInput
+    some?: anesthesialistWhereInput
+    none?: anesthesialistWhereInput
+  }
+
   export type CauseofinjurysideListRelationFilter = {
     every?: causeofinjurysideWhereInput
     some?: causeofinjurysideWhereInput
@@ -31306,6 +36371,18 @@ export namespace Prisma {
     none?: illnesstypeWhereInput
   }
 
+  export type IndicationsforadmissionListRelationFilter = {
+    every?: indicationsforadmissionWhereInput
+    some?: indicationsforadmissionWhereInput
+    none?: indicationsforadmissionWhereInput
+  }
+
+  export type OpeartionispackageListRelationFilter = {
+    every?: opeartionispackageWhereInput
+    some?: opeartionispackageWhereInput
+    none?: opeartionispackageWhereInput
+  }
+
   export type PolicytypeListRelationFilter = {
     every?: policytypeWhereInput
     some?: policytypeWhereInput
@@ -31333,6 +36410,14 @@ export namespace Prisma {
   }
 
   export type accidenttransactionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type accidenttransactions22OrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type anesthesialistOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31373,6 +36458,14 @@ export namespace Prisma {
   }
 
   export type illnesstypeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type indicationsforadmissionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type opeartionispackageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31671,11 +36764,11 @@ export namespace Prisma {
     surgerytypecode?: SortOrder
     visitdatetime?: SortOrder
     runningdocument?: SortOrder
-    totalbillamount?: SortOrder
     policynumber?: SortOrder
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
     customerid?: SortOrder
+    totalbillamount?: SortOrder
     visitlocation?: SortOrder
     paymentdate?: SortOrder
   }
@@ -31726,11 +36819,11 @@ export namespace Prisma {
     surgerytypecode?: SortOrder
     visitdatetime?: SortOrder
     runningdocument?: SortOrder
-    totalbillamount?: SortOrder
     policynumber?: SortOrder
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
     customerid?: SortOrder
+    totalbillamount?: SortOrder
     visitlocation?: SortOrder
     paymentdate?: SortOrder
   }
@@ -31772,11 +36865,11 @@ export namespace Prisma {
     surgerytypecode?: SortOrder
     visitdatetime?: SortOrder
     runningdocument?: SortOrder
-    totalbillamount?: SortOrder
     policynumber?: SortOrder
     membershipid?: SortOrder
     furtherclaimvn?: SortOrder
     customerid?: SortOrder
+    totalbillamount?: SortOrder
     visitlocation?: SortOrder
     paymentdate?: SortOrder
   }
@@ -31864,6 +36957,157 @@ export namespace Prisma {
   }
 
   export type transactionclaimstatusSumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type accidenttransactions22CountOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    accidentplace?: SortOrder
+    accidentdate?: SortOrder
+    causeofinjury?: SortOrder
+    commentofinjury?: SortOrder
+    woundtype?: SortOrder
+    injuryside?: SortOrder
+    injuryarea?: SortOrder
+  }
+
+  export type accidenttransactions22AvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type accidenttransactions22MaxOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    accidentplace?: SortOrder
+    accidentdate?: SortOrder
+    causeofinjury?: SortOrder
+    commentofinjury?: SortOrder
+    woundtype?: SortOrder
+    injuryside?: SortOrder
+    injuryarea?: SortOrder
+  }
+
+  export type accidenttransactions22MinOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    accidentplace?: SortOrder
+    accidentdate?: SortOrder
+    causeofinjury?: SortOrder
+    commentofinjury?: SortOrder
+    woundtype?: SortOrder
+    injuryside?: SortOrder
+    injuryarea?: SortOrder
+  }
+
+  export type accidenttransactions22SumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type anesthesialistCountOrderByAggregateInput = {
+    id?: SortOrder
+    aneslistcode?: SortOrder
+    aneslistname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type anesthesialistAvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type anesthesialistMaxOrderByAggregateInput = {
+    id?: SortOrder
+    aneslistcode?: SortOrder
+    aneslistname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type anesthesialistMinOrderByAggregateInput = {
+    id?: SortOrder
+    aneslistcode?: SortOrder
+    aneslistname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type anesthesialistSumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type indicationsforadmissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    ifacode?: SortOrder
+    ifaname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type indicationsforadmissionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type indicationsforadmissionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ifacode?: SortOrder
+    ifaname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type indicationsforadmissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    ifacode?: SortOrder
+    ifaname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type indicationsforadmissionSumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type opeartionispackageCountOrderByAggregateInput = {
+    id?: SortOrder
+    oiscode?: SortOrder
+    oisname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type opeartionispackageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type opeartionispackageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    oiscode?: SortOrder
+    oisname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type opeartionispackageMinOrderByAggregateInput = {
+    id?: SortOrder
+    oiscode?: SortOrder
+    oisname?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type opeartionispackageSumOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
   }
@@ -32345,6 +37589,20 @@ export namespace Prisma {
     connect?: accidenttransactionsWhereUniqueInput | accidenttransactionsWhereUniqueInput[]
   }
 
+  export type accidenttransactions22CreateNestedManyWithoutInsurersInput = {
+    create?: XOR<accidenttransactions22CreateWithoutInsurersInput, accidenttransactions22UncheckedCreateWithoutInsurersInput> | accidenttransactions22CreateWithoutInsurersInput[] | accidenttransactions22UncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: accidenttransactions22CreateOrConnectWithoutInsurersInput | accidenttransactions22CreateOrConnectWithoutInsurersInput[]
+    createMany?: accidenttransactions22CreateManyInsurersInputEnvelope
+    connect?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+  }
+
+  export type anesthesialistCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<anesthesialistCreateWithoutInsurersInput, anesthesialistUncheckedCreateWithoutInsurersInput> | anesthesialistCreateWithoutInsurersInput[] | anesthesialistUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: anesthesialistCreateOrConnectWithoutInsurersInput | anesthesialistCreateOrConnectWithoutInsurersInput[]
+    createMany?: anesthesialistCreateManyInsurersInputEnvelope
+    connect?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+  }
+
   export type causeofinjurysideCreateNestedManyWithoutInsurersInput = {
     create?: XOR<causeofinjurysideCreateWithoutInsurersInput, causeofinjurysideUncheckedCreateWithoutInsurersInput> | causeofinjurysideCreateWithoutInsurersInput[] | causeofinjurysideUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: causeofinjurysideCreateOrConnectWithoutInsurersInput | causeofinjurysideCreateOrConnectWithoutInsurersInput[]
@@ -32415,6 +37673,20 @@ export namespace Prisma {
     connect?: illnesstypeWhereUniqueInput | illnesstypeWhereUniqueInput[]
   }
 
+  export type indicationsforadmissionCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<indicationsforadmissionCreateWithoutInsurersInput, indicationsforadmissionUncheckedCreateWithoutInsurersInput> | indicationsforadmissionCreateWithoutInsurersInput[] | indicationsforadmissionUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: indicationsforadmissionCreateOrConnectWithoutInsurersInput | indicationsforadmissionCreateOrConnectWithoutInsurersInput[]
+    createMany?: indicationsforadmissionCreateManyInsurersInputEnvelope
+    connect?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+  }
+
+  export type opeartionispackageCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<opeartionispackageCreateWithoutInsurersInput, opeartionispackageUncheckedCreateWithoutInsurersInput> | opeartionispackageCreateWithoutInsurersInput[] | opeartionispackageUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: opeartionispackageCreateOrConnectWithoutInsurersInput | opeartionispackageCreateOrConnectWithoutInsurersInput[]
+    createMany?: opeartionispackageCreateManyInsurersInputEnvelope
+    connect?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+  }
+
   export type policytypeCreateNestedManyWithoutInsurersInput = {
     create?: XOR<policytypeCreateWithoutInsurersInput, policytypeUncheckedCreateWithoutInsurersInput> | policytypeCreateWithoutInsurersInput[] | policytypeUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: policytypeCreateOrConnectWithoutInsurersInput | policytypeCreateOrConnectWithoutInsurersInput[]
@@ -32455,6 +37727,20 @@ export namespace Prisma {
     connectOrCreate?: accidenttransactionsCreateOrConnectWithoutInsurersInput | accidenttransactionsCreateOrConnectWithoutInsurersInput[]
     createMany?: accidenttransactionsCreateManyInsurersInputEnvelope
     connect?: accidenttransactionsWhereUniqueInput | accidenttransactionsWhereUniqueInput[]
+  }
+
+  export type accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<accidenttransactions22CreateWithoutInsurersInput, accidenttransactions22UncheckedCreateWithoutInsurersInput> | accidenttransactions22CreateWithoutInsurersInput[] | accidenttransactions22UncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: accidenttransactions22CreateOrConnectWithoutInsurersInput | accidenttransactions22CreateOrConnectWithoutInsurersInput[]
+    createMany?: accidenttransactions22CreateManyInsurersInputEnvelope
+    connect?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+  }
+
+  export type anesthesialistUncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<anesthesialistCreateWithoutInsurersInput, anesthesialistUncheckedCreateWithoutInsurersInput> | anesthesialistCreateWithoutInsurersInput[] | anesthesialistUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: anesthesialistCreateOrConnectWithoutInsurersInput | anesthesialistCreateOrConnectWithoutInsurersInput[]
+    createMany?: anesthesialistCreateManyInsurersInputEnvelope
+    connect?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
   }
 
   export type causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput = {
@@ -32527,6 +37813,20 @@ export namespace Prisma {
     connect?: illnesstypeWhereUniqueInput | illnesstypeWhereUniqueInput[]
   }
 
+  export type indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<indicationsforadmissionCreateWithoutInsurersInput, indicationsforadmissionUncheckedCreateWithoutInsurersInput> | indicationsforadmissionCreateWithoutInsurersInput[] | indicationsforadmissionUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: indicationsforadmissionCreateOrConnectWithoutInsurersInput | indicationsforadmissionCreateOrConnectWithoutInsurersInput[]
+    createMany?: indicationsforadmissionCreateManyInsurersInputEnvelope
+    connect?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+  }
+
+  export type opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<opeartionispackageCreateWithoutInsurersInput, opeartionispackageUncheckedCreateWithoutInsurersInput> | opeartionispackageCreateWithoutInsurersInput[] | opeartionispackageUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: opeartionispackageCreateOrConnectWithoutInsurersInput | opeartionispackageCreateOrConnectWithoutInsurersInput[]
+    createMany?: opeartionispackageCreateManyInsurersInputEnvelope
+    connect?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+  }
+
   export type policytypeUncheckedCreateNestedManyWithoutInsurersInput = {
     create?: XOR<policytypeCreateWithoutInsurersInput, policytypeUncheckedCreateWithoutInsurersInput> | policytypeCreateWithoutInsurersInput[] | policytypeUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: policytypeCreateOrConnectWithoutInsurersInput | policytypeCreateOrConnectWithoutInsurersInput[]
@@ -32588,6 +37888,34 @@ export namespace Prisma {
     update?: accidenttransactionsUpdateWithWhereUniqueWithoutInsurersInput | accidenttransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
     updateMany?: accidenttransactionsUpdateManyWithWhereWithoutInsurersInput | accidenttransactionsUpdateManyWithWhereWithoutInsurersInput[]
     deleteMany?: accidenttransactionsScalarWhereInput | accidenttransactionsScalarWhereInput[]
+  }
+
+  export type accidenttransactions22UpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<accidenttransactions22CreateWithoutInsurersInput, accidenttransactions22UncheckedCreateWithoutInsurersInput> | accidenttransactions22CreateWithoutInsurersInput[] | accidenttransactions22UncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: accidenttransactions22CreateOrConnectWithoutInsurersInput | accidenttransactions22CreateOrConnectWithoutInsurersInput[]
+    upsert?: accidenttransactions22UpsertWithWhereUniqueWithoutInsurersInput | accidenttransactions22UpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: accidenttransactions22CreateManyInsurersInputEnvelope
+    set?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    disconnect?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    delete?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    connect?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    update?: accidenttransactions22UpdateWithWhereUniqueWithoutInsurersInput | accidenttransactions22UpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: accidenttransactions22UpdateManyWithWhereWithoutInsurersInput | accidenttransactions22UpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: accidenttransactions22ScalarWhereInput | accidenttransactions22ScalarWhereInput[]
+  }
+
+  export type anesthesialistUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<anesthesialistCreateWithoutInsurersInput, anesthesialistUncheckedCreateWithoutInsurersInput> | anesthesialistCreateWithoutInsurersInput[] | anesthesialistUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: anesthesialistCreateOrConnectWithoutInsurersInput | anesthesialistCreateOrConnectWithoutInsurersInput[]
+    upsert?: anesthesialistUpsertWithWhereUniqueWithoutInsurersInput | anesthesialistUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: anesthesialistCreateManyInsurersInputEnvelope
+    set?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    disconnect?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    delete?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    connect?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    update?: anesthesialistUpdateWithWhereUniqueWithoutInsurersInput | anesthesialistUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: anesthesialistUpdateManyWithWhereWithoutInsurersInput | anesthesialistUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: anesthesialistScalarWhereInput | anesthesialistScalarWhereInput[]
   }
 
   export type causeofinjurysideUpdateManyWithoutInsurersNestedInput = {
@@ -32730,6 +38058,34 @@ export namespace Prisma {
     deleteMany?: illnesstypeScalarWhereInput | illnesstypeScalarWhereInput[]
   }
 
+  export type indicationsforadmissionUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<indicationsforadmissionCreateWithoutInsurersInput, indicationsforadmissionUncheckedCreateWithoutInsurersInput> | indicationsforadmissionCreateWithoutInsurersInput[] | indicationsforadmissionUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: indicationsforadmissionCreateOrConnectWithoutInsurersInput | indicationsforadmissionCreateOrConnectWithoutInsurersInput[]
+    upsert?: indicationsforadmissionUpsertWithWhereUniqueWithoutInsurersInput | indicationsforadmissionUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: indicationsforadmissionCreateManyInsurersInputEnvelope
+    set?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    disconnect?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    delete?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    connect?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    update?: indicationsforadmissionUpdateWithWhereUniqueWithoutInsurersInput | indicationsforadmissionUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: indicationsforadmissionUpdateManyWithWhereWithoutInsurersInput | indicationsforadmissionUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: indicationsforadmissionScalarWhereInput | indicationsforadmissionScalarWhereInput[]
+  }
+
+  export type opeartionispackageUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<opeartionispackageCreateWithoutInsurersInput, opeartionispackageUncheckedCreateWithoutInsurersInput> | opeartionispackageCreateWithoutInsurersInput[] | opeartionispackageUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: opeartionispackageCreateOrConnectWithoutInsurersInput | opeartionispackageCreateOrConnectWithoutInsurersInput[]
+    upsert?: opeartionispackageUpsertWithWhereUniqueWithoutInsurersInput | opeartionispackageUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: opeartionispackageCreateManyInsurersInputEnvelope
+    set?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    disconnect?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    delete?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    connect?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    update?: opeartionispackageUpdateWithWhereUniqueWithoutInsurersInput | opeartionispackageUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: opeartionispackageUpdateManyWithWhereWithoutInsurersInput | opeartionispackageUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: opeartionispackageScalarWhereInput | opeartionispackageScalarWhereInput[]
+  }
+
   export type policytypeUpdateManyWithoutInsurersNestedInput = {
     create?: XOR<policytypeCreateWithoutInsurersInput, policytypeUncheckedCreateWithoutInsurersInput> | policytypeCreateWithoutInsurersInput[] | policytypeUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: policytypeCreateOrConnectWithoutInsurersInput | policytypeCreateOrConnectWithoutInsurersInput[]
@@ -32812,6 +38168,34 @@ export namespace Prisma {
     update?: accidenttransactionsUpdateWithWhereUniqueWithoutInsurersInput | accidenttransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
     updateMany?: accidenttransactionsUpdateManyWithWhereWithoutInsurersInput | accidenttransactionsUpdateManyWithWhereWithoutInsurersInput[]
     deleteMany?: accidenttransactionsScalarWhereInput | accidenttransactionsScalarWhereInput[]
+  }
+
+  export type accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<accidenttransactions22CreateWithoutInsurersInput, accidenttransactions22UncheckedCreateWithoutInsurersInput> | accidenttransactions22CreateWithoutInsurersInput[] | accidenttransactions22UncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: accidenttransactions22CreateOrConnectWithoutInsurersInput | accidenttransactions22CreateOrConnectWithoutInsurersInput[]
+    upsert?: accidenttransactions22UpsertWithWhereUniqueWithoutInsurersInput | accidenttransactions22UpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: accidenttransactions22CreateManyInsurersInputEnvelope
+    set?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    disconnect?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    delete?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    connect?: accidenttransactions22WhereUniqueInput | accidenttransactions22WhereUniqueInput[]
+    update?: accidenttransactions22UpdateWithWhereUniqueWithoutInsurersInput | accidenttransactions22UpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: accidenttransactions22UpdateManyWithWhereWithoutInsurersInput | accidenttransactions22UpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: accidenttransactions22ScalarWhereInput | accidenttransactions22ScalarWhereInput[]
+  }
+
+  export type anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<anesthesialistCreateWithoutInsurersInput, anesthesialistUncheckedCreateWithoutInsurersInput> | anesthesialistCreateWithoutInsurersInput[] | anesthesialistUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: anesthesialistCreateOrConnectWithoutInsurersInput | anesthesialistCreateOrConnectWithoutInsurersInput[]
+    upsert?: anesthesialistUpsertWithWhereUniqueWithoutInsurersInput | anesthesialistUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: anesthesialistCreateManyInsurersInputEnvelope
+    set?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    disconnect?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    delete?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    connect?: anesthesialistWhereUniqueInput | anesthesialistWhereUniqueInput[]
+    update?: anesthesialistUpdateWithWhereUniqueWithoutInsurersInput | anesthesialistUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: anesthesialistUpdateManyWithWhereWithoutInsurersInput | anesthesialistUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: anesthesialistScalarWhereInput | anesthesialistScalarWhereInput[]
   }
 
   export type causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput = {
@@ -32954,6 +38338,34 @@ export namespace Prisma {
     deleteMany?: illnesstypeScalarWhereInput | illnesstypeScalarWhereInput[]
   }
 
+  export type indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<indicationsforadmissionCreateWithoutInsurersInput, indicationsforadmissionUncheckedCreateWithoutInsurersInput> | indicationsforadmissionCreateWithoutInsurersInput[] | indicationsforadmissionUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: indicationsforadmissionCreateOrConnectWithoutInsurersInput | indicationsforadmissionCreateOrConnectWithoutInsurersInput[]
+    upsert?: indicationsforadmissionUpsertWithWhereUniqueWithoutInsurersInput | indicationsforadmissionUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: indicationsforadmissionCreateManyInsurersInputEnvelope
+    set?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    disconnect?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    delete?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    connect?: indicationsforadmissionWhereUniqueInput | indicationsforadmissionWhereUniqueInput[]
+    update?: indicationsforadmissionUpdateWithWhereUniqueWithoutInsurersInput | indicationsforadmissionUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: indicationsforadmissionUpdateManyWithWhereWithoutInsurersInput | indicationsforadmissionUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: indicationsforadmissionScalarWhereInput | indicationsforadmissionScalarWhereInput[]
+  }
+
+  export type opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<opeartionispackageCreateWithoutInsurersInput, opeartionispackageUncheckedCreateWithoutInsurersInput> | opeartionispackageCreateWithoutInsurersInput[] | opeartionispackageUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: opeartionispackageCreateOrConnectWithoutInsurersInput | opeartionispackageCreateOrConnectWithoutInsurersInput[]
+    upsert?: opeartionispackageUpsertWithWhereUniqueWithoutInsurersInput | opeartionispackageUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: opeartionispackageCreateManyInsurersInputEnvelope
+    set?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    disconnect?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    delete?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    connect?: opeartionispackageWhereUniqueInput | opeartionispackageWhereUniqueInput[]
+    update?: opeartionispackageUpdateWithWhereUniqueWithoutInsurersInput | opeartionispackageUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: opeartionispackageUpdateManyWithWhereWithoutInsurersInput | opeartionispackageUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: opeartionispackageScalarWhereInput | opeartionispackageScalarWhereInput[]
+  }
+
   export type policytypeUncheckedUpdateManyWithoutInsurersNestedInput = {
     create?: XOR<policytypeCreateWithoutInsurersInput, policytypeUncheckedCreateWithoutInsurersInput> | policytypeCreateWithoutInsurersInput[] | policytypeUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: policytypeCreateOrConnectWithoutInsurersInput | policytypeCreateOrConnectWithoutInsurersInput[]
@@ -33074,6 +38486,70 @@ export namespace Prisma {
     delete?: claimstatusWhereInput | boolean
     connect?: claimstatusWhereUniqueInput
     update?: XOR<XOR<claimstatusUpdateToOneWithWhereWithoutTransactionclaimstatusInput, claimstatusUpdateWithoutTransactionclaimstatusInput>, claimstatusUncheckedUpdateWithoutTransactionclaimstatusInput>
+  }
+
+  export type insurersCreateNestedOneWithoutAccidenttransactions22Input = {
+    create?: XOR<insurersCreateWithoutAccidenttransactions22Input, insurersUncheckedCreateWithoutAccidenttransactions22Input>
+    connectOrCreate?: insurersCreateOrConnectWithoutAccidenttransactions22Input
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutAccidenttransactions22NestedInput = {
+    create?: XOR<insurersCreateWithoutAccidenttransactions22Input, insurersUncheckedCreateWithoutAccidenttransactions22Input>
+    connectOrCreate?: insurersCreateOrConnectWithoutAccidenttransactions22Input
+    upsert?: insurersUpsertWithoutAccidenttransactions22Input
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutAccidenttransactions22Input, insurersUpdateWithoutAccidenttransactions22Input>, insurersUncheckedUpdateWithoutAccidenttransactions22Input>
+  }
+
+  export type insurersCreateNestedOneWithoutAnesthesialistInput = {
+    create?: XOR<insurersCreateWithoutAnesthesialistInput, insurersUncheckedCreateWithoutAnesthesialistInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutAnesthesialistInput
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutAnesthesialistNestedInput = {
+    create?: XOR<insurersCreateWithoutAnesthesialistInput, insurersUncheckedCreateWithoutAnesthesialistInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutAnesthesialistInput
+    upsert?: insurersUpsertWithoutAnesthesialistInput
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutAnesthesialistInput, insurersUpdateWithoutAnesthesialistInput>, insurersUncheckedUpdateWithoutAnesthesialistInput>
+  }
+
+  export type insurersCreateNestedOneWithoutIndicationsforadmissionInput = {
+    create?: XOR<insurersCreateWithoutIndicationsforadmissionInput, insurersUncheckedCreateWithoutIndicationsforadmissionInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutIndicationsforadmissionInput
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutIndicationsforadmissionNestedInput = {
+    create?: XOR<insurersCreateWithoutIndicationsforadmissionInput, insurersUncheckedCreateWithoutIndicationsforadmissionInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutIndicationsforadmissionInput
+    upsert?: insurersUpsertWithoutIndicationsforadmissionInput
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutIndicationsforadmissionInput, insurersUpdateWithoutIndicationsforadmissionInput>, insurersUncheckedUpdateWithoutIndicationsforadmissionInput>
+  }
+
+  export type insurersCreateNestedOneWithoutOpeartionispackageInput = {
+    create?: XOR<insurersCreateWithoutOpeartionispackageInput, insurersUncheckedCreateWithoutOpeartionispackageInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutOpeartionispackageInput
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutOpeartionispackageNestedInput = {
+    create?: XOR<insurersCreateWithoutOpeartionispackageInput, insurersUncheckedCreateWithoutOpeartionispackageInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutOpeartionispackageInput
+    upsert?: insurersUpsertWithoutOpeartionispackageInput
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutOpeartionispackageInput, insurersUpdateWithoutOpeartionispackageInput>, insurersUncheckedUpdateWithoutOpeartionispackageInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -33312,6 +38788,8 @@ export namespace Prisma {
     insurername?: string | null
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -33322,6 +38800,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -33334,6 +38814,8 @@ export namespace Prisma {
     insurername?: string | null
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -33344,6 +38826,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -33371,6 +38855,8 @@ export namespace Prisma {
     insurername?: NullableStringFieldUpdateOperationsInput | string | null
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -33381,6 +38867,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -33393,6 +38881,8 @@ export namespace Prisma {
     insurername?: NullableStringFieldUpdateOperationsInput | string | null
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33403,6 +38893,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33414,6 +38906,8 @@ export namespace Prisma {
     insurername?: string | null
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -33424,6 +38918,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -33436,6 +38932,8 @@ export namespace Prisma {
     insurername?: string | null
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -33446,6 +38944,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -33473,6 +38973,8 @@ export namespace Prisma {
     insurername?: NullableStringFieldUpdateOperationsInput | string | null
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -33483,6 +38985,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -33495,6 +38999,8 @@ export namespace Prisma {
     insurername?: NullableStringFieldUpdateOperationsInput | string | null
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33505,6 +39011,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33516,6 +39024,8 @@ export namespace Prisma {
     insurername?: string | null
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -33526,6 +39036,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -33538,6 +39050,8 @@ export namespace Prisma {
     insurername?: string | null
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -33548,6 +39062,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -33619,6 +39135,8 @@ export namespace Prisma {
     insurername?: NullableStringFieldUpdateOperationsInput | string | null
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -33629,6 +39147,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -33641,6 +39161,8 @@ export namespace Prisma {
     insurername?: NullableStringFieldUpdateOperationsInput | string | null
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33651,6 +39173,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33778,6 +39302,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
@@ -33787,6 +39313,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -33800,6 +39328,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
@@ -33809,6 +39339,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -33837,6 +39369,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
@@ -33846,6 +39380,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -33859,6 +39395,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33868,6 +39406,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33880,6 +39420,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
@@ -33889,6 +39431,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -33902,6 +39446,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
@@ -33911,6 +39457,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -33939,6 +39487,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
@@ -33948,6 +39498,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -33961,6 +39513,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33970,6 +39524,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -33982,6 +39538,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
@@ -33991,6 +39549,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34004,6 +39564,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34013,6 +39575,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -34057,11 +39621,11 @@ export namespace Prisma {
     surgerytypecode?: string | null
     visitdatetime?: string | null
     runningdocument?: Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
   }
@@ -34101,11 +39665,11 @@ export namespace Prisma {
     surgerytypecode?: string | null
     visitdatetime?: string | null
     runningdocument?: Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
   }
@@ -34138,6 +39702,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
@@ -34147,6 +39713,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -34160,6 +39728,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34169,6 +39739,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34230,11 +39802,11 @@ export namespace Prisma {
     surgerytypecode?: StringNullableFilter<"transactionclaim"> | string | null
     visitdatetime?: StringNullableFilter<"transactionclaim"> | string | null
     runningdocument?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     policynumber?: StringNullableFilter<"transactionclaim"> | string | null
     membershipid?: StringNullableFilter<"transactionclaim"> | string | null
     furtherclaimvn?: StringNullableFilter<"transactionclaim"> | string | null
     customerid?: StringNullableFilter<"transactionclaim"> | string | null
+    totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
   }
@@ -34246,6 +39818,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -34255,6 +39829,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34268,6 +39844,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34277,6 +39855,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -34305,6 +39885,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -34314,6 +39896,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -34327,6 +39911,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34336,6 +39922,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34348,6 +39936,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -34357,6 +39947,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34370,6 +39962,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34379,6 +39973,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -34454,6 +40050,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -34463,6 +40061,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -34476,6 +40076,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34485,6 +40087,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34537,6 +40141,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -34546,6 +40152,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34559,6 +40167,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34568,6 +40178,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -34596,6 +40208,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -34605,6 +40219,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -34618,6 +40234,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34627,6 +40245,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34639,6 +40259,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -34648,6 +40270,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34661,6 +40285,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34670,6 +40296,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -34698,6 +40326,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -34707,6 +40337,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -34720,6 +40352,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34729,6 +40363,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34741,6 +40377,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -34750,6 +40388,8 @@ export namespace Prisma {
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34763,6 +40403,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34772,6 +40414,8 @@ export namespace Prisma {
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -34800,6 +40444,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -34809,6 +40455,8 @@ export namespace Prisma {
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -34822,6 +40470,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34831,6 +40481,8 @@ export namespace Prisma {
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34843,6 +40495,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -34852,6 +40506,8 @@ export namespace Prisma {
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34865,6 +40521,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34874,6 +40532,8 @@ export namespace Prisma {
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -34902,6 +40562,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -34911,6 +40573,8 @@ export namespace Prisma {
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -34924,6 +40588,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34933,6 +40599,8 @@ export namespace Prisma {
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -34945,6 +40613,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -34954,6 +40624,8 @@ export namespace Prisma {
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
@@ -34967,6 +40639,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -34976,6 +40650,8 @@ export namespace Prisma {
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
@@ -35004,6 +40680,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -35013,6 +40691,8 @@ export namespace Prisma {
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
@@ -35026,6 +40706,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -35035,6 +40717,8 @@ export namespace Prisma {
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -35174,6 +40858,66 @@ export namespace Prisma {
 
   export type accidenttransactionsCreateManyInsurersInputEnvelope = {
     data: accidenttransactionsCreateManyInsurersInput | accidenttransactionsCreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type accidenttransactions22CreateWithoutInsurersInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    accidentplace?: string | null
+    accidentdate?: string | null
+    causeofinjury?: string | null
+    commentofinjury?: string | null
+    woundtype?: string | null
+    injuryside?: string | null
+    injuryarea?: string | null
+  }
+
+  export type accidenttransactions22UncheckedCreateWithoutInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    accidentplace?: string | null
+    accidentdate?: string | null
+    causeofinjury?: string | null
+    commentofinjury?: string | null
+    woundtype?: string | null
+    injuryside?: string | null
+    injuryarea?: string | null
+  }
+
+  export type accidenttransactions22CreateOrConnectWithoutInsurersInput = {
+    where: accidenttransactions22WhereUniqueInput
+    create: XOR<accidenttransactions22CreateWithoutInsurersInput, accidenttransactions22UncheckedCreateWithoutInsurersInput>
+  }
+
+  export type accidenttransactions22CreateManyInsurersInputEnvelope = {
+    data: accidenttransactions22CreateManyInsurersInput | accidenttransactions22CreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type anesthesialistCreateWithoutInsurersInput = {
+    aneslistcode: string
+    aneslistname?: string | null
+  }
+
+  export type anesthesialistUncheckedCreateWithoutInsurersInput = {
+    id?: number
+    aneslistcode: string
+    aneslistname?: string | null
+  }
+
+  export type anesthesialistCreateOrConnectWithoutInsurersInput = {
+    where: anesthesialistWhereUniqueInput
+    create: XOR<anesthesialistCreateWithoutInsurersInput, anesthesialistUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type anesthesialistCreateManyInsurersInputEnvelope = {
+    data: anesthesialistCreateManyInsurersInput | anesthesialistCreateManyInsurersInput[]
     skipDuplicates?: boolean
   }
 
@@ -35457,6 +41201,48 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type indicationsforadmissionCreateWithoutInsurersInput = {
+    ifacode: string
+    ifaname?: string | null
+  }
+
+  export type indicationsforadmissionUncheckedCreateWithoutInsurersInput = {
+    id?: number
+    ifacode: string
+    ifaname?: string | null
+  }
+
+  export type indicationsforadmissionCreateOrConnectWithoutInsurersInput = {
+    where: indicationsforadmissionWhereUniqueInput
+    create: XOR<indicationsforadmissionCreateWithoutInsurersInput, indicationsforadmissionUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type indicationsforadmissionCreateManyInsurersInputEnvelope = {
+    data: indicationsforadmissionCreateManyInsurersInput | indicationsforadmissionCreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type opeartionispackageCreateWithoutInsurersInput = {
+    oiscode: string
+    oisname?: string | null
+  }
+
+  export type opeartionispackageUncheckedCreateWithoutInsurersInput = {
+    id?: number
+    oiscode: string
+    oisname?: string | null
+  }
+
+  export type opeartionispackageCreateOrConnectWithoutInsurersInput = {
+    where: opeartionispackageWhereUniqueInput
+    create: XOR<opeartionispackageCreateWithoutInsurersInput, opeartionispackageUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type opeartionispackageCreateManyInsurersInputEnvelope = {
+    data: opeartionispackageCreateManyInsurersInput | opeartionispackageCreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type policytypeCreateWithoutInsurersInput = {
     policytypecode: string
     policytypedesc?: string | null
@@ -35610,6 +41396,67 @@ export namespace Prisma {
     vn?: StringNullableFilter<"accidenttransactions"> | string | null
     accidentplace?: StringNullableFilter<"accidenttransactions"> | string | null
     accidentdate?: StringNullableFilter<"accidenttransactions"> | string | null
+  }
+
+  export type accidenttransactions22UpsertWithWhereUniqueWithoutInsurersInput = {
+    where: accidenttransactions22WhereUniqueInput
+    update: XOR<accidenttransactions22UpdateWithoutInsurersInput, accidenttransactions22UncheckedUpdateWithoutInsurersInput>
+    create: XOR<accidenttransactions22CreateWithoutInsurersInput, accidenttransactions22UncheckedCreateWithoutInsurersInput>
+  }
+
+  export type accidenttransactions22UpdateWithWhereUniqueWithoutInsurersInput = {
+    where: accidenttransactions22WhereUniqueInput
+    data: XOR<accidenttransactions22UpdateWithoutInsurersInput, accidenttransactions22UncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type accidenttransactions22UpdateManyWithWhereWithoutInsurersInput = {
+    where: accidenttransactions22ScalarWhereInput
+    data: XOR<accidenttransactions22UpdateManyMutationInput, accidenttransactions22UncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type accidenttransactions22ScalarWhereInput = {
+    AND?: accidenttransactions22ScalarWhereInput | accidenttransactions22ScalarWhereInput[]
+    OR?: accidenttransactions22ScalarWhereInput[]
+    NOT?: accidenttransactions22ScalarWhereInput | accidenttransactions22ScalarWhereInput[]
+    id?: IntFilter<"accidenttransactions22"> | number
+    insurerid?: IntNullableFilter<"accidenttransactions22"> | number | null
+    refid?: StringNullableFilter<"accidenttransactions22"> | string | null
+    transactionno?: StringNullableFilter<"accidenttransactions22"> | string | null
+    hn?: StringNullableFilter<"accidenttransactions22"> | string | null
+    vn?: StringNullableFilter<"accidenttransactions22"> | string | null
+    accidentplace?: StringNullableFilter<"accidenttransactions22"> | string | null
+    accidentdate?: StringNullableFilter<"accidenttransactions22"> | string | null
+    causeofinjury?: StringNullableFilter<"accidenttransactions22"> | string | null
+    commentofinjury?: StringNullableFilter<"accidenttransactions22"> | string | null
+    woundtype?: StringNullableFilter<"accidenttransactions22"> | string | null
+    injuryside?: StringNullableFilter<"accidenttransactions22"> | string | null
+    injuryarea?: StringNullableFilter<"accidenttransactions22"> | string | null
+  }
+
+  export type anesthesialistUpsertWithWhereUniqueWithoutInsurersInput = {
+    where: anesthesialistWhereUniqueInput
+    update: XOR<anesthesialistUpdateWithoutInsurersInput, anesthesialistUncheckedUpdateWithoutInsurersInput>
+    create: XOR<anesthesialistCreateWithoutInsurersInput, anesthesialistUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type anesthesialistUpdateWithWhereUniqueWithoutInsurersInput = {
+    where: anesthesialistWhereUniqueInput
+    data: XOR<anesthesialistUpdateWithoutInsurersInput, anesthesialistUncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type anesthesialistUpdateManyWithWhereWithoutInsurersInput = {
+    where: anesthesialistScalarWhereInput
+    data: XOR<anesthesialistUpdateManyMutationInput, anesthesialistUncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type anesthesialistScalarWhereInput = {
+    AND?: anesthesialistScalarWhereInput | anesthesialistScalarWhereInput[]
+    OR?: anesthesialistScalarWhereInput[]
+    NOT?: anesthesialistScalarWhereInput | anesthesialistScalarWhereInput[]
+    id?: IntFilter<"anesthesialist"> | number
+    aneslistcode?: StringFilter<"anesthesialist"> | string
+    aneslistname?: StringNullableFilter<"anesthesialist"> | string | null
+    insurerid?: IntNullableFilter<"anesthesialist"> | number | null
   }
 
   export type causeofinjurysideUpsertWithWhereUniqueWithoutInsurersInput = {
@@ -35905,6 +41752,58 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"illnesstype"> | number | null
   }
 
+  export type indicationsforadmissionUpsertWithWhereUniqueWithoutInsurersInput = {
+    where: indicationsforadmissionWhereUniqueInput
+    update: XOR<indicationsforadmissionUpdateWithoutInsurersInput, indicationsforadmissionUncheckedUpdateWithoutInsurersInput>
+    create: XOR<indicationsforadmissionCreateWithoutInsurersInput, indicationsforadmissionUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type indicationsforadmissionUpdateWithWhereUniqueWithoutInsurersInput = {
+    where: indicationsforadmissionWhereUniqueInput
+    data: XOR<indicationsforadmissionUpdateWithoutInsurersInput, indicationsforadmissionUncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type indicationsforadmissionUpdateManyWithWhereWithoutInsurersInput = {
+    where: indicationsforadmissionScalarWhereInput
+    data: XOR<indicationsforadmissionUpdateManyMutationInput, indicationsforadmissionUncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type indicationsforadmissionScalarWhereInput = {
+    AND?: indicationsforadmissionScalarWhereInput | indicationsforadmissionScalarWhereInput[]
+    OR?: indicationsforadmissionScalarWhereInput[]
+    NOT?: indicationsforadmissionScalarWhereInput | indicationsforadmissionScalarWhereInput[]
+    id?: IntFilter<"indicationsforadmission"> | number
+    ifacode?: StringFilter<"indicationsforadmission"> | string
+    ifaname?: StringNullableFilter<"indicationsforadmission"> | string | null
+    insurerid?: IntNullableFilter<"indicationsforadmission"> | number | null
+  }
+
+  export type opeartionispackageUpsertWithWhereUniqueWithoutInsurersInput = {
+    where: opeartionispackageWhereUniqueInput
+    update: XOR<opeartionispackageUpdateWithoutInsurersInput, opeartionispackageUncheckedUpdateWithoutInsurersInput>
+    create: XOR<opeartionispackageCreateWithoutInsurersInput, opeartionispackageUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type opeartionispackageUpdateWithWhereUniqueWithoutInsurersInput = {
+    where: opeartionispackageWhereUniqueInput
+    data: XOR<opeartionispackageUpdateWithoutInsurersInput, opeartionispackageUncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type opeartionispackageUpdateManyWithWhereWithoutInsurersInput = {
+    where: opeartionispackageScalarWhereInput
+    data: XOR<opeartionispackageUpdateManyMutationInput, opeartionispackageUncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type opeartionispackageScalarWhereInput = {
+    AND?: opeartionispackageScalarWhereInput | opeartionispackageScalarWhereInput[]
+    OR?: opeartionispackageScalarWhereInput[]
+    NOT?: opeartionispackageScalarWhereInput | opeartionispackageScalarWhereInput[]
+    id?: IntFilter<"opeartionispackage"> | number
+    oiscode?: StringFilter<"opeartionispackage"> | string
+    oisname?: StringNullableFilter<"opeartionispackage"> | string | null
+    insurerid?: IntNullableFilter<"opeartionispackage"> | number | null
+  }
+
   export type policytypeUpsertWithWhereUniqueWithoutInsurersInput = {
     where: policytypeWhereUniqueInput
     update: XOR<policytypeUpdateWithoutInsurersInput, policytypeUncheckedUpdateWithoutInsurersInput>
@@ -35995,6 +41894,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -36005,6 +41906,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -36017,6 +41920,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -36027,6 +41932,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -36054,6 +41961,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -36064,6 +41973,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -36076,6 +41987,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -36086,6 +41999,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -36097,6 +42012,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -36107,6 +42024,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -36119,6 +42038,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -36129,6 +42050,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -36156,6 +42079,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -36166,6 +42091,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -36178,6 +42105,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -36188,6 +42117,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -36199,6 +42130,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
@@ -36209,6 +42142,8 @@ export namespace Prisma {
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
   }
@@ -36221,6 +42156,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
     accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
     accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
@@ -36231,6 +42168,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -36258,6 +42197,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
@@ -36268,6 +42209,8 @@ export namespace Prisma {
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
   }
@@ -36280,6 +42223,8 @@ export namespace Prisma {
     accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
     accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
     accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
@@ -36290,6 +42235,8 @@ export namespace Prisma {
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -36446,6 +42393,478 @@ export namespace Prisma {
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type insurersCreateWithoutAccidenttransactions22Input = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutAccidenttransactions22Input = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutAccidenttransactions22Input = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutAccidenttransactions22Input, insurersUncheckedCreateWithoutAccidenttransactions22Input>
+  }
+
+  export type insurersUpsertWithoutAccidenttransactions22Input = {
+    update: XOR<insurersUpdateWithoutAccidenttransactions22Input, insurersUncheckedUpdateWithoutAccidenttransactions22Input>
+    create: XOR<insurersCreateWithoutAccidenttransactions22Input, insurersUncheckedCreateWithoutAccidenttransactions22Input>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutAccidenttransactions22Input = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutAccidenttransactions22Input, insurersUncheckedUpdateWithoutAccidenttransactions22Input>
+  }
+
+  export type insurersUpdateWithoutAccidenttransactions22Input = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutAccidenttransactions22Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersCreateWithoutAnesthesialistInput = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutAnesthesialistInput = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutAnesthesialistInput = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutAnesthesialistInput, insurersUncheckedCreateWithoutAnesthesialistInput>
+  }
+
+  export type insurersUpsertWithoutAnesthesialistInput = {
+    update: XOR<insurersUpdateWithoutAnesthesialistInput, insurersUncheckedUpdateWithoutAnesthesialistInput>
+    create: XOR<insurersCreateWithoutAnesthesialistInput, insurersUncheckedCreateWithoutAnesthesialistInput>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutAnesthesialistInput = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutAnesthesialistInput, insurersUncheckedUpdateWithoutAnesthesialistInput>
+  }
+
+  export type insurersUpdateWithoutAnesthesialistInput = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutAnesthesialistInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersCreateWithoutIndicationsforadmissionInput = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutIndicationsforadmissionInput = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutIndicationsforadmissionInput = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutIndicationsforadmissionInput, insurersUncheckedCreateWithoutIndicationsforadmissionInput>
+  }
+
+  export type insurersUpsertWithoutIndicationsforadmissionInput = {
+    update: XOR<insurersUpdateWithoutIndicationsforadmissionInput, insurersUncheckedUpdateWithoutIndicationsforadmissionInput>
+    create: XOR<insurersCreateWithoutIndicationsforadmissionInput, insurersUncheckedCreateWithoutIndicationsforadmissionInput>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutIndicationsforadmissionInput = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutIndicationsforadmissionInput, insurersUncheckedUpdateWithoutIndicationsforadmissionInput>
+  }
+
+  export type insurersUpdateWithoutIndicationsforadmissionInput = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutIndicationsforadmissionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersCreateWithoutOpeartionispackageInput = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutOpeartionispackageInput = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutOpeartionispackageInput = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutOpeartionispackageInput, insurersUncheckedCreateWithoutOpeartionispackageInput>
+  }
+
+  export type insurersUpsertWithoutOpeartionispackageInput = {
+    update: XOR<insurersUpdateWithoutOpeartionispackageInput, insurersUncheckedUpdateWithoutOpeartionispackageInput>
+    create: XOR<insurersCreateWithoutOpeartionispackageInput, insurersUncheckedCreateWithoutOpeartionispackageInput>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutOpeartionispackageInput = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutOpeartionispackageInput, insurersUncheckedUpdateWithoutOpeartionispackageInput>
+  }
+
+  export type insurersUpdateWithoutOpeartionispackageInput = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutOpeartionispackageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
   export type causeofinjurydetailCreateManyAccidenttransactionsInput = {
     id?: number
     causeofinjury?: string | null
@@ -36531,11 +42950,11 @@ export namespace Prisma {
     surgerytypecode?: string | null
     visitdatetime?: string | null
     runningdocument?: Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     policynumber?: string | null
     membershipid?: string | null
     furtherclaimvn?: string | null
     customerid?: string | null
+    totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
   }
@@ -36574,11 +42993,11 @@ export namespace Prisma {
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -36618,11 +43037,11 @@ export namespace Prisma {
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -36662,11 +43081,11 @@ export namespace Prisma {
     surgerytypecode?: NullableStringFieldUpdateOperationsInput | string | null
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     runningdocument?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     policynumber?: NullableStringFieldUpdateOperationsInput | string | null
     membershipid?: NullableStringFieldUpdateOperationsInput | string | null
     furtherclaimvn?: NullableStringFieldUpdateOperationsInput | string | null
     customerid?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -36768,6 +43187,27 @@ export namespace Prisma {
     accidentdate?: string | null
   }
 
+  export type accidenttransactions22CreateManyInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    accidentplace?: string | null
+    accidentdate?: string | null
+    causeofinjury?: string | null
+    commentofinjury?: string | null
+    woundtype?: string | null
+    injuryside?: string | null
+    injuryarea?: string | null
+  }
+
+  export type anesthesialistCreateManyInsurersInput = {
+    id?: number
+    aneslistcode: string
+    aneslistname?: string | null
+  }
+
   export type causeofinjurysideCreateManyInsurersInput = {
     id?: number
     injurysidename: string
@@ -36861,6 +43301,18 @@ export namespace Prisma {
     illnesstypedesc?: string | null
   }
 
+  export type indicationsforadmissionCreateManyInsurersInput = {
+    id?: number
+    ifacode: string
+    ifaname?: string | null
+  }
+
+  export type opeartionispackageCreateManyInsurersInput = {
+    id?: number
+    oiscode: string
+    oisname?: string | null
+  }
+
   export type policytypeCreateManyInsurersInput = {
     id?: number
     policytypecode: string
@@ -36949,6 +43401,67 @@ export namespace Prisma {
     vn?: NullableStringFieldUpdateOperationsInput | string | null
     accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
     accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type accidenttransactions22UpdateWithoutInsurersInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    causeofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    commentofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    woundtype?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryside?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryarea?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type accidenttransactions22UncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    causeofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    commentofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    woundtype?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryside?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryarea?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type accidenttransactions22UncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentplace?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    causeofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    commentofinjury?: NullableStringFieldUpdateOperationsInput | string | null
+    woundtype?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryside?: NullableStringFieldUpdateOperationsInput | string | null
+    injuryarea?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type anesthesialistUpdateWithoutInsurersInput = {
+    aneslistcode?: StringFieldUpdateOperationsInput | string
+    aneslistname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type anesthesialistUncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    aneslistcode?: StringFieldUpdateOperationsInput | string
+    aneslistname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type anesthesialistUncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    aneslistcode?: StringFieldUpdateOperationsInput | string
+    aneslistname?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type causeofinjurysideUpdateWithoutInsurersInput = {
@@ -37224,6 +43737,40 @@ export namespace Prisma {
     illnesstypedesc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type indicationsforadmissionUpdateWithoutInsurersInput = {
+    ifacode?: StringFieldUpdateOperationsInput | string
+    ifaname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type indicationsforadmissionUncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ifacode?: StringFieldUpdateOperationsInput | string
+    ifaname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type indicationsforadmissionUncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ifacode?: StringFieldUpdateOperationsInput | string
+    ifaname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type opeartionispackageUpdateWithoutInsurersInput = {
+    oiscode?: StringFieldUpdateOperationsInput | string
+    oisname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type opeartionispackageUncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    oiscode?: StringFieldUpdateOperationsInput | string
+    oisname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type opeartionispackageUncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    oiscode?: StringFieldUpdateOperationsInput | string
+    oisname?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type policytypeUpdateWithoutInsurersInput = {
     policytypecode?: StringFieldUpdateOperationsInput | string
     policytypedesc?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37399,6 +43946,22 @@ export namespace Prisma {
      * @deprecated Use transactionclaimstatusDefaultArgs instead
      */
     export type transactionclaimstatusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = transactionclaimstatusDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use accidenttransactions22DefaultArgs instead
+     */
+    export type accidenttransactions22Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = accidenttransactions22DefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use anesthesialistDefaultArgs instead
+     */
+    export type anesthesialistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = anesthesialistDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use indicationsforadmissionDefaultArgs instead
+     */
+    export type indicationsforadmissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = indicationsforadmissionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use opeartionispackageDefaultArgs instead
+     */
+    export type opeartionispackageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = opeartionispackageDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

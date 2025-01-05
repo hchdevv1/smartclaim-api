@@ -64,6 +64,22 @@ getdocumentTypeforAttachDocList(@Param('InsuranceCode') InsuranceCode: string ) 
   return  this.utilsService.getdocumentTypeforAttachDocList(InsuranceCode)
 }
 
+@Get('/getAnesthesiaList/:InsuranceCode')
+getAnesthesiaList(@Param('InsuranceCode') InsuranceCode: string ) {
+  return  this.utilsService.getAnesthesiaList(InsuranceCode)
+}
+
+@Get('/getOpeartionisPackage/:InsuranceCode')
+getOpeartionisPackage(@Param('InsuranceCode') InsuranceCode: string ) {
+  return  this.utilsService.getOpeartionisPackage(InsuranceCode)
+}
+@Get('/getIndicationsForAdmission/:InsuranceCode')
+getIndicationsForAdmission(@Param('InsuranceCode') InsuranceCode: string ) {
+  return  this.utilsService.getIndicationsForAdmission(InsuranceCode)
+}
+
+
+
 
 @Get('/injuryWoundtype/:InsuranceCode')
 getCauseofInjurywoundtype(@Param('InsuranceCode') InsuranceCode: string ) {

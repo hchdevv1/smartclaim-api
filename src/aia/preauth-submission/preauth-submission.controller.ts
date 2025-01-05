@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { PreauthSubmissionService } from './preauth-submission.service';
 
 
-@Controller('preauth-submission')
+@Controller('/v1/preauth-submission')
 export class PreauthSubmissionController {
   constructor(private readonly preauthSubmissionService: PreauthSubmissionService) {}
 
@@ -13,6 +13,10 @@ export class PreauthSubmissionController {
     return 'preauthSubmissionService';
   }
 
-
+  preauthSubmission(){
+   
+    return 
+  
+  }
 
 }

@@ -365,11 +365,11 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   surgerytypecode: 'surgerytypecode',
   visitdatetime: 'visitdatetime',
   runningdocument: 'runningdocument',
-  totalbillamount: 'totalbillamount',
   policynumber: 'policynumber',
   membershipid: 'membershipid',
   furtherclaimvn: 'furtherclaimvn',
   customerid: 'customerid',
+  totalbillamount: 'totalbillamount',
   visitlocation: 'visitlocation',
   paymentdate: 'paymentdate'
 };
@@ -393,6 +393,43 @@ exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
   claimstatusdesc: 'claimstatusdesc',
   claimstatusdesc_th: 'claimstatusdesc_th',
   claimstatusdesc_en: 'claimstatusdesc_en'
+};
+
+exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  accidentplace: 'accidentplace',
+  accidentdate: 'accidentdate',
+  causeofinjury: 'causeofinjury',
+  commentofinjury: 'commentofinjury',
+  woundtype: 'woundtype',
+  injuryside: 'injuryside',
+  injuryarea: 'injuryarea'
+};
+
+exports.Prisma.AnesthesialistScalarFieldEnum = {
+  id: 'id',
+  aneslistcode: 'aneslistcode',
+  aneslistname: 'aneslistname',
+  insurerid: 'insurerid'
+};
+
+exports.Prisma.IndicationsforadmissionScalarFieldEnum = {
+  id: 'id',
+  ifacode: 'ifacode',
+  ifaname: 'ifaname',
+  insurerid: 'insurerid'
+};
+
+exports.Prisma.OpeartionispackageScalarFieldEnum = {
+  id: 'id',
+  oiscode: 'oiscode',
+  oisname: 'oisname',
+  insurerid: 'insurerid'
 };
 
 exports.Prisma.SortOrder = {
@@ -433,7 +470,11 @@ exports.Prisma.ModelName = {
   proceduretransactions: 'proceduretransactions',
   servicesetting: 'servicesetting',
   transactionclaim: 'transactionclaim',
-  transactionclaimstatus: 'transactionclaimstatus'
+  transactionclaimstatus: 'transactionclaimstatus',
+  accidenttransactions22: 'accidenttransactions22',
+  anesthesialist: 'anesthesialist',
+  indicationsforadmission: 'indicationsforadmission',
+  opeartionispackage: 'opeartionispackage'
 };
 
 /**
