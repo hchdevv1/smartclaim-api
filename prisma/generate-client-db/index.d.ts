@@ -19925,11 +19925,15 @@ export namespace Prisma {
   export type MedicaltransactionsAvgAggregateOutputType = {
     id: number | null
     insurerid: number | null
+    indicationforadmission: number | null
+    totalestimatedcost: Decimal | null
   }
 
   export type MedicaltransactionsSumAggregateOutputType = {
     id: number | null
     insurerid: number | null
+    indicationforadmission: number | null
+    totalestimatedcost: Decimal | null
   }
 
   export type MedicaltransactionsMinAggregateOutputType = {
@@ -19960,6 +19964,15 @@ export namespace Prisma {
     visitdatetime: string | null
     height: string | null
     weight: string | null
+    expectedadmitdate: string | null
+    dscdatetime: string | null
+    indicationforadmission: number | null
+    previoustreatmentdate: string | null
+    previoustreatmentdetail: string | null
+    preauthreferclaimno: string | null
+    preauthreferocc: string | null
+    ispackage: boolean | null
+    totalestimatedcost: Decimal | null
   }
 
   export type MedicaltransactionsMaxAggregateOutputType = {
@@ -19990,6 +20003,15 @@ export namespace Prisma {
     visitdatetime: string | null
     height: string | null
     weight: string | null
+    expectedadmitdate: string | null
+    dscdatetime: string | null
+    indicationforadmission: number | null
+    previoustreatmentdate: string | null
+    previoustreatmentdetail: string | null
+    preauthreferclaimno: string | null
+    preauthreferocc: string | null
+    ispackage: boolean | null
+    totalestimatedcost: Decimal | null
   }
 
   export type MedicaltransactionsCountAggregateOutputType = {
@@ -20020,6 +20042,15 @@ export namespace Prisma {
     visitdatetime: number
     height: number
     weight: number
+    expectedadmitdate: number
+    dscdatetime: number
+    indicationforadmission: number
+    previoustreatmentdate: number
+    previoustreatmentdetail: number
+    preauthreferclaimno: number
+    preauthreferocc: number
+    ispackage: number
+    totalestimatedcost: number
     _all: number
   }
 
@@ -20027,11 +20058,15 @@ export namespace Prisma {
   export type MedicaltransactionsAvgAggregateInputType = {
     id?: true
     insurerid?: true
+    indicationforadmission?: true
+    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsSumAggregateInputType = {
     id?: true
     insurerid?: true
+    indicationforadmission?: true
+    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsMinAggregateInputType = {
@@ -20062,6 +20097,15 @@ export namespace Prisma {
     visitdatetime?: true
     height?: true
     weight?: true
+    expectedadmitdate?: true
+    dscdatetime?: true
+    indicationforadmission?: true
+    previoustreatmentdate?: true
+    previoustreatmentdetail?: true
+    preauthreferclaimno?: true
+    preauthreferocc?: true
+    ispackage?: true
+    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsMaxAggregateInputType = {
@@ -20092,6 +20136,15 @@ export namespace Prisma {
     visitdatetime?: true
     height?: true
     weight?: true
+    expectedadmitdate?: true
+    dscdatetime?: true
+    indicationforadmission?: true
+    previoustreatmentdate?: true
+    previoustreatmentdetail?: true
+    preauthreferclaimno?: true
+    preauthreferocc?: true
+    ispackage?: true
+    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsCountAggregateInputType = {
@@ -20122,6 +20175,15 @@ export namespace Prisma {
     visitdatetime?: true
     height?: true
     weight?: true
+    expectedadmitdate?: true
+    dscdatetime?: true
+    indicationforadmission?: true
+    previoustreatmentdate?: true
+    previoustreatmentdetail?: true
+    preauthreferclaimno?: true
+    preauthreferocc?: true
+    ispackage?: true
+    totalestimatedcost?: true
     _all?: true
   }
 
@@ -20239,6 +20301,15 @@ export namespace Prisma {
     visitdatetime: string | null
     height: string | null
     weight: string | null
+    expectedadmitdate: string | null
+    dscdatetime: string | null
+    indicationforadmission: number | null
+    previoustreatmentdate: string | null
+    previoustreatmentdetail: string | null
+    preauthreferclaimno: string | null
+    preauthreferocc: string | null
+    ispackage: boolean | null
+    totalestimatedcost: Decimal | null
     _count: MedicaltransactionsCountAggregateOutputType | null
     _avg: MedicaltransactionsAvgAggregateOutputType | null
     _sum: MedicaltransactionsSumAggregateOutputType | null
@@ -20288,6 +20359,15 @@ export namespace Prisma {
     visitdatetime?: boolean
     height?: boolean
     weight?: boolean
+    expectedadmitdate?: boolean
+    dscdatetime?: boolean
+    indicationforadmission?: boolean
+    previoustreatmentdate?: boolean
+    previoustreatmentdetail?: boolean
+    preauthreferclaimno?: boolean
+    preauthreferocc?: boolean
+    ispackage?: boolean
+    totalestimatedcost?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20318,6 +20398,15 @@ export namespace Prisma {
     visitdatetime?: boolean
     height?: boolean
     weight?: boolean
+    expectedadmitdate?: boolean
+    dscdatetime?: boolean
+    indicationforadmission?: boolean
+    previoustreatmentdate?: boolean
+    previoustreatmentdetail?: boolean
+    preauthreferclaimno?: boolean
+    preauthreferocc?: boolean
+    ispackage?: boolean
+    totalestimatedcost?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectScalar = {
@@ -20348,6 +20437,15 @@ export namespace Prisma {
     visitdatetime?: boolean
     height?: boolean
     weight?: boolean
+    expectedadmitdate?: boolean
+    dscdatetime?: boolean
+    indicationforadmission?: boolean
+    previoustreatmentdate?: boolean
+    previoustreatmentdetail?: boolean
+    preauthreferclaimno?: boolean
+    preauthreferocc?: boolean
+    ispackage?: boolean
+    totalestimatedcost?: boolean
   }
 
 
@@ -20382,6 +20480,15 @@ export namespace Prisma {
       visitdatetime: string | null
       height: string | null
       weight: string | null
+      expectedadmitdate: string | null
+      dscdatetime: string | null
+      indicationforadmission: number | null
+      previoustreatmentdate: string | null
+      previoustreatmentdetail: string | null
+      preauthreferclaimno: string | null
+      preauthreferocc: string | null
+      ispackage: boolean | null
+      totalestimatedcost: Prisma.Decimal | null
     }, ExtArgs["result"]["medicaltransactions"]>
     composites: {}
   }
@@ -20802,6 +20909,15 @@ export namespace Prisma {
     readonly visitdatetime: FieldRef<"medicaltransactions", 'String'>
     readonly height: FieldRef<"medicaltransactions", 'String'>
     readonly weight: FieldRef<"medicaltransactions", 'String'>
+    readonly expectedadmitdate: FieldRef<"medicaltransactions", 'String'>
+    readonly dscdatetime: FieldRef<"medicaltransactions", 'String'>
+    readonly indicationforadmission: FieldRef<"medicaltransactions", 'Int'>
+    readonly previoustreatmentdate: FieldRef<"medicaltransactions", 'String'>
+    readonly previoustreatmentdetail: FieldRef<"medicaltransactions", 'String'>
+    readonly preauthreferclaimno: FieldRef<"medicaltransactions", 'String'>
+    readonly preauthreferocc: FieldRef<"medicaltransactions", 'String'>
+    readonly ispackage: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly totalestimatedcost: FieldRef<"medicaltransactions", 'Decimal'>
   }
     
 
@@ -30915,7 +31031,16 @@ export namespace Prisma {
     privatecase: 'privatecase',
     visitdatetime: 'visitdatetime',
     height: 'height',
-    weight: 'weight'
+    weight: 'weight',
+    expectedadmitdate: 'expectedadmitdate',
+    dscdatetime: 'dscdatetime',
+    indicationforadmission: 'indicationforadmission',
+    previoustreatmentdate: 'previoustreatmentdate',
+    previoustreatmentdetail: 'previoustreatmentdetail',
+    preauthreferclaimno: 'preauthreferclaimno',
+    preauthreferocc: 'preauthreferocc',
+    ispackage: 'ispackage',
+    totalestimatedcost: 'totalestimatedcost'
   };
 
   export type MedicaltransactionsScalarFieldEnum = (typeof MedicaltransactionsScalarFieldEnum)[keyof typeof MedicaltransactionsScalarFieldEnum]
@@ -32325,6 +32450,15 @@ export namespace Prisma {
     visitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
     height?: StringNullableFilter<"medicaltransactions"> | string | null
     weight?: StringNullableFilter<"medicaltransactions"> | string | null
+    expectedadmitdate?: StringNullableFilter<"medicaltransactions"> | string | null
+    dscdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
+    indicationforadmission?: IntNullableFilter<"medicaltransactions"> | number | null
+    previoustreatmentdate?: StringNullableFilter<"medicaltransactions"> | string | null
+    previoustreatmentdetail?: StringNullableFilter<"medicaltransactions"> | string | null
+    preauthreferclaimno?: StringNullableFilter<"medicaltransactions"> | string | null
+    preauthreferocc?: StringNullableFilter<"medicaltransactions"> | string | null
+    ispackage?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    totalestimatedcost?: DecimalNullableFilter<"medicaltransactions"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type medicaltransactionsOrderByWithRelationInput = {
@@ -32355,6 +32489,15 @@ export namespace Prisma {
     visitdatetime?: SortOrderInput | SortOrder
     height?: SortOrderInput | SortOrder
     weight?: SortOrderInput | SortOrder
+    expectedadmitdate?: SortOrderInput | SortOrder
+    dscdatetime?: SortOrderInput | SortOrder
+    indicationforadmission?: SortOrderInput | SortOrder
+    previoustreatmentdate?: SortOrderInput | SortOrder
+    previoustreatmentdetail?: SortOrderInput | SortOrder
+    preauthreferclaimno?: SortOrderInput | SortOrder
+    preauthreferocc?: SortOrderInput | SortOrder
+    ispackage?: SortOrderInput | SortOrder
+    totalestimatedcost?: SortOrderInput | SortOrder
   }
 
   export type medicaltransactionsWhereUniqueInput = Prisma.AtLeast<{
@@ -32388,6 +32531,15 @@ export namespace Prisma {
     visitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
     height?: StringNullableFilter<"medicaltransactions"> | string | null
     weight?: StringNullableFilter<"medicaltransactions"> | string | null
+    expectedadmitdate?: StringNullableFilter<"medicaltransactions"> | string | null
+    dscdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
+    indicationforadmission?: IntNullableFilter<"medicaltransactions"> | number | null
+    previoustreatmentdate?: StringNullableFilter<"medicaltransactions"> | string | null
+    previoustreatmentdetail?: StringNullableFilter<"medicaltransactions"> | string | null
+    preauthreferclaimno?: StringNullableFilter<"medicaltransactions"> | string | null
+    preauthreferocc?: StringNullableFilter<"medicaltransactions"> | string | null
+    ispackage?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    totalestimatedcost?: DecimalNullableFilter<"medicaltransactions"> | Decimal | DecimalJsLike | number | string | null
   }, "id">
 
   export type medicaltransactionsOrderByWithAggregationInput = {
@@ -32418,6 +32570,15 @@ export namespace Prisma {
     visitdatetime?: SortOrderInput | SortOrder
     height?: SortOrderInput | SortOrder
     weight?: SortOrderInput | SortOrder
+    expectedadmitdate?: SortOrderInput | SortOrder
+    dscdatetime?: SortOrderInput | SortOrder
+    indicationforadmission?: SortOrderInput | SortOrder
+    previoustreatmentdate?: SortOrderInput | SortOrder
+    previoustreatmentdetail?: SortOrderInput | SortOrder
+    preauthreferclaimno?: SortOrderInput | SortOrder
+    preauthreferocc?: SortOrderInput | SortOrder
+    ispackage?: SortOrderInput | SortOrder
+    totalestimatedcost?: SortOrderInput | SortOrder
     _count?: medicaltransactionsCountOrderByAggregateInput
     _avg?: medicaltransactionsAvgOrderByAggregateInput
     _max?: medicaltransactionsMaxOrderByAggregateInput
@@ -32456,6 +32617,15 @@ export namespace Prisma {
     visitdatetime?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     height?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     weight?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    expectedadmitdate?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    dscdatetime?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    indicationforadmission?: IntNullableWithAggregatesFilter<"medicaltransactions"> | number | null
+    previoustreatmentdate?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    previoustreatmentdetail?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    preauthreferclaimno?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    preauthreferocc?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    ispackage?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    totalestimatedcost?: DecimalNullableWithAggregatesFilter<"medicaltransactions"> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type policytypeWhereInput = {
@@ -34371,6 +34541,15 @@ export namespace Prisma {
     visitdatetime?: string | null
     height?: string | null
     weight?: string | null
+    expectedadmitdate?: string | null
+    dscdatetime?: string | null
+    indicationforadmission?: number | null
+    previoustreatmentdate?: string | null
+    previoustreatmentdetail?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    ispackage?: boolean | null
+    totalestimatedcost?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type medicaltransactionsUncheckedCreateInput = {
@@ -34401,6 +34580,15 @@ export namespace Prisma {
     visitdatetime?: string | null
     height?: string | null
     weight?: string | null
+    expectedadmitdate?: string | null
+    dscdatetime?: string | null
+    indicationforadmission?: number | null
+    previoustreatmentdate?: string | null
+    previoustreatmentdetail?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    ispackage?: boolean | null
+    totalestimatedcost?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type medicaltransactionsUpdateInput = {
@@ -34430,6 +34618,15 @@ export namespace Prisma {
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableStringFieldUpdateOperationsInput | string | null
     weight?: NullableStringFieldUpdateOperationsInput | string | null
+    expectedadmitdate?: NullableStringFieldUpdateOperationsInput | string | null
+    dscdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    indicationforadmission?: NullableIntFieldUpdateOperationsInput | number | null
+    previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateInput = {
@@ -34460,6 +34657,15 @@ export namespace Prisma {
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableStringFieldUpdateOperationsInput | string | null
     weight?: NullableStringFieldUpdateOperationsInput | string | null
+    expectedadmitdate?: NullableStringFieldUpdateOperationsInput | string | null
+    dscdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    indicationforadmission?: NullableIntFieldUpdateOperationsInput | number | null
+    previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type medicaltransactionsCreateManyInput = {
@@ -34490,6 +34696,15 @@ export namespace Prisma {
     visitdatetime?: string | null
     height?: string | null
     weight?: string | null
+    expectedadmitdate?: string | null
+    dscdatetime?: string | null
+    indicationforadmission?: number | null
+    previoustreatmentdate?: string | null
+    previoustreatmentdetail?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    ispackage?: boolean | null
+    totalestimatedcost?: Decimal | DecimalJsLike | number | string | null
   }
 
   export type medicaltransactionsUpdateManyMutationInput = {
@@ -34519,6 +34734,15 @@ export namespace Prisma {
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableStringFieldUpdateOperationsInput | string | null
     weight?: NullableStringFieldUpdateOperationsInput | string | null
+    expectedadmitdate?: NullableStringFieldUpdateOperationsInput | string | null
+    dscdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    indicationforadmission?: NullableIntFieldUpdateOperationsInput | number | null
+    previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateManyInput = {
@@ -34549,6 +34773,15 @@ export namespace Prisma {
     visitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     height?: NullableStringFieldUpdateOperationsInput | string | null
     weight?: NullableStringFieldUpdateOperationsInput | string | null
+    expectedadmitdate?: NullableStringFieldUpdateOperationsInput | string | null
+    dscdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    indicationforadmission?: NullableIntFieldUpdateOperationsInput | number | null
+    previoustreatmentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    previoustreatmentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
   export type policytypeCreateInput = {
@@ -36542,11 +36775,22 @@ export namespace Prisma {
     visitdatetime?: SortOrder
     height?: SortOrder
     weight?: SortOrder
+    expectedadmitdate?: SortOrder
+    dscdatetime?: SortOrder
+    indicationforadmission?: SortOrder
+    previoustreatmentdate?: SortOrder
+    previoustreatmentdetail?: SortOrder
+    preauthreferclaimno?: SortOrder
+    preauthreferocc?: SortOrder
+    ispackage?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsAvgOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
+    indicationforadmission?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsMaxOrderByAggregateInput = {
@@ -36577,6 +36821,15 @@ export namespace Prisma {
     visitdatetime?: SortOrder
     height?: SortOrder
     weight?: SortOrder
+    expectedadmitdate?: SortOrder
+    dscdatetime?: SortOrder
+    indicationforadmission?: SortOrder
+    previoustreatmentdate?: SortOrder
+    previoustreatmentdetail?: SortOrder
+    preauthreferclaimno?: SortOrder
+    preauthreferocc?: SortOrder
+    ispackage?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsMinOrderByAggregateInput = {
@@ -36607,11 +36860,22 @@ export namespace Prisma {
     visitdatetime?: SortOrder
     height?: SortOrder
     weight?: SortOrder
+    expectedadmitdate?: SortOrder
+    dscdatetime?: SortOrder
+    indicationforadmission?: SortOrder
+    previoustreatmentdate?: SortOrder
+    previoustreatmentdetail?: SortOrder
+    preauthreferclaimno?: SortOrder
+    preauthreferocc?: SortOrder
+    ispackage?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsSumOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
+    indicationforadmission?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type policytypeCountOrderByAggregateInput = {

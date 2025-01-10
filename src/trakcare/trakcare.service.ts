@@ -177,7 +177,7 @@ async getOPDDischargeDoctor( xVN: string ) {
   try{
      response = await firstValueFrom(
       this.httpService.get(`${TRAKCARE_APIURL}/getOPDDischargeDoctor/${xVN}`)
-    );
+);
     PatientInfo = response.data
   } catch(error)
     {
@@ -377,7 +377,155 @@ async getOPDDischargePatient( xHN: string ) {
     }
  return PatientInfo
 }
+ //// * IPD * ////
+ async getIPDVisit( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
 
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDVisit/${xVN}`)
+    );
+    const presentIllness = response.data?.VisitInfo?.PresentIllness ?? "";
+    response.data.VisitInfo.PresentIllness = presentIllness 
+      ? this.cleanSpecialCharacters(presentIllness) 
+      : presentIllness;
+
+    PatientInfo = response.data
+
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+return PatientInfo
+}
+async getIPDVitalSign( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDVitalSign/${xVN}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
+async getIPDDoctor( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDDoctor/${xVN}`)
+
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
+async getIPDDiagnosis( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDDiagnosis/${xVN}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
+async getIPDInvestigation( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDInvestigation/${xVN}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
+async getIPDOrderItem( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDOrderItem/${xVN}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
+async getIPDBilling( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDBilling/${xVN}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
 cleanSpecialCharacters(text: string): string {
   return text
     .replace(/\r\n/g, ' ')        // ลบ \r\n แทนที่ด้วยช่องว่าง

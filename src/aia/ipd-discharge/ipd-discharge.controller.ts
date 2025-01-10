@@ -1,34 +1,47 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller , Post, Body } from '@nestjs/common';
 import { IpdDischargeService } from './ipd-discharge.service';
-import { CreateIpdDischargeDto } from './dto/create-ipd-discharge.dto';
-import { UpdateIpdDischargeDto } from './dto/update-ipd-discharge.dto';
-
-@Controller('ipd-discharge')
+import { QueryIpdDischargeDto } from './dto/query-ipd-discharge.dto'
+@Controller('/V1/ipd-discharge')
 export class IpdDischargeController {
   constructor(private readonly ipdDischargeService: IpdDischargeService) {}
 
-  @Post()
-  create(@Body() createIpdDischargeDto: CreateIpdDischargeDto) {
-    return this.ipdDischargeService.create(createIpdDischargeDto);
+  //@Post('/getOPDDischargeVisit')
+
+
+  // async getOPDDischargeVisit(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+  //       const result =''// this.opdDischargeService.getOPDDischargeVisit(queryOpdDischargeDto);
+  //       return result
+  // }
+
+  @Post('/getIPDVitalSign')
+  async getIPDVitalSign(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDVitalSign(queryIpdDischargeDto);
+        return result
   }
 
-  @Get()
-  findAll() {
-    return this.ipdDischargeService.findAll();
+  @Post('/getIPDDischargeDoctor')
+  async getIPDDischargeDoctor(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeDoctor(queryIpdDischargeDto);
+        return result
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ipdDischargeService.findOne(+id);
+  @Post('/getIPDDischargeDiagnosis')
+  async getIPDDischargeDiagnosis(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeDiagnosis(queryIpdDischargeDto);
+        return result
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateIpdDischargeDto: UpdateIpdDischargeDto) {
-    return this.ipdDischargeService.update(+id, updateIpdDischargeDto);
+  @Post('/getIPDDischargeInvestigation')
+  async getIPDDischargeInvestigation(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeInvestigation(queryIpdDischargeDto);
+        return result
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ipdDischargeService.remove(+id);
+  @Post('/getIPDDischargeOrderItem')
+  async getIPDDischargeOrderItem(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeOrderItem(queryIpdDischargeDto);
+        return result
+  }
+  @Post('/getIPDDischargeBilling')
+  async getIPDDischargeBilling(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeBilling(queryIpdDischargeDto);
+        return result
   }
 }

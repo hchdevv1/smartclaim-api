@@ -229,6 +229,15 @@ model medicaltransactions {
   visitdatetime                   String?  @db.VarChar(255)
   height                          String?  @db.VarChar(6)
   weight                          String?  @db.VarChar(6)
+  expectedadmitdate               String?  @db.VarChar(255)
+  dscdatetime                     String?  @db.VarChar(255)
+  indicationforadmission          Int?
+  previoustreatmentdate           String?  @db.VarChar(255)
+  previoustreatmentdetail         String?  @db.VarChar(255)
+  preauthreferclaimno             String?  @db.VarChar(10)
+  preauthreferocc                 String?  @db.VarChar(255)
+  ispackage                       Boolean?
+  totalestimatedcost              Decimal? @db.Decimal(10, 2)
 }
 
 model policytype {

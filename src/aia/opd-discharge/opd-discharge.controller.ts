@@ -29,7 +29,7 @@ export class OpdDischargeController {
         return result
   }
   @Post('/getOPDDischargeDiagnosis')
-  async getEpisodeByHN(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+  async getOPDDischargeDiagnosis(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
         const result = this.opdDischargeService.getOPDDischargeDiagnosis(queryOpdDischargeDto);
         return result
   }

@@ -83,4 +83,38 @@ getOPDCheckBalance(@Param('xVN') xVN: string) {
 checkVisitNumberAvailable(@Param('xHN') xHN: string,@Param('xVN') xVN: string) {
  return this.trakcareService.checkVisitNumberAvailable(xHN,xVN);
 }
+
+
+@Get('/getIPDVisit/:xVN')
+getIPDVisit(@Param('xVN') xVN: string) {
+   return this.trakcareService.getIPDVisit(xVN);
+}
+@Get('/getIPDVitalSign/:xVN')
+getIPDVitalSign(@Param('xVN') xVN: string) {
+     return this.trakcareService.getIPDVitalSign(xVN);
+  }
+
+@Get('/getIPDDoctor/:xVN')
+getIPDDoctor(@Param('xVN') xVN: string) {
+   return this.trakcareService.getIPDDoctor(xVN);
+}
+
+@Get('/getIPDDiagnosis/:xVN')
+getIPDDiagnosis(@Param('xVN') xVN: string) {
+   return this.trakcareService.getIPDDiagnosis(xVN);
+}
+
+@Get('/getIPDInvestigation/:xVN')
+getIPDInvestigation(@Param('xVN') xVN: string) {
+     return this.trakcareService.getIPDInvestigation(xVN);
+  }
+  @Get('/getIPDOrderItem/:xVN')
+  getIPDOrderItem(@Param('xVN') xVN: string) {
+   return this.trakcareService.getIPDOrderItem(xVN);
+}
+@Get('/getIPDBilling/:xVN')
+getIPDBilling(@Param('xVN') xVN: string) {
+ return this.trakcareService.getIPDBilling(xVN);
+}
+
 }
