@@ -182,6 +182,8 @@ export class CheckEligibleService {
   async checkeligible(checkEligibleBodyDto:QueryEligibleBodyDto){
    // const dummyDataRequest =new DummyDataRequest1();
     //checkEligibleBodyDto.PatientInfo.PID =dummyDataRequest.PatientInfo.DataJson.Id;
+
+    console.log(checkEligibleBodyDto)
     let RequesetBody ,xResultInfo;
      try{
        RequesetBody ={
@@ -206,7 +208,14 @@ export class CheckEligibleService {
          xPolicyNumber:checkEligibleBodyDto.PatientInfo.PolicyNumber||'',
          xCustomerId:checkEligibleBodyDto.PatientInfo.CustomerId||'',
        }
-       const xRefId= await this.generateRefId(RequesetBody.xVN,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
+       let xRefId
+       if (RequesetBody.xServiceSettingCode ==="PRE"){
+        xRefId= await this.generateRefId(RequesetBody.xHN+RequesetBody.xVisitDateTime,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
+
+       }else{
+         xRefId= await this.generateRefId(RequesetBody.xVN,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
+
+       }
        const xUsername=AIA_APIHopitalUsername;
        const xHospitalCode =await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey);
        const xInsurerCode=RequesetBody.xInsurerCode;
@@ -299,7 +308,11 @@ export class CheckEligibleService {
    const responsefromAIA = await lastValueFrom(
      this.httpService.post(apiURL, body, { headers })
    );
+   console.log(body)
+   console.log('body_DataJson')
 
+   console.log(body_DataJson)
+   console.log(responsefromAIA.data.Result)
    const responeInputcode =responsefromAIA.data.Result.Code
    //console.log(responeInputcode)
    if (responeInputcode !=='S'){

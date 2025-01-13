@@ -1389,7 +1389,7 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
         expecteddayofrecovery: true, pregnant: true, alcoholrelated: true,
          haveaccidentinjurydetail: true, haveaccidentcauseofinjurydetail: true, haveprocedure: true,
           privatecase: true,visitdatetime:true,
-          weight:true,height:true,
+          weight:true,height:true,vn:true
    
   },
 });
@@ -1426,11 +1426,194 @@ if(visittransactionsInfo){
 
    VisitDateTime:visittransactionsInfo.visitdatetime,
 
-   // VN:visittransactionsInfo.
+    VN:visittransactionsInfo.vn,
 
     Weight:visittransactionsInfo.weight,
 
   };
+  //console.log(visitDatabaseResultInfo)
+  //console.log('yyy222yyy')
+      // this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      
+     
+       if (!visitDatabaseResultInfo.VisitInfo) {
+      
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'VisitInfo not found','')
+      }else{
+    
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+      newResultOpdDischargeVisitDto={
+        HTTPStatus:newHttpMessageDto,
+        Result:visitDatabaseResultInfo 
+      }
+}
+else{
+  // console.log('AAAAA 22222')
+
+  let newQueryVisitDatabse =new QueryVisitDatabse();
+  newQueryVisitDatabse={
+          AccidentCauseOver45Days:'',
+          AdditionalNote:'',
+          AlcoholRelated:false,
+          ChiefComplaint:'',
+          ComaScore:'',
+          DxFreeText:'',
+          ExpectedDayOfRecovery:'',
+          Height:'',
+        PhysicalExam:'',
+        PlanOfTreatment:'',
+         Pregnant:false,
+         PresentIllness:'',
+         PreviousTreatmentDate:'',
+         PreviousTreatmentDetail:'',
+          PrivateCase:false,
+          ProcedureFreeText:'',
+          SignSymptomsDate:'',
+          UnderlyingCondition:'',
+          VN:'',
+        }
+      let newVisitDatabaseResultInfo =new VisitDatabaseResultInfo();
+      newVisitDatabaseResultInfo={ VisitInfo: newQueryVisitDatabse}
+      newResultOpdDischargeVisitDto =
+  {
+      HTTPStatus: {
+        statusCode:400, message: 'VisitInfo not found', error: '' 
+      },
+      Result : newVisitDatabaseResultInfo 
+    }
+}
+
+     return newResultOpdDischargeVisitDto  
+
+}
+async getvisitIPDformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto) {
+  const xRefId =queryVisitDatabaseBodyDto.RefId;
+  const xTransactionNo = queryVisitDatabaseBodyDto.TransactionNo;
+  const xVN =queryVisitDatabaseBodyDto.VN;
+  let  newResultOpdDischargeVisitDto= new ResultOpdDischargeVisitDto();
+
+
+  const visittransactionclaim = await prismaProgest.transactionclaim.findFirst({ 
+    where: {
+      vn: xVN,
+      refid: xRefId,
+      transactionno: xTransactionNo,
+    },  
+    select: {
+      previoustreatmentdate: true,
+      previoustreatmentdetail: true, 
+      isreimbursement: true, batchnumber: true, 
+      invoicenumber: true, otherinsurer: true, furtherclaimid: true,
+      furtherclaimno: true, furtherclaimvn: true,
+
+     
+    },
+  });
+///////////////////  
+// console.log(xVN)
+// console.log(xRefId)
+// console.log(xTransactionNo)
+
+// Query by vn only
+// const queryByVN = await prismaProgest.medicaltransactions.findMany({
+//   where: {
+//     vn: xVN,
+//   },
+// });
+// console.log('Query by VN:', queryByVN);
+
+// // Query by refid only
+// const queryByRefId = await prismaProgest.medicaltransactions.findMany({
+//   where: {
+//     refid: xRefId,
+//   },
+// });
+// console.log('Query by RefId:', queryByRefId);
+
+// // Query by transactionno only
+// const queryByTransactionNo = await prismaProgest.medicaltransactions.findMany({
+//   where: {
+//     transactionno: xTransactionNo,
+//   },
+// });
+// console.log('Query by TransactionNo:', queryByTransactionNo);
+
+
+//////
+const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst({ 
+  where: {
+    vn: xVN,
+    refid: xRefId,
+    transactionno: xTransactionNo,
+  },  
+  select: {
+    refid:true,
+    dxfreetext: true,
+     presentillness: true, chiefcomplaint: true,
+      accidentcauseover45days: true, underlyingcondition: true, 
+      physicalexam: true, planoftreatment: true, procedurefreetext: true,
+       additionalnote: true, signsymptomsdate: true, comascore: true,
+        expecteddayofrecovery: true, pregnant: true, alcoholrelated: true,
+         haveaccidentinjurydetail: true, haveaccidentcauseofinjurydetail: true, haveprocedure: true,
+          privatecase: true,visitdatetime:true,
+          weight:true,height:true,vn:true
+         ,expectedadmitdate:true,preauthreferclaimno:true,
+         preauthreferocc:true,indicationforadmission:true,
+         dscdatetime:true,ispackage:true,
+         totalestimatedcost:true,anesthesialist:true,
+         accidentdate:true
+  },
+});
+
+
+// console.log('========xxxxxxx============')
+// console.log(visittransactionsInfo)
+// console.log('========yyyyyy============')
+if(visittransactionsInfo){
+  // console.log('AAAAA 11111111')
+
+  //console.log('yyy111yyy')
+  const visitDatabaseResultInfo = new VisitDatabaseResultInfo();
+  visitDatabaseResultInfo.VisitInfo = {
+ 
+    FurtherClaimId:visittransactionclaim.furtherclaimid,
+
+    AccidentCauseOver45Days:visittransactionsInfo.accidentcauseover45days,
+    AdditionalNote:visittransactionsInfo.additionalnote,
+    AlcoholRelated:visittransactionsInfo.alcoholrelated,
+    ChiefComplaint:visittransactionsInfo.chiefcomplaint,
+    ComaScore:visittransactionsInfo.comascore,
+    DxFreeText:visittransactionsInfo.dxfreetext,
+    ExpectedDayOfRecovery:visittransactionsInfo.expecteddayofrecovery,
+  Height:visittransactionsInfo.height,
+  PhysicalExam:visittransactionsInfo.physicalexam,
+  PlanOfTreatment:visittransactionsInfo.planoftreatment,
+   Pregnant:visittransactionsInfo.pregnant,
+   PresentIllness:visittransactionsInfo.presentillness,
+     PreviousTreatmentDate: visittransactionclaim.previoustreatmentdate,
+    PreviousTreatmentDetail: visittransactionclaim.previoustreatmentdetail,
+    PrivateCase:visittransactionsInfo.privatecase,
+    ProcedureFreeText:visittransactionsInfo.procedurefreetext,
+    SignSymptomsDate:visittransactionsInfo.signsymptomsdate,
+    UnderlyingCondition:visittransactionsInfo.underlyingcondition,
+
+   VisitDateTime:visittransactionsInfo.visitdatetime,
+
+    VN:visittransactionsInfo.vn,
+
+    Weight:visittransactionsInfo.weight,
+    ExpectedAdmitDate:visittransactionsInfo.expectedadmitdate,
+    PreauthReferClaimNo:visittransactionsInfo.preauthreferclaimno,
+    PreauthReferOcc:visittransactionsInfo.preauthreferocc,
+    IndicationForAdmission:visittransactionsInfo.indicationforadmission,
+    DscDateTime:visittransactionsInfo.dscdatetime,
+    IsPackage:visittransactionsInfo.ispackage,
+    TotalEstimatedCost:visittransactionsInfo.totalestimatedcost.toNumber(),
+    AnesthesiaList:visittransactionsInfo.anesthesialist,
+    AccidentDate:visittransactionsInfo.accidentdate,
+  };
+
   //console.log(visitDatabaseResultInfo)
   //console.log('yyy222yyy')
       // this.addFormatHTTPStatus(newHttpMessageDto,200,'','')

@@ -302,13 +302,15 @@ exports.Prisma.MedicaltransactionsScalarFieldEnum = {
   weight: 'weight',
   expectedadmitdate: 'expectedadmitdate',
   dscdatetime: 'dscdatetime',
-  indicationforadmission: 'indicationforadmission',
   previoustreatmentdate: 'previoustreatmentdate',
   previoustreatmentdetail: 'previoustreatmentdetail',
   preauthreferclaimno: 'preauthreferclaimno',
   preauthreferocc: 'preauthreferocc',
   ispackage: 'ispackage',
-  totalestimatedcost: 'totalestimatedcost'
+  totalestimatedcost: 'totalestimatedcost',
+  anesthesialist: 'anesthesialist',
+  indicationforadmission: 'indicationforadmission',
+  accidentdate: 'accidentdate'
 };
 
 exports.Prisma.PolicytypeScalarFieldEnum = {

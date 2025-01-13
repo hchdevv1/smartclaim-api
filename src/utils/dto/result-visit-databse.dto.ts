@@ -1,4 +1,5 @@
-import { IsInt ,IsBoolean, IsOptional, IsString  } from 'class-validator';
+import { IsInt ,IsBoolean, IsOptional, IsString ,IsNumber } from 'class-validator';
+
 //import { Type } from 'class-transformer';
 import { HttpMessageDto } from './http-status-message.dto';
 
@@ -125,6 +126,43 @@ export class QueryVisitDatabaseBodyDto {
     @IsString()
     @IsOptional()
     Weight?: string;
+
+    @IsString()
+    @IsOptional()
+    ExpectedAdmitDate?: string;
+
+    @IsString()
+    @IsOptional()
+    PreauthReferClaimNo?: string;   
+
+    @IsString()
+    @IsOptional()
+    PreauthReferOcc?: string;   
+    
+    @IsString()
+    @IsOptional()
+    IndicationForAdmission?: string;   
+    
+    @IsString()
+    @IsOptional()
+    DscDateTime?: string;   
+
+    @IsBoolean()
+    @IsOptional()
+    IsPackage?: boolean;
+
+    @IsNumber()
+    @IsOptional()
+    TotalEstimatedCost?: number;  
+    
+    @IsString()
+    @IsOptional()
+    AnesthesiaList?: string;
+    
+    @IsString()
+    @IsOptional()
+    AccidentDate?: string;
+
   }
  export class VisitDatabaseResultInfo {
 

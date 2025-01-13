@@ -231,13 +231,15 @@ model medicaltransactions {
   weight                          String?  @db.VarChar(6)
   expectedadmitdate               String?  @db.VarChar(255)
   dscdatetime                     String?  @db.VarChar(255)
-  indicationforadmission          Int?
   previoustreatmentdate           String?  @db.VarChar(255)
   previoustreatmentdetail         String?  @db.VarChar(255)
-  preauthreferclaimno             String?  @db.VarChar(10)
+  preauthreferclaimno             String?  @db.VarChar(100)
   preauthreferocc                 String?  @db.VarChar(255)
   ispackage                       Boolean?
   totalestimatedcost              Decimal? @db.Decimal(10, 2)
+  anesthesialist                  String?  @db.VarChar(10)
+  indicationforadmission          String?  @db.VarChar(10)
+  accidentdate                    String?  @db.VarChar(255)
 }
 
 model policytype {

@@ -58,10 +58,7 @@ class SearchPatientBodyDto{
     @IsOptional()
     VisitDateTime?: string;
 
-    @IsString()
-    @IsOptional()
-    AccidentDate?: string;
-    
+
     @IsString()
     @IsOptional()
     PreauthReferClaimNo?: string;

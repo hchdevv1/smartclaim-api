@@ -1,17 +1,17 @@
 import { Controller , Post, Body } from '@nestjs/common';
 import { IpdDischargeService } from './ipd-discharge.service';
 import { QueryIpdDischargeDto } from './dto/query-ipd-discharge.dto'
+import { QueryIPDVisitDto } from './dto/query-visit-ipd-discharge.dto'
+import { QuerySubmitIpdDischargeDto } from './dto/query-submit-ipd-discharge.dto';
 @Controller('/V1/ipd-discharge')
 export class IpdDischargeController {
   constructor(private readonly ipdDischargeService: IpdDischargeService) {}
 
-  //@Post('/getOPDDischargeVisit')
-
-
-  // async getOPDDischargeVisit(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
-  //       const result =''// this.opdDischargeService.getOPDDischargeVisit(queryOpdDischargeDto);
-  //       return result
-  // }
+  @Post('/getIPDVisit')
+  async getIPDVisit(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result =this.ipdDischargeService.getIPDVisit(queryIpdDischargeDto);
+        return result
+  }
 
   @Post('/getIPDVitalSign')
   async getIPDVitalSign(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
@@ -42,6 +42,21 @@ export class IpdDischargeController {
   @Post('/getIPDDischargeBilling')
   async getIPDDischargeBilling(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
         const result = this.ipdDischargeService.getIPDDischargeBilling(queryIpdDischargeDto);
+        return result
+  }
+/// submit to data base
+
+@Post('/SubmitIPDVisit')
+  async SubmitIPDVisit(@Body() queryIPDVisitDto:QueryIPDVisitDto){
+        //const result = queryIPDVisitDto
+        const result = this.ipdDischargeService.SubmitIPDVisit(queryIPDVisitDto);
+        return result
+  }
+
+
+  @Post('/SubmitIPDDischargeToAIA')
+  async SubmitOPDDischargeToAIA(@Body() querySubmitIpdDischargeDto:QuerySubmitIpdDischargeDto){
+    const result = this.ipdDischargeService.SubmitIPDDischargeToAIA(querySubmitIpdDischargeDto);
         return result
   }
 }
