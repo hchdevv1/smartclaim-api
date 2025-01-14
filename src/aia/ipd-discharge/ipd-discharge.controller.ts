@@ -2,7 +2,10 @@ import { Controller , Post, Body } from '@nestjs/common';
 import { IpdDischargeService } from './ipd-discharge.service';
 import { QueryIpdDischargeDto } from './dto/query-ipd-discharge.dto'
 import { QueryIPDVisitDto } from './dto/query-visit-ipd-discharge.dto'
+import { QueryProcedureDto } from './dto/query-procedure-ipd-discharge.dto'
+import { QueryAccidentDto } from './dto/query-accident-ipd-discharge.dto'
 import { QuerySubmitIpdDischargeDto } from './dto/query-submit-ipd-discharge.dto';
+
 @Controller('/V1/ipd-discharge')
 export class IpdDischargeController {
   constructor(private readonly ipdDischargeService: IpdDischargeService) {}
@@ -52,8 +55,16 @@ export class IpdDischargeController {
         const result = this.ipdDischargeService.SubmitIPDVisit(queryIPDVisitDto);
         return result
   }
-
-
+  @Post('/SubmitProcedure')
+  async SubmitProcedure(@Body() queryProcedureDto:QueryProcedureDto){
+        const result = this.ipdDischargeService.SubmitProcedure(queryProcedureDto);
+        return result
+  }
+  @Post('/SubmitAccident')
+  async SubmitAccident(@Body() queryAccidentDto:QueryAccidentDto){
+        const result = this.ipdDischargeService.SubmitAccident(queryAccidentDto);
+        return result
+  }
   @Post('/SubmitIPDDischargeToAIA')
   async SubmitOPDDischargeToAIA(@Body() querySubmitIpdDischargeDto:QuerySubmitIpdDischargeDto){
     const result = this.ipdDischargeService.SubmitIPDDischargeToAIA(querySubmitIpdDischargeDto);

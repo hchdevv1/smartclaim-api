@@ -443,6 +443,18 @@ exports.Prisma.OpeartionispackageScalarFieldEnum = {
   insurerid: 'insurerid'
 };
 
+exports.Prisma.DiagnosistransactionsScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  dxname: 'dxname',
+  dxtype: 'dxtype',
+  icd10: 'icd10'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -485,7 +497,8 @@ exports.Prisma.ModelName = {
   accidenttransactions22: 'accidenttransactions22',
   anesthesialist: 'anesthesialist',
   indicationsforadmission: 'indicationsforadmission',
-  opeartionispackage: 'opeartionispackage'
+  opeartionispackage: 'opeartionispackage',
+  diagnosistransactions: 'diagnosistransactions'
 };
 
 /**

@@ -1,11 +1,176 @@
-import { Injectable } from '@nestjs/common';
-import { HttpMessageDto } from '../../utils/dto/http-status-message.dto';
+import { Injectable , HttpException, HttpStatus} from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 
-//const newHttpMessageDto =new HttpMessageDto();
+import { HttpMessageDto } from '../../utils/dto/http-status-message.dto';
+import { TrakcareService } from '../../trakcare/trakcare.service';
+import { prismaProgest } from '../../database/database';
+import { Prisma } from '../../../prisma/generate-client-db';
+import { HttpStatusMessageService } from '../../utils/http-status-message/http-status-message.service';
+import { UtilsService } from '../../utils/utils.service';
+
+
+import { QueryDiagnosisDto ,ResultSubmitDiagnosisDto} from './dto/query-diagnoisis-preauth-submission.dto';
+
+
+const httpStatusMessageService = new HttpStatusMessageService();
+const newHttpMessageDto =new HttpMessageDto();
 
 @Injectable()
 export class PreauthSubmissionService {
- 
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly trakcareService:TrakcareService,
+    private readonly utilsService:UtilsService
+  ) {}
+  async SubmitDiagnosis(queryDiagnosisDto:QueryDiagnosisDto){
+    //let ResponeTrakcareHTTPStatus;
+    try{
+      const xRefId =queryDiagnosisDto.PatientInfo.RefId;
+      const xTransactionNo =queryDiagnosisDto.PatientInfo.TransactionNo;
+      const xInsurerCode =queryDiagnosisDto.PatientInfo.InsurerCode;
+      const xHN =queryDiagnosisDto.PatientInfo.HN;
+      const xVN =queryDiagnosisDto.PatientInfo.VN;
+      const xHaveDiagnosis =Boolean(queryDiagnosisDto.PatientInfo.HaveDiagnosis) || false
+  
+  let DiagnosisList;
+  if (xHaveDiagnosis ==true){
+      
+      if (Array.isArray(queryDiagnosisDto.PatientInfo.DiagnosisInfo)) {
+        DiagnosisList = queryDiagnosisDto.PatientInfo.DiagnosisInfo.map((diagnosis) => ({
+            Icd10: diagnosis.Icd10 || '',
+            DxName: diagnosis.DxName || '',
+            DxType: diagnosis.DxType || ''
+          }));
+          const existingProcedures = await prismaProgest.proceduretransactions.findMany({
+            where: {
+                refid: xRefId,
+                transactionno: xTransactionNo
+            }
+        });
+        if (existingProcedures.length > 0) {
+          await Promise.all(
+              existingProcedures.map(async (diagnosis) => {
+                  return await prismaProgest.diagnosistransactions.delete({
+                      where: {
+                          id: diagnosis.id // ใช้ id ในการลบ
+                      }
+                  });
+              })
+          );
+      }
+  
+          await Promise.all(
+            DiagnosisList.map(async (diagnosis) => {
+                return await prismaProgest.diagnosistransactions.create({
+                    data: {
+                        insurerid: xInsurerCode,
+                        refid: xRefId,
+                        transactionno: xTransactionNo,
+                        hn: xHN,
+                        vn: xVN,
+                        icd10: diagnosis.Icd10,
+                        dxname: diagnosis.DxName,
+                        dxtype: diagnosis.DxType
+                    }
+                });
+            })
+        );
+  
+      } else {
+        DiagnosisList = [];
+      }
+     // console.log(xHaveProcedure)
+      
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+  }else{
+    DiagnosisList = [
+          {
+              "Icd10": "",
+              "DxName": "",
+              "DxType": ""
+          }
+      ]
+   // console.log(xHaveProcedure)
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'Invalid Procedure','')
+  }
+  
+    
+      
+      let newResultSubmitDiagnosisDto= new ResultSubmitDiagnosisDto();
+      newResultSubmitDiagnosisDto={
+              HTTPStatus:newHttpMessageDto,
+              Result:DiagnosisList
+        }
+  
+      return newResultSubmitDiagnosisDto
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+         
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+  }
 
   addFormatHTTPStatus(data: HttpMessageDto,inputstatusCode:number,inputmessage:string,inputerror:string):void{  
     if(inputstatusCode !==200){

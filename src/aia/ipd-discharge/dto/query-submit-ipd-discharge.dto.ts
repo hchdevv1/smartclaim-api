@@ -192,6 +192,16 @@ class SearchPatientBodyDto{
     @IsOptional()
     AnesthesiaList?: string;
 
+    @IsString()
+    @IsOptional()
+    IndicationForAdmission?: string;
+    @IsString()
+    @IsOptional()
+    PreauthReferClaimNo?: string;
+    @IsString()
+    @IsOptional()
+    PreauthReferOcc?: string;
+
   }
 class QueryProcedure{
 

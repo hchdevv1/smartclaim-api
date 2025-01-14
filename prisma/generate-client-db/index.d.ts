@@ -143,6 +143,11 @@ export type indicationsforadmission = $Result.DefaultSelection<Prisma.$indicatio
  * 
  */
 export type opeartionispackage = $Result.DefaultSelection<Prisma.$opeartionispackagePayload>
+/**
+ * Model diagnosistransactions
+ * 
+ */
+export type diagnosistransactions = $Result.DefaultSelection<Prisma.$diagnosistransactionsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -526,6 +531,16 @@ export class PrismaClient<
     * ```
     */
   get opeartionispackage(): Prisma.opeartionispackageDelegate<ExtArgs>;
+
+  /**
+   * `prisma.diagnosistransactions`: Exposes CRUD operations for the **diagnosistransactions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Diagnosistransactions
+    * const diagnosistransactions = await prisma.diagnosistransactions.findMany()
+    * ```
+    */
+  get diagnosistransactions(): Prisma.diagnosistransactionsDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -992,7 +1007,8 @@ export namespace Prisma {
     accidenttransactions22: 'accidenttransactions22',
     anesthesialist: 'anesthesialist',
     indicationsforadmission: 'indicationsforadmission',
-    opeartionispackage: 'opeartionispackage'
+    opeartionispackage: 'opeartionispackage',
+    diagnosistransactions: 'diagnosistransactions'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1008,7 +1024,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "accidenttransactions22" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage"
+      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "accidenttransactions22" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage" | "diagnosistransactions"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2832,6 +2848,76 @@ export namespace Prisma {
           }
         }
       }
+      diagnosistransactions: {
+        payload: Prisma.$diagnosistransactionsPayload<ExtArgs>
+        fields: Prisma.diagnosistransactionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.diagnosistransactionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.diagnosistransactionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>
+          }
+          findFirst: {
+            args: Prisma.diagnosistransactionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.diagnosistransactionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>
+          }
+          findMany: {
+            args: Prisma.diagnosistransactionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>[]
+          }
+          create: {
+            args: Prisma.diagnosistransactionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>
+          }
+          createMany: {
+            args: Prisma.diagnosistransactionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.diagnosistransactionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>[]
+          }
+          delete: {
+            args: Prisma.diagnosistransactionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>
+          }
+          update: {
+            args: Prisma.diagnosistransactionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.diagnosistransactionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.diagnosistransactionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.diagnosistransactionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$diagnosistransactionsPayload>
+          }
+          aggregate: {
+            args: Prisma.DiagnosistransactionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDiagnosistransactions>
+          }
+          groupBy: {
+            args: Prisma.diagnosistransactionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DiagnosistransactionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.diagnosistransactionsCountArgs<ExtArgs>
+            result: $Utils.Optional<DiagnosistransactionsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3105,6 +3191,7 @@ export namespace Prisma {
     claimants: number
     claimdocuments: number
     claimstatus: number
+    diagnosistransactions: number
     diagnosistypemapping: number
     documenttype: number
     idtype: number
@@ -3128,6 +3215,7 @@ export namespace Prisma {
     claimants?: boolean | InsurersCountOutputTypeCountClaimantsArgs
     claimdocuments?: boolean | InsurersCountOutputTypeCountClaimdocumentsArgs
     claimstatus?: boolean | InsurersCountOutputTypeCountClaimstatusArgs
+    diagnosistransactions?: boolean | InsurersCountOutputTypeCountDiagnosistransactionsArgs
     diagnosistypemapping?: boolean | InsurersCountOutputTypeCountDiagnosistypemappingArgs
     documenttype?: boolean | InsurersCountOutputTypeCountDocumenttypeArgs
     idtype?: boolean | InsurersCountOutputTypeCountIdtypeArgs
@@ -3219,6 +3307,13 @@ export namespace Prisma {
    */
   export type InsurersCountOutputTypeCountClaimstatusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: claimstatusWhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
+  export type InsurersCountOutputTypeCountDiagnosistransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: diagnosistransactionsWhereInput
   }
 
   /**
@@ -18684,6 +18779,7 @@ export namespace Prisma {
     claimants?: boolean | insurers$claimantsArgs<ExtArgs>
     claimdocuments?: boolean | insurers$claimdocumentsArgs<ExtArgs>
     claimstatus?: boolean | insurers$claimstatusArgs<ExtArgs>
+    diagnosistransactions?: boolean | insurers$diagnosistransactionsArgs<ExtArgs>
     diagnosistypemapping?: boolean | insurers$diagnosistypemappingArgs<ExtArgs>
     documenttype?: boolean | insurers$documenttypeArgs<ExtArgs>
     idtype?: boolean | insurers$idtypeArgs<ExtArgs>
@@ -18722,6 +18818,7 @@ export namespace Prisma {
     claimants?: boolean | insurers$claimantsArgs<ExtArgs>
     claimdocuments?: boolean | insurers$claimdocumentsArgs<ExtArgs>
     claimstatus?: boolean | insurers$claimstatusArgs<ExtArgs>
+    diagnosistransactions?: boolean | insurers$diagnosistransactionsArgs<ExtArgs>
     diagnosistypemapping?: boolean | insurers$diagnosistypemappingArgs<ExtArgs>
     documenttype?: boolean | insurers$documenttypeArgs<ExtArgs>
     idtype?: boolean | insurers$idtypeArgs<ExtArgs>
@@ -18749,6 +18846,7 @@ export namespace Prisma {
       claimants: Prisma.$claimantsPayload<ExtArgs>[]
       claimdocuments: Prisma.$claimdocumentsPayload<ExtArgs>[]
       claimstatus: Prisma.$claimstatusPayload<ExtArgs>[]
+      diagnosistransactions: Prisma.$diagnosistransactionsPayload<ExtArgs>[]
       diagnosistypemapping: Prisma.$diagnosistypemappingPayload<ExtArgs>[]
       documenttype: Prisma.$documenttypePayload<ExtArgs>[]
       idtype: Prisma.$idtypePayload<ExtArgs>[]
@@ -19139,6 +19237,7 @@ export namespace Prisma {
     claimants<T extends insurers$claimantsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$claimantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$claimantsPayload<ExtArgs>, T, "findMany"> | Null>
     claimdocuments<T extends insurers$claimdocumentsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$claimdocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$claimdocumentsPayload<ExtArgs>, T, "findMany"> | Null>
     claimstatus<T extends insurers$claimstatusArgs<ExtArgs> = {}>(args?: Subset<T, insurers$claimstatusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$claimstatusPayload<ExtArgs>, T, "findMany"> | Null>
+    diagnosistransactions<T extends insurers$diagnosistransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$diagnosistransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "findMany"> | Null>
     diagnosistypemapping<T extends insurers$diagnosistypemappingArgs<ExtArgs> = {}>(args?: Subset<T, insurers$diagnosistypemappingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$diagnosistypemappingPayload<ExtArgs>, T, "findMany"> | Null>
     documenttype<T extends insurers$documenttypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$documenttypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$documenttypePayload<ExtArgs>, T, "findMany"> | Null>
     idtype<T extends insurers$idtypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$idtypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$idtypePayload<ExtArgs>, T, "findMany"> | Null>
@@ -19693,6 +19792,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ClaimstatusScalarFieldEnum | ClaimstatusScalarFieldEnum[]
+  }
+
+  /**
+   * insurers.diagnosistransactions
+   */
+  export type insurers$diagnosistransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    where?: diagnosistransactionsWhereInput
+    orderBy?: diagnosistransactionsOrderByWithRelationInput | diagnosistransactionsOrderByWithRelationInput[]
+    cursor?: diagnosistransactionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DiagnosistransactionsScalarFieldEnum | DiagnosistransactionsScalarFieldEnum[]
   }
 
   /**
@@ -30813,6 +30932,1040 @@ export namespace Prisma {
 
 
   /**
+   * Model diagnosistransactions
+   */
+
+  export type AggregateDiagnosistransactions = {
+    _count: DiagnosistransactionsCountAggregateOutputType | null
+    _avg: DiagnosistransactionsAvgAggregateOutputType | null
+    _sum: DiagnosistransactionsSumAggregateOutputType | null
+    _min: DiagnosistransactionsMinAggregateOutputType | null
+    _max: DiagnosistransactionsMaxAggregateOutputType | null
+  }
+
+  export type DiagnosistransactionsAvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type DiagnosistransactionsSumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type DiagnosistransactionsMinAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    dxname: string | null
+    dxtype: string | null
+    icd10: string | null
+  }
+
+  export type DiagnosistransactionsMaxAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    dxname: string | null
+    dxtype: string | null
+    icd10: string | null
+  }
+
+  export type DiagnosistransactionsCountAggregateOutputType = {
+    id: number
+    insurerid: number
+    refid: number
+    transactionno: number
+    hn: number
+    vn: number
+    dxname: number
+    dxtype: number
+    icd10: number
+    _all: number
+  }
+
+
+  export type DiagnosistransactionsAvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type DiagnosistransactionsSumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type DiagnosistransactionsMinAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    dxname?: true
+    dxtype?: true
+    icd10?: true
+  }
+
+  export type DiagnosistransactionsMaxAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    dxname?: true
+    dxtype?: true
+    icd10?: true
+  }
+
+  export type DiagnosistransactionsCountAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    dxname?: true
+    dxtype?: true
+    icd10?: true
+    _all?: true
+  }
+
+  export type DiagnosistransactionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which diagnosistransactions to aggregate.
+     */
+    where?: diagnosistransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of diagnosistransactions to fetch.
+     */
+    orderBy?: diagnosistransactionsOrderByWithRelationInput | diagnosistransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: diagnosistransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` diagnosistransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` diagnosistransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned diagnosistransactions
+    **/
+    _count?: true | DiagnosistransactionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DiagnosistransactionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DiagnosistransactionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DiagnosistransactionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DiagnosistransactionsMaxAggregateInputType
+  }
+
+  export type GetDiagnosistransactionsAggregateType<T extends DiagnosistransactionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateDiagnosistransactions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDiagnosistransactions[P]>
+      : GetScalarType<T[P], AggregateDiagnosistransactions[P]>
+  }
+
+
+
+
+  export type diagnosistransactionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: diagnosistransactionsWhereInput
+    orderBy?: diagnosistransactionsOrderByWithAggregationInput | diagnosistransactionsOrderByWithAggregationInput[]
+    by: DiagnosistransactionsScalarFieldEnum[] | DiagnosistransactionsScalarFieldEnum
+    having?: diagnosistransactionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DiagnosistransactionsCountAggregateInputType | true
+    _avg?: DiagnosistransactionsAvgAggregateInputType
+    _sum?: DiagnosistransactionsSumAggregateInputType
+    _min?: DiagnosistransactionsMinAggregateInputType
+    _max?: DiagnosistransactionsMaxAggregateInputType
+  }
+
+  export type DiagnosistransactionsGroupByOutputType = {
+    id: number
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    dxname: string | null
+    dxtype: string | null
+    icd10: string | null
+    _count: DiagnosistransactionsCountAggregateOutputType | null
+    _avg: DiagnosistransactionsAvgAggregateOutputType | null
+    _sum: DiagnosistransactionsSumAggregateOutputType | null
+    _min: DiagnosistransactionsMinAggregateOutputType | null
+    _max: DiagnosistransactionsMaxAggregateOutputType | null
+  }
+
+  type GetDiagnosistransactionsGroupByPayload<T extends diagnosistransactionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DiagnosistransactionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DiagnosistransactionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DiagnosistransactionsGroupByOutputType[P]>
+            : GetScalarType<T[P], DiagnosistransactionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type diagnosistransactionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    dxname?: boolean
+    dxtype?: boolean
+    icd10?: boolean
+    insurers?: boolean | diagnosistransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosistransactions"]>
+
+  export type diagnosistransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    dxname?: boolean
+    dxtype?: boolean
+    icd10?: boolean
+    insurers?: boolean | diagnosistransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosistransactions"]>
+
+  export type diagnosistransactionsSelectScalar = {
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    dxname?: boolean
+    dxtype?: boolean
+    icd10?: boolean
+  }
+
+  export type diagnosistransactionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | diagnosistransactions$insurersArgs<ExtArgs>
+  }
+  export type diagnosistransactionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | diagnosistransactions$insurersArgs<ExtArgs>
+  }
+
+  export type $diagnosistransactionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "diagnosistransactions"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      insurerid: number | null
+      refid: string | null
+      transactionno: string | null
+      hn: string | null
+      vn: string | null
+      dxname: string | null
+      dxtype: string | null
+      icd10: string | null
+    }, ExtArgs["result"]["diagnosistransactions"]>
+    composites: {}
+  }
+
+  type diagnosistransactionsGetPayload<S extends boolean | null | undefined | diagnosistransactionsDefaultArgs> = $Result.GetResult<Prisma.$diagnosistransactionsPayload, S>
+
+  type diagnosistransactionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<diagnosistransactionsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: DiagnosistransactionsCountAggregateInputType | true
+    }
+
+  export interface diagnosistransactionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['diagnosistransactions'], meta: { name: 'diagnosistransactions' } }
+    /**
+     * Find zero or one Diagnosistransactions that matches the filter.
+     * @param {diagnosistransactionsFindUniqueArgs} args - Arguments to find a Diagnosistransactions
+     * @example
+     * // Get one Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends diagnosistransactionsFindUniqueArgs>(args: SelectSubset<T, diagnosistransactionsFindUniqueArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Diagnosistransactions that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {diagnosistransactionsFindUniqueOrThrowArgs} args - Arguments to find a Diagnosistransactions
+     * @example
+     * // Get one Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends diagnosistransactionsFindUniqueOrThrowArgs>(args: SelectSubset<T, diagnosistransactionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Diagnosistransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {diagnosistransactionsFindFirstArgs} args - Arguments to find a Diagnosistransactions
+     * @example
+     * // Get one Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends diagnosistransactionsFindFirstArgs>(args?: SelectSubset<T, diagnosistransactionsFindFirstArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Diagnosistransactions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {diagnosistransactionsFindFirstOrThrowArgs} args - Arguments to find a Diagnosistransactions
+     * @example
+     * // Get one Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends diagnosistransactionsFindFirstOrThrowArgs>(args?: SelectSubset<T, diagnosistransactionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Diagnosistransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {diagnosistransactionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.findMany()
+     * 
+     * // Get first 10 Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const diagnosistransactionsWithIdOnly = await prisma.diagnosistransactions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends diagnosistransactionsFindManyArgs>(args?: SelectSubset<T, diagnosistransactionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Diagnosistransactions.
+     * @param {diagnosistransactionsCreateArgs} args - Arguments to create a Diagnosistransactions.
+     * @example
+     * // Create one Diagnosistransactions
+     * const Diagnosistransactions = await prisma.diagnosistransactions.create({
+     *   data: {
+     *     // ... data to create a Diagnosistransactions
+     *   }
+     * })
+     * 
+     */
+    create<T extends diagnosistransactionsCreateArgs>(args: SelectSubset<T, diagnosistransactionsCreateArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Diagnosistransactions.
+     * @param {diagnosistransactionsCreateManyArgs} args - Arguments to create many Diagnosistransactions.
+     * @example
+     * // Create many Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends diagnosistransactionsCreateManyArgs>(args?: SelectSubset<T, diagnosistransactionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Diagnosistransactions and returns the data saved in the database.
+     * @param {diagnosistransactionsCreateManyAndReturnArgs} args - Arguments to create many Diagnosistransactions.
+     * @example
+     * // Create many Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Diagnosistransactions and only return the `id`
+     * const diagnosistransactionsWithIdOnly = await prisma.diagnosistransactions.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends diagnosistransactionsCreateManyAndReturnArgs>(args?: SelectSubset<T, diagnosistransactionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Diagnosistransactions.
+     * @param {diagnosistransactionsDeleteArgs} args - Arguments to delete one Diagnosistransactions.
+     * @example
+     * // Delete one Diagnosistransactions
+     * const Diagnosistransactions = await prisma.diagnosistransactions.delete({
+     *   where: {
+     *     // ... filter to delete one Diagnosistransactions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends diagnosistransactionsDeleteArgs>(args: SelectSubset<T, diagnosistransactionsDeleteArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Diagnosistransactions.
+     * @param {diagnosistransactionsUpdateArgs} args - Arguments to update one Diagnosistransactions.
+     * @example
+     * // Update one Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends diagnosistransactionsUpdateArgs>(args: SelectSubset<T, diagnosistransactionsUpdateArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Diagnosistransactions.
+     * @param {diagnosistransactionsDeleteManyArgs} args - Arguments to filter Diagnosistransactions to delete.
+     * @example
+     * // Delete a few Diagnosistransactions
+     * const { count } = await prisma.diagnosistransactions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends diagnosistransactionsDeleteManyArgs>(args?: SelectSubset<T, diagnosistransactionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Diagnosistransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {diagnosistransactionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends diagnosistransactionsUpdateManyArgs>(args: SelectSubset<T, diagnosistransactionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Diagnosistransactions.
+     * @param {diagnosistransactionsUpsertArgs} args - Arguments to update or create a Diagnosistransactions.
+     * @example
+     * // Update or create a Diagnosistransactions
+     * const diagnosistransactions = await prisma.diagnosistransactions.upsert({
+     *   create: {
+     *     // ... data to create a Diagnosistransactions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Diagnosistransactions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends diagnosistransactionsUpsertArgs>(args: SelectSubset<T, diagnosistransactionsUpsertArgs<ExtArgs>>): Prisma__diagnosistransactionsClient<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Diagnosistransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {diagnosistransactionsCountArgs} args - Arguments to filter Diagnosistransactions to count.
+     * @example
+     * // Count the number of Diagnosistransactions
+     * const count = await prisma.diagnosistransactions.count({
+     *   where: {
+     *     // ... the filter for the Diagnosistransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends diagnosistransactionsCountArgs>(
+      args?: Subset<T, diagnosistransactionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DiagnosistransactionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Diagnosistransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosistransactionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DiagnosistransactionsAggregateArgs>(args: Subset<T, DiagnosistransactionsAggregateArgs>): Prisma.PrismaPromise<GetDiagnosistransactionsAggregateType<T>>
+
+    /**
+     * Group by Diagnosistransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {diagnosistransactionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends diagnosistransactionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: diagnosistransactionsGroupByArgs['orderBy'] }
+        : { orderBy?: diagnosistransactionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, diagnosistransactionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDiagnosistransactionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the diagnosistransactions model
+   */
+  readonly fields: diagnosistransactionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for diagnosistransactions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__diagnosistransactionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends diagnosistransactions$insurersArgs<ExtArgs> = {}>(args?: Subset<T, diagnosistransactions$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the diagnosistransactions model
+   */ 
+  interface diagnosistransactionsFieldRefs {
+    readonly id: FieldRef<"diagnosistransactions", 'Int'>
+    readonly insurerid: FieldRef<"diagnosistransactions", 'Int'>
+    readonly refid: FieldRef<"diagnosistransactions", 'String'>
+    readonly transactionno: FieldRef<"diagnosistransactions", 'String'>
+    readonly hn: FieldRef<"diagnosistransactions", 'String'>
+    readonly vn: FieldRef<"diagnosistransactions", 'String'>
+    readonly dxname: FieldRef<"diagnosistransactions", 'String'>
+    readonly dxtype: FieldRef<"diagnosistransactions", 'String'>
+    readonly icd10: FieldRef<"diagnosistransactions", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * diagnosistransactions findUnique
+   */
+  export type diagnosistransactionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which diagnosistransactions to fetch.
+     */
+    where: diagnosistransactionsWhereUniqueInput
+  }
+
+  /**
+   * diagnosistransactions findUniqueOrThrow
+   */
+  export type diagnosistransactionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which diagnosistransactions to fetch.
+     */
+    where: diagnosistransactionsWhereUniqueInput
+  }
+
+  /**
+   * diagnosistransactions findFirst
+   */
+  export type diagnosistransactionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which diagnosistransactions to fetch.
+     */
+    where?: diagnosistransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of diagnosistransactions to fetch.
+     */
+    orderBy?: diagnosistransactionsOrderByWithRelationInput | diagnosistransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for diagnosistransactions.
+     */
+    cursor?: diagnosistransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` diagnosistransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` diagnosistransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of diagnosistransactions.
+     */
+    distinct?: DiagnosistransactionsScalarFieldEnum | DiagnosistransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * diagnosistransactions findFirstOrThrow
+   */
+  export type diagnosistransactionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which diagnosistransactions to fetch.
+     */
+    where?: diagnosistransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of diagnosistransactions to fetch.
+     */
+    orderBy?: diagnosistransactionsOrderByWithRelationInput | diagnosistransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for diagnosistransactions.
+     */
+    cursor?: diagnosistransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` diagnosistransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` diagnosistransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of diagnosistransactions.
+     */
+    distinct?: DiagnosistransactionsScalarFieldEnum | DiagnosistransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * diagnosistransactions findMany
+   */
+  export type diagnosistransactionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which diagnosistransactions to fetch.
+     */
+    where?: diagnosistransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of diagnosistransactions to fetch.
+     */
+    orderBy?: diagnosistransactionsOrderByWithRelationInput | diagnosistransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing diagnosistransactions.
+     */
+    cursor?: diagnosistransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` diagnosistransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` diagnosistransactions.
+     */
+    skip?: number
+    distinct?: DiagnosistransactionsScalarFieldEnum | DiagnosistransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * diagnosistransactions create
+   */
+  export type diagnosistransactionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a diagnosistransactions.
+     */
+    data?: XOR<diagnosistransactionsCreateInput, diagnosistransactionsUncheckedCreateInput>
+  }
+
+  /**
+   * diagnosistransactions createMany
+   */
+  export type diagnosistransactionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many diagnosistransactions.
+     */
+    data: diagnosistransactionsCreateManyInput | diagnosistransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * diagnosistransactions createManyAndReturn
+   */
+  export type diagnosistransactionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many diagnosistransactions.
+     */
+    data: diagnosistransactionsCreateManyInput | diagnosistransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * diagnosistransactions update
+   */
+  export type diagnosistransactionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a diagnosistransactions.
+     */
+    data: XOR<diagnosistransactionsUpdateInput, diagnosistransactionsUncheckedUpdateInput>
+    /**
+     * Choose, which diagnosistransactions to update.
+     */
+    where: diagnosistransactionsWhereUniqueInput
+  }
+
+  /**
+   * diagnosistransactions updateMany
+   */
+  export type diagnosistransactionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update diagnosistransactions.
+     */
+    data: XOR<diagnosistransactionsUpdateManyMutationInput, diagnosistransactionsUncheckedUpdateManyInput>
+    /**
+     * Filter which diagnosistransactions to update
+     */
+    where?: diagnosistransactionsWhereInput
+  }
+
+  /**
+   * diagnosistransactions upsert
+   */
+  export type diagnosistransactionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the diagnosistransactions to update in case it exists.
+     */
+    where: diagnosistransactionsWhereUniqueInput
+    /**
+     * In case the diagnosistransactions found by the `where` argument doesn't exist, create a new diagnosistransactions with this data.
+     */
+    create: XOR<diagnosistransactionsCreateInput, diagnosistransactionsUncheckedCreateInput>
+    /**
+     * In case the diagnosistransactions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<diagnosistransactionsUpdateInput, diagnosistransactionsUncheckedUpdateInput>
+  }
+
+  /**
+   * diagnosistransactions delete
+   */
+  export type diagnosistransactionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+    /**
+     * Filter which diagnosistransactions to delete.
+     */
+    where: diagnosistransactionsWhereUniqueInput
+  }
+
+  /**
+   * diagnosistransactions deleteMany
+   */
+  export type diagnosistransactionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which diagnosistransactions to delete
+     */
+    where?: diagnosistransactionsWhereInput
+  }
+
+  /**
+   * diagnosistransactions.insurers
+   */
+  export type diagnosistransactions$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * diagnosistransactions without action
+   */
+  export type diagnosistransactionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the diagnosistransactions
+     */
+    select?: diagnosistransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: diagnosistransactionsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -31223,6 +32376,21 @@ export namespace Prisma {
   };
 
   export type OpeartionispackageScalarFieldEnum = (typeof OpeartionispackageScalarFieldEnum)[keyof typeof OpeartionispackageScalarFieldEnum]
+
+
+  export const DiagnosistransactionsScalarFieldEnum: {
+    id: 'id',
+    insurerid: 'insurerid',
+    refid: 'refid',
+    transactionno: 'transactionno',
+    hn: 'hn',
+    vn: 'vn',
+    dxname: 'dxname',
+    dxtype: 'dxtype',
+    icd10: 'icd10'
+  };
+
+  export type DiagnosistransactionsScalarFieldEnum = (typeof DiagnosistransactionsScalarFieldEnum)[keyof typeof DiagnosistransactionsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -32350,6 +33518,7 @@ export namespace Prisma {
     claimants?: ClaimantsListRelationFilter
     claimdocuments?: ClaimdocumentsListRelationFilter
     claimstatus?: ClaimstatusListRelationFilter
+    diagnosistransactions?: DiagnosistransactionsListRelationFilter
     diagnosistypemapping?: DiagnosistypemappingListRelationFilter
     documenttype?: DocumenttypeListRelationFilter
     idtype?: IdtypeListRelationFilter
@@ -32377,6 +33546,7 @@ export namespace Prisma {
     claimants?: claimantsOrderByRelationAggregateInput
     claimdocuments?: claimdocumentsOrderByRelationAggregateInput
     claimstatus?: claimstatusOrderByRelationAggregateInput
+    diagnosistransactions?: diagnosistransactionsOrderByRelationAggregateInput
     diagnosistypemapping?: diagnosistypemappingOrderByRelationAggregateInput
     documenttype?: documenttypeOrderByRelationAggregateInput
     idtype?: idtypeOrderByRelationAggregateInput
@@ -32407,6 +33577,7 @@ export namespace Prisma {
     claimants?: ClaimantsListRelationFilter
     claimdocuments?: ClaimdocumentsListRelationFilter
     claimstatus?: ClaimstatusListRelationFilter
+    diagnosistransactions?: DiagnosistransactionsListRelationFilter
     diagnosistypemapping?: DiagnosistypemappingListRelationFilter
     documenttype?: DocumenttypeListRelationFilter
     idtype?: IdtypeListRelationFilter
@@ -33463,6 +34634,83 @@ export namespace Prisma {
     insurerid?: IntNullableWithAggregatesFilter<"opeartionispackage"> | number | null
   }
 
+  export type diagnosistransactionsWhereInput = {
+    AND?: diagnosistransactionsWhereInput | diagnosistransactionsWhereInput[]
+    OR?: diagnosistransactionsWhereInput[]
+    NOT?: diagnosistransactionsWhereInput | diagnosistransactionsWhereInput[]
+    id?: IntFilter<"diagnosistransactions"> | number
+    insurerid?: IntNullableFilter<"diagnosistransactions"> | number | null
+    refid?: StringNullableFilter<"diagnosistransactions"> | string | null
+    transactionno?: StringNullableFilter<"diagnosistransactions"> | string | null
+    hn?: StringNullableFilter<"diagnosistransactions"> | string | null
+    vn?: StringNullableFilter<"diagnosistransactions"> | string | null
+    dxname?: StringNullableFilter<"diagnosistransactions"> | string | null
+    dxtype?: StringNullableFilter<"diagnosistransactions"> | string | null
+    icd10?: StringNullableFilter<"diagnosistransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type diagnosistransactionsOrderByWithRelationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    dxname?: SortOrderInput | SortOrder
+    dxtype?: SortOrderInput | SortOrder
+    icd10?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type diagnosistransactionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: diagnosistransactionsWhereInput | diagnosistransactionsWhereInput[]
+    OR?: diagnosistransactionsWhereInput[]
+    NOT?: diagnosistransactionsWhereInput | diagnosistransactionsWhereInput[]
+    insurerid?: IntNullableFilter<"diagnosistransactions"> | number | null
+    refid?: StringNullableFilter<"diagnosistransactions"> | string | null
+    transactionno?: StringNullableFilter<"diagnosistransactions"> | string | null
+    hn?: StringNullableFilter<"diagnosistransactions"> | string | null
+    vn?: StringNullableFilter<"diagnosistransactions"> | string | null
+    dxname?: StringNullableFilter<"diagnosistransactions"> | string | null
+    dxtype?: StringNullableFilter<"diagnosistransactions"> | string | null
+    icd10?: StringNullableFilter<"diagnosistransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type diagnosistransactionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    dxname?: SortOrderInput | SortOrder
+    dxtype?: SortOrderInput | SortOrder
+    icd10?: SortOrderInput | SortOrder
+    _count?: diagnosistransactionsCountOrderByAggregateInput
+    _avg?: diagnosistransactionsAvgOrderByAggregateInput
+    _max?: diagnosistransactionsMaxOrderByAggregateInput
+    _min?: diagnosistransactionsMinOrderByAggregateInput
+    _sum?: diagnosistransactionsSumOrderByAggregateInput
+  }
+
+  export type diagnosistransactionsScalarWhereWithAggregatesInput = {
+    AND?: diagnosistransactionsScalarWhereWithAggregatesInput | diagnosistransactionsScalarWhereWithAggregatesInput[]
+    OR?: diagnosistransactionsScalarWhereWithAggregatesInput[]
+    NOT?: diagnosistransactionsScalarWhereWithAggregatesInput | diagnosistransactionsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"diagnosistransactions"> | number
+    insurerid?: IntNullableWithAggregatesFilter<"diagnosistransactions"> | number | null
+    refid?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+    transactionno?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+    hn?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+    vn?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+    dxname?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+    dxtype?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+    icd10?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+  }
+
   export type accidentcauseover45daysCreateInput = {
     causeovercode: string
     causeoverdesc?: string | null
@@ -34434,6 +35682,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -34461,6 +35710,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -34487,6 +35737,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -34514,6 +35765,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -35698,6 +36950,86 @@ export namespace Prisma {
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type diagnosistransactionsCreateInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    dxname?: string | null
+    dxtype?: string | null
+    icd10?: string | null
+    insurers?: insurersCreateNestedOneWithoutDiagnosistransactionsInput
+  }
+
+  export type diagnosistransactionsUncheckedCreateInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    dxname?: string | null
+    dxtype?: string | null
+    icd10?: string | null
+  }
+
+  export type diagnosistransactionsUpdateInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    dxname?: NullableStringFieldUpdateOperationsInput | string | null
+    dxtype?: NullableStringFieldUpdateOperationsInput | string | null
+    icd10?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutDiagnosistransactionsNestedInput
+  }
+
+  export type diagnosistransactionsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    dxname?: NullableStringFieldUpdateOperationsInput | string | null
+    dxtype?: NullableStringFieldUpdateOperationsInput | string | null
+    icd10?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type diagnosistransactionsCreateManyInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    dxname?: string | null
+    dxtype?: string | null
+    icd10?: string | null
+  }
+
+  export type diagnosistransactionsUpdateManyMutationInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    dxname?: NullableStringFieldUpdateOperationsInput | string | null
+    dxtype?: NullableStringFieldUpdateOperationsInput | string | null
+    icd10?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type diagnosistransactionsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    dxname?: NullableStringFieldUpdateOperationsInput | string | null
+    dxtype?: NullableStringFieldUpdateOperationsInput | string | null
+    icd10?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -36620,6 +37952,12 @@ export namespace Prisma {
     none?: claimstatusWhereInput
   }
 
+  export type DiagnosistransactionsListRelationFilter = {
+    every?: diagnosistransactionsWhereInput
+    some?: diagnosistransactionsWhereInput
+    none?: diagnosistransactionsWhereInput
+  }
+
   export type DiagnosistypemappingListRelationFilter = {
     every?: diagnosistypemappingWhereInput
     some?: diagnosistypemappingWhereInput
@@ -36717,6 +38055,10 @@ export namespace Prisma {
   }
 
   export type claimstatusOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type diagnosistransactionsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -37426,6 +38768,52 @@ export namespace Prisma {
     insurerid?: SortOrder
   }
 
+  export type diagnosistransactionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    dxname?: SortOrder
+    dxtype?: SortOrder
+    icd10?: SortOrder
+  }
+
+  export type diagnosistransactionsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type diagnosistransactionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    dxname?: SortOrder
+    dxtype?: SortOrder
+    icd10?: SortOrder
+  }
+
+  export type diagnosistransactionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    dxname?: SortOrder
+    dxtype?: SortOrder
+    icd10?: SortOrder
+  }
+
+  export type diagnosistransactionsSumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
   export type insurersCreateNestedOneWithoutAccidentcauseover45daysInput = {
     create?: XOR<insurersCreateWithoutAccidentcauseover45daysInput, insurersUncheckedCreateWithoutAccidentcauseover45daysInput>
     connectOrCreate?: insurersCreateOrConnectWithoutAccidentcauseover45daysInput
@@ -37952,6 +39340,13 @@ export namespace Prisma {
     connect?: claimstatusWhereUniqueInput | claimstatusWhereUniqueInput[]
   }
 
+  export type diagnosistransactionsCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: diagnosistransactionsCreateManyInsurersInputEnvelope
+    connect?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+  }
+
   export type diagnosistypemappingCreateNestedManyWithoutInsurersInput = {
     create?: XOR<diagnosistypemappingCreateWithoutInsurersInput, diagnosistypemappingUncheckedCreateWithoutInsurersInput> | diagnosistypemappingCreateWithoutInsurersInput[] | diagnosistypemappingUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: diagnosistypemappingCreateOrConnectWithoutInsurersInput | diagnosistypemappingCreateOrConnectWithoutInsurersInput[]
@@ -38090,6 +39485,13 @@ export namespace Prisma {
     connectOrCreate?: claimstatusCreateOrConnectWithoutInsurersInput | claimstatusCreateOrConnectWithoutInsurersInput[]
     createMany?: claimstatusCreateManyInsurersInputEnvelope
     connect?: claimstatusWhereUniqueInput | claimstatusWhereUniqueInput[]
+  }
+
+  export type diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: diagnosistransactionsCreateManyInsurersInputEnvelope
+    connect?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
   }
 
   export type diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput = {
@@ -38300,6 +39702,20 @@ export namespace Prisma {
     update?: claimstatusUpdateWithWhereUniqueWithoutInsurersInput | claimstatusUpdateWithWhereUniqueWithoutInsurersInput[]
     updateMany?: claimstatusUpdateManyWithWhereWithoutInsurersInput | claimstatusUpdateManyWithWhereWithoutInsurersInput[]
     deleteMany?: claimstatusScalarWhereInput | claimstatusScalarWhereInput[]
+  }
+
+  export type diagnosistransactionsUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: diagnosistransactionsUpsertWithWhereUniqueWithoutInsurersInput | diagnosistransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: diagnosistransactionsCreateManyInsurersInputEnvelope
+    set?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    disconnect?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    delete?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    connect?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    update?: diagnosistransactionsUpdateWithWhereUniqueWithoutInsurersInput | diagnosistransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: diagnosistransactionsUpdateManyWithWhereWithoutInsurersInput | diagnosistransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: diagnosistransactionsScalarWhereInput | diagnosistransactionsScalarWhereInput[]
   }
 
   export type diagnosistypemappingUpdateManyWithoutInsurersNestedInput = {
@@ -38580,6 +39996,20 @@ export namespace Prisma {
     update?: claimstatusUpdateWithWhereUniqueWithoutInsurersInput | claimstatusUpdateWithWhereUniqueWithoutInsurersInput[]
     updateMany?: claimstatusUpdateManyWithWhereWithoutInsurersInput | claimstatusUpdateManyWithWhereWithoutInsurersInput[]
     deleteMany?: claimstatusScalarWhereInput | claimstatusScalarWhereInput[]
+  }
+
+  export type diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: diagnosistransactionsUpsertWithWhereUniqueWithoutInsurersInput | diagnosistransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: diagnosistransactionsCreateManyInsurersInputEnvelope
+    set?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    disconnect?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    delete?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    connect?: diagnosistransactionsWhereUniqueInput | diagnosistransactionsWhereUniqueInput[]
+    update?: diagnosistransactionsUpdateWithWhereUniqueWithoutInsurersInput | diagnosistransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: diagnosistransactionsUpdateManyWithWhereWithoutInsurersInput | diagnosistransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: diagnosistransactionsScalarWhereInput | diagnosistransactionsScalarWhereInput[]
   }
 
   export type diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput = {
@@ -38866,6 +40296,22 @@ export namespace Prisma {
     update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutOpeartionispackageInput, insurersUpdateWithoutOpeartionispackageInput>, insurersUncheckedUpdateWithoutOpeartionispackageInput>
   }
 
+  export type insurersCreateNestedOneWithoutDiagnosistransactionsInput = {
+    create?: XOR<insurersCreateWithoutDiagnosistransactionsInput, insurersUncheckedCreateWithoutDiagnosistransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutDiagnosistransactionsInput
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutDiagnosistransactionsNestedInput = {
+    create?: XOR<insurersCreateWithoutDiagnosistransactionsInput, insurersUncheckedCreateWithoutDiagnosistransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutDiagnosistransactionsInput
+    upsert?: insurersUpsertWithoutDiagnosistransactionsInput
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutDiagnosistransactionsInput, insurersUpdateWithoutDiagnosistransactionsInput>, insurersUncheckedUpdateWithoutDiagnosistransactionsInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -39109,6 +40555,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -39135,6 +40582,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -39176,6 +40624,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -39202,6 +40651,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -39227,6 +40677,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -39253,6 +40704,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -39294,6 +40746,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -39320,6 +40773,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -39345,6 +40799,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -39371,6 +40826,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -39456,6 +40912,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -39482,6 +40939,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -39622,6 +41080,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -39648,6 +41107,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -39689,6 +41149,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -39715,6 +41176,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -39740,6 +41202,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -39766,6 +41229,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -39807,6 +41271,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -39833,6 +41298,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -39858,6 +41324,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -39884,6 +41351,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -40022,6 +41490,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -40048,6 +41517,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40138,6 +41608,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -40164,6 +41635,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -40205,6 +41677,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -40231,6 +41704,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40256,6 +41730,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -40282,6 +41757,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -40370,6 +41846,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -40396,6 +41873,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40462,6 +41940,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
@@ -40488,6 +41967,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
@@ -40529,6 +42009,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
@@ -40555,6 +42036,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40580,6 +42062,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
@@ -40606,6 +42089,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
@@ -40647,6 +42131,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
@@ -40673,6 +42158,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40698,6 +42184,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
@@ -40724,6 +42211,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
@@ -40765,6 +42253,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
@@ -40791,6 +42280,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40816,6 +42306,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -40842,6 +42333,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -40883,6 +42375,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -40909,6 +42402,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40934,6 +42428,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -40960,6 +42455,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -41001,6 +42497,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -41027,6 +42524,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -41401,6 +42899,37 @@ export namespace Prisma {
 
   export type claimstatusCreateManyInsurersInputEnvelope = {
     data: claimstatusCreateManyInsurersInput | claimstatusCreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type diagnosistransactionsCreateWithoutInsurersInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    dxname?: string | null
+    dxtype?: string | null
+    icd10?: string | null
+  }
+
+  export type diagnosistransactionsUncheckedCreateWithoutInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    dxname?: string | null
+    dxtype?: string | null
+    icd10?: string | null
+  }
+
+  export type diagnosistransactionsCreateOrConnectWithoutInsurersInput = {
+    where: diagnosistransactionsWhereUniqueInput
+    create: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type diagnosistransactionsCreateManyInsurersInputEnvelope = {
+    data: diagnosistransactionsCreateManyInsurersInput | diagnosistransactionsCreateManyInsurersInput[]
     skipDuplicates?: boolean
   }
 
@@ -41933,6 +43462,37 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"claimstatus"> | number | null
   }
 
+  export type diagnosistransactionsUpsertWithWhereUniqueWithoutInsurersInput = {
+    where: diagnosistransactionsWhereUniqueInput
+    update: XOR<diagnosistransactionsUpdateWithoutInsurersInput, diagnosistransactionsUncheckedUpdateWithoutInsurersInput>
+    create: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type diagnosistransactionsUpdateWithWhereUniqueWithoutInsurersInput = {
+    where: diagnosistransactionsWhereUniqueInput
+    data: XOR<diagnosistransactionsUpdateWithoutInsurersInput, diagnosistransactionsUncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type diagnosistransactionsUpdateManyWithWhereWithoutInsurersInput = {
+    where: diagnosistransactionsScalarWhereInput
+    data: XOR<diagnosistransactionsUpdateManyMutationInput, diagnosistransactionsUncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type diagnosistransactionsScalarWhereInput = {
+    AND?: diagnosistransactionsScalarWhereInput | diagnosistransactionsScalarWhereInput[]
+    OR?: diagnosistransactionsScalarWhereInput[]
+    NOT?: diagnosistransactionsScalarWhereInput | diagnosistransactionsScalarWhereInput[]
+    id?: IntFilter<"diagnosistransactions"> | number
+    insurerid?: IntNullableFilter<"diagnosistransactions"> | number | null
+    refid?: StringNullableFilter<"diagnosistransactions"> | string | null
+    transactionno?: StringNullableFilter<"diagnosistransactions"> | string | null
+    hn?: StringNullableFilter<"diagnosistransactions"> | string | null
+    vn?: StringNullableFilter<"diagnosistransactions"> | string | null
+    dxname?: StringNullableFilter<"diagnosistransactions"> | string | null
+    dxtype?: StringNullableFilter<"diagnosistransactions"> | string | null
+    icd10?: StringNullableFilter<"diagnosistransactions"> | string | null
+  }
+
   export type diagnosistypemappingUpsertWithWhereUniqueWithoutInsurersInput = {
     where: diagnosistypemappingWhereUniqueInput
     update: XOR<diagnosistypemappingUpdateWithoutInsurersInput, diagnosistypemappingUncheckedUpdateWithoutInsurersInput>
@@ -42215,6 +43775,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -42241,6 +43802,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42282,6 +43844,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -42308,6 +43871,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42333,6 +43897,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -42359,6 +43924,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42400,6 +43966,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -42426,6 +43993,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42451,6 +44019,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -42477,6 +44046,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42518,6 +44088,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -42544,6 +44115,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42720,6 +44292,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -42746,6 +44319,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42787,6 +44361,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -42813,6 +44388,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42838,6 +44414,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -42864,6 +44441,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42905,6 +44483,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -42931,6 +44510,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42957,6 +44537,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -42983,6 +44564,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -43024,6 +44606,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -43050,6 +44633,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -43075,6 +44659,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -43101,6 +44686,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -43142,6 +44728,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -43168,12 +44755,135 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
     illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersCreateWithoutDiagnosistransactionsInput = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutDiagnosistransactionsInput = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutDiagnosistransactionsInput = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutDiagnosistransactionsInput, insurersUncheckedCreateWithoutDiagnosistransactionsInput>
+  }
+
+  export type insurersUpsertWithoutDiagnosistransactionsInput = {
+    update: XOR<insurersUpdateWithoutDiagnosistransactionsInput, insurersUncheckedUpdateWithoutDiagnosistransactionsInput>
+    create: XOR<insurersCreateWithoutDiagnosistransactionsInput, insurersUncheckedCreateWithoutDiagnosistransactionsInput>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutDiagnosistransactionsInput = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutDiagnosistransactionsInput, insurersUncheckedUpdateWithoutDiagnosistransactionsInput>
+  }
+
+  export type insurersUpdateWithoutDiagnosistransactionsInput = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutDiagnosistransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
@@ -43582,6 +45292,17 @@ export namespace Prisma {
     claimstatusdesc_en?: string | null
   }
 
+  export type diagnosistransactionsCreateManyInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    dxname?: string | null
+    dxtype?: string | null
+    icd10?: string | null
+  }
+
   export type diagnosistypemappingCreateManyInsurersInput = {
     id?: number
     dxtypecodetrakcare: string
@@ -43957,6 +45678,38 @@ export namespace Prisma {
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type diagnosistransactionsUpdateWithoutInsurersInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    dxname?: NullableStringFieldUpdateOperationsInput | string | null
+    dxtype?: NullableStringFieldUpdateOperationsInput | string | null
+    icd10?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type diagnosistransactionsUncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    dxname?: NullableStringFieldUpdateOperationsInput | string | null
+    dxtype?: NullableStringFieldUpdateOperationsInput | string | null
+    icd10?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type diagnosistransactionsUncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    dxname?: NullableStringFieldUpdateOperationsInput | string | null
+    dxtype?: NullableStringFieldUpdateOperationsInput | string | null
+    icd10?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type diagnosistypemappingUpdateWithoutInsurersInput = {
     dxtypecodetrakcare?: StringFieldUpdateOperationsInput | string
     dxtypenametrakcare?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44276,6 +46029,10 @@ export namespace Prisma {
      * @deprecated Use opeartionispackageDefaultArgs instead
      */
     export type opeartionispackageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = opeartionispackageDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use diagnosistransactionsDefaultArgs instead
+     */
+    export type diagnosistransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = diagnosistransactionsDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

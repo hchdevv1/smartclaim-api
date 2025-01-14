@@ -189,6 +189,7 @@ model insurers {
   claimants               claimants[]
   claimdocuments          claimdocuments[]
   claimstatus             claimstatus[]
+  diagnosistransactions   diagnosistransactions[]
   diagnosistypemapping    diagnosistypemapping[]
   documenttype            documenttype[]
   idtype                  idtype[]
@@ -379,4 +380,17 @@ model opeartionispackage {
   oisname   String?   @db.VarChar(255)
   insurerid Int?
   insurers  insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model diagnosistransactions {
+  id            Int       @id @default(autoincrement())
+  insurerid     Int?
+  refid         String?   @db.VarChar(255)
+  transactionno String?   @db.VarChar(255)
+  hn            String?   @db.VarChar(10)
+  vn            String?   @db.VarChar(10)
+  dxname        String?   @db.VarChar(255)
+  dxtype        String?   @db.VarChar(10)
+  icd10         String?   @db.VarChar(255)
+  insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
 }
