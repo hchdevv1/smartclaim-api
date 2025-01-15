@@ -175,31 +175,34 @@ model injurydetail {
 }
 
 model insurers {
-  id                      Int                       @id @default(autoincrement())
-  insurerid               Int                       @unique(map: "unique_insurerid")
-  insurercode             Int?
-  insurername             String?                   @db.VarChar(100)
-  accidentcauseover45days accidentcauseover45days[]
-  accidentplace           accidentplace[]
-  accidenttransactions    accidenttransactions[]
-  accidenttransactions22  accidenttransactions22[]
-  anesthesialist          anesthesialist[]
-  causeofinjuryside       causeofinjuryside[]
-  causeofinjurywoundtype  causeofinjurywoundtype[]
-  claimants               claimants[]
-  claimdocuments          claimdocuments[]
-  claimstatus             claimstatus[]
-  diagnosistransactions   diagnosistransactions[]
-  diagnosistypemapping    diagnosistypemapping[]
-  documenttype            documenttype[]
-  idtype                  idtype[]
-  illnesssurgery          illnesssurgery[]
-  illnesstype             illnesstype[]
-  indicationsforadmission indicationsforadmission[]
-  opeartionispackage      opeartionispackage[]
-  policytype              policytype[]
-  proceduretransactions   proceduretransactions[]
-  servicesetting          servicesetting[]
+  id                         Int                          @id @default(autoincrement())
+  insurerid                  Int                          @unique(map: "unique_insurerid")
+  insurercode                Int?
+  insurername                String?                      @db.VarChar(100)
+  accidentcauseover45days    accidentcauseover45days[]
+  accidentplace              accidentplace[]
+  accidenttransactions       accidenttransactions[]
+  accidenttransactions22     accidenttransactions22[]
+  anesthesialist             anesthesialist[]
+  causeofinjuryside          causeofinjuryside[]
+  causeofinjurywoundtype     causeofinjurywoundtype[]
+  claimants                  claimants[]
+  claimdocuments             claimdocuments[]
+  claimstatus                claimstatus[]
+  concurrentnotetransactions concurrentnotetransactions[]
+  diagnosistransactions      diagnosistransactions[]
+  diagnosistypemapping       diagnosistypemapping[]
+  documenttype               documenttype[]
+  idtype                     idtype[]
+  illnesssurgery             illnesssurgery[]
+  illnesstype                illnesstype[]
+  indicationsforadmission    indicationsforadmission[]
+  opeartionispackage         opeartionispackage[]
+  policytype                 policytype[]
+  preauthnotetransactions    preauthnotetransactions[]
+  prebillingtransactions     prebillingtransactions[]
+  proceduretransactions      proceduretransactions[]
+  servicesetting             servicesetting[]
 }
 
 model medicaltransactions {
@@ -237,10 +240,14 @@ model medicaltransactions {
   preauthreferclaimno             String?  @db.VarChar(100)
   preauthreferocc                 String?  @db.VarChar(255)
   ispackage                       Boolean?
-  totalestimatedcost              Decimal? @db.Decimal(10, 2)
   anesthesialist                  String?  @db.VarChar(10)
   indicationforadmission          String?  @db.VarChar(10)
   accidentdate                    String?  @db.VarChar(255)
+  havediagnosis                   Boolean?
+  haveprebilling                  Boolean?
+  havepreauthnote                 Boolean?
+  haveconcurrentnote              Boolean?
+  totalestimatedcost              String?  @db.VarChar(50)
 }
 
 model policytype {
@@ -316,6 +323,9 @@ model transactionclaim {
   totalbillamount         Decimal?   @db.Decimal(10, 2)
   visitlocation           String?    @db.VarChar(255)
   paymentdate             String?    @db.VarChar
+  preauthreferclaimno     String?    @db.VarChar(100)
+  preauthreferocc         String?    @db.VarChar(255)
+  reservedate             String?    @db.VarChar(100)
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 
@@ -393,4 +403,45 @@ model diagnosistransactions {
   dxtype        String?   @db.VarChar(10)
   icd10         String?   @db.VarChar(255)
   insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
+}
+
+model concurrentnotetransactions {
+  id                 Int       @id @default(autoincrement())
+  insurerid          Int?
+  refid              String?   @db.VarChar(255)
+  transactionno      String?   @db.VarChar(255)
+  hn                 String?   @db.VarChar(10)
+  vn                 String?   @db.VarChar(10)
+  concurrentdatetime String?   @db.VarChar(255)
+  concurrentdetail   String?   @db.VarChar(255)
+  insurers           insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
+}
+
+model preauthnotetransactions {
+  id              Int       @id @default(autoincrement())
+  insurerid       Int?
+  refid           String?   @db.VarChar(255)
+  transactionno   String?   @db.VarChar(255)
+  hn              String?   @db.VarChar(10)
+  vn              String?   @db.VarChar(10)
+  preauthdatetime String?   @db.VarChar(255)
+  preauthdetail   String?   @db.VarChar(255)
+  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
+}
+
+model prebillingtransactions {
+  id               Int       @id @default(autoincrement())
+  insurerid        Int?
+  refid            String?   @db.VarChar(255)
+  transactionno    String?   @db.VarChar(255)
+  hn               String?   @db.VarChar(10)
+  vn               String?   @db.VarChar(10)
+  localbillingcode String?   @db.VarChar(255)
+  localbillingname String?   @db.VarChar(255)
+  simbbillingcode  String?   @db.VarChar(255)
+  payorbillingcode String?   @db.VarChar(255)
+  billinginitial   String?   @db.VarChar(255)
+  billingdiscount  String?   @db.VarChar(255)
+  billingnetamount String?   @db.VarChar(255)
+  insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
 }

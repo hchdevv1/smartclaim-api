@@ -148,6 +148,21 @@ export type opeartionispackage = $Result.DefaultSelection<Prisma.$opeartionispac
  * 
  */
 export type diagnosistransactions = $Result.DefaultSelection<Prisma.$diagnosistransactionsPayload>
+/**
+ * Model concurrentnotetransactions
+ * 
+ */
+export type concurrentnotetransactions = $Result.DefaultSelection<Prisma.$concurrentnotetransactionsPayload>
+/**
+ * Model preauthnotetransactions
+ * 
+ */
+export type preauthnotetransactions = $Result.DefaultSelection<Prisma.$preauthnotetransactionsPayload>
+/**
+ * Model prebillingtransactions
+ * 
+ */
+export type prebillingtransactions = $Result.DefaultSelection<Prisma.$prebillingtransactionsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -541,6 +556,36 @@ export class PrismaClient<
     * ```
     */
   get diagnosistransactions(): Prisma.diagnosistransactionsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.concurrentnotetransactions`: Exposes CRUD operations for the **concurrentnotetransactions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Concurrentnotetransactions
+    * const concurrentnotetransactions = await prisma.concurrentnotetransactions.findMany()
+    * ```
+    */
+  get concurrentnotetransactions(): Prisma.concurrentnotetransactionsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.preauthnotetransactions`: Exposes CRUD operations for the **preauthnotetransactions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Preauthnotetransactions
+    * const preauthnotetransactions = await prisma.preauthnotetransactions.findMany()
+    * ```
+    */
+  get preauthnotetransactions(): Prisma.preauthnotetransactionsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.prebillingtransactions`: Exposes CRUD operations for the **prebillingtransactions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Prebillingtransactions
+    * const prebillingtransactions = await prisma.prebillingtransactions.findMany()
+    * ```
+    */
+  get prebillingtransactions(): Prisma.prebillingtransactionsDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1008,7 +1053,10 @@ export namespace Prisma {
     anesthesialist: 'anesthesialist',
     indicationsforadmission: 'indicationsforadmission',
     opeartionispackage: 'opeartionispackage',
-    diagnosistransactions: 'diagnosistransactions'
+    diagnosistransactions: 'diagnosistransactions',
+    concurrentnotetransactions: 'concurrentnotetransactions',
+    preauthnotetransactions: 'preauthnotetransactions',
+    prebillingtransactions: 'prebillingtransactions'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1024,7 +1072,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "accidenttransactions22" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage" | "diagnosistransactions"
+      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "accidenttransactions22" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage" | "diagnosistransactions" | "concurrentnotetransactions" | "preauthnotetransactions" | "prebillingtransactions"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2918,6 +2966,216 @@ export namespace Prisma {
           }
         }
       }
+      concurrentnotetransactions: {
+        payload: Prisma.$concurrentnotetransactionsPayload<ExtArgs>
+        fields: Prisma.concurrentnotetransactionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.concurrentnotetransactionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.concurrentnotetransactionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>
+          }
+          findFirst: {
+            args: Prisma.concurrentnotetransactionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.concurrentnotetransactionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>
+          }
+          findMany: {
+            args: Prisma.concurrentnotetransactionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>[]
+          }
+          create: {
+            args: Prisma.concurrentnotetransactionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>
+          }
+          createMany: {
+            args: Prisma.concurrentnotetransactionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.concurrentnotetransactionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>[]
+          }
+          delete: {
+            args: Prisma.concurrentnotetransactionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>
+          }
+          update: {
+            args: Prisma.concurrentnotetransactionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.concurrentnotetransactionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.concurrentnotetransactionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.concurrentnotetransactionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$concurrentnotetransactionsPayload>
+          }
+          aggregate: {
+            args: Prisma.ConcurrentnotetransactionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConcurrentnotetransactions>
+          }
+          groupBy: {
+            args: Prisma.concurrentnotetransactionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConcurrentnotetransactionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.concurrentnotetransactionsCountArgs<ExtArgs>
+            result: $Utils.Optional<ConcurrentnotetransactionsCountAggregateOutputType> | number
+          }
+        }
+      }
+      preauthnotetransactions: {
+        payload: Prisma.$preauthnotetransactionsPayload<ExtArgs>
+        fields: Prisma.preauthnotetransactionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.preauthnotetransactionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.preauthnotetransactionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>
+          }
+          findFirst: {
+            args: Prisma.preauthnotetransactionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.preauthnotetransactionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>
+          }
+          findMany: {
+            args: Prisma.preauthnotetransactionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>[]
+          }
+          create: {
+            args: Prisma.preauthnotetransactionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>
+          }
+          createMany: {
+            args: Prisma.preauthnotetransactionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.preauthnotetransactionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>[]
+          }
+          delete: {
+            args: Prisma.preauthnotetransactionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>
+          }
+          update: {
+            args: Prisma.preauthnotetransactionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.preauthnotetransactionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.preauthnotetransactionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.preauthnotetransactionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$preauthnotetransactionsPayload>
+          }
+          aggregate: {
+            args: Prisma.PreauthnotetransactionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePreauthnotetransactions>
+          }
+          groupBy: {
+            args: Prisma.preauthnotetransactionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PreauthnotetransactionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.preauthnotetransactionsCountArgs<ExtArgs>
+            result: $Utils.Optional<PreauthnotetransactionsCountAggregateOutputType> | number
+          }
+        }
+      }
+      prebillingtransactions: {
+        payload: Prisma.$prebillingtransactionsPayload<ExtArgs>
+        fields: Prisma.prebillingtransactionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.prebillingtransactionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.prebillingtransactionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>
+          }
+          findFirst: {
+            args: Prisma.prebillingtransactionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.prebillingtransactionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>
+          }
+          findMany: {
+            args: Prisma.prebillingtransactionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>[]
+          }
+          create: {
+            args: Prisma.prebillingtransactionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>
+          }
+          createMany: {
+            args: Prisma.prebillingtransactionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.prebillingtransactionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>[]
+          }
+          delete: {
+            args: Prisma.prebillingtransactionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>
+          }
+          update: {
+            args: Prisma.prebillingtransactionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.prebillingtransactionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.prebillingtransactionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.prebillingtransactionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$prebillingtransactionsPayload>
+          }
+          aggregate: {
+            args: Prisma.PrebillingtransactionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePrebillingtransactions>
+          }
+          groupBy: {
+            args: Prisma.prebillingtransactionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PrebillingtransactionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.prebillingtransactionsCountArgs<ExtArgs>
+            result: $Utils.Optional<PrebillingtransactionsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3191,6 +3449,7 @@ export namespace Prisma {
     claimants: number
     claimdocuments: number
     claimstatus: number
+    concurrentnotetransactions: number
     diagnosistransactions: number
     diagnosistypemapping: number
     documenttype: number
@@ -3200,6 +3459,8 @@ export namespace Prisma {
     indicationsforadmission: number
     opeartionispackage: number
     policytype: number
+    preauthnotetransactions: number
+    prebillingtransactions: number
     proceduretransactions: number
     servicesetting: number
   }
@@ -3215,6 +3476,7 @@ export namespace Prisma {
     claimants?: boolean | InsurersCountOutputTypeCountClaimantsArgs
     claimdocuments?: boolean | InsurersCountOutputTypeCountClaimdocumentsArgs
     claimstatus?: boolean | InsurersCountOutputTypeCountClaimstatusArgs
+    concurrentnotetransactions?: boolean | InsurersCountOutputTypeCountConcurrentnotetransactionsArgs
     diagnosistransactions?: boolean | InsurersCountOutputTypeCountDiagnosistransactionsArgs
     diagnosistypemapping?: boolean | InsurersCountOutputTypeCountDiagnosistypemappingArgs
     documenttype?: boolean | InsurersCountOutputTypeCountDocumenttypeArgs
@@ -3224,6 +3486,8 @@ export namespace Prisma {
     indicationsforadmission?: boolean | InsurersCountOutputTypeCountIndicationsforadmissionArgs
     opeartionispackage?: boolean | InsurersCountOutputTypeCountOpeartionispackageArgs
     policytype?: boolean | InsurersCountOutputTypeCountPolicytypeArgs
+    preauthnotetransactions?: boolean | InsurersCountOutputTypeCountPreauthnotetransactionsArgs
+    prebillingtransactions?: boolean | InsurersCountOutputTypeCountPrebillingtransactionsArgs
     proceduretransactions?: boolean | InsurersCountOutputTypeCountProceduretransactionsArgs
     servicesetting?: boolean | InsurersCountOutputTypeCountServicesettingArgs
   }
@@ -3312,6 +3576,13 @@ export namespace Prisma {
   /**
    * InsurersCountOutputType without action
    */
+  export type InsurersCountOutputTypeCountConcurrentnotetransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: concurrentnotetransactionsWhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
   export type InsurersCountOutputTypeCountDiagnosistransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: diagnosistransactionsWhereInput
   }
@@ -3370,6 +3641,20 @@ export namespace Prisma {
    */
   export type InsurersCountOutputTypeCountPolicytypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: policytypeWhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
+  export type InsurersCountOutputTypeCountPreauthnotetransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: preauthnotetransactionsWhereInput
+  }
+
+  /**
+   * InsurersCountOutputType without action
+   */
+  export type InsurersCountOutputTypeCountPrebillingtransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: prebillingtransactionsWhereInput
   }
 
   /**
@@ -18779,6 +19064,7 @@ export namespace Prisma {
     claimants?: boolean | insurers$claimantsArgs<ExtArgs>
     claimdocuments?: boolean | insurers$claimdocumentsArgs<ExtArgs>
     claimstatus?: boolean | insurers$claimstatusArgs<ExtArgs>
+    concurrentnotetransactions?: boolean | insurers$concurrentnotetransactionsArgs<ExtArgs>
     diagnosistransactions?: boolean | insurers$diagnosistransactionsArgs<ExtArgs>
     diagnosistypemapping?: boolean | insurers$diagnosistypemappingArgs<ExtArgs>
     documenttype?: boolean | insurers$documenttypeArgs<ExtArgs>
@@ -18788,6 +19074,8 @@ export namespace Prisma {
     indicationsforadmission?: boolean | insurers$indicationsforadmissionArgs<ExtArgs>
     opeartionispackage?: boolean | insurers$opeartionispackageArgs<ExtArgs>
     policytype?: boolean | insurers$policytypeArgs<ExtArgs>
+    preauthnotetransactions?: boolean | insurers$preauthnotetransactionsArgs<ExtArgs>
+    prebillingtransactions?: boolean | insurers$prebillingtransactionsArgs<ExtArgs>
     proceduretransactions?: boolean | insurers$proceduretransactionsArgs<ExtArgs>
     servicesetting?: boolean | insurers$servicesettingArgs<ExtArgs>
     _count?: boolean | InsurersCountOutputTypeDefaultArgs<ExtArgs>
@@ -18818,6 +19106,7 @@ export namespace Prisma {
     claimants?: boolean | insurers$claimantsArgs<ExtArgs>
     claimdocuments?: boolean | insurers$claimdocumentsArgs<ExtArgs>
     claimstatus?: boolean | insurers$claimstatusArgs<ExtArgs>
+    concurrentnotetransactions?: boolean | insurers$concurrentnotetransactionsArgs<ExtArgs>
     diagnosistransactions?: boolean | insurers$diagnosistransactionsArgs<ExtArgs>
     diagnosistypemapping?: boolean | insurers$diagnosistypemappingArgs<ExtArgs>
     documenttype?: boolean | insurers$documenttypeArgs<ExtArgs>
@@ -18827,6 +19116,8 @@ export namespace Prisma {
     indicationsforadmission?: boolean | insurers$indicationsforadmissionArgs<ExtArgs>
     opeartionispackage?: boolean | insurers$opeartionispackageArgs<ExtArgs>
     policytype?: boolean | insurers$policytypeArgs<ExtArgs>
+    preauthnotetransactions?: boolean | insurers$preauthnotetransactionsArgs<ExtArgs>
+    prebillingtransactions?: boolean | insurers$prebillingtransactionsArgs<ExtArgs>
     proceduretransactions?: boolean | insurers$proceduretransactionsArgs<ExtArgs>
     servicesetting?: boolean | insurers$servicesettingArgs<ExtArgs>
     _count?: boolean | InsurersCountOutputTypeDefaultArgs<ExtArgs>
@@ -18846,6 +19137,7 @@ export namespace Prisma {
       claimants: Prisma.$claimantsPayload<ExtArgs>[]
       claimdocuments: Prisma.$claimdocumentsPayload<ExtArgs>[]
       claimstatus: Prisma.$claimstatusPayload<ExtArgs>[]
+      concurrentnotetransactions: Prisma.$concurrentnotetransactionsPayload<ExtArgs>[]
       diagnosistransactions: Prisma.$diagnosistransactionsPayload<ExtArgs>[]
       diagnosistypemapping: Prisma.$diagnosistypemappingPayload<ExtArgs>[]
       documenttype: Prisma.$documenttypePayload<ExtArgs>[]
@@ -18855,6 +19147,8 @@ export namespace Prisma {
       indicationsforadmission: Prisma.$indicationsforadmissionPayload<ExtArgs>[]
       opeartionispackage: Prisma.$opeartionispackagePayload<ExtArgs>[]
       policytype: Prisma.$policytypePayload<ExtArgs>[]
+      preauthnotetransactions: Prisma.$preauthnotetransactionsPayload<ExtArgs>[]
+      prebillingtransactions: Prisma.$prebillingtransactionsPayload<ExtArgs>[]
       proceduretransactions: Prisma.$proceduretransactionsPayload<ExtArgs>[]
       servicesetting: Prisma.$servicesettingPayload<ExtArgs>[]
     }
@@ -19237,6 +19531,7 @@ export namespace Prisma {
     claimants<T extends insurers$claimantsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$claimantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$claimantsPayload<ExtArgs>, T, "findMany"> | Null>
     claimdocuments<T extends insurers$claimdocumentsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$claimdocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$claimdocumentsPayload<ExtArgs>, T, "findMany"> | Null>
     claimstatus<T extends insurers$claimstatusArgs<ExtArgs> = {}>(args?: Subset<T, insurers$claimstatusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$claimstatusPayload<ExtArgs>, T, "findMany"> | Null>
+    concurrentnotetransactions<T extends insurers$concurrentnotetransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$concurrentnotetransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "findMany"> | Null>
     diagnosistransactions<T extends insurers$diagnosistransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$diagnosistransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$diagnosistransactionsPayload<ExtArgs>, T, "findMany"> | Null>
     diagnosistypemapping<T extends insurers$diagnosistypemappingArgs<ExtArgs> = {}>(args?: Subset<T, insurers$diagnosistypemappingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$diagnosistypemappingPayload<ExtArgs>, T, "findMany"> | Null>
     documenttype<T extends insurers$documenttypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$documenttypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$documenttypePayload<ExtArgs>, T, "findMany"> | Null>
@@ -19246,6 +19541,8 @@ export namespace Prisma {
     indicationsforadmission<T extends insurers$indicationsforadmissionArgs<ExtArgs> = {}>(args?: Subset<T, insurers$indicationsforadmissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$indicationsforadmissionPayload<ExtArgs>, T, "findMany"> | Null>
     opeartionispackage<T extends insurers$opeartionispackageArgs<ExtArgs> = {}>(args?: Subset<T, insurers$opeartionispackageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$opeartionispackagePayload<ExtArgs>, T, "findMany"> | Null>
     policytype<T extends insurers$policytypeArgs<ExtArgs> = {}>(args?: Subset<T, insurers$policytypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$policytypePayload<ExtArgs>, T, "findMany"> | Null>
+    preauthnotetransactions<T extends insurers$preauthnotetransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$preauthnotetransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "findMany"> | Null>
+    prebillingtransactions<T extends insurers$prebillingtransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$prebillingtransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "findMany"> | Null>
     proceduretransactions<T extends insurers$proceduretransactionsArgs<ExtArgs> = {}>(args?: Subset<T, insurers$proceduretransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$proceduretransactionsPayload<ExtArgs>, T, "findMany"> | Null>
     servicesetting<T extends insurers$servicesettingArgs<ExtArgs> = {}>(args?: Subset<T, insurers$servicesettingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$servicesettingPayload<ExtArgs>, T, "findMany"> | Null>
     /**
@@ -19795,6 +20092,26 @@ export namespace Prisma {
   }
 
   /**
+   * insurers.concurrentnotetransactions
+   */
+  export type insurers$concurrentnotetransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    where?: concurrentnotetransactionsWhereInput
+    orderBy?: concurrentnotetransactionsOrderByWithRelationInput | concurrentnotetransactionsOrderByWithRelationInput[]
+    cursor?: concurrentnotetransactionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConcurrentnotetransactionsScalarFieldEnum | ConcurrentnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
    * insurers.diagnosistransactions
    */
   export type insurers$diagnosistransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19975,6 +20292,46 @@ export namespace Prisma {
   }
 
   /**
+   * insurers.preauthnotetransactions
+   */
+  export type insurers$preauthnotetransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    where?: preauthnotetransactionsWhereInput
+    orderBy?: preauthnotetransactionsOrderByWithRelationInput | preauthnotetransactionsOrderByWithRelationInput[]
+    cursor?: preauthnotetransactionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PreauthnotetransactionsScalarFieldEnum | PreauthnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * insurers.prebillingtransactions
+   */
+  export type insurers$prebillingtransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    where?: prebillingtransactionsWhereInput
+    orderBy?: prebillingtransactionsOrderByWithRelationInput | prebillingtransactionsOrderByWithRelationInput[]
+    cursor?: prebillingtransactionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PrebillingtransactionsScalarFieldEnum | PrebillingtransactionsScalarFieldEnum[]
+  }
+
+  /**
    * insurers.proceduretransactions
    */
   export type insurers$proceduretransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20044,13 +20401,11 @@ export namespace Prisma {
   export type MedicaltransactionsAvgAggregateOutputType = {
     id: number | null
     insurerid: number | null
-    totalestimatedcost: Decimal | null
   }
 
   export type MedicaltransactionsSumAggregateOutputType = {
     id: number | null
     insurerid: number | null
-    totalestimatedcost: Decimal | null
   }
 
   export type MedicaltransactionsMinAggregateOutputType = {
@@ -20088,10 +20443,14 @@ export namespace Prisma {
     preauthreferclaimno: string | null
     preauthreferocc: string | null
     ispackage: boolean | null
-    totalestimatedcost: Decimal | null
     anesthesialist: string | null
     indicationforadmission: string | null
     accidentdate: string | null
+    havediagnosis: boolean | null
+    haveprebilling: boolean | null
+    havepreauthnote: boolean | null
+    haveconcurrentnote: boolean | null
+    totalestimatedcost: string | null
   }
 
   export type MedicaltransactionsMaxAggregateOutputType = {
@@ -20129,10 +20488,14 @@ export namespace Prisma {
     preauthreferclaimno: string | null
     preauthreferocc: string | null
     ispackage: boolean | null
-    totalestimatedcost: Decimal | null
     anesthesialist: string | null
     indicationforadmission: string | null
     accidentdate: string | null
+    havediagnosis: boolean | null
+    haveprebilling: boolean | null
+    havepreauthnote: boolean | null
+    haveconcurrentnote: boolean | null
+    totalestimatedcost: string | null
   }
 
   export type MedicaltransactionsCountAggregateOutputType = {
@@ -20170,10 +20533,14 @@ export namespace Prisma {
     preauthreferclaimno: number
     preauthreferocc: number
     ispackage: number
-    totalestimatedcost: number
     anesthesialist: number
     indicationforadmission: number
     accidentdate: number
+    havediagnosis: number
+    haveprebilling: number
+    havepreauthnote: number
+    haveconcurrentnote: number
+    totalestimatedcost: number
     _all: number
   }
 
@@ -20181,13 +20548,11 @@ export namespace Prisma {
   export type MedicaltransactionsAvgAggregateInputType = {
     id?: true
     insurerid?: true
-    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsSumAggregateInputType = {
     id?: true
     insurerid?: true
-    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsMinAggregateInputType = {
@@ -20225,10 +20590,14 @@ export namespace Prisma {
     preauthreferclaimno?: true
     preauthreferocc?: true
     ispackage?: true
-    totalestimatedcost?: true
     anesthesialist?: true
     indicationforadmission?: true
     accidentdate?: true
+    havediagnosis?: true
+    haveprebilling?: true
+    havepreauthnote?: true
+    haveconcurrentnote?: true
+    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsMaxAggregateInputType = {
@@ -20266,10 +20635,14 @@ export namespace Prisma {
     preauthreferclaimno?: true
     preauthreferocc?: true
     ispackage?: true
-    totalestimatedcost?: true
     anesthesialist?: true
     indicationforadmission?: true
     accidentdate?: true
+    havediagnosis?: true
+    haveprebilling?: true
+    havepreauthnote?: true
+    haveconcurrentnote?: true
+    totalestimatedcost?: true
   }
 
   export type MedicaltransactionsCountAggregateInputType = {
@@ -20307,10 +20680,14 @@ export namespace Prisma {
     preauthreferclaimno?: true
     preauthreferocc?: true
     ispackage?: true
-    totalestimatedcost?: true
     anesthesialist?: true
     indicationforadmission?: true
     accidentdate?: true
+    havediagnosis?: true
+    haveprebilling?: true
+    havepreauthnote?: true
+    haveconcurrentnote?: true
+    totalestimatedcost?: true
     _all?: true
   }
 
@@ -20435,10 +20812,14 @@ export namespace Prisma {
     preauthreferclaimno: string | null
     preauthreferocc: string | null
     ispackage: boolean | null
-    totalestimatedcost: Decimal | null
     anesthesialist: string | null
     indicationforadmission: string | null
     accidentdate: string | null
+    havediagnosis: boolean | null
+    haveprebilling: boolean | null
+    havepreauthnote: boolean | null
+    haveconcurrentnote: boolean | null
+    totalestimatedcost: string | null
     _count: MedicaltransactionsCountAggregateOutputType | null
     _avg: MedicaltransactionsAvgAggregateOutputType | null
     _sum: MedicaltransactionsSumAggregateOutputType | null
@@ -20495,10 +20876,14 @@ export namespace Prisma {
     preauthreferclaimno?: boolean
     preauthreferocc?: boolean
     ispackage?: boolean
-    totalestimatedcost?: boolean
     anesthesialist?: boolean
     indicationforadmission?: boolean
     accidentdate?: boolean
+    havediagnosis?: boolean
+    haveprebilling?: boolean
+    havepreauthnote?: boolean
+    haveconcurrentnote?: boolean
+    totalestimatedcost?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20536,10 +20921,14 @@ export namespace Prisma {
     preauthreferclaimno?: boolean
     preauthreferocc?: boolean
     ispackage?: boolean
-    totalestimatedcost?: boolean
     anesthesialist?: boolean
     indicationforadmission?: boolean
     accidentdate?: boolean
+    havediagnosis?: boolean
+    haveprebilling?: boolean
+    havepreauthnote?: boolean
+    haveconcurrentnote?: boolean
+    totalestimatedcost?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectScalar = {
@@ -20577,10 +20966,14 @@ export namespace Prisma {
     preauthreferclaimno?: boolean
     preauthreferocc?: boolean
     ispackage?: boolean
-    totalestimatedcost?: boolean
     anesthesialist?: boolean
     indicationforadmission?: boolean
     accidentdate?: boolean
+    havediagnosis?: boolean
+    haveprebilling?: boolean
+    havepreauthnote?: boolean
+    haveconcurrentnote?: boolean
+    totalestimatedcost?: boolean
   }
 
 
@@ -20622,10 +21015,14 @@ export namespace Prisma {
       preauthreferclaimno: string | null
       preauthreferocc: string | null
       ispackage: boolean | null
-      totalestimatedcost: Prisma.Decimal | null
       anesthesialist: string | null
       indicationforadmission: string | null
       accidentdate: string | null
+      havediagnosis: boolean | null
+      haveprebilling: boolean | null
+      havepreauthnote: boolean | null
+      haveconcurrentnote: boolean | null
+      totalestimatedcost: string | null
     }, ExtArgs["result"]["medicaltransactions"]>
     composites: {}
   }
@@ -21053,10 +21450,14 @@ export namespace Prisma {
     readonly preauthreferclaimno: FieldRef<"medicaltransactions", 'String'>
     readonly preauthreferocc: FieldRef<"medicaltransactions", 'String'>
     readonly ispackage: FieldRef<"medicaltransactions", 'Boolean'>
-    readonly totalestimatedcost: FieldRef<"medicaltransactions", 'Decimal'>
     readonly anesthesialist: FieldRef<"medicaltransactions", 'String'>
     readonly indicationforadmission: FieldRef<"medicaltransactions", 'String'>
     readonly accidentdate: FieldRef<"medicaltransactions", 'String'>
+    readonly havediagnosis: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly haveprebilling: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly havepreauthnote: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly haveconcurrentnote: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly totalestimatedcost: FieldRef<"medicaltransactions", 'String'>
   }
     
 
@@ -24401,6 +24802,9 @@ export namespace Prisma {
     totalbillamount: Decimal | null
     visitlocation: string | null
     paymentdate: string | null
+    preauthreferclaimno: string | null
+    preauthreferocc: string | null
+    reservedate: string | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -24447,6 +24851,9 @@ export namespace Prisma {
     totalbillamount: Decimal | null
     visitlocation: string | null
     paymentdate: string | null
+    preauthreferclaimno: string | null
+    preauthreferocc: string | null
+    reservedate: string | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -24493,6 +24900,9 @@ export namespace Prisma {
     totalbillamount: number
     visitlocation: number
     paymentdate: number
+    preauthreferclaimno: number
+    preauthreferocc: number
+    reservedate: number
     _all: number
   }
 
@@ -24559,6 +24969,9 @@ export namespace Prisma {
     totalbillamount?: true
     visitlocation?: true
     paymentdate?: true
+    preauthreferclaimno?: true
+    preauthreferocc?: true
+    reservedate?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -24605,6 +25018,9 @@ export namespace Prisma {
     totalbillamount?: true
     visitlocation?: true
     paymentdate?: true
+    preauthreferclaimno?: true
+    preauthreferocc?: true
+    reservedate?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -24651,6 +25067,9 @@ export namespace Prisma {
     totalbillamount?: true
     visitlocation?: true
     paymentdate?: true
+    preauthreferclaimno?: true
+    preauthreferocc?: true
+    reservedate?: true
     _all?: true
   }
 
@@ -24784,6 +25203,9 @@ export namespace Prisma {
     totalbillamount: Decimal | null
     visitlocation: string | null
     paymentdate: string | null
+    preauthreferclaimno: string | null
+    preauthreferocc: string | null
+    reservedate: string | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -24849,6 +25271,9 @@ export namespace Prisma {
     totalbillamount?: boolean
     visitlocation?: boolean
     paymentdate?: boolean
+    preauthreferclaimno?: boolean
+    preauthreferocc?: boolean
+    reservedate?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -24896,6 +25321,9 @@ export namespace Prisma {
     totalbillamount?: boolean
     visitlocation?: boolean
     paymentdate?: boolean
+    preauthreferclaimno?: boolean
+    preauthreferocc?: boolean
+    reservedate?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -24943,6 +25371,9 @@ export namespace Prisma {
     totalbillamount?: boolean
     visitlocation?: boolean
     paymentdate?: boolean
+    preauthreferclaimno?: boolean
+    preauthreferocc?: boolean
+    reservedate?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25001,6 +25432,9 @@ export namespace Prisma {
       totalbillamount: Prisma.Decimal | null
       visitlocation: string | null
       paymentdate: string | null
+      preauthreferclaimno: string | null
+      preauthreferocc: string | null
+      reservedate: string | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -25438,6 +25872,9 @@ export namespace Prisma {
     readonly totalbillamount: FieldRef<"transactionclaim", 'Decimal'>
     readonly visitlocation: FieldRef<"transactionclaim", 'String'>
     readonly paymentdate: FieldRef<"transactionclaim", 'String'>
+    readonly preauthreferclaimno: FieldRef<"transactionclaim", 'String'>
+    readonly preauthreferocc: FieldRef<"transactionclaim", 'String'>
+    readonly reservedate: FieldRef<"transactionclaim", 'String'>
   }
     
 
@@ -31966,6 +32403,3132 @@ export namespace Prisma {
 
 
   /**
+   * Model concurrentnotetransactions
+   */
+
+  export type AggregateConcurrentnotetransactions = {
+    _count: ConcurrentnotetransactionsCountAggregateOutputType | null
+    _avg: ConcurrentnotetransactionsAvgAggregateOutputType | null
+    _sum: ConcurrentnotetransactionsSumAggregateOutputType | null
+    _min: ConcurrentnotetransactionsMinAggregateOutputType | null
+    _max: ConcurrentnotetransactionsMaxAggregateOutputType | null
+  }
+
+  export type ConcurrentnotetransactionsAvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type ConcurrentnotetransactionsSumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type ConcurrentnotetransactionsMinAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    concurrentdatetime: string | null
+    concurrentdetail: string | null
+  }
+
+  export type ConcurrentnotetransactionsMaxAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    concurrentdatetime: string | null
+    concurrentdetail: string | null
+  }
+
+  export type ConcurrentnotetransactionsCountAggregateOutputType = {
+    id: number
+    insurerid: number
+    refid: number
+    transactionno: number
+    hn: number
+    vn: number
+    concurrentdatetime: number
+    concurrentdetail: number
+    _all: number
+  }
+
+
+  export type ConcurrentnotetransactionsAvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type ConcurrentnotetransactionsSumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type ConcurrentnotetransactionsMinAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    concurrentdatetime?: true
+    concurrentdetail?: true
+  }
+
+  export type ConcurrentnotetransactionsMaxAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    concurrentdatetime?: true
+    concurrentdetail?: true
+  }
+
+  export type ConcurrentnotetransactionsCountAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    concurrentdatetime?: true
+    concurrentdetail?: true
+    _all?: true
+  }
+
+  export type ConcurrentnotetransactionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which concurrentnotetransactions to aggregate.
+     */
+    where?: concurrentnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of concurrentnotetransactions to fetch.
+     */
+    orderBy?: concurrentnotetransactionsOrderByWithRelationInput | concurrentnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: concurrentnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` concurrentnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` concurrentnotetransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned concurrentnotetransactions
+    **/
+    _count?: true | ConcurrentnotetransactionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ConcurrentnotetransactionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ConcurrentnotetransactionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConcurrentnotetransactionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConcurrentnotetransactionsMaxAggregateInputType
+  }
+
+  export type GetConcurrentnotetransactionsAggregateType<T extends ConcurrentnotetransactionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateConcurrentnotetransactions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConcurrentnotetransactions[P]>
+      : GetScalarType<T[P], AggregateConcurrentnotetransactions[P]>
+  }
+
+
+
+
+  export type concurrentnotetransactionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: concurrentnotetransactionsWhereInput
+    orderBy?: concurrentnotetransactionsOrderByWithAggregationInput | concurrentnotetransactionsOrderByWithAggregationInput[]
+    by: ConcurrentnotetransactionsScalarFieldEnum[] | ConcurrentnotetransactionsScalarFieldEnum
+    having?: concurrentnotetransactionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConcurrentnotetransactionsCountAggregateInputType | true
+    _avg?: ConcurrentnotetransactionsAvgAggregateInputType
+    _sum?: ConcurrentnotetransactionsSumAggregateInputType
+    _min?: ConcurrentnotetransactionsMinAggregateInputType
+    _max?: ConcurrentnotetransactionsMaxAggregateInputType
+  }
+
+  export type ConcurrentnotetransactionsGroupByOutputType = {
+    id: number
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    concurrentdatetime: string | null
+    concurrentdetail: string | null
+    _count: ConcurrentnotetransactionsCountAggregateOutputType | null
+    _avg: ConcurrentnotetransactionsAvgAggregateOutputType | null
+    _sum: ConcurrentnotetransactionsSumAggregateOutputType | null
+    _min: ConcurrentnotetransactionsMinAggregateOutputType | null
+    _max: ConcurrentnotetransactionsMaxAggregateOutputType | null
+  }
+
+  type GetConcurrentnotetransactionsGroupByPayload<T extends concurrentnotetransactionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConcurrentnotetransactionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConcurrentnotetransactionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConcurrentnotetransactionsGroupByOutputType[P]>
+            : GetScalarType<T[P], ConcurrentnotetransactionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type concurrentnotetransactionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    concurrentdatetime?: boolean
+    concurrentdetail?: boolean
+    insurers?: boolean | concurrentnotetransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["concurrentnotetransactions"]>
+
+  export type concurrentnotetransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    concurrentdatetime?: boolean
+    concurrentdetail?: boolean
+    insurers?: boolean | concurrentnotetransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["concurrentnotetransactions"]>
+
+  export type concurrentnotetransactionsSelectScalar = {
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    concurrentdatetime?: boolean
+    concurrentdetail?: boolean
+  }
+
+  export type concurrentnotetransactionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | concurrentnotetransactions$insurersArgs<ExtArgs>
+  }
+  export type concurrentnotetransactionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | concurrentnotetransactions$insurersArgs<ExtArgs>
+  }
+
+  export type $concurrentnotetransactionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "concurrentnotetransactions"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      insurerid: number | null
+      refid: string | null
+      transactionno: string | null
+      hn: string | null
+      vn: string | null
+      concurrentdatetime: string | null
+      concurrentdetail: string | null
+    }, ExtArgs["result"]["concurrentnotetransactions"]>
+    composites: {}
+  }
+
+  type concurrentnotetransactionsGetPayload<S extends boolean | null | undefined | concurrentnotetransactionsDefaultArgs> = $Result.GetResult<Prisma.$concurrentnotetransactionsPayload, S>
+
+  type concurrentnotetransactionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<concurrentnotetransactionsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ConcurrentnotetransactionsCountAggregateInputType | true
+    }
+
+  export interface concurrentnotetransactionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['concurrentnotetransactions'], meta: { name: 'concurrentnotetransactions' } }
+    /**
+     * Find zero or one Concurrentnotetransactions that matches the filter.
+     * @param {concurrentnotetransactionsFindUniqueArgs} args - Arguments to find a Concurrentnotetransactions
+     * @example
+     * // Get one Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends concurrentnotetransactionsFindUniqueArgs>(args: SelectSubset<T, concurrentnotetransactionsFindUniqueArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Concurrentnotetransactions that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {concurrentnotetransactionsFindUniqueOrThrowArgs} args - Arguments to find a Concurrentnotetransactions
+     * @example
+     * // Get one Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends concurrentnotetransactionsFindUniqueOrThrowArgs>(args: SelectSubset<T, concurrentnotetransactionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Concurrentnotetransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {concurrentnotetransactionsFindFirstArgs} args - Arguments to find a Concurrentnotetransactions
+     * @example
+     * // Get one Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends concurrentnotetransactionsFindFirstArgs>(args?: SelectSubset<T, concurrentnotetransactionsFindFirstArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Concurrentnotetransactions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {concurrentnotetransactionsFindFirstOrThrowArgs} args - Arguments to find a Concurrentnotetransactions
+     * @example
+     * // Get one Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends concurrentnotetransactionsFindFirstOrThrowArgs>(args?: SelectSubset<T, concurrentnotetransactionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Concurrentnotetransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {concurrentnotetransactionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.findMany()
+     * 
+     * // Get first 10 Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const concurrentnotetransactionsWithIdOnly = await prisma.concurrentnotetransactions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends concurrentnotetransactionsFindManyArgs>(args?: SelectSubset<T, concurrentnotetransactionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Concurrentnotetransactions.
+     * @param {concurrentnotetransactionsCreateArgs} args - Arguments to create a Concurrentnotetransactions.
+     * @example
+     * // Create one Concurrentnotetransactions
+     * const Concurrentnotetransactions = await prisma.concurrentnotetransactions.create({
+     *   data: {
+     *     // ... data to create a Concurrentnotetransactions
+     *   }
+     * })
+     * 
+     */
+    create<T extends concurrentnotetransactionsCreateArgs>(args: SelectSubset<T, concurrentnotetransactionsCreateArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Concurrentnotetransactions.
+     * @param {concurrentnotetransactionsCreateManyArgs} args - Arguments to create many Concurrentnotetransactions.
+     * @example
+     * // Create many Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends concurrentnotetransactionsCreateManyArgs>(args?: SelectSubset<T, concurrentnotetransactionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Concurrentnotetransactions and returns the data saved in the database.
+     * @param {concurrentnotetransactionsCreateManyAndReturnArgs} args - Arguments to create many Concurrentnotetransactions.
+     * @example
+     * // Create many Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Concurrentnotetransactions and only return the `id`
+     * const concurrentnotetransactionsWithIdOnly = await prisma.concurrentnotetransactions.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends concurrentnotetransactionsCreateManyAndReturnArgs>(args?: SelectSubset<T, concurrentnotetransactionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Concurrentnotetransactions.
+     * @param {concurrentnotetransactionsDeleteArgs} args - Arguments to delete one Concurrentnotetransactions.
+     * @example
+     * // Delete one Concurrentnotetransactions
+     * const Concurrentnotetransactions = await prisma.concurrentnotetransactions.delete({
+     *   where: {
+     *     // ... filter to delete one Concurrentnotetransactions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends concurrentnotetransactionsDeleteArgs>(args: SelectSubset<T, concurrentnotetransactionsDeleteArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Concurrentnotetransactions.
+     * @param {concurrentnotetransactionsUpdateArgs} args - Arguments to update one Concurrentnotetransactions.
+     * @example
+     * // Update one Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends concurrentnotetransactionsUpdateArgs>(args: SelectSubset<T, concurrentnotetransactionsUpdateArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Concurrentnotetransactions.
+     * @param {concurrentnotetransactionsDeleteManyArgs} args - Arguments to filter Concurrentnotetransactions to delete.
+     * @example
+     * // Delete a few Concurrentnotetransactions
+     * const { count } = await prisma.concurrentnotetransactions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends concurrentnotetransactionsDeleteManyArgs>(args?: SelectSubset<T, concurrentnotetransactionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Concurrentnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {concurrentnotetransactionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends concurrentnotetransactionsUpdateManyArgs>(args: SelectSubset<T, concurrentnotetransactionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Concurrentnotetransactions.
+     * @param {concurrentnotetransactionsUpsertArgs} args - Arguments to update or create a Concurrentnotetransactions.
+     * @example
+     * // Update or create a Concurrentnotetransactions
+     * const concurrentnotetransactions = await prisma.concurrentnotetransactions.upsert({
+     *   create: {
+     *     // ... data to create a Concurrentnotetransactions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Concurrentnotetransactions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends concurrentnotetransactionsUpsertArgs>(args: SelectSubset<T, concurrentnotetransactionsUpsertArgs<ExtArgs>>): Prisma__concurrentnotetransactionsClient<$Result.GetResult<Prisma.$concurrentnotetransactionsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Concurrentnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {concurrentnotetransactionsCountArgs} args - Arguments to filter Concurrentnotetransactions to count.
+     * @example
+     * // Count the number of Concurrentnotetransactions
+     * const count = await prisma.concurrentnotetransactions.count({
+     *   where: {
+     *     // ... the filter for the Concurrentnotetransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends concurrentnotetransactionsCountArgs>(
+      args?: Subset<T, concurrentnotetransactionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConcurrentnotetransactionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Concurrentnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConcurrentnotetransactionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConcurrentnotetransactionsAggregateArgs>(args: Subset<T, ConcurrentnotetransactionsAggregateArgs>): Prisma.PrismaPromise<GetConcurrentnotetransactionsAggregateType<T>>
+
+    /**
+     * Group by Concurrentnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {concurrentnotetransactionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends concurrentnotetransactionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: concurrentnotetransactionsGroupByArgs['orderBy'] }
+        : { orderBy?: concurrentnotetransactionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, concurrentnotetransactionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConcurrentnotetransactionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the concurrentnotetransactions model
+   */
+  readonly fields: concurrentnotetransactionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for concurrentnotetransactions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__concurrentnotetransactionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends concurrentnotetransactions$insurersArgs<ExtArgs> = {}>(args?: Subset<T, concurrentnotetransactions$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the concurrentnotetransactions model
+   */ 
+  interface concurrentnotetransactionsFieldRefs {
+    readonly id: FieldRef<"concurrentnotetransactions", 'Int'>
+    readonly insurerid: FieldRef<"concurrentnotetransactions", 'Int'>
+    readonly refid: FieldRef<"concurrentnotetransactions", 'String'>
+    readonly transactionno: FieldRef<"concurrentnotetransactions", 'String'>
+    readonly hn: FieldRef<"concurrentnotetransactions", 'String'>
+    readonly vn: FieldRef<"concurrentnotetransactions", 'String'>
+    readonly concurrentdatetime: FieldRef<"concurrentnotetransactions", 'String'>
+    readonly concurrentdetail: FieldRef<"concurrentnotetransactions", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * concurrentnotetransactions findUnique
+   */
+  export type concurrentnotetransactionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which concurrentnotetransactions to fetch.
+     */
+    where: concurrentnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * concurrentnotetransactions findUniqueOrThrow
+   */
+  export type concurrentnotetransactionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which concurrentnotetransactions to fetch.
+     */
+    where: concurrentnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * concurrentnotetransactions findFirst
+   */
+  export type concurrentnotetransactionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which concurrentnotetransactions to fetch.
+     */
+    where?: concurrentnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of concurrentnotetransactions to fetch.
+     */
+    orderBy?: concurrentnotetransactionsOrderByWithRelationInput | concurrentnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for concurrentnotetransactions.
+     */
+    cursor?: concurrentnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` concurrentnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` concurrentnotetransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of concurrentnotetransactions.
+     */
+    distinct?: ConcurrentnotetransactionsScalarFieldEnum | ConcurrentnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * concurrentnotetransactions findFirstOrThrow
+   */
+  export type concurrentnotetransactionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which concurrentnotetransactions to fetch.
+     */
+    where?: concurrentnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of concurrentnotetransactions to fetch.
+     */
+    orderBy?: concurrentnotetransactionsOrderByWithRelationInput | concurrentnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for concurrentnotetransactions.
+     */
+    cursor?: concurrentnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` concurrentnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` concurrentnotetransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of concurrentnotetransactions.
+     */
+    distinct?: ConcurrentnotetransactionsScalarFieldEnum | ConcurrentnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * concurrentnotetransactions findMany
+   */
+  export type concurrentnotetransactionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which concurrentnotetransactions to fetch.
+     */
+    where?: concurrentnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of concurrentnotetransactions to fetch.
+     */
+    orderBy?: concurrentnotetransactionsOrderByWithRelationInput | concurrentnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing concurrentnotetransactions.
+     */
+    cursor?: concurrentnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` concurrentnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` concurrentnotetransactions.
+     */
+    skip?: number
+    distinct?: ConcurrentnotetransactionsScalarFieldEnum | ConcurrentnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * concurrentnotetransactions create
+   */
+  export type concurrentnotetransactionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a concurrentnotetransactions.
+     */
+    data?: XOR<concurrentnotetransactionsCreateInput, concurrentnotetransactionsUncheckedCreateInput>
+  }
+
+  /**
+   * concurrentnotetransactions createMany
+   */
+  export type concurrentnotetransactionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many concurrentnotetransactions.
+     */
+    data: concurrentnotetransactionsCreateManyInput | concurrentnotetransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * concurrentnotetransactions createManyAndReturn
+   */
+  export type concurrentnotetransactionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many concurrentnotetransactions.
+     */
+    data: concurrentnotetransactionsCreateManyInput | concurrentnotetransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * concurrentnotetransactions update
+   */
+  export type concurrentnotetransactionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a concurrentnotetransactions.
+     */
+    data: XOR<concurrentnotetransactionsUpdateInput, concurrentnotetransactionsUncheckedUpdateInput>
+    /**
+     * Choose, which concurrentnotetransactions to update.
+     */
+    where: concurrentnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * concurrentnotetransactions updateMany
+   */
+  export type concurrentnotetransactionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update concurrentnotetransactions.
+     */
+    data: XOR<concurrentnotetransactionsUpdateManyMutationInput, concurrentnotetransactionsUncheckedUpdateManyInput>
+    /**
+     * Filter which concurrentnotetransactions to update
+     */
+    where?: concurrentnotetransactionsWhereInput
+  }
+
+  /**
+   * concurrentnotetransactions upsert
+   */
+  export type concurrentnotetransactionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the concurrentnotetransactions to update in case it exists.
+     */
+    where: concurrentnotetransactionsWhereUniqueInput
+    /**
+     * In case the concurrentnotetransactions found by the `where` argument doesn't exist, create a new concurrentnotetransactions with this data.
+     */
+    create: XOR<concurrentnotetransactionsCreateInput, concurrentnotetransactionsUncheckedCreateInput>
+    /**
+     * In case the concurrentnotetransactions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<concurrentnotetransactionsUpdateInput, concurrentnotetransactionsUncheckedUpdateInput>
+  }
+
+  /**
+   * concurrentnotetransactions delete
+   */
+  export type concurrentnotetransactionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter which concurrentnotetransactions to delete.
+     */
+    where: concurrentnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * concurrentnotetransactions deleteMany
+   */
+  export type concurrentnotetransactionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which concurrentnotetransactions to delete
+     */
+    where?: concurrentnotetransactionsWhereInput
+  }
+
+  /**
+   * concurrentnotetransactions.insurers
+   */
+  export type concurrentnotetransactions$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * concurrentnotetransactions without action
+   */
+  export type concurrentnotetransactionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the concurrentnotetransactions
+     */
+    select?: concurrentnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: concurrentnotetransactionsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model preauthnotetransactions
+   */
+
+  export type AggregatePreauthnotetransactions = {
+    _count: PreauthnotetransactionsCountAggregateOutputType | null
+    _avg: PreauthnotetransactionsAvgAggregateOutputType | null
+    _sum: PreauthnotetransactionsSumAggregateOutputType | null
+    _min: PreauthnotetransactionsMinAggregateOutputType | null
+    _max: PreauthnotetransactionsMaxAggregateOutputType | null
+  }
+
+  export type PreauthnotetransactionsAvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type PreauthnotetransactionsSumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type PreauthnotetransactionsMinAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    preauthdatetime: string | null
+    preauthdetail: string | null
+  }
+
+  export type PreauthnotetransactionsMaxAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    preauthdatetime: string | null
+    preauthdetail: string | null
+  }
+
+  export type PreauthnotetransactionsCountAggregateOutputType = {
+    id: number
+    insurerid: number
+    refid: number
+    transactionno: number
+    hn: number
+    vn: number
+    preauthdatetime: number
+    preauthdetail: number
+    _all: number
+  }
+
+
+  export type PreauthnotetransactionsAvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type PreauthnotetransactionsSumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type PreauthnotetransactionsMinAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    preauthdatetime?: true
+    preauthdetail?: true
+  }
+
+  export type PreauthnotetransactionsMaxAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    preauthdatetime?: true
+    preauthdetail?: true
+  }
+
+  export type PreauthnotetransactionsCountAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    preauthdatetime?: true
+    preauthdetail?: true
+    _all?: true
+  }
+
+  export type PreauthnotetransactionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which preauthnotetransactions to aggregate.
+     */
+    where?: preauthnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of preauthnotetransactions to fetch.
+     */
+    orderBy?: preauthnotetransactionsOrderByWithRelationInput | preauthnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: preauthnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` preauthnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` preauthnotetransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned preauthnotetransactions
+    **/
+    _count?: true | PreauthnotetransactionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PreauthnotetransactionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PreauthnotetransactionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PreauthnotetransactionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PreauthnotetransactionsMaxAggregateInputType
+  }
+
+  export type GetPreauthnotetransactionsAggregateType<T extends PreauthnotetransactionsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePreauthnotetransactions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePreauthnotetransactions[P]>
+      : GetScalarType<T[P], AggregatePreauthnotetransactions[P]>
+  }
+
+
+
+
+  export type preauthnotetransactionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: preauthnotetransactionsWhereInput
+    orderBy?: preauthnotetransactionsOrderByWithAggregationInput | preauthnotetransactionsOrderByWithAggregationInput[]
+    by: PreauthnotetransactionsScalarFieldEnum[] | PreauthnotetransactionsScalarFieldEnum
+    having?: preauthnotetransactionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PreauthnotetransactionsCountAggregateInputType | true
+    _avg?: PreauthnotetransactionsAvgAggregateInputType
+    _sum?: PreauthnotetransactionsSumAggregateInputType
+    _min?: PreauthnotetransactionsMinAggregateInputType
+    _max?: PreauthnotetransactionsMaxAggregateInputType
+  }
+
+  export type PreauthnotetransactionsGroupByOutputType = {
+    id: number
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    preauthdatetime: string | null
+    preauthdetail: string | null
+    _count: PreauthnotetransactionsCountAggregateOutputType | null
+    _avg: PreauthnotetransactionsAvgAggregateOutputType | null
+    _sum: PreauthnotetransactionsSumAggregateOutputType | null
+    _min: PreauthnotetransactionsMinAggregateOutputType | null
+    _max: PreauthnotetransactionsMaxAggregateOutputType | null
+  }
+
+  type GetPreauthnotetransactionsGroupByPayload<T extends preauthnotetransactionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PreauthnotetransactionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PreauthnotetransactionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PreauthnotetransactionsGroupByOutputType[P]>
+            : GetScalarType<T[P], PreauthnotetransactionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type preauthnotetransactionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    preauthdatetime?: boolean
+    preauthdetail?: boolean
+    insurers?: boolean | preauthnotetransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["preauthnotetransactions"]>
+
+  export type preauthnotetransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    preauthdatetime?: boolean
+    preauthdetail?: boolean
+    insurers?: boolean | preauthnotetransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["preauthnotetransactions"]>
+
+  export type preauthnotetransactionsSelectScalar = {
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    preauthdatetime?: boolean
+    preauthdetail?: boolean
+  }
+
+  export type preauthnotetransactionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | preauthnotetransactions$insurersArgs<ExtArgs>
+  }
+  export type preauthnotetransactionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | preauthnotetransactions$insurersArgs<ExtArgs>
+  }
+
+  export type $preauthnotetransactionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "preauthnotetransactions"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      insurerid: number | null
+      refid: string | null
+      transactionno: string | null
+      hn: string | null
+      vn: string | null
+      preauthdatetime: string | null
+      preauthdetail: string | null
+    }, ExtArgs["result"]["preauthnotetransactions"]>
+    composites: {}
+  }
+
+  type preauthnotetransactionsGetPayload<S extends boolean | null | undefined | preauthnotetransactionsDefaultArgs> = $Result.GetResult<Prisma.$preauthnotetransactionsPayload, S>
+
+  type preauthnotetransactionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<preauthnotetransactionsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PreauthnotetransactionsCountAggregateInputType | true
+    }
+
+  export interface preauthnotetransactionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['preauthnotetransactions'], meta: { name: 'preauthnotetransactions' } }
+    /**
+     * Find zero or one Preauthnotetransactions that matches the filter.
+     * @param {preauthnotetransactionsFindUniqueArgs} args - Arguments to find a Preauthnotetransactions
+     * @example
+     * // Get one Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends preauthnotetransactionsFindUniqueArgs>(args: SelectSubset<T, preauthnotetransactionsFindUniqueArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Preauthnotetransactions that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {preauthnotetransactionsFindUniqueOrThrowArgs} args - Arguments to find a Preauthnotetransactions
+     * @example
+     * // Get one Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends preauthnotetransactionsFindUniqueOrThrowArgs>(args: SelectSubset<T, preauthnotetransactionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Preauthnotetransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {preauthnotetransactionsFindFirstArgs} args - Arguments to find a Preauthnotetransactions
+     * @example
+     * // Get one Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends preauthnotetransactionsFindFirstArgs>(args?: SelectSubset<T, preauthnotetransactionsFindFirstArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Preauthnotetransactions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {preauthnotetransactionsFindFirstOrThrowArgs} args - Arguments to find a Preauthnotetransactions
+     * @example
+     * // Get one Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends preauthnotetransactionsFindFirstOrThrowArgs>(args?: SelectSubset<T, preauthnotetransactionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Preauthnotetransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {preauthnotetransactionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.findMany()
+     * 
+     * // Get first 10 Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const preauthnotetransactionsWithIdOnly = await prisma.preauthnotetransactions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends preauthnotetransactionsFindManyArgs>(args?: SelectSubset<T, preauthnotetransactionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Preauthnotetransactions.
+     * @param {preauthnotetransactionsCreateArgs} args - Arguments to create a Preauthnotetransactions.
+     * @example
+     * // Create one Preauthnotetransactions
+     * const Preauthnotetransactions = await prisma.preauthnotetransactions.create({
+     *   data: {
+     *     // ... data to create a Preauthnotetransactions
+     *   }
+     * })
+     * 
+     */
+    create<T extends preauthnotetransactionsCreateArgs>(args: SelectSubset<T, preauthnotetransactionsCreateArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Preauthnotetransactions.
+     * @param {preauthnotetransactionsCreateManyArgs} args - Arguments to create many Preauthnotetransactions.
+     * @example
+     * // Create many Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends preauthnotetransactionsCreateManyArgs>(args?: SelectSubset<T, preauthnotetransactionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Preauthnotetransactions and returns the data saved in the database.
+     * @param {preauthnotetransactionsCreateManyAndReturnArgs} args - Arguments to create many Preauthnotetransactions.
+     * @example
+     * // Create many Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Preauthnotetransactions and only return the `id`
+     * const preauthnotetransactionsWithIdOnly = await prisma.preauthnotetransactions.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends preauthnotetransactionsCreateManyAndReturnArgs>(args?: SelectSubset<T, preauthnotetransactionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Preauthnotetransactions.
+     * @param {preauthnotetransactionsDeleteArgs} args - Arguments to delete one Preauthnotetransactions.
+     * @example
+     * // Delete one Preauthnotetransactions
+     * const Preauthnotetransactions = await prisma.preauthnotetransactions.delete({
+     *   where: {
+     *     // ... filter to delete one Preauthnotetransactions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends preauthnotetransactionsDeleteArgs>(args: SelectSubset<T, preauthnotetransactionsDeleteArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Preauthnotetransactions.
+     * @param {preauthnotetransactionsUpdateArgs} args - Arguments to update one Preauthnotetransactions.
+     * @example
+     * // Update one Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends preauthnotetransactionsUpdateArgs>(args: SelectSubset<T, preauthnotetransactionsUpdateArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Preauthnotetransactions.
+     * @param {preauthnotetransactionsDeleteManyArgs} args - Arguments to filter Preauthnotetransactions to delete.
+     * @example
+     * // Delete a few Preauthnotetransactions
+     * const { count } = await prisma.preauthnotetransactions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends preauthnotetransactionsDeleteManyArgs>(args?: SelectSubset<T, preauthnotetransactionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Preauthnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {preauthnotetransactionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends preauthnotetransactionsUpdateManyArgs>(args: SelectSubset<T, preauthnotetransactionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Preauthnotetransactions.
+     * @param {preauthnotetransactionsUpsertArgs} args - Arguments to update or create a Preauthnotetransactions.
+     * @example
+     * // Update or create a Preauthnotetransactions
+     * const preauthnotetransactions = await prisma.preauthnotetransactions.upsert({
+     *   create: {
+     *     // ... data to create a Preauthnotetransactions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Preauthnotetransactions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends preauthnotetransactionsUpsertArgs>(args: SelectSubset<T, preauthnotetransactionsUpsertArgs<ExtArgs>>): Prisma__preauthnotetransactionsClient<$Result.GetResult<Prisma.$preauthnotetransactionsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Preauthnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {preauthnotetransactionsCountArgs} args - Arguments to filter Preauthnotetransactions to count.
+     * @example
+     * // Count the number of Preauthnotetransactions
+     * const count = await prisma.preauthnotetransactions.count({
+     *   where: {
+     *     // ... the filter for the Preauthnotetransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends preauthnotetransactionsCountArgs>(
+      args?: Subset<T, preauthnotetransactionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PreauthnotetransactionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Preauthnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PreauthnotetransactionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PreauthnotetransactionsAggregateArgs>(args: Subset<T, PreauthnotetransactionsAggregateArgs>): Prisma.PrismaPromise<GetPreauthnotetransactionsAggregateType<T>>
+
+    /**
+     * Group by Preauthnotetransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {preauthnotetransactionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends preauthnotetransactionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: preauthnotetransactionsGroupByArgs['orderBy'] }
+        : { orderBy?: preauthnotetransactionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, preauthnotetransactionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPreauthnotetransactionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the preauthnotetransactions model
+   */
+  readonly fields: preauthnotetransactionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for preauthnotetransactions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__preauthnotetransactionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends preauthnotetransactions$insurersArgs<ExtArgs> = {}>(args?: Subset<T, preauthnotetransactions$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the preauthnotetransactions model
+   */ 
+  interface preauthnotetransactionsFieldRefs {
+    readonly id: FieldRef<"preauthnotetransactions", 'Int'>
+    readonly insurerid: FieldRef<"preauthnotetransactions", 'Int'>
+    readonly refid: FieldRef<"preauthnotetransactions", 'String'>
+    readonly transactionno: FieldRef<"preauthnotetransactions", 'String'>
+    readonly hn: FieldRef<"preauthnotetransactions", 'String'>
+    readonly vn: FieldRef<"preauthnotetransactions", 'String'>
+    readonly preauthdatetime: FieldRef<"preauthnotetransactions", 'String'>
+    readonly preauthdetail: FieldRef<"preauthnotetransactions", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * preauthnotetransactions findUnique
+   */
+  export type preauthnotetransactionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which preauthnotetransactions to fetch.
+     */
+    where: preauthnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * preauthnotetransactions findUniqueOrThrow
+   */
+  export type preauthnotetransactionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which preauthnotetransactions to fetch.
+     */
+    where: preauthnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * preauthnotetransactions findFirst
+   */
+  export type preauthnotetransactionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which preauthnotetransactions to fetch.
+     */
+    where?: preauthnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of preauthnotetransactions to fetch.
+     */
+    orderBy?: preauthnotetransactionsOrderByWithRelationInput | preauthnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for preauthnotetransactions.
+     */
+    cursor?: preauthnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` preauthnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` preauthnotetransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of preauthnotetransactions.
+     */
+    distinct?: PreauthnotetransactionsScalarFieldEnum | PreauthnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * preauthnotetransactions findFirstOrThrow
+   */
+  export type preauthnotetransactionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which preauthnotetransactions to fetch.
+     */
+    where?: preauthnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of preauthnotetransactions to fetch.
+     */
+    orderBy?: preauthnotetransactionsOrderByWithRelationInput | preauthnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for preauthnotetransactions.
+     */
+    cursor?: preauthnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` preauthnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` preauthnotetransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of preauthnotetransactions.
+     */
+    distinct?: PreauthnotetransactionsScalarFieldEnum | PreauthnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * preauthnotetransactions findMany
+   */
+  export type preauthnotetransactionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which preauthnotetransactions to fetch.
+     */
+    where?: preauthnotetransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of preauthnotetransactions to fetch.
+     */
+    orderBy?: preauthnotetransactionsOrderByWithRelationInput | preauthnotetransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing preauthnotetransactions.
+     */
+    cursor?: preauthnotetransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` preauthnotetransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` preauthnotetransactions.
+     */
+    skip?: number
+    distinct?: PreauthnotetransactionsScalarFieldEnum | PreauthnotetransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * preauthnotetransactions create
+   */
+  export type preauthnotetransactionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a preauthnotetransactions.
+     */
+    data?: XOR<preauthnotetransactionsCreateInput, preauthnotetransactionsUncheckedCreateInput>
+  }
+
+  /**
+   * preauthnotetransactions createMany
+   */
+  export type preauthnotetransactionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many preauthnotetransactions.
+     */
+    data: preauthnotetransactionsCreateManyInput | preauthnotetransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * preauthnotetransactions createManyAndReturn
+   */
+  export type preauthnotetransactionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many preauthnotetransactions.
+     */
+    data: preauthnotetransactionsCreateManyInput | preauthnotetransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * preauthnotetransactions update
+   */
+  export type preauthnotetransactionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a preauthnotetransactions.
+     */
+    data: XOR<preauthnotetransactionsUpdateInput, preauthnotetransactionsUncheckedUpdateInput>
+    /**
+     * Choose, which preauthnotetransactions to update.
+     */
+    where: preauthnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * preauthnotetransactions updateMany
+   */
+  export type preauthnotetransactionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update preauthnotetransactions.
+     */
+    data: XOR<preauthnotetransactionsUpdateManyMutationInput, preauthnotetransactionsUncheckedUpdateManyInput>
+    /**
+     * Filter which preauthnotetransactions to update
+     */
+    where?: preauthnotetransactionsWhereInput
+  }
+
+  /**
+   * preauthnotetransactions upsert
+   */
+  export type preauthnotetransactionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the preauthnotetransactions to update in case it exists.
+     */
+    where: preauthnotetransactionsWhereUniqueInput
+    /**
+     * In case the preauthnotetransactions found by the `where` argument doesn't exist, create a new preauthnotetransactions with this data.
+     */
+    create: XOR<preauthnotetransactionsCreateInput, preauthnotetransactionsUncheckedCreateInput>
+    /**
+     * In case the preauthnotetransactions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<preauthnotetransactionsUpdateInput, preauthnotetransactionsUncheckedUpdateInput>
+  }
+
+  /**
+   * preauthnotetransactions delete
+   */
+  export type preauthnotetransactionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+    /**
+     * Filter which preauthnotetransactions to delete.
+     */
+    where: preauthnotetransactionsWhereUniqueInput
+  }
+
+  /**
+   * preauthnotetransactions deleteMany
+   */
+  export type preauthnotetransactionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which preauthnotetransactions to delete
+     */
+    where?: preauthnotetransactionsWhereInput
+  }
+
+  /**
+   * preauthnotetransactions.insurers
+   */
+  export type preauthnotetransactions$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * preauthnotetransactions without action
+   */
+  export type preauthnotetransactionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the preauthnotetransactions
+     */
+    select?: preauthnotetransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: preauthnotetransactionsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model prebillingtransactions
+   */
+
+  export type AggregatePrebillingtransactions = {
+    _count: PrebillingtransactionsCountAggregateOutputType | null
+    _avg: PrebillingtransactionsAvgAggregateOutputType | null
+    _sum: PrebillingtransactionsSumAggregateOutputType | null
+    _min: PrebillingtransactionsMinAggregateOutputType | null
+    _max: PrebillingtransactionsMaxAggregateOutputType | null
+  }
+
+  export type PrebillingtransactionsAvgAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type PrebillingtransactionsSumAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+  }
+
+  export type PrebillingtransactionsMinAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    localbillingcode: string | null
+    localbillingname: string | null
+    simbbillingcode: string | null
+    payorbillingcode: string | null
+    billinginitial: string | null
+    billingdiscount: string | null
+    billingnetamount: string | null
+  }
+
+  export type PrebillingtransactionsMaxAggregateOutputType = {
+    id: number | null
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    localbillingcode: string | null
+    localbillingname: string | null
+    simbbillingcode: string | null
+    payorbillingcode: string | null
+    billinginitial: string | null
+    billingdiscount: string | null
+    billingnetamount: string | null
+  }
+
+  export type PrebillingtransactionsCountAggregateOutputType = {
+    id: number
+    insurerid: number
+    refid: number
+    transactionno: number
+    hn: number
+    vn: number
+    localbillingcode: number
+    localbillingname: number
+    simbbillingcode: number
+    payorbillingcode: number
+    billinginitial: number
+    billingdiscount: number
+    billingnetamount: number
+    _all: number
+  }
+
+
+  export type PrebillingtransactionsAvgAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type PrebillingtransactionsSumAggregateInputType = {
+    id?: true
+    insurerid?: true
+  }
+
+  export type PrebillingtransactionsMinAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    localbillingcode?: true
+    localbillingname?: true
+    simbbillingcode?: true
+    payorbillingcode?: true
+    billinginitial?: true
+    billingdiscount?: true
+    billingnetamount?: true
+  }
+
+  export type PrebillingtransactionsMaxAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    localbillingcode?: true
+    localbillingname?: true
+    simbbillingcode?: true
+    payorbillingcode?: true
+    billinginitial?: true
+    billingdiscount?: true
+    billingnetamount?: true
+  }
+
+  export type PrebillingtransactionsCountAggregateInputType = {
+    id?: true
+    insurerid?: true
+    refid?: true
+    transactionno?: true
+    hn?: true
+    vn?: true
+    localbillingcode?: true
+    localbillingname?: true
+    simbbillingcode?: true
+    payorbillingcode?: true
+    billinginitial?: true
+    billingdiscount?: true
+    billingnetamount?: true
+    _all?: true
+  }
+
+  export type PrebillingtransactionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which prebillingtransactions to aggregate.
+     */
+    where?: prebillingtransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of prebillingtransactions to fetch.
+     */
+    orderBy?: prebillingtransactionsOrderByWithRelationInput | prebillingtransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: prebillingtransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` prebillingtransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` prebillingtransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned prebillingtransactions
+    **/
+    _count?: true | PrebillingtransactionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PrebillingtransactionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PrebillingtransactionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PrebillingtransactionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PrebillingtransactionsMaxAggregateInputType
+  }
+
+  export type GetPrebillingtransactionsAggregateType<T extends PrebillingtransactionsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePrebillingtransactions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePrebillingtransactions[P]>
+      : GetScalarType<T[P], AggregatePrebillingtransactions[P]>
+  }
+
+
+
+
+  export type prebillingtransactionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: prebillingtransactionsWhereInput
+    orderBy?: prebillingtransactionsOrderByWithAggregationInput | prebillingtransactionsOrderByWithAggregationInput[]
+    by: PrebillingtransactionsScalarFieldEnum[] | PrebillingtransactionsScalarFieldEnum
+    having?: prebillingtransactionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PrebillingtransactionsCountAggregateInputType | true
+    _avg?: PrebillingtransactionsAvgAggregateInputType
+    _sum?: PrebillingtransactionsSumAggregateInputType
+    _min?: PrebillingtransactionsMinAggregateInputType
+    _max?: PrebillingtransactionsMaxAggregateInputType
+  }
+
+  export type PrebillingtransactionsGroupByOutputType = {
+    id: number
+    insurerid: number | null
+    refid: string | null
+    transactionno: string | null
+    hn: string | null
+    vn: string | null
+    localbillingcode: string | null
+    localbillingname: string | null
+    simbbillingcode: string | null
+    payorbillingcode: string | null
+    billinginitial: string | null
+    billingdiscount: string | null
+    billingnetamount: string | null
+    _count: PrebillingtransactionsCountAggregateOutputType | null
+    _avg: PrebillingtransactionsAvgAggregateOutputType | null
+    _sum: PrebillingtransactionsSumAggregateOutputType | null
+    _min: PrebillingtransactionsMinAggregateOutputType | null
+    _max: PrebillingtransactionsMaxAggregateOutputType | null
+  }
+
+  type GetPrebillingtransactionsGroupByPayload<T extends prebillingtransactionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PrebillingtransactionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PrebillingtransactionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PrebillingtransactionsGroupByOutputType[P]>
+            : GetScalarType<T[P], PrebillingtransactionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type prebillingtransactionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    localbillingcode?: boolean
+    localbillingname?: boolean
+    simbbillingcode?: boolean
+    payorbillingcode?: boolean
+    billinginitial?: boolean
+    billingdiscount?: boolean
+    billingnetamount?: boolean
+    insurers?: boolean | prebillingtransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["prebillingtransactions"]>
+
+  export type prebillingtransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    localbillingcode?: boolean
+    localbillingname?: boolean
+    simbbillingcode?: boolean
+    payorbillingcode?: boolean
+    billinginitial?: boolean
+    billingdiscount?: boolean
+    billingnetamount?: boolean
+    insurers?: boolean | prebillingtransactions$insurersArgs<ExtArgs>
+  }, ExtArgs["result"]["prebillingtransactions"]>
+
+  export type prebillingtransactionsSelectScalar = {
+    id?: boolean
+    insurerid?: boolean
+    refid?: boolean
+    transactionno?: boolean
+    hn?: boolean
+    vn?: boolean
+    localbillingcode?: boolean
+    localbillingname?: boolean
+    simbbillingcode?: boolean
+    payorbillingcode?: boolean
+    billinginitial?: boolean
+    billingdiscount?: boolean
+    billingnetamount?: boolean
+  }
+
+  export type prebillingtransactionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | prebillingtransactions$insurersArgs<ExtArgs>
+  }
+  export type prebillingtransactionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    insurers?: boolean | prebillingtransactions$insurersArgs<ExtArgs>
+  }
+
+  export type $prebillingtransactionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "prebillingtransactions"
+    objects: {
+      insurers: Prisma.$insurersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      insurerid: number | null
+      refid: string | null
+      transactionno: string | null
+      hn: string | null
+      vn: string | null
+      localbillingcode: string | null
+      localbillingname: string | null
+      simbbillingcode: string | null
+      payorbillingcode: string | null
+      billinginitial: string | null
+      billingdiscount: string | null
+      billingnetamount: string | null
+    }, ExtArgs["result"]["prebillingtransactions"]>
+    composites: {}
+  }
+
+  type prebillingtransactionsGetPayload<S extends boolean | null | undefined | prebillingtransactionsDefaultArgs> = $Result.GetResult<Prisma.$prebillingtransactionsPayload, S>
+
+  type prebillingtransactionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<prebillingtransactionsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PrebillingtransactionsCountAggregateInputType | true
+    }
+
+  export interface prebillingtransactionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['prebillingtransactions'], meta: { name: 'prebillingtransactions' } }
+    /**
+     * Find zero or one Prebillingtransactions that matches the filter.
+     * @param {prebillingtransactionsFindUniqueArgs} args - Arguments to find a Prebillingtransactions
+     * @example
+     * // Get one Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends prebillingtransactionsFindUniqueArgs>(args: SelectSubset<T, prebillingtransactionsFindUniqueArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Prebillingtransactions that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {prebillingtransactionsFindUniqueOrThrowArgs} args - Arguments to find a Prebillingtransactions
+     * @example
+     * // Get one Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends prebillingtransactionsFindUniqueOrThrowArgs>(args: SelectSubset<T, prebillingtransactionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Prebillingtransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {prebillingtransactionsFindFirstArgs} args - Arguments to find a Prebillingtransactions
+     * @example
+     * // Get one Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends prebillingtransactionsFindFirstArgs>(args?: SelectSubset<T, prebillingtransactionsFindFirstArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Prebillingtransactions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {prebillingtransactionsFindFirstOrThrowArgs} args - Arguments to find a Prebillingtransactions
+     * @example
+     * // Get one Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends prebillingtransactionsFindFirstOrThrowArgs>(args?: SelectSubset<T, prebillingtransactionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Prebillingtransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {prebillingtransactionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.findMany()
+     * 
+     * // Get first 10 Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const prebillingtransactionsWithIdOnly = await prisma.prebillingtransactions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends prebillingtransactionsFindManyArgs>(args?: SelectSubset<T, prebillingtransactionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Prebillingtransactions.
+     * @param {prebillingtransactionsCreateArgs} args - Arguments to create a Prebillingtransactions.
+     * @example
+     * // Create one Prebillingtransactions
+     * const Prebillingtransactions = await prisma.prebillingtransactions.create({
+     *   data: {
+     *     // ... data to create a Prebillingtransactions
+     *   }
+     * })
+     * 
+     */
+    create<T extends prebillingtransactionsCreateArgs>(args: SelectSubset<T, prebillingtransactionsCreateArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Prebillingtransactions.
+     * @param {prebillingtransactionsCreateManyArgs} args - Arguments to create many Prebillingtransactions.
+     * @example
+     * // Create many Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends prebillingtransactionsCreateManyArgs>(args?: SelectSubset<T, prebillingtransactionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Prebillingtransactions and returns the data saved in the database.
+     * @param {prebillingtransactionsCreateManyAndReturnArgs} args - Arguments to create many Prebillingtransactions.
+     * @example
+     * // Create many Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Prebillingtransactions and only return the `id`
+     * const prebillingtransactionsWithIdOnly = await prisma.prebillingtransactions.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends prebillingtransactionsCreateManyAndReturnArgs>(args?: SelectSubset<T, prebillingtransactionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Prebillingtransactions.
+     * @param {prebillingtransactionsDeleteArgs} args - Arguments to delete one Prebillingtransactions.
+     * @example
+     * // Delete one Prebillingtransactions
+     * const Prebillingtransactions = await prisma.prebillingtransactions.delete({
+     *   where: {
+     *     // ... filter to delete one Prebillingtransactions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends prebillingtransactionsDeleteArgs>(args: SelectSubset<T, prebillingtransactionsDeleteArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Prebillingtransactions.
+     * @param {prebillingtransactionsUpdateArgs} args - Arguments to update one Prebillingtransactions.
+     * @example
+     * // Update one Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends prebillingtransactionsUpdateArgs>(args: SelectSubset<T, prebillingtransactionsUpdateArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Prebillingtransactions.
+     * @param {prebillingtransactionsDeleteManyArgs} args - Arguments to filter Prebillingtransactions to delete.
+     * @example
+     * // Delete a few Prebillingtransactions
+     * const { count } = await prisma.prebillingtransactions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends prebillingtransactionsDeleteManyArgs>(args?: SelectSubset<T, prebillingtransactionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Prebillingtransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {prebillingtransactionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends prebillingtransactionsUpdateManyArgs>(args: SelectSubset<T, prebillingtransactionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Prebillingtransactions.
+     * @param {prebillingtransactionsUpsertArgs} args - Arguments to update or create a Prebillingtransactions.
+     * @example
+     * // Update or create a Prebillingtransactions
+     * const prebillingtransactions = await prisma.prebillingtransactions.upsert({
+     *   create: {
+     *     // ... data to create a Prebillingtransactions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Prebillingtransactions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends prebillingtransactionsUpsertArgs>(args: SelectSubset<T, prebillingtransactionsUpsertArgs<ExtArgs>>): Prisma__prebillingtransactionsClient<$Result.GetResult<Prisma.$prebillingtransactionsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Prebillingtransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {prebillingtransactionsCountArgs} args - Arguments to filter Prebillingtransactions to count.
+     * @example
+     * // Count the number of Prebillingtransactions
+     * const count = await prisma.prebillingtransactions.count({
+     *   where: {
+     *     // ... the filter for the Prebillingtransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends prebillingtransactionsCountArgs>(
+      args?: Subset<T, prebillingtransactionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PrebillingtransactionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Prebillingtransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PrebillingtransactionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PrebillingtransactionsAggregateArgs>(args: Subset<T, PrebillingtransactionsAggregateArgs>): Prisma.PrismaPromise<GetPrebillingtransactionsAggregateType<T>>
+
+    /**
+     * Group by Prebillingtransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {prebillingtransactionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends prebillingtransactionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: prebillingtransactionsGroupByArgs['orderBy'] }
+        : { orderBy?: prebillingtransactionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, prebillingtransactionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPrebillingtransactionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the prebillingtransactions model
+   */
+  readonly fields: prebillingtransactionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for prebillingtransactions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__prebillingtransactionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    insurers<T extends prebillingtransactions$insurersArgs<ExtArgs> = {}>(args?: Subset<T, prebillingtransactions$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the prebillingtransactions model
+   */ 
+  interface prebillingtransactionsFieldRefs {
+    readonly id: FieldRef<"prebillingtransactions", 'Int'>
+    readonly insurerid: FieldRef<"prebillingtransactions", 'Int'>
+    readonly refid: FieldRef<"prebillingtransactions", 'String'>
+    readonly transactionno: FieldRef<"prebillingtransactions", 'String'>
+    readonly hn: FieldRef<"prebillingtransactions", 'String'>
+    readonly vn: FieldRef<"prebillingtransactions", 'String'>
+    readonly localbillingcode: FieldRef<"prebillingtransactions", 'String'>
+    readonly localbillingname: FieldRef<"prebillingtransactions", 'String'>
+    readonly simbbillingcode: FieldRef<"prebillingtransactions", 'String'>
+    readonly payorbillingcode: FieldRef<"prebillingtransactions", 'String'>
+    readonly billinginitial: FieldRef<"prebillingtransactions", 'String'>
+    readonly billingdiscount: FieldRef<"prebillingtransactions", 'String'>
+    readonly billingnetamount: FieldRef<"prebillingtransactions", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * prebillingtransactions findUnique
+   */
+  export type prebillingtransactionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which prebillingtransactions to fetch.
+     */
+    where: prebillingtransactionsWhereUniqueInput
+  }
+
+  /**
+   * prebillingtransactions findUniqueOrThrow
+   */
+  export type prebillingtransactionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which prebillingtransactions to fetch.
+     */
+    where: prebillingtransactionsWhereUniqueInput
+  }
+
+  /**
+   * prebillingtransactions findFirst
+   */
+  export type prebillingtransactionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which prebillingtransactions to fetch.
+     */
+    where?: prebillingtransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of prebillingtransactions to fetch.
+     */
+    orderBy?: prebillingtransactionsOrderByWithRelationInput | prebillingtransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for prebillingtransactions.
+     */
+    cursor?: prebillingtransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` prebillingtransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` prebillingtransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of prebillingtransactions.
+     */
+    distinct?: PrebillingtransactionsScalarFieldEnum | PrebillingtransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * prebillingtransactions findFirstOrThrow
+   */
+  export type prebillingtransactionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which prebillingtransactions to fetch.
+     */
+    where?: prebillingtransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of prebillingtransactions to fetch.
+     */
+    orderBy?: prebillingtransactionsOrderByWithRelationInput | prebillingtransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for prebillingtransactions.
+     */
+    cursor?: prebillingtransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` prebillingtransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` prebillingtransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of prebillingtransactions.
+     */
+    distinct?: PrebillingtransactionsScalarFieldEnum | PrebillingtransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * prebillingtransactions findMany
+   */
+  export type prebillingtransactionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * Filter, which prebillingtransactions to fetch.
+     */
+    where?: prebillingtransactionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of prebillingtransactions to fetch.
+     */
+    orderBy?: prebillingtransactionsOrderByWithRelationInput | prebillingtransactionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing prebillingtransactions.
+     */
+    cursor?: prebillingtransactionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` prebillingtransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` prebillingtransactions.
+     */
+    skip?: number
+    distinct?: PrebillingtransactionsScalarFieldEnum | PrebillingtransactionsScalarFieldEnum[]
+  }
+
+  /**
+   * prebillingtransactions create
+   */
+  export type prebillingtransactionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a prebillingtransactions.
+     */
+    data?: XOR<prebillingtransactionsCreateInput, prebillingtransactionsUncheckedCreateInput>
+  }
+
+  /**
+   * prebillingtransactions createMany
+   */
+  export type prebillingtransactionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many prebillingtransactions.
+     */
+    data: prebillingtransactionsCreateManyInput | prebillingtransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * prebillingtransactions createManyAndReturn
+   */
+  export type prebillingtransactionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many prebillingtransactions.
+     */
+    data: prebillingtransactionsCreateManyInput | prebillingtransactionsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * prebillingtransactions update
+   */
+  export type prebillingtransactionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a prebillingtransactions.
+     */
+    data: XOR<prebillingtransactionsUpdateInput, prebillingtransactionsUncheckedUpdateInput>
+    /**
+     * Choose, which prebillingtransactions to update.
+     */
+    where: prebillingtransactionsWhereUniqueInput
+  }
+
+  /**
+   * prebillingtransactions updateMany
+   */
+  export type prebillingtransactionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update prebillingtransactions.
+     */
+    data: XOR<prebillingtransactionsUpdateManyMutationInput, prebillingtransactionsUncheckedUpdateManyInput>
+    /**
+     * Filter which prebillingtransactions to update
+     */
+    where?: prebillingtransactionsWhereInput
+  }
+
+  /**
+   * prebillingtransactions upsert
+   */
+  export type prebillingtransactionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the prebillingtransactions to update in case it exists.
+     */
+    where: prebillingtransactionsWhereUniqueInput
+    /**
+     * In case the prebillingtransactions found by the `where` argument doesn't exist, create a new prebillingtransactions with this data.
+     */
+    create: XOR<prebillingtransactionsCreateInput, prebillingtransactionsUncheckedCreateInput>
+    /**
+     * In case the prebillingtransactions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<prebillingtransactionsUpdateInput, prebillingtransactionsUncheckedUpdateInput>
+  }
+
+  /**
+   * prebillingtransactions delete
+   */
+  export type prebillingtransactionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+    /**
+     * Filter which prebillingtransactions to delete.
+     */
+    where: prebillingtransactionsWhereUniqueInput
+  }
+
+  /**
+   * prebillingtransactions deleteMany
+   */
+  export type prebillingtransactionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which prebillingtransactions to delete
+     */
+    where?: prebillingtransactionsWhereInput
+  }
+
+  /**
+   * prebillingtransactions.insurers
+   */
+  export type prebillingtransactions$insurersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the insurers
+     */
+    select?: insurersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: insurersInclude<ExtArgs> | null
+    where?: insurersWhereInput
+  }
+
+  /**
+   * prebillingtransactions without action
+   */
+  export type prebillingtransactionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the prebillingtransactions
+     */
+    select?: prebillingtransactionsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: prebillingtransactionsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -32212,10 +35775,14 @@ export namespace Prisma {
     preauthreferclaimno: 'preauthreferclaimno',
     preauthreferocc: 'preauthreferocc',
     ispackage: 'ispackage',
-    totalestimatedcost: 'totalestimatedcost',
     anesthesialist: 'anesthesialist',
     indicationforadmission: 'indicationforadmission',
-    accidentdate: 'accidentdate'
+    accidentdate: 'accidentdate',
+    havediagnosis: 'havediagnosis',
+    haveprebilling: 'haveprebilling',
+    havepreauthnote: 'havepreauthnote',
+    haveconcurrentnote: 'haveconcurrentnote',
+    totalestimatedcost: 'totalestimatedcost'
   };
 
   export type MedicaltransactionsScalarFieldEnum = (typeof MedicaltransactionsScalarFieldEnum)[keyof typeof MedicaltransactionsScalarFieldEnum]
@@ -32299,7 +35866,10 @@ export namespace Prisma {
     customerid: 'customerid',
     totalbillamount: 'totalbillamount',
     visitlocation: 'visitlocation',
-    paymentdate: 'paymentdate'
+    paymentdate: 'paymentdate',
+    preauthreferclaimno: 'preauthreferclaimno',
+    preauthreferocc: 'preauthreferocc',
+    reservedate: 'reservedate'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -32391,6 +35961,53 @@ export namespace Prisma {
   };
 
   export type DiagnosistransactionsScalarFieldEnum = (typeof DiagnosistransactionsScalarFieldEnum)[keyof typeof DiagnosistransactionsScalarFieldEnum]
+
+
+  export const ConcurrentnotetransactionsScalarFieldEnum: {
+    id: 'id',
+    insurerid: 'insurerid',
+    refid: 'refid',
+    transactionno: 'transactionno',
+    hn: 'hn',
+    vn: 'vn',
+    concurrentdatetime: 'concurrentdatetime',
+    concurrentdetail: 'concurrentdetail'
+  };
+
+  export type ConcurrentnotetransactionsScalarFieldEnum = (typeof ConcurrentnotetransactionsScalarFieldEnum)[keyof typeof ConcurrentnotetransactionsScalarFieldEnum]
+
+
+  export const PreauthnotetransactionsScalarFieldEnum: {
+    id: 'id',
+    insurerid: 'insurerid',
+    refid: 'refid',
+    transactionno: 'transactionno',
+    hn: 'hn',
+    vn: 'vn',
+    preauthdatetime: 'preauthdatetime',
+    preauthdetail: 'preauthdetail'
+  };
+
+  export type PreauthnotetransactionsScalarFieldEnum = (typeof PreauthnotetransactionsScalarFieldEnum)[keyof typeof PreauthnotetransactionsScalarFieldEnum]
+
+
+  export const PrebillingtransactionsScalarFieldEnum: {
+    id: 'id',
+    insurerid: 'insurerid',
+    refid: 'refid',
+    transactionno: 'transactionno',
+    hn: 'hn',
+    vn: 'vn',
+    localbillingcode: 'localbillingcode',
+    localbillingname: 'localbillingname',
+    simbbillingcode: 'simbbillingcode',
+    payorbillingcode: 'payorbillingcode',
+    billinginitial: 'billinginitial',
+    billingdiscount: 'billingdiscount',
+    billingnetamount: 'billingnetamount'
+  };
+
+  export type PrebillingtransactionsScalarFieldEnum = (typeof PrebillingtransactionsScalarFieldEnum)[keyof typeof PrebillingtransactionsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -33518,6 +37135,7 @@ export namespace Prisma {
     claimants?: ClaimantsListRelationFilter
     claimdocuments?: ClaimdocumentsListRelationFilter
     claimstatus?: ClaimstatusListRelationFilter
+    concurrentnotetransactions?: ConcurrentnotetransactionsListRelationFilter
     diagnosistransactions?: DiagnosistransactionsListRelationFilter
     diagnosistypemapping?: DiagnosistypemappingListRelationFilter
     documenttype?: DocumenttypeListRelationFilter
@@ -33527,6 +37145,8 @@ export namespace Prisma {
     indicationsforadmission?: IndicationsforadmissionListRelationFilter
     opeartionispackage?: OpeartionispackageListRelationFilter
     policytype?: PolicytypeListRelationFilter
+    preauthnotetransactions?: PreauthnotetransactionsListRelationFilter
+    prebillingtransactions?: PrebillingtransactionsListRelationFilter
     proceduretransactions?: ProceduretransactionsListRelationFilter
     servicesetting?: ServicesettingListRelationFilter
   }
@@ -33546,6 +37166,7 @@ export namespace Prisma {
     claimants?: claimantsOrderByRelationAggregateInput
     claimdocuments?: claimdocumentsOrderByRelationAggregateInput
     claimstatus?: claimstatusOrderByRelationAggregateInput
+    concurrentnotetransactions?: concurrentnotetransactionsOrderByRelationAggregateInput
     diagnosistransactions?: diagnosistransactionsOrderByRelationAggregateInput
     diagnosistypemapping?: diagnosistypemappingOrderByRelationAggregateInput
     documenttype?: documenttypeOrderByRelationAggregateInput
@@ -33555,6 +37176,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionOrderByRelationAggregateInput
     opeartionispackage?: opeartionispackageOrderByRelationAggregateInput
     policytype?: policytypeOrderByRelationAggregateInput
+    preauthnotetransactions?: preauthnotetransactionsOrderByRelationAggregateInput
+    prebillingtransactions?: prebillingtransactionsOrderByRelationAggregateInput
     proceduretransactions?: proceduretransactionsOrderByRelationAggregateInput
     servicesetting?: servicesettingOrderByRelationAggregateInput
   }
@@ -33577,6 +37200,7 @@ export namespace Prisma {
     claimants?: ClaimantsListRelationFilter
     claimdocuments?: ClaimdocumentsListRelationFilter
     claimstatus?: ClaimstatusListRelationFilter
+    concurrentnotetransactions?: ConcurrentnotetransactionsListRelationFilter
     diagnosistransactions?: DiagnosistransactionsListRelationFilter
     diagnosistypemapping?: DiagnosistypemappingListRelationFilter
     documenttype?: DocumenttypeListRelationFilter
@@ -33586,6 +37210,8 @@ export namespace Prisma {
     indicationsforadmission?: IndicationsforadmissionListRelationFilter
     opeartionispackage?: OpeartionispackageListRelationFilter
     policytype?: PolicytypeListRelationFilter
+    preauthnotetransactions?: PreauthnotetransactionsListRelationFilter
+    prebillingtransactions?: PrebillingtransactionsListRelationFilter
     proceduretransactions?: ProceduretransactionsListRelationFilter
     servicesetting?: ServicesettingListRelationFilter
   }, "id" | "insurerid">
@@ -33650,10 +37276,14 @@ export namespace Prisma {
     preauthreferclaimno?: StringNullableFilter<"medicaltransactions"> | string | null
     preauthreferocc?: StringNullableFilter<"medicaltransactions"> | string | null
     ispackage?: BoolNullableFilter<"medicaltransactions"> | boolean | null
-    totalestimatedcost?: DecimalNullableFilter<"medicaltransactions"> | Decimal | DecimalJsLike | number | string | null
     anesthesialist?: StringNullableFilter<"medicaltransactions"> | string | null
     indicationforadmission?: StringNullableFilter<"medicaltransactions"> | string | null
     accidentdate?: StringNullableFilter<"medicaltransactions"> | string | null
+    havediagnosis?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveprebilling?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    havepreauthnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveconcurrentnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    totalestimatedcost?: StringNullableFilter<"medicaltransactions"> | string | null
   }
 
   export type medicaltransactionsOrderByWithRelationInput = {
@@ -33691,10 +37321,14 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrderInput | SortOrder
     preauthreferocc?: SortOrderInput | SortOrder
     ispackage?: SortOrderInput | SortOrder
-    totalestimatedcost?: SortOrderInput | SortOrder
     anesthesialist?: SortOrderInput | SortOrder
     indicationforadmission?: SortOrderInput | SortOrder
     accidentdate?: SortOrderInput | SortOrder
+    havediagnosis?: SortOrderInput | SortOrder
+    haveprebilling?: SortOrderInput | SortOrder
+    havepreauthnote?: SortOrderInput | SortOrder
+    haveconcurrentnote?: SortOrderInput | SortOrder
+    totalestimatedcost?: SortOrderInput | SortOrder
   }
 
   export type medicaltransactionsWhereUniqueInput = Prisma.AtLeast<{
@@ -33735,10 +37369,14 @@ export namespace Prisma {
     preauthreferclaimno?: StringNullableFilter<"medicaltransactions"> | string | null
     preauthreferocc?: StringNullableFilter<"medicaltransactions"> | string | null
     ispackage?: BoolNullableFilter<"medicaltransactions"> | boolean | null
-    totalestimatedcost?: DecimalNullableFilter<"medicaltransactions"> | Decimal | DecimalJsLike | number | string | null
     anesthesialist?: StringNullableFilter<"medicaltransactions"> | string | null
     indicationforadmission?: StringNullableFilter<"medicaltransactions"> | string | null
     accidentdate?: StringNullableFilter<"medicaltransactions"> | string | null
+    havediagnosis?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveprebilling?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    havepreauthnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    haveconcurrentnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    totalestimatedcost?: StringNullableFilter<"medicaltransactions"> | string | null
   }, "id">
 
   export type medicaltransactionsOrderByWithAggregationInput = {
@@ -33776,10 +37414,14 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrderInput | SortOrder
     preauthreferocc?: SortOrderInput | SortOrder
     ispackage?: SortOrderInput | SortOrder
-    totalestimatedcost?: SortOrderInput | SortOrder
     anesthesialist?: SortOrderInput | SortOrder
     indicationforadmission?: SortOrderInput | SortOrder
     accidentdate?: SortOrderInput | SortOrder
+    havediagnosis?: SortOrderInput | SortOrder
+    haveprebilling?: SortOrderInput | SortOrder
+    havepreauthnote?: SortOrderInput | SortOrder
+    haveconcurrentnote?: SortOrderInput | SortOrder
+    totalestimatedcost?: SortOrderInput | SortOrder
     _count?: medicaltransactionsCountOrderByAggregateInput
     _avg?: medicaltransactionsAvgOrderByAggregateInput
     _max?: medicaltransactionsMaxOrderByAggregateInput
@@ -33825,10 +37467,14 @@ export namespace Prisma {
     preauthreferclaimno?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     preauthreferocc?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     ispackage?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
-    totalestimatedcost?: DecimalNullableWithAggregatesFilter<"medicaltransactions"> | Decimal | DecimalJsLike | number | string | null
     anesthesialist?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     indicationforadmission?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     accidentdate?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    havediagnosis?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    haveprebilling?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    havepreauthnote?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    haveconcurrentnote?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    totalestimatedcost?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
   }
 
   export type policytypeWhereInput = {
@@ -34059,6 +37705,9 @@ export namespace Prisma {
     totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
+    preauthreferclaimno?: StringNullableFilter<"transactionclaim"> | string | null
+    preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
+    reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -34106,6 +37755,9 @@ export namespace Prisma {
     totalbillamount?: SortOrderInput | SortOrder
     visitlocation?: SortOrderInput | SortOrder
     paymentdate?: SortOrderInput | SortOrder
+    preauthreferclaimno?: SortOrderInput | SortOrder
+    preauthreferocc?: SortOrderInput | SortOrder
+    reservedate?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -34156,6 +37808,9 @@ export namespace Prisma {
     totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
+    preauthreferclaimno?: StringNullableFilter<"transactionclaim"> | string | null
+    preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
+    reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -34203,6 +37858,9 @@ export namespace Prisma {
     totalbillamount?: SortOrderInput | SortOrder
     visitlocation?: SortOrderInput | SortOrder
     paymentdate?: SortOrderInput | SortOrder
+    preauthreferclaimno?: SortOrderInput | SortOrder
+    preauthreferocc?: SortOrderInput | SortOrder
+    reservedate?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -34257,6 +37915,9 @@ export namespace Prisma {
     totalbillamount?: DecimalNullableWithAggregatesFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    preauthreferclaimno?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    preauthreferocc?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    reservedate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -34709,6 +38370,247 @@ export namespace Prisma {
     dxname?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
     dxtype?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
     icd10?: StringNullableWithAggregatesFilter<"diagnosistransactions"> | string | null
+  }
+
+  export type concurrentnotetransactionsWhereInput = {
+    AND?: concurrentnotetransactionsWhereInput | concurrentnotetransactionsWhereInput[]
+    OR?: concurrentnotetransactionsWhereInput[]
+    NOT?: concurrentnotetransactionsWhereInput | concurrentnotetransactionsWhereInput[]
+    id?: IntFilter<"concurrentnotetransactions"> | number
+    insurerid?: IntNullableFilter<"concurrentnotetransactions"> | number | null
+    refid?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    transactionno?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    hn?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    vn?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    concurrentdatetime?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    concurrentdetail?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type concurrentnotetransactionsOrderByWithRelationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    concurrentdatetime?: SortOrderInput | SortOrder
+    concurrentdetail?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type concurrentnotetransactionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: concurrentnotetransactionsWhereInput | concurrentnotetransactionsWhereInput[]
+    OR?: concurrentnotetransactionsWhereInput[]
+    NOT?: concurrentnotetransactionsWhereInput | concurrentnotetransactionsWhereInput[]
+    insurerid?: IntNullableFilter<"concurrentnotetransactions"> | number | null
+    refid?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    transactionno?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    hn?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    vn?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    concurrentdatetime?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    concurrentdetail?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type concurrentnotetransactionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    concurrentdatetime?: SortOrderInput | SortOrder
+    concurrentdetail?: SortOrderInput | SortOrder
+    _count?: concurrentnotetransactionsCountOrderByAggregateInput
+    _avg?: concurrentnotetransactionsAvgOrderByAggregateInput
+    _max?: concurrentnotetransactionsMaxOrderByAggregateInput
+    _min?: concurrentnotetransactionsMinOrderByAggregateInput
+    _sum?: concurrentnotetransactionsSumOrderByAggregateInput
+  }
+
+  export type concurrentnotetransactionsScalarWhereWithAggregatesInput = {
+    AND?: concurrentnotetransactionsScalarWhereWithAggregatesInput | concurrentnotetransactionsScalarWhereWithAggregatesInput[]
+    OR?: concurrentnotetransactionsScalarWhereWithAggregatesInput[]
+    NOT?: concurrentnotetransactionsScalarWhereWithAggregatesInput | concurrentnotetransactionsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"concurrentnotetransactions"> | number
+    insurerid?: IntNullableWithAggregatesFilter<"concurrentnotetransactions"> | number | null
+    refid?: StringNullableWithAggregatesFilter<"concurrentnotetransactions"> | string | null
+    transactionno?: StringNullableWithAggregatesFilter<"concurrentnotetransactions"> | string | null
+    hn?: StringNullableWithAggregatesFilter<"concurrentnotetransactions"> | string | null
+    vn?: StringNullableWithAggregatesFilter<"concurrentnotetransactions"> | string | null
+    concurrentdatetime?: StringNullableWithAggregatesFilter<"concurrentnotetransactions"> | string | null
+    concurrentdetail?: StringNullableWithAggregatesFilter<"concurrentnotetransactions"> | string | null
+  }
+
+  export type preauthnotetransactionsWhereInput = {
+    AND?: preauthnotetransactionsWhereInput | preauthnotetransactionsWhereInput[]
+    OR?: preauthnotetransactionsWhereInput[]
+    NOT?: preauthnotetransactionsWhereInput | preauthnotetransactionsWhereInput[]
+    id?: IntFilter<"preauthnotetransactions"> | number
+    insurerid?: IntNullableFilter<"preauthnotetransactions"> | number | null
+    refid?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    transactionno?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    hn?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    vn?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    preauthdatetime?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    preauthdetail?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type preauthnotetransactionsOrderByWithRelationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    preauthdatetime?: SortOrderInput | SortOrder
+    preauthdetail?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type preauthnotetransactionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: preauthnotetransactionsWhereInput | preauthnotetransactionsWhereInput[]
+    OR?: preauthnotetransactionsWhereInput[]
+    NOT?: preauthnotetransactionsWhereInput | preauthnotetransactionsWhereInput[]
+    insurerid?: IntNullableFilter<"preauthnotetransactions"> | number | null
+    refid?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    transactionno?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    hn?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    vn?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    preauthdatetime?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    preauthdetail?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type preauthnotetransactionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    preauthdatetime?: SortOrderInput | SortOrder
+    preauthdetail?: SortOrderInput | SortOrder
+    _count?: preauthnotetransactionsCountOrderByAggregateInput
+    _avg?: preauthnotetransactionsAvgOrderByAggregateInput
+    _max?: preauthnotetransactionsMaxOrderByAggregateInput
+    _min?: preauthnotetransactionsMinOrderByAggregateInput
+    _sum?: preauthnotetransactionsSumOrderByAggregateInput
+  }
+
+  export type preauthnotetransactionsScalarWhereWithAggregatesInput = {
+    AND?: preauthnotetransactionsScalarWhereWithAggregatesInput | preauthnotetransactionsScalarWhereWithAggregatesInput[]
+    OR?: preauthnotetransactionsScalarWhereWithAggregatesInput[]
+    NOT?: preauthnotetransactionsScalarWhereWithAggregatesInput | preauthnotetransactionsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"preauthnotetransactions"> | number
+    insurerid?: IntNullableWithAggregatesFilter<"preauthnotetransactions"> | number | null
+    refid?: StringNullableWithAggregatesFilter<"preauthnotetransactions"> | string | null
+    transactionno?: StringNullableWithAggregatesFilter<"preauthnotetransactions"> | string | null
+    hn?: StringNullableWithAggregatesFilter<"preauthnotetransactions"> | string | null
+    vn?: StringNullableWithAggregatesFilter<"preauthnotetransactions"> | string | null
+    preauthdatetime?: StringNullableWithAggregatesFilter<"preauthnotetransactions"> | string | null
+    preauthdetail?: StringNullableWithAggregatesFilter<"preauthnotetransactions"> | string | null
+  }
+
+  export type prebillingtransactionsWhereInput = {
+    AND?: prebillingtransactionsWhereInput | prebillingtransactionsWhereInput[]
+    OR?: prebillingtransactionsWhereInput[]
+    NOT?: prebillingtransactionsWhereInput | prebillingtransactionsWhereInput[]
+    id?: IntFilter<"prebillingtransactions"> | number
+    insurerid?: IntNullableFilter<"prebillingtransactions"> | number | null
+    refid?: StringNullableFilter<"prebillingtransactions"> | string | null
+    transactionno?: StringNullableFilter<"prebillingtransactions"> | string | null
+    hn?: StringNullableFilter<"prebillingtransactions"> | string | null
+    vn?: StringNullableFilter<"prebillingtransactions"> | string | null
+    localbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    localbillingname?: StringNullableFilter<"prebillingtransactions"> | string | null
+    simbbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    payorbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billinginitial?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billingdiscount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billingnetamount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }
+
+  export type prebillingtransactionsOrderByWithRelationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    localbillingcode?: SortOrderInput | SortOrder
+    localbillingname?: SortOrderInput | SortOrder
+    simbbillingcode?: SortOrderInput | SortOrder
+    payorbillingcode?: SortOrderInput | SortOrder
+    billinginitial?: SortOrderInput | SortOrder
+    billingdiscount?: SortOrderInput | SortOrder
+    billingnetamount?: SortOrderInput | SortOrder
+    insurers?: insurersOrderByWithRelationInput
+  }
+
+  export type prebillingtransactionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: prebillingtransactionsWhereInput | prebillingtransactionsWhereInput[]
+    OR?: prebillingtransactionsWhereInput[]
+    NOT?: prebillingtransactionsWhereInput | prebillingtransactionsWhereInput[]
+    insurerid?: IntNullableFilter<"prebillingtransactions"> | number | null
+    refid?: StringNullableFilter<"prebillingtransactions"> | string | null
+    transactionno?: StringNullableFilter<"prebillingtransactions"> | string | null
+    hn?: StringNullableFilter<"prebillingtransactions"> | string | null
+    vn?: StringNullableFilter<"prebillingtransactions"> | string | null
+    localbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    localbillingname?: StringNullableFilter<"prebillingtransactions"> | string | null
+    simbbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    payorbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billinginitial?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billingdiscount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billingnetamount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+  }, "id">
+
+  export type prebillingtransactionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
+    refid?: SortOrderInput | SortOrder
+    transactionno?: SortOrderInput | SortOrder
+    hn?: SortOrderInput | SortOrder
+    vn?: SortOrderInput | SortOrder
+    localbillingcode?: SortOrderInput | SortOrder
+    localbillingname?: SortOrderInput | SortOrder
+    simbbillingcode?: SortOrderInput | SortOrder
+    payorbillingcode?: SortOrderInput | SortOrder
+    billinginitial?: SortOrderInput | SortOrder
+    billingdiscount?: SortOrderInput | SortOrder
+    billingnetamount?: SortOrderInput | SortOrder
+    _count?: prebillingtransactionsCountOrderByAggregateInput
+    _avg?: prebillingtransactionsAvgOrderByAggregateInput
+    _max?: prebillingtransactionsMaxOrderByAggregateInput
+    _min?: prebillingtransactionsMinOrderByAggregateInput
+    _sum?: prebillingtransactionsSumOrderByAggregateInput
+  }
+
+  export type prebillingtransactionsScalarWhereWithAggregatesInput = {
+    AND?: prebillingtransactionsScalarWhereWithAggregatesInput | prebillingtransactionsScalarWhereWithAggregatesInput[]
+    OR?: prebillingtransactionsScalarWhereWithAggregatesInput[]
+    NOT?: prebillingtransactionsScalarWhereWithAggregatesInput | prebillingtransactionsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"prebillingtransactions"> | number
+    insurerid?: IntNullableWithAggregatesFilter<"prebillingtransactions"> | number | null
+    refid?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    transactionno?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    hn?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    vn?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    localbillingcode?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    localbillingname?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    simbbillingcode?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    payorbillingcode?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    billinginitial?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    billingdiscount?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    billingnetamount?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
   }
 
   export type accidentcauseover45daysCreateInput = {
@@ -35682,6 +39584,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -35691,6 +39594,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -35710,6 +39615,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -35719,6 +39625,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -35737,6 +39645,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -35746,6 +39655,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -35765,6 +39676,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -35774,6 +39686,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -35832,10 +39746,14 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     ispackage?: boolean | null
-    totalestimatedcost?: Decimal | DecimalJsLike | number | string | null
     anesthesialist?: string | null
     indicationforadmission?: string | null
     accidentdate?: string | null
+    havediagnosis?: boolean | null
+    haveprebilling?: boolean | null
+    havepreauthnote?: boolean | null
+    haveconcurrentnote?: boolean | null
+    totalestimatedcost?: string | null
   }
 
   export type medicaltransactionsUncheckedCreateInput = {
@@ -35873,10 +39791,14 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     ispackage?: boolean | null
-    totalestimatedcost?: Decimal | DecimalJsLike | number | string | null
     anesthesialist?: string | null
     indicationforadmission?: string | null
     accidentdate?: string | null
+    havediagnosis?: boolean | null
+    haveprebilling?: boolean | null
+    havepreauthnote?: boolean | null
+    haveconcurrentnote?: boolean | null
+    totalestimatedcost?: string | null
   }
 
   export type medicaltransactionsUpdateInput = {
@@ -35913,10 +39835,14 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     anesthesialist?: NullableStringFieldUpdateOperationsInput | string | null
     indicationforadmission?: NullableStringFieldUpdateOperationsInput | string | null
     accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    havediagnosis?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprebilling?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateInput = {
@@ -35954,10 +39880,14 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     anesthesialist?: NullableStringFieldUpdateOperationsInput | string | null
     indicationforadmission?: NullableStringFieldUpdateOperationsInput | string | null
     accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    havediagnosis?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprebilling?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsCreateManyInput = {
@@ -35995,10 +39925,14 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     ispackage?: boolean | null
-    totalestimatedcost?: Decimal | DecimalJsLike | number | string | null
     anesthesialist?: string | null
     indicationforadmission?: string | null
     accidentdate?: string | null
+    havediagnosis?: boolean | null
+    haveprebilling?: boolean | null
+    havepreauthnote?: boolean | null
+    haveconcurrentnote?: boolean | null
+    totalestimatedcost?: string | null
   }
 
   export type medicaltransactionsUpdateManyMutationInput = {
@@ -36035,10 +39969,14 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     anesthesialist?: NullableStringFieldUpdateOperationsInput | string | null
     indicationforadmission?: NullableStringFieldUpdateOperationsInput | string | null
     accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    havediagnosis?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprebilling?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateManyInput = {
@@ -36076,10 +40014,14 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     ispackage?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    totalestimatedcost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     anesthesialist?: NullableStringFieldUpdateOperationsInput | string | null
     indicationforadmission?: NullableStringFieldUpdateOperationsInput | string | null
     accidentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    havediagnosis?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveprebilling?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type policytypeCreateInput = {
@@ -36293,6 +40235,9 @@ export namespace Prisma {
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    reservedate?: string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -36340,6 +40285,9 @@ export namespace Prisma {
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    reservedate?: string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -36383,6 +40331,9 @@ export namespace Prisma {
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -36430,6 +40381,9 @@ export namespace Prisma {
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    reservedate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -36476,6 +40430,9 @@ export namespace Prisma {
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    reservedate?: string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -36519,6 +40476,9 @@ export namespace Prisma {
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    reservedate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -36565,6 +40525,9 @@ export namespace Prisma {
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    reservedate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -37028,6 +40991,260 @@ export namespace Prisma {
     dxname?: NullableStringFieldUpdateOperationsInput | string | null
     dxtype?: NullableStringFieldUpdateOperationsInput | string | null
     icd10?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type concurrentnotetransactionsCreateInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    concurrentdatetime?: string | null
+    concurrentdetail?: string | null
+    insurers?: insurersCreateNestedOneWithoutConcurrentnotetransactionsInput
+  }
+
+  export type concurrentnotetransactionsUncheckedCreateInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    concurrentdatetime?: string | null
+    concurrentdetail?: string | null
+  }
+
+  export type concurrentnotetransactionsUpdateInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutConcurrentnotetransactionsNestedInput
+  }
+
+  export type concurrentnotetransactionsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type concurrentnotetransactionsCreateManyInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    concurrentdatetime?: string | null
+    concurrentdetail?: string | null
+  }
+
+  export type concurrentnotetransactionsUpdateManyMutationInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type concurrentnotetransactionsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type preauthnotetransactionsCreateInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    preauthdatetime?: string | null
+    preauthdetail?: string | null
+    insurers?: insurersCreateNestedOneWithoutPreauthnotetransactionsInput
+  }
+
+  export type preauthnotetransactionsUncheckedCreateInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    preauthdatetime?: string | null
+    preauthdetail?: string | null
+  }
+
+  export type preauthnotetransactionsUpdateInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdetail?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutPreauthnotetransactionsNestedInput
+  }
+
+  export type preauthnotetransactionsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type preauthnotetransactionsCreateManyInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    preauthdatetime?: string | null
+    preauthdetail?: string | null
+  }
+
+  export type preauthnotetransactionsUpdateManyMutationInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type preauthnotetransactionsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type prebillingtransactionsCreateInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+    insurers?: insurersCreateNestedOneWithoutPrebillingtransactionsInput
+  }
+
+  export type prebillingtransactionsUncheckedCreateInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+  }
+
+  export type prebillingtransactionsUpdateInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutPrebillingtransactionsNestedInput
+  }
+
+  export type prebillingtransactionsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type prebillingtransactionsCreateManyInput = {
+    id?: number
+    insurerid?: number | null
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+  }
+
+  export type prebillingtransactionsUpdateManyMutationInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type prebillingtransactionsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -37952,6 +42169,12 @@ export namespace Prisma {
     none?: claimstatusWhereInput
   }
 
+  export type ConcurrentnotetransactionsListRelationFilter = {
+    every?: concurrentnotetransactionsWhereInput
+    some?: concurrentnotetransactionsWhereInput
+    none?: concurrentnotetransactionsWhereInput
+  }
+
   export type DiagnosistransactionsListRelationFilter = {
     every?: diagnosistransactionsWhereInput
     some?: diagnosistransactionsWhereInput
@@ -38006,6 +42229,18 @@ export namespace Prisma {
     none?: policytypeWhereInput
   }
 
+  export type PreauthnotetransactionsListRelationFilter = {
+    every?: preauthnotetransactionsWhereInput
+    some?: preauthnotetransactionsWhereInput
+    none?: preauthnotetransactionsWhereInput
+  }
+
+  export type PrebillingtransactionsListRelationFilter = {
+    every?: prebillingtransactionsWhereInput
+    some?: prebillingtransactionsWhereInput
+    none?: prebillingtransactionsWhereInput
+  }
+
   export type ProceduretransactionsListRelationFilter = {
     every?: proceduretransactionsWhereInput
     some?: proceduretransactionsWhereInput
@@ -38058,6 +42293,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type concurrentnotetransactionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type diagnosistransactionsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -38091,6 +42330,14 @@ export namespace Prisma {
   }
 
   export type policytypeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type preauthnotetransactionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type prebillingtransactionsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -38170,16 +42417,19 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrder
     preauthreferocc?: SortOrder
     ispackage?: SortOrder
-    totalestimatedcost?: SortOrder
     anesthesialist?: SortOrder
     indicationforadmission?: SortOrder
     accidentdate?: SortOrder
+    havediagnosis?: SortOrder
+    haveprebilling?: SortOrder
+    havepreauthnote?: SortOrder
+    haveconcurrentnote?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsAvgOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
-    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsMaxOrderByAggregateInput = {
@@ -38217,10 +42467,14 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrder
     preauthreferocc?: SortOrder
     ispackage?: SortOrder
-    totalestimatedcost?: SortOrder
     anesthesialist?: SortOrder
     indicationforadmission?: SortOrder
     accidentdate?: SortOrder
+    havediagnosis?: SortOrder
+    haveprebilling?: SortOrder
+    havepreauthnote?: SortOrder
+    haveconcurrentnote?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsMinOrderByAggregateInput = {
@@ -38258,16 +42512,19 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrder
     preauthreferocc?: SortOrder
     ispackage?: SortOrder
-    totalestimatedcost?: SortOrder
     anesthesialist?: SortOrder
     indicationforadmission?: SortOrder
     accidentdate?: SortOrder
+    havediagnosis?: SortOrder
+    haveprebilling?: SortOrder
+    havepreauthnote?: SortOrder
+    haveconcurrentnote?: SortOrder
+    totalestimatedcost?: SortOrder
   }
 
   export type medicaltransactionsSumOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
-    totalestimatedcost?: SortOrder
   }
 
   export type policytypeCountOrderByAggregateInput = {
@@ -38427,6 +42684,9 @@ export namespace Prisma {
     totalbillamount?: SortOrder
     visitlocation?: SortOrder
     paymentdate?: SortOrder
+    preauthreferclaimno?: SortOrder
+    preauthreferocc?: SortOrder
+    reservedate?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -38482,6 +42742,9 @@ export namespace Prisma {
     totalbillamount?: SortOrder
     visitlocation?: SortOrder
     paymentdate?: SortOrder
+    preauthreferclaimno?: SortOrder
+    preauthreferocc?: SortOrder
+    reservedate?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -38528,6 +42791,9 @@ export namespace Prisma {
     totalbillamount?: SortOrder
     visitlocation?: SortOrder
     paymentdate?: SortOrder
+    preauthreferclaimno?: SortOrder
+    preauthreferocc?: SortOrder
+    reservedate?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -38810,6 +43076,150 @@ export namespace Prisma {
   }
 
   export type diagnosistransactionsSumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type concurrentnotetransactionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    concurrentdatetime?: SortOrder
+    concurrentdetail?: SortOrder
+  }
+
+  export type concurrentnotetransactionsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type concurrentnotetransactionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    concurrentdatetime?: SortOrder
+    concurrentdetail?: SortOrder
+  }
+
+  export type concurrentnotetransactionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    concurrentdatetime?: SortOrder
+    concurrentdetail?: SortOrder
+  }
+
+  export type concurrentnotetransactionsSumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type preauthnotetransactionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    preauthdatetime?: SortOrder
+    preauthdetail?: SortOrder
+  }
+
+  export type preauthnotetransactionsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type preauthnotetransactionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    preauthdatetime?: SortOrder
+    preauthdetail?: SortOrder
+  }
+
+  export type preauthnotetransactionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    preauthdatetime?: SortOrder
+    preauthdetail?: SortOrder
+  }
+
+  export type preauthnotetransactionsSumOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type prebillingtransactionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    localbillingcode?: SortOrder
+    localbillingname?: SortOrder
+    simbbillingcode?: SortOrder
+    payorbillingcode?: SortOrder
+    billinginitial?: SortOrder
+    billingdiscount?: SortOrder
+    billingnetamount?: SortOrder
+  }
+
+  export type prebillingtransactionsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type prebillingtransactionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    localbillingcode?: SortOrder
+    localbillingname?: SortOrder
+    simbbillingcode?: SortOrder
+    payorbillingcode?: SortOrder
+    billinginitial?: SortOrder
+    billingdiscount?: SortOrder
+    billingnetamount?: SortOrder
+  }
+
+  export type prebillingtransactionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    insurerid?: SortOrder
+    refid?: SortOrder
+    transactionno?: SortOrder
+    hn?: SortOrder
+    vn?: SortOrder
+    localbillingcode?: SortOrder
+    localbillingname?: SortOrder
+    simbbillingcode?: SortOrder
+    payorbillingcode?: SortOrder
+    billinginitial?: SortOrder
+    billingdiscount?: SortOrder
+    billingnetamount?: SortOrder
+  }
+
+  export type prebillingtransactionsSumOrderByAggregateInput = {
     id?: SortOrder
     insurerid?: SortOrder
   }
@@ -39340,6 +43750,13 @@ export namespace Prisma {
     connect?: claimstatusWhereUniqueInput | claimstatusWhereUniqueInput[]
   }
 
+  export type concurrentnotetransactionsCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<concurrentnotetransactionsCreateWithoutInsurersInput, concurrentnotetransactionsUncheckedCreateWithoutInsurersInput> | concurrentnotetransactionsCreateWithoutInsurersInput[] | concurrentnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: concurrentnotetransactionsCreateOrConnectWithoutInsurersInput | concurrentnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: concurrentnotetransactionsCreateManyInsurersInputEnvelope
+    connect?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+  }
+
   export type diagnosistransactionsCreateNestedManyWithoutInsurersInput = {
     create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
@@ -39401,6 +43818,20 @@ export namespace Prisma {
     connectOrCreate?: policytypeCreateOrConnectWithoutInsurersInput | policytypeCreateOrConnectWithoutInsurersInput[]
     createMany?: policytypeCreateManyInsurersInputEnvelope
     connect?: policytypeWhereUniqueInput | policytypeWhereUniqueInput[]
+  }
+
+  export type preauthnotetransactionsCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<preauthnotetransactionsCreateWithoutInsurersInput, preauthnotetransactionsUncheckedCreateWithoutInsurersInput> | preauthnotetransactionsCreateWithoutInsurersInput[] | preauthnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: preauthnotetransactionsCreateOrConnectWithoutInsurersInput | preauthnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: preauthnotetransactionsCreateManyInsurersInputEnvelope
+    connect?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+  }
+
+  export type prebillingtransactionsCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<prebillingtransactionsCreateWithoutInsurersInput, prebillingtransactionsUncheckedCreateWithoutInsurersInput> | prebillingtransactionsCreateWithoutInsurersInput[] | prebillingtransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: prebillingtransactionsCreateOrConnectWithoutInsurersInput | prebillingtransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: prebillingtransactionsCreateManyInsurersInputEnvelope
+    connect?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
   }
 
   export type proceduretransactionsCreateNestedManyWithoutInsurersInput = {
@@ -39487,6 +43918,13 @@ export namespace Prisma {
     connect?: claimstatusWhereUniqueInput | claimstatusWhereUniqueInput[]
   }
 
+  export type concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<concurrentnotetransactionsCreateWithoutInsurersInput, concurrentnotetransactionsUncheckedCreateWithoutInsurersInput> | concurrentnotetransactionsCreateWithoutInsurersInput[] | concurrentnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: concurrentnotetransactionsCreateOrConnectWithoutInsurersInput | concurrentnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: concurrentnotetransactionsCreateManyInsurersInputEnvelope
+    connect?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+  }
+
   export type diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput = {
     create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
@@ -39548,6 +43986,20 @@ export namespace Prisma {
     connectOrCreate?: policytypeCreateOrConnectWithoutInsurersInput | policytypeCreateOrConnectWithoutInsurersInput[]
     createMany?: policytypeCreateManyInsurersInputEnvelope
     connect?: policytypeWhereUniqueInput | policytypeWhereUniqueInput[]
+  }
+
+  export type preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<preauthnotetransactionsCreateWithoutInsurersInput, preauthnotetransactionsUncheckedCreateWithoutInsurersInput> | preauthnotetransactionsCreateWithoutInsurersInput[] | preauthnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: preauthnotetransactionsCreateOrConnectWithoutInsurersInput | preauthnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: preauthnotetransactionsCreateManyInsurersInputEnvelope
+    connect?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+  }
+
+  export type prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput = {
+    create?: XOR<prebillingtransactionsCreateWithoutInsurersInput, prebillingtransactionsUncheckedCreateWithoutInsurersInput> | prebillingtransactionsCreateWithoutInsurersInput[] | prebillingtransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: prebillingtransactionsCreateOrConnectWithoutInsurersInput | prebillingtransactionsCreateOrConnectWithoutInsurersInput[]
+    createMany?: prebillingtransactionsCreateManyInsurersInputEnvelope
+    connect?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
   }
 
   export type proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput = {
@@ -39704,6 +44156,20 @@ export namespace Prisma {
     deleteMany?: claimstatusScalarWhereInput | claimstatusScalarWhereInput[]
   }
 
+  export type concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<concurrentnotetransactionsCreateWithoutInsurersInput, concurrentnotetransactionsUncheckedCreateWithoutInsurersInput> | concurrentnotetransactionsCreateWithoutInsurersInput[] | concurrentnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: concurrentnotetransactionsCreateOrConnectWithoutInsurersInput | concurrentnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: concurrentnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput | concurrentnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: concurrentnotetransactionsCreateManyInsurersInputEnvelope
+    set?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    disconnect?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    delete?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    connect?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    update?: concurrentnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput | concurrentnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: concurrentnotetransactionsUpdateManyWithWhereWithoutInsurersInput | concurrentnotetransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: concurrentnotetransactionsScalarWhereInput | concurrentnotetransactionsScalarWhereInput[]
+  }
+
   export type diagnosistransactionsUpdateManyWithoutInsurersNestedInput = {
     create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
@@ -39828,6 +44294,34 @@ export namespace Prisma {
     update?: policytypeUpdateWithWhereUniqueWithoutInsurersInput | policytypeUpdateWithWhereUniqueWithoutInsurersInput[]
     updateMany?: policytypeUpdateManyWithWhereWithoutInsurersInput | policytypeUpdateManyWithWhereWithoutInsurersInput[]
     deleteMany?: policytypeScalarWhereInput | policytypeScalarWhereInput[]
+  }
+
+  export type preauthnotetransactionsUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<preauthnotetransactionsCreateWithoutInsurersInput, preauthnotetransactionsUncheckedCreateWithoutInsurersInput> | preauthnotetransactionsCreateWithoutInsurersInput[] | preauthnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: preauthnotetransactionsCreateOrConnectWithoutInsurersInput | preauthnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: preauthnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput | preauthnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: preauthnotetransactionsCreateManyInsurersInputEnvelope
+    set?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    disconnect?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    delete?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    connect?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    update?: preauthnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput | preauthnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: preauthnotetransactionsUpdateManyWithWhereWithoutInsurersInput | preauthnotetransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: preauthnotetransactionsScalarWhereInput | preauthnotetransactionsScalarWhereInput[]
+  }
+
+  export type prebillingtransactionsUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<prebillingtransactionsCreateWithoutInsurersInput, prebillingtransactionsUncheckedCreateWithoutInsurersInput> | prebillingtransactionsCreateWithoutInsurersInput[] | prebillingtransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: prebillingtransactionsCreateOrConnectWithoutInsurersInput | prebillingtransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: prebillingtransactionsUpsertWithWhereUniqueWithoutInsurersInput | prebillingtransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: prebillingtransactionsCreateManyInsurersInputEnvelope
+    set?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    disconnect?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    delete?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    connect?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    update?: prebillingtransactionsUpdateWithWhereUniqueWithoutInsurersInput | prebillingtransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: prebillingtransactionsUpdateManyWithWhereWithoutInsurersInput | prebillingtransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: prebillingtransactionsScalarWhereInput | prebillingtransactionsScalarWhereInput[]
   }
 
   export type proceduretransactionsUpdateManyWithoutInsurersNestedInput = {
@@ -39998,6 +44492,20 @@ export namespace Prisma {
     deleteMany?: claimstatusScalarWhereInput | claimstatusScalarWhereInput[]
   }
 
+  export type concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<concurrentnotetransactionsCreateWithoutInsurersInput, concurrentnotetransactionsUncheckedCreateWithoutInsurersInput> | concurrentnotetransactionsCreateWithoutInsurersInput[] | concurrentnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: concurrentnotetransactionsCreateOrConnectWithoutInsurersInput | concurrentnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: concurrentnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput | concurrentnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: concurrentnotetransactionsCreateManyInsurersInputEnvelope
+    set?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    disconnect?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    delete?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    connect?: concurrentnotetransactionsWhereUniqueInput | concurrentnotetransactionsWhereUniqueInput[]
+    update?: concurrentnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput | concurrentnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: concurrentnotetransactionsUpdateManyWithWhereWithoutInsurersInput | concurrentnotetransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: concurrentnotetransactionsScalarWhereInput | concurrentnotetransactionsScalarWhereInput[]
+  }
+
   export type diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput = {
     create?: XOR<diagnosistransactionsCreateWithoutInsurersInput, diagnosistransactionsUncheckedCreateWithoutInsurersInput> | diagnosistransactionsCreateWithoutInsurersInput[] | diagnosistransactionsUncheckedCreateWithoutInsurersInput[]
     connectOrCreate?: diagnosistransactionsCreateOrConnectWithoutInsurersInput | diagnosistransactionsCreateOrConnectWithoutInsurersInput[]
@@ -40122,6 +44630,34 @@ export namespace Prisma {
     update?: policytypeUpdateWithWhereUniqueWithoutInsurersInput | policytypeUpdateWithWhereUniqueWithoutInsurersInput[]
     updateMany?: policytypeUpdateManyWithWhereWithoutInsurersInput | policytypeUpdateManyWithWhereWithoutInsurersInput[]
     deleteMany?: policytypeScalarWhereInput | policytypeScalarWhereInput[]
+  }
+
+  export type preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<preauthnotetransactionsCreateWithoutInsurersInput, preauthnotetransactionsUncheckedCreateWithoutInsurersInput> | preauthnotetransactionsCreateWithoutInsurersInput[] | preauthnotetransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: preauthnotetransactionsCreateOrConnectWithoutInsurersInput | preauthnotetransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: preauthnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput | preauthnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: preauthnotetransactionsCreateManyInsurersInputEnvelope
+    set?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    disconnect?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    delete?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    connect?: preauthnotetransactionsWhereUniqueInput | preauthnotetransactionsWhereUniqueInput[]
+    update?: preauthnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput | preauthnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: preauthnotetransactionsUpdateManyWithWhereWithoutInsurersInput | preauthnotetransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: preauthnotetransactionsScalarWhereInput | preauthnotetransactionsScalarWhereInput[]
+  }
+
+  export type prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput = {
+    create?: XOR<prebillingtransactionsCreateWithoutInsurersInput, prebillingtransactionsUncheckedCreateWithoutInsurersInput> | prebillingtransactionsCreateWithoutInsurersInput[] | prebillingtransactionsUncheckedCreateWithoutInsurersInput[]
+    connectOrCreate?: prebillingtransactionsCreateOrConnectWithoutInsurersInput | prebillingtransactionsCreateOrConnectWithoutInsurersInput[]
+    upsert?: prebillingtransactionsUpsertWithWhereUniqueWithoutInsurersInput | prebillingtransactionsUpsertWithWhereUniqueWithoutInsurersInput[]
+    createMany?: prebillingtransactionsCreateManyInsurersInputEnvelope
+    set?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    disconnect?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    delete?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    connect?: prebillingtransactionsWhereUniqueInput | prebillingtransactionsWhereUniqueInput[]
+    update?: prebillingtransactionsUpdateWithWhereUniqueWithoutInsurersInput | prebillingtransactionsUpdateWithWhereUniqueWithoutInsurersInput[]
+    updateMany?: prebillingtransactionsUpdateManyWithWhereWithoutInsurersInput | prebillingtransactionsUpdateManyWithWhereWithoutInsurersInput[]
+    deleteMany?: prebillingtransactionsScalarWhereInput | prebillingtransactionsScalarWhereInput[]
   }
 
   export type proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput = {
@@ -40310,6 +44846,54 @@ export namespace Prisma {
     delete?: insurersWhereInput | boolean
     connect?: insurersWhereUniqueInput
     update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutDiagnosistransactionsInput, insurersUpdateWithoutDiagnosistransactionsInput>, insurersUncheckedUpdateWithoutDiagnosistransactionsInput>
+  }
+
+  export type insurersCreateNestedOneWithoutConcurrentnotetransactionsInput = {
+    create?: XOR<insurersCreateWithoutConcurrentnotetransactionsInput, insurersUncheckedCreateWithoutConcurrentnotetransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutConcurrentnotetransactionsInput
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutConcurrentnotetransactionsNestedInput = {
+    create?: XOR<insurersCreateWithoutConcurrentnotetransactionsInput, insurersUncheckedCreateWithoutConcurrentnotetransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutConcurrentnotetransactionsInput
+    upsert?: insurersUpsertWithoutConcurrentnotetransactionsInput
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutConcurrentnotetransactionsInput, insurersUpdateWithoutConcurrentnotetransactionsInput>, insurersUncheckedUpdateWithoutConcurrentnotetransactionsInput>
+  }
+
+  export type insurersCreateNestedOneWithoutPreauthnotetransactionsInput = {
+    create?: XOR<insurersCreateWithoutPreauthnotetransactionsInput, insurersUncheckedCreateWithoutPreauthnotetransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutPreauthnotetransactionsInput
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutPreauthnotetransactionsNestedInput = {
+    create?: XOR<insurersCreateWithoutPreauthnotetransactionsInput, insurersUncheckedCreateWithoutPreauthnotetransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutPreauthnotetransactionsInput
+    upsert?: insurersUpsertWithoutPreauthnotetransactionsInput
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutPreauthnotetransactionsInput, insurersUpdateWithoutPreauthnotetransactionsInput>, insurersUncheckedUpdateWithoutPreauthnotetransactionsInput>
+  }
+
+  export type insurersCreateNestedOneWithoutPrebillingtransactionsInput = {
+    create?: XOR<insurersCreateWithoutPrebillingtransactionsInput, insurersUncheckedCreateWithoutPrebillingtransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutPrebillingtransactionsInput
+    connect?: insurersWhereUniqueInput
+  }
+
+  export type insurersUpdateOneWithoutPrebillingtransactionsNestedInput = {
+    create?: XOR<insurersCreateWithoutPrebillingtransactionsInput, insurersUncheckedCreateWithoutPrebillingtransactionsInput>
+    connectOrCreate?: insurersCreateOrConnectWithoutPrebillingtransactionsInput
+    upsert?: insurersUpsertWithoutPrebillingtransactionsInput
+    disconnect?: insurersWhereInput | boolean
+    delete?: insurersWhereInput | boolean
+    connect?: insurersWhereUniqueInput
+    update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutPrebillingtransactionsInput, insurersUpdateWithoutPrebillingtransactionsInput>, insurersUncheckedUpdateWithoutPrebillingtransactionsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -40555,6 +45139,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -40564,6 +45149,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -40582,6 +45169,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -40591,6 +45179,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -40624,6 +45214,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -40633,6 +45224,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -40651,6 +45244,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40660,6 +45254,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -40677,6 +45273,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -40686,6 +45283,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -40704,6 +45303,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -40713,6 +45313,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -40746,6 +45348,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -40755,6 +45358,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -40773,6 +45378,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40782,6 +45388,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -40799,6 +45407,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -40808,6 +45417,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -40826,6 +45437,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -40835,6 +45447,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -40912,6 +45526,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -40921,6 +45536,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -40939,6 +45556,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -40948,6 +45566,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -41080,6 +45700,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -41089,6 +45710,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -41107,6 +45730,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -41116,6 +45740,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -41149,6 +45775,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -41158,6 +45785,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -41176,6 +45805,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -41185,6 +45815,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -41202,6 +45834,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -41211,6 +45844,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -41229,6 +45864,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -41238,6 +45874,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -41271,6 +45909,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -41280,6 +45919,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -41298,6 +45939,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -41307,6 +45949,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -41324,6 +45968,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -41333,6 +45978,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -41351,6 +45998,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -41360,6 +46008,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -41410,6 +46060,9 @@ export namespace Prisma {
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    reservedate?: string | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -41454,6 +46107,9 @@ export namespace Prisma {
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    reservedate?: string | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -41490,6 +46146,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -41499,6 +46156,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -41517,6 +46176,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -41526,6 +46186,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -41593,6 +46255,9 @@ export namespace Prisma {
     totalbillamount?: DecimalNullableFilter<"transactionclaim"> | Decimal | DecimalJsLike | number | string | null
     visitlocation?: StringNullableFilter<"transactionclaim"> | string | null
     paymentdate?: StringNullableFilter<"transactionclaim"> | string | null
+    preauthreferclaimno?: StringNullableFilter<"transactionclaim"> | string | null
+    preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
+    reservedate?: StringNullableFilter<"transactionclaim"> | string | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -41608,6 +46273,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -41617,6 +46283,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -41635,6 +46303,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -41644,6 +46313,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -41677,6 +46348,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -41686,6 +46358,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -41704,6 +46378,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -41713,6 +46388,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -41730,6 +46407,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -41739,6 +46417,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -41757,6 +46437,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -41766,6 +46447,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -41846,6 +46529,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -41855,6 +46539,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -41873,6 +46559,7 @@ export namespace Prisma {
     causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -41882,6 +46569,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -41940,6 +46629,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -41948,6 +46638,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -41967,6 +46659,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -41975,6 +46668,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -42009,6 +46704,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -42017,6 +46713,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -42036,6 +46734,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42044,6 +46743,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -42062,6 +46763,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -42070,6 +46772,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -42089,6 +46793,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42097,6 +46802,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -42131,6 +46838,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -42139,6 +46847,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -42158,6 +46868,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42166,6 +46877,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -42184,6 +46897,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -42192,6 +46906,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -42211,6 +46927,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42219,6 +46936,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -42253,6 +46972,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -42261,6 +46981,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -42280,6 +47002,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42288,6 +47011,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -42306,6 +47031,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -42314,6 +47040,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -42333,6 +47061,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42341,6 +47070,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -42375,6 +47106,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -42383,6 +47115,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -42402,6 +47136,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42410,6 +47145,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -42428,6 +47165,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -42436,6 +47174,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -42455,6 +47195,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -42463,6 +47204,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -42497,6 +47240,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -42505,6 +47249,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -42524,6 +47270,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -42532,6 +47279,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -42902,6 +47651,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type concurrentnotetransactionsCreateWithoutInsurersInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    concurrentdatetime?: string | null
+    concurrentdetail?: string | null
+  }
+
+  export type concurrentnotetransactionsUncheckedCreateWithoutInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    concurrentdatetime?: string | null
+    concurrentdetail?: string | null
+  }
+
+  export type concurrentnotetransactionsCreateOrConnectWithoutInsurersInput = {
+    where: concurrentnotetransactionsWhereUniqueInput
+    create: XOR<concurrentnotetransactionsCreateWithoutInsurersInput, concurrentnotetransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type concurrentnotetransactionsCreateManyInsurersInputEnvelope = {
+    data: concurrentnotetransactionsCreateManyInsurersInput | concurrentnotetransactionsCreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type diagnosistransactionsCreateWithoutInsurersInput = {
     refid?: string | null
     transactionno?: string | null
@@ -43104,6 +47882,74 @@ export namespace Prisma {
 
   export type policytypeCreateManyInsurersInputEnvelope = {
     data: policytypeCreateManyInsurersInput | policytypeCreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type preauthnotetransactionsCreateWithoutInsurersInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    preauthdatetime?: string | null
+    preauthdetail?: string | null
+  }
+
+  export type preauthnotetransactionsUncheckedCreateWithoutInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    preauthdatetime?: string | null
+    preauthdetail?: string | null
+  }
+
+  export type preauthnotetransactionsCreateOrConnectWithoutInsurersInput = {
+    where: preauthnotetransactionsWhereUniqueInput
+    create: XOR<preauthnotetransactionsCreateWithoutInsurersInput, preauthnotetransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type preauthnotetransactionsCreateManyInsurersInputEnvelope = {
+    data: preauthnotetransactionsCreateManyInsurersInput | preauthnotetransactionsCreateManyInsurersInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type prebillingtransactionsCreateWithoutInsurersInput = {
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+  }
+
+  export type prebillingtransactionsUncheckedCreateWithoutInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+  }
+
+  export type prebillingtransactionsCreateOrConnectWithoutInsurersInput = {
+    where: prebillingtransactionsWhereUniqueInput
+    create: XOR<prebillingtransactionsCreateWithoutInsurersInput, prebillingtransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type prebillingtransactionsCreateManyInsurersInputEnvelope = {
+    data: prebillingtransactionsCreateManyInsurersInput | prebillingtransactionsCreateManyInsurersInput[]
     skipDuplicates?: boolean
   }
 
@@ -43462,6 +48308,36 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"claimstatus"> | number | null
   }
 
+  export type concurrentnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput = {
+    where: concurrentnotetransactionsWhereUniqueInput
+    update: XOR<concurrentnotetransactionsUpdateWithoutInsurersInput, concurrentnotetransactionsUncheckedUpdateWithoutInsurersInput>
+    create: XOR<concurrentnotetransactionsCreateWithoutInsurersInput, concurrentnotetransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type concurrentnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput = {
+    where: concurrentnotetransactionsWhereUniqueInput
+    data: XOR<concurrentnotetransactionsUpdateWithoutInsurersInput, concurrentnotetransactionsUncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type concurrentnotetransactionsUpdateManyWithWhereWithoutInsurersInput = {
+    where: concurrentnotetransactionsScalarWhereInput
+    data: XOR<concurrentnotetransactionsUpdateManyMutationInput, concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type concurrentnotetransactionsScalarWhereInput = {
+    AND?: concurrentnotetransactionsScalarWhereInput | concurrentnotetransactionsScalarWhereInput[]
+    OR?: concurrentnotetransactionsScalarWhereInput[]
+    NOT?: concurrentnotetransactionsScalarWhereInput | concurrentnotetransactionsScalarWhereInput[]
+    id?: IntFilter<"concurrentnotetransactions"> | number
+    insurerid?: IntNullableFilter<"concurrentnotetransactions"> | number | null
+    refid?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    transactionno?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    hn?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    vn?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    concurrentdatetime?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+    concurrentdetail?: StringNullableFilter<"concurrentnotetransactions"> | string | null
+  }
+
   export type diagnosistransactionsUpsertWithWhereUniqueWithoutInsurersInput = {
     where: diagnosistransactionsWhereUniqueInput
     update: XOR<diagnosistransactionsUpdateWithoutInsurersInput, diagnosistransactionsUncheckedUpdateWithoutInsurersInput>
@@ -43704,6 +48580,71 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"policytype"> | number | null
   }
 
+  export type preauthnotetransactionsUpsertWithWhereUniqueWithoutInsurersInput = {
+    where: preauthnotetransactionsWhereUniqueInput
+    update: XOR<preauthnotetransactionsUpdateWithoutInsurersInput, preauthnotetransactionsUncheckedUpdateWithoutInsurersInput>
+    create: XOR<preauthnotetransactionsCreateWithoutInsurersInput, preauthnotetransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type preauthnotetransactionsUpdateWithWhereUniqueWithoutInsurersInput = {
+    where: preauthnotetransactionsWhereUniqueInput
+    data: XOR<preauthnotetransactionsUpdateWithoutInsurersInput, preauthnotetransactionsUncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type preauthnotetransactionsUpdateManyWithWhereWithoutInsurersInput = {
+    where: preauthnotetransactionsScalarWhereInput
+    data: XOR<preauthnotetransactionsUpdateManyMutationInput, preauthnotetransactionsUncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type preauthnotetransactionsScalarWhereInput = {
+    AND?: preauthnotetransactionsScalarWhereInput | preauthnotetransactionsScalarWhereInput[]
+    OR?: preauthnotetransactionsScalarWhereInput[]
+    NOT?: preauthnotetransactionsScalarWhereInput | preauthnotetransactionsScalarWhereInput[]
+    id?: IntFilter<"preauthnotetransactions"> | number
+    insurerid?: IntNullableFilter<"preauthnotetransactions"> | number | null
+    refid?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    transactionno?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    hn?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    vn?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    preauthdatetime?: StringNullableFilter<"preauthnotetransactions"> | string | null
+    preauthdetail?: StringNullableFilter<"preauthnotetransactions"> | string | null
+  }
+
+  export type prebillingtransactionsUpsertWithWhereUniqueWithoutInsurersInput = {
+    where: prebillingtransactionsWhereUniqueInput
+    update: XOR<prebillingtransactionsUpdateWithoutInsurersInput, prebillingtransactionsUncheckedUpdateWithoutInsurersInput>
+    create: XOR<prebillingtransactionsCreateWithoutInsurersInput, prebillingtransactionsUncheckedCreateWithoutInsurersInput>
+  }
+
+  export type prebillingtransactionsUpdateWithWhereUniqueWithoutInsurersInput = {
+    where: prebillingtransactionsWhereUniqueInput
+    data: XOR<prebillingtransactionsUpdateWithoutInsurersInput, prebillingtransactionsUncheckedUpdateWithoutInsurersInput>
+  }
+
+  export type prebillingtransactionsUpdateManyWithWhereWithoutInsurersInput = {
+    where: prebillingtransactionsScalarWhereInput
+    data: XOR<prebillingtransactionsUpdateManyMutationInput, prebillingtransactionsUncheckedUpdateManyWithoutInsurersInput>
+  }
+
+  export type prebillingtransactionsScalarWhereInput = {
+    AND?: prebillingtransactionsScalarWhereInput | prebillingtransactionsScalarWhereInput[]
+    OR?: prebillingtransactionsScalarWhereInput[]
+    NOT?: prebillingtransactionsScalarWhereInput | prebillingtransactionsScalarWhereInput[]
+    id?: IntFilter<"prebillingtransactions"> | number
+    insurerid?: IntNullableFilter<"prebillingtransactions"> | number | null
+    refid?: StringNullableFilter<"prebillingtransactions"> | string | null
+    transactionno?: StringNullableFilter<"prebillingtransactions"> | string | null
+    hn?: StringNullableFilter<"prebillingtransactions"> | string | null
+    vn?: StringNullableFilter<"prebillingtransactions"> | string | null
+    localbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    localbillingname?: StringNullableFilter<"prebillingtransactions"> | string | null
+    simbbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    payorbillingcode?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billinginitial?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billingdiscount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    billingnetamount?: StringNullableFilter<"prebillingtransactions"> | string | null
+  }
+
   export type proceduretransactionsUpsertWithWhereUniqueWithoutInsurersInput = {
     where: proceduretransactionsWhereUniqueInput
     update: XOR<proceduretransactionsUpdateWithoutInsurersInput, proceduretransactionsUncheckedUpdateWithoutInsurersInput>
@@ -43775,6 +48716,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -43783,6 +48725,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -43802,6 +48746,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -43810,6 +48755,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -43844,6 +48791,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -43852,6 +48800,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -43871,6 +48821,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -43879,6 +48830,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -43897,6 +48850,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -43906,6 +48860,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
 
@@ -43924,6 +48880,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -43933,6 +48890,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
 
@@ -43966,6 +48925,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -43975,6 +48935,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
 
@@ -43993,6 +48955,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -44002,6 +48965,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
 
@@ -44019,6 +48984,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -44028,6 +48994,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
   }
 
@@ -44046,6 +49014,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -44055,6 +49024,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
   }
 
@@ -44088,6 +49059,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -44097,6 +49069,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
   }
 
@@ -44115,6 +49089,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -44124,6 +49099,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
   }
 
@@ -44292,6 +49269,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -44301,6 +49279,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -44319,6 +49299,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -44328,6 +49309,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -44361,6 +49344,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -44370,6 +49354,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -44388,6 +49374,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -44397,6 +49384,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -44414,6 +49403,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -44423,6 +49413,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -44441,6 +49433,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -44450,6 +49443,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -44483,6 +49478,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -44492,6 +49488,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -44510,6 +49508,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -44519,6 +49518,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -44537,6 +49538,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -44545,6 +49547,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -44564,6 +49568,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -44572,6 +49577,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -44606,6 +49613,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -44614,6 +49622,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -44633,6 +49643,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -44641,6 +49652,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -44659,6 +49672,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
@@ -44667,6 +49681,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -44686,6 +49702,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -44694,6 +49711,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -44728,6 +49747,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
@@ -44736,6 +49756,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -44755,6 +49777,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -44763,6 +49786,8 @@ export namespace Prisma {
     illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -44781,6 +49806,7 @@ export namespace Prisma {
     claimants?: claimantsCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
     idtype?: idtypeCreateNestedManyWithoutInsurersInput
@@ -44789,6 +49815,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
     policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
   }
@@ -44808,6 +49836,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
     claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
     claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
     diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
     documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
     idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
@@ -44816,6 +49845,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
     opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
     policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
     proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
     servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
   }
@@ -44850,6 +49881,7 @@ export namespace Prisma {
     claimants?: claimantsUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUpdateManyWithoutInsurersNestedInput
@@ -44858,6 +49890,8 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
   }
@@ -44877,6 +49911,7 @@ export namespace Prisma {
     claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
     claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
     claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
     documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
     idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
@@ -44885,6 +49920,410 @@ export namespace Prisma {
     indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
     opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
     policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersCreateWithoutConcurrentnotetransactionsInput = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutConcurrentnotetransactionsInput = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutConcurrentnotetransactionsInput = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutConcurrentnotetransactionsInput, insurersUncheckedCreateWithoutConcurrentnotetransactionsInput>
+  }
+
+  export type insurersUpsertWithoutConcurrentnotetransactionsInput = {
+    update: XOR<insurersUpdateWithoutConcurrentnotetransactionsInput, insurersUncheckedUpdateWithoutConcurrentnotetransactionsInput>
+    create: XOR<insurersCreateWithoutConcurrentnotetransactionsInput, insurersUncheckedCreateWithoutConcurrentnotetransactionsInput>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutConcurrentnotetransactionsInput = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutConcurrentnotetransactionsInput, insurersUncheckedUpdateWithoutConcurrentnotetransactionsInput>
+  }
+
+  export type insurersUpdateWithoutConcurrentnotetransactionsInput = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutConcurrentnotetransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersCreateWithoutPreauthnotetransactionsInput = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutPreauthnotetransactionsInput = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    prebillingtransactions?: prebillingtransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutPreauthnotetransactionsInput = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutPreauthnotetransactionsInput, insurersUncheckedCreateWithoutPreauthnotetransactionsInput>
+  }
+
+  export type insurersUpsertWithoutPreauthnotetransactionsInput = {
+    update: XOR<insurersUpdateWithoutPreauthnotetransactionsInput, insurersUncheckedUpdateWithoutPreauthnotetransactionsInput>
+    create: XOR<insurersCreateWithoutPreauthnotetransactionsInput, insurersUncheckedCreateWithoutPreauthnotetransactionsInput>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutPreauthnotetransactionsInput = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutPreauthnotetransactionsInput, insurersUncheckedUpdateWithoutPreauthnotetransactionsInput>
+  }
+
+  export type insurersUpdateWithoutPreauthnotetransactionsInput = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutPreauthnotetransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersCreateWithoutPrebillingtransactionsInput = {
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22CreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersUncheckedCreateWithoutPrebillingtransactionsInput = {
+    id?: number
+    insurerid: number
+    insurercode?: number | null
+    insurername?: string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedCreateNestedManyWithoutInsurersInput
+    accidentplace?: accidentplaceUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions?: accidenttransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    accidenttransactions22?: accidenttransactions22UncheckedCreateNestedManyWithoutInsurersInput
+    anesthesialist?: anesthesialistUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjuryside?: causeofinjurysideUncheckedCreateNestedManyWithoutInsurersInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedCreateNestedManyWithoutInsurersInput
+    claimants?: claimantsUncheckedCreateNestedManyWithoutInsurersInput
+    claimdocuments?: claimdocumentsUncheckedCreateNestedManyWithoutInsurersInput
+    claimstatus?: claimstatusUncheckedCreateNestedManyWithoutInsurersInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistransactions?: diagnosistransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedCreateNestedManyWithoutInsurersInput
+    documenttype?: documenttypeUncheckedCreateNestedManyWithoutInsurersInput
+    idtype?: idtypeUncheckedCreateNestedManyWithoutInsurersInput
+    illnesssurgery?: illnesssurgeryUncheckedCreateNestedManyWithoutInsurersInput
+    illnesstype?: illnesstypeUncheckedCreateNestedManyWithoutInsurersInput
+    indicationsforadmission?: indicationsforadmissionUncheckedCreateNestedManyWithoutInsurersInput
+    opeartionispackage?: opeartionispackageUncheckedCreateNestedManyWithoutInsurersInput
+    policytype?: policytypeUncheckedCreateNestedManyWithoutInsurersInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    proceduretransactions?: proceduretransactionsUncheckedCreateNestedManyWithoutInsurersInput
+    servicesetting?: servicesettingUncheckedCreateNestedManyWithoutInsurersInput
+  }
+
+  export type insurersCreateOrConnectWithoutPrebillingtransactionsInput = {
+    where: insurersWhereUniqueInput
+    create: XOR<insurersCreateWithoutPrebillingtransactionsInput, insurersUncheckedCreateWithoutPrebillingtransactionsInput>
+  }
+
+  export type insurersUpsertWithoutPrebillingtransactionsInput = {
+    update: XOR<insurersUpdateWithoutPrebillingtransactionsInput, insurersUncheckedUpdateWithoutPrebillingtransactionsInput>
+    create: XOR<insurersCreateWithoutPrebillingtransactionsInput, insurersUncheckedCreateWithoutPrebillingtransactionsInput>
+    where?: insurersWhereInput
+  }
+
+  export type insurersUpdateToOneWithWhereWithoutPrebillingtransactionsInput = {
+    where?: insurersWhereInput
+    data: XOR<insurersUpdateWithoutPrebillingtransactionsInput, insurersUncheckedUpdateWithoutPrebillingtransactionsInput>
+  }
+
+  export type insurersUpdateWithoutPrebillingtransactionsInput = {
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUpdateManyWithoutInsurersNestedInput
+    proceduretransactions?: proceduretransactionsUpdateManyWithoutInsurersNestedInput
+    servicesetting?: servicesettingUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type insurersUncheckedUpdateWithoutPrebillingtransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    insurerid?: IntFieldUpdateOperationsInput | number
+    insurercode?: NullableIntFieldUpdateOperationsInput | number | null
+    insurername?: NullableStringFieldUpdateOperationsInput | string | null
+    accidentcauseover45days?: accidentcauseover45daysUncheckedUpdateManyWithoutInsurersNestedInput
+    accidentplace?: accidentplaceUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions?: accidenttransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    accidenttransactions22?: accidenttransactions22UncheckedUpdateManyWithoutInsurersNestedInput
+    anesthesialist?: anesthesialistUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjuryside?: causeofinjurysideUncheckedUpdateManyWithoutInsurersNestedInput
+    causeofinjurywoundtype?: causeofinjurywoundtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    claimants?: claimantsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimdocuments?: claimdocumentsUncheckedUpdateManyWithoutInsurersNestedInput
+    claimstatus?: claimstatusUncheckedUpdateManyWithoutInsurersNestedInput
+    concurrentnotetransactions?: concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistransactions?: diagnosistransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+    diagnosistypemapping?: diagnosistypemappingUncheckedUpdateManyWithoutInsurersNestedInput
+    documenttype?: documenttypeUncheckedUpdateManyWithoutInsurersNestedInput
+    idtype?: idtypeUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesssurgery?: illnesssurgeryUncheckedUpdateManyWithoutInsurersNestedInput
+    illnesstype?: illnesstypeUncheckedUpdateManyWithoutInsurersNestedInput
+    indicationsforadmission?: indicationsforadmissionUncheckedUpdateManyWithoutInsurersNestedInput
+    opeartionispackage?: opeartionispackageUncheckedUpdateManyWithoutInsurersNestedInput
+    policytype?: policytypeUncheckedUpdateManyWithoutInsurersNestedInput
+    preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
@@ -44981,6 +50420,9 @@ export namespace Prisma {
     totalbillamount?: Decimal | DecimalJsLike | number | string | null
     visitlocation?: string | null
     paymentdate?: string | null
+    preauthreferclaimno?: string | null
+    preauthreferocc?: string | null
+    reservedate?: string | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -45024,6 +50466,9 @@ export namespace Prisma {
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    reservedate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -45068,6 +50513,9 @@ export namespace Prisma {
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    reservedate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -45112,6 +50560,9 @@ export namespace Prisma {
     totalbillamount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     visitlocation?: NullableStringFieldUpdateOperationsInput | string | null
     paymentdate?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
+    reservedate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {
@@ -45292,6 +50743,16 @@ export namespace Prisma {
     claimstatusdesc_en?: string | null
   }
 
+  export type concurrentnotetransactionsCreateManyInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    concurrentdatetime?: string | null
+    concurrentdetail?: string | null
+  }
+
   export type diagnosistransactionsCreateManyInsurersInput = {
     id?: number
     refid?: string | null
@@ -45352,6 +50813,31 @@ export namespace Prisma {
     id?: number
     policytypecode: string
     policytypedesc?: string | null
+  }
+
+  export type preauthnotetransactionsCreateManyInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    preauthdatetime?: string | null
+    preauthdetail?: string | null
+  }
+
+  export type prebillingtransactionsCreateManyInsurersInput = {
+    id?: number
+    refid?: string | null
+    transactionno?: string | null
+    hn?: string | null
+    vn?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
   }
 
   export type proceduretransactionsCreateManyInsurersInput = {
@@ -45678,6 +51164,35 @@ export namespace Prisma {
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type concurrentnotetransactionsUpdateWithoutInsurersInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type concurrentnotetransactionsUncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type concurrentnotetransactionsUncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    concurrentdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type diagnosistransactionsUpdateWithoutInsurersInput = {
     refid?: NullableStringFieldUpdateOperationsInput | string | null
     transactionno?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45853,6 +51368,79 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     policytypecode?: StringFieldUpdateOperationsInput | string
     policytypedesc?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type preauthnotetransactionsUpdateWithoutInsurersInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type preauthnotetransactionsUncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type preauthnotetransactionsUncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdatetime?: NullableStringFieldUpdateOperationsInput | string | null
+    preauthdetail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type prebillingtransactionsUpdateWithoutInsurersInput = {
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type prebillingtransactionsUncheckedUpdateWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type prebillingtransactionsUncheckedUpdateManyWithoutInsurersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    refid?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionno?: NullableStringFieldUpdateOperationsInput | string | null
+    hn?: NullableStringFieldUpdateOperationsInput | string | null
+    vn?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type proceduretransactionsUpdateWithoutInsurersInput = {
@@ -46033,6 +51621,18 @@ export namespace Prisma {
      * @deprecated Use diagnosistransactionsDefaultArgs instead
      */
     export type diagnosistransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = diagnosistransactionsDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use concurrentnotetransactionsDefaultArgs instead
+     */
+    export type concurrentnotetransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = concurrentnotetransactionsDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use preauthnotetransactionsDefaultArgs instead
+     */
+    export type preauthnotetransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = preauthnotetransactionsDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use prebillingtransactionsDefaultArgs instead
+     */
+    export type prebillingtransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = prebillingtransactionsDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

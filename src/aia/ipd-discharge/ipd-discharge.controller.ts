@@ -5,7 +5,7 @@ import { QueryIPDVisitDto } from './dto/query-visit-ipd-discharge.dto'
 import { QueryProcedureDto } from './dto/query-procedure-ipd-discharge.dto'
 import { QueryAccidentDto } from './dto/query-accident-ipd-discharge.dto'
 import { QuerySubmitIpdDischargeDto } from './dto/query-submit-ipd-discharge.dto';
-
+import { QueryConcurNoteDto } from './dto/query-concurrentnote-ipd-discharge.dto';
 @Controller('/V1/ipd-discharge')
 export class IpdDischargeController {
   constructor(private readonly ipdDischargeService: IpdDischargeService) {}
@@ -63,6 +63,12 @@ export class IpdDischargeController {
   @Post('/SubmitAccident')
   async SubmitAccident(@Body() queryAccidentDto:QueryAccidentDto){
         const result = this.ipdDischargeService.SubmitAccident(queryAccidentDto);
+        return result
+  }
+
+  @Post('/SubmitConcurNote')
+  async SubmitConcurNote(@Body() queryConcurNoteDto:QueryConcurNoteDto){
+        const result = this.ipdDischargeService.SubmitConcurNote(queryConcurNoteDto);
         return result
   }
   @Post('/SubmitIPDDischargeToAIA')

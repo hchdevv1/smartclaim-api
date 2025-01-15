@@ -22,7 +22,7 @@ import { ResultIpdDischargeBillingDto ,QueryBilling} from './dto/result-billing-
 import { ResultSubmitIPDVisitDto ,QueryIPDVisitDto } from './dto/query-visit-ipd-discharge.dto'
 import { ResultSubmitProcedureDto ,QueryProcedureDto} from './dto/query-procedure-ipd-discharge.dto';
 import { ResultSubmitAccidentDto ,QueryAccidentDto } from './dto/query-accident-ipd-discharge.dto'
-
+import { ResultSubmitConcurNoteDto ,QueryConcurNoteDto} from './dto/query-concurrentnote-ipd-discharge.dto';
 import { QuerySubmitIpdDischargeDto } from './dto/query-submit-ipd-discharge.dto';
 import { ResultSubmitIpdDischargeDto ,ResultPatientInfoDto ,ResultVisitInfoDto
 
@@ -977,7 +977,7 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
 
     const xDscDateTime =queryIPDVisitDto.PatientInfo.DscDateTime||'';
     const xIsPackage =Boolean(queryIPDVisitDto.PatientInfo.IsPackage) || false;
-    const xTotalEstimatedCost =queryIPDVisitDto.PatientInfo.TotalEstimatedCost||'';
+    const xTotalEstimatedCost =queryIPDVisitDto.PatientInfo.TotalEstimatedCost||null;
 
     const xAnesthesiaList =queryIPDVisitDto.PatientInfo.AnesthesiaList||'';
 
@@ -1039,6 +1039,28 @@ if (xTransactionNo){
       },
     });
     
+    if (xPreauthReferClaimNo.length > 0) {
+    const existingTransactionClaim = await prismaProgest.transactionclaim.findFirst({
+      where: {
+        refid: xRefId,
+        transactionno: xTransactionNo,
+      },
+    });
+    if (existingTransactionClaim) {
+      
+      await prismaProgest.transactionclaim.update({
+        where: {
+          id: existingTransactionClaim.id, // Use the ID of the existing record
+        },
+        data: {
+          preauthreferclaimno:xPreauthReferClaimNo,
+          preauthreferocc:xPreauthOcc
+        },
+      });
+    }
+    }
+
+
   }catch (error) {
     console.log('ooo'+error)
     throw new Error(`Error creating medical transaction: ${error.message}`);
@@ -1489,7 +1511,152 @@ const xQueryAccident ={
     }
   }
 }
+async SubmitConcurNote(queryConcurNoteDto:QueryConcurNoteDto){
+  //let ResponeTrakcareHTTPStatus;
+  try{
+    const xRefId =queryConcurNoteDto.PatientInfo.RefId;
+    const xTransactionNo =queryConcurNoteDto.PatientInfo.TransactionNo;
+    const xInsurerCode =queryConcurNoteDto.PatientInfo.InsurerCode;
+    const xHN =queryConcurNoteDto.PatientInfo.HN;
+    const xVN =queryConcurNoteDto.PatientInfo.VN;
+    const xHaveConcurNote = queryConcurNoteDto.PatientInfo.HaveConcurNote;
+let ConcurNoteList;
+if (xHaveConcurNote ==true){
+    
+    if (Array.isArray(queryConcurNoteDto.PatientInfo.ConcurNoteInfo)) {
+      ConcurNoteList = queryConcurNoteDto.PatientInfo.ConcurNoteInfo.map((concurnote) => ({
+        ConCurrentDatetime: concurnote.ConCurrentDatetime || '',
+        ConCurrentDetail: concurnote.ConCurrentDetail || '',
+        }));
+        const existingConcurnote = await prismaProgest.concurrentnotetransactions.findMany({
+          where: {
+              refid: xRefId,
+              transactionno: xTransactionNo
+          }
+      });
+      if (existingConcurnote.length > 0) {
+        await Promise.all(
+          existingConcurnote.map(async (concurnote) => {
+                return await prismaProgest.concurrentnotetransactions.delete({
+                    where: {
+                        id: concurnote.id // ใช้ id ในการลบ
+                    }
+                });
+            })
+        );
+    }
 
+        await Promise.all(
+          ConcurNoteList.map(async (concurnote) => {
+              return await prismaProgest.concurrentnotetransactions.create({
+                  data: {
+                      insurerid: xInsurerCode,
+                      refid: xRefId,
+                      transactionno: xTransactionNo,
+                      hn: xHN,
+                      vn: xVN,
+                      concurrentdatetime: concurnote.ConCurrentDatetime,
+                      concurrentdetail: concurnote.ConCurrentDetail,
+                    
+                  }
+              });
+          })
+      );
+
+    } else {
+      ConcurNoteList = [];
+    }
+   // console.log(xHaveProcedure)
+    
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+}else{
+  ConcurNoteList = [
+        {
+            "ConcurrentDatetime": "",
+            "ConcurrentDetail": "",
+        }
+    ]
+ // console.log(xHaveProcedure)
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'Invalid ConCurrent Note','')
+}
+
+  
+    
+    let newResultSubmitConcurNoteDto= new ResultSubmitConcurNoteDto();
+    newResultSubmitConcurNoteDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:ConcurNoteList
+      }
+
+    return newResultSubmitConcurNoteDto
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+       
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
+}
 /// sent to aia
 async SubmitIPDDischargeToAIA(querySubmitOpdDischargeDto:QuerySubmitIpdDischargeDto){
   let xResultInfo;

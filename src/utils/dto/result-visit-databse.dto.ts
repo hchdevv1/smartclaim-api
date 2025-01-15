@@ -1,4 +1,4 @@
-import { IsInt ,IsBoolean, IsOptional, IsString ,IsNumber } from 'class-validator';
+import { IsInt ,IsBoolean, IsOptional, IsString  } from 'class-validator';
 
 //import { Type } from 'class-transformer';
 import { HttpMessageDto } from './http-status-message.dto';
@@ -151,9 +151,9 @@ export class QueryVisitDatabaseBodyDto {
     @IsOptional()
     IsPackage?: boolean;
 
-    @IsNumber()
+    @IsString()
     @IsOptional()
-    TotalEstimatedCost?: number;  
+    TotalEstimatedCost?: string;  
     
     @IsString()
     @IsOptional()

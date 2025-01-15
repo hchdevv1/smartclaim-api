@@ -1506,7 +1506,7 @@ async getvisitIPDformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyD
       isreimbursement: true, batchnumber: true, 
       invoicenumber: true, otherinsurer: true, furtherclaimid: true,
       furtherclaimno: true, furtherclaimvn: true,
-
+      preauthreferclaimno:true,preauthreferocc:true,
      
     },
   });
@@ -1609,7 +1609,7 @@ if(visittransactionsInfo){
     IndicationForAdmission:visittransactionsInfo.indicationforadmission,
     DscDateTime:visittransactionsInfo.dscdatetime,
     IsPackage:visittransactionsInfo.ispackage,
-    TotalEstimatedCost:visittransactionsInfo.totalestimatedcost.toNumber(),
+    TotalEstimatedCost:visittransactionsInfo.totalestimatedcost,
     AnesthesiaList:visittransactionsInfo.anesthesialist,
     AccidentDate:visittransactionsInfo.accidentdate,
   };
@@ -1655,6 +1655,7 @@ else{
           SignSymptomsDate:'',
           UnderlyingCondition:'',
           VN:'',
+          TotalEstimatedCost:'',
         }
       let newVisitDatabaseResultInfo =new VisitDatabaseResultInfo();
       newVisitDatabaseResultInfo={ VisitInfo: newQueryVisitDatabse}

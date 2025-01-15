@@ -307,10 +307,14 @@ exports.Prisma.MedicaltransactionsScalarFieldEnum = {
   preauthreferclaimno: 'preauthreferclaimno',
   preauthreferocc: 'preauthreferocc',
   ispackage: 'ispackage',
-  totalestimatedcost: 'totalestimatedcost',
   anesthesialist: 'anesthesialist',
   indicationforadmission: 'indicationforadmission',
-  accidentdate: 'accidentdate'
+  accidentdate: 'accidentdate',
+  havediagnosis: 'havediagnosis',
+  haveprebilling: 'haveprebilling',
+  havepreauthnote: 'havepreauthnote',
+  haveconcurrentnote: 'haveconcurrentnote',
+  totalestimatedcost: 'totalestimatedcost'
 };
 
 exports.Prisma.PolicytypeScalarFieldEnum = {
@@ -382,7 +386,10 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   customerid: 'customerid',
   totalbillamount: 'totalbillamount',
   visitlocation: 'visitlocation',
-  paymentdate: 'paymentdate'
+  paymentdate: 'paymentdate',
+  preauthreferclaimno: 'preauthreferclaimno',
+  preauthreferocc: 'preauthreferocc',
+  reservedate: 'reservedate'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
@@ -455,6 +462,44 @@ exports.Prisma.DiagnosistransactionsScalarFieldEnum = {
   icd10: 'icd10'
 };
 
+exports.Prisma.ConcurrentnotetransactionsScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  concurrentdatetime: 'concurrentdatetime',
+  concurrentdetail: 'concurrentdetail'
+};
+
+exports.Prisma.PreauthnotetransactionsScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  preauthdatetime: 'preauthdatetime',
+  preauthdetail: 'preauthdetail'
+};
+
+exports.Prisma.PrebillingtransactionsScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  localbillingcode: 'localbillingcode',
+  localbillingname: 'localbillingname',
+  simbbillingcode: 'simbbillingcode',
+  payorbillingcode: 'payorbillingcode',
+  billinginitial: 'billinginitial',
+  billingdiscount: 'billingdiscount',
+  billingnetamount: 'billingnetamount'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -498,7 +543,10 @@ exports.Prisma.ModelName = {
   anesthesialist: 'anesthesialist',
   indicationsforadmission: 'indicationsforadmission',
   opeartionispackage: 'opeartionispackage',
-  diagnosistransactions: 'diagnosistransactions'
+  diagnosistransactions: 'diagnosistransactions',
+  concurrentnotetransactions: 'concurrentnotetransactions',
+  preauthnotetransactions: 'preauthnotetransactions',
+  prebillingtransactions: 'prebillingtransactions'
 };
 
 /**
