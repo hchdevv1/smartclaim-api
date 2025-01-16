@@ -421,6 +421,19 @@ export class ResultDataJsonDto {
 
     @IsArray()
     PreAuthNote: PreAuthNoteDto[];
+
+    @IsString()
+    @IsOptional()
+    AnesthesiaList: string; 
+
+    @IsBoolean()
+    @IsOptional()
+    IsPackage: boolean;
+    
+    @IsString()
+    @IsOptional()
+    TotalEstimatedCost: string; 
+    
 }
 export class ResultPatientInfoDto {
     Dob: string; // ชื่อโรค

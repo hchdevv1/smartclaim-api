@@ -2044,7 +2044,10 @@ try{
   xRunningdocument:querySubmitOpdDischargeDto.PatientInfo.Runningdocument,
   xIndicationForAdmission:querySubmitOpdDischargeDto.PatientInfo.IndicationForAdmission,
   xPreauthReferClaimNo:querySubmitOpdDischargeDto.PatientInfo.PreauthReferClaimNo,
-  xxPreauthReferOcc:querySubmitOpdDischargeDto.PatientInfo.PreauthReferOcc,
+  xPreauthReferOcc:querySubmitOpdDischargeDto.PatientInfo.PreauthReferOcc,
+  xIsIPDDischarge:querySubmitOpdDischargeDto.PatientInfo.IsIPDDischarge,
+
+  
  }
  
 ////////////////////////////////////////
@@ -2113,7 +2116,9 @@ if (existingVisitRecord){
     //Vn:  getvisitformDatabase.Result.VisitInfo.VN||'',
     Vn:  await this.utilsService.EncryptAESECB( getvisitformDatabase.Result.VisitInfo.VN,AIA_APISecretkey) ,
   
-    Weight: getvisitformDatabase.Result.VisitInfo.Weight||''
+    Weight: getvisitformDatabase.Result.VisitInfo.Weight||'',
+    IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge||false
+
   }
   console.log('getOPDDischargeVisit done from database')
 }else{
@@ -2141,13 +2146,14 @@ if (existingVisitRecord){
     PreviousTreatmentDate: '',
     PreviousTreatmentDetail: '',
     PreauthReferClaimNo:RequesetBody.xPreauthReferClaimNo||'',
-    PreauthReferOcc:RequesetBody.xxPreauthReferOcc||'',
+    PreauthReferOcc:RequesetBody.xPreauthReferOcc||'',
     PrivateCase: getIPDDischargeVisit.VisitInfo.PrivateCase,
     SignSymptomsDate: '',
     UnderlyingCondition: '',
     VisitDateTime: getIPDDischargeVisit.VisitInfo.VisitDateTime,
     Vn:  await this.utilsService.EncryptAESECB( getIPDDischargeVisit.VisitInfo.vn ,AIA_APISecretkey) ,
-    Weight: ''
+    Weight: '',
+    IsIPDDischarge:false
   }
   console.log('getOPDDischargeVisit done from trakcare')
 }
@@ -2613,11 +2619,19 @@ const newOPDDischargeResponseDto ={
 //const dummyDataRequest =new DummyDataRequest1();
 //const newOPDDischargeResponseDto  =dummyDataRequest.PatientInfo
 // DummyDataRequest1
-console.log(newResultDataJsonDto.Visit)
  //////////////////////////////////////
       const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
-       const apiURL= `${AIA_APIURL}/SmartClaim/ipdDischarge`;
+       let apiURL;
+       if (newResultVisitInfoDto.IsIPDDischarge === true){
+         apiURL= `${AIA_APIURL}/SmartClaim/ipdDischarge`;
+       }else{
+         apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
+       }
+console.log('================= apiURL =================')
+console.log(newResultVisitInfoDto.IsIPDDischarge)
+console.log(apiURL)
+console.log('================= apiURL =================')
 
   const body = newOPDDischargeResponseDto
   const headers = {

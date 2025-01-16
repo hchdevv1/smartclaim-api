@@ -534,5 +534,6 @@ export class ResultConcurrentNoteDto {
     VisitDateTime: string;
     Vn: string;
     Weight: string;
+    IsIPDDischarge:boolean;
 
   }

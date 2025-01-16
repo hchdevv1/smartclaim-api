@@ -202,6 +202,11 @@ class SearchPatientBodyDto{
     @IsOptional()
     PreauthReferOcc?: string;
 
+
+    @IsBoolean()
+    @IsOptional()
+    IsIPDDischarge?: boolean;
+
   }
 class QueryProcedure{
 

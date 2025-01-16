@@ -167,6 +167,10 @@ export class QueryVisitDatabaseBodyDto {
     @IsOptional()
     AdmitDateTime?: string;
 
+    @IsBoolean()
+    @IsOptional()
+    IsIPDDischarge?: boolean;
+
   }
  export class VisitDatabaseResultInfo {
 

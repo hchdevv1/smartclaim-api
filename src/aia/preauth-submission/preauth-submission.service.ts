@@ -46,7 +46,7 @@ export class PreauthSubmissionService {
     private readonly utilsService:UtilsService
   ) {}
   async getListBilling(xHN: string ){
-  
+  console.log(xHN)
     let arrayItemBillingCheckBalance;
     const newHttpMessageDto =new HttpMessageDto();
      try{
@@ -1231,7 +1231,6 @@ try{
   xIndicationForAdmission:querySubmitPreAuthDto.PatientInfo.IndicationForAdmission,
  }
  
-////////////////////////////////////////
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
 let newResultPatientInfoDto: ResultPatientInfoDto ;
@@ -1727,7 +1726,6 @@ const  newResultPSSInfoDto={
 
 
 let newResultPreAuthNoteDto: ResultPreAuthNoteDto[] = [];
-
 newResultPreAuthNoteDto = [{
   PreAuthDatetime: '',
   PreAuthDetail: '',
@@ -1762,7 +1760,9 @@ let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
     };
   })
 );
-
+const newIsPackage =true;
+const newAnesthesiaList ="G";
+const newTotalEstimatedCost ="1111000.50";
 console.log(newResultBillingInfoDto)
 let newResultDataJsonDto =new ResultDataJsonDto();
  newResultDataJsonDto ={
@@ -1772,11 +1772,14 @@ let newResultDataJsonDto =new ResultDataJsonDto();
   Diagnosis :newQueryDiagnosisInfoDto,
   AccidentDetail:newAccidentDetail,
    Procedure :newResultProcedureInfoDto,
+   AnesthesiaList:newAnesthesiaList,
+   IsPackage:newIsPackage,
    Investigation :newResultInvestigationInfoDto,
-  OrderItem :newResultOrderItemInfoDto,
+   OrderItem :newResultOrderItemInfoDto,
   Doctor : newResultDoctorInfoDto,
   Billing :newResultBillingInfoDto,
-   TotalBillAmount:newTotalBillAmount,
+  TotalEstimatedCost:newTotalEstimatedCost,
+  TotalBillAmount:newTotalBillAmount,
    Pss: newResultPSSInfoDto,
    PreAuthNote: newResultPreAuthNoteDto
 }
@@ -1821,12 +1824,8 @@ console.log(newResultDataJsonDto.Visit)
       )
   );
  
-    //const xDummyDataRespone1 =new DummyDataRespone1();
-//const responsefromAIA  =xDummyDataRespone1.res
-    
   const responeInputcode = responsefromAIA.Result.Code
-  // console.log('======> responeInputcode =')
-  // console.log(responeInputcode)
+
   if (responeInputcode !=='S'){
     this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
   }else{
@@ -1875,8 +1874,6 @@ xResultInfo ={
     InsuranceData:xInsuranceData
   } 
  /// save to database
-
-
  const existingRecord = await prismaProgest.transactionclaim.findFirst({
   where: {
     refid: RequesetBody.xRefId,

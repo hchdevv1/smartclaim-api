@@ -315,7 +315,8 @@ exports.Prisma.MedicaltransactionsScalarFieldEnum = {
   havepreauthnote: 'havepreauthnote',
   haveconcurrentnote: 'haveconcurrentnote',
   totalestimatedcost: 'totalestimatedcost',
-  admitdatetime: 'admitdatetime'
+  admitdatetime: 'admitdatetime',
+  isipddischarge: 'isipddischarge'
 };
 
 exports.Prisma.PolicytypeScalarFieldEnum = {

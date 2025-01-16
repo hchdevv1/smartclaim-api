@@ -249,6 +249,7 @@ model medicaltransactions {
   haveconcurrentnote              Boolean?
   totalestimatedcost              String?  @db.VarChar(50)
   admitdatetime                   String?  @db.VarChar(50)
+  isipddischarge                  Boolean?
 }
 
 model policytype {
