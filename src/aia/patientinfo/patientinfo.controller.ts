@@ -46,4 +46,5 @@ export class PatientinfoController {
         const result = this.patientinfoService.SearchTransection(querySearchTransection);
         return result
   }
+ 
 }

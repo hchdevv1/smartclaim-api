@@ -20451,6 +20451,7 @@ export namespace Prisma {
     havepreauthnote: boolean | null
     haveconcurrentnote: boolean | null
     totalestimatedcost: string | null
+    admitdatetime: string | null
   }
 
   export type MedicaltransactionsMaxAggregateOutputType = {
@@ -20496,6 +20497,7 @@ export namespace Prisma {
     havepreauthnote: boolean | null
     haveconcurrentnote: boolean | null
     totalestimatedcost: string | null
+    admitdatetime: string | null
   }
 
   export type MedicaltransactionsCountAggregateOutputType = {
@@ -20541,6 +20543,7 @@ export namespace Prisma {
     havepreauthnote: number
     haveconcurrentnote: number
     totalestimatedcost: number
+    admitdatetime: number
     _all: number
   }
 
@@ -20598,6 +20601,7 @@ export namespace Prisma {
     havepreauthnote?: true
     haveconcurrentnote?: true
     totalestimatedcost?: true
+    admitdatetime?: true
   }
 
   export type MedicaltransactionsMaxAggregateInputType = {
@@ -20643,6 +20647,7 @@ export namespace Prisma {
     havepreauthnote?: true
     haveconcurrentnote?: true
     totalestimatedcost?: true
+    admitdatetime?: true
   }
 
   export type MedicaltransactionsCountAggregateInputType = {
@@ -20688,6 +20693,7 @@ export namespace Prisma {
     havepreauthnote?: true
     haveconcurrentnote?: true
     totalestimatedcost?: true
+    admitdatetime?: true
     _all?: true
   }
 
@@ -20820,6 +20826,7 @@ export namespace Prisma {
     havepreauthnote: boolean | null
     haveconcurrentnote: boolean | null
     totalestimatedcost: string | null
+    admitdatetime: string | null
     _count: MedicaltransactionsCountAggregateOutputType | null
     _avg: MedicaltransactionsAvgAggregateOutputType | null
     _sum: MedicaltransactionsSumAggregateOutputType | null
@@ -20884,6 +20891,7 @@ export namespace Prisma {
     havepreauthnote?: boolean
     haveconcurrentnote?: boolean
     totalestimatedcost?: boolean
+    admitdatetime?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20929,6 +20937,7 @@ export namespace Prisma {
     havepreauthnote?: boolean
     haveconcurrentnote?: boolean
     totalestimatedcost?: boolean
+    admitdatetime?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectScalar = {
@@ -20974,6 +20983,7 @@ export namespace Prisma {
     havepreauthnote?: boolean
     haveconcurrentnote?: boolean
     totalestimatedcost?: boolean
+    admitdatetime?: boolean
   }
 
 
@@ -21023,6 +21033,7 @@ export namespace Prisma {
       havepreauthnote: boolean | null
       haveconcurrentnote: boolean | null
       totalestimatedcost: string | null
+      admitdatetime: string | null
     }, ExtArgs["result"]["medicaltransactions"]>
     composites: {}
   }
@@ -21458,6 +21469,7 @@ export namespace Prisma {
     readonly havepreauthnote: FieldRef<"medicaltransactions", 'Boolean'>
     readonly haveconcurrentnote: FieldRef<"medicaltransactions", 'Boolean'>
     readonly totalestimatedcost: FieldRef<"medicaltransactions", 'String'>
+    readonly admitdatetime: FieldRef<"medicaltransactions", 'String'>
   }
     
 
@@ -35782,7 +35794,8 @@ export namespace Prisma {
     haveprebilling: 'haveprebilling',
     havepreauthnote: 'havepreauthnote',
     haveconcurrentnote: 'haveconcurrentnote',
-    totalestimatedcost: 'totalestimatedcost'
+    totalestimatedcost: 'totalestimatedcost',
+    admitdatetime: 'admitdatetime'
   };
 
   export type MedicaltransactionsScalarFieldEnum = (typeof MedicaltransactionsScalarFieldEnum)[keyof typeof MedicaltransactionsScalarFieldEnum]
@@ -37284,6 +37297,7 @@ export namespace Prisma {
     havepreauthnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     haveconcurrentnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     totalestimatedcost?: StringNullableFilter<"medicaltransactions"> | string | null
+    admitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
   }
 
   export type medicaltransactionsOrderByWithRelationInput = {
@@ -37329,6 +37343,7 @@ export namespace Prisma {
     havepreauthnote?: SortOrderInput | SortOrder
     haveconcurrentnote?: SortOrderInput | SortOrder
     totalestimatedcost?: SortOrderInput | SortOrder
+    admitdatetime?: SortOrderInput | SortOrder
   }
 
   export type medicaltransactionsWhereUniqueInput = Prisma.AtLeast<{
@@ -37377,6 +37392,7 @@ export namespace Prisma {
     havepreauthnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     haveconcurrentnote?: BoolNullableFilter<"medicaltransactions"> | boolean | null
     totalestimatedcost?: StringNullableFilter<"medicaltransactions"> | string | null
+    admitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
   }, "id">
 
   export type medicaltransactionsOrderByWithAggregationInput = {
@@ -37422,6 +37438,7 @@ export namespace Prisma {
     havepreauthnote?: SortOrderInput | SortOrder
     haveconcurrentnote?: SortOrderInput | SortOrder
     totalestimatedcost?: SortOrderInput | SortOrder
+    admitdatetime?: SortOrderInput | SortOrder
     _count?: medicaltransactionsCountOrderByAggregateInput
     _avg?: medicaltransactionsAvgOrderByAggregateInput
     _max?: medicaltransactionsMaxOrderByAggregateInput
@@ -37475,6 +37492,7 @@ export namespace Prisma {
     havepreauthnote?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
     haveconcurrentnote?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
     totalestimatedcost?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    admitdatetime?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
   }
 
   export type policytypeWhereInput = {
@@ -39754,6 +39772,7 @@ export namespace Prisma {
     havepreauthnote?: boolean | null
     haveconcurrentnote?: boolean | null
     totalestimatedcost?: string | null
+    admitdatetime?: string | null
   }
 
   export type medicaltransactionsUncheckedCreateInput = {
@@ -39799,6 +39818,7 @@ export namespace Prisma {
     havepreauthnote?: boolean | null
     haveconcurrentnote?: boolean | null
     totalestimatedcost?: string | null
+    admitdatetime?: string | null
   }
 
   export type medicaltransactionsUpdateInput = {
@@ -39843,6 +39863,7 @@ export namespace Prisma {
     havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
+    admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateInput = {
@@ -39888,6 +39909,7 @@ export namespace Prisma {
     havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
+    admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsCreateManyInput = {
@@ -39933,6 +39955,7 @@ export namespace Prisma {
     havepreauthnote?: boolean | null
     haveconcurrentnote?: boolean | null
     totalestimatedcost?: string | null
+    admitdatetime?: string | null
   }
 
   export type medicaltransactionsUpdateManyMutationInput = {
@@ -39977,6 +40000,7 @@ export namespace Prisma {
     havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
+    admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateManyInput = {
@@ -40022,6 +40046,7 @@ export namespace Prisma {
     havepreauthnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     haveconcurrentnote?: NullableBoolFieldUpdateOperationsInput | boolean | null
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
+    admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type policytypeCreateInput = {
@@ -42425,6 +42450,7 @@ export namespace Prisma {
     havepreauthnote?: SortOrder
     haveconcurrentnote?: SortOrder
     totalestimatedcost?: SortOrder
+    admitdatetime?: SortOrder
   }
 
   export type medicaltransactionsAvgOrderByAggregateInput = {
@@ -42475,6 +42501,7 @@ export namespace Prisma {
     havepreauthnote?: SortOrder
     haveconcurrentnote?: SortOrder
     totalestimatedcost?: SortOrder
+    admitdatetime?: SortOrder
   }
 
   export type medicaltransactionsMinOrderByAggregateInput = {
@@ -42520,6 +42547,7 @@ export namespace Prisma {
     havepreauthnote?: SortOrder
     haveconcurrentnote?: SortOrder
     totalestimatedcost?: SortOrder
+    admitdatetime?: SortOrder
   }
 
   export type medicaltransactionsSumOrderByAggregateInput = {

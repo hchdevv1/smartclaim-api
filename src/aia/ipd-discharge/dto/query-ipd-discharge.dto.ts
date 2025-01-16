@@ -66,4 +66,7 @@ class SearchPatientBodyDto{
     @IsString()
     @IsOptional()
     PreauthOcc?: string;
+    @IsString()
+    @IsOptional()
+    AccidentDate?: string;
   }

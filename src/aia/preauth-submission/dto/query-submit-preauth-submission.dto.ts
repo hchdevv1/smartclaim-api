@@ -202,6 +202,26 @@ class SearchPatientBodyDto{
     @IsOptional()
     PreauthReferOcc?: string;
 
+    @IsBoolean()
+    HaveProcedure: boolean;
+
+    @IsBoolean()
+    HaveAccidentCauseOfInjuryDetail: boolean;
+
+    @IsBoolean()
+    HaveAccidentInjuryDetail: boolean;
+
+    @IsBoolean()
+    HaveDiagnosis: boolean;
+
+    @IsBoolean()
+    HavepreBilling: boolean;
+    
+    @IsBoolean()
+    HavePreAuthNote: boolean;
+
+
+
   }
 class QueryProcedure{
 

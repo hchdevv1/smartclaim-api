@@ -9,7 +9,7 @@ import { HttpStatusMessageService } from '../../utils/http-status-message/http-s
 import { Prisma } from '../../../prisma/generate-client-db';
 
 import { QueryRetrievePreauthListBodyDto } from './dto/query-retrieve-preauth-list.dto';
-
+import { ResultRetrievePreAuthListDto ,InsuranceResult ,InsuranceData ,PreAuthList} from './dto/result-retrieve-preauth-list.dto';
 
 const newHttpMessageDto =new HttpMessageDto();
 const httpStatusMessageService = new HttpStatusMessageService();
@@ -30,8 +30,7 @@ export class RetrievePreauthListService {
   async getretrievepreauthlist(queryCheckClaimStatusBodyDto:QueryRetrievePreauthListBodyDto){
     let xResultInfo;
     try{
-     // queryCheckClaimStatusBodyDto.PatientInfo.RefId ='AAA-12345'
-     // queryCheckClaimStatusBodyDto.PatientInfo.TransactionNo ='95ffe060-236c-4f35-b00c-a2ef9aa9e714'
+
     const  RequesetBody ={
       
          xRefId: queryCheckClaimStatusBodyDto.PatientInfo.RefId, 
@@ -81,19 +80,62 @@ export class RetrievePreauthListService {
             })
           )
       );
-    // const xDummyDataRespone1 =new DummyDataRespone1();
-    // const responsefromAIA  =xDummyDataRespone1.res
+
       const responeInputcode =responsefromAIA.Result.Code
-     // console.log(responsefromAIA)
       if (responeInputcode !=='S'){
         this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
       }else{
         
+        let xInsuranceResult= new InsuranceResult();
+        xInsuranceResult ={
+         Code:responsefromAIA.Result.Code ||'',
+         Message:responsefromAIA.Result.Message ||'',
+         MessageTh:responsefromAIA.Result.MessageTh ||'',
+        }
+        const xPreAuthList: PreAuthList[] = responsefromAIA.Data.PreAuthTransactionList 
+        ? await Promise.all(
+          responsefromAIA.Data.PreAuthTransactionList.map(async(item) => {
+            return {
+              ClaimNo:item.ClaimNo,
+              OccerrenceNo: item.OccerrenceNo,  
+              ClaimStatus:item.ClaimStatus,
+              ClaimStatusDesc:item.ClaimStatusDesc,
+              ExpectedAdmitDate: item.ExpectedAdmitDate,
+              VisitDateTime: item.VisitDateTime,  
+              Procedure:item.Procedure, 
+              Diagnosis:item.Diagnosis 
+            };
+          })
+         )
+          :[];
+
+
+
+
+
+let xInsuranceData = new InsuranceData();
+xInsuranceData={
+  RefId:responsefromAIA.Data.RefId,
+  TransactionNo:responsefromAIA.Data.TransactionNo,
+  InsurerCode:responsefromAIA.Data.InsurerCode,
+  PreAuthTransactionList:xPreAuthList
+}
+xResultInfo ={
+InsuranceResult: xInsuranceResult,
+InsuranceData: xInsuranceData,
+} 
+this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       
         }
-        console.log(responsefromAIA.Data)
+     
 
-       return xResultInfo
+        let newResultRetrievePreAuthListDto= new ResultRetrievePreAuthListDto();
+        newResultRetrievePreAuthListDto={
+              HTTPStatus:newHttpMessageDto,
+               Result:xResultInfo
+      }
+
+       return newResultRetrievePreAuthListDto
       } catch(error)
       {
         if (error instanceof Prisma.PrismaClientInitializationError) {
@@ -162,74 +204,6 @@ export class RetrievePreauthListService {
       }
  
  
-}
-  
-async RetrieveFurtherClaim(queryRetrieveFurtherClaimBodyDto:QueryRetrievePreauthListBodyDto){
-  //let xResultInfo;
-  try{
-  const  RequesetBody ={
-    
-       xRefId: queryRetrieveFurtherClaimBodyDto.PatientInfo.RefId, 
-       xTransactionNo: queryRetrieveFurtherClaimBodyDto.PatientInfo.TransactionNo ,
-       xPID : queryRetrieveFurtherClaimBodyDto.PatientInfo.PID||'',
-       xPassportnumber : queryRetrieveFurtherClaimBodyDto.PatientInfo.PassportNumber||'',
-       xIdType:queryRetrieveFurtherClaimBodyDto.PatientInfo.IdType||'',
-       xInsurerCode:queryRetrieveFurtherClaimBodyDto.PatientInfo.InsurerCode||null,
-       xHN :queryRetrieveFurtherClaimBodyDto.PatientInfo.HN||'',
-      //  xFirstName :queryRetrieveFurtherClaimBodyDto.PatientInfo.GivenNameTH||'',
-      //  xLastName :queryRetrieveFurtherClaimBodyDto.PatientInfo.SurnameTH||'',
-      //  xDob :queryRetrieveFurtherClaimBodyDto.PatientInfo.DateOfBirth||'',
-      //  xVN: queryRetrieveFurtherClaimBodyDto.PatientInfo.VN||'',
-      //  xVisitDateTime: queryRetrieveFurtherClaimBodyDto.PatientInfo.VisitDateTime||'',
-      //  xAccidentDate:queryRetrieveFurtherClaimBodyDto.PatientInfo.AccidentDate||'', 
-     }
-
-
-     const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
-     const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
-     const apiURL= `${AIA_APIURL}/SmartClaim/retrieveFurtherClaimList`;
-     const xUsername=AIA_APIHopitalUsername;
-     const xHospitalCode =await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey);
-     const xInsurerCode=RequesetBody.xInsurerCode;
-     const xElectronicSignature='';
-     const xDataJsonType =3;
-
-     const body_DataJson = {}
-     const body = {
-       RefId: RequesetBody.xRefId,
-       TransactionNo: RequesetBody.xTransactionNo,
-       Username: xUsername,
-       HospitalCode: xHospitalCode,
-       InsurerCode: xInsurerCode,
-       ElectronicSignature: xElectronicSignature,
-       DataJsonType: xDataJsonType,
-       DataJson: body_DataJson
-     };
-     const headers = {
-      'Content-Type': API_CONTENTTYPE,
-      'Ocp-Apim-Subscription-Key': AIA_APISubscription,
-      'Apim-Auth-Secure-Token': ObjAccessTokenKey
-    };
-    const responsefromAIA = await lastValueFrom(
-      this.httpService
-        .post(apiURL, body, { headers })
-        .pipe(
-          map((response) => response.data), // Return only the data part of the response
-          catchError((error) => {
-            console.error('Error from AIA API:', error.response?.data || error.message);
-            throw new Error('Failed to call AIA API');
-          })
-        )
-    );
-
-    const newResultRetrieveFurtherClaimDto=responsefromAIA;
-     return newResultRetrieveFurtherClaimDto
-    }catch(error)
-    {
-      console.log(error)
-    }
-
-
 }
 addFormatHTTPStatus(data: HttpMessageDto,inputstatusCode:number,inputmessage:string,inputerror:string):void{  
     if(inputstatusCode !==200){

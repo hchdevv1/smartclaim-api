@@ -1018,6 +1018,8 @@ export class PatientinfoService {
               }
               
               }
+
+
    formatDateToYYYYMMDD(dateString) {
     if (!dateString) {
       return null; // คืนค่า null หาก dateString เป็นค่าว่าง

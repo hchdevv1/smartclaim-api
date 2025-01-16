@@ -1,4 +1,4 @@
-import { Controller, Get ,Post ,Body} from '@nestjs/common';
+import { Controller ,Post ,Body} from '@nestjs/common';
 import { PreauthSubmissionService } from './preauth-submission.service';
 import { QueryDiagnosisDto} from './dto/query-diagnoisis-preauth-submission.dto';
 import { QueryPreAuthNoteDto } from './dto/query-preauthnote-preauth-submission.dto';
@@ -9,12 +9,12 @@ export class PreauthSubmissionController {
   constructor(private readonly preauthSubmissionService: PreauthSubmissionService) {}
 
  
-
-  @Get()
-  findAll() {
-    return 'preauthSubmissionService';
+  @Post('/SubmitPreAuthVisit')
+  async SubmitPreAuthVisit(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
+        //const result = queryIPDVisitDto
+        const result = this.preauthSubmissionService.SubmitPreAuthVisit(querySubmitPreAuthDto);
+        return result
   }
- 
   @Post('/SubmitDiagnosis')
   async SubmitDiagnosis(@Body() queryDiagnosisDto:QueryDiagnosisDto){
         const result = this.preauthSubmissionService.SubmitDiagnosis(queryDiagnosisDto);
@@ -35,7 +35,7 @@ export class PreauthSubmissionController {
 
   @Post('/SubmitPreSubmissionToAIA')
   async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
-    const result = 'this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto)';
+    const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
         return result
   }
 }

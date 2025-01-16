@@ -33,8 +33,7 @@ export class ResultReviewIPDVisitInfoDto {
     PreauthReferOcc: string; 
     IndicationForAdmission:string;
     DscDateTime:string;
-    AdmitDateTime:string;
-
+  
 
 
   }

@@ -163,6 +163,10 @@ export class QueryVisitDatabaseBodyDto {
     @IsOptional()
     AccidentDate?: string;
 
+    @IsString()
+    @IsOptional()
+    AdmitDateTime?: string;
+
   }
  export class VisitDatabaseResultInfo {
 

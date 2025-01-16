@@ -82,6 +82,7 @@ export class RetrieveFurtherClaimListService {
             })
           )
       );
+      console.log(responsefromAIA)
 
       const responeInputcode =responsefromAIA.Result.Code
       if (responeInputcode !=='S'){

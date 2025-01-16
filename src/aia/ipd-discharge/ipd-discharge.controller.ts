@@ -47,6 +47,16 @@ export class IpdDischargeController {
         const result = this.ipdDischargeService.getIPDDischargeBilling(queryIpdDischargeDto);
         return result
   }
+  @Post('/getIPDDischargeProcedure')
+  async getOPDDischargeProcedure(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeProcedure(queryIpdDischargeDto);
+        return result
+  }
+  @Post('/getIPDDischargeAccident')
+  async getIPDDischargeAccident(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeAccident(queryIpdDischargeDto);
+        return result
+  }
 /// submit to data base
 
 @Post('/SubmitIPDVisit')

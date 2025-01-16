@@ -19,6 +19,8 @@ import { ResultIpdDischargeDiagnosisDto ,QueryDiagnosis} from './dto/result-diag
 import { ResultIpdDischargeInvestigationDto ,QueryInvestigation} from './dto/result-investigation-ipd-discharge.dto';
 import { ResultIpdDischargeOrderItemDto ,QueryOrderItem} from './dto/result-orderitem-ipd-discharge.dto';
 import { ResultIpdDischargeBillingDto ,QueryBilling} from './dto/result-billing-ipd-discharge.dto';
+import { ResultIpdDischargeProcedurDto, QueryProcedure} from './dto/result-procedure-ipd-discharge.dto'
+import { ResultIpdDischargeAccidentDto ,QueryAccident} from './dto/result-accident-ipd-discharge.dto';
 import { ResultSubmitIPDVisitDto ,QueryIPDVisitDto } from './dto/query-visit-ipd-discharge.dto'
 import { ResultSubmitProcedureDto ,QueryProcedureDto} from './dto/query-procedure-ipd-discharge.dto';
 import { ResultSubmitAccidentDto ,QueryAccidentDto } from './dto/query-accident-ipd-discharge.dto'
@@ -94,7 +96,8 @@ async getIPDVisit(queryIpdDischargeDto:QueryIpdDischargeDto){
         PreauthReferOcc: getvisitformDatabase.Result.VisitInfo.PreauthReferOcc||'',
         IndicationForAdmission: getvisitformDatabase.Result.VisitInfo.IndicationForAdmission||'',
         DscDateTime: getvisitformDatabase.Result.VisitInfo.DscDateTime||'',
-        
+        AdmitDateTime: getvisitformDatabase.Result.VisitInfo.AdmitDateTime||'',
+
 
       }
  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -591,7 +594,7 @@ async getIPDDischargeInvestigation(queryIpdDischargeDto:QueryIpdDischargeDto){
   let xResultInfo;
 try{
  
-  const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeInvestigation(queryIpdDischargeDto.PatientInfo.VN);
+  const TrakcarepatientInfo = await this.trakcareService.getIPDInvestigation(queryIpdDischargeDto.PatientInfo.VN);
   // console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
@@ -936,6 +939,364 @@ return newResultIpdDischargeBillingDto
   }
 }
 }
+async getIPDDischargeProcedure(queryIpdDischargeDto:QueryIpdDischargeDto){
+  let xResultInfo;
+try{
+
+  const whereConditions = {
+    
+    ...(queryIpdDischargeDto.PatientInfo.VN ? { vn: { equals: queryIpdDischargeDto.PatientInfo.VN } } : {}),
+    ...(queryIpdDischargeDto.PatientInfo.RefId ? { refid: { equals: queryIpdDischargeDto.PatientInfo.RefId  } } : {}),
+    ...(queryIpdDischargeDto .PatientInfo. TransactionNo ? { transactionno: { equals: queryIpdDischargeDto .PatientInfo. TransactionNo } } : {}),
+
+  };
+  const existingProcedureRecord = await prismaProgest.proceduretransactions.findFirst({
+    where: whereConditions
+  });
+ if (existingProcedureRecord){
+// queryOpdDischargeDto.PatientInfo.RefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
+// queryOpdDischargeDto.PatientInfo.TransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
+//   queryOpdDischargeDto.PatientInfo.VN ='O415202-67'
+  const newQueryProcedeureDatabaseBodyDto ={
+    RefId:queryIpdDischargeDto.PatientInfo.RefId,
+    TransactionNo: queryIpdDischargeDto.PatientInfo.TransactionNo,
+    InsurerCode:queryIpdDischargeDto.PatientInfo.InsurerCode,
+    HN:queryIpdDischargeDto.PatientInfo.HN,
+    VN:queryIpdDischargeDto.PatientInfo.VN
+  }
+  //const getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
+   let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
+   const getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
+// console .log("getOPDDischargeProcedure")
+// console .log(getOPDDischargeProcedure)
+   if (getIPDDischargeProcedure && getIPDDischargeProcedure.Result.ProcedureInfo && getIPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
+      newResultProcedureInfoDto= await Promise.all(
+        getIPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
+       return {
+         Icd9: item.Icd9,
+         ProcedureName: item.ProcedureName,
+         ProcedureDate: item.ProcedureDate,
+         
+       };
+     })
+   );
+   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+   xResultInfo ={
+    ProcedureInfo: newResultProcedureInfoDto,
+   } 
+  
+ } else {
+   newResultProcedureInfoDto = [{
+     Icd9: '',
+     ProcedureName: '',
+     ProcedureDate: '',
+   }];
+   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+   xResultInfo ={
+    ProcedureInfo: newResultProcedureInfoDto,
+   } 
+ }
+ }else{
+
+  const TrakcarepatientInfo = await this.trakcareService.getIPDProcedure(queryIpdDischargeDto.PatientInfo.VN);
+  console.log(TrakcarepatientInfo)
+  const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
+  if (TrakcarepatientInfoStatusCode !==200){
+    this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+    const xQueryProcedure =[{    
+      Icd9: '', 
+      ProcedureName: '',
+      ProcedureDate: '',
+     }]
+     xResultInfo ={
+      ProcedureInfo: [xQueryProcedure],
+     } 
+  }else{
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    const xQueryProcedure: QueryProcedure[] = TrakcarepatientInfo.ProcedureInfo ? 
+    TrakcarepatientInfo.ProcedureInfo.map((item) => {
+    return {
+      Icd9: item.Icd9||'', 
+      ProcedureName: item.ProcedureName||'',
+      ProcedureDate: item.ProcedureDate||'',
+      };
+    }):[];
+    xResultInfo ={
+      ProcedureInfo: xQueryProcedure,
+     } 
+  }
+ }
+
+  let newResultIpdDischargeProcedurDto= new ResultIpdDischargeProcedurDto();
+  newResultIpdDischargeProcedurDto={
+          HTTPStatus:newHttpMessageDto,
+          Result:xResultInfo
+    }
+
+return newResultIpdDischargeProcedurDto
+}catch(error)
+{
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    throw new HttpException(
+     { 
+      HTTPStatus: {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+      },
+      },HttpStatus.INTERNAL_SERVER_ERROR );
+  }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new HttpException(
+        {  
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+         },
+        },HttpStatus.INTERNAL_SERVER_ERROR ); 
+  }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+    if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        message: 'Cannot connect to the database server. Please ensure it is running.',
+        error: 'Cannot connect to the database server. Please ensure it is running.',
+      },
+      }, HttpStatus.SERVICE_UNAVAILABLE);
+    }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Invalid data format or conversion error.',
+        error: 'Invalid data format or conversion error.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.FORBIDDEN,
+        message: 'You do not have permission to perform this action.',
+        error: 'You do not have permission to perform this action.',
+      },
+      }, HttpStatus.FORBIDDEN);
+    }else if (error.message.includes('Unable to fit integer value')) {
+      // Handle integer overflow or similar errors
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'The integer value is too large for the database field.',
+        error: 'The integer value is too large for the database field.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }
+    else{
+      throw new HttpException({  
+        HTTPStatus: {
+           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+           message: 'An unexpected error occurred.',
+           error: 'An unexpected error occurred.',
+          },
+        },HttpStatus.INTERNAL_SERVER_ERROR,);
+    }
+  }
+}
+}
+async getIPDDischargeAccident(queryIpdDischargeDto:QueryIpdDischargeDto){
+  let xResultInfo;
+try{
+const newQueryAccidentDatabaseBodyDto ={
+  RefId: queryIpdDischargeDto.PatientInfo.RefId,
+  TransactionNo: queryIpdDischargeDto.PatientInfo.TransactionNo,
+  InsurerCode:queryIpdDischargeDto.PatientInfo.InsurerCode,
+  VN: queryIpdDischargeDto.PatientInfo.VN,
+  HN:queryIpdDischargeDto.PatientInfo.HN,
+
+}
+const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
+if (accidentDatabase.Result.AccidentDetailInfo.AccidentPlace.length>0){
+
+  const accidentDetailInfo = new AccidentDetailDto();
+  accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+  accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+  //const causeDetail = new CauseOfInjuryDetail();
+  if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+    accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+      const causeDetail = new CauseOfInjuryDetail();
+
+        causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+        causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+        return causeDetail;
+    });
+} 
+if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+    accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+      const injuryDetail = new InjuryDetail();
+
+        injuryDetail.WoundType = injury.WoundType || '';
+        injuryDetail.InjurySide = injury.InjurySide || '';
+        injuryDetail.InjuryArea = injury.InjuryArea || '';
+        return injuryDetail;
+    });
+}
+const xQueryAccident ={    
+  AccidentPlace: accidentDetailInfo.AccidentPlace , 
+  AccidentDate: accidentDetailInfo.AccidentDate ,
+  CauseOfInjuryDetail:accidentDetailInfo.CauseOfInjuryDetail,  //[causeDetail] ,
+  InjuryDetail: accidentDetailInfo.InjuryDetail //[injuryDetail]
+ }
+ //console.log(xQueryAccident)
+ xResultInfo ={
+  AccidentDetailInfo: xQueryAccident,
+ } 
+this.addFormatHTTPStatus(newHttpMessageDto,200,'suceess','')
+}else{
+
+    const TrakcarepatientInfo = await this.trakcareService.getIPDAccident(queryIpdDischargeDto.PatientInfo.VN);
+    const xAccientdata =queryIpdDischargeDto.PatientInfo.AccidentDate
+    const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
+    if (TrakcarepatientInfoStatusCode !==200){
+      this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+      let xCauseOfInjuryDetail,xInjuryDetail,xQueryAccident
+     if (xAccientdata){
+
+       xCauseOfInjuryDetail =[{
+        CauseOfInjury: 'X599',
+        CommentOfInjury: '',
+       } ]
+        xInjuryDetail =[{
+        WoundType: '',
+        InjurySide: '',
+        InjuryArea: 'T149',
+       } ]
+       xQueryAccident ={    
+        AccidentPlace: '', 
+        AccidentDate: '',
+        CauseOfInjuryDetail:xCauseOfInjuryDetail,
+        InjuryDetail:xInjuryDetail
+       }
+     }else{
+
+       xCauseOfInjuryDetail =[{
+        CauseOfInjury: '',
+        CommentOfInjury: '',
+       } ]
+        xInjuryDetail =[{
+        WoundType: '',
+        InjurySide: '',
+        InjuryArea: '',
+       } ]
+       xQueryAccident ={    
+        AccidentPlace: '', 
+        AccidentDate: '',
+        CauseOfInjuryDetail:xCauseOfInjuryDetail,
+        InjuryDetail:xInjuryDetail
+       }
+     }
+      
+       xResultInfo ={
+        AccidentDetailInfo: xQueryAccident,
+       } 
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      const xQueryAccident:QueryAccident= TrakcarepatientInfo.AccidentDetailInfo ? {
+        AccidentPlace: TrakcarepatientInfo.AccidentDetailInfo.AccidentPlace || '', 
+        AccidentDate: TrakcarepatientInfo.AccidentDetailInfo.AccidentDate || '',
+        CauseOfInjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail 
+          ? TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail.map((cause) => ({
+              CauseOfInjury: cause.CauseOfInjury || '',
+              CommentOfInjury: cause.CommentOfInjury || ''
+            }))
+          : [],
+        InjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail 
+          ? TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail.map((injury) => ({
+              WoundType: injury.WoundType || '',
+              InjurySide: injury.InjurySide || '',
+              InjuryArea: injury.InjuryArea || ''
+            }))
+          : []
+      }
+    : {};
+      xResultInfo ={
+        AccidentDetailInfo: xQueryAccident,
+       } 
+     
+    }
+
+}
+  let newResultIpdDischargeAccidentDto= new ResultIpdDischargeAccidentDto();
+  newResultIpdDischargeAccidentDto={
+          HTTPStatus:newHttpMessageDto,
+          Result:xResultInfo
+    }
+
+return newResultIpdDischargeAccidentDto
+}catch(error)
+{
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    throw new HttpException(
+     { 
+      HTTPStatus: {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+      },
+      },HttpStatus.INTERNAL_SERVER_ERROR );
+  }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new HttpException(
+        {  
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+         },
+        },HttpStatus.INTERNAL_SERVER_ERROR ); 
+  }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+    if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        message: 'Cannot connect to the database server. Please ensure it is running.',
+        error: 'Cannot connect to the database server. Please ensure it is running.',
+      },
+      }, HttpStatus.SERVICE_UNAVAILABLE);
+    }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Invalid data format or conversion error.',
+        error: 'Invalid data format or conversion error.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.FORBIDDEN,
+        message: 'You do not have permission to perform this action.',
+        error: 'You do not have permission to perform this action.',
+      },
+      }, HttpStatus.FORBIDDEN);
+    }else if (error.message.includes('Unable to fit integer value')) {
+      // Handle integer overflow or similar errors
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'The integer value is too large for the database field.',
+        error: 'The integer value is too large for the database field.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }
+    else{
+      throw new HttpException({  
+        HTTPStatus: {
+           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+           message: 'An unexpected error occurred.',
+           error: 'An unexpected error occurred.',
+          },
+        },HttpStatus.INTERNAL_SERVER_ERROR,);
+    }
+  }
+}
+}
 ///  submit to database
 async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
   let medicalTransaction;
@@ -980,6 +1341,7 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
     const xTotalEstimatedCost =queryIPDVisitDto.PatientInfo.TotalEstimatedCost||null;
 
     const xAnesthesiaList =queryIPDVisitDto.PatientInfo.AnesthesiaList||'';
+    const xAdmitDateTime =queryIPDVisitDto.PatientInfo.AdmitDateTime||'';
 
 
 console.log(queryIPDVisitDto)
@@ -1035,7 +1397,8 @@ if (xTransactionNo){
         dscdatetime:xDscDateTime,
         ispackage:xIsPackage,
         totalestimatedcost:xTotalEstimatedCost,
-        anesthesialist:xAnesthesiaList
+        anesthesialist:xAnesthesiaList,
+        admitdatetime:xAdmitDateTime,
       },
     });
     
