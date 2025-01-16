@@ -1,13 +1,34 @@
-import { Controller ,Post ,Body} from '@nestjs/common';
+import { Controller ,Get ,Param ,Post ,Body} from '@nestjs/common';
 import { PreauthSubmissionService } from './preauth-submission.service';
 import { QueryDiagnosisDto} from './dto/query-diagnoisis-preauth-submission.dto';
 import { QueryPreAuthNoteDto } from './dto/query-preauthnote-preauth-submission.dto';
-import { QueryPreBillingDto } from './dto/query-prebilling-preauth-submission.dto'
-import { QuerySubmitPreAuthDto} from './dto/query-submit-preauth-submission.dto'
+import { QueryPreBillingDto } from './dto/query-prebilling-preauth-submission.dto';
+import { QuerySubmitPreAuthDto} from './dto/query-submit-preauth-submission.dto';
+import { QueryAccidentDto } from './dto/query-accident-preauth-submission.dto';
+import { QueryProcedureDto } from './dto/query-procedure-preauth-submission.dto';
 @Controller('/v1/preauth-submission')
 export class PreauthSubmissionController {
   constructor(private readonly preauthSubmissionService: PreauthSubmissionService) {}
 
+  /// get from trakcare ///
+  @Get('/getListBilling/:xHN')
+  getListBilling(@Param('xHN') xHN: string ) {
+    return  this.preauthSubmissionService.getListBilling(xHN);
+  }
+  /// get from data base ///
+//Visit
+//diagnosis
+
+//procedure
+
+//accident
+
+//billing
+
+//preauth note
+
+
+  /// submit to data base ///
  
   @Post('/SubmitPreAuthVisit')
   async SubmitPreAuthVisit(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
@@ -20,6 +41,20 @@ export class PreauthSubmissionController {
         const result = this.preauthSubmissionService.SubmitDiagnosis(queryDiagnosisDto);
         return result
   }
+
+  @Post('/SubmitProcedure')
+  async SubmitProcedure(@Body() queryProcedureDto:QueryProcedureDto){
+        const result = this.preauthSubmissionService.SubmitProcedure(queryProcedureDto);
+        return result
+  }
+  @Post('/SubmitAccident')
+  async SubmitAccident(@Body() queryAccidentDto:QueryAccidentDto){
+        const result = this.preauthSubmissionService.SubmitAccident(queryAccidentDto);
+        return result
+  }
+
+
+
   @Post('/SubmitPreBilling')
   async SubmitPreBilling(@Body() queryPreBillingDto:QueryPreBillingDto){
         const result = this.preauthSubmissionService.SubmitPreBilling(queryPreBillingDto);
