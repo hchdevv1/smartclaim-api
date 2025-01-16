@@ -2632,6 +2632,7 @@ console.log('================= apiURL =================')
 console.log(newResultVisitInfoDto.IsIPDDischarge)
 console.log(apiURL)
 console.log('================= apiURL =================')
+apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
 
   const body = newOPDDischargeResponseDto
   const headers = {
@@ -2748,7 +2749,9 @@ if (existingRecord) {
       //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
-      runningdocument:RequesetBody.xRunningdocument
+      runningdocument:RequesetBody.xRunningdocument,
+      isipddischarge:RequesetBody.xIsIPDDischarge
+      
     },
   });
 }else{
@@ -2774,7 +2777,9 @@ if (existingRecord) {
       //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
-      runningdocument:RequesetBody.xRunningdocument
+      runningdocument:RequesetBody.xRunningdocument,
+      isipddischarge:RequesetBody.xIsIPDDischarge
+
     },
   });
 

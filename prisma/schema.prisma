@@ -328,6 +328,7 @@ model transactionclaim {
   preauthreferclaimno     String?    @db.VarChar(100)
   preauthreferocc         String?    @db.VarChar(255)
   reservedate             String?    @db.VarChar(100)
+  isipddischarge          Boolean?
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 

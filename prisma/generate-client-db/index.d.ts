@@ -24829,6 +24829,7 @@ export namespace Prisma {
     preauthreferclaimno: string | null
     preauthreferocc: string | null
     reservedate: string | null
+    isipddischarge: boolean | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -24878,6 +24879,7 @@ export namespace Prisma {
     preauthreferclaimno: string | null
     preauthreferocc: string | null
     reservedate: string | null
+    isipddischarge: boolean | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -24927,6 +24929,7 @@ export namespace Prisma {
     preauthreferclaimno: number
     preauthreferocc: number
     reservedate: number
+    isipddischarge: number
     _all: number
   }
 
@@ -24996,6 +24999,7 @@ export namespace Prisma {
     preauthreferclaimno?: true
     preauthreferocc?: true
     reservedate?: true
+    isipddischarge?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -25045,6 +25049,7 @@ export namespace Prisma {
     preauthreferclaimno?: true
     preauthreferocc?: true
     reservedate?: true
+    isipddischarge?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -25094,6 +25099,7 @@ export namespace Prisma {
     preauthreferclaimno?: true
     preauthreferocc?: true
     reservedate?: true
+    isipddischarge?: true
     _all?: true
   }
 
@@ -25230,6 +25236,7 @@ export namespace Prisma {
     preauthreferclaimno: string | null
     preauthreferocc: string | null
     reservedate: string | null
+    isipddischarge: boolean | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -25298,6 +25305,7 @@ export namespace Prisma {
     preauthreferclaimno?: boolean
     preauthreferocc?: boolean
     reservedate?: boolean
+    isipddischarge?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -25348,6 +25356,7 @@ export namespace Prisma {
     preauthreferclaimno?: boolean
     preauthreferocc?: boolean
     reservedate?: boolean
+    isipddischarge?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -25398,6 +25407,7 @@ export namespace Prisma {
     preauthreferclaimno?: boolean
     preauthreferocc?: boolean
     reservedate?: boolean
+    isipddischarge?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25459,6 +25469,7 @@ export namespace Prisma {
       preauthreferclaimno: string | null
       preauthreferocc: string | null
       reservedate: string | null
+      isipddischarge: boolean | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -25899,6 +25910,7 @@ export namespace Prisma {
     readonly preauthreferclaimno: FieldRef<"transactionclaim", 'String'>
     readonly preauthreferocc: FieldRef<"transactionclaim", 'String'>
     readonly reservedate: FieldRef<"transactionclaim", 'String'>
+    readonly isipddischarge: FieldRef<"transactionclaim", 'Boolean'>
   }
     
 
@@ -35895,7 +35907,8 @@ export namespace Prisma {
     paymentdate: 'paymentdate',
     preauthreferclaimno: 'preauthreferclaimno',
     preauthreferocc: 'preauthreferocc',
-    reservedate: 'reservedate'
+    reservedate: 'reservedate',
+    isipddischarge: 'isipddischarge'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -37744,6 +37757,7 @@ export namespace Prisma {
     preauthreferclaimno?: StringNullableFilter<"transactionclaim"> | string | null
     preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
+    isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -37794,6 +37808,7 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrderInput | SortOrder
     preauthreferocc?: SortOrderInput | SortOrder
     reservedate?: SortOrderInput | SortOrder
+    isipddischarge?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -37847,6 +37862,7 @@ export namespace Prisma {
     preauthreferclaimno?: StringNullableFilter<"transactionclaim"> | string | null
     preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
+    isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -37897,6 +37913,7 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrderInput | SortOrder
     preauthreferocc?: SortOrderInput | SortOrder
     reservedate?: SortOrderInput | SortOrder
+    isipddischarge?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -37954,6 +37971,7 @@ export namespace Prisma {
     preauthreferclaimno?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     preauthreferocc?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    isipddischarge?: BoolNullableWithAggregatesFilter<"transactionclaim"> | boolean | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -40288,6 +40306,7 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     reservedate?: string | null
+    isipddischarge?: boolean | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -40338,6 +40357,7 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     reservedate?: string | null
+    isipddischarge?: boolean | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -40384,6 +40404,7 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
+    isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -40434,6 +40455,7 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
+    isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -40483,6 +40505,7 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     reservedate?: string | null
+    isipddischarge?: boolean | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -40529,6 +40552,7 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
+    isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -40578,6 +40602,7 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
+    isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -42743,6 +42768,7 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrder
     preauthreferocc?: SortOrder
     reservedate?: SortOrder
+    isipddischarge?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -42801,6 +42827,7 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrder
     preauthreferocc?: SortOrder
     reservedate?: SortOrder
+    isipddischarge?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -42850,6 +42877,7 @@ export namespace Prisma {
     preauthreferclaimno?: SortOrder
     preauthreferocc?: SortOrder
     reservedate?: SortOrder
+    isipddischarge?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -46119,6 +46147,7 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     reservedate?: string | null
+    isipddischarge?: boolean | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -46166,6 +46195,7 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     reservedate?: string | null
+    isipddischarge?: boolean | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -46314,6 +46344,7 @@ export namespace Prisma {
     preauthreferclaimno?: StringNullableFilter<"transactionclaim"> | string | null
     preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
+    isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -50479,6 +50510,7 @@ export namespace Prisma {
     preauthreferclaimno?: string | null
     preauthreferocc?: string | null
     reservedate?: string | null
+    isipddischarge?: boolean | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -50525,6 +50557,7 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
+    isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -50572,6 +50605,7 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
+    isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -50619,6 +50653,7 @@ export namespace Prisma {
     preauthreferclaimno?: NullableStringFieldUpdateOperationsInput | string | null
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
+    isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {
