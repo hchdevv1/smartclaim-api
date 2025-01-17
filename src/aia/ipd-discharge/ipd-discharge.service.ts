@@ -1332,7 +1332,7 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
     const xExpectedAdmitDate =queryIPDVisitDto.PatientInfo.ExpectedAdmitDate||'';
     const xIndicationForAdmission =queryIPDVisitDto.PatientInfo.IndicationForAdmission||'';
     const xPreauthReferClaimNo =queryIPDVisitDto.PatientInfo.PreauthReferClaimNo||'';
-    const xPreauthOcc =queryIPDVisitDto.PatientInfo.PreauthOcc||'';
+    const xPreauthReferOcc =queryIPDVisitDto.PatientInfo.PreauthReferOcc||'';
     const xPreviousTreatmentDate =queryIPDVisitDto.PatientInfo.PreviousTreatmentDate||'';
     const xPreviousTreatmentDetail =queryIPDVisitDto.PatientInfo.PreviousTreatmentDetail||'';
 
@@ -1391,7 +1391,7 @@ if (xTransactionNo){
         weight:xWeight,
          expectedadmitdate:xExpectedAdmitDate,
          preauthreferclaimno:xPreauthReferClaimNo,
-         preauthreferocc:xPreauthOcc,
+         preauthreferocc:xPreauthReferOcc,
          previoustreatmentdate:xPreviousTreatmentDate,
          previoustreatmentdetail:xPreviousTreatmentDetail,
         dscdatetime:xDscDateTime,
@@ -1417,7 +1417,7 @@ if (xTransactionNo){
         },
         data: {
           preauthreferclaimno:xPreauthReferClaimNo,
-          preauthreferocc:xPreauthOcc
+          preauthreferocc:xPreauthReferOcc
         },
       });
     }

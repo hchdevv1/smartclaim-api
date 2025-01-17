@@ -898,6 +898,10 @@ export class PatientinfoService {
             FurtherClaimVN:claim.furtherclaimvn||'',
             VisitLocation:claim.visitlocation||'',
             TotalBillAmount:claim.totalbillamount,
+            IsIPDDischarge:claim.isipddischarge,
+            PreauthReferClaimNo:claim.preauthreferclaimno,
+            PreauthReferOcc:claim.preauthreferocc
+
         })),
     };
     // console.log('===xxxx===')
@@ -936,7 +940,10 @@ export class PatientinfoService {
         Runningdocument:0,
         FurtherClaimVN:'',
         VisitLocation:'',
-        TotalBillAmount:''
+        TotalBillAmount:'',
+        IsIPDDischarge:null,
+        PreauthReferClaimNo:'',
+        PreauthReferOcc:''
     };
         xResultInfo = {
         TransactionClaimInfo: [xQueryVisit],

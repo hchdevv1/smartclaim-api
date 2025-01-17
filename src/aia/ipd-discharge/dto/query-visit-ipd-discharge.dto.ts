@@ -82,7 +82,7 @@ export class QueryIPDVisitDto {
 
     @IsString()
     @IsOptional()
-    PreauthOcc?: string;
+    PreauthReferOcc?: string;
 
 
     @IsBoolean()
