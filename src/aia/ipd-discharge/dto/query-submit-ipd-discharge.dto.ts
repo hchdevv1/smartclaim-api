@@ -204,8 +204,7 @@ class SearchPatientBodyDto{
 
 
     @IsBoolean()
-    @IsOptional()
-    IsIPDDischarge?: boolean;
+    IsIPDDischarge: boolean;
 
   }
 class QueryProcedure{

@@ -23,10 +23,12 @@ import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,Queryli
   ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto ,ResultUpdateDocumentByDocNameDto
 }from './dto/claim-documents.dto';
 import { QueryProcedeureDatabaseBodyDto , ResultOpdDischargeProcedurDto ,ProcedeureDatabaseResultInfo } from './dto/result-procedure-databse.dto';
+import { QueryDiagnosisDatabaseBodyDto ,ResultPreDiagnosisDto ,PreDiagnosisDatabaseResultInfo} from './dto/result-diagnosis-databse.dto';
 import { QueryVisitDatabaseBodyDto ,ResultOpdDischargeVisitDto ,VisitDatabaseResultInfo ,QueryVisitDatabse } from './dto/result-visit-databse.dto';
 import { QueryAccidentDatabaseBodyDto ,ResultAccidentDatabaseDto
 ,AccidentDatabaseResultInfo
 } from './dto/result-accident-databse.dto';
+import { QueryPreBillingDatabaseBodyDto,ResultPreBillingDto ,PreBillingDatabaseResultInfo} from './dto/result-prebilling-databse.dto';
 
 const unlinkAsync = promisify(fs.unlink); 
 const aesEcb = require('aes-ecb');
@@ -1562,7 +1564,11 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
          preauthreferocc:true,indicationforadmission:true,
          dscdatetime:true,ispackage:true,
          totalestimatedcost:true,anesthesialist:true,
-         accidentdate:true
+         accidentdate:true,
+         isipddischarge:true,
+         admitdatetime:true,
+         
+         
   },
 });
 
@@ -1612,6 +1618,8 @@ if(visittransactionsInfo){
     TotalEstimatedCost:visittransactionsInfo.totalestimatedcost,
     AnesthesiaList:visittransactionsInfo.anesthesialist,
     AccidentDate:visittransactionsInfo.accidentdate,
+    IsIPDDischarge:visittransactionsInfo.isipddischarge,
+    AdmitDateTime:visittransactionsInfo.admitdatetime
   };
 
   //console.log(visitDatabaseResultInfo)
@@ -1656,6 +1664,8 @@ else{
           UnderlyingCondition:'',
           VN:'',
           TotalEstimatedCost:'',
+          IsIPDDischarge:null,
+          AdmitDateTime:''
         }
       let newVisitDatabaseResultInfo =new VisitDatabaseResultInfo();
       newVisitDatabaseResultInfo={ VisitInfo: newQueryVisitDatabse}
@@ -1671,6 +1681,7 @@ else{
      return newResultOpdDischargeVisitDto  
 
 }
+
 async getProcedureformDatabase(queryProcedeureDatabaseBodyDto: QueryProcedeureDatabaseBodyDto) {
   
   const xRefId =queryProcedeureDatabaseBodyDto.RefId;
@@ -1739,6 +1750,73 @@ if(proceduretransactionsInfo){
      return newResultOpdDischargeProcedurDto  
 
 }
+
+async getDiagnosisformDatabase(queryDiagnosisDatabaseBodyDto: QueryDiagnosisDatabaseBodyDto) {
+  
+  const xRefId =queryDiagnosisDatabaseBodyDto.RefId;
+  const xTransactionNo = queryDiagnosisDatabaseBodyDto.TransactionNo;
+  const xVN =queryDiagnosisDatabaseBodyDto.VN;
+ 
+  let  newResultPreDiagnosisDto= new ResultPreDiagnosisDto();
+// ดึงข้อมูลจากฐานข้อมูล
+const diagnosistransactionsInfo = await prismaProgest.diagnosistransactions.findMany({ 
+  where: {
+    vn: xVN,
+    refid: xRefId,
+    transactionno: xTransactionNo,
+  },  
+  select: {
+    icd10: true,
+    dxname: true,
+    dxtype: true,
+  },
+});
+// console.log(proceduretransactionsInfo)
+// console.log('yyyyyy')
+if(diagnosistransactionsInfo){
+  const prediagnosisInfoInstance = new PreDiagnosisDatabaseResultInfo();
+  prediagnosisInfoInstance.DiagnosisInfo = diagnosistransactionsInfo.map(item => ({
+    Icd10: item.icd10, // สร้าง object ใหม่ตามโครงสร้างที่ต้องการ
+    DxName: item.dxname,
+    DxType: item.dxtype,
+  }));
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      
+       newResultPreDiagnosisDto={
+         HTTPStatus:newHttpMessageDto,
+         Result:prediagnosisInfoInstance
+       }
+       if (!diagnosistransactionsInfo || diagnosistransactionsInfo.length === 0) {
+      
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'Procedure not found','')
+      }else{
+    
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+
+}else{
+  newResultPreDiagnosisDto =
+  {
+      HTTPStatus: {
+        statusCode: 200, message: 'Procedure not found', error: '' 
+      },
+      Result:{
+        DiagnosisInfo:[   {
+          Icd10: '',
+          DxName: '',
+          DxType:''
+        }
+            
+        ]
+        
+      }
+}
+}
+
+     return newResultPreDiagnosisDto  
+
+}
+
 async getAccidentformDatabase(queryAccidentDatabaseBodyDto: QueryAccidentDatabaseBodyDto) {
   
   const xRefId =queryAccidentDatabaseBodyDto.RefId; //'111ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=a';//
@@ -2234,6 +2312,88 @@ async getAccidentCauseOver45Day(xInsurercode: string ) {
     }
 
 }
+
+async getPreBillingformDatabase(queryPreBillingDatabaseBodyDto: QueryPreBillingDatabaseBodyDto) {
+  
+  const xRefId =queryPreBillingDatabaseBodyDto.RefId;
+  const xTransactionNo = queryPreBillingDatabaseBodyDto.TransactionNo;
+  const xVN =queryPreBillingDatabaseBodyDto.VN;
+
+  let  newResultPreBillingDto= new ResultPreBillingDto();
+// ดึงข้อมูลจากฐานข้อมูล
+const prebillingtransactionsInfo = await prismaProgest.prebillingtransactions.findMany({ 
+  where: {
+    vn: xVN,
+    refid: xRefId,
+    transactionno: xTransactionNo,
+  },  
+  select: {
+    localbillingcode: true,
+    localbillingname: true,
+    simbbillingcode: true,
+    payorbillingcode: true,
+    billinginitial: true,
+    billingdiscount: true,
+    billingnetamount: true,
+    totalbillamount:true
+  },
+});
+
+if(prebillingtransactionsInfo){
+  const prebillingInfoInstance = new PreBillingDatabaseResultInfo();
+  prebillingInfoInstance.PreBillingInfo = prebillingtransactionsInfo.map(item => ({
+    LocalBillingCode: item.localbillingcode, 
+    LocalBillingName: item.localbillingname,
+    SimbBillingCode: item.simbbillingcode,
+    PayorBillingCode: item.payorbillingcode,
+    BillingInitial: item.billinginitial,
+    BillingDiscount: item.billingdiscount,
+    BillingNetAmount: item.billingnetamount,
+    totalbillamount: item.totalbillamount
+  }));
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      
+       newResultPreBillingDto={
+         HTTPStatus:newHttpMessageDto,
+         Result:prebillingInfoInstance
+       }
+       if (!prebillingtransactionsInfo || prebillingtransactionsInfo.length === 0) {
+      
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'Pre-Billing  not found','')
+      }else{
+    
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+
+}else{
+  newResultPreBillingDto =
+  {
+      HTTPStatus: {
+        statusCode: 200, message: 'Pre-Billing not found', error: '' 
+      },
+      Result:{
+        PreBillingInfo:[   {
+         
+          LocalBillingCode: '',
+          LocalBillingName: '',
+          SimbBillingCode: '',
+          PayorBillingCode: '',
+          BillingInitial: '',
+          BillingDiscount: '',
+          BillingNetAmount: '',
+          TotalBillAmount:''
+        }
+            
+        ]
+        
+      }
+}
+}
+
+     return newResultPreBillingDto  
+
+}
+
 async getDiagnosisTypeMapping(xInsurercode: string ,xDxtypecodeTrakcare: string) {
   let diagnosistypemapping:any ;
   

@@ -34518,6 +34518,7 @@ export namespace Prisma {
     billinginitial: string | null
     billingdiscount: string | null
     billingnetamount: string | null
+    totalbillamount: string | null
   }
 
   export type PrebillingtransactionsMaxAggregateOutputType = {
@@ -34534,6 +34535,7 @@ export namespace Prisma {
     billinginitial: string | null
     billingdiscount: string | null
     billingnetamount: string | null
+    totalbillamount: string | null
   }
 
   export type PrebillingtransactionsCountAggregateOutputType = {
@@ -34550,6 +34552,7 @@ export namespace Prisma {
     billinginitial: number
     billingdiscount: number
     billingnetamount: number
+    totalbillamount: number
     _all: number
   }
 
@@ -34578,6 +34581,7 @@ export namespace Prisma {
     billinginitial?: true
     billingdiscount?: true
     billingnetamount?: true
+    totalbillamount?: true
   }
 
   export type PrebillingtransactionsMaxAggregateInputType = {
@@ -34594,6 +34598,7 @@ export namespace Prisma {
     billinginitial?: true
     billingdiscount?: true
     billingnetamount?: true
+    totalbillamount?: true
   }
 
   export type PrebillingtransactionsCountAggregateInputType = {
@@ -34610,6 +34615,7 @@ export namespace Prisma {
     billinginitial?: true
     billingdiscount?: true
     billingnetamount?: true
+    totalbillamount?: true
     _all?: true
   }
 
@@ -34713,6 +34719,7 @@ export namespace Prisma {
     billinginitial: string | null
     billingdiscount: string | null
     billingnetamount: string | null
+    totalbillamount: string | null
     _count: PrebillingtransactionsCountAggregateOutputType | null
     _avg: PrebillingtransactionsAvgAggregateOutputType | null
     _sum: PrebillingtransactionsSumAggregateOutputType | null
@@ -34748,6 +34755,7 @@ export namespace Prisma {
     billinginitial?: boolean
     billingdiscount?: boolean
     billingnetamount?: boolean
+    totalbillamount?: boolean
     insurers?: boolean | prebillingtransactions$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["prebillingtransactions"]>
 
@@ -34765,6 +34773,7 @@ export namespace Prisma {
     billinginitial?: boolean
     billingdiscount?: boolean
     billingnetamount?: boolean
+    totalbillamount?: boolean
     insurers?: boolean | prebillingtransactions$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["prebillingtransactions"]>
 
@@ -34782,6 +34791,7 @@ export namespace Prisma {
     billinginitial?: boolean
     billingdiscount?: boolean
     billingnetamount?: boolean
+    totalbillamount?: boolean
   }
 
   export type prebillingtransactionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -34810,6 +34820,7 @@ export namespace Prisma {
       billinginitial: string | null
       billingdiscount: string | null
       billingnetamount: string | null
+      totalbillamount: string | null
     }, ExtArgs["result"]["prebillingtransactions"]>
     composites: {}
   }
@@ -35217,6 +35228,7 @@ export namespace Prisma {
     readonly billinginitial: FieldRef<"prebillingtransactions", 'String'>
     readonly billingdiscount: FieldRef<"prebillingtransactions", 'String'>
     readonly billingnetamount: FieldRef<"prebillingtransactions", 'String'>
+    readonly totalbillamount: FieldRef<"prebillingtransactions", 'String'>
   }
     
 
@@ -36043,7 +36055,8 @@ export namespace Prisma {
     payorbillingcode: 'payorbillingcode',
     billinginitial: 'billinginitial',
     billingdiscount: 'billingdiscount',
-    billingnetamount: 'billingnetamount'
+    billingnetamount: 'billingnetamount',
+    totalbillamount: 'totalbillamount'
   };
 
   export type PrebillingtransactionsScalarFieldEnum = (typeof PrebillingtransactionsScalarFieldEnum)[keyof typeof PrebillingtransactionsScalarFieldEnum]
@@ -38587,6 +38600,7 @@ export namespace Prisma {
     billinginitial?: StringNullableFilter<"prebillingtransactions"> | string | null
     billingdiscount?: StringNullableFilter<"prebillingtransactions"> | string | null
     billingnetamount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    totalbillamount?: StringNullableFilter<"prebillingtransactions"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
   }
 
@@ -38604,6 +38618,7 @@ export namespace Prisma {
     billinginitial?: SortOrderInput | SortOrder
     billingdiscount?: SortOrderInput | SortOrder
     billingnetamount?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
     insurers?: insurersOrderByWithRelationInput
   }
 
@@ -38624,6 +38639,7 @@ export namespace Prisma {
     billinginitial?: StringNullableFilter<"prebillingtransactions"> | string | null
     billingdiscount?: StringNullableFilter<"prebillingtransactions"> | string | null
     billingnetamount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    totalbillamount?: StringNullableFilter<"prebillingtransactions"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
   }, "id">
 
@@ -38641,6 +38657,7 @@ export namespace Prisma {
     billinginitial?: SortOrderInput | SortOrder
     billingdiscount?: SortOrderInput | SortOrder
     billingnetamount?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
     _count?: prebillingtransactionsCountOrderByAggregateInput
     _avg?: prebillingtransactionsAvgOrderByAggregateInput
     _max?: prebillingtransactionsMaxOrderByAggregateInput
@@ -38665,6 +38682,7 @@ export namespace Prisma {
     billinginitial?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
     billingdiscount?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
     billingnetamount?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
+    totalbillamount?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
   }
 
   export type accidentcauseover45daysCreateInput = {
@@ -41226,6 +41244,7 @@ export namespace Prisma {
     billinginitial?: string | null
     billingdiscount?: string | null
     billingnetamount?: string | null
+    totalbillamount?: string | null
     insurers?: insurersCreateNestedOneWithoutPrebillingtransactionsInput
   }
 
@@ -41243,6 +41262,7 @@ export namespace Prisma {
     billinginitial?: string | null
     billingdiscount?: string | null
     billingnetamount?: string | null
+    totalbillamount?: string | null
   }
 
   export type prebillingtransactionsUpdateInput = {
@@ -41257,6 +41277,7 @@ export namespace Prisma {
     billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
     billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
     billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutPrebillingtransactionsNestedInput
   }
 
@@ -41274,6 +41295,7 @@ export namespace Prisma {
     billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
     billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
     billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type prebillingtransactionsCreateManyInput = {
@@ -41290,6 +41312,7 @@ export namespace Prisma {
     billinginitial?: string | null
     billingdiscount?: string | null
     billingnetamount?: string | null
+    totalbillamount?: string | null
   }
 
   export type prebillingtransactionsUpdateManyMutationInput = {
@@ -41304,6 +41327,7 @@ export namespace Prisma {
     billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
     billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
     billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type prebillingtransactionsUncheckedUpdateManyInput = {
@@ -41320,6 +41344,7 @@ export namespace Prisma {
     billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
     billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
     billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -43264,6 +43289,7 @@ export namespace Prisma {
     billinginitial?: SortOrder
     billingdiscount?: SortOrder
     billingnetamount?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type prebillingtransactionsAvgOrderByAggregateInput = {
@@ -43285,6 +43311,7 @@ export namespace Prisma {
     billinginitial?: SortOrder
     billingdiscount?: SortOrder
     billingnetamount?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type prebillingtransactionsMinOrderByAggregateInput = {
@@ -43301,6 +43328,7 @@ export namespace Prisma {
     billinginitial?: SortOrder
     billingdiscount?: SortOrder
     billingnetamount?: SortOrder
+    totalbillamount?: SortOrder
   }
 
   export type prebillingtransactionsSumOrderByAggregateInput = {
@@ -48013,6 +48041,7 @@ export namespace Prisma {
     billinginitial?: string | null
     billingdiscount?: string | null
     billingnetamount?: string | null
+    totalbillamount?: string | null
   }
 
   export type prebillingtransactionsUncheckedCreateWithoutInsurersInput = {
@@ -48028,6 +48057,7 @@ export namespace Prisma {
     billinginitial?: string | null
     billingdiscount?: string | null
     billingnetamount?: string | null
+    totalbillamount?: string | null
   }
 
   export type prebillingtransactionsCreateOrConnectWithoutInsurersInput = {
@@ -48730,6 +48760,7 @@ export namespace Prisma {
     billinginitial?: StringNullableFilter<"prebillingtransactions"> | string | null
     billingdiscount?: StringNullableFilter<"prebillingtransactions"> | string | null
     billingnetamount?: StringNullableFilter<"prebillingtransactions"> | string | null
+    totalbillamount?: StringNullableFilter<"prebillingtransactions"> | string | null
   }
 
   export type proceduretransactionsUpsertWithWhereUniqueWithoutInsurersInput = {
@@ -50929,6 +50960,7 @@ export namespace Prisma {
     billinginitial?: string | null
     billingdiscount?: string | null
     billingnetamount?: string | null
+    totalbillamount?: string | null
   }
 
   export type proceduretransactionsCreateManyInsurersInput = {
@@ -51502,6 +51534,7 @@ export namespace Prisma {
     billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
     billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
     billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type prebillingtransactionsUncheckedUpdateWithoutInsurersInput = {
@@ -51517,6 +51550,7 @@ export namespace Prisma {
     billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
     billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
     billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type prebillingtransactionsUncheckedUpdateManyWithoutInsurersInput = {
@@ -51532,6 +51566,7 @@ export namespace Prisma {
     billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
     billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
     billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type proceduretransactionsUpdateWithoutInsurersInput = {

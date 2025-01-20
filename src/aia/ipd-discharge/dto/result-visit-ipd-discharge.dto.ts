@@ -132,4 +132,10 @@ export class ResultIpdDischargeVisitDto {
     @IsString()
     @IsOptional()
     Weight?: string;
+
+    @IsBoolean()
+    @IsOptional()
+    IsIPDDischarge?: boolean;
+
+    
   }

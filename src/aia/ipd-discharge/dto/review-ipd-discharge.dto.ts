@@ -34,7 +34,7 @@ export class ResultReviewIPDVisitInfoDto {
     IndicationForAdmission:string;
     DscDateTime:string;
     AdmitDateTime:string;
-
+    IsIPDDischarge:boolean;
 
 
   }

@@ -500,7 +500,8 @@ exports.Prisma.PrebillingtransactionsScalarFieldEnum = {
   payorbillingcode: 'payorbillingcode',
   billinginitial: 'billinginitial',
   billingdiscount: 'billingdiscount',
-  billingnetamount: 'billingnetamount'
+  billingnetamount: 'billingnetamount',
+  totalbillamount: 'totalbillamount'
 };
 
 exports.Prisma.SortOrder = {

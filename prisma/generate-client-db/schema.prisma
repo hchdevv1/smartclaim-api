@@ -446,5 +446,6 @@ model prebillingtransactions {
   billinginitial   String?   @db.VarChar(255)
   billingdiscount  String?   @db.VarChar(255)
   billingnetamount String?   @db.VarChar(255)
+  totalbillamount  String?   @db.VarChar(100)
   insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
 }

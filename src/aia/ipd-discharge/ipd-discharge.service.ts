@@ -97,7 +97,7 @@ async getIPDVisit(queryIpdDischargeDto:QueryIpdDischargeDto){
         IndicationForAdmission: getvisitformDatabase.Result.VisitInfo.IndicationForAdmission||'',
         DscDateTime: getvisitformDatabase.Result.VisitInfo.DscDateTime||'',
         AdmitDateTime: getvisitformDatabase.Result.VisitInfo.AdmitDateTime||'',
-
+        IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge
 
       }
  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
@@ -135,6 +135,7 @@ async getIPDVisit(queryIpdDischargeDto:QueryIpdDischargeDto){
           VisitDateTime: '',
           Vn:  '',
           Weight:  '',
+          IsIPDDischarge:''
          }
          xResultInfo ={
           VisitInfo: xQueryVisit,
@@ -173,7 +174,7 @@ async getIPDVisit(queryIpdDischargeDto:QueryIpdDischargeDto){
             Vn: TrakcarepatientInfo.VisitInfo.Vn || '',
             An: TrakcarepatientInfo.VisitInfo.An || '',
             Weight: TrakcarepatientInfo.VisitInfo.Weight || '',
-          
+            IsIPDDischarge: Boolean(TrakcarepatientInfo.VisitInfo.IsIPDDischarge) || false
         } : {};
         xResultInfo ={
           VisitInfo: xQueryVisit,
@@ -2021,35 +2022,35 @@ if (xHaveConcurNote ==true){
   }
 }
 /// sent to aia
-async SubmitIPDDischargeToAIA(querySubmitOpdDischargeDto:QuerySubmitIpdDischargeDto){
+async SubmitIPDDischargeToAIA(querySubmitIpdDischargeDto:QuerySubmitIpdDischargeDto){
   let xResultInfo;
   // console.log('--------0000000--------')
-  // console.log(querySubmitOpdDischargeDto)
-  // console.log('--------1111111--------')
+   console.log(querySubmitIpdDischargeDto)
+   console.log('--------1111111--------')
 try{
  const RequesetBody ={
-  xRefId:querySubmitOpdDischargeDto.PatientInfo.RefId, //'oljhnklefhbilubsEFJKLb65255555',
-  xTransactionNo: querySubmitOpdDischargeDto.PatientInfo.TransactionNo,//'6f49b02c-4102-44e4-bd6a-c5bed5dc8b1c',
-  xHN :querySubmitOpdDischargeDto.PatientInfo.HN ,//'62-027770',
-  xInsurerCode: querySubmitOpdDischargeDto.PatientInfo.InsurerCode, //'13', 
-  xVN: querySubmitOpdDischargeDto.PatientInfo.VN ,//'O415202-67',
-  xVisitDateTime :querySubmitOpdDischargeDto.PatientInfo.VisitDateTime,
-  xAccidentDate:querySubmitOpdDischargeDto.PatientInfo.AccidentDate,
-  xAccidentPlaceCode :querySubmitOpdDischargeDto.PatientInfo.AccidentPlaceCode,
-  xIdType:querySubmitOpdDischargeDto.PatientInfo.IdType,
-  xPolicyTypeCode :querySubmitOpdDischargeDto.PatientInfo.PolicyTypeCode,
-  xServiceSettingCode:querySubmitOpdDischargeDto.PatientInfo.ServiceSettingCode,
-  xSurgeryTypeCode:querySubmitOpdDischargeDto.PatientInfo.SurgeryTypeCode,
-  xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode,
-  xRunningdocument:querySubmitOpdDischargeDto.PatientInfo.Runningdocument,
-  xIndicationForAdmission:querySubmitOpdDischargeDto.PatientInfo.IndicationForAdmission,
-  xPreauthReferClaimNo:querySubmitOpdDischargeDto.PatientInfo.PreauthReferClaimNo,
-  xPreauthReferOcc:querySubmitOpdDischargeDto.PatientInfo.PreauthReferOcc,
-  xIsIPDDischarge:querySubmitOpdDischargeDto.PatientInfo.IsIPDDischarge,
+  xRefId:querySubmitIpdDischargeDto.PatientInfo.RefId, //'oljhnklefhbilubsEFJKLb65255555',
+  xTransactionNo: querySubmitIpdDischargeDto.PatientInfo.TransactionNo,//'6f49b02c-4102-44e4-bd6a-c5bed5dc8b1c',
+  xHN :querySubmitIpdDischargeDto.PatientInfo.HN ,//'62-027770',
+  xInsurerCode: querySubmitIpdDischargeDto.PatientInfo.InsurerCode, //'13', 
+  xVN: querySubmitIpdDischargeDto.PatientInfo.VN ,//'O415202-67',
+  xVisitDateTime :querySubmitIpdDischargeDto.PatientInfo.VisitDateTime,
+  xAccidentDate:querySubmitIpdDischargeDto.PatientInfo.AccidentDate,
+  xAccidentPlaceCode :querySubmitIpdDischargeDto.PatientInfo.AccidentPlaceCode,
+  xIdType:querySubmitIpdDischargeDto.PatientInfo.IdType,
+  xPolicyTypeCode :querySubmitIpdDischargeDto.PatientInfo.PolicyTypeCode,
+  xServiceSettingCode:querySubmitIpdDischargeDto.PatientInfo.ServiceSettingCode,
+  xSurgeryTypeCode:querySubmitIpdDischargeDto.PatientInfo.SurgeryTypeCode,
+  xIllnessTypeCode:querySubmitIpdDischargeDto.PatientInfo.IllnessTypeCode,
+  xRunningdocument:querySubmitIpdDischargeDto.PatientInfo.Runningdocument,
+  xIndicationForAdmission:querySubmitIpdDischargeDto.PatientInfo.IndicationForAdmission,
+  xPreauthReferClaimNo:querySubmitIpdDischargeDto.PatientInfo.PreauthReferClaimNo,
+  xPreauthReferOcc:querySubmitIpdDischargeDto.PatientInfo.PreauthReferOcc,
+  xIsIPDDischarge:querySubmitIpdDischargeDto.PatientInfo.IsIPDDischarge,
 
   
  }
- 
+
 ////////////////////////////////////////
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
@@ -2087,6 +2088,7 @@ if (existingVisitRecord){
     VN: RequesetBody.xVN,
   }
   const getvisitformDatabase = await this.utilsService.getvisitIPDformDatabase(newQueryVisitDatabaseBodyDto)
+  
    newResultVisitInfoDto= {
     AccidentDate:getvisitformDatabase.Result.VisitInfo.AccidentDate,
     AdmitDateTime:getvisitformDatabase.Result.VisitInfo.VisitDateTime,
@@ -2117,13 +2119,12 @@ if (existingVisitRecord){
     Vn:  await this.utilsService.EncryptAESECB( getvisitformDatabase.Result.VisitInfo.VN,AIA_APISecretkey) ,
   
     Weight: getvisitformDatabase.Result.VisitInfo.Weight||'',
-    IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge||false
+    IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge
 
   }
   console.log('getOPDDischargeVisit done from database')
 }else{
   let VNForVisitinfo ;
- 
   const getIPDDischargeVisit = await this.trakcareService.getIPDVisit(VNForVisitinfo);
   newResultVisitInfoDto= {
     AccidentDate: getIPDDischargeVisit.VisitInfo.AccidentDate,

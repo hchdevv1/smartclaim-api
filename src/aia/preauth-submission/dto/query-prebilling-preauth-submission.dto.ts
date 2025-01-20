@@ -64,7 +64,9 @@ export class QueryPreBillingDto {
     @IsString()
     @IsOptional()
     BillingNetamount?: string;
-
+    @IsString()
+    @IsOptional()
+    TotalBillAmount?: string;
   }
 
   export class ResultSubmitPreBillingDto {

@@ -422,9 +422,9 @@ export class ResultDataJsonDto {
     @IsArray()
     PreAuthNote: PreAuthNoteDto[];
 
-    @IsString()
+   
     @IsOptional()
-    AnesthesiaList: string; 
+    AnesthesiaList: any; 
 
     @IsBoolean()
     @IsOptional()
@@ -553,5 +553,8 @@ export class ResultPreAuthNoteDto {
     VisitDateTime: string;
     Vn: string;
     Weight: string;
+    AnesthesiaList:string;
+    TotalEstimatedCost:string;
+    IsPackage:boolean;
 
   }

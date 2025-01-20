@@ -692,7 +692,7 @@ if (xTransactionNo){
           BillingInitial: prebilling.BillingInitial || '',
           BillingDiscount: prebilling.BillingDiscount || '',
           BillingNetamount: prebilling.BillingNetamount || '',
-
+          TotalBillAmount:prebilling.TotalBillAmount||'',
           }));
           const existingPrebilling = await prismaProgest.prebillingtransactions.findMany({
             where: {
@@ -728,6 +728,7 @@ if (xTransactionNo){
                         billingdiscount: prebilling.BillingDiscount,
                         billinginitial: prebilling.BillingInitial,
                         billingnetamount: prebilling.BillingNetamount,
+                        totalbillamount:prebilling.TotalBillAmount
                       
                     }
                 });
@@ -750,6 +751,7 @@ if (xTransactionNo){
               "BillingInitial": "",
               "BillingDiscount": "",
               "BillingNetAmount": "",
+              "TotalBillAmount":"",
           }
       ]
    // console.log(xHaveProcedure)
@@ -1202,9 +1204,7 @@ if (xTransactionNo){
   /// sent to aia
 async SubmitPreSubmissionToAIA(querySubmitPreAuthDto:QuerySubmitPreAuthDto){
   let xResultInfo;
-  // console.log('--------0000000--------')
-  // console.log(querySubmitOpdDischargeDto)
-  // console.log('--------1111111--------')
+
 try{
  const RequesetBody ={
   xRefId:querySubmitPreAuthDto.PatientInfo.RefId, //'oljhnklefhbilubsEFJKLb65255555',
@@ -1224,7 +1224,7 @@ try{
   xPreviousTreatmentDate:querySubmitPreAuthDto.PatientInfo.PreviousTreatmentDate,
   xPreviousTreatmentDetail:querySubmitPreAuthDto.PatientInfo.PreviousTreatmentDetail,
   xPreauthReferClaimNo:querySubmitPreAuthDto.PatientInfo.PreauthReferClaimNo,
-  xxPreauthReferOcc:querySubmitPreAuthDto.PatientInfo.PreauthReferOcc,
+  xPreauthReferOcc:querySubmitPreAuthDto.PatientInfo.PreauthReferOcc,
   xExpectedAdmitDate:querySubmitPreAuthDto.PatientInfo.ExpectedAdmitDate,
   xDxFreeText:querySubmitPreAuthDto.PatientInfo.DxFreeText,
   xDscDateTime:querySubmitPreAuthDto.PatientInfo.DscDateTime,
@@ -1232,13 +1232,13 @@ try{
  }
  
 //--> get Patient  <--//
-const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
+const getSubmitPreAuthPatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
 let newResultPatientInfoDto: ResultPatientInfoDto ;
-if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischargePatient.PatientInfo.HN.length > 0) {
+if (getSubmitPreAuthPatient && getSubmitPreAuthPatient.PatientInfo && getSubmitPreAuthPatient.PatientInfo.HN.length > 0) {
    newResultPatientInfoDto = {
-      Dob: await this.utilsService.EncryptAESECB(getOPDDischargePatient.PatientInfo.Dob,AIA_APISecretkey) ,
-      Hn: await this.utilsService.EncryptAESECB(getOPDDischargePatient.PatientInfo.HN,AIA_APISecretkey) ,
-      Gender: getOPDDischargePatient.PatientInfo.Gender
+      Dob: await this.utilsService.EncryptAESECB(getSubmitPreAuthPatient.PatientInfo.Dob,AIA_APISecretkey) ,
+      Hn: await this.utilsService.EncryptAESECB(getSubmitPreAuthPatient.PatientInfo.HN,AIA_APISecretkey) ,
+      Gender: getSubmitPreAuthPatient.PatientInfo.Gender
  };
 }else{
    newResultPatientInfoDto = {
@@ -1247,6 +1247,7 @@ if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischa
     Gender:''
   };
 }
+console.log('Patient done')
 
 // //--> get Visit  <--//
 const whereConditionsGetVisit = {
@@ -1293,12 +1294,13 @@ if (existingVisitRecord){
     SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
     UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
     VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
-    //Vn:  getvisitformDatabase.Result.VisitInfo.VN||'',
     Vn:  await this.utilsService.EncryptAESECB( getvisitformDatabase.Result.VisitInfo.VN,AIA_APISecretkey) ,
-  
-    Weight: getvisitformDatabase.Result.VisitInfo.Weight||''
+    AnesthesiaList :getvisitformDatabase.Result.VisitInfo.AnesthesiaList,
+    Weight: getvisitformDatabase.Result.VisitInfo.Weight||'',
+    TotalEstimatedCost :getvisitformDatabase.Result.VisitInfo.TotalEstimatedCost,
+    IsPackage :getvisitformDatabase.Result.VisitInfo.IsPackage
   }
-  console.log('getOPDDischargeVisit done from database')
+  console.log('get Visit  from database ==> Done')
 }else{
   let VNForVisitinfo ;
  
@@ -1324,101 +1326,67 @@ if (existingVisitRecord){
     PreviousTreatmentDate: '',
     PreviousTreatmentDetail: '',
     PreauthReferClaimNo:RequesetBody.xPreauthReferClaimNo||'',
-    PreauthReferOcc:RequesetBody.xxPreauthReferOcc||'',
+    PreauthReferOcc:RequesetBody.xPreauthReferOcc||'',
     PrivateCase: getIPDDischargeVisit.VisitInfo.PrivateCase,
     SignSymptomsDate: '',
     UnderlyingCondition: '',
     VisitDateTime: getIPDDischargeVisit.VisitInfo.VisitDateTime,
     Vn:  await this.utilsService.EncryptAESECB( getIPDDischargeVisit.VisitInfo.vn ,AIA_APISecretkey) ,
-    Weight: ''
+    Weight: '',
+    AnesthesiaList:'',
+    TotalEstimatedCost:'',
+    IsPackage:null
   }
-  console.log('getOPDDischargeVisit done from trakcare')
+  console.log('getPreAuth Visit done')
 }
 
  newResultVisitInfoDto.ExpectedLos = this.calculateDaysBetweenDates(newResultVisitInfoDto.VisitDateTime, newResultVisitInfoDto.DscDateTime);
 
-console.log('-----newResultVisitInfoDto')
-console.log(newResultVisitInfoDto)
 // //--> get VitalSignIn  <--//
-const getIPDDischargeVitalSign = await this.trakcareService.getIPDVitalSign(RequesetBody.xVN);
 let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
-  if (getIPDDischargeVitalSign && getIPDDischargeVitalSign.VitalSignInfo && getIPDDischargeVitalSign.VitalSignInfo.length > 0) {
-      newResultVitalSignInfoDto= await Promise.all(
-        getIPDDischargeVitalSign.VitalSignInfo.map(async (item) => {
-      return {
-        DiastolicBp: +item.DiastolicBp,
-        HeartRate:  +item.HeartRate,
-        OxygenSaturation:  +item.OxygenSaturation,
-        PainScore:  +item.PainScore,
-        RespiratoryRate: +item.RespiratoryRate,
-        SystolicBp:  +item.SystolicBp,
-        Temperature:  +parseFloat(item.Temperature).toFixed(2),
-        VitalSignEntryDateTime:  item.VitalSignEntryDateTime,
-      };
-    })
-  ); 
-} else {
-  newResultVitalSignInfoDto = [{
-    DiastolicBp: '',
-    HeartRate: '',
-    OxygenSaturation: '',
-    PainScore: '',
-    RespiratoryRate: '',
-    SystolicBp: '',
-    Temperature: '',
-    VitalSignEntryDateTime: '',
-    
-  }];
-}
+newResultVitalSignInfoDto = [{
+  DiastolicBp: '',
+  HeartRate: '',
+  OxygenSaturation: '',
+  PainScore: '',
+  RespiratoryRate: '',
+  SystolicBp: '',
+  Temperature: '',
+  VitalSignEntryDateTime: '',
+  
+}];
 console.log('getIPDitalSign done')
 // //--> get Diagnosis  <--//
 
-const getIPDDischargeDiagnosis = await this.trakcareService.getIPDDiagnosis(RequesetBody.xVN);
-let getDiagnosisTypeMapping 
 let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
-  if (getIPDDischargeDiagnosis && getIPDDischargeDiagnosis.DiagnosisInfo && getIPDDischargeDiagnosis.DiagnosisInfo.length > 0) {
+const newQueryPreDiagnosisDatabaseBodyDto ={
+  RefId:RequesetBody.xRefId,
+  TransactionNo:RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN:RequesetBody.xHN,
+  VN:RequesetBody.xVN
+}
+const getDiagnosisformDatabase = await this.utilsService.getDiagnosisformDatabase(newQueryPreDiagnosisDatabaseBodyDto)
+if (getDiagnosisformDatabase && getDiagnosisformDatabase.Result.DiagnosisInfo && getDiagnosisformDatabase.Result.DiagnosisInfo.length > 0) {
+  newQueryDiagnosisInfoDto= await Promise.all(
+    getDiagnosisformDatabase.Result.DiagnosisInfo.map(async (item) => {
+    return {
+      Icd10: item.Icd10,
+      DxName: item.DxName,
+      DxType: 'OT',
+      
+    };
+  })
+);
 
-   newQueryDiagnosisInfoDto= await Promise.all(
-    getIPDDischargeDiagnosis.DiagnosisInfo.map(async (item) => {
-       getDiagnosisTypeMapping = await this.utilsService.getDiagnosisTypeMapping(
-        ''+RequesetBody.xInsurerCode, 
-        item.DxTypeCode
-      );
-      if (item.DxTypeCode === getDiagnosisTypeMapping.Result.dxtypecodetrakcare) {
-        item.DxTypeCode = getDiagnosisTypeMapping.Result.dxtypecodeinsurance;
-      }
-      const countDiag =getIPDDischargeDiagnosis.DiagnosisInfo.length
-      const FirstTextDxCode = item.DxCode[0]
-      if ((countDiag ===1) &&(FirstTextDxCode ==='Z')){
-        return {
-          DxName: item.DxName,
-          DxType: item.DxTypeCode,
-          Icd10: item.DxCode,
-          
-        };
-      }else{
-
-        return {
-          DxName: item.DxName,
-          DxType: item.DxTypeCode,
-          Icd10: item.DxCode,
-          
-        };
-      }
-
-     
-    })
-  );
-  
-} else {
+}else{
   newQueryDiagnosisInfoDto = [{
     DxName: '',
     DxType: '',
     Icd10: '',
   }];
 }
-console.log(newQueryDiagnosisInfoDto)
-console.log('getIPDDischargeDiagnosis done')
+console.log('get Diagnosis done')
 
 let newAccidentDetail ; //= new ResultAccidentDetailDto();
 if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
@@ -1481,40 +1449,11 @@ if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
     ]
 }
 }
+console.log(newAccidentDetail)
 
 
-    const whereConditions = {
-    
-      ...(RequesetBody.xVN ? { vn: { equals: RequesetBody.xVN } } : {}),
-      ...(RequesetBody.xRefId ? { refid: { equals: RequesetBody.xRefId } } : {}),
-      ...(RequesetBody.xTransactionNo ? { transactionno: { equals: RequesetBody.xTransactionNo } } : {}),
-    };
 let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
-const existingProcedureRecord = await prismaProgest.proceduretransactions.findFirst({
-  where: whereConditions
-});
-let getIPDDischargeProcedure ;
-if(existingProcedureRecord){
-  getIPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
-   if (getIPDDischargeProcedure && getIPDDischargeProcedure.ProcedureInfo && getIPDDischargeProcedure.ProcedureInfo.length > 0) {
-      newResultProcedureInfoDto= await Promise.all(
-        getIPDDischargeProcedure.ProcedureInfo.map(async (item) => {
-       return {
-         Icd9: item.Icd9,
-         ProcedureName: item.ProcedureName,
-         ProcedureDate: item.ProcedureDate,
-         
-       };
-     })
-   );
- } else {
- newResultProcedureInfoDto = [{
-     Icd9: '',
-     ProcedureName: '',
-     ProcedureDate: '',
-   }];
- }
-}else{
+
  // console.log('old procedure')
   // RequesetBody.xRefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
   // RequesetBody.xTransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
@@ -1527,7 +1466,7 @@ if(existingProcedureRecord){
     VN:RequesetBody.xVN
   }
  
-   getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
+   const getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
   // console.log('33333')
   if (getIPDDischargeProcedure && getIPDDischargeProcedure.Result.ProcedureInfo && getIPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
      newResultProcedureInfoDto= await Promise.all(
@@ -1540,10 +1479,6 @@ if(existingProcedureRecord){
       };
     })
   );
-  // console.log('555555')
-  // console.log(newResultProcedureInfoDto)
-  // console.log('555555')
-
 } else {
  // console.log('4444')
   newResultProcedureInfoDto = [{
@@ -1552,15 +1487,8 @@ if(existingProcedureRecord){
     ProcedureDate: '',
   }];
 }
-/*
-{
-  HTTPStatus: HttpMessageDto { statusCode: 200, message: 'success', error: '' },
-  Result: ProcedeureDatabaseResultInfo {
-    ProcedureInfo: [ [Object], [Object] ]
-  }
-}
-*/
-}
+
+
 // console.log('*******')
 // console.log(getOPDDischargeProcedure.Result)
 // console.log('*******')
@@ -1568,99 +1496,47 @@ if(existingProcedureRecord){
 
 
 // //--> get Investigation  <--//
-const getIPDDischargeInvestigation = await this.trakcareService.getIPDInvestigation(RequesetBody.xVN); 
 let newResultInvestigationInfoDto: ResultInvestigationInfoDto[] = [];
-  if (getIPDDischargeInvestigation && getIPDDischargeInvestigation.InvestigationInfo && getIPDDischargeInvestigation.InvestigationInfo.length > 0) {
-    newResultInvestigationInfoDto= await Promise.all(
-      getIPDDischargeInvestigation.InvestigationInfo.map(async (item) => {
-      return {
-        InvestigationCode: item.InvestigationCode,
-        InvestigationGroup: item.InvestigationGroup,
-        InvestigationName: item.InvestigationName,
-        InvestigationResult: item.InvestigationResult,
-        ResultDateTime: item.ResultDateTime,
-      };
-    })
-  );
-} else {
-  newResultInvestigationInfoDto = [{
-    InvestigationCode: '',
-    InvestigationGroup: '',
-    InvestigationName: '',
-    InvestigationResult: '',
-    ResultDateTime: ''
-  }];
-}
-console.log('Investigation done')
+newResultInvestigationInfoDto = [{
+  InvestigationCode: '',
+  InvestigationGroup: '',
+  InvestigationName: '',
+  InvestigationResult: '',
+  ResultDateTime: ''
+}];
+console.log('fix Investigation done')
 // //--> get OrderItem  <--//
-const getOPDDischargeOrderItem = await this.trakcareService.getIPDOrderItem(RequesetBody.xVN); 
 let newResultOrderItemInfoDto : ResultOrderItemInfoDto[] = [];
-   if (getOPDDischargeOrderItem && getOPDDischargeOrderItem.OrderItemInfo && getOPDDischargeOrderItem.OrderItemInfo.length > 0) {
-    newResultOrderItemInfoDto= await Promise.all(
-      getOPDDischargeOrderItem.OrderItemInfo.map(async (item) => {
-      return {
-        ItemId: item.ItemId,
-        ItemName: item.ItemName,
-        ItemAmount: item.ItemAmount,
-        Discount: item.Discount,
-        Initial: item.Initial,
+newResultOrderItemInfoDto = [{
 
-        LocalBillingCode: item.LocalBillingCode,
-        LocalBillingName: item.LocalBillingName,
-        Location: item.Location,
-
-        NetAmount: item.NetAmount,
-        SimbVersion: item.SimbVersion,
-        Terminology: item.Terminology,
-
-      };
-    })
-  );
-} else {
-  newResultOrderItemInfoDto = [{
-
-    ItemId: '',
-    ItemName: '',
-    ItemAmount: '',
-    Discount: '',
-    Initial: '',
-    LocalBillingCode: '',
-    LocalBillingName: '',
-    Location: '',
-    NetAmount: '',
-    SimbVersion: '',
-    Terminology: ''
-  }];
-}
-console.log('OrderItem done')
+  ItemId: '',
+  ItemName: '',
+  ItemAmount: '',
+  Discount: '',
+  Initial: '',
+  LocalBillingCode: '',
+  LocalBillingName: '',
+  Location: '',
+  NetAmount: '',
+  SimbVersion: '',
+  Terminology: ''
+}];
+console.log('fix OrderItem done')
 // //--> get Doctor  <--//
-const getOPDDischargeDoctor = await this.trakcareService.getIPDDoctor(RequesetBody.xVN); 
 let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
-  if (getOPDDischargeDoctor && getOPDDischargeDoctor.DoctorInfo && getOPDDischargeDoctor.DoctorInfo.length > 0) {
-    newResultDoctorInfoDto= await Promise.all(
-      getOPDDischargeDoctor.DoctorInfo.map(async (item) => {
-      return {
-        DoctorLicense: item.DoctorLicense.toString().padStart(10, '0'),
-        DoctorRole: item.DoctorRole,
-        DoctorFirstName: await this.utilsService.EncryptAESECB( item.DoctorFirstName,AIA_APISecretkey) ,
-        DoctorLastName: '' //await this.utilsService.EncryptAESECB( item.DoctorLastName,AIA_APISecretkey) ,
-      };
-    })
-  );
-} else {
-  newResultDoctorInfoDto = [{
-    DoctorLicense: '',
-    DoctorRole: '',
-    DoctorFirstName: '',
-    DoctorLastName: '',
-  
-  }];
-}
-console.log('Doctor done')
+newResultDoctorInfoDto = [{
+  DoctorLicense: '0000000000',
+  DoctorRole: '',
+  DoctorFirstName: '',
+  DoctorLastName: '',
+
+}];
+console.log('fix Doctor done')
 // //console.log(newResultDoctorInfoDto)
 //  // ResultBillingInfoDto ,ResultTotalBillAmountInfoDto
 // //--> get Billing  <--//
-const getOPDDischargeBilling = await this.trakcareService.getIPDBilling(RequesetBody.xVN); 
+/*
+const getOPDDischargeBilling = [] //await this.trakcareService.getIPDBilling(RequesetBody.xVN); 
 let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
 let  newTotalBillAmount ;
    if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
@@ -1705,7 +1581,69 @@ newResultBillingInfoDto = [{
   BillingNetAmount: '2000',
  
 }];
-newTotalBillAmount=2000
+newTotalBillAmount=RequesetBody.
+*/
+// const newQueryPreBillingDatabaseBodyDto ={
+//   RefId:RequesetBody.xRefId,
+//   TransactionNo:RequesetBody.xTransactionNo,
+//   InsurerCode:RequesetBody.xInsurerCode,
+//   HN:RequesetBody.xHN,
+//   VN:RequesetBody.xVN
+// }
+
+// const getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryPreBillingDatabaseBodyDto)
+/*const newResultBillingInfoDto = [{
+
+  LocalBillingCode: '2.1.1',
+  LocalBillingName: 'ค่าห้องผู้ป่วยใน',
+  SimbBillingCode: '2.1.1',
+  PayorBillingCode: '2.1.1',
+  BillingInitial: '10000',
+  BillingDiscount: '8000',
+  BillingNetAmount: '2000',
+ 
+}]; */
+let newTotalBillAmount =''
+
+
+
+let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
+const newQueryBillingInfoDtoDatabaseBodyDto ={
+  RefId:RequesetBody.xRefId,
+  TransactionNo:RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN:RequesetBody.xHN,
+  VN:RequesetBody.xVN
+}
+const getPreBillingformDatabase = await this.utilsService.getPreBillingformDatabase(newQueryBillingInfoDtoDatabaseBodyDto)
+if (getPreBillingformDatabase && getPreBillingformDatabase.Result.PreBillingInfo && getPreBillingformDatabase.Result.PreBillingInfo.length > 0) {
+  newResultBillingInfoDto= await Promise.all(
+    getPreBillingformDatabase.Result.PreBillingInfo.map(async (item) => {
+       newTotalBillAmount = item.TotalBillAmount
+
+    return {
+      LocalBillingCode: item.LocalBillingCode,
+      LocalBillingName: item.LocalBillingName,
+      SimbBillingCode: item.SimbBillingCode,
+      PayorBillingCode: item.PayorBillingCode,
+      BillingDiscount: item.BillingDiscount,
+      BillingInitial: item.BillingInitial,
+      BillingNetAmount: item.BillingNetAmount,
+      TotalBillAmount: item.TotalBillAmount,    
+    };
+  })
+);
+}else{
+  newResultBillingInfoDto = [{
+    LocalBillingCode: '',
+    LocalBillingName: '',
+    SimbBillingCode: '',
+    PayorBillingCode: '',
+    BillingInitial: '',
+    BillingDiscount: '',
+    BillingNetAmount: '',
+  }];
+}
 console.log('billing done')
 //  //  
 //--> get PSS  Fixed<--//
@@ -1760,10 +1698,10 @@ let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
     };
   })
 );
-const newIsPackage =true;
-const newAnesthesiaList ="G";
-const newTotalEstimatedCost ="1111000.50";
-console.log(newResultBillingInfoDto)
+const newIsPackage =newResultVisitInfoDto.IsPackage;
+const newAnesthesiaList= [newResultVisitInfoDto.AnesthesiaList];
+const newTotalEstimatedCost =newResultVisitInfoDto.TotalEstimatedCost;
+//console.log(newResultBillingInfoDto)
 let newResultDataJsonDto =new ResultDataJsonDto();
  newResultDataJsonDto ={
   Patient :newResultPatientInfoDto,
@@ -1800,7 +1738,10 @@ const newOPDDischargeResponseDto ={
 //const dummyDataRequest =new DummyDataRequest1();
 //const newOPDDischargeResponseDto  =dummyDataRequest.PatientInfo
 // DummyDataRequest1
-console.log(newResultDataJsonDto.Visit)
+console.log('=++++++++++=')
+console.log(newOPDDischargeResponseDto.DataJson)
+console.log('=++++++++++=')
+
  //////////////////////////////////////
       const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
@@ -1812,6 +1753,7 @@ console.log(newResultDataJsonDto.Visit)
    'Ocp-Apim-Subscription-Key': AIA_APISubscription,
    'Apim-Auth-Secure-Token': ObjAccessTokenKey
  };
+
   const responsefromAIA = await lastValueFrom(
     this.httpService
       .post(apiURL, body, { headers })
@@ -1823,9 +1765,9 @@ console.log(newResultDataJsonDto.Visit)
         })
       )
   );
- 
-  const responeInputcode = responsefromAIA.Result.Code
+  console.log(responsefromAIA)
 
+  const responeInputcode = responsefromAIA.Result.Code
   if (responeInputcode !=='S'){
     this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
   }else{
