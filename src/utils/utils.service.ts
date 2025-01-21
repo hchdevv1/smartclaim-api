@@ -2349,7 +2349,7 @@ if(prebillingtransactionsInfo){
     BillingInitial: item.billinginitial,
     BillingDiscount: item.billingdiscount,
     BillingNetAmount: item.billingnetamount,
-    totalbillamount: item.totalbillamount
+    TotalBillAmount: item.totalbillamount
   }));
        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       

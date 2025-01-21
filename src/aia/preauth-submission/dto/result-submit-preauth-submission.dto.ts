@@ -537,6 +537,7 @@ export class ResultPreAuthNoteDto {
     DxFreeText: string;
     ExpectedDayOfRecovery: string;
     ExpectedLos:number;
+    ExpectedAdmitDate:string;
     Height: string;
     IndicationForAdmission:string;
     PhysicalExam: string;
@@ -551,6 +552,7 @@ export class ResultPreAuthNoteDto {
     SignSymptomsDate: string;
     UnderlyingCondition: string;
     VisitDateTime: string;
+    VisitDate:string;
     Vn: string;
     Weight: string;
     AnesthesiaList:string;

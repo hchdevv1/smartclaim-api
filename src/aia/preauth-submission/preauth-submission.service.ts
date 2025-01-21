@@ -691,7 +691,7 @@ if (xTransactionNo){
           PayorBillingCode: prebilling.PayorBillingCode || '',
           BillingInitial: prebilling.BillingInitial || '',
           BillingDiscount: prebilling.BillingDiscount || '',
-          BillingNetamount: prebilling.BillingNetamount || '',
+          BillingNetAmount: prebilling.BillingNetAmount || '',
           TotalBillAmount:prebilling.TotalBillAmount||'',
           }));
           const existingPrebilling = await prismaProgest.prebillingtransactions.findMany({
@@ -727,7 +727,7 @@ if (xTransactionNo){
                         payorbillingcode: prebilling.PayorBillingCode,
                         billingdiscount: prebilling.BillingDiscount,
                         billinginitial: prebilling.BillingInitial,
-                        billingnetamount: prebilling.BillingNetamount,
+                        billingnetamount: prebilling.BillingInitial,
                         totalbillamount:prebilling.TotalBillAmount
                       
                     }
@@ -1280,6 +1280,7 @@ if (existingVisitRecord){
     DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText||'',
     ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
     ExpectedLos:null,
+    ExpectedAdmitDate:getvisitformDatabase.Result.VisitInfo.ExpectedAdmitDate,
     Height: getvisitformDatabase.Result.VisitInfo.Height||'',
     IndicationForAdmission:getvisitformDatabase.Result.VisitInfo.IndicationForAdmission,
     PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
@@ -1294,6 +1295,7 @@ if (existingVisitRecord){
     SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
     UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
     VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
+    VisitDate:getvisitformDatabase.Result.VisitInfo.VisitDateTime.split(' ')[0],
     Vn:  await this.utilsService.EncryptAESECB( getvisitformDatabase.Result.VisitInfo.VN,AIA_APISecretkey) ,
     AnesthesiaList :getvisitformDatabase.Result.VisitInfo.AnesthesiaList,
     Weight: getvisitformDatabase.Result.VisitInfo.Weight||'',
@@ -1317,6 +1319,7 @@ if (existingVisitRecord){
     DxFreeText: getIPDDischargeVisit.VisitInfo.DxFreeText,
     ExpectedDayOfRecovery: '',
     ExpectedLos:null,
+    ExpectedAdmitDate:getIPDDischargeVisit.VisitInfo.ExpectedAdmitDate,
     Height: '',
     IndicationForAdmission:RequesetBody.xIndicationForAdmission,
     PhysicalExam: '',
@@ -1331,6 +1334,7 @@ if (existingVisitRecord){
     SignSymptomsDate: '',
     UnderlyingCondition: '',
     VisitDateTime: getIPDDischargeVisit.VisitInfo.VisitDateTime,
+    VisitDate:getIPDDischargeVisit.VisitInfo.VisitDateTime.split(' ')[0],
     Vn:  await this.utilsService.EncryptAESECB( getIPDDischargeVisit.VisitInfo.vn ,AIA_APISecretkey) ,
     Weight: '',
     AnesthesiaList:'',
@@ -1581,7 +1585,6 @@ newResultBillingInfoDto = [{
   BillingNetAmount: '2000',
  
 }];
-newTotalBillAmount=RequesetBody.
 */
 // const newQueryPreBillingDatabaseBodyDto ={
 //   RefId:RequesetBody.xRefId,
@@ -1603,6 +1606,8 @@ newTotalBillAmount=RequesetBody.
   BillingNetAmount: '2000',
  
 }]; */
+
+console.log('start billing')
 let newTotalBillAmount =''
 
 
@@ -1616,11 +1621,17 @@ const newQueryBillingInfoDtoDatabaseBodyDto ={
   VN:RequesetBody.xVN
 }
 const getPreBillingformDatabase = await this.utilsService.getPreBillingformDatabase(newQueryBillingInfoDtoDatabaseBodyDto)
+
+console.log('pppp')
+console.log(getPreBillingformDatabase.Result.PreBillingInfo[1])
+
 if (getPreBillingformDatabase && getPreBillingformDatabase.Result.PreBillingInfo && getPreBillingformDatabase.Result.PreBillingInfo.length > 0) {
   newResultBillingInfoDto= await Promise.all(
     getPreBillingformDatabase.Result.PreBillingInfo.map(async (item) => {
-       newTotalBillAmount = item.TotalBillAmount
-
+      console.log('+++++++++++++++++++++++++++++++++++++++++++++')
+      newTotalBillAmount = item.TotalBillAmount
+      console.log(newTotalBillAmount)
+      console.log('+++++++++++++++++++++++++++++++++++++++++++++')
     return {
       LocalBillingCode: item.LocalBillingCode,
       LocalBillingName: item.LocalBillingName,
@@ -1629,8 +1640,10 @@ if (getPreBillingformDatabase && getPreBillingformDatabase.Result.PreBillingInfo
       BillingDiscount: item.BillingDiscount,
       BillingInitial: item.BillingInitial,
       BillingNetAmount: item.BillingNetAmount,
-      TotalBillAmount: item.TotalBillAmount,    
+      //TotalBillAmount: item.TotalBillAmount,    
     };
+   
+
   })
 );
 }else{
@@ -1683,8 +1696,6 @@ const QueryCreateClaimDocumentDtoBody={
   UploadedBy:'',
   Runningdocument:0
 }
-console.log('-- QueryCreateClaimDocumentDtoBody ---')
-//console.log(QueryCreateClaimDocumentDtoBody)
 
 
 const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 

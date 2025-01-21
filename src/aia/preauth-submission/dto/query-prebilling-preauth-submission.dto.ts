@@ -63,7 +63,7 @@ export class QueryPreBillingDto {
     BillingDiscount?: string;
     @IsString()
     @IsOptional()
-    BillingNetamount?: string;
+    BillingNetAmount?: string;
     @IsString()
     @IsOptional()
     TotalBillAmount?: string;

@@ -2024,9 +2024,7 @@ if (xHaveConcurNote ==true){
 /// sent to aia
 async SubmitIPDDischargeToAIA(querySubmitIpdDischargeDto:QuerySubmitIpdDischargeDto){
   let xResultInfo;
-  // console.log('--------0000000--------')
-   console.log(querySubmitIpdDischargeDto)
-   console.log('--------1111111--------')
+  
 try{
  const RequesetBody ={
   xRefId:querySubmitIpdDischargeDto.PatientInfo.RefId, //'oljhnklefhbilubsEFJKLb65255555',
@@ -2489,8 +2487,6 @@ let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
 let  newTotalBillAmount ;
    if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
        newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
-       console.log('----- newTotalBillAmount')
-      // console.log(newTotalBillAmount)
       newResultBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
       return {
