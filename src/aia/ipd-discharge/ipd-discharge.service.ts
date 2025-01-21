@@ -104,8 +104,6 @@ async getIPDVisit(queryIpdDischargeDto:QueryIpdDischargeDto){
       xResultInfo ={
         VisitInfo: newResultReviewVisitInfoDto,
        } 
-    //  console.log(newResultReviewVisitInfoDto)
-    //   console.log('----get visit from database---')
     }else{
      
       const TrakcarepatientInfo = await this.trakcareService.getIPDVisit(queryIpdDischargeDto.PatientInfo.VN);
@@ -1000,7 +998,7 @@ try{
  }else{
 
   const TrakcarepatientInfo = await this.trakcareService.getIPDProcedure(queryIpdDischargeDto.PatientInfo.VN);
-  console.log(TrakcarepatientInfo)
+  //console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
@@ -1343,9 +1341,8 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
 
     const xAnesthesiaList =queryIPDVisitDto.PatientInfo.AnesthesiaList||'';
     const xAdmitDateTime =queryIPDVisitDto.PatientInfo.AdmitDateTime||'';
+    const xIsIPDDischarge = queryIPDVisitDto.PatientInfo.IsIPDDischarge||null ;
 
-
-console.log(queryIPDVisitDto)
 if (xTransactionNo){
  
   try {
@@ -1400,6 +1397,7 @@ if (xTransactionNo){
         totalestimatedcost:xTotalEstimatedCost,
         anesthesialist:xAnesthesiaList,
         admitdatetime:xAdmitDateTime,
+        isipddischarge:xIsIPDDischarge,
       },
     });
     
@@ -1418,7 +1416,8 @@ if (xTransactionNo){
         },
         data: {
           preauthreferclaimno:xPreauthReferClaimNo,
-          preauthreferocc:xPreauthReferOcc
+          preauthreferocc:xPreauthReferOcc,
+          isipddischarge:xIsIPDDischarge
         },
       });
     }
@@ -2159,8 +2158,6 @@ if (existingVisitRecord){
 
  newResultVisitInfoDto.ExpectedLos = this.calculateDaysBetweenDates(newResultVisitInfoDto.VisitDateTime, newResultVisitInfoDto.DscDateTime);
 
-console.log('-----newResultVisitInfoDto')
-console.log(newResultVisitInfoDto)
 // //--> get VitalSignIn  <--//
 const getIPDDischargeVitalSign = await this.trakcareService.getIPDVitalSign(RequesetBody.xVN);
 let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
@@ -2553,7 +2550,6 @@ newResultConcurrentNoteDto = [{
  
 }];
 // //--> get AttachDocList  <--//
-// console.log('------')
 
 const QueryCreateClaimDocumentDtoBody={
   RefId:RequesetBody.xRefId,

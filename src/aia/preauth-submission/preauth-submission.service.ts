@@ -1607,7 +1607,6 @@ newResultBillingInfoDto = [{
  
 }]; */
 
-console.log('start billing')
 let newTotalBillAmount =''
 
 
@@ -1622,16 +1621,10 @@ const newQueryBillingInfoDtoDatabaseBodyDto ={
 }
 const getPreBillingformDatabase = await this.utilsService.getPreBillingformDatabase(newQueryBillingInfoDtoDatabaseBodyDto)
 
-console.log('pppp')
-console.log(getPreBillingformDatabase.Result.PreBillingInfo[1])
-
 if (getPreBillingformDatabase && getPreBillingformDatabase.Result.PreBillingInfo && getPreBillingformDatabase.Result.PreBillingInfo.length > 0) {
   newResultBillingInfoDto= await Promise.all(
     getPreBillingformDatabase.Result.PreBillingInfo.map(async (item) => {
-      console.log('+++++++++++++++++++++++++++++++++++++++++++++')
-      newTotalBillAmount = item.TotalBillAmount
-      console.log(newTotalBillAmount)
-      console.log('+++++++++++++++++++++++++++++++++++++++++++++')
+      newTotalBillAmount = item.TotalBillAmount     
     return {
       LocalBillingCode: item.LocalBillingCode,
       LocalBillingName: item.LocalBillingName,

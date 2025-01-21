@@ -998,7 +998,7 @@ try{
  }else{
 
   const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeProcedure(queryOpdDischargeDto.PatientInfo.VN);
-  console.log(TrakcarepatientInfo)
+ // console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)

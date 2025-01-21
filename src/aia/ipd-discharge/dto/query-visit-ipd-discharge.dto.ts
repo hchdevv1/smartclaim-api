@@ -158,6 +158,8 @@ export class QueryIPDVisitDto {
     @IsBoolean()
     HaveAccidentInjuryDetail: boolean;
    
+    @IsBoolean()
+    IsIPDDischarge?: boolean;
   }
 
 

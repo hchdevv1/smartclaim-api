@@ -1827,7 +1827,7 @@ async getAccidentformDatabase(queryAccidentDatabaseBodyDto: QueryAccidentDatabas
 const accidentTransactionInfo = await prismaProgest.accidenttransactions.findFirst({
   where: {
     refid: xRefId,
-    transactionno: xTransactionNo,
+   transactionno: xTransactionNo,
     vn: xVN,
   },
   select: {
