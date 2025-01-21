@@ -21,6 +21,7 @@ import { ResultIpdDischargeOrderItemDto ,QueryOrderItem} from './dto/result-orde
 import { ResultIpdDischargeBillingDto ,QueryBilling} from './dto/result-billing-ipd-discharge.dto';
 import { ResultIpdDischargeProcedurDto, QueryProcedure} from './dto/result-procedure-ipd-discharge.dto'
 import { ResultIpdDischargeAccidentDto ,QueryAccident} from './dto/result-accident-ipd-discharge.dto';
+import { ResultConcurNoteDto ,QueryConcurNote} from './dto/result-concurnote-ipd-discharge.dto';
 import { ResultSubmitIPDVisitDto ,QueryIPDVisitDto } from './dto/query-visit-ipd-discharge.dto'
 import { ResultSubmitProcedureDto ,QueryProcedureDto} from './dto/query-procedure-ipd-discharge.dto';
 import { ResultSubmitAccidentDto ,QueryAccidentDto } from './dto/query-accident-ipd-discharge.dto'
@@ -498,9 +499,9 @@ try{
     const xQueryDiagnosis: QueryDiagnosis[] = TrakcarepatientInfo.DiagnosisInfo ? 
     await Promise.all(  TrakcarepatientInfo.DiagnosisInfo.map(async (item) => {
       const convertDxtypename = await this.convertDxTypeCode(''+queryIpdDischargeDto.PatientInfo.InsurerCode,item.DxTypeCode);
-      const dxtypenametrakcare = convertDxtypename?.Result?.[0]?.dxtypenametrakcare || '';
-      const dxtypecodeinsurance = convertDxtypename?.Result?.[0]?.dxtypecodeinsurance || '';
-      const dxtypenameinsurance = convertDxtypename?.Result?.[0]?.dxtypenameinsurance || '';
+      const dxtypenametrakcare = convertDxtypename?.Result?.dxtypenametrakcare || '';
+      const dxtypecodeinsurance = convertDxtypename?.Result?.dxtypecodeinsurance || '';
+      const dxtypenameinsurance = convertDxtypename?.Result?.dxtypenameinsurance || '';
       return {
         DxTypeCode: item.DxTypeCode||'', 
         DxCode: item.DxCode||'',
@@ -1296,6 +1297,144 @@ return newResultIpdDischargeAccidentDto
   }
 }
 }
+
+async getIPDDischargeConcurNote(queryIpdDischargeDto:QueryIpdDischargeDto){
+  let xResultInfo;
+try{
+
+  const whereConditions = {
+    
+    ...(queryIpdDischargeDto.PatientInfo.VN ? { vn: { equals: queryIpdDischargeDto.PatientInfo.VN } } : {}),
+    ...(queryIpdDischargeDto.PatientInfo.RefId ? { refid: { equals: queryIpdDischargeDto.PatientInfo.RefId  } } : {}),
+    ...(queryIpdDischargeDto .PatientInfo. TransactionNo ? { transactionno: { equals: queryIpdDischargeDto .PatientInfo. TransactionNo } } : {}),
+
+  };
+  const existingConcurrentNoteRecord = await prismaProgest.concurrentnotetransactions.findFirst({
+    where: whereConditions
+  });
+  let newQueryConcurNote: QueryConcurNote[] = [];
+
+ if (existingConcurrentNoteRecord){
+
+  const newQueryConcurrentNoteDatabaseBodyDto ={
+    RefId:queryIpdDischargeDto.PatientInfo.RefId,
+    TransactionNo: queryIpdDischargeDto.PatientInfo.TransactionNo,
+    InsurerCode:queryIpdDischargeDto.PatientInfo.InsurerCode,
+    HN:queryIpdDischargeDto.PatientInfo.HN,
+    VN:queryIpdDischargeDto.PatientInfo.VN
+  }
+   const getConcurNoteformDatabase = await this.utilsService.getConcurNoteformDatabase(newQueryConcurrentNoteDatabaseBodyDto)
+
+   if (getConcurNoteformDatabase && getConcurNoteformDatabase.Result.ConcurNoteList && getConcurNoteformDatabase.Result.ConcurNoteList.length > 0) {
+    newQueryConcurNote= await Promise.all(
+      getConcurNoteformDatabase.Result.ConcurNoteList.map(async (item) => {
+       return {
+        ConcurrentDatetime: item.ConcurrentDatetime,
+        ConcurrentDetail: item.ConcurrentDetail,
+         
+       };
+     })
+   );
+   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+   xResultInfo ={
+    ConcurNoteList: newQueryConcurNote,
+   } 
+  
+ } else {
+  newQueryConcurNote = [{
+    ConcurrentDatetime: '',
+    ConcurrentDetail: '',
+   }];
+   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+   xResultInfo ={
+    ConcurNoteList: newQueryConcurNote,
+   } 
+ }
+ }else{
+  newQueryConcurNote = [{
+    ConcurrentDatetime: '',
+    ConcurrentDetail: '',
+  }];
+  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+  xResultInfo ={
+    ConcurNoteList: newQueryConcurNote,
+  } 
+ }
+
+  let newResultConcurNoteDto= new ResultConcurNoteDto();
+  newResultConcurNoteDto={
+          HTTPStatus:newHttpMessageDto,
+          Result:xResultInfo
+    }
+
+return newResultConcurNoteDto
+}catch(error)
+{
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    throw new HttpException(
+     { 
+      HTTPStatus: {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+      },
+      },HttpStatus.INTERNAL_SERVER_ERROR );
+  }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new HttpException(
+        {  
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+         },
+        },HttpStatus.INTERNAL_SERVER_ERROR ); 
+  }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+    if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        message: 'Cannot connect to the database server. Please ensure it is running.',
+        error: 'Cannot connect to the database server. Please ensure it is running.',
+      },
+      }, HttpStatus.SERVICE_UNAVAILABLE);
+    }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Invalid data format or conversion error.',
+        error: 'Invalid data format or conversion error.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.FORBIDDEN,
+        message: 'You do not have permission to perform this action.',
+        error: 'You do not have permission to perform this action.',
+      },
+      }, HttpStatus.FORBIDDEN);
+    }else if (error.message.includes('Unable to fit integer value')) {
+      // Handle integer overflow or similar errors
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'The integer value is too large for the database field.',
+        error: 'The integer value is too large for the database field.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }
+    else{
+      throw new HttpException({  
+        HTTPStatus: {
+           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+           message: 'An unexpected error occurred.',
+           error: 'An unexpected error occurred.',
+          },
+        },HttpStatus.INTERNAL_SERVER_ERROR,);
+    }
+  }
+}
+}
 ///  submit to database
 async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
   let medicalTransaction;
@@ -1883,9 +2022,10 @@ async SubmitConcurNote(queryConcurNoteDto:QueryConcurNoteDto){
     const xHN =queryConcurNoteDto.PatientInfo.HN;
     const xVN =queryConcurNoteDto.PatientInfo.VN;
     const xHaveConcurNote = queryConcurNoteDto.PatientInfo.HaveConcurNote;
+  
 let ConcurNoteList;
 if (xHaveConcurNote ==true){
-    
+
     if (Array.isArray(queryConcurNoteDto.PatientInfo.ConcurNoteInfo)) {
       ConcurNoteList = queryConcurNoteDto.PatientInfo.ConcurNoteInfo.map((concurnote) => ({
         ConCurrentDatetime: concurnote.ConCurrentDatetime || '',
@@ -1897,6 +2037,7 @@ if (xHaveConcurNote ==true){
               transactionno: xTransactionNo
           }
       });
+     
       if (existingConcurnote.length > 0) {
         await Promise.all(
           existingConcurnote.map(async (concurnote) => {
@@ -1908,7 +2049,6 @@ if (xHaveConcurNote ==true){
             })
         );
     }
-
         await Promise.all(
           ConcurNoteList.map(async (concurnote) => {
               return await prismaProgest.concurrentnotetransactions.create({
@@ -1918,7 +2058,7 @@ if (xHaveConcurNote ==true){
                       transactionno: xTransactionNo,
                       hn: xHN,
                       vn: xVN,
-                      concurrentdatetime: concurnote.ConCurrentDatetime,
+                      concurrentdatetime:concurnote.ConCurrentDatetime,
                       concurrentdetail: concurnote.ConCurrentDetail,
                     
                   }
@@ -1927,10 +2067,13 @@ if (xHaveConcurNote ==true){
       );
 
     } else {
-      ConcurNoteList = [];
-    }
-   // console.log(xHaveProcedure)
-    
+      ConcurNoteList = [
+        {
+          "ConCurrentDatetime": "",
+          "ConCurrentDetail": "",
+      }
+      ];
+    } 
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
 }else{
   ConcurNoteList = [

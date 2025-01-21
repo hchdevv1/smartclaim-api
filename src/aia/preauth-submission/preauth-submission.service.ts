@@ -29,6 +29,7 @@ import { AccidentDetailDto } from './dto/review-preauth-submission.dto';
 import { QueryAccidentDto  ,ResultSubmitAccidentDto} from './dto/query-accident-preauth-submission.dto';
 import { QueryProcedureDto ,ResultSubmitProcedureDto } from './dto/query-procedure-preauth-submission.dto';
 import { ResultlistBillingDto} from './dto/result-ListBilling.dto';
+import { ResultAuthNoteDto, QueryPreAuthNote} from './dto/result-authnote-preauth-submissiondto';
 
 const httpStatusMessageService = new HttpStatusMessageService();
 const newHttpMessageDto =new HttpMessageDto();
@@ -177,7 +178,143 @@ export class PreauthSubmissionService {
        }
      }
    }
-
+  async getPreAuthNote(querySubmitPreAuthDto:QuerySubmitPreAuthDto){
+    let xResultInfo;
+  try{
+  
+    const whereConditions = {
+      
+      ...(querySubmitPreAuthDto.PatientInfo.VN ? { vn: { equals: querySubmitPreAuthDto.PatientInfo.VN } } : {}),
+      ...(querySubmitPreAuthDto.PatientInfo.RefId ? { refid: { equals: querySubmitPreAuthDto.PatientInfo.RefId  } } : {}),
+      ...(querySubmitPreAuthDto .PatientInfo. TransactionNo ? { transactionno: { equals: querySubmitPreAuthDto .PatientInfo. TransactionNo } } : {}),
+  
+    };
+    const existingpreauthNoteRecord = await prismaProgest.preauthnotetransactions.findFirst({
+      where: whereConditions
+    });
+    let newQueryPreAuthNote: QueryPreAuthNote[] = [];
+  
+   if (existingpreauthNoteRecord){
+  
+    const newQueryConcurrentNoteDatabaseBodyDto ={
+      RefId:querySubmitPreAuthDto.PatientInfo.RefId,
+      TransactionNo: querySubmitPreAuthDto.PatientInfo.TransactionNo,
+      InsurerCode:querySubmitPreAuthDto.PatientInfo.InsurerCode,
+      HN:querySubmitPreAuthDto.PatientInfo.HN,
+      VN:querySubmitPreAuthDto.PatientInfo.VN
+    }
+     const getpreauthNoteformDatabase = await this.utilsService.getPreAuthNoteformDatabase(newQueryConcurrentNoteDatabaseBodyDto)
+  
+     if (getpreauthNoteformDatabase && getpreauthNoteformDatabase.Result.PreAuthNote && getpreauthNoteformDatabase.Result.PreAuthNote.length > 0) {
+      newQueryPreAuthNote= await Promise.all(
+        getpreauthNoteformDatabase.Result.PreAuthNote.map(async (item) => {
+         return {
+          PreAuthDateTime: item.PreAuthDateTime,
+          PreAuthDetail: item.PreAuthDetail,
+           
+         };
+       })
+     );
+     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+     xResultInfo ={
+      ConcurNoteList: newQueryPreAuthNote,
+     } 
+    
+   } else {
+    newQueryPreAuthNote = [{
+      PreAuthDateTime: '',
+      PreAuthDetail: '',
+     }];
+     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+     xResultInfo ={
+      ConcurNoteList: newQueryPreAuthNote,
+     } 
+   }
+   }else{
+    newQueryPreAuthNote = [{
+      PreAuthDateTime: '',
+      PreAuthDetail: '',
+    }];
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    xResultInfo ={
+      ConcurNoteList: newQueryPreAuthNote,
+    } 
+   }
+  
+    let newResultAuthNoteDto= new ResultAuthNoteDto();
+    newResultAuthNoteDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:xResultInfo
+      }
+  
+  return newResultAuthNoteDto
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
+  }
   ///  submit to database
   async SubmitPreAuthVisit(querySubmitPreAuthDto:QuerySubmitPreAuthDto){
   let medicalTransaction;

@@ -27,7 +27,11 @@ export class PreauthSubmissionController {
 
 //preauth note
 
-
+@Post('/getPreAuthNote')
+async getPreAuthNote(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
+      const result = this.preauthSubmissionService.getPreAuthNote(querySubmitPreAuthDto);
+      return result
+}
   /// submit to data base ///
  
   @Post('/SubmitPreAuthVisit')

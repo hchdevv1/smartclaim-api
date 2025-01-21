@@ -498,9 +498,9 @@ async getOPDDischargeDiagnosis(queryOpdDischargeDto:QueryOpdDischargeDto){
       const xQueryDiagnosis: QueryDiagnosis[] = TrakcarepatientInfo.DiagnosisInfo ? 
       await Promise.all(  TrakcarepatientInfo.DiagnosisInfo.map(async (item) => {
         const convertDxtypename = await this.convertDxTypeCode(''+queryOpdDischargeDto.PatientInfo.InsurerCode,item.DxTypeCode);
-        const dxtypenametrakcare = convertDxtypename?.Result?.[0]?.dxtypenametrakcare || '';
-        const dxtypecodeinsurance = convertDxtypename?.Result?.[0]?.dxtypecodeinsurance || '';
-        const dxtypenameinsurance = convertDxtypename?.Result?.[0]?.dxtypenameinsurance || '';
+        const dxtypenametrakcare = convertDxtypename?.Result?.dxtypenametrakcare || '';
+        const dxtypecodeinsurance = convertDxtypename?.Result?.dxtypecodeinsurance || '';
+        const dxtypenameinsurance = convertDxtypename?.Result?.dxtypenameinsurance || '';
         return {
           DxTypeCode: item.DxTypeCode||'', 
           DxCode: item.DxCode||'',

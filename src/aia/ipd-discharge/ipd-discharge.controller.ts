@@ -57,6 +57,11 @@ export class IpdDischargeController {
         const result = this.ipdDischargeService.getIPDDischargeAccident(queryIpdDischargeDto);
         return result
   }
+  @Post('/getIPDDischargeConcurNote')
+  async getIPDDischargeConcurNote(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+        const result = this.ipdDischargeService.getIPDDischargeConcurNote(queryIpdDischargeDto);
+        return result
+  }
 /// submit to data base
 
 @Post('/SubmitIPDVisit')

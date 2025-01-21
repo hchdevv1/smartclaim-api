@@ -29,6 +29,8 @@ import { QueryAccidentDatabaseBodyDto ,ResultAccidentDatabaseDto
 ,AccidentDatabaseResultInfo
 } from './dto/result-accident-databse.dto';
 import { QueryPreBillingDatabaseBodyDto,ResultPreBillingDto ,PreBillingDatabaseResultInfo} from './dto/result-prebilling-databse.dto';
+import { QueryConcurNoteDatabaseBodyDto, ResultConcurNoteDto ,ConcurNoteDatabaseResultInfo} from './dto/result-concurnote-databse.dto';
+import { QueryPreAuthNoteDatabaseBodyDto ,ResultPreAuthNoteDto ,PreAuthNoteDatabaseResultInfo } from './dto/result-preauthnote-databse.dto';
 
 const unlinkAsync = promisify(fs.unlink); 
 const aesEcb = require('aes-ecb');
@@ -2393,7 +2395,129 @@ if(prebillingtransactionsInfo){
      return newResultPreBillingDto  
 
 }
+async getConcurNoteformDatabase(queryConcurNoteDatabaseBodyDto: QueryConcurNoteDatabaseBodyDto) {
+  
+  const xRefId =queryConcurNoteDatabaseBodyDto.RefId;
+  const xTransactionNo = queryConcurNoteDatabaseBodyDto.TransactionNo;
+  const xVN =queryConcurNoteDatabaseBodyDto.VN;
+  // console.log('yyyyyy')  ResultConcurNoteDto ,ConcurNoteDatabaseResultInfo
+  let  newResultConcurNoteDto= new ResultConcurNoteDto();
+// ดึงข้อมูลจากฐานข้อมูล
+const concurrentnotetransactionsInfo = await prismaProgest.concurrentnotetransactions.findMany({ 
+  where: {
+    vn: xVN,
+    refid: xRefId,
+    transactionno: xTransactionNo,
+  },  
+  select: {
+    concurrentdatetime: true,
+    concurrentdetail: true,
+  },
+});
 
+if(concurrentnotetransactionsInfo){
+  const concurNoteInfoInstance = new ConcurNoteDatabaseResultInfo();
+  concurNoteInfoInstance.ConcurNoteList = concurrentnotetransactionsInfo.map(item => ({
+    ConcurrentDatetime: item.concurrentdatetime,
+    ConcurrentDetail: item.concurrentdetail,
+  }));
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      
+       newResultConcurNoteDto={
+         HTTPStatus:newHttpMessageDto,
+         Result:concurNoteInfoInstance
+       }
+       if (!concurrentnotetransactionsInfo || concurrentnotetransactionsInfo.length === 0) {
+      
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'ConcurrentNote not found','')
+      }else{
+    
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+
+}else{
+  newResultConcurNoteDto =
+  {
+      HTTPStatus: {
+        statusCode: 200, message: 'ConcurrentNote not found', error: '' 
+      },
+      Result:{
+        ConcurNoteList:[   {
+         
+          ConcurrentDatetime: '',
+          ConcurrentDetail:''
+        }
+            
+        ]
+        
+      }
+}
+}
+
+     return newResultConcurNoteDto  
+
+}
+async getPreAuthNoteformDatabase(queryPreAuthNoteDatabaseBodyDto: QueryPreAuthNoteDatabaseBodyDto) {
+  
+  const xRefId =queryPreAuthNoteDatabaseBodyDto.RefId;
+  const xTransactionNo = queryPreAuthNoteDatabaseBodyDto.TransactionNo;
+  const xVN =queryPreAuthNoteDatabaseBodyDto.VN;
+  let  newResultPreAuthNoteDto= new ResultPreAuthNoteDto();
+// ดึงข้อมูลจากฐานข้อมูล
+const preauthnotetransactionsInfo = await prismaProgest.preauthnotetransactions.findMany({ 
+  where: {
+    vn: xVN,
+    refid: xRefId,
+    transactionno: xTransactionNo,
+  },  
+  select: {
+    preauthdatetime: true,
+    preauthdetail: true,
+  },
+});
+ //    QueryPreAuthNoteDatabaseBodyDto ,ResultPreAuthNoteDto ,PreAuthNoteDatabaseResultInfo 
+if(preauthnotetransactionsInfo){
+  const preauthNoteInfoInstance = new PreAuthNoteDatabaseResultInfo();
+  preauthNoteInfoInstance.PreAuthNote = preauthnotetransactionsInfo.map(item => ({
+    PreAuthDateTime: item.preauthdatetime,
+    PreAuthDetail: item.preauthdetail,
+  }));
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      
+       newResultPreAuthNoteDto={
+         HTTPStatus:newHttpMessageDto,
+         Result:preauthNoteInfoInstance
+       }
+       if (!preauthnotetransactionsInfo || preauthnotetransactionsInfo.length === 0) {
+      
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'Pre-AuthNote not found','')
+      }else{
+    
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+
+}else{
+  newResultPreAuthNoteDto =
+  {
+      HTTPStatus: {
+        statusCode: 200, message: 'Pre-AuthNote  not found', error: '' 
+      },
+      Result:{
+        PreAuthNote:[   {
+         
+          PreAuthDateTime: '',
+          PreAuthDetail:''
+        }
+            
+        ]
+        
+      }
+}
+}
+
+     return newResultPreAuthNoteDto  
+
+}
 async getDiagnosisTypeMapping(xInsurercode: string ,xDxtypecodeTrakcare: string) {
   let diagnosistypemapping:any ;
   
@@ -2668,7 +2792,7 @@ async getListDocumentByRefId(queryCreateClaimDocumentDtoBodyDto: QueryCreateClai
          }
          });
          if (fileRecords.length === 0) {
-          console.log('000000')
+          //console.log('000000')
            throw new NotFoundException('Files not found');
          }
          let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
@@ -2820,7 +2944,7 @@ async getListDocumentforAttachDocList(queryListDocumentforAttachDocListDto: Quer
       where: whereConditions
      });
     
-     console.log(fileRecords)
+     //console.log(fileRecords)
      if (fileRecords.length === 0) {
        throw new NotFoundException('Files not found');
      }
@@ -3018,7 +3142,6 @@ const whereConditions = {
      //console.log(fileRecords)
      if (fileRecords.length === 0) {
       //newResultAttachDocListInfoDto:{}
-      console.log('-------^^^^^---------')
      //throw new NotFoundException('Files,,, not found');
      }
     await Promise.all(
