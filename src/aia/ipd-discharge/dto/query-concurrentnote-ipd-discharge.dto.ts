@@ -41,11 +41,11 @@ export class QueryConcurNoteDto {
 
     @IsString()
     @IsOptional()
-    ConCurrentDatetime?: string;
+    ConcurrentDatetime?: string;
 
     @IsString()
     @IsOptional()
-    ConCurrentDetail?: string;
+    ConcurrentDetail?: string;
 
   }
 

@@ -58,6 +58,11 @@ export class OpdDischargeController {
         const result = this.opdDischargeService.getOPDDischargeAccident(queryOpdDischargeDto);
         return result
   }
+  @Post('/getListVisitClaimAIA')
+  async getListVisitClaimAIA(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+        const result = this.opdDischargeService.getListVisitClaimAIA(queryOpdDischargeDto);
+        return result
+  }
   @Post('/SubmitVisit')
   async SubmitVisit(@Body() queryVisitDto:QueryVisitDto){
         const result = this.opdDischargeService.SubmitVisit(queryVisitDto);

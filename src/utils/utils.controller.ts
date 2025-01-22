@@ -87,7 +87,7 @@ getCauseofInjurywoundtype(@Param('InsuranceCode') InsuranceCode: string ) {
 }
 @Get('/injurySide/:InsuranceCode')
 getCauseofInjurySide(@Param('InsuranceCode') InsuranceCode: string ) {
-  console.log('hhh')
+  // console.log('hhh')
   return  this.utilsService.getCauseofInjurySide(InsuranceCode)
 }
 @Get('/accidentPlace/:InsuranceCode')

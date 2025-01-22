@@ -39,6 +39,7 @@ import { QueryAccidentDatabaseBodyDto  ,
   CauseOfInjuryDetail,InjuryDetail
 }  from '../../utils/dto/result-accident-databse.dto';
 import { QueryUpdateFurtherClaimVNBodyDto  ,ResultSubmitUpdateFurtherClaimVNDto} from './dto/query-updatefurtherclaimvn-opd-discharge.dto'
+import { ResultClaimFormListDto ,QueryClaimFormListInfo } from './dto/result-listclaim-opd-discharge.dto'
 // import { DummyDataRequest1 }  from './dummyRequest';
 // import { DummyDataRespone1 } from './dummyRespone';
 const httpStatusMessageService = new HttpStatusMessageService();
@@ -1297,6 +1298,128 @@ return newResultOpdDischargeAccidentDto
   }
 }
 }
+
+async getListVisitClaimAIA(queryOpdDischargeDto:QueryOpdDischargeDto){
+  let xResultInfo;
+try{
+ 
+  const TrakcarepatientInfo = await this.trakcareService.getListVisitClaimAIA(queryOpdDischargeDto.PatientInfo.VN);
+  const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
+  if (TrakcarepatientInfoStatusCode !==200){
+    this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+   
+    const xQueryClaimFormListInfo =[{
+      VN: '', 
+      VisiDate: '',
+      LocationDesc: '',
+      DoctorFirstName: '',
+      PresentIllness: '',
+      InsuranceNote:''
+     } ]
+    
+     xResultInfo ={
+      ClaimFormListInfo: [xQueryClaimFormListInfo],
+     } 
+  }else{
+
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+
+    const xQueryClaimFormListInfo: QueryClaimFormListInfo[] = TrakcarepatientInfo.ClaimFormListInfo ? 
+    TrakcarepatientInfo.ClaimFormListInfo.map((item) => {
+    return {
+      VN: item.VN||'', 
+      VisiDate: item.VisiDate||'',
+      LocationDesc: item.LocationDesc||'',
+      DoctorFirstName: item.DoctorFirstName||'',
+      PresentIllness:item.PresentIllness||'',
+      InsuranceNote: item.InsuranceNote||'',
+      DiagnosisInfo: item.DiagnosisInfo||[], 
+      };
+    }):[];
+    xResultInfo ={
+      ClaimFormListInfo: xQueryClaimFormListInfo,
+     } 
+  }
+  // ResultClaimFormListDto ,QueryClaimFormListInfo
+  let newResultClaimFormListDto= new ResultClaimFormListDto();
+  newResultClaimFormListDto={
+          HTTPStatus:newHttpMessageDto,
+          Result:xResultInfo
+    }
+
+return newResultClaimFormListDto
+}catch(error)
+{
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    throw new HttpException(
+     { 
+      HTTPStatus: {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+      },
+      },HttpStatus.INTERNAL_SERVER_ERROR );
+  }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new HttpException(
+        {  
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+         },
+        },HttpStatus.INTERNAL_SERVER_ERROR ); 
+  }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+    if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        message: 'Cannot connect to the database server. Please ensure it is running.',
+        error: 'Cannot connect to the database server. Please ensure it is running.',
+      },
+      }, HttpStatus.SERVICE_UNAVAILABLE);
+    }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Invalid data format or conversion error.',
+        error: 'Invalid data format or conversion error.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.FORBIDDEN,
+        message: 'You do not have permission to perform this action.',
+        error: 'You do not have permission to perform this action.',
+      },
+      }, HttpStatus.FORBIDDEN);
+    }else if (error.message.includes('Unable to fit integer value')) {
+      // Handle integer overflow or similar errors
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'The integer value is too large for the database field.',
+        error: 'The integer value is too large for the database field.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }
+    else{
+      throw new HttpException({  
+        HTTPStatus: {
+           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+           message: 'An unexpected error occurred.',
+           error: 'An unexpected error occurred.',
+          },
+        },HttpStatus.INTERNAL_SERVER_ERROR,);
+    }
+  }
+}
+}
+
+
+
+
+
 async SubmitVisit(queryVisitDto:QueryVisitDto){
   let medicalTransaction;
   try{

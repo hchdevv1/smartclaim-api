@@ -175,12 +175,12 @@ export class PatientinfoService {
         gender: createBodyDto.PatientInfo.Gender,
         patientid: +createBodyDto.PatientInfo.PatientID,
       }
-      console.log(RequesetBody)
+      // console.log(RequesetBody)
       if(RequesetBody.pid ==='ต่างชาติ'){RequesetBody.pid = RequesetBody.hn}
   
       const result =await prismaProgest.claimants.create({  data: RequesetBody })
   
-      console.log(result)
+      // console.log(result)
      
       let httpcode
       if(result) {
@@ -214,7 +214,7 @@ export class PatientinfoService {
     }catch(error)
     {
      // console.log(error)
-     console.log(error.code)
+    //  console.log(error.code)
       if (error instanceof Prisma.PrismaClientInitializationError) {
         throw new HttpException(
          { 
@@ -298,7 +298,7 @@ export class PatientinfoService {
         xVisitDatefrom:searchBodyDto.PatientInfo.VisitDatefrom||'',
         xVisitDateto:searchBodyDto.PatientInfo.VisitDateto||'',
       }
-      console.log('----')
+      // console.log('----')
       let  results
       if( searchBodyDto.PatientInfo.IdType === "NATIONAL_ID"){
       
@@ -517,7 +517,7 @@ export class PatientinfoService {
         customerid:true
       }
     })
-    console.log(DatabasePatientInfo)
+    // console.log(DatabasePatientInfo)
     let newFindforUpdatePatientDatabase = new FindforUpdatePatientDatabase();
     if (DatabasePatientInfo){
     newFindforUpdatePatientDatabase = {
@@ -646,15 +646,15 @@ export class PatientinfoService {
           gender: updateBodyDto.PatientInfo.Gender|| undefined,
           statusactive:true //updateBodyDto.PatientInfo.StatusActive|| undefined,
         }
-        console.log('--1--')
-        console.log(PostUpdatePatient)
-        console.log(updateBodyDto.PatientInfo.HN)
-        console.log(updateBodyDto.PatientInfo.InsurerCode)
+        // console.log('--1--')
+        // console.log(PostUpdatePatient)
+        // console.log(updateBodyDto.PatientInfo.HN)
+        // console.log(updateBodyDto.PatientInfo.InsurerCode)
         const filteredData = Object.fromEntries(
           Object.entries(PostUpdatePatient).filter(([, value]) => value !== null && value !== undefined)
         );
-        console.log(filteredData)
-      console.log('---2-')
+      //   console.log(filteredData)
+      // console.log('---2-')
         const result = await prismaProgest.claimants.update({
           where: {
             hn_insurerid: {
@@ -663,8 +663,8 @@ export class PatientinfoService {
             },
           },data: filteredData
         })
-      console.log(result)
-      console.log('---3---')
+      // console.log(result)
+      // console.log('---3---')
 
       let httpcode
           if(result) {

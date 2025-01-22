@@ -83,7 +83,10 @@ getOPDCheckBalance(@Param('xVN') xVN: string) {
 checkVisitNumberAvailable(@Param('xHN') xHN: string,@Param('xVN') xVN: string) {
  return this.trakcareService.checkVisitNumberAvailable(xHN,xVN);
 }
-
+@Get('/getListVisitClaimAIA/:xVN')
+getListVisitClaimAIA(@Param('xVN') xVN: string) {
+   return this.trakcareService.getListVisitClaimAIA(xVN);
+}
 
 @Get('/getIPDVisit/:xVN')
 getIPDVisit(@Param('xVN') xVN: string) {

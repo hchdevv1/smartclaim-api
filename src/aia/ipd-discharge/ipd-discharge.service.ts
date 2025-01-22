@@ -2028,8 +2028,8 @@ if (xHaveConcurNote ==true){
 
     if (Array.isArray(queryConcurNoteDto.PatientInfo.ConcurNoteInfo)) {
       ConcurNoteList = queryConcurNoteDto.PatientInfo.ConcurNoteInfo.map((concurnote) => ({
-        ConCurrentDatetime: concurnote.ConCurrentDatetime || '',
-        ConCurrentDetail: concurnote.ConCurrentDetail || '',
+        ConcurrentDatetime: concurnote.ConcurrentDatetime || '',
+        ConcurrentDetail: concurnote.ConcurrentDetail || '',
         }));
         const existingConcurnote = await prismaProgest.concurrentnotetransactions.findMany({
           where: {
@@ -2058,8 +2058,8 @@ if (xHaveConcurNote ==true){
                       transactionno: xTransactionNo,
                       hn: xHN,
                       vn: xVN,
-                      concurrentdatetime:concurnote.ConCurrentDatetime,
-                      concurrentdetail: concurnote.ConCurrentDetail,
+                      concurrentdatetime:concurnote.ConcurrentDatetime,
+                      concurrentdetail: concurnote.ConcurrentDetail,
                     
                   }
               });
@@ -2262,7 +2262,7 @@ if (existingVisitRecord){
     IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge
 
   }
-  console.log('getOPDDischargeVisit done from database')
+  // console.log('getOPDDischargeVisit done from database')
 }else{
   let VNForVisitinfo ;
   const getIPDDischargeVisit = await this.trakcareService.getIPDVisit(VNForVisitinfo);
@@ -2296,7 +2296,7 @@ if (existingVisitRecord){
     Weight: '',
     IsIPDDischarge:false
   }
-  console.log('getOPDDischargeVisit done from trakcare')
+  // console.log('getOPDDischargeVisit done from trakcare')
 }
 
  newResultVisitInfoDto.ExpectedLos = this.calculateDaysBetweenDates(newResultVisitInfoDto.VisitDateTime, newResultVisitInfoDto.DscDateTime);
@@ -2332,7 +2332,7 @@ let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
     
   }];
 }
-console.log('getIPDitalSign done')
+// console.log('getIPDitalSign done')
 // //--> get Diagnosis  <--//
 
 const getIPDDischargeDiagnosis = await this.trakcareService.getIPDDiagnosis(RequesetBody.xVN);
@@ -2379,8 +2379,8 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
     Icd10: '',
   }];
 }
-console.log(newQueryDiagnosisInfoDto)
-console.log('getIPDDischargeDiagnosis done')
+// console.log(newQueryDiagnosisInfoDto)
+// console.log('getIPDDischargeDiagnosis done')
 
 let newAccidentDetail ; //= new ResultAccidentDetailDto();
 if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
@@ -2553,7 +2553,7 @@ let newResultInvestigationInfoDto: ResultInvestigationInfoDto[] = [];
     ResultDateTime: ''
   }];
 }
-console.log('Investigation done')
+// console.log('Investigation done')
 // //--> get OrderItem  <--//
 const getOPDDischargeOrderItem = await this.trakcareService.getIPDOrderItem(RequesetBody.xVN); 
 let newResultOrderItemInfoDto : ResultOrderItemInfoDto[] = [];
@@ -2594,7 +2594,7 @@ let newResultOrderItemInfoDto : ResultOrderItemInfoDto[] = [];
     Terminology: ''
   }];
 }
-console.log('OrderItem done')
+// console.log('OrderItem done')
 // //--> get Doctor  <--//
 const getOPDDischargeDoctor = await this.trakcareService.getIPDDoctor(RequesetBody.xVN); 
 let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
@@ -2618,7 +2618,7 @@ let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
   
   }];
 }
-console.log('Doctor done')
+// console.log('Doctor done')
 // //console.log(newResultDoctorInfoDto)
 //  // ResultBillingInfoDto ,ResultTotalBillAmountInfoDto
 // //--> get Billing  <--//
@@ -2666,7 +2666,7 @@ newResultBillingInfoDto = [{
  
 }];
 newTotalBillAmount=2000
-console.log('billing done')
+// console.log('billing done')
 //  //  
 //--> get PSS  Fixed<--//
 const  newResultPSSInfoDto={
@@ -2705,7 +2705,7 @@ const QueryCreateClaimDocumentDtoBody={
   UploadedBy:'',
   Runningdocument:0
 }
-console.log('-- QueryCreateClaimDocumentDtoBody ---')
+// console.log('-- QueryCreateClaimDocumentDtoBody ---')
 //console.log(QueryCreateClaimDocumentDtoBody)
 
 
@@ -2721,7 +2721,7 @@ let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
   })
 );
 
-console.log(newResultBillingInfoDto)
+// console.log(newResultBillingInfoDto)
 let newResultDataJsonDto =new ResultDataJsonDto();
  newResultDataJsonDto ={
   Patient :newResultPatientInfoDto,
