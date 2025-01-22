@@ -20,7 +20,7 @@ import { ResultIpdDischargeInvestigationDto ,QueryInvestigation} from './dto/res
 import { ResultIpdDischargeOrderItemDto ,QueryOrderItem} from './dto/result-orderitem-ipd-discharge.dto';
 import { ResultIpdDischargeBillingDto ,QueryBilling} from './dto/result-billing-ipd-discharge.dto';
 import { ResultIpdDischargeProcedurDto, QueryProcedure} from './dto/result-procedure-ipd-discharge.dto'
-import { ResultIpdDischargeAccidentDto ,QueryAccident} from './dto/result-accident-ipd-discharge.dto';
+import { ResultIpdDischargeAccidentDto } from './dto/result-accident-ipd-discharge.dto';
 import { ResultConcurNoteDto ,QueryConcurNote} from './dto/result-concurnote-ipd-discharge.dto';
 import { ResultSubmitIPDVisitDto ,QueryIPDVisitDto } from './dto/query-visit-ipd-discharge.dto'
 import { ResultSubmitProcedureDto ,QueryProcedureDto} from './dto/query-procedure-ipd-discharge.dto';
@@ -1150,77 +1150,24 @@ const xQueryAccident ={
  } 
 this.addFormatHTTPStatus(newHttpMessageDto,200,'suceess','')
 }else{
-
-    const TrakcarepatientInfo = await this.trakcareService.getIPDAccident(queryIpdDischargeDto.PatientInfo.VN);
-    const xAccientdata =queryIpdDischargeDto.PatientInfo.AccidentDate
-    const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
-    if (TrakcarepatientInfoStatusCode !==200){
-      this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
-      let xCauseOfInjuryDetail,xInjuryDetail,xQueryAccident
-     if (xAccientdata){
-
-       xCauseOfInjuryDetail =[{
-        CauseOfInjury: 'X599',
-        CommentOfInjury: '',
-       } ]
-        xInjuryDetail =[{
-        WoundType: '',
-        InjurySide: '',
-        InjuryArea: 'T149',
-       } ]
-       xQueryAccident ={    
-        AccidentPlace: '', 
-        AccidentDate: '',
-        CauseOfInjuryDetail:xCauseOfInjuryDetail,
-        InjuryDetail:xInjuryDetail
-       }
-     }else{
-
-       xCauseOfInjuryDetail =[{
-        CauseOfInjury: '',
-        CommentOfInjury: '',
-       } ]
-        xInjuryDetail =[{
-        WoundType: '',
-        InjurySide: '',
-        InjuryArea: '',
-       } ]
-       xQueryAccident ={    
-        AccidentPlace: '', 
-        AccidentDate: '',
-        CauseOfInjuryDetail:xCauseOfInjuryDetail,
-        InjuryDetail:xInjuryDetail
-       }
-     }
-      
-       xResultInfo ={
+ const xCauseOfInjuryDetail =[{
+    CauseOfInjury: '',
+    CommentOfInjury: '',
+   } ]
+   const  xInjuryDetail =[{
+    WoundType: '',
+    InjurySide: '',
+    InjuryArea: '',
+   } ]
+   const xQueryAccident ={    
+    AccidentPlace: '', 
+    AccidentDate: '',
+    CauseOfInjuryDetail:xCauseOfInjuryDetail,
+    InjuryDetail:xInjuryDetail
+   }
+  xResultInfo ={
         AccidentDetailInfo: xQueryAccident,
-       } 
-    }else{
-      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-      const xQueryAccident:QueryAccident= TrakcarepatientInfo.AccidentDetailInfo ? {
-        AccidentPlace: TrakcarepatientInfo.AccidentDetailInfo.AccidentPlace || '', 
-        AccidentDate: TrakcarepatientInfo.AccidentDetailInfo.AccidentDate || '',
-        CauseOfInjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail 
-          ? TrakcarepatientInfo.AccidentDetailInfo.CauseOfInjuryDetail.map((cause) => ({
-              CauseOfInjury: cause.CauseOfInjury || '',
-              CommentOfInjury: cause.CommentOfInjury || ''
-            }))
-          : [],
-        InjuryDetail: TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail 
-          ? TrakcarepatientInfo.AccidentDetailInfo.InjuryDetail.map((injury) => ({
-              WoundType: injury.WoundType || '',
-              InjurySide: injury.InjurySide || '',
-              InjuryArea: injury.InjuryArea || ''
-            }))
-          : []
-      }
-    : {};
-      xResultInfo ={
-        AccidentDetailInfo: xQueryAccident,
-       } 
-     
-    }
+       }  
 
 }
   let newResultIpdDischargeAccidentDto= new ResultIpdDischargeAccidentDto();
@@ -1480,7 +1427,7 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
 
     const xAnesthesiaList =queryIPDVisitDto.PatientInfo.AnesthesiaList||'';
     const xAdmitDateTime =queryIPDVisitDto.PatientInfo.AdmitDateTime||'';
-    const xIsIPDDischarge = queryIPDVisitDto.PatientInfo.IsIPDDischarge||null ;
+    //const xIsIPDDischarge = queryIPDVisitDto.PatientInfo.IsIPDDischarge||null ;
 
 if (xTransactionNo){
  
@@ -1536,7 +1483,7 @@ if (xTransactionNo){
         totalestimatedcost:xTotalEstimatedCost,
         anesthesialist:xAnesthesiaList,
         admitdatetime:xAdmitDateTime,
-        isipddischarge:xIsIPDDischarge,
+       // isipddischarge:xIsIPDDischarge,
       },
     });
     
@@ -1556,7 +1503,7 @@ if (xTransactionNo){
         data: {
           preauthreferclaimno:xPreauthReferClaimNo,
           preauthreferocc:xPreauthReferOcc,
-          isipddischarge:xIsIPDDischarge
+          //isipddischarge:xIsIPDDischarge
         },
       });
     }
@@ -2190,8 +2137,7 @@ try{
 
   
  }
-
-////////////////////////////////////////
+ ////////////////////////////////////////)'
 //--> get Patient  <--//
 const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
 let newResultPatientInfoDto: ResultPatientInfoDto ;
@@ -2294,7 +2240,7 @@ if (existingVisitRecord){
     VisitDateTime: getIPDDischargeVisit.VisitInfo.VisitDateTime,
     Vn:  await this.utilsService.EncryptAESECB( getIPDDischargeVisit.VisitInfo.vn ,AIA_APISecretkey) ,
     Weight: '',
-    IsIPDDischarge:false
+    IsIPDDischarge:null
   }
   // console.log('getOPDDischargeVisit done from trakcare')
 }
@@ -2654,6 +2600,7 @@ let  newTotalBillAmount ;
   }];
   newTotalBillAmount=0
 }
+/*
 newResultBillingInfoDto = [{
 
   LocalBillingCode: '2.1.1',
@@ -2665,7 +2612,7 @@ newResultBillingInfoDto = [{
   BillingNetAmount: '2000',
  
 }];
-newTotalBillAmount=2000
+newTotalBillAmount=2000 */
 // console.log('billing done')
 //  //  
 //--> get PSS  Fixed<--//
@@ -2756,19 +2703,20 @@ const newOPDDischargeResponseDto ={
 //const newOPDDischargeResponseDto  =dummyDataRequest.PatientInfo
 // DummyDataRequest1
  //////////////////////////////////////
+ console.log(newResultVisitInfoDto.IsIPDDischarge)
       const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
        const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
        let apiURL;
-       if (newResultVisitInfoDto.IsIPDDischarge === true){
+       if (RequesetBody.xIsIPDDischarge == true){
          apiURL= `${AIA_APIURL}/SmartClaim/ipdDischarge`;
        }else{
          apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
        }
 console.log('================= apiURL =================')
-console.log(newResultVisitInfoDto.IsIPDDischarge)
+console.log(RequesetBody.xIsIPDDischarge)
 console.log(apiURL)
 console.log('================= apiURL =================')
-apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
+//apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
 
   const body = newOPDDischargeResponseDto
   const headers = {
@@ -2921,6 +2869,25 @@ if (existingRecord) {
 
 }
 
+ if  (  RequesetBody.xIsIPDDischarge == true ) {
+  const ExistingMedicaltransactions = await prismaProgest.medicaltransactions.findFirst({
+    where: {
+      refid: RequesetBody.xRefId,
+      transactionno: RequesetBody.xTransactionNo,
+    },
+  });
+  if (ExistingMedicaltransactions) {
+    await prismaProgest.medicaltransactions.update({
+      where: {
+        id: ExistingMedicaltransactions.id, 
+      },
+      data: {
+     isipddischarge : RequesetBody.xIsIPDDischarge
+      },
+    });
+  }
+}
+  
 
   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
   }

@@ -53,7 +53,11 @@ export class UtilsService {
   }
 
   DecryptAESECB(text:string , APISecretkey:string){
+    
     const decryptText = aesEcb.decrypt(APISecretkey,text)
+   // console.log(decryptText)
+    // console.log('hhhhh'+APISecretkey)
+    // console.log('text >>>'+text)
     return  decryptText;
    }
    async requestAccessToken_AIA(){
@@ -1569,6 +1573,8 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
          accidentdate:true,
          isipddischarge:true,
          admitdatetime:true,
+         previoustreatmentdate:true,
+         previoustreatmentdetail:true
          
          
   },
@@ -1599,8 +1605,8 @@ if(visittransactionsInfo){
   PlanOfTreatment:visittransactionsInfo.planoftreatment,
    Pregnant:visittransactionsInfo.pregnant,
    PresentIllness:visittransactionsInfo.presentillness,
-     PreviousTreatmentDate: visittransactionclaim.previoustreatmentdate,
-    PreviousTreatmentDetail: visittransactionclaim.previoustreatmentdetail,
+     PreviousTreatmentDate: visittransactionsInfo.previoustreatmentdate,
+    PreviousTreatmentDetail: visittransactionsInfo.previoustreatmentdetail,
     PrivateCase:visittransactionsInfo.privatecase,
     ProcedureFreeText:visittransactionsInfo.procedurefreetext,
     SignSymptomsDate:visittransactionsInfo.signsymptomsdate,

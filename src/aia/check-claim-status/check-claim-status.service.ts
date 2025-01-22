@@ -88,7 +88,7 @@ export class CheckClaimStatusService {
     // const xDummyDataRespone1 =new DummyDataRespone1();
     // const responsefromAIA  =xDummyDataRespone1.res
       const responeInputcode =responsefromAIA.Result.Code
-     // console.log(responsefromAIA)
+      //console.log(responsefromAIA.Data.AttachDocList.Base64Data)
       if (responeInputcode !=='S'){
         this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
       }else{
@@ -99,6 +99,9 @@ export class CheckClaimStatusService {
          Message:responsefromAIA.Result.Message ||'',
          MessageTh:responsefromAIA.Result.MessageTh ||'',
         }
+      //  const DecryptDocument =await this.utilsService.DecryptAESECB(responsefromAIA.Data.AttachDocList.Base64Data, AIA_APISecretkey);
+     // const DecryptDocument = await this.utilsService.DecryptAESECB('doc.Base64Data', AIA_APISecretkey);
+console.log("DecryptDocument")
 
 let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
 xResultAttachDocListInfoDto = await Promise.all(
@@ -110,6 +113,7 @@ xResultAttachDocListInfoDto = await Promise.all(
     };
   })
 );
+// console.log(xResultAttachDocListInfoDto)
 
 const xClaimStatusCode = await this.utilsService.getClaimStatusCodeByDescription('13', responsefromAIA.Data.ClaimStatus);
 const claimcode = xClaimStatusCode.Result[0].claimstatuscode;
