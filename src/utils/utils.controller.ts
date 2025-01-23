@@ -140,7 +140,14 @@ console.log('Body received:', body);  // แสดงข้อมูลที่
    filename: result.documentname,
   };
 }
-
+@Post('upload-base64') // save file new
+async uploadBase64File(@Body('base64') base64: string, @Body('fileName') fileName: string) {
+  const savedFilePath = await this.utilsService.saveBase64File(base64, fileName);
+  return {
+    message: 'File saved successfully',
+    path: savedFilePath,
+  };
+}
 @Post('/getlistDocumentName') //prod
 async getlistDocumentName(@Body() querylistDocumentNameDtoBodyDto:QuerylistDocumentNameDtoBodyDto){
      const result = await this.utilsService.getlistDocumentName(querylistDocumentNameDtoBodyDto);

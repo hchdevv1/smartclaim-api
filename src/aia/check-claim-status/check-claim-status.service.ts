@@ -101,19 +101,51 @@ export class CheckClaimStatusService {
         }
       //  const DecryptDocument =await this.utilsService.DecryptAESECB(responsefromAIA.Data.AttachDocList.Base64Data, AIA_APISecretkey);
      // const DecryptDocument = await this.utilsService.DecryptAESECB('doc.Base64Data', AIA_APISecretkey);
-console.log("DecryptDocument")
+     let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+     xResultAttachDocListInfoDto = await Promise.all(
+       responsefromAIA.Data.AttachDocList.map(async (doc) => {
+         try {
+           const DecryptDocument = await this.utilsService.DecryptAESECB( doc.Base64Data, AIA_APISecretkey, );
+            await this.utilsService.saveBase64File(DecryptDocument, doc.DocName);
+            await prismaProgest.claimdocuments.create({
+              data: {
+                hn: RequesetBody.xHN, // ปรับข้อมูลตามที่ต้องการ
+                vn: RequesetBody.xVN,
+                refid: RequesetBody.xRefId,
+                insurerid:13,
+                transactionno: RequesetBody.xTransactionNo,
+                documenttypecode: '007',
+                documenttypename:'pdf',
+                originalname: doc.DocName,
+                documentname: RequesetBody.xVN+'-'+'007'+'-'+Math.round(Math.random() * 186).toString(3)+'.'+'pdf',
+                filesize: null,
+                filemimetype: 'application/pdf',
+                serverpath: 'path-to-server', 
+                filepath: `./uploads/pdf/`+doc.DocName, // เส้นทางที่เก็บไฟล์
+                uploaddate: new Date(),
+                uploadedby: null,
+               runningdocument:Math.round(Math.random() * 186).toString(3)
+              },
+            });
+           return {
+             Base64Data: doc.Base64Data,
+             DocName: doc.DocName,
+           };
+         } catch (error) {
+           console.error(`Error processing document ${doc.DocName}:`, error);
+           return {
+             Base64Data: doc.Base64Data,
+             DocName: doc.DocName,
+           };
+         }
+       }),
+     );
+     console.log(xResultAttachDocListInfoDto[0].DocName)
 
-let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
-xResultAttachDocListInfoDto = await Promise.all(
-  responsefromAIA.Data.AttachDocList.map(async (doc) => {
-    const EncryptDocument = await this.utilsService.DecryptAESECB(doc.Base64Data, AIA_APISecretkey);
-    return {
-      Base64Data: EncryptDocument,
-      DocName: doc.DocName,
-    };
-  })
-);
-// console.log(xResultAttachDocListInfoDto)
+//  const uploadBase64File = await this.utilsService.saveBase64File(xResultAttachDocListInfoDto.Base64Data, xResultAttachDocListInfoDto.DocName);
+
+ // โฟลเดอร์สำหรับเก็บไฟล์
+ 
 
 const xClaimStatusCode = await this.utilsService.getClaimStatusCodeByDescription('13', responsefromAIA.Data.ClaimStatus);
 const claimcode = xClaimStatusCode.Result[0].claimstatuscode;

@@ -9,6 +9,7 @@ import * as fs from 'fs'; // Import fs แบบเต็ม
 
 import { join } from 'path';
 import { readFile } from 'fs/promises'; 
+import { writeFile } from 'fs';
 
 import { prismaProgest } from '../database/database';
 import { Prisma } from '../../prisma/generate-client-db';
@@ -3176,6 +3177,34 @@ const whereConditions = {
     return newResultAttachDocListInfoDto;
  
 }
+
+async saveBase64File(base64: string, fileName: string): Promise<string> {
+  // ตรวจสอบว่า base64 เริ่มต้นด้วยข้อมูลของไฟล์
+  try {
+    const folderPath = './uploads/pdf'; 
+    // แปลงข้อมูล Base64 เป็น Buffer โดยตรง
+    const buffer = Buffer.from(base64, 'base64');
+
+    // สร้าง Path สำหรับบันทึกไฟล์
+    const filePath = join(folderPath, fileName);
+
+    // บันทึกไฟล์ลงระบบไฟล์
+    return new Promise((resolve, reject) => {
+      writeFile(filePath, buffer, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(filePath);
+        }
+      });
+    });
+  } catch (error) {
+    console.error('Error saving Base64 file:', error);
+    throw new Error('Failed to save Base64 file');
+  }
+}
+
+
 addFormatHTTPStatus(data: HttpMessageDto,inputstatusCode:number,inputmessage:string,inputerror:string):void{  
   if(inputstatusCode !==200){
       if(data){
