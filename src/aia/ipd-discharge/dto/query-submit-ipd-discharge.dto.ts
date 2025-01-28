@@ -80,6 +80,10 @@ class SearchPatientBodyDto{
     @IsString()
     @IsOptional()
     ServiceSettingCode?: string;
+
+    @IsString()
+    @IsOptional()
+    ServiceSettingAbbr?: string;
     
     @IsString()
     @IsOptional()

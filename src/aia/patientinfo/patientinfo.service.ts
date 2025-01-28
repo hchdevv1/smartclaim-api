@@ -817,6 +817,7 @@ export class PatientinfoService {
     const xInvoiceNumber =querySearchTransection.PatientInfo.InvoiceNumber
     const xStatusClaimCode =querySearchTransection.PatientInfo.StatusClaimCode
     const xServiceSettingCode =querySearchTransection.PatientInfo.ServiceSettingCode
+    const xServiceSettingAbbr =querySearchTransection.PatientInfo.ServiceSettingAbbr
     const xVisitDatefrom = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDatefrom);
     const xVisitDateto = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDateto);
     const hasVisitDate = xVisitDatefrom && xVisitDateto && xVisitDatefrom !== "" && xVisitDateto !== "";
@@ -824,6 +825,7 @@ export class PatientinfoService {
     ...(xHN ? { hn: { equals: xHN } } : {}),
     ...(xVN ? { vn: { equals: xVN } } : {}),
     ...(xServiceSettingCode ? { servicesettingcode: { equals: xServiceSettingCode } } : {}),
+    ...(xServiceSettingAbbr ? { servicesettingabbr: { equals: xServiceSettingAbbr } } : {}),
     ...(xInvoiceNumber ? { invoicenumber: { equals: xInvoiceNumber } } : {}),
     ...(xStatusClaimCode ? { claimstatuscode: { equals: xStatusClaimCode } } : {}),
     ...(xPID ? { claimants: { national_id: { equals: xPID } } } : {}),
@@ -889,6 +891,7 @@ export class PatientinfoService {
             IdType:claim.idtype||'',
             IllnessTypeCode:claim.illnesstypecode||'',
             ServiceSettingCode:claim.servicesettingcode||'',
+            ServiceSettingAbbr:claim.servicesettingabbr,
             SurgeryTypeCode:claim.surgerytypecode||'',
             FurtherClaimNo:claim.furtherclaimno||'',
             FurtherClaimId:claim.furtherclaimid||'',
@@ -932,6 +935,7 @@ export class PatientinfoService {
         IdType:'',
         IllnessTypeCode:'',
         ServiceSettingCode:'',
+        ServiceSettingAbbr:'',
         SurgeryTypeCode:'',
         FurtherClaimNo:'',
         FurtherClaimId:'',

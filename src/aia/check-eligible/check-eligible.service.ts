@@ -209,7 +209,7 @@ export class CheckEligibleService {
          xCustomerId:checkEligibleBodyDto.PatientInfo.CustomerId||'',
        }
        let xRefId
-       if (RequesetBody.xServiceSettingCode ==="PRE"){
+       if ((RequesetBody.xServiceSettingCode ==="PRE-01")||(RequesetBody.xServiceSettingCode ==="PRE-02")){
         xRefId= await this.generateRefId(RequesetBody.xHN+RequesetBody.xVisitDateTime,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
 
        }else{
@@ -490,6 +490,8 @@ export class CheckEligibleService {
           xPassportnumber : queryCreateTransactionBodyDto.PatientInfo.PassportNumber||'',
           xIdType:queryCreateTransactionBodyDto.PatientInfo.IdType||'',
           xServiceSettingCode:queryCreateTransactionBodyDto.PatientInfo.ServiceSettingCode||'',
+          xServiceSettingAbbr:queryCreateTransactionBodyDto.PatientInfo.ServiceSettingAbbr||'',
+
           xInsurerCode:queryCreateTransactionBodyDto.PatientInfo.InsurerCode||null,
           xHN :queryCreateTransactionBodyDto.PatientInfo.HN||'',
           xFirstName :queryCreateTransactionBodyDto.PatientInfo.GivenNameTH||'',
@@ -546,6 +548,7 @@ export class CheckEligibleService {
               vn:RequesetBody.xVN,
               idtype:RequesetBody.xIdType,
               servicesettingcode:RequesetBody.xServiceSettingCode,
+              servicesettingabbr:RequesetBody.xServiceSettingAbbr,
               policytypecode:RequesetBody.xPolicyTypeCode,
               illnesstypecode:RequesetBody.xIllnessTypeCode,
               surgerytypecode:RequesetBody.xSurgeryTypeCode,
@@ -603,6 +606,8 @@ export class CheckEligibleService {
   //  const  updatexPassportnumber= RequesetBody.xPassportnumber;
    const  updatexIdType= RequesetBody.xIdType;
    const  updatexServiceSettingCode= RequesetBody.xServiceSettingCode;
+   const updatexServiceSettingAbbr =RequesetBody.xServiceSettingAbbr;
+
    const  updatexHN= RequesetBody.xHN;
    const  updatexVN= RequesetBody.xVN;
    const  updatexPolicyTypeCode= RequesetBody.xPolicyTypeCode;
@@ -640,6 +645,7 @@ export class CheckEligibleService {
               ...(updatexIdType ? { idtype: updatexIdType } : {}),
               ...(updatexIllnessTypeCode ? { illnesstypecode: updatexIllnessTypeCode } : {}),
               ...(updatexServiceSettingCode ? { servicesettingcode: updatexServiceSettingCode } : {}),
+              ...(updatexServiceSettingAbbr ? { servicesettingabbr: updatexServiceSettingAbbr } : {}),
               ...(updatexSurgeryTypeCode ? { surgerytypecode: updatexSurgeryTypeCode } : {}),
               ...(updatexRunningdocument ? { runningdocument: updatexRunningdocument } : {}),
               ...(updatexFurtherClaimVN ? { furtherclaimvn: updatexFurtherClaimVN } : {}),

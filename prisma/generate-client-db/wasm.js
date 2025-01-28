@@ -216,7 +216,8 @@ exports.Prisma.ClaimstatusScalarFieldEnum = {
   claimstatuscode: 'claimstatuscode',
   claimstatusdesc_th: 'claimstatusdesc_th',
   claimstatusdesc_en: 'claimstatusdesc_en',
-  insurerid: 'insurerid'
+  insurerid: 'insurerid',
+  sort: 'sort'
 };
 
 exports.Prisma.DiagnosistypemappingScalarFieldEnum = {
@@ -342,7 +343,8 @@ exports.Prisma.ServicesettingScalarFieldEnum = {
   id: 'id',
   servicesettingcode: 'servicesettingcode',
   servicesettingdesc: 'servicesettingdesc',
-  insurerid: 'insurerid'
+  insurerid: 'insurerid',
+  abbreviation: 'abbreviation'
 };
 
 exports.Prisma.TransactionclaimScalarFieldEnum = {
@@ -392,7 +394,8 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   preauthreferclaimno: 'preauthreferclaimno',
   preauthreferocc: 'preauthreferocc',
   reservedate: 'reservedate',
-  isipddischarge: 'isipddischarge'
+  isipddischarge: 'isipddischarge',
+  servicesettingabbr: 'servicesettingabbr'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
@@ -416,22 +419,6 @@ exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
   claimstatusdesc_en: 'claimstatusdesc_en'
 };
 
-exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
-  id: 'id',
-  insurerid: 'insurerid',
-  refid: 'refid',
-  transactionno: 'transactionno',
-  hn: 'hn',
-  vn: 'vn',
-  accidentplace: 'accidentplace',
-  accidentdate: 'accidentdate',
-  causeofinjury: 'causeofinjury',
-  commentofinjury: 'commentofinjury',
-  woundtype: 'woundtype',
-  injuryside: 'injuryside',
-  injuryarea: 'injuryarea'
-};
-
 exports.Prisma.AnesthesialistScalarFieldEnum = {
   id: 'id',
   aneslistcode: 'aneslistcode',
@@ -453,16 +440,20 @@ exports.Prisma.OpeartionispackageScalarFieldEnum = {
   insurerid: 'insurerid'
 };
 
-exports.Prisma.DiagnosistransactionsScalarFieldEnum = {
+exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
   id: 'id',
   insurerid: 'insurerid',
   refid: 'refid',
   transactionno: 'transactionno',
   hn: 'hn',
   vn: 'vn',
-  dxname: 'dxname',
-  dxtype: 'dxtype',
-  icd10: 'icd10'
+  accidentplace: 'accidentplace',
+  accidentdate: 'accidentdate',
+  causeofinjury: 'causeofinjury',
+  commentofinjury: 'commentofinjury',
+  woundtype: 'woundtype',
+  injuryside: 'injuryside',
+  injuryarea: 'injuryarea'
 };
 
 exports.Prisma.ConcurrentnotetransactionsScalarFieldEnum = {
@@ -474,6 +465,18 @@ exports.Prisma.ConcurrentnotetransactionsScalarFieldEnum = {
   vn: 'vn',
   concurrentdatetime: 'concurrentdatetime',
   concurrentdetail: 'concurrentdetail'
+};
+
+exports.Prisma.DiagnosistransactionsScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  dxname: 'dxname',
+  dxtype: 'dxtype',
+  icd10: 'icd10'
 };
 
 exports.Prisma.PreauthnotetransactionsScalarFieldEnum = {
@@ -543,12 +546,12 @@ exports.Prisma.ModelName = {
   servicesetting: 'servicesetting',
   transactionclaim: 'transactionclaim',
   transactionclaimstatus: 'transactionclaimstatus',
-  accidenttransactions22: 'accidenttransactions22',
   anesthesialist: 'anesthesialist',
   indicationsforadmission: 'indicationsforadmission',
   opeartionispackage: 'opeartionispackage',
-  diagnosistransactions: 'diagnosistransactions',
+  accidenttransactions22: 'accidenttransactions22',
   concurrentnotetransactions: 'concurrentnotetransactions',
+  diagnosistransactions: 'diagnosistransactions',
   preauthnotetransactions: 'preauthnotetransactions',
   prebillingtransactions: 'prebillingtransactions'
 };

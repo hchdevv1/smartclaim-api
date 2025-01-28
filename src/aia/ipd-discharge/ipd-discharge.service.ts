@@ -2127,6 +2127,8 @@ try{
   xIdType:querySubmitIpdDischargeDto.PatientInfo.IdType,
   xPolicyTypeCode :querySubmitIpdDischargeDto.PatientInfo.PolicyTypeCode,
   xServiceSettingCode:querySubmitIpdDischargeDto.PatientInfo.ServiceSettingCode,
+  xServiceSettingAbbr:querySubmitIpdDischargeDto.PatientInfo.ServiceSettingAbbr,
+
   xSurgeryTypeCode:querySubmitIpdDischargeDto.PatientInfo.SurgeryTypeCode,
   xIllnessTypeCode:querySubmitIpdDischargeDto.PatientInfo.IllnessTypeCode,
   xRunningdocument:querySubmitIpdDischargeDto.PatientInfo.Runningdocument,
@@ -2832,6 +2834,7 @@ if (existingRecord) {
       idtype:RequesetBody.xIdType,
       //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
+      servicesettingabbr:RequesetBody.xServiceSettingAbbr,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
       runningdocument:RequesetBody.xRunningdocument,
       isipddischarge:RequesetBody.xIsIPDDischarge
@@ -2860,6 +2863,7 @@ if (existingRecord) {
       idtype:RequesetBody.xIdType,
       //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
+      servicesettingabbr:RequesetBody.xServiceSettingAbbr,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
       runningdocument:RequesetBody.xRunningdocument,
       isipddischarge:RequesetBody.xIsIPDDischarge

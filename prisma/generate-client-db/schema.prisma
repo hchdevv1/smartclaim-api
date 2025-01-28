@@ -116,6 +116,7 @@ model claimstatus {
   claimstatusdesc_th     String?                  @db.VarChar(255)
   claimstatusdesc_en     String?                  @db.VarChar(255)
   insurerid              Int?
+  sort                   Int?
   insurers               insurers?                @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
   transactionclaimstatus transactionclaimstatus[]
 
@@ -278,6 +279,7 @@ model servicesetting {
   servicesettingcode String    @db.VarChar(255)
   servicesettingdesc String    @db.VarChar(255)
   insurerid          Int?
+  abbreviation       String?   @db.VarChar(255)
   insurers           insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 
@@ -329,6 +331,7 @@ model transactionclaim {
   preauthreferocc         String?    @db.VarChar(255)
   reservedate             String?    @db.VarChar(100)
   isipddischarge          Boolean?
+  servicesettingabbr      String?    @db.VarChar(100)
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 
@@ -352,23 +355,6 @@ model transactionclaimstatus {
   claimstatusdesc_th String?      @db.VarChar(255)
   claimstatusdesc_en String?      @db.VarChar(255)
   claimstatus        claimstatus? @relation(fields: [claimstatuscode, insurerid], references: [claimstatuscode, insurerid], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model accidenttransactions22 {
-  id              Int       @id(map: "accidenttransactions_pkey") @default(autoincrement())
-  insurerid       Int?
-  refid           String?   @db.VarChar(255)
-  transactionno   String?   @db.VarChar(255)
-  hn              String?   @db.VarChar(10)
-  vn              String?   @db.VarChar(10)
-  accidentplace   String?   @db.VarChar(10)
-  accidentdate    String?   @db.VarChar(20)
-  causeofinjury   String?   @db.VarChar(500)
-  commentofinjury String?   @db.VarChar(500)
-  woundtype       String?   @db.VarChar(500)
-  injuryside      String?   @db.VarChar(500)
-  injuryarea      String?   @db.VarChar(500)
-  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "accidenttransactions_insurerid_fkey")
 }
 
 model anesthesialist {
@@ -395,17 +381,21 @@ model opeartionispackage {
   insurers  insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model diagnosistransactions {
-  id            Int       @id @default(autoincrement())
-  insurerid     Int?
-  refid         String?   @db.VarChar(255)
-  transactionno String?   @db.VarChar(255)
-  hn            String?   @db.VarChar(10)
-  vn            String?   @db.VarChar(10)
-  dxname        String?   @db.VarChar(255)
-  dxtype        String?   @db.VarChar(10)
-  icd10         String?   @db.VarChar(255)
-  insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
+model accidenttransactions22 {
+  id              Int       @id(map: "accidenttransactions_pkey") @default(autoincrement())
+  insurerid       Int?
+  refid           String?   @db.VarChar(255)
+  transactionno   String?   @db.VarChar(255)
+  hn              String?   @db.VarChar(10)
+  vn              String?   @db.VarChar(10)
+  accidentplace   String?   @db.VarChar(10)
+  accidentdate    String?   @db.VarChar(20)
+  causeofinjury   String?   @db.VarChar(500)
+  commentofinjury String?   @db.VarChar(500)
+  woundtype       String?   @db.VarChar(500)
+  injuryside      String?   @db.VarChar(500)
+  injuryarea      String?   @db.VarChar(500)
+  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "accidenttransactions_insurerid_fkey")
 }
 
 model concurrentnotetransactions {
@@ -418,6 +408,19 @@ model concurrentnotetransactions {
   concurrentdatetime String?   @db.VarChar(255)
   concurrentdetail   String?   @db.VarChar(255)
   insurers           insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
+}
+
+model diagnosistransactions {
+  id            Int       @id @default(autoincrement())
+  insurerid     Int?
+  refid         String?   @db.VarChar(255)
+  transactionno String?   @db.VarChar(255)
+  hn            String?   @db.VarChar(10)
+  vn            String?   @db.VarChar(10)
+  dxname        String?   @db.VarChar(255)
+  dxtype        String?   @db.VarChar(10)
+  icd10         String?   @db.VarChar(255)
+  insurers      insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_insurerid")
 }
 
 model preauthnotetransactions {

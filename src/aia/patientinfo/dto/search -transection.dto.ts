@@ -47,6 +47,11 @@ export class QuerySearchTransection {
     @IsString()
     @IsOptional()
     ServiceSettingCode?: string;
+
+    @IsString()
+    @IsOptional()
+    ServiceSettingAbbr?: string;
+    
   }
 
 export class ResultTransactionClaimDto {
@@ -165,6 +170,9 @@ export class ResultTransactionClaimDto {
     ServiceSettingCode?: string;
     @IsString()
     @IsOptional()
+    ServiceSettingAbbr?: string;
+    @IsString()
+    @IsOptional()
     SurgeryTypeCode?: string;
     @IsString()
     @IsOptional()
@@ -181,5 +189,6 @@ export class ResultTransactionClaimDto {
     @IsInt()
     @IsOptional()
     Runningdocument?:number
+
 
   }

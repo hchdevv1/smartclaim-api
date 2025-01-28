@@ -53,7 +53,7 @@ export class PreauthSubmissionService {
      try{
        
       const TrakcarepatientInfo = await this.trakcareService.getListBilling(xHN)
-  
+  console.log(TrakcarepatientInfo)
       if (TrakcarepatientInfo.ItemBillingCheckBalance){
         arrayItemBillingCheckBalance = {
      
