@@ -882,7 +882,7 @@ export class PatientinfoService {
             ClaimStatusCode: claim.claimstatuscode || '', // Default to empty string if undefined
             ClaimStatusDesc: claim.claimstatusdesc || '', // Default to empty string if undefined
             OccurrenceNo: claim.occurrenceno || '', // Default to empty string if undefined
-            TotalApprovedAmount: claim.totalapprovedamount?.toString() || '0', // Convert to string, default to '0'
+            TotalApprovedAmount: claim.totalapprovedamount?.toString() || null, // Convert to string, default to '0'
             TotalExcessAmount: claim.totalexcessamount ? claim.totalexcessamount.toString() : null, // Handle null correctly
             IsReimbursement: claim.isreimbursement ?? false, // Default to false if undefined
             BatchNumber: claim.batchnumber || '', // Default to empty string if undefined
@@ -926,7 +926,7 @@ export class PatientinfoService {
         ClaimStatusCode: '',
         ClaimStatusDesc: '',
         OccurrenceNo: '',
-        TotalApprovedAmount: '0',
+        TotalApprovedAmount: null,
         TotalExcessAmount: null,
         IsReimbursement: false,
         BatchNumber: '',

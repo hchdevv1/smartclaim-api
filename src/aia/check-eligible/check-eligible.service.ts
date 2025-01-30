@@ -193,6 +193,7 @@ export class CheckEligibleService {
          xPassportnumber : checkEligibleBodyDto.PatientInfo.PassportNumber||'',
          xIdType:checkEligibleBodyDto.PatientInfo.IdType||'',
          xServiceSettingCode:checkEligibleBodyDto.PatientInfo.ServiceSettingCode||'',
+         xServiceSettingAbbr:checkEligibleBodyDto.PatientInfo.ServiceSettingAbbr||'',
          xInsurerCode:checkEligibleBodyDto.PatientInfo.InsurerCode||null,
          xHN :checkEligibleBodyDto.PatientInfo.HN||'',
          xFirstName :checkEligibleBodyDto.PatientInfo.GivenNameTH||'',
@@ -209,8 +210,8 @@ export class CheckEligibleService {
          xCustomerId:checkEligibleBodyDto.PatientInfo.CustomerId||'',
        }
        let xRefId
-       if ((RequesetBody.xServiceSettingCode ==="PRE-01")||(RequesetBody.xServiceSettingCode ==="PRE-02")){
-        xRefId= await this.generateRefId(RequesetBody.xHN+RequesetBody.xVisitDateTime,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
+       if ((RequesetBody.xServiceSettingAbbr ==="PRE-01")||(RequesetBody.xServiceSettingAbbr ==="PRE-02")){
+        xRefId= await this.generateRefId(RequesetBody.xHN+RequesetBody.xVisitDateTime,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingAbbr)
 
        }else{
          xRefId= await this.generateRefId(RequesetBody.xVN,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)

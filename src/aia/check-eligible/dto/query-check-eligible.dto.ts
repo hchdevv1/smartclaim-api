@@ -60,6 +60,10 @@ class SearchPatientBodyDto{
 
     @IsString()
     @IsOptional()
+    ServiceSettingAbbr?: string;
+
+    @IsString()
+    @IsOptional()
     IllnessTypeCode?: string;
 
     @IsString()
@@ -154,7 +158,7 @@ class CreateTransactionBodyDto{
     @IsString()
     @IsOptional()
     ServiceSettingCode?: string;
-    
+
     @IsString()
     @IsOptional()
     ServiceSettingAbbr?: string;
