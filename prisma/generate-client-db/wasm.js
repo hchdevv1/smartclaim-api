@@ -395,7 +395,8 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   preauthreferocc: 'preauthreferocc',
   reservedate: 'reservedate',
   isipddischarge: 'isipddischarge',
-  servicesettingabbr: 'servicesettingabbr'
+  servicesettingabbr: 'servicesettingabbr',
+  referencevn: 'referencevn'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {

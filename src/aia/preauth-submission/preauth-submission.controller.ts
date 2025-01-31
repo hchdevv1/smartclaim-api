@@ -6,6 +6,8 @@ import { QueryPreBillingDto } from './dto/query-prebilling-preauth-submission.dt
 import { QuerySubmitPreAuthDto} from './dto/query-submit-preauth-submission.dto';
 import { QueryAccidentDto } from './dto/query-accident-preauth-submission.dto';
 import { QueryProcedureDto } from './dto/query-procedure-preauth-submission.dto';
+import { QueryPreauthSubmissionDto } from './dto/query-preauth-submission.dto';
+import { QueryUpdateReferenceVNBodyDto } from './dto/query-updatereferencevn-preauth-submission.dto';
 @Controller('/v1/preauth-submission')
 export class PreauthSubmissionController {
   constructor(private readonly preauthSubmissionService: PreauthSubmissionService) {}
@@ -14,6 +16,11 @@ export class PreauthSubmissionController {
   @Get('/getListBilling/:xHN')
   getListBilling(@Param('xHN') xHN: string ) {
     return  this.preauthSubmissionService.getListBilling(xHN);
+  }
+  @Post('/getListVisitClaimAIA')
+  async getListVisitClaimAIA(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = this.preauthSubmissionService.getListVisitClaimAIA(queryPreauthSubmissionDto);
+        return result
   }
   /// get from data base ///
 //Visit
@@ -77,6 +84,12 @@ async getPreAuthNote(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
      
 
     const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
+        return result
+  }
+
+  @Post('/UpdateReferenceVN')
+  async UpdateFurtherClaimVN(@Body() queryUpdateReferenceVNBodyDto:QueryUpdateReferenceVNBodyDto){
+        const result =  this.preauthSubmissionService.UpdateFurtherClaimVN(queryUpdateReferenceVNBodyDto);
         return result
   }
 }

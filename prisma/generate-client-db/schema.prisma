@@ -332,6 +332,7 @@ model transactionclaim {
   reservedate             String?    @db.VarChar(100)
   isipddischarge          Boolean?
   servicesettingabbr      String?    @db.VarChar(100)
+  referencevn             String?    @db.VarChar
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 

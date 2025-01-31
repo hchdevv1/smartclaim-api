@@ -24859,6 +24859,7 @@ export namespace Prisma {
     reservedate: string | null
     isipddischarge: boolean | null
     servicesettingabbr: string | null
+    referencevn: string | null
   }
 
   export type TransactionclaimMaxAggregateOutputType = {
@@ -24910,6 +24911,7 @@ export namespace Prisma {
     reservedate: string | null
     isipddischarge: boolean | null
     servicesettingabbr: string | null
+    referencevn: string | null
   }
 
   export type TransactionclaimCountAggregateOutputType = {
@@ -24961,6 +24963,7 @@ export namespace Prisma {
     reservedate: number
     isipddischarge: number
     servicesettingabbr: number
+    referencevn: number
     _all: number
   }
 
@@ -25032,6 +25035,7 @@ export namespace Prisma {
     reservedate?: true
     isipddischarge?: true
     servicesettingabbr?: true
+    referencevn?: true
   }
 
   export type TransactionclaimMaxAggregateInputType = {
@@ -25083,6 +25087,7 @@ export namespace Prisma {
     reservedate?: true
     isipddischarge?: true
     servicesettingabbr?: true
+    referencevn?: true
   }
 
   export type TransactionclaimCountAggregateInputType = {
@@ -25134,6 +25139,7 @@ export namespace Prisma {
     reservedate?: true
     isipddischarge?: true
     servicesettingabbr?: true
+    referencevn?: true
     _all?: true
   }
 
@@ -25272,6 +25278,7 @@ export namespace Prisma {
     reservedate: string | null
     isipddischarge: boolean | null
     servicesettingabbr: string | null
+    referencevn: string | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
     _sum: TransactionclaimSumAggregateOutputType | null
@@ -25342,6 +25349,7 @@ export namespace Prisma {
     reservedate?: boolean
     isipddischarge?: boolean
     servicesettingabbr?: boolean
+    referencevn?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -25394,6 +25402,7 @@ export namespace Prisma {
     reservedate?: boolean
     isipddischarge?: boolean
     servicesettingabbr?: boolean
+    referencevn?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
 
@@ -25446,6 +25455,7 @@ export namespace Prisma {
     reservedate?: boolean
     isipddischarge?: boolean
     servicesettingabbr?: boolean
+    referencevn?: boolean
   }
 
   export type transactionclaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25509,6 +25519,7 @@ export namespace Prisma {
       reservedate: string | null
       isipddischarge: boolean | null
       servicesettingabbr: string | null
+      referencevn: string | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
   }
@@ -25951,6 +25962,7 @@ export namespace Prisma {
     readonly reservedate: FieldRef<"transactionclaim", 'String'>
     readonly isipddischarge: FieldRef<"transactionclaim", 'Boolean'>
     readonly servicesettingabbr: FieldRef<"transactionclaim", 'String'>
+    readonly referencevn: FieldRef<"transactionclaim", 'String'>
   }
     
 
@@ -35963,7 +35975,8 @@ export namespace Prisma {
     preauthreferocc: 'preauthreferocc',
     reservedate: 'reservedate',
     isipddischarge: 'isipddischarge',
-    servicesettingabbr: 'servicesettingabbr'
+    servicesettingabbr: 'servicesettingabbr',
+    referencevn: 'referencevn'
   };
 
   export type TransactionclaimScalarFieldEnum = (typeof TransactionclaimScalarFieldEnum)[keyof typeof TransactionclaimScalarFieldEnum]
@@ -37825,6 +37838,7 @@ export namespace Prisma {
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
     servicesettingabbr?: StringNullableFilter<"transactionclaim"> | string | null
+    referencevn?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
 
@@ -37877,6 +37891,7 @@ export namespace Prisma {
     reservedate?: SortOrderInput | SortOrder
     isipddischarge?: SortOrderInput | SortOrder
     servicesettingabbr?: SortOrderInput | SortOrder
+    referencevn?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
 
@@ -37932,6 +37947,7 @@ export namespace Prisma {
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
     servicesettingabbr?: StringNullableFilter<"transactionclaim"> | string | null
+    referencevn?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
 
@@ -37984,6 +38000,7 @@ export namespace Prisma {
     reservedate?: SortOrderInput | SortOrder
     isipddischarge?: SortOrderInput | SortOrder
     servicesettingabbr?: SortOrderInput | SortOrder
+    referencevn?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
     _max?: transactionclaimMaxOrderByAggregateInput
@@ -38043,6 +38060,7 @@ export namespace Prisma {
     reservedate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableWithAggregatesFilter<"transactionclaim"> | boolean | null
     servicesettingabbr?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
+    referencevn?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
 
   export type transactionclaimstatusWhereInput = {
@@ -40398,6 +40416,7 @@ export namespace Prisma {
     reservedate?: string | null
     isipddischarge?: boolean | null
     servicesettingabbr?: string | null
+    referencevn?: string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
 
@@ -40450,6 +40469,7 @@ export namespace Prisma {
     reservedate?: string | null
     isipddischarge?: boolean | null
     servicesettingabbr?: string | null
+    referencevn?: string | null
   }
 
   export type transactionclaimUpdateInput = {
@@ -40498,6 +40518,7 @@ export namespace Prisma {
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
+    referencevn?: NullableStringFieldUpdateOperationsInput | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
 
@@ -40550,6 +40571,7 @@ export namespace Prisma {
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
+    referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimCreateManyInput = {
@@ -40601,6 +40623,7 @@ export namespace Prisma {
     reservedate?: string | null
     isipddischarge?: boolean | null
     servicesettingabbr?: string | null
+    referencevn?: string | null
   }
 
   export type transactionclaimUpdateManyMutationInput = {
@@ -40649,6 +40672,7 @@ export namespace Prisma {
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
+    referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyInput = {
@@ -40700,6 +40724,7 @@ export namespace Prisma {
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
+    referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateInput = {
@@ -42882,6 +42907,7 @@ export namespace Prisma {
     reservedate?: SortOrder
     isipddischarge?: SortOrder
     servicesettingabbr?: SortOrder
+    referencevn?: SortOrder
   }
 
   export type transactionclaimAvgOrderByAggregateInput = {
@@ -42942,6 +42968,7 @@ export namespace Prisma {
     reservedate?: SortOrder
     isipddischarge?: SortOrder
     servicesettingabbr?: SortOrder
+    referencevn?: SortOrder
   }
 
   export type transactionclaimMinOrderByAggregateInput = {
@@ -42993,6 +43020,7 @@ export namespace Prisma {
     reservedate?: SortOrder
     isipddischarge?: SortOrder
     servicesettingabbr?: SortOrder
+    referencevn?: SortOrder
   }
 
   export type transactionclaimSumOrderByAggregateInput = {
@@ -46267,6 +46295,7 @@ export namespace Prisma {
     reservedate?: string | null
     isipddischarge?: boolean | null
     servicesettingabbr?: string | null
+    referencevn?: string | null
   }
 
   export type transactionclaimUncheckedCreateWithoutClaimantsInput = {
@@ -46316,6 +46345,7 @@ export namespace Prisma {
     reservedate?: string | null
     isipddischarge?: boolean | null
     servicesettingabbr?: string | null
+    referencevn?: string | null
   }
 
   export type transactionclaimCreateOrConnectWithoutClaimantsInput = {
@@ -46466,6 +46496,7 @@ export namespace Prisma {
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
     servicesettingabbr?: StringNullableFilter<"transactionclaim"> | string | null
+    referencevn?: StringNullableFilter<"transactionclaim"> | string | null
   }
 
   export type insurersCreateWithoutClaimdocumentsInput = {
@@ -50646,6 +50677,7 @@ export namespace Prisma {
     reservedate?: string | null
     isipddischarge?: boolean | null
     servicesettingabbr?: string | null
+    referencevn?: string | null
   }
 
   export type transactionclaimUpdateWithoutClaimantsInput = {
@@ -50694,6 +50726,7 @@ export namespace Prisma {
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
+    referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateWithoutClaimantsInput = {
@@ -50743,6 +50776,7 @@ export namespace Prisma {
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
+    referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimUncheckedUpdateManyWithoutClaimantsInput = {
@@ -50792,6 +50826,7 @@ export namespace Prisma {
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
     servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
+    referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimstatusCreateManyClaimstatusInput = {

@@ -534,7 +534,9 @@ async getClaimStatus(xInsurercode: string ) {
         }
       }
 
-    },
+    },orderBy:{
+      sort:'asc'
+    }
      })
      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
      let  newClaimStatusDto= new ClaimStatusDto();

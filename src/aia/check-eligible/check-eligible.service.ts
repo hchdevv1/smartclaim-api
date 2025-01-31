@@ -492,7 +492,6 @@ export class CheckEligibleService {
           xIdType:queryCreateTransactionBodyDto.PatientInfo.IdType||'',
           xServiceSettingCode:queryCreateTransactionBodyDto.PatientInfo.ServiceSettingCode||'',
           xServiceSettingAbbr:queryCreateTransactionBodyDto.PatientInfo.ServiceSettingAbbr||'',
-
           xInsurerCode:queryCreateTransactionBodyDto.PatientInfo.InsurerCode||null,
           xHN :queryCreateTransactionBodyDto.PatientInfo.HN||'',
           xFirstName :queryCreateTransactionBodyDto.PatientInfo.GivenNameTH||'',
