@@ -22,6 +22,11 @@ export class PreauthSubmissionController {
         const result = this.preauthSubmissionService.getListVisitClaimAIA(queryPreauthSubmissionDto);
         return result
   }
+  @Post('/getPreAuthVisit')
+  async getIPDVisit(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = queryPreauthSubmissionDto ;//'this.preauthSubmissionService.getPreAuthVisit(queryPreauthSubmissionDto)';
+        return result
+  }
   /// get from data base ///
 //Visit
 //diagnosis
@@ -88,8 +93,8 @@ async getPreAuthNote(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
   }
 
   @Post('/UpdateReferenceVN')
-  async UpdateFurtherClaimVN(@Body() queryUpdateReferenceVNBodyDto:QueryUpdateReferenceVNBodyDto){
-        const result =  this.preauthSubmissionService.UpdateFurtherClaimVN(queryUpdateReferenceVNBodyDto);
+  async UpdateReferenceVN(@Body() queryUpdateReferenceVNBodyDto:QueryUpdateReferenceVNBodyDto){
+        const result = this.preauthSubmissionService.UpdateReferenceVN(queryUpdateReferenceVNBodyDto);
         return result
   }
 }

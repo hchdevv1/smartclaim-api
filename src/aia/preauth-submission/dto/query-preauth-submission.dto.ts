@@ -85,11 +85,5 @@ class SearchPatientBodyDto{
     @IsOptional()
     AccidentDate?: string;
     
-    @IsString()
-    @IsOptional()
-    FurtherClaimId?: string;
 
-    @IsString()
-    @IsOptional()
-    FurtherClaimVN?: string;
   }

@@ -189,6 +189,8 @@ export class ResultTransactionClaimDto {
     @IsInt()
     @IsOptional()
     Runningdocument?:number
-
-
+    @IsString()
+    @IsOptional()
+    ReferenceVN?: string;
+    
   }
