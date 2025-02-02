@@ -23,13 +23,32 @@ export class PreauthSubmissionController {
         return result
   }
   @Post('/getPreAuthVisit')
-  async getIPDVisit(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
-        const result = queryPreauthSubmissionDto ;//'this.preauthSubmissionService.getPreAuthVisit(queryPreauthSubmissionDto)';
+  async getPreAuthVisit(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = this.preauthSubmissionService.getPreAuthVisit(queryPreauthSubmissionDto);
+        return result
+  }
+  @Post('/getPreAuthDoctor')
+  async getPreAuthDoctor(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = this.preauthSubmissionService.getPreAuthDoctor(queryPreauthSubmissionDto);
+        return result
+  }
+  @Post('/getPreAuthDiagnosis')
+  async getPreAuthDiagnosis(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = this.preauthSubmissionService.getPreAuthDiagnosis(queryPreauthSubmissionDto);
+        return result
+  }
+  @Post('/getPreAuthProcedure')
+  async getPreAuthProcedure(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = this.preauthSubmissionService.getPreAuthProcedure(queryPreauthSubmissionDto);
+        return result
+  }
+  @Post('/getPreAuthAccident')
+  async getPreAuthAccident(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = this.preauthSubmissionService.getPreAuthAccident(queryPreauthSubmissionDto);
         return result
   }
   /// get from data base ///
-//Visit
-//diagnosis
+
 
 //procedure
 
@@ -37,7 +56,6 @@ export class PreauthSubmissionController {
 
 //billing
 
-//preauth note
 
 @Post('/getPreAuthNote')
 async getPreAuthNote(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){

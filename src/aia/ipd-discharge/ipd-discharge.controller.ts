@@ -48,7 +48,7 @@ export class IpdDischargeController {
         return result
   }
   @Post('/getIPDDischargeProcedure')
-  async getOPDDischargeProcedure(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+  async getIPDDischargeProcedure(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
         const result = this.ipdDischargeService.getIPDDischargeProcedure(queryIpdDischargeDto);
         return result
   }

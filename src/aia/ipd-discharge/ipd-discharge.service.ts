@@ -479,7 +479,7 @@ async getIPDDischargeDiagnosis(queryIpdDischargeDto:QueryIpdDischargeDto){
   let xResultInfo;
 try{
 
-  const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeDiagnosis(queryIpdDischargeDto.PatientInfo.VN);
+  const TrakcarepatientInfo = await this.trakcareService.getIPDDiagnosis(queryIpdDischargeDto.PatientInfo.VN);
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)

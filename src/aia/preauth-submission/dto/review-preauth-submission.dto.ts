@@ -4,7 +4,7 @@
 
 // import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 
-export class ResultReviewIPDVisitInfoDto {
+export class ResultReviewPreVisitInfoDto {
    
     AdditionalNote: string;
     AlcoholRelated: boolean;
@@ -26,15 +26,14 @@ export class ResultReviewIPDVisitInfoDto {
     VisitDateTime: string;
     VN: string;
     Weight: string;
-
+    AdmitDateTime:string;
+    IsIPDDischarge:boolean;
     // VisitDate: string;
     An: string;
     PreauthReferClaimNo: string; 
     PreauthReferOcc: string; 
     IndicationForAdmission:string;
     DscDateTime:string;
-  
-
 
   }
 
