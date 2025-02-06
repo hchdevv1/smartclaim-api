@@ -541,7 +541,7 @@ export class UtilsService {
       
        })
        console.log(xInsurercode)
-       const servicesettingillnesstype = servicesetting.map((item, index) => {
+       const servicesettingillnesstype = servicesetting.map((item) => {
        
        let SLDesc='';
           if (item.servicesetting.servicesettingcode == "PRE"){ 
