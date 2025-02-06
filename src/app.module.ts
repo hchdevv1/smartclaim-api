@@ -11,7 +11,6 @@ import { BillingSubmissionModule } from './aia/billing-submission/billing-submis
 import { CheckClaimStatusModule } from './aia/check-claim-status/check-claim-status.module';
 import { CheckEligibleModule } from './aia/check-eligible/check-eligible.module';
 import { ClaimCancelModule } from './aia/claim-cancel/claim-cancel.module';
-import { IpdAdmissionModule } from './aia/ipd-admission/ipd-admission.module';
 import { IpdDischargeModule } from './aia/ipd-discharge/ipd-discharge.module';
 import { OpdDischargeModule } from './aia/opd-discharge/opd-discharge.module';
 import { PreauthSubmissionModule } from './aia/preauth-submission/preauth-submission.module';
@@ -22,7 +21,7 @@ import { CheckOpdBalanceModule } from './aia/check-opd-balance/check-opd-balance
 @Module({
   imports: [UtilsModule, TrakcareModule 
     ,AttachDocListModule,BillingSubmissionModule, CheckClaimStatusModule, CheckEligibleModule ,ClaimCancelModule
-    ,IpdAdmissionModule,IpdDischargeModule,OpdDischargeModule
+    ,IpdDischargeModule,OpdDischargeModule
     ,PreauthSubmissionModule,RetrieveFurtherClaimListModule,RetrievePreauthListModule,PatientinfoModule
     ,CheckOpdBalanceModule
   ],

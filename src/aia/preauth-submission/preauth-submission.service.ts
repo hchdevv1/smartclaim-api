@@ -38,6 +38,7 @@ import { ResultPreAuthDoctorDto ,QueryDoctor } from './dto/result-doctor-preauth
 import { ResultPreAuthDiagnosisDto ,QueryDiagnosis} from './dto/result-diagnosis-preauth-submission.dto';
 import { ResultPreAuthProcedurDto ,QueryProcedure} from './dto/result-procedure-preauth-submission.dto';
 import { ResultPreAuthAccidentDto } from './dto/result-accident-preauth-submission.dto';
+import { ResultPreAuthBillingDto ,QueryBilling} from './dto/result-billing-preauth-submission.dto';
 const httpStatusMessageService = new HttpStatusMessageService();
 const newHttpMessageDto =new HttpMessageDto();
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -1083,6 +1084,208 @@ export class PreauthSubmissionService {
       }
   
   return newResultPreAuthAccidentDto
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
+  }
+  async getPreBilling(queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+    let xResultInfo;
+    let newTotalBillAmount ='';
+    let xTotal='';
+    let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
+    
+  try{
+    
+    const xEstimateBillType =queryPreauthSubmissionDto.PatientInfo.EstimateBillType
+    const xEstimateAutoByOrderSet =queryPreauthSubmissionDto.PatientInfo.EstimateAutoByOrderSet
+    const xEstimateByVN =queryPreauthSubmissionDto.PatientInfo.EstimateByVN
+    if ((xEstimateBillType=== "1")&&(xEstimateByVN !=="")){
+
+      const TrakcarepatientInfo = await this.trakcareService.getPreAuthBilling(xEstimateByVN);
+      const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
+      if (TrakcarepatientInfoStatusCode !==200){
+        this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+        const xQueryBilling ={    
+          LocalBillingCode: '', 
+          LocalBillingName: '',
+          SimbBillingCode: '',
+          PayorBillingCode: '',
+          BillingInitial:'',
+          BillingDiscount: '',
+          BillingNetAmount:''
+         }
+         xResultInfo ={
+          BillingInfo: [xQueryBilling],
+          TotalBillAmount:'',
+          InvoiceNumber:''
+         } 
+      }else{
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+        const xQueryBilling: QueryBilling[] = TrakcarepatientInfo.BillingInfo ? 
+        TrakcarepatientInfo.BillingInfo.map((item) => {
+        return {
+          LocalBillingCode: item.LocalBillingCode||'', 
+          LocalBillingName: item.LocalBillingName||'',
+          SimbBillingCode: item.SimbBillingCode||'',
+          PayorBillingCode: item.PayorBillingCode||'',
+          BillingInitial: item.BillingInitial||'',
+          BillingDiscount: item.BillingDiscount||'',
+          BillingNetAmount: item.BillingNetAmount||'',
+          };
+        }):[];
+
+        xResultInfo ={
+          BillingInfo: xQueryBilling,
+          TotalBillAmount: TrakcarepatientInfo.TotalBillAmount ? TrakcarepatientInfo.TotalBillAmount : '',
+          InvoiceNumber:TrakcarepatientInfo.InvoiceNumber ? TrakcarepatientInfo.InvoiceNumber : '',
+         } 
+         queryPreauthSubmissionDto.PatientInfo.EstTotal = xResultInfo.TotalBillAmount
+
+         if(xQueryBilling){
+          await Promise.all(
+            xQueryBilling.map(async (prebilling) => {
+                return await prismaProgest.prebillingtransactions.create({
+                  
+                    data: {
+                        insurerid: queryPreauthSubmissionDto.PatientInfo.InsurerCode,
+                        refid: queryPreauthSubmissionDto.PatientInfo.RefId,
+                        transactionno: queryPreauthSubmissionDto.PatientInfo.TransactionNo,
+                        hn: queryPreauthSubmissionDto.PatientInfo.HN,
+                        vn: queryPreauthSubmissionDto.PatientInfo.VN,
+                        localbillingcode: prebilling.LocalBillingCode,
+                        localbillingname: prebilling.LocalBillingName,
+                        simbbillingcode: prebilling.SimbBillingCode,
+                        payorbillingcode: prebilling.PayorBillingCode,
+                        billingdiscount: prebilling.BillingDiscount,
+                        billinginitial: prebilling.BillingInitial,
+                        billingnetamount: prebilling.BillingInitial,
+                        totalbillamount:  queryPreauthSubmissionDto.PatientInfo.EstTotal,
+                      
+                    }
+                });
+            })
+        );
+         }
+      }
+    }
+    else if ((xEstimateBillType=== "2")&&(xEstimateAutoByOrderSet !=="")){}
+    else if (xEstimateBillType=== "3"){
+      
+
+const newQueryBillingInfoDtoDatabaseBodyDto ={
+  RefId:queryPreauthSubmissionDto.PatientInfo.RefId,
+  TransactionNo:queryPreauthSubmissionDto.PatientInfo.TransactionNo,
+  InsurerCode:queryPreauthSubmissionDto.PatientInfo.InsurerCode,
+  HN:queryPreauthSubmissionDto.PatientInfo.HN,
+  VN:queryPreauthSubmissionDto.PatientInfo.VN,
+}
+
+const getPreBillingformDatabase = await this.utilsService.getPreBillingformDatabase(newQueryBillingInfoDtoDatabaseBodyDto)
+
+if (getPreBillingformDatabase && getPreBillingformDatabase.Result.PreBillingInfo && getPreBillingformDatabase.Result.PreBillingInfo.length > 0) {
+  newResultBillingInfoDto= await Promise.all(
+    getPreBillingformDatabase.Result.PreBillingInfo.map(async (item) => {
+      newTotalBillAmount = item.TotalBillAmount     
+    return {
+      LocalBillingCode: item.LocalBillingCode,
+      LocalBillingName: item.LocalBillingName,
+      SimbBillingCode: item.SimbBillingCode,
+      PayorBillingCode: item.PayorBillingCode,
+      BillingDiscount: item.BillingDiscount,
+      BillingInitial: item.BillingInitial,
+      BillingNetAmount: item.BillingNetAmount,
+      //TotalBillAmount: item.TotalBillAmount,    
+    };
+   
+
+  })
+);
+}else{
+  newResultBillingInfoDto = [{
+    LocalBillingCode: '',
+    LocalBillingName: '',
+    SimbBillingCode: '',
+    PayorBillingCode: '',
+    BillingInitial: '',
+    BillingDiscount: '',
+    BillingNetAmount: '',
+  }];
+}
+
+    }
+    else if (xEstimateBillType=== "4"){}
+
+  
+    let newResultPreAuthBillingDto= new ResultPreAuthBillingDto();
+    newResultPreAuthBillingDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:xResultInfo
+      }
+  
+  return newResultPreAuthBillingDto
   }catch(error)
   {
     if (error instanceof Prisma.PrismaClientInitializationError) {

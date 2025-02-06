@@ -317,7 +317,10 @@ exports.Prisma.MedicaltransactionsScalarFieldEnum = {
   haveconcurrentnote: 'haveconcurrentnote',
   totalestimatedcost: 'totalestimatedcost',
   admitdatetime: 'admitdatetime',
-  isipddischarge: 'isipddischarge'
+  isipddischarge: 'isipddischarge',
+  estimatebyvn: 'estimatebyvn',
+  estimatebilltype: 'estimatebilltype',
+  estimateautobyordersetcode: 'estimateautobyordersetcode'
 };
 
 exports.Prisma.PolicytypeScalarFieldEnum = {
@@ -508,6 +511,12 @@ exports.Prisma.PrebillingtransactionsScalarFieldEnum = {
   totalbillamount: 'totalbillamount'
 };
 
+exports.Prisma.Servicesetting_illnesstypeScalarFieldEnum = {
+  id: 'id',
+  servicesettingid: 'servicesettingid',
+  illnesstypeid: 'illnesstypeid'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -554,7 +563,8 @@ exports.Prisma.ModelName = {
   concurrentnotetransactions: 'concurrentnotetransactions',
   diagnosistransactions: 'diagnosistransactions',
   preauthnotetransactions: 'preauthnotetransactions',
-  prebillingtransactions: 'prebillingtransactions'
+  prebillingtransactions: 'prebillingtransactions',
+  servicesetting_illnesstype: 'servicesetting_illnesstype'
 };
 
 /**

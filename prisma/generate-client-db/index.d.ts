@@ -163,6 +163,11 @@ export type preauthnotetransactions = $Result.DefaultSelection<Prisma.$preauthno
  * 
  */
 export type prebillingtransactions = $Result.DefaultSelection<Prisma.$prebillingtransactionsPayload>
+/**
+ * Model servicesetting_illnesstype
+ * 
+ */
+export type servicesetting_illnesstype = $Result.DefaultSelection<Prisma.$servicesetting_illnesstypePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -586,6 +591,16 @@ export class PrismaClient<
     * ```
     */
   get prebillingtransactions(): Prisma.prebillingtransactionsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.servicesetting_illnesstype`: Exposes CRUD operations for the **servicesetting_illnesstype** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Servicesetting_illnesstypes
+    * const servicesetting_illnesstypes = await prisma.servicesetting_illnesstype.findMany()
+    * ```
+    */
+  get servicesetting_illnesstype(): Prisma.servicesetting_illnesstypeDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1056,7 +1071,8 @@ export namespace Prisma {
     concurrentnotetransactions: 'concurrentnotetransactions',
     diagnosistransactions: 'diagnosistransactions',
     preauthnotetransactions: 'preauthnotetransactions',
-    prebillingtransactions: 'prebillingtransactions'
+    prebillingtransactions: 'prebillingtransactions',
+    servicesetting_illnesstype: 'servicesetting_illnesstype'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1072,7 +1088,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage" | "accidenttransactions22" | "concurrentnotetransactions" | "diagnosistransactions" | "preauthnotetransactions" | "prebillingtransactions"
+      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage" | "accidenttransactions22" | "concurrentnotetransactions" | "diagnosistransactions" | "preauthnotetransactions" | "prebillingtransactions" | "servicesetting_illnesstype"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3176,6 +3192,76 @@ export namespace Prisma {
           }
         }
       }
+      servicesetting_illnesstype: {
+        payload: Prisma.$servicesetting_illnesstypePayload<ExtArgs>
+        fields: Prisma.servicesetting_illnesstypeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.servicesetting_illnesstypeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.servicesetting_illnesstypeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>
+          }
+          findFirst: {
+            args: Prisma.servicesetting_illnesstypeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.servicesetting_illnesstypeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>
+          }
+          findMany: {
+            args: Prisma.servicesetting_illnesstypeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>[]
+          }
+          create: {
+            args: Prisma.servicesetting_illnesstypeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>
+          }
+          createMany: {
+            args: Prisma.servicesetting_illnesstypeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.servicesetting_illnesstypeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>[]
+          }
+          delete: {
+            args: Prisma.servicesetting_illnesstypeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>
+          }
+          update: {
+            args: Prisma.servicesetting_illnesstypeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>
+          }
+          deleteMany: {
+            args: Prisma.servicesetting_illnesstypeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.servicesetting_illnesstypeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.servicesetting_illnesstypeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$servicesetting_illnesstypePayload>
+          }
+          aggregate: {
+            args: Prisma.Servicesetting_illnesstypeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServicesetting_illnesstype>
+          }
+          groupBy: {
+            args: Prisma.servicesetting_illnesstypeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Servicesetting_illnesstypeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.servicesetting_illnesstypeCountArgs<ExtArgs>
+            result: $Utils.Optional<Servicesetting_illnesstypeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3435,6 +3521,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type IllnesstypeCountOutputType
+   */
+
+  export type IllnesstypeCountOutputType = {
+    servicesetting_illnesstype: number
+  }
+
+  export type IllnesstypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    servicesetting_illnesstype?: boolean | IllnesstypeCountOutputTypeCountServicesetting_illnesstypeArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * IllnesstypeCountOutputType without action
+   */
+  export type IllnesstypeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IllnesstypeCountOutputType
+     */
+    select?: IllnesstypeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * IllnesstypeCountOutputType without action
+   */
+  export type IllnesstypeCountOutputTypeCountServicesetting_illnesstypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: servicesetting_illnesstypeWhereInput
+  }
+
+
+  /**
    * Count Type InsurersCountOutputType
    */
 
@@ -3669,6 +3786,37 @@ export namespace Prisma {
    */
   export type InsurersCountOutputTypeCountServicesettingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: servicesettingWhereInput
+  }
+
+
+  /**
+   * Count Type ServicesettingCountOutputType
+   */
+
+  export type ServicesettingCountOutputType = {
+    servicesetting_illnesstype: number
+  }
+
+  export type ServicesettingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    servicesetting_illnesstype?: boolean | ServicesettingCountOutputTypeCountServicesetting_illnesstypeArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ServicesettingCountOutputType without action
+   */
+  export type ServicesettingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServicesettingCountOutputType
+     */
+    select?: ServicesettingCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ServicesettingCountOutputType without action
+   */
+  export type ServicesettingCountOutputTypeCountServicesetting_illnesstypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: servicesetting_illnesstypeWhereInput
   }
 
 
@@ -17107,6 +17255,8 @@ export namespace Prisma {
     illnesstypedesc?: boolean
     insurerid?: boolean
     insurers?: boolean | illnesstype$insurersArgs<ExtArgs>
+    servicesetting_illnesstype?: boolean | illnesstype$servicesetting_illnesstypeArgs<ExtArgs>
+    _count?: boolean | IllnesstypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["illnesstype"]>
 
   export type illnesstypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17126,6 +17276,8 @@ export namespace Prisma {
 
   export type illnesstypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     insurers?: boolean | illnesstype$insurersArgs<ExtArgs>
+    servicesetting_illnesstype?: boolean | illnesstype$servicesetting_illnesstypeArgs<ExtArgs>
+    _count?: boolean | IllnesstypeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type illnesstypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     insurers?: boolean | illnesstype$insurersArgs<ExtArgs>
@@ -17135,6 +17287,7 @@ export namespace Prisma {
     name: "illnesstype"
     objects: {
       insurers: Prisma.$insurersPayload<ExtArgs> | null
+      servicesetting_illnesstype: Prisma.$servicesetting_illnesstypePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -17506,6 +17659,7 @@ export namespace Prisma {
   export interface Prisma__illnesstypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     insurers<T extends illnesstype$insurersArgs<ExtArgs> = {}>(args?: Subset<T, illnesstype$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    servicesetting_illnesstype<T extends illnesstype$servicesetting_illnesstypeArgs<ExtArgs> = {}>(args?: Subset<T, illnesstype$servicesetting_illnesstypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17869,6 +18023,26 @@ export namespace Prisma {
      */
     include?: insurersInclude<ExtArgs> | null
     where?: insurersWhereInput
+  }
+
+  /**
+   * illnesstype.servicesetting_illnesstype
+   */
+  export type illnesstype$servicesetting_illnesstypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    where?: servicesetting_illnesstypeWhereInput
+    orderBy?: servicesetting_illnesstypeOrderByWithRelationInput | servicesetting_illnesstypeOrderByWithRelationInput[]
+    cursor?: servicesetting_illnesstypeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Servicesetting_illnesstypeScalarFieldEnum | Servicesetting_illnesstypeScalarFieldEnum[]
   }
 
   /**
@@ -20469,6 +20643,9 @@ export namespace Prisma {
     totalestimatedcost: string | null
     admitdatetime: string | null
     isipddischarge: boolean | null
+    estimatebyvn: string | null
+    estimatebilltype: string | null
+    estimateautobyordersetcode: string | null
   }
 
   export type MedicaltransactionsMaxAggregateOutputType = {
@@ -20516,6 +20693,9 @@ export namespace Prisma {
     totalestimatedcost: string | null
     admitdatetime: string | null
     isipddischarge: boolean | null
+    estimatebyvn: string | null
+    estimatebilltype: string | null
+    estimateautobyordersetcode: string | null
   }
 
   export type MedicaltransactionsCountAggregateOutputType = {
@@ -20563,6 +20743,9 @@ export namespace Prisma {
     totalestimatedcost: number
     admitdatetime: number
     isipddischarge: number
+    estimatebyvn: number
+    estimatebilltype: number
+    estimateautobyordersetcode: number
     _all: number
   }
 
@@ -20622,6 +20805,9 @@ export namespace Prisma {
     totalestimatedcost?: true
     admitdatetime?: true
     isipddischarge?: true
+    estimatebyvn?: true
+    estimatebilltype?: true
+    estimateautobyordersetcode?: true
   }
 
   export type MedicaltransactionsMaxAggregateInputType = {
@@ -20669,6 +20855,9 @@ export namespace Prisma {
     totalestimatedcost?: true
     admitdatetime?: true
     isipddischarge?: true
+    estimatebyvn?: true
+    estimatebilltype?: true
+    estimateautobyordersetcode?: true
   }
 
   export type MedicaltransactionsCountAggregateInputType = {
@@ -20716,6 +20905,9 @@ export namespace Prisma {
     totalestimatedcost?: true
     admitdatetime?: true
     isipddischarge?: true
+    estimatebyvn?: true
+    estimatebilltype?: true
+    estimateautobyordersetcode?: true
     _all?: true
   }
 
@@ -20850,6 +21042,9 @@ export namespace Prisma {
     totalestimatedcost: string | null
     admitdatetime: string | null
     isipddischarge: boolean | null
+    estimatebyvn: string | null
+    estimatebilltype: string | null
+    estimateautobyordersetcode: string | null
     _count: MedicaltransactionsCountAggregateOutputType | null
     _avg: MedicaltransactionsAvgAggregateOutputType | null
     _sum: MedicaltransactionsSumAggregateOutputType | null
@@ -20916,6 +21111,9 @@ export namespace Prisma {
     totalestimatedcost?: boolean
     admitdatetime?: boolean
     isipddischarge?: boolean
+    estimatebyvn?: boolean
+    estimatebilltype?: boolean
+    estimateautobyordersetcode?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20963,6 +21161,9 @@ export namespace Prisma {
     totalestimatedcost?: boolean
     admitdatetime?: boolean
     isipddischarge?: boolean
+    estimatebyvn?: boolean
+    estimatebilltype?: boolean
+    estimateautobyordersetcode?: boolean
   }, ExtArgs["result"]["medicaltransactions"]>
 
   export type medicaltransactionsSelectScalar = {
@@ -21010,6 +21211,9 @@ export namespace Prisma {
     totalestimatedcost?: boolean
     admitdatetime?: boolean
     isipddischarge?: boolean
+    estimatebyvn?: boolean
+    estimatebilltype?: boolean
+    estimateautobyordersetcode?: boolean
   }
 
 
@@ -21061,6 +21265,9 @@ export namespace Prisma {
       totalestimatedcost: string | null
       admitdatetime: string | null
       isipddischarge: boolean | null
+      estimatebyvn: string | null
+      estimatebilltype: string | null
+      estimateautobyordersetcode: string | null
     }, ExtArgs["result"]["medicaltransactions"]>
     composites: {}
   }
@@ -21498,6 +21705,9 @@ export namespace Prisma {
     readonly totalestimatedcost: FieldRef<"medicaltransactions", 'String'>
     readonly admitdatetime: FieldRef<"medicaltransactions", 'String'>
     readonly isipddischarge: FieldRef<"medicaltransactions", 'Boolean'>
+    readonly estimatebyvn: FieldRef<"medicaltransactions", 'String'>
+    readonly estimatebilltype: FieldRef<"medicaltransactions", 'String'>
+    readonly estimateautobyordersetcode: FieldRef<"medicaltransactions", 'String'>
   }
     
 
@@ -23997,6 +24207,8 @@ export namespace Prisma {
     insurerid?: boolean
     abbreviation?: boolean
     insurers?: boolean | servicesetting$insurersArgs<ExtArgs>
+    servicesetting_illnesstype?: boolean | servicesetting$servicesetting_illnesstypeArgs<ExtArgs>
+    _count?: boolean | ServicesettingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicesetting"]>
 
   export type servicesettingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -24018,6 +24230,8 @@ export namespace Prisma {
 
   export type servicesettingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     insurers?: boolean | servicesetting$insurersArgs<ExtArgs>
+    servicesetting_illnesstype?: boolean | servicesetting$servicesetting_illnesstypeArgs<ExtArgs>
+    _count?: boolean | ServicesettingCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type servicesettingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     insurers?: boolean | servicesetting$insurersArgs<ExtArgs>
@@ -24027,6 +24241,7 @@ export namespace Prisma {
     name: "servicesetting"
     objects: {
       insurers: Prisma.$insurersPayload<ExtArgs> | null
+      servicesetting_illnesstype: Prisma.$servicesetting_illnesstypePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -24399,6 +24614,7 @@ export namespace Prisma {
   export interface Prisma__servicesettingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     insurers<T extends servicesetting$insurersArgs<ExtArgs> = {}>(args?: Subset<T, servicesetting$insurersArgs<ExtArgs>>): Prisma__insurersClient<$Result.GetResult<Prisma.$insurersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    servicesetting_illnesstype<T extends servicesetting$servicesetting_illnesstypeArgs<ExtArgs> = {}>(args?: Subset<T, servicesetting$servicesetting_illnesstypeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24763,6 +24979,26 @@ export namespace Prisma {
      */
     include?: insurersInclude<ExtArgs> | null
     where?: insurersWhereInput
+  }
+
+  /**
+   * servicesetting.servicesetting_illnesstype
+   */
+  export type servicesetting$servicesetting_illnesstypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    where?: servicesetting_illnesstypeWhereInput
+    orderBy?: servicesetting_illnesstypeOrderByWithRelationInput | servicesetting_illnesstypeOrderByWithRelationInput[]
+    cursor?: servicesetting_illnesstypeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Servicesetting_illnesstypeScalarFieldEnum | Servicesetting_illnesstypeScalarFieldEnum[]
   }
 
   /**
@@ -35629,6 +35865,963 @@ export namespace Prisma {
 
 
   /**
+   * Model servicesetting_illnesstype
+   */
+
+  export type AggregateServicesetting_illnesstype = {
+    _count: Servicesetting_illnesstypeCountAggregateOutputType | null
+    _avg: Servicesetting_illnesstypeAvgAggregateOutputType | null
+    _sum: Servicesetting_illnesstypeSumAggregateOutputType | null
+    _min: Servicesetting_illnesstypeMinAggregateOutputType | null
+    _max: Servicesetting_illnesstypeMaxAggregateOutputType | null
+  }
+
+  export type Servicesetting_illnesstypeAvgAggregateOutputType = {
+    id: number | null
+    servicesettingid: number | null
+    illnesstypeid: number | null
+  }
+
+  export type Servicesetting_illnesstypeSumAggregateOutputType = {
+    id: number | null
+    servicesettingid: number | null
+    illnesstypeid: number | null
+  }
+
+  export type Servicesetting_illnesstypeMinAggregateOutputType = {
+    id: number | null
+    servicesettingid: number | null
+    illnesstypeid: number | null
+  }
+
+  export type Servicesetting_illnesstypeMaxAggregateOutputType = {
+    id: number | null
+    servicesettingid: number | null
+    illnesstypeid: number | null
+  }
+
+  export type Servicesetting_illnesstypeCountAggregateOutputType = {
+    id: number
+    servicesettingid: number
+    illnesstypeid: number
+    _all: number
+  }
+
+
+  export type Servicesetting_illnesstypeAvgAggregateInputType = {
+    id?: true
+    servicesettingid?: true
+    illnesstypeid?: true
+  }
+
+  export type Servicesetting_illnesstypeSumAggregateInputType = {
+    id?: true
+    servicesettingid?: true
+    illnesstypeid?: true
+  }
+
+  export type Servicesetting_illnesstypeMinAggregateInputType = {
+    id?: true
+    servicesettingid?: true
+    illnesstypeid?: true
+  }
+
+  export type Servicesetting_illnesstypeMaxAggregateInputType = {
+    id?: true
+    servicesettingid?: true
+    illnesstypeid?: true
+  }
+
+  export type Servicesetting_illnesstypeCountAggregateInputType = {
+    id?: true
+    servicesettingid?: true
+    illnesstypeid?: true
+    _all?: true
+  }
+
+  export type Servicesetting_illnesstypeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which servicesetting_illnesstype to aggregate.
+     */
+    where?: servicesetting_illnesstypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of servicesetting_illnesstypes to fetch.
+     */
+    orderBy?: servicesetting_illnesstypeOrderByWithRelationInput | servicesetting_illnesstypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: servicesetting_illnesstypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` servicesetting_illnesstypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` servicesetting_illnesstypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned servicesetting_illnesstypes
+    **/
+    _count?: true | Servicesetting_illnesstypeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Servicesetting_illnesstypeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Servicesetting_illnesstypeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Servicesetting_illnesstypeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Servicesetting_illnesstypeMaxAggregateInputType
+  }
+
+  export type GetServicesetting_illnesstypeAggregateType<T extends Servicesetting_illnesstypeAggregateArgs> = {
+        [P in keyof T & keyof AggregateServicesetting_illnesstype]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServicesetting_illnesstype[P]>
+      : GetScalarType<T[P], AggregateServicesetting_illnesstype[P]>
+  }
+
+
+
+
+  export type servicesetting_illnesstypeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: servicesetting_illnesstypeWhereInput
+    orderBy?: servicesetting_illnesstypeOrderByWithAggregationInput | servicesetting_illnesstypeOrderByWithAggregationInput[]
+    by: Servicesetting_illnesstypeScalarFieldEnum[] | Servicesetting_illnesstypeScalarFieldEnum
+    having?: servicesetting_illnesstypeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Servicesetting_illnesstypeCountAggregateInputType | true
+    _avg?: Servicesetting_illnesstypeAvgAggregateInputType
+    _sum?: Servicesetting_illnesstypeSumAggregateInputType
+    _min?: Servicesetting_illnesstypeMinAggregateInputType
+    _max?: Servicesetting_illnesstypeMaxAggregateInputType
+  }
+
+  export type Servicesetting_illnesstypeGroupByOutputType = {
+    id: number
+    servicesettingid: number
+    illnesstypeid: number
+    _count: Servicesetting_illnesstypeCountAggregateOutputType | null
+    _avg: Servicesetting_illnesstypeAvgAggregateOutputType | null
+    _sum: Servicesetting_illnesstypeSumAggregateOutputType | null
+    _min: Servicesetting_illnesstypeMinAggregateOutputType | null
+    _max: Servicesetting_illnesstypeMaxAggregateOutputType | null
+  }
+
+  type GetServicesetting_illnesstypeGroupByPayload<T extends servicesetting_illnesstypeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Servicesetting_illnesstypeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Servicesetting_illnesstypeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Servicesetting_illnesstypeGroupByOutputType[P]>
+            : GetScalarType<T[P], Servicesetting_illnesstypeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type servicesetting_illnesstypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    servicesettingid?: boolean
+    illnesstypeid?: boolean
+    illnesstype?: boolean | illnesstypeDefaultArgs<ExtArgs>
+    servicesetting?: boolean | servicesettingDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["servicesetting_illnesstype"]>
+
+  export type servicesetting_illnesstypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    servicesettingid?: boolean
+    illnesstypeid?: boolean
+    illnesstype?: boolean | illnesstypeDefaultArgs<ExtArgs>
+    servicesetting?: boolean | servicesettingDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["servicesetting_illnesstype"]>
+
+  export type servicesetting_illnesstypeSelectScalar = {
+    id?: boolean
+    servicesettingid?: boolean
+    illnesstypeid?: boolean
+  }
+
+  export type servicesetting_illnesstypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    illnesstype?: boolean | illnesstypeDefaultArgs<ExtArgs>
+    servicesetting?: boolean | servicesettingDefaultArgs<ExtArgs>
+  }
+  export type servicesetting_illnesstypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    illnesstype?: boolean | illnesstypeDefaultArgs<ExtArgs>
+    servicesetting?: boolean | servicesettingDefaultArgs<ExtArgs>
+  }
+
+  export type $servicesetting_illnesstypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "servicesetting_illnesstype"
+    objects: {
+      illnesstype: Prisma.$illnesstypePayload<ExtArgs>
+      servicesetting: Prisma.$servicesettingPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      servicesettingid: number
+      illnesstypeid: number
+    }, ExtArgs["result"]["servicesetting_illnesstype"]>
+    composites: {}
+  }
+
+  type servicesetting_illnesstypeGetPayload<S extends boolean | null | undefined | servicesetting_illnesstypeDefaultArgs> = $Result.GetResult<Prisma.$servicesetting_illnesstypePayload, S>
+
+  type servicesetting_illnesstypeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<servicesetting_illnesstypeFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Servicesetting_illnesstypeCountAggregateInputType | true
+    }
+
+  export interface servicesetting_illnesstypeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['servicesetting_illnesstype'], meta: { name: 'servicesetting_illnesstype' } }
+    /**
+     * Find zero or one Servicesetting_illnesstype that matches the filter.
+     * @param {servicesetting_illnesstypeFindUniqueArgs} args - Arguments to find a Servicesetting_illnesstype
+     * @example
+     * // Get one Servicesetting_illnesstype
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends servicesetting_illnesstypeFindUniqueArgs>(args: SelectSubset<T, servicesetting_illnesstypeFindUniqueArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Servicesetting_illnesstype that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {servicesetting_illnesstypeFindUniqueOrThrowArgs} args - Arguments to find a Servicesetting_illnesstype
+     * @example
+     * // Get one Servicesetting_illnesstype
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends servicesetting_illnesstypeFindUniqueOrThrowArgs>(args: SelectSubset<T, servicesetting_illnesstypeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Servicesetting_illnesstype that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {servicesetting_illnesstypeFindFirstArgs} args - Arguments to find a Servicesetting_illnesstype
+     * @example
+     * // Get one Servicesetting_illnesstype
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends servicesetting_illnesstypeFindFirstArgs>(args?: SelectSubset<T, servicesetting_illnesstypeFindFirstArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Servicesetting_illnesstype that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {servicesetting_illnesstypeFindFirstOrThrowArgs} args - Arguments to find a Servicesetting_illnesstype
+     * @example
+     * // Get one Servicesetting_illnesstype
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends servicesetting_illnesstypeFindFirstOrThrowArgs>(args?: SelectSubset<T, servicesetting_illnesstypeFindFirstOrThrowArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Servicesetting_illnesstypes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {servicesetting_illnesstypeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Servicesetting_illnesstypes
+     * const servicesetting_illnesstypes = await prisma.servicesetting_illnesstype.findMany()
+     * 
+     * // Get first 10 Servicesetting_illnesstypes
+     * const servicesetting_illnesstypes = await prisma.servicesetting_illnesstype.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const servicesetting_illnesstypeWithIdOnly = await prisma.servicesetting_illnesstype.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends servicesetting_illnesstypeFindManyArgs>(args?: SelectSubset<T, servicesetting_illnesstypeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Servicesetting_illnesstype.
+     * @param {servicesetting_illnesstypeCreateArgs} args - Arguments to create a Servicesetting_illnesstype.
+     * @example
+     * // Create one Servicesetting_illnesstype
+     * const Servicesetting_illnesstype = await prisma.servicesetting_illnesstype.create({
+     *   data: {
+     *     // ... data to create a Servicesetting_illnesstype
+     *   }
+     * })
+     * 
+     */
+    create<T extends servicesetting_illnesstypeCreateArgs>(args: SelectSubset<T, servicesetting_illnesstypeCreateArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Servicesetting_illnesstypes.
+     * @param {servicesetting_illnesstypeCreateManyArgs} args - Arguments to create many Servicesetting_illnesstypes.
+     * @example
+     * // Create many Servicesetting_illnesstypes
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends servicesetting_illnesstypeCreateManyArgs>(args?: SelectSubset<T, servicesetting_illnesstypeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Servicesetting_illnesstypes and returns the data saved in the database.
+     * @param {servicesetting_illnesstypeCreateManyAndReturnArgs} args - Arguments to create many Servicesetting_illnesstypes.
+     * @example
+     * // Create many Servicesetting_illnesstypes
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Servicesetting_illnesstypes and only return the `id`
+     * const servicesetting_illnesstypeWithIdOnly = await prisma.servicesetting_illnesstype.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends servicesetting_illnesstypeCreateManyAndReturnArgs>(args?: SelectSubset<T, servicesetting_illnesstypeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Servicesetting_illnesstype.
+     * @param {servicesetting_illnesstypeDeleteArgs} args - Arguments to delete one Servicesetting_illnesstype.
+     * @example
+     * // Delete one Servicesetting_illnesstype
+     * const Servicesetting_illnesstype = await prisma.servicesetting_illnesstype.delete({
+     *   where: {
+     *     // ... filter to delete one Servicesetting_illnesstype
+     *   }
+     * })
+     * 
+     */
+    delete<T extends servicesetting_illnesstypeDeleteArgs>(args: SelectSubset<T, servicesetting_illnesstypeDeleteArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Servicesetting_illnesstype.
+     * @param {servicesetting_illnesstypeUpdateArgs} args - Arguments to update one Servicesetting_illnesstype.
+     * @example
+     * // Update one Servicesetting_illnesstype
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends servicesetting_illnesstypeUpdateArgs>(args: SelectSubset<T, servicesetting_illnesstypeUpdateArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Servicesetting_illnesstypes.
+     * @param {servicesetting_illnesstypeDeleteManyArgs} args - Arguments to filter Servicesetting_illnesstypes to delete.
+     * @example
+     * // Delete a few Servicesetting_illnesstypes
+     * const { count } = await prisma.servicesetting_illnesstype.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends servicesetting_illnesstypeDeleteManyArgs>(args?: SelectSubset<T, servicesetting_illnesstypeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Servicesetting_illnesstypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {servicesetting_illnesstypeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Servicesetting_illnesstypes
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends servicesetting_illnesstypeUpdateManyArgs>(args: SelectSubset<T, servicesetting_illnesstypeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Servicesetting_illnesstype.
+     * @param {servicesetting_illnesstypeUpsertArgs} args - Arguments to update or create a Servicesetting_illnesstype.
+     * @example
+     * // Update or create a Servicesetting_illnesstype
+     * const servicesetting_illnesstype = await prisma.servicesetting_illnesstype.upsert({
+     *   create: {
+     *     // ... data to create a Servicesetting_illnesstype
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Servicesetting_illnesstype we want to update
+     *   }
+     * })
+     */
+    upsert<T extends servicesetting_illnesstypeUpsertArgs>(args: SelectSubset<T, servicesetting_illnesstypeUpsertArgs<ExtArgs>>): Prisma__servicesetting_illnesstypeClient<$Result.GetResult<Prisma.$servicesetting_illnesstypePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Servicesetting_illnesstypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {servicesetting_illnesstypeCountArgs} args - Arguments to filter Servicesetting_illnesstypes to count.
+     * @example
+     * // Count the number of Servicesetting_illnesstypes
+     * const count = await prisma.servicesetting_illnesstype.count({
+     *   where: {
+     *     // ... the filter for the Servicesetting_illnesstypes we want to count
+     *   }
+     * })
+    **/
+    count<T extends servicesetting_illnesstypeCountArgs>(
+      args?: Subset<T, servicesetting_illnesstypeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Servicesetting_illnesstypeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Servicesetting_illnesstype.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Servicesetting_illnesstypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Servicesetting_illnesstypeAggregateArgs>(args: Subset<T, Servicesetting_illnesstypeAggregateArgs>): Prisma.PrismaPromise<GetServicesetting_illnesstypeAggregateType<T>>
+
+    /**
+     * Group by Servicesetting_illnesstype.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {servicesetting_illnesstypeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends servicesetting_illnesstypeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: servicesetting_illnesstypeGroupByArgs['orderBy'] }
+        : { orderBy?: servicesetting_illnesstypeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, servicesetting_illnesstypeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServicesetting_illnesstypeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the servicesetting_illnesstype model
+   */
+  readonly fields: servicesetting_illnesstypeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for servicesetting_illnesstype.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__servicesetting_illnesstypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    illnesstype<T extends illnesstypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, illnesstypeDefaultArgs<ExtArgs>>): Prisma__illnesstypeClient<$Result.GetResult<Prisma.$illnesstypePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    servicesetting<T extends servicesettingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, servicesettingDefaultArgs<ExtArgs>>): Prisma__servicesettingClient<$Result.GetResult<Prisma.$servicesettingPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the servicesetting_illnesstype model
+   */ 
+  interface servicesetting_illnesstypeFieldRefs {
+    readonly id: FieldRef<"servicesetting_illnesstype", 'Int'>
+    readonly servicesettingid: FieldRef<"servicesetting_illnesstype", 'Int'>
+    readonly illnesstypeid: FieldRef<"servicesetting_illnesstype", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * servicesetting_illnesstype findUnique
+   */
+  export type servicesetting_illnesstypeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * Filter, which servicesetting_illnesstype to fetch.
+     */
+    where: servicesetting_illnesstypeWhereUniqueInput
+  }
+
+  /**
+   * servicesetting_illnesstype findUniqueOrThrow
+   */
+  export type servicesetting_illnesstypeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * Filter, which servicesetting_illnesstype to fetch.
+     */
+    where: servicesetting_illnesstypeWhereUniqueInput
+  }
+
+  /**
+   * servicesetting_illnesstype findFirst
+   */
+  export type servicesetting_illnesstypeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * Filter, which servicesetting_illnesstype to fetch.
+     */
+    where?: servicesetting_illnesstypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of servicesetting_illnesstypes to fetch.
+     */
+    orderBy?: servicesetting_illnesstypeOrderByWithRelationInput | servicesetting_illnesstypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for servicesetting_illnesstypes.
+     */
+    cursor?: servicesetting_illnesstypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` servicesetting_illnesstypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` servicesetting_illnesstypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of servicesetting_illnesstypes.
+     */
+    distinct?: Servicesetting_illnesstypeScalarFieldEnum | Servicesetting_illnesstypeScalarFieldEnum[]
+  }
+
+  /**
+   * servicesetting_illnesstype findFirstOrThrow
+   */
+  export type servicesetting_illnesstypeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * Filter, which servicesetting_illnesstype to fetch.
+     */
+    where?: servicesetting_illnesstypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of servicesetting_illnesstypes to fetch.
+     */
+    orderBy?: servicesetting_illnesstypeOrderByWithRelationInput | servicesetting_illnesstypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for servicesetting_illnesstypes.
+     */
+    cursor?: servicesetting_illnesstypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` servicesetting_illnesstypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` servicesetting_illnesstypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of servicesetting_illnesstypes.
+     */
+    distinct?: Servicesetting_illnesstypeScalarFieldEnum | Servicesetting_illnesstypeScalarFieldEnum[]
+  }
+
+  /**
+   * servicesetting_illnesstype findMany
+   */
+  export type servicesetting_illnesstypeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * Filter, which servicesetting_illnesstypes to fetch.
+     */
+    where?: servicesetting_illnesstypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of servicesetting_illnesstypes to fetch.
+     */
+    orderBy?: servicesetting_illnesstypeOrderByWithRelationInput | servicesetting_illnesstypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing servicesetting_illnesstypes.
+     */
+    cursor?: servicesetting_illnesstypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` servicesetting_illnesstypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` servicesetting_illnesstypes.
+     */
+    skip?: number
+    distinct?: Servicesetting_illnesstypeScalarFieldEnum | Servicesetting_illnesstypeScalarFieldEnum[]
+  }
+
+  /**
+   * servicesetting_illnesstype create
+   */
+  export type servicesetting_illnesstypeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a servicesetting_illnesstype.
+     */
+    data: XOR<servicesetting_illnesstypeCreateInput, servicesetting_illnesstypeUncheckedCreateInput>
+  }
+
+  /**
+   * servicesetting_illnesstype createMany
+   */
+  export type servicesetting_illnesstypeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many servicesetting_illnesstypes.
+     */
+    data: servicesetting_illnesstypeCreateManyInput | servicesetting_illnesstypeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * servicesetting_illnesstype createManyAndReturn
+   */
+  export type servicesetting_illnesstypeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many servicesetting_illnesstypes.
+     */
+    data: servicesetting_illnesstypeCreateManyInput | servicesetting_illnesstypeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * servicesetting_illnesstype update
+   */
+  export type servicesetting_illnesstypeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a servicesetting_illnesstype.
+     */
+    data: XOR<servicesetting_illnesstypeUpdateInput, servicesetting_illnesstypeUncheckedUpdateInput>
+    /**
+     * Choose, which servicesetting_illnesstype to update.
+     */
+    where: servicesetting_illnesstypeWhereUniqueInput
+  }
+
+  /**
+   * servicesetting_illnesstype updateMany
+   */
+  export type servicesetting_illnesstypeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update servicesetting_illnesstypes.
+     */
+    data: XOR<servicesetting_illnesstypeUpdateManyMutationInput, servicesetting_illnesstypeUncheckedUpdateManyInput>
+    /**
+     * Filter which servicesetting_illnesstypes to update
+     */
+    where?: servicesetting_illnesstypeWhereInput
+  }
+
+  /**
+   * servicesetting_illnesstype upsert
+   */
+  export type servicesetting_illnesstypeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the servicesetting_illnesstype to update in case it exists.
+     */
+    where: servicesetting_illnesstypeWhereUniqueInput
+    /**
+     * In case the servicesetting_illnesstype found by the `where` argument doesn't exist, create a new servicesetting_illnesstype with this data.
+     */
+    create: XOR<servicesetting_illnesstypeCreateInput, servicesetting_illnesstypeUncheckedCreateInput>
+    /**
+     * In case the servicesetting_illnesstype was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<servicesetting_illnesstypeUpdateInput, servicesetting_illnesstypeUncheckedUpdateInput>
+  }
+
+  /**
+   * servicesetting_illnesstype delete
+   */
+  export type servicesetting_illnesstypeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+    /**
+     * Filter which servicesetting_illnesstype to delete.
+     */
+    where: servicesetting_illnesstypeWhereUniqueInput
+  }
+
+  /**
+   * servicesetting_illnesstype deleteMany
+   */
+  export type servicesetting_illnesstypeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which servicesetting_illnesstypes to delete
+     */
+    where?: servicesetting_illnesstypeWhereInput
+  }
+
+  /**
+   * servicesetting_illnesstype without action
+   */
+  export type servicesetting_illnesstypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the servicesetting_illnesstype
+     */
+    select?: servicesetting_illnesstypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -35885,7 +37078,10 @@ export namespace Prisma {
     haveconcurrentnote: 'haveconcurrentnote',
     totalestimatedcost: 'totalestimatedcost',
     admitdatetime: 'admitdatetime',
-    isipddischarge: 'isipddischarge'
+    isipddischarge: 'isipddischarge',
+    estimatebyvn: 'estimatebyvn',
+    estimatebilltype: 'estimatebilltype',
+    estimateautobyordersetcode: 'estimateautobyordersetcode'
   };
 
   export type MedicaltransactionsScalarFieldEnum = (typeof MedicaltransactionsScalarFieldEnum)[keyof typeof MedicaltransactionsScalarFieldEnum]
@@ -36116,6 +37312,15 @@ export namespace Prisma {
   };
 
   export type PrebillingtransactionsScalarFieldEnum = (typeof PrebillingtransactionsScalarFieldEnum)[keyof typeof PrebillingtransactionsScalarFieldEnum]
+
+
+  export const Servicesetting_illnesstypeScalarFieldEnum: {
+    id: 'id',
+    servicesettingid: 'servicesettingid',
+    illnesstypeid: 'illnesstypeid'
+  };
+
+  export type Servicesetting_illnesstypeScalarFieldEnum = (typeof Servicesetting_illnesstypeScalarFieldEnum)[keyof typeof Servicesetting_illnesstypeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -37130,6 +38335,7 @@ export namespace Prisma {
     illnesstypedesc?: StringNullableFilter<"illnesstype"> | string | null
     insurerid?: IntNullableFilter<"illnesstype"> | number | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+    servicesetting_illnesstype?: Servicesetting_illnesstypeListRelationFilter
   }
 
   export type illnesstypeOrderByWithRelationInput = {
@@ -37138,6 +38344,7 @@ export namespace Prisma {
     illnesstypedesc?: SortOrderInput | SortOrder
     insurerid?: SortOrderInput | SortOrder
     insurers?: insurersOrderByWithRelationInput
+    servicesetting_illnesstype?: servicesetting_illnesstypeOrderByRelationAggregateInput
   }
 
   export type illnesstypeWhereUniqueInput = Prisma.AtLeast<{
@@ -37149,6 +38356,7 @@ export namespace Prisma {
     illnesstypedesc?: StringNullableFilter<"illnesstype"> | string | null
     insurerid?: IntNullableFilter<"illnesstype"> | number | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+    servicesetting_illnesstype?: Servicesetting_illnesstypeListRelationFilter
   }, "id">
 
   export type illnesstypeOrderByWithAggregationInput = {
@@ -37399,6 +38607,9 @@ export namespace Prisma {
     totalestimatedcost?: StringNullableFilter<"medicaltransactions"> | string | null
     admitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
     isipddischarge?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    estimatebyvn?: StringNullableFilter<"medicaltransactions"> | string | null
+    estimatebilltype?: StringNullableFilter<"medicaltransactions"> | string | null
+    estimateautobyordersetcode?: StringNullableFilter<"medicaltransactions"> | string | null
   }
 
   export type medicaltransactionsOrderByWithRelationInput = {
@@ -37446,6 +38657,9 @@ export namespace Prisma {
     totalestimatedcost?: SortOrderInput | SortOrder
     admitdatetime?: SortOrderInput | SortOrder
     isipddischarge?: SortOrderInput | SortOrder
+    estimatebyvn?: SortOrderInput | SortOrder
+    estimatebilltype?: SortOrderInput | SortOrder
+    estimateautobyordersetcode?: SortOrderInput | SortOrder
   }
 
   export type medicaltransactionsWhereUniqueInput = Prisma.AtLeast<{
@@ -37496,6 +38710,9 @@ export namespace Prisma {
     totalestimatedcost?: StringNullableFilter<"medicaltransactions"> | string | null
     admitdatetime?: StringNullableFilter<"medicaltransactions"> | string | null
     isipddischarge?: BoolNullableFilter<"medicaltransactions"> | boolean | null
+    estimatebyvn?: StringNullableFilter<"medicaltransactions"> | string | null
+    estimatebilltype?: StringNullableFilter<"medicaltransactions"> | string | null
+    estimateautobyordersetcode?: StringNullableFilter<"medicaltransactions"> | string | null
   }, "id">
 
   export type medicaltransactionsOrderByWithAggregationInput = {
@@ -37543,6 +38760,9 @@ export namespace Prisma {
     totalestimatedcost?: SortOrderInput | SortOrder
     admitdatetime?: SortOrderInput | SortOrder
     isipddischarge?: SortOrderInput | SortOrder
+    estimatebyvn?: SortOrderInput | SortOrder
+    estimatebilltype?: SortOrderInput | SortOrder
+    estimateautobyordersetcode?: SortOrderInput | SortOrder
     _count?: medicaltransactionsCountOrderByAggregateInput
     _avg?: medicaltransactionsAvgOrderByAggregateInput
     _max?: medicaltransactionsMaxOrderByAggregateInput
@@ -37598,6 +38818,9 @@ export namespace Prisma {
     totalestimatedcost?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     admitdatetime?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
     isipddischarge?: BoolNullableWithAggregatesFilter<"medicaltransactions"> | boolean | null
+    estimatebyvn?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    estimatebilltype?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
+    estimateautobyordersetcode?: StringNullableWithAggregatesFilter<"medicaltransactions"> | string | null
   }
 
   export type policytypeWhereInput = {
@@ -37739,6 +38962,7 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"servicesetting"> | number | null
     abbreviation?: StringNullableFilter<"servicesetting"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+    servicesetting_illnesstype?: Servicesetting_illnesstypeListRelationFilter
   }
 
   export type servicesettingOrderByWithRelationInput = {
@@ -37748,6 +38972,7 @@ export namespace Prisma {
     insurerid?: SortOrderInput | SortOrder
     abbreviation?: SortOrderInput | SortOrder
     insurers?: insurersOrderByWithRelationInput
+    servicesetting_illnesstype?: servicesetting_illnesstypeOrderByRelationAggregateInput
   }
 
   export type servicesettingWhereUniqueInput = Prisma.AtLeast<{
@@ -37760,6 +38985,7 @@ export namespace Prisma {
     insurerid?: IntNullableFilter<"servicesetting"> | number | null
     abbreviation?: StringNullableFilter<"servicesetting"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
+    servicesetting_illnesstype?: Servicesetting_illnesstypeListRelationFilter
   }, "id">
 
   export type servicesettingOrderByWithAggregationInput = {
@@ -38761,6 +39987,57 @@ export namespace Prisma {
     totalbillamount?: StringNullableWithAggregatesFilter<"prebillingtransactions"> | string | null
   }
 
+  export type servicesetting_illnesstypeWhereInput = {
+    AND?: servicesetting_illnesstypeWhereInput | servicesetting_illnesstypeWhereInput[]
+    OR?: servicesetting_illnesstypeWhereInput[]
+    NOT?: servicesetting_illnesstypeWhereInput | servicesetting_illnesstypeWhereInput[]
+    id?: IntFilter<"servicesetting_illnesstype"> | number
+    servicesettingid?: IntFilter<"servicesetting_illnesstype"> | number
+    illnesstypeid?: IntFilter<"servicesetting_illnesstype"> | number
+    illnesstype?: XOR<IllnesstypeRelationFilter, illnesstypeWhereInput>
+    servicesetting?: XOR<ServicesettingRelationFilter, servicesettingWhereInput>
+  }
+
+  export type servicesetting_illnesstypeOrderByWithRelationInput = {
+    id?: SortOrder
+    servicesettingid?: SortOrder
+    illnesstypeid?: SortOrder
+    illnesstype?: illnesstypeOrderByWithRelationInput
+    servicesetting?: servicesettingOrderByWithRelationInput
+  }
+
+  export type servicesetting_illnesstypeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    servicesettingid_illnesstypeid?: servicesetting_illnesstypeServicesettingidIllnesstypeidCompoundUniqueInput
+    AND?: servicesetting_illnesstypeWhereInput | servicesetting_illnesstypeWhereInput[]
+    OR?: servicesetting_illnesstypeWhereInput[]
+    NOT?: servicesetting_illnesstypeWhereInput | servicesetting_illnesstypeWhereInput[]
+    servicesettingid?: IntFilter<"servicesetting_illnesstype"> | number
+    illnesstypeid?: IntFilter<"servicesetting_illnesstype"> | number
+    illnesstype?: XOR<IllnesstypeRelationFilter, illnesstypeWhereInput>
+    servicesetting?: XOR<ServicesettingRelationFilter, servicesettingWhereInput>
+  }, "id" | "servicesettingid_illnesstypeid">
+
+  export type servicesetting_illnesstypeOrderByWithAggregationInput = {
+    id?: SortOrder
+    servicesettingid?: SortOrder
+    illnesstypeid?: SortOrder
+    _count?: servicesetting_illnesstypeCountOrderByAggregateInput
+    _avg?: servicesetting_illnesstypeAvgOrderByAggregateInput
+    _max?: servicesetting_illnesstypeMaxOrderByAggregateInput
+    _min?: servicesetting_illnesstypeMinOrderByAggregateInput
+    _sum?: servicesetting_illnesstypeSumOrderByAggregateInput
+  }
+
+  export type servicesetting_illnesstypeScalarWhereWithAggregatesInput = {
+    AND?: servicesetting_illnesstypeScalarWhereWithAggregatesInput | servicesetting_illnesstypeScalarWhereWithAggregatesInput[]
+    OR?: servicesetting_illnesstypeScalarWhereWithAggregatesInput[]
+    NOT?: servicesetting_illnesstypeScalarWhereWithAggregatesInput | servicesetting_illnesstypeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"servicesetting_illnesstype"> | number
+    servicesettingid?: IntWithAggregatesFilter<"servicesetting_illnesstype"> | number
+    illnesstypeid?: IntWithAggregatesFilter<"servicesetting_illnesstype"> | number
+  }
+
   export type accidentcauseover45daysCreateInput = {
     causeovercode: string
     causeoverdesc?: string | null
@@ -39632,6 +40909,7 @@ export namespace Prisma {
     illnesstypecode: string
     illnesstypedesc?: string | null
     insurers?: insurersCreateNestedOneWithoutIllnesstypeInput
+    servicesetting_illnesstype?: servicesetting_illnesstypeCreateNestedManyWithoutIllnesstypeInput
   }
 
   export type illnesstypeUncheckedCreateInput = {
@@ -39639,12 +40917,14 @@ export namespace Prisma {
     illnesstypecode: string
     illnesstypedesc?: string | null
     insurerid?: number | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedCreateNestedManyWithoutIllnesstypeInput
   }
 
   export type illnesstypeUpdateInput = {
     illnesstypecode?: StringFieldUpdateOperationsInput | string
     illnesstypedesc?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutIllnesstypeNestedInput
+    servicesetting_illnesstype?: servicesetting_illnesstypeUpdateManyWithoutIllnesstypeNestedInput
   }
 
   export type illnesstypeUncheckedUpdateInput = {
@@ -39652,6 +40932,7 @@ export namespace Prisma {
     illnesstypecode?: StringFieldUpdateOperationsInput | string
     illnesstypedesc?: NullableStringFieldUpdateOperationsInput | string | null
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedUpdateManyWithoutIllnesstypeNestedInput
   }
 
   export type illnesstypeCreateManyInput = {
@@ -39911,6 +41192,9 @@ export namespace Prisma {
     totalestimatedcost?: string | null
     admitdatetime?: string | null
     isipddischarge?: boolean | null
+    estimatebyvn?: string | null
+    estimatebilltype?: string | null
+    estimateautobyordersetcode?: string | null
   }
 
   export type medicaltransactionsUncheckedCreateInput = {
@@ -39958,6 +41242,9 @@ export namespace Prisma {
     totalestimatedcost?: string | null
     admitdatetime?: string | null
     isipddischarge?: boolean | null
+    estimatebyvn?: string | null
+    estimatebilltype?: string | null
+    estimateautobyordersetcode?: string | null
   }
 
   export type medicaltransactionsUpdateInput = {
@@ -40004,6 +41291,9 @@ export namespace Prisma {
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
     admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    estimatebyvn?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatebilltype?: NullableStringFieldUpdateOperationsInput | string | null
+    estimateautobyordersetcode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateInput = {
@@ -40051,6 +41341,9 @@ export namespace Prisma {
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
     admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    estimatebyvn?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatebilltype?: NullableStringFieldUpdateOperationsInput | string | null
+    estimateautobyordersetcode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsCreateManyInput = {
@@ -40098,6 +41391,9 @@ export namespace Prisma {
     totalestimatedcost?: string | null
     admitdatetime?: string | null
     isipddischarge?: boolean | null
+    estimatebyvn?: string | null
+    estimatebilltype?: string | null
+    estimateautobyordersetcode?: string | null
   }
 
   export type medicaltransactionsUpdateManyMutationInput = {
@@ -40144,6 +41440,9 @@ export namespace Prisma {
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
     admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    estimatebyvn?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatebilltype?: NullableStringFieldUpdateOperationsInput | string | null
+    estimateautobyordersetcode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type medicaltransactionsUncheckedUpdateManyInput = {
@@ -40191,6 +41490,9 @@ export namespace Prisma {
     totalestimatedcost?: NullableStringFieldUpdateOperationsInput | string | null
     admitdatetime?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    estimatebyvn?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatebilltype?: NullableStringFieldUpdateOperationsInput | string | null
+    estimateautobyordersetcode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type policytypeCreateInput = {
@@ -40323,6 +41625,7 @@ export namespace Prisma {
     servicesettingdesc: string
     abbreviation?: string | null
     insurers?: insurersCreateNestedOneWithoutServicesettingInput
+    servicesetting_illnesstype?: servicesetting_illnesstypeCreateNestedManyWithoutServicesettingInput
   }
 
   export type servicesettingUncheckedCreateInput = {
@@ -40331,6 +41634,7 @@ export namespace Prisma {
     servicesettingdesc: string
     insurerid?: number | null
     abbreviation?: string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedCreateNestedManyWithoutServicesettingInput
   }
 
   export type servicesettingUpdateInput = {
@@ -40338,6 +41642,7 @@ export namespace Prisma {
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutServicesettingNestedInput
+    servicesetting_illnesstype?: servicesetting_illnesstypeUpdateManyWithoutServicesettingNestedInput
   }
 
   export type servicesettingUncheckedUpdateInput = {
@@ -40346,6 +41651,7 @@ export namespace Prisma {
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingNestedInput
   }
 
   export type servicesettingCreateManyInput = {
@@ -41451,6 +42757,44 @@ export namespace Prisma {
     totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type servicesetting_illnesstypeCreateInput = {
+    illnesstype: illnesstypeCreateNestedOneWithoutServicesetting_illnesstypeInput
+    servicesetting: servicesettingCreateNestedOneWithoutServicesetting_illnesstypeInput
+  }
+
+  export type servicesetting_illnesstypeUncheckedCreateInput = {
+    id?: number
+    servicesettingid: number
+    illnesstypeid: number
+  }
+
+  export type servicesetting_illnesstypeUpdateInput = {
+    illnesstype?: illnesstypeUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
+    servicesetting?: servicesettingUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    servicesettingid?: IntFieldUpdateOperationsInput | number
+    illnesstypeid?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type servicesetting_illnesstypeCreateManyInput = {
+    id?: number
+    servicesettingid: number
+    illnesstypeid: number
+  }
+
+  export type servicesetting_illnesstypeUpdateManyMutationInput = {
+
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    servicesettingid?: IntFieldUpdateOperationsInput | number
+    illnesstypeid?: IntFieldUpdateOperationsInput | number
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -42253,6 +43597,16 @@ export namespace Prisma {
     insurerid?: SortOrder
   }
 
+  export type Servicesetting_illnesstypeListRelationFilter = {
+    every?: servicesetting_illnesstypeWhereInput
+    some?: servicesetting_illnesstypeWhereInput
+    none?: servicesetting_illnesstypeWhereInput
+  }
+
+  export type servicesetting_illnesstypeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type illnesstypeCountOrderByAggregateInput = {
     id?: SortOrder
     illnesstypecode?: SortOrder
@@ -42636,6 +43990,9 @@ export namespace Prisma {
     totalestimatedcost?: SortOrder
     admitdatetime?: SortOrder
     isipddischarge?: SortOrder
+    estimatebyvn?: SortOrder
+    estimatebilltype?: SortOrder
+    estimateautobyordersetcode?: SortOrder
   }
 
   export type medicaltransactionsAvgOrderByAggregateInput = {
@@ -42688,6 +44045,9 @@ export namespace Prisma {
     totalestimatedcost?: SortOrder
     admitdatetime?: SortOrder
     isipddischarge?: SortOrder
+    estimatebyvn?: SortOrder
+    estimatebilltype?: SortOrder
+    estimateautobyordersetcode?: SortOrder
   }
 
   export type medicaltransactionsMinOrderByAggregateInput = {
@@ -42735,6 +44095,9 @@ export namespace Prisma {
     totalestimatedcost?: SortOrder
     admitdatetime?: SortOrder
     isipddischarge?: SortOrder
+    estimatebyvn?: SortOrder
+    estimatebilltype?: SortOrder
+    estimateautobyordersetcode?: SortOrder
   }
 
   export type medicaltransactionsSumOrderByAggregateInput = {
@@ -43454,6 +44817,51 @@ export namespace Prisma {
     insurerid?: SortOrder
   }
 
+  export type IllnesstypeRelationFilter = {
+    is?: illnesstypeWhereInput
+    isNot?: illnesstypeWhereInput
+  }
+
+  export type ServicesettingRelationFilter = {
+    is?: servicesettingWhereInput
+    isNot?: servicesettingWhereInput
+  }
+
+  export type servicesetting_illnesstypeServicesettingidIllnesstypeidCompoundUniqueInput = {
+    servicesettingid: number
+    illnesstypeid: number
+  }
+
+  export type servicesetting_illnesstypeCountOrderByAggregateInput = {
+    id?: SortOrder
+    servicesettingid?: SortOrder
+    illnesstypeid?: SortOrder
+  }
+
+  export type servicesetting_illnesstypeAvgOrderByAggregateInput = {
+    id?: SortOrder
+    servicesettingid?: SortOrder
+    illnesstypeid?: SortOrder
+  }
+
+  export type servicesetting_illnesstypeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    servicesettingid?: SortOrder
+    illnesstypeid?: SortOrder
+  }
+
+  export type servicesetting_illnesstypeMinOrderByAggregateInput = {
+    id?: SortOrder
+    servicesettingid?: SortOrder
+    illnesstypeid?: SortOrder
+  }
+
+  export type servicesetting_illnesstypeSumOrderByAggregateInput = {
+    id?: SortOrder
+    servicesettingid?: SortOrder
+    illnesstypeid?: SortOrder
+  }
+
   export type insurersCreateNestedOneWithoutAccidentcauseover45daysInput = {
     create?: XOR<insurersCreateWithoutAccidentcauseover45daysInput, insurersUncheckedCreateWithoutAccidentcauseover45daysInput>
     connectOrCreate?: insurersCreateOrConnectWithoutAccidentcauseover45daysInput
@@ -43884,6 +45292,20 @@ export namespace Prisma {
     connect?: insurersWhereUniqueInput
   }
 
+  export type servicesetting_illnesstypeCreateNestedManyWithoutIllnesstypeInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput> | servicesetting_illnesstypeCreateWithoutIllnesstypeInput[] | servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput | servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput[]
+    createMany?: servicesetting_illnesstypeCreateManyIllnesstypeInputEnvelope
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+  }
+
+  export type servicesetting_illnesstypeUncheckedCreateNestedManyWithoutIllnesstypeInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput> | servicesetting_illnesstypeCreateWithoutIllnesstypeInput[] | servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput | servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput[]
+    createMany?: servicesetting_illnesstypeCreateManyIllnesstypeInputEnvelope
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+  }
+
   export type insurersUpdateOneWithoutIllnesstypeNestedInput = {
     create?: XOR<insurersCreateWithoutIllnesstypeInput, insurersUncheckedCreateWithoutIllnesstypeInput>
     connectOrCreate?: insurersCreateOrConnectWithoutIllnesstypeInput
@@ -43892,6 +45314,34 @@ export namespace Prisma {
     delete?: insurersWhereInput | boolean
     connect?: insurersWhereUniqueInput
     update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutIllnesstypeInput, insurersUpdateWithoutIllnesstypeInput>, insurersUncheckedUpdateWithoutIllnesstypeInput>
+  }
+
+  export type servicesetting_illnesstypeUpdateManyWithoutIllnesstypeNestedInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput> | servicesetting_illnesstypeCreateWithoutIllnesstypeInput[] | servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput | servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput[]
+    upsert?: servicesetting_illnesstypeUpsertWithWhereUniqueWithoutIllnesstypeInput | servicesetting_illnesstypeUpsertWithWhereUniqueWithoutIllnesstypeInput[]
+    createMany?: servicesetting_illnesstypeCreateManyIllnesstypeInputEnvelope
+    set?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    disconnect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    delete?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    update?: servicesetting_illnesstypeUpdateWithWhereUniqueWithoutIllnesstypeInput | servicesetting_illnesstypeUpdateWithWhereUniqueWithoutIllnesstypeInput[]
+    updateMany?: servicesetting_illnesstypeUpdateManyWithWhereWithoutIllnesstypeInput | servicesetting_illnesstypeUpdateManyWithWhereWithoutIllnesstypeInput[]
+    deleteMany?: servicesetting_illnesstypeScalarWhereInput | servicesetting_illnesstypeScalarWhereInput[]
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateManyWithoutIllnesstypeNestedInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput> | servicesetting_illnesstypeCreateWithoutIllnesstypeInput[] | servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput | servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput[]
+    upsert?: servicesetting_illnesstypeUpsertWithWhereUniqueWithoutIllnesstypeInput | servicesetting_illnesstypeUpsertWithWhereUniqueWithoutIllnesstypeInput[]
+    createMany?: servicesetting_illnesstypeCreateManyIllnesstypeInputEnvelope
+    set?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    disconnect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    delete?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    update?: servicesetting_illnesstypeUpdateWithWhereUniqueWithoutIllnesstypeInput | servicesetting_illnesstypeUpdateWithWhereUniqueWithoutIllnesstypeInput[]
+    updateMany?: servicesetting_illnesstypeUpdateManyWithWhereWithoutIllnesstypeInput | servicesetting_illnesstypeUpdateManyWithWhereWithoutIllnesstypeInput[]
+    deleteMany?: servicesetting_illnesstypeScalarWhereInput | servicesetting_illnesstypeScalarWhereInput[]
   }
 
   export type accidenttransactionsCreateNestedOneWithoutInjurydetailInput = {
@@ -44956,6 +46406,20 @@ export namespace Prisma {
     connect?: insurersWhereUniqueInput
   }
 
+  export type servicesetting_illnesstypeCreateNestedManyWithoutServicesettingInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput> | servicesetting_illnesstypeCreateWithoutServicesettingInput[] | servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput | servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput[]
+    createMany?: servicesetting_illnesstypeCreateManyServicesettingInputEnvelope
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+  }
+
+  export type servicesetting_illnesstypeUncheckedCreateNestedManyWithoutServicesettingInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput> | servicesetting_illnesstypeCreateWithoutServicesettingInput[] | servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput | servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput[]
+    createMany?: servicesetting_illnesstypeCreateManyServicesettingInputEnvelope
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+  }
+
   export type insurersUpdateOneWithoutServicesettingNestedInput = {
     create?: XOR<insurersCreateWithoutServicesettingInput, insurersUncheckedCreateWithoutServicesettingInput>
     connectOrCreate?: insurersCreateOrConnectWithoutServicesettingInput
@@ -44964,6 +46428,34 @@ export namespace Prisma {
     delete?: insurersWhereInput | boolean
     connect?: insurersWhereUniqueInput
     update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutServicesettingInput, insurersUpdateWithoutServicesettingInput>, insurersUncheckedUpdateWithoutServicesettingInput>
+  }
+
+  export type servicesetting_illnesstypeUpdateManyWithoutServicesettingNestedInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput> | servicesetting_illnesstypeCreateWithoutServicesettingInput[] | servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput | servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput[]
+    upsert?: servicesetting_illnesstypeUpsertWithWhereUniqueWithoutServicesettingInput | servicesetting_illnesstypeUpsertWithWhereUniqueWithoutServicesettingInput[]
+    createMany?: servicesetting_illnesstypeCreateManyServicesettingInputEnvelope
+    set?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    disconnect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    delete?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    update?: servicesetting_illnesstypeUpdateWithWhereUniqueWithoutServicesettingInput | servicesetting_illnesstypeUpdateWithWhereUniqueWithoutServicesettingInput[]
+    updateMany?: servicesetting_illnesstypeUpdateManyWithWhereWithoutServicesettingInput | servicesetting_illnesstypeUpdateManyWithWhereWithoutServicesettingInput[]
+    deleteMany?: servicesetting_illnesstypeScalarWhereInput | servicesetting_illnesstypeScalarWhereInput[]
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingNestedInput = {
+    create?: XOR<servicesetting_illnesstypeCreateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput> | servicesetting_illnesstypeCreateWithoutServicesettingInput[] | servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput[]
+    connectOrCreate?: servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput | servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput[]
+    upsert?: servicesetting_illnesstypeUpsertWithWhereUniqueWithoutServicesettingInput | servicesetting_illnesstypeUpsertWithWhereUniqueWithoutServicesettingInput[]
+    createMany?: servicesetting_illnesstypeCreateManyServicesettingInputEnvelope
+    set?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    disconnect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    delete?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    connect?: servicesetting_illnesstypeWhereUniqueInput | servicesetting_illnesstypeWhereUniqueInput[]
+    update?: servicesetting_illnesstypeUpdateWithWhereUniqueWithoutServicesettingInput | servicesetting_illnesstypeUpdateWithWhereUniqueWithoutServicesettingInput[]
+    updateMany?: servicesetting_illnesstypeUpdateManyWithWhereWithoutServicesettingInput | servicesetting_illnesstypeUpdateManyWithWhereWithoutServicesettingInput[]
+    deleteMany?: servicesetting_illnesstypeScalarWhereInput | servicesetting_illnesstypeScalarWhereInput[]
   }
 
   export type claimantsCreateNestedOneWithoutTransactionclaimInput = {
@@ -45124,6 +46616,34 @@ export namespace Prisma {
     delete?: insurersWhereInput | boolean
     connect?: insurersWhereUniqueInput
     update?: XOR<XOR<insurersUpdateToOneWithWhereWithoutPrebillingtransactionsInput, insurersUpdateWithoutPrebillingtransactionsInput>, insurersUncheckedUpdateWithoutPrebillingtransactionsInput>
+  }
+
+  export type illnesstypeCreateNestedOneWithoutServicesetting_illnesstypeInput = {
+    create?: XOR<illnesstypeCreateWithoutServicesetting_illnesstypeInput, illnesstypeUncheckedCreateWithoutServicesetting_illnesstypeInput>
+    connectOrCreate?: illnesstypeCreateOrConnectWithoutServicesetting_illnesstypeInput
+    connect?: illnesstypeWhereUniqueInput
+  }
+
+  export type servicesettingCreateNestedOneWithoutServicesetting_illnesstypeInput = {
+    create?: XOR<servicesettingCreateWithoutServicesetting_illnesstypeInput, servicesettingUncheckedCreateWithoutServicesetting_illnesstypeInput>
+    connectOrCreate?: servicesettingCreateOrConnectWithoutServicesetting_illnesstypeInput
+    connect?: servicesettingWhereUniqueInput
+  }
+
+  export type illnesstypeUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput = {
+    create?: XOR<illnesstypeCreateWithoutServicesetting_illnesstypeInput, illnesstypeUncheckedCreateWithoutServicesetting_illnesstypeInput>
+    connectOrCreate?: illnesstypeCreateOrConnectWithoutServicesetting_illnesstypeInput
+    upsert?: illnesstypeUpsertWithoutServicesetting_illnesstypeInput
+    connect?: illnesstypeWhereUniqueInput
+    update?: XOR<XOR<illnesstypeUpdateToOneWithWhereWithoutServicesetting_illnesstypeInput, illnesstypeUpdateWithoutServicesetting_illnesstypeInput>, illnesstypeUncheckedUpdateWithoutServicesetting_illnesstypeInput>
+  }
+
+  export type servicesettingUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput = {
+    create?: XOR<servicesettingCreateWithoutServicesetting_illnesstypeInput, servicesettingUncheckedCreateWithoutServicesetting_illnesstypeInput>
+    connectOrCreate?: servicesettingCreateOrConnectWithoutServicesetting_illnesstypeInput
+    upsert?: servicesettingUpsertWithoutServicesetting_illnesstypeInput
+    connect?: servicesettingWhereUniqueInput
+    update?: XOR<XOR<servicesettingUpdateToOneWithWhereWithoutServicesetting_illnesstypeInput, servicesettingUpdateWithoutServicesetting_illnesstypeInput>, servicesettingUncheckedUpdateWithoutServicesetting_illnesstypeInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -47454,6 +48974,25 @@ export namespace Prisma {
     create: XOR<insurersCreateWithoutIllnesstypeInput, insurersUncheckedCreateWithoutIllnesstypeInput>
   }
 
+  export type servicesetting_illnesstypeCreateWithoutIllnesstypeInput = {
+    servicesetting: servicesettingCreateNestedOneWithoutServicesetting_illnesstypeInput
+  }
+
+  export type servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput = {
+    id?: number
+    servicesettingid: number
+  }
+
+  export type servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput = {
+    where: servicesetting_illnesstypeWhereUniqueInput
+    create: XOR<servicesetting_illnesstypeCreateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput>
+  }
+
+  export type servicesetting_illnesstypeCreateManyIllnesstypeInputEnvelope = {
+    data: servicesetting_illnesstypeCreateManyIllnesstypeInput | servicesetting_illnesstypeCreateManyIllnesstypeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type insurersUpsertWithoutIllnesstypeInput = {
     update: XOR<insurersUpdateWithoutIllnesstypeInput, insurersUncheckedUpdateWithoutIllnesstypeInput>
     create: XOR<insurersCreateWithoutIllnesstypeInput, insurersUncheckedCreateWithoutIllnesstypeInput>
@@ -47522,6 +49061,31 @@ export namespace Prisma {
     prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type servicesetting_illnesstypeUpsertWithWhereUniqueWithoutIllnesstypeInput = {
+    where: servicesetting_illnesstypeWhereUniqueInput
+    update: XOR<servicesetting_illnesstypeUpdateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedUpdateWithoutIllnesstypeInput>
+    create: XOR<servicesetting_illnesstypeCreateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput>
+  }
+
+  export type servicesetting_illnesstypeUpdateWithWhereUniqueWithoutIllnesstypeInput = {
+    where: servicesetting_illnesstypeWhereUniqueInput
+    data: XOR<servicesetting_illnesstypeUpdateWithoutIllnesstypeInput, servicesetting_illnesstypeUncheckedUpdateWithoutIllnesstypeInput>
+  }
+
+  export type servicesetting_illnesstypeUpdateManyWithWhereWithoutIllnesstypeInput = {
+    where: servicesetting_illnesstypeScalarWhereInput
+    data: XOR<servicesetting_illnesstypeUpdateManyMutationInput, servicesetting_illnesstypeUncheckedUpdateManyWithoutIllnesstypeInput>
+  }
+
+  export type servicesetting_illnesstypeScalarWhereInput = {
+    AND?: servicesetting_illnesstypeScalarWhereInput | servicesetting_illnesstypeScalarWhereInput[]
+    OR?: servicesetting_illnesstypeScalarWhereInput[]
+    NOT?: servicesetting_illnesstypeScalarWhereInput | servicesetting_illnesstypeScalarWhereInput[]
+    id?: IntFilter<"servicesetting_illnesstype"> | number
+    servicesettingid?: IntFilter<"servicesetting_illnesstype"> | number
+    illnesstypeid?: IntFilter<"servicesetting_illnesstype"> | number
   }
 
   export type accidenttransactionsCreateWithoutInjurydetailInput = {
@@ -48045,12 +49609,14 @@ export namespace Prisma {
   export type illnesstypeCreateWithoutInsurersInput = {
     illnesstypecode: string
     illnesstypedesc?: string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeCreateNestedManyWithoutIllnesstypeInput
   }
 
   export type illnesstypeUncheckedCreateWithoutInsurersInput = {
     id?: number
     illnesstypecode: string
     illnesstypedesc?: string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedCreateNestedManyWithoutIllnesstypeInput
   }
 
   export type illnesstypeCreateOrConnectWithoutInsurersInput = {
@@ -48231,6 +49797,7 @@ export namespace Prisma {
     servicesettingcode: string
     servicesettingdesc: string
     abbreviation?: string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeCreateNestedManyWithoutServicesettingInput
   }
 
   export type servicesettingUncheckedCreateWithoutInsurersInput = {
@@ -48238,6 +49805,7 @@ export namespace Prisma {
     servicesettingcode: string
     servicesettingdesc: string
     abbreviation?: string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedCreateNestedManyWithoutServicesettingInput
   }
 
   export type servicesettingCreateOrConnectWithoutInsurersInput = {
@@ -49282,6 +50850,25 @@ export namespace Prisma {
     create: XOR<insurersCreateWithoutServicesettingInput, insurersUncheckedCreateWithoutServicesettingInput>
   }
 
+  export type servicesetting_illnesstypeCreateWithoutServicesettingInput = {
+    illnesstype: illnesstypeCreateNestedOneWithoutServicesetting_illnesstypeInput
+  }
+
+  export type servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput = {
+    id?: number
+    illnesstypeid: number
+  }
+
+  export type servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput = {
+    where: servicesetting_illnesstypeWhereUniqueInput
+    create: XOR<servicesetting_illnesstypeCreateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput>
+  }
+
+  export type servicesetting_illnesstypeCreateManyServicesettingInputEnvelope = {
+    data: servicesetting_illnesstypeCreateManyServicesettingInput | servicesetting_illnesstypeCreateManyServicesettingInput[]
+    skipDuplicates?: boolean
+  }
+
   export type insurersUpsertWithoutServicesettingInput = {
     update: XOR<insurersUpdateWithoutServicesettingInput, insurersUncheckedUpdateWithoutServicesettingInput>
     create: XOR<insurersCreateWithoutServicesettingInput, insurersUncheckedCreateWithoutServicesettingInput>
@@ -49350,6 +50937,22 @@ export namespace Prisma {
     preauthnotetransactions?: preauthnotetransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     prebillingtransactions?: prebillingtransactionsUncheckedUpdateManyWithoutInsurersNestedInput
     proceduretransactions?: proceduretransactionsUncheckedUpdateManyWithoutInsurersNestedInput
+  }
+
+  export type servicesetting_illnesstypeUpsertWithWhereUniqueWithoutServicesettingInput = {
+    where: servicesetting_illnesstypeWhereUniqueInput
+    update: XOR<servicesetting_illnesstypeUpdateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedUpdateWithoutServicesettingInput>
+    create: XOR<servicesetting_illnesstypeCreateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput>
+  }
+
+  export type servicesetting_illnesstypeUpdateWithWhereUniqueWithoutServicesettingInput = {
+    where: servicesetting_illnesstypeWhereUniqueInput
+    data: XOR<servicesetting_illnesstypeUpdateWithoutServicesettingInput, servicesetting_illnesstypeUncheckedUpdateWithoutServicesettingInput>
+  }
+
+  export type servicesetting_illnesstypeUpdateManyWithWhereWithoutServicesettingInput = {
+    where: servicesetting_illnesstypeScalarWhereInput
+    data: XOR<servicesetting_illnesstypeUpdateManyMutationInput, servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingInput>
   }
 
   export type claimantsCreateWithoutTransactionclaimInput = {
@@ -50580,6 +52183,94 @@ export namespace Prisma {
     servicesetting?: servicesettingUncheckedUpdateManyWithoutInsurersNestedInput
   }
 
+  export type illnesstypeCreateWithoutServicesetting_illnesstypeInput = {
+    illnesstypecode: string
+    illnesstypedesc?: string | null
+    insurers?: insurersCreateNestedOneWithoutIllnesstypeInput
+  }
+
+  export type illnesstypeUncheckedCreateWithoutServicesetting_illnesstypeInput = {
+    id?: number
+    illnesstypecode: string
+    illnesstypedesc?: string | null
+    insurerid?: number | null
+  }
+
+  export type illnesstypeCreateOrConnectWithoutServicesetting_illnesstypeInput = {
+    where: illnesstypeWhereUniqueInput
+    create: XOR<illnesstypeCreateWithoutServicesetting_illnesstypeInput, illnesstypeUncheckedCreateWithoutServicesetting_illnesstypeInput>
+  }
+
+  export type servicesettingCreateWithoutServicesetting_illnesstypeInput = {
+    servicesettingcode: string
+    servicesettingdesc: string
+    abbreviation?: string | null
+    insurers?: insurersCreateNestedOneWithoutServicesettingInput
+  }
+
+  export type servicesettingUncheckedCreateWithoutServicesetting_illnesstypeInput = {
+    id?: number
+    servicesettingcode: string
+    servicesettingdesc: string
+    insurerid?: number | null
+    abbreviation?: string | null
+  }
+
+  export type servicesettingCreateOrConnectWithoutServicesetting_illnesstypeInput = {
+    where: servicesettingWhereUniqueInput
+    create: XOR<servicesettingCreateWithoutServicesetting_illnesstypeInput, servicesettingUncheckedCreateWithoutServicesetting_illnesstypeInput>
+  }
+
+  export type illnesstypeUpsertWithoutServicesetting_illnesstypeInput = {
+    update: XOR<illnesstypeUpdateWithoutServicesetting_illnesstypeInput, illnesstypeUncheckedUpdateWithoutServicesetting_illnesstypeInput>
+    create: XOR<illnesstypeCreateWithoutServicesetting_illnesstypeInput, illnesstypeUncheckedCreateWithoutServicesetting_illnesstypeInput>
+    where?: illnesstypeWhereInput
+  }
+
+  export type illnesstypeUpdateToOneWithWhereWithoutServicesetting_illnesstypeInput = {
+    where?: illnesstypeWhereInput
+    data: XOR<illnesstypeUpdateWithoutServicesetting_illnesstypeInput, illnesstypeUncheckedUpdateWithoutServicesetting_illnesstypeInput>
+  }
+
+  export type illnesstypeUpdateWithoutServicesetting_illnesstypeInput = {
+    illnesstypecode?: StringFieldUpdateOperationsInput | string
+    illnesstypedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutIllnesstypeNestedInput
+  }
+
+  export type illnesstypeUncheckedUpdateWithoutServicesetting_illnesstypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    illnesstypecode?: StringFieldUpdateOperationsInput | string
+    illnesstypedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type servicesettingUpsertWithoutServicesetting_illnesstypeInput = {
+    update: XOR<servicesettingUpdateWithoutServicesetting_illnesstypeInput, servicesettingUncheckedUpdateWithoutServicesetting_illnesstypeInput>
+    create: XOR<servicesettingCreateWithoutServicesetting_illnesstypeInput, servicesettingUncheckedCreateWithoutServicesetting_illnesstypeInput>
+    where?: servicesettingWhereInput
+  }
+
+  export type servicesettingUpdateToOneWithWhereWithoutServicesetting_illnesstypeInput = {
+    where?: servicesettingWhereInput
+    data: XOR<servicesettingUpdateWithoutServicesetting_illnesstypeInput, servicesettingUncheckedUpdateWithoutServicesetting_illnesstypeInput>
+  }
+
+  export type servicesettingUpdateWithoutServicesetting_illnesstypeInput = {
+    servicesettingcode?: StringFieldUpdateOperationsInput | string
+    servicesettingdesc?: StringFieldUpdateOperationsInput | string
+    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    insurers?: insurersUpdateOneWithoutServicesettingNestedInput
+  }
+
+  export type servicesettingUncheckedUpdateWithoutServicesetting_illnesstypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    servicesettingcode?: StringFieldUpdateOperationsInput | string
+    servicesettingdesc?: StringFieldUpdateOperationsInput | string
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type causeofinjurydetailCreateManyAccidenttransactionsInput = {
     id?: number
     causeofinjury?: string | null
@@ -50902,6 +52593,25 @@ export namespace Prisma {
     claimstatusdesc?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_th?: NullableStringFieldUpdateOperationsInput | string | null
     claimstatusdesc_en?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type servicesetting_illnesstypeCreateManyIllnesstypeInput = {
+    id?: number
+    servicesettingid: number
+  }
+
+  export type servicesetting_illnesstypeUpdateWithoutIllnesstypeInput = {
+    servicesetting?: servicesettingUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateWithoutIllnesstypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    servicesettingid?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateManyWithoutIllnesstypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    servicesettingid?: IntFieldUpdateOperationsInput | number
   }
 
   export type accidentcauseover45daysCreateManyInsurersInput = {
@@ -51575,12 +53285,14 @@ export namespace Prisma {
   export type illnesstypeUpdateWithoutInsurersInput = {
     illnesstypecode?: StringFieldUpdateOperationsInput | string
     illnesstypedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUpdateManyWithoutIllnesstypeNestedInput
   }
 
   export type illnesstypeUncheckedUpdateWithoutInsurersInput = {
     id?: IntFieldUpdateOperationsInput | number
     illnesstypecode?: StringFieldUpdateOperationsInput | string
     illnesstypedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedUpdateManyWithoutIllnesstypeNestedInput
   }
 
   export type illnesstypeUncheckedUpdateManyWithoutInsurersInput = {
@@ -51752,6 +53464,7 @@ export namespace Prisma {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUpdateManyWithoutServicesettingNestedInput
   }
 
   export type servicesettingUncheckedUpdateWithoutInsurersInput = {
@@ -51759,6 +53472,7 @@ export namespace Prisma {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+    servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingNestedInput
   }
 
   export type servicesettingUncheckedUpdateManyWithoutInsurersInput = {
@@ -51766,6 +53480,25 @@ export namespace Prisma {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type servicesetting_illnesstypeCreateManyServicesettingInput = {
+    id?: number
+    illnesstypeid: number
+  }
+
+  export type servicesetting_illnesstypeUpdateWithoutServicesettingInput = {
+    illnesstype?: illnesstypeUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateWithoutServicesettingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    illnesstypeid?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    illnesstypeid?: IntFieldUpdateOperationsInput | number
   }
 
 
@@ -51786,9 +53519,17 @@ export namespace Prisma {
      */
     export type ClaimstatusCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClaimstatusCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use IllnesstypeCountOutputTypeDefaultArgs instead
+     */
+    export type IllnesstypeCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = IllnesstypeCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use InsurersCountOutputTypeDefaultArgs instead
      */
     export type InsurersCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InsurersCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ServicesettingCountOutputTypeDefaultArgs instead
+     */
+    export type ServicesettingCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServicesettingCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use accidentcauseover45daysDefaultArgs instead
      */
@@ -51909,6 +53650,10 @@ export namespace Prisma {
      * @deprecated Use prebillingtransactionsDefaultArgs instead
      */
     export type prebillingtransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = prebillingtransactionsDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use servicesetting_illnesstypeDefaultArgs instead
+     */
+    export type servicesetting_illnesstypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = servicesetting_illnesstypeDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

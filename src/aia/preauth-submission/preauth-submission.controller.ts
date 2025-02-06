@@ -42,6 +42,11 @@ export class PreauthSubmissionController {
         const result = this.preauthSubmissionService.getPreAuthProcedure(queryPreauthSubmissionDto);
         return result
   }
+  @Post('/getPreBilling')
+  async getPreBilling(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+        const result = this.preauthSubmissionService.getPreBilling(queryPreauthSubmissionDto);
+        return result
+  }
   @Post('/getPreAuthAccident')
   async getPreAuthAccident(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
         const result = this.preauthSubmissionService.getPreAuthAccident(queryPreauthSubmissionDto);

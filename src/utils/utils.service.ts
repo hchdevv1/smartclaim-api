@@ -19,6 +19,7 @@ import { HttpMessageDto } from '../utils/dto/http-status-message.dto'
 import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,ServiceSettingDto ,ClaimStatusDto ,IdTypeDto ,DocumentTypeDto
   ,CauseofInjurywoundtypeDto ,CauseofinjurysideDto ,AccidentplaceDto ,Accidentcauseover45daysDto ,DiagnosisTypeMappingDto
   ,AnesthesiaListDto ,OpeartionisPackageDto ,IndicationsForAdmissionDto
+  ,ServiceSettingIllnessDto
 } from './dto/utils.dto';
 import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto  ,QueryDeleteDocumentByDocNameDto
   ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto ,ResultUpdateDocumentByDocNameDto
@@ -513,7 +514,139 @@ export class UtilsService {
       }
   
   }
+  
+  async getServiceSettingIllnesstype(xInsurercode: string ) {
+    let servicesetting:any ;
+    try{
+      servicesetting = await prismaProgest.servicesetting_illnesstype.findMany({ 
+      
+        select: {
+          id:true,
+          servicesetting: {
+            select:{
+              servicesettingcode:true,
+              servicesettingdesc:true
+            },
+            
+        },  // ดึงข้อมูลจากตาราง ServiceSetting
+          illnesstype: {
+            select:{
+              illnesstypecode:true,
+              illnesstypedesc:true
+            }
+          }      // ดึงข้อมูลจากตาราง IllnessType
+        },orderBy:{
+          id:'asc'
+        }
+      
+       })
+       console.log(xInsurercode)
+       const servicesettingillnesstype = servicesetting.map((item, index) => {
+       
+       let SLDesc='';
+          if (item.servicesetting.servicesettingcode == "PRE"){ 
+            SLDesc ='Pre-Authorization - ' + item.illnesstype.illnesstypedesc
 
+          }else if (item.servicesetting.servicesettingcode == "IPD"){ 
+            SLDesc ='ผู้ป่วยใน - ' + item.illnesstype.illnesstypedesc
+          }else if (item.servicesetting.servicesettingcode == "OPD"){ 
+            SLDesc = item.illnesstype.illnesstypedesc
+          }
+          
+        return {
+                    
+            code: item.id,
+            description: SLDesc ,
+            servicesettingcode: item.servicesetting.servicesettingcode,
+            servicesettingdesc: item.servicesetting.servicesettingdesc,
+            illnesstypecode: item.illnesstype.illnesstypecode,
+            illnesstypedesc: item.illnesstype.illnesstypedesc
+          
+        };
+      });
+
+      //  console.log(servicesettingillnesstype)
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+       let  newServiceSettingIllnessDto= new ServiceSettingIllnessDto();
+       newServiceSettingIllnessDto={
+         HTTPStatus:newHttpMessageDto,
+        Result:servicesettingillnesstype
+       }
+       if (!servicesetting || servicesetting.length === 0) {
+        this.addFormatHTTPStatus(newHttpMessageDto,404,'Servicesetting not found','')
+      }else{
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      }
+       return newServiceSettingIllnessDto  
+       
+      }catch(error)
+      {
+        if (error instanceof Prisma.PrismaClientInitializationError) {
+          throw new HttpException(
+           { 
+            HTTPStatus: {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            },
+            },HttpStatus.INTERNAL_SERVER_ERROR );
+        }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new HttpException(
+              {  
+                HTTPStatus: {
+                  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                  message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                  error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+               },
+              },HttpStatus.INTERNAL_SERVER_ERROR ); 
+        }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+          if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+              message: 'Cannot connect to the database server. Please ensure it is running.',
+              error: 'Cannot connect to the database server. Please ensure it is running.',
+            },
+            }, HttpStatus.SERVICE_UNAVAILABLE);
+          }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.BAD_REQUEST,
+              message: 'Invalid data format or conversion error.',
+              error: 'Invalid data format or conversion error.',
+            },
+            }, HttpStatus.BAD_REQUEST);
+          }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.FORBIDDEN,
+              message: 'You do not have permission to perform this action.',
+              error: 'You do not have permission to perform this action.',
+            },
+            }, HttpStatus.FORBIDDEN);
+          }else if (error.message.includes('Unable to fit integer value')) {
+            // Handle integer overflow or similar errors
+            throw new HttpException({
+              HTTPStatus: {
+              statusCode: HttpStatus.BAD_REQUEST,
+              message: 'The integer value is too large for the database field.',
+              error: 'The integer value is too large for the database field.',
+            },
+            }, HttpStatus.BAD_REQUEST);
+          }
+          else{
+            throw new HttpException({  
+              HTTPStatus: {
+                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                 message: 'An unexpected error occurred.',
+                 error: 'An unexpected error occurred.',
+                },
+              },HttpStatus.INTERNAL_SERVER_ERROR,);
+          }
+        }
+      }
+  
+  }
 async getClaimStatus(xInsurercode: string ) {
   let claimstatus:any ;
   try{

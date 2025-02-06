@@ -41,6 +41,10 @@ export class UtilsController {
   getServiceSetting(@Param('InsuranceCode') InsuranceCode: string ) {
     return  this.utilsService.getServiceSetting(InsuranceCode)
   }
+  @Get('/servicesettingillnesstype/:InsuranceCode')
+  getServiceSettingIllnesstype(@Param('InsuranceCode') InsuranceCode: string ) {
+    return  this.utilsService.getServiceSettingIllnesstype(InsuranceCode)
+  }
   @Get('/claimStatus/:InsuranceCode')
   getClaimStatus(@Param('InsuranceCode') InsuranceCode: string ) {
     return  this.utilsService.getClaimStatus(InsuranceCode)

@@ -74,11 +74,44 @@ export class ServiceSettingDto {
 }
 class ResultServiceSettingInfo{
 
+
+
  @IsString()
  servicesettingcode: string;
 
  @IsString()
  servicesettingdesc: string;
+
+
+ @IsInt()
+ insurerid: number;
+
+ insurers: InsurerDto;
+}
+
+export class ServiceSettingIllnessDto {
+
+  HTTPStatus: HttpMessageDto;
+   Result?: ResultServiceSettingILLInfo;
+}
+class ResultServiceSettingILLInfo{
+
+ @IsString()
+ code: string;
+
+ @IsString()
+ Description: string;
+
+ @IsString()
+ servicesettingcode: string;
+
+ @IsString()
+ servicesettingdesc: string;
+ @IsString()
+ IllnesstypeCode: string;
+
+ @IsString()
+ IllnesstypeDesc: string;
 
  @IsInt()
  insurerid: number;

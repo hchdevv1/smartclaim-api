@@ -563,7 +563,7 @@ export class CheckEligibleService {
               customerid:RequesetBody.xCustomerId,
               claimstatusdesc:'waitting for discharge',
               claimstatusdesc_en:'waitting for discharge',
-              claimstatusdesc_th:'waitting for discharge',
+              claimstatusdesc_th:'รอการส่งเคลม',
               visitlocation:RequesetBody.xVisitlocation,
             },
           });
@@ -654,7 +654,7 @@ export class CheckEligibleService {
               ...(updatexCustomerId ? { customerid: updatexCustomerId } : {}),
               claimstatusdesc:'waitting for discharge',
               claimstatusdesc_en:'waitting for discharge',
-              claimstatusdesc_th:'waitting for discharge',
+              claimstatusdesc_th:'รอการส่งเคลม',
               ...(updatexVisitlocation ? { visitlocation : updatexVisitlocation } : {}),
               
           };
