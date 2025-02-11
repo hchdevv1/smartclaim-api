@@ -463,8 +463,23 @@ model servicesetting_illnesstype {
   id               Int            @id @default(autoincrement())
   servicesettingid Int
   illnesstypeid    Int
+  insurerid        Int?
   illnesstype      illnesstype    @relation(fields: [illnesstypeid], references: [id], onDelete: Cascade, onUpdate: NoAction)
   servicesetting   servicesetting @relation(fields: [servicesettingid], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([servicesettingid, illnesstypeid])
+}
+
+model packagebundle {
+  id               Int     @id @default(autoincrement())
+  packagecode      String? @db.VarChar(255)
+  packagedesc      String? @db.VarChar(255)
+  localbillingcode String? @db.VarChar(255)
+  localbillingname String? @db.VarChar(255)
+  simbbillingcode  String? @db.VarChar(255)
+  payorbillingcode String? @db.VarChar(255)
+  billinginitial   String? @db.VarChar(255)
+  billingdiscount  String? @db.VarChar(255)
+  billingnetamount String? @db.VarChar(255)
+  totalbillamount  String? @db.VarChar(100)
 }

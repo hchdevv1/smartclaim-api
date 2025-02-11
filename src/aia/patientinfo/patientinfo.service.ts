@@ -897,7 +897,7 @@ export class PatientinfoService {
             FurtherClaimId:claim.furtherclaimid||'',
             AccidentDate:claim.accidentdate||'',
             VisitDateTime:claim.visitdatetime||'',
-            Runningdocument:claim.runningdocument.toNumber(),
+            //Runningdocument:claim.runningdocument.toNumber(),
             FurtherClaimVN:claim.furtherclaimvn||'',
             VisitLocation:claim.visitlocation||'',
             TotalBillAmount:claim.totalbillamount,

@@ -19,7 +19,7 @@ import { HttpMessageDto } from '../utils/dto/http-status-message.dto'
 import { aia_accessTokenDTO, IllnessTypeDto ,IllnessSurgeryDto,PolicyTypeDto ,ServiceSettingDto ,ClaimStatusDto ,IdTypeDto ,DocumentTypeDto
   ,CauseofInjurywoundtypeDto ,CauseofinjurysideDto ,AccidentplaceDto ,Accidentcauseover45daysDto ,DiagnosisTypeMappingDto
   ,AnesthesiaListDto ,OpeartionisPackageDto ,IndicationsForAdmissionDto
-  ,ServiceSettingIllnessDto
+  ,ServiceSettingIllnessDto ,ListPackageBundleDto ,PackageBundleDto ,PackageBundleResultInfo ,ResultPackageBundleInfo
 } from './dto/utils.dto';
 import { QueryCreateClaimDocumentDtoBodyDto ,ResultAttachDocListInfoDto ,QuerylistDocumentNameDtoBodyDto  ,QueryDeleteDocumentByDocNameDto
   ,ResultDeleteDocumentByDocNameDto ,QueryListDocumentforAttachDocListDto ,ResultUpdateDocumentByDocNameDto
@@ -519,7 +519,9 @@ export class UtilsService {
     let servicesetting:any ;
     try{
       servicesetting = await prismaProgest.servicesetting_illnesstype.findMany({ 
-      
+        where:{
+          insurerid : +xInsurercode 
+         },
         select: {
           id:true,
           servicesetting: {
@@ -540,7 +542,6 @@ export class UtilsService {
         }
       
        })
-       console.log(xInsurercode)
        const servicesettingillnesstype = servicesetting.map((item) => {
        
        let SLDesc='';
@@ -550,7 +551,11 @@ export class UtilsService {
           }else if (item.servicesetting.servicesettingcode == "IPD"){ 
             SLDesc ='ผู้ป่วยใน - ' + item.illnesstype.illnesstypedesc
           }else if (item.servicesetting.servicesettingcode == "OPD"){ 
-            SLDesc = item.illnesstype.illnesstypedesc
+            // if ((item.illnesstype.illnesstypecode =="ILL")||(item.illnesstype.illnesstypecode =="ACC")||(item.illnesstype.illnesstypecode =="ER")||(item.illnesstype.illnesstypecode =="FU")||(item.illnesstype.illnesstypecode =="DEN")){
+              SLDesc = 'ผู้ป่วยนอก - ' + item.illnesstype.illnesstypedesc
+            // }else{
+            // SLDesc = item.illnesstype.illnesstypedesc
+          // }
           }
           
         return {
@@ -1464,6 +1469,228 @@ async getIndicationsForAdmission(xInsurercode: string ) {
     }
 
 }
+
+async getListPackageBundle() {
+  let packageBundle:any ;
+  try{
+    packageBundle = await prismaProgest.$queryRaw
+    `SELECT  packagecode, packagedesc
+	  FROM public.packagebundle
+	  group by packagecode, packagedesc
+    order by packagecode asc`;
+    console.log(packageBundle)
+     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+     let  newListPackageBundleDto = new ListPackageBundleDto();
+     newListPackageBundleDto={
+       HTTPStatus:newHttpMessageDto,
+      Result:packageBundle
+     }
+     if (!packageBundle || packageBundle.length === 0) {
+      this.addFormatHTTPStatus(newHttpMessageDto,404,'List PackageBundle not found','')
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    }
+     return newListPackageBundleDto  
+     
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+
+}
+
+
+async getPackageBundle(xPackageCode: string ) {
+  let packagebundle:any ;
+
+  try{
+     packagebundle = await prismaProgest.packagebundle.findMany({ 
+    
+   where :{
+    packagecode:xPackageCode
+   },
+    select:{
+      packagecode :true,
+      packagedesc:true,
+      localbillingcode:true,
+      localbillingname:true,
+      simbbillingcode:true,
+      payorbillingcode:true,
+      billinginitial:true,
+      billingdiscount:true,
+      billingnetamount:true,
+      totalbillamount:true
+     
+      }
+     })
+     if (!packagebundle || packagebundle.length === 0) {
+      this.addFormatHTTPStatus(newHttpMessageDto, 404, 'PackageBundle not found..', '');
+      return { HTTPStatus: newHttpMessageDto };
+    } else {
+      this.addFormatHTTPStatus(newHttpMessageDto, 200, '', '');
+    }
+    const newPackageBundleResultInfo = new PackageBundleResultInfo();
+// กำหนดข้อมูลเบื้องต้น
+newPackageBundleResultInfo.packagecode = packagebundle[0].packagecode;
+newPackageBundleResultInfo.packagedesc = packagebundle[0].packagedesc;
+
+// ใช้ map เพื่อแปลงข้อมูลจาก packagebundle และสร้างอ็อบเจ็กต์ใหม่ในทุกๆ การวนลูป
+newPackageBundleResultInfo.packagebundleinfo = packagebundle.map((item) => {
+  const packageInfo = new ResultPackageBundleInfo(); // สร้างอ็อบเจ็กต์ใหม่ในทุกๆ การวนลูป
+  packageInfo.localbillingcode = item.localbillingcode;
+  packageInfo.localbillingname = item.localbillingname;
+  packageInfo.simbbillingcode = item.simbbillingcode;
+  packageInfo.payorbillingcode = item.payorbillingcode;
+  packageInfo.billinginitial = item.billinginitial;
+  packageInfo.billingdiscount = item.billingdiscount;
+  packageInfo.billingnetamount = item.billingnetamount;
+  packageInfo.totalbillamount = item.totalbillamount;
+  return packageInfo;
+});
+
+const newPackageBundleDto: PackageBundleDto = {
+  HTTPStatus: newHttpMessageDto,
+  Result: newPackageBundleResultInfo,
+};
+
+     if (!packagebundle || packagebundle.length === 0) {
+      this.addFormatHTTPStatus(newHttpMessageDto,404,'PackageBundle not found','')
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    }
+     return newPackageBundleDto  
+     
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+
+}
+
 async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto) {
   const xRefId =queryVisitDatabaseBodyDto.RefId;
   const xTransactionNo = queryVisitDatabaseBodyDto.TransactionNo;

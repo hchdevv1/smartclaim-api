@@ -8,6 +8,7 @@ import { QueryAccidentDto } from './dto/query-accident-preauth-submission.dto';
 import { QueryProcedureDto } from './dto/query-procedure-preauth-submission.dto';
 import { QueryPreauthSubmissionDto } from './dto/query-preauth-submission.dto';
 import { QueryUpdateReferenceVNBodyDto } from './dto/query-updatereferencevn-preauth-submission.dto';
+import { QueryPackageBundleDto } from './dto/query-packagebundle-preauth-submission.dto';
 @Controller('/v1/preauth-submission')
 export class PreauthSubmissionController {
   constructor(private readonly preauthSubmissionService: PreauthSubmissionService) {}
@@ -67,6 +68,14 @@ async getPreAuthNote(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
       const result = this.preauthSubmissionService.getPreAuthNote(querySubmitPreAuthDto);
       return result
 }
+
+
+@Post('/getPackageBundle')
+async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
+      const result = this.preauthSubmissionService.getPackageBundle(queryPackageBundleDto);
+      return result
+}
+
   /// submit to data base ///
  
   @Post('/SubmitPreAuthVisit')

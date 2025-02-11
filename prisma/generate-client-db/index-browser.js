@@ -514,7 +514,22 @@ exports.Prisma.PrebillingtransactionsScalarFieldEnum = {
 exports.Prisma.Servicesetting_illnesstypeScalarFieldEnum = {
   id: 'id',
   servicesettingid: 'servicesettingid',
-  illnesstypeid: 'illnesstypeid'
+  illnesstypeid: 'illnesstypeid',
+  insurerid: 'insurerid'
+};
+
+exports.Prisma.PackagebundleScalarFieldEnum = {
+  id: 'id',
+  packagecode: 'packagecode',
+  packagedesc: 'packagedesc',
+  localbillingcode: 'localbillingcode',
+  localbillingname: 'localbillingname',
+  simbbillingcode: 'simbbillingcode',
+  payorbillingcode: 'payorbillingcode',
+  billinginitial: 'billinginitial',
+  billingdiscount: 'billingdiscount',
+  billingnetamount: 'billingnetamount',
+  totalbillamount: 'totalbillamount'
 };
 
 exports.Prisma.SortOrder = {
@@ -564,7 +579,8 @@ exports.Prisma.ModelName = {
   diagnosistransactions: 'diagnosistransactions',
   preauthnotetransactions: 'preauthnotetransactions',
   prebillingtransactions: 'prebillingtransactions',
-  servicesetting_illnesstype: 'servicesetting_illnesstype'
+  servicesetting_illnesstype: 'servicesetting_illnesstype',
+  packagebundle: 'packagebundle'
 };
 
 /**

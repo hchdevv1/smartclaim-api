@@ -82,8 +82,14 @@ getIndicationsForAdmission(@Param('InsuranceCode') InsuranceCode: string ) {
   return  this.utilsService.getIndicationsForAdmission(InsuranceCode)
 }
 
-
-
+@Get('/ListPackageBundle')
+getListPackageBundle( ) {
+  return  this.utilsService.getListPackageBundle();
+}
+@Get('/PackageBundle/:PackageCode')
+gePackageBundle(@Param('PackageCode') PackageCode: string ) {
+  return  this.utilsService.getPackageBundle(PackageCode);
+}
 
 @Get('/injuryWoundtype/:InsuranceCode')
 getCauseofInjurywoundtype(@Param('InsuranceCode') InsuranceCode: string ) {

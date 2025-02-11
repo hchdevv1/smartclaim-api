@@ -102,6 +102,7 @@ export class CheckClaimStatusService {
       //  const DecryptDocument =await this.utilsService.DecryptAESECB(responsefromAIA.Data.AttachDocList.Base64Data, AIA_APISecretkey);
      // const DecryptDocument = await this.utilsService.DecryptAESECB('doc.Base64Data', AIA_APISecretkey);
      let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+     if (responsefromAIA.Data.AttachDocList.length >0){
      xResultAttachDocListInfoDto = await Promise.all(
        responsefromAIA.Data.AttachDocList.map(async (doc) => {
          try {
@@ -141,7 +142,7 @@ export class CheckClaimStatusService {
        }),
      );
      console.log(xResultAttachDocListInfoDto[0].DocName)
-
+    }
 //  const uploadBase64File = await this.utilsService.saveBase64File(xResultAttachDocListInfoDto.Base64Data, xResultAttachDocListInfoDto.DocName);
 
  // โฟลเดอร์สำหรับเก็บไฟล์
@@ -265,7 +266,7 @@ if (transactionclaimstatusexistingRecord) {
       hn:RequesetBody.xHN,
       vn:RequesetBody.xVN,
      claimstatuscode: claimcode,
-     totalapproveamount: responsefromAIA.Data.TotalApproveAmount,
+     totalapproveamount: responsefromAIA.Data.TotalApproveAmount+'',
       paymentdate:responsefromAIA.Data.PaymentDate,
       invoicenumber: responsefromAIA.Data.InvoiceNumber,
       claimstatusdesc:responsefromAIA.Data.ClaimStatus,

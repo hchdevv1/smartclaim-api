@@ -2693,7 +2693,7 @@ if (existingRecord) {
       //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
-      runningdocument:RequesetBody.xRunningdocument
+      // runningdocument:RequesetBody.xRunningdocument
     },
   });
 }else{
@@ -2725,7 +2725,7 @@ if (existingRecord) {
       //illnesstypecode:RequesetBody.xIllnessTypeCode,
       servicesettingcode:RequesetBody.xServiceSettingCode,
       surgerytypecode:RequesetBody.xSurgeryTypeCode,
-      runningdocument:RequesetBody.xRunningdocument
+      // runningdocument:RequesetBody.xRunningdocument
     },
   });
 

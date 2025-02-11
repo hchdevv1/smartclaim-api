@@ -209,14 +209,15 @@ export class CheckEligibleService {
          xPolicyNumber:checkEligibleBodyDto.PatientInfo.PolicyNumber||'',
          xCustomerId:checkEligibleBodyDto.PatientInfo.CustomerId||'',
        }
-       let xRefId
-       if ((RequesetBody.xServiceSettingAbbr ==="PRE-01")||(RequesetBody.xServiceSettingAbbr ==="PRE-02")){
-        xRefId= await this.generateRefId(RequesetBody.xHN+RequesetBody.xVisitDateTime,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingAbbr)
+      //  if ((RequesetBody.xServiceSettingAbbr ==="PRE-01")||(RequesetBody.xServiceSettingAbbr ==="PRE-02")){
+      //   xRefId= await this.generateRefId(RequesetBody.xHN+RequesetBody.xVisitDateTime,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingAbbr)
 
-       }else{
-         xRefId= await this.generateRefId(RequesetBody.xVN,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
+      //  }else{
+      //    xRefId= await this.generateRefId(RequesetBody.xVN,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
 
-       }
+      //  }
+      const xRefId= await this.generateRefId(RequesetBody.xVN,RequesetBody.xInsurerCode,RequesetBody.xServiceSettingCode)
+
        const xUsername=AIA_APIHopitalUsername;
        const xHospitalCode =await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey);
        const xInsurerCode=RequesetBody.xInsurerCode;

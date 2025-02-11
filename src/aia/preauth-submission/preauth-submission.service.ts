@@ -32,6 +32,8 @@ import { AccidentDetailDto ,ResultReviewPreVisitInfoDto } from './dto/review-pre
 import { QueryVisit ,ResultPreAuthVisitDto} from './dto/result-visit-preauth-submission.dto';
 import { QueryAccidentDto  ,ResultSubmitAccidentDto} from './dto/query-accident-preauth-submission.dto';
 import { QueryProcedureDto ,ResultSubmitProcedureDto } from './dto/query-procedure-preauth-submission.dto';
+import { QueryPackageBundleDto } from './dto/query-packagebundle-preauth-submission.dto';
+import { ResultPackageBundleDto ,QueryPackageBundleBilling} from './dto/result-packagebundle-preauth-submission.dto';
 import { ResultlistBillingDto} from './dto/result-ListBilling.dto';
 import { ResultAuthNoteDto, QueryPreAuthNote} from './dto/result-authnote-preauth-submissiondto';
 import { ResultPreAuthDoctorDto ,QueryDoctor } from './dto/result-doctor-preauth-submission.dto';
@@ -1151,20 +1153,162 @@ export class PreauthSubmissionService {
     }
   }
   }
+  async getPackageBundle(queryPackageBundleDto:QueryPackageBundleDto){
+    let xResultInfo;
+    
+    //console.log(xx)
+    let newQueryPackageBundleBilling : QueryPackageBundleBilling[] = [];
+  try{
+    const newqueryPackageBundleDto ={
+      xPackageCode:queryPackageBundleDto.PackageInfo.PackageCode,
+      xPackageDesc: queryPackageBundleDto.PackageInfo.PackageDesc
+    }
+    const GetPackageBundle = await this.utilsService.getPackageBundle(newqueryPackageBundleDto.xPackageCode+'')
+
+    if (GetPackageBundle.HTTPStatus.statusCode == 200){
+    
+       if (GetPackageBundle && GetPackageBundle.Result ) {
+        newQueryPackageBundleBilling = await Promise.all(
+          GetPackageBundle.Result.packagebundleinfo.map(async (item) => {
+            return {
+              LocalBillingCode: item.localbillingcode, 
+              LocalBillingName: item.localbillingname, 
+              SimbBillingCode: item.simbbillingcode, 
+              PayorBillingCode: item.payorbillingcode, 
+              BillingInitial: item.billinginitial, 
+              BillingDiscount: item.billingdiscount, 
+              BillingNetAmount: item.billingnetamount, 
+            };
+          })
+        );
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+       xResultInfo ={
+        PackageCode: GetPackageBundle.Result.packagecode,  // เก็บ packagecode
+        PackageDesc: GetPackageBundle.Result.packagedesc, 
+        PackageBundleList: newQueryPackageBundleBilling,
+       } 
+
+     } else {
+      newQueryPackageBundleBilling = [{
+        LocalBillingCode: '',
+        LocalBillingName: '',
+        SimbBillingCode: '',
+        PayorBillingCode: '',
+        BillingInitial:'',
+        BillingDiscount: '',
+        BillingNetAmount:''
+       }];
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+       xResultInfo ={
+        PackageCode: '',
+        PackageDesc:'',
+        PackageBundleList: newQueryPackageBundleBilling,
+       } 
+     }
+     }else{
+      newQueryPackageBundleBilling = [{
+      
+        LocalBillingCode: '',
+        LocalBillingName: '',
+        SimbBillingCode: '',
+        PayorBillingCode: '',
+        BillingInitial:'',
+        BillingDiscount: '',
+        BillingNetAmount:''
+
+      }];
+      xResultInfo ={
+        PackageCode: '',
+        PackageDesc:'',
+        PackageBundleList: newQueryPackageBundleBilling,
+       } 
+    }
+     
+   // xResultInfo =getIPDDischargeProcedure
+    let newResultPackageBundleDto= new ResultPackageBundleDto();
+    newResultPackageBundleDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:xResultInfo
+      }
+  
+  return newResultPackageBundleDto
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
+  }
   async getPreBilling(queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
     let xResultInfo;
-    let newTotalBillAmount ='';
-    let xTotal='';
-    let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
+  
+   // let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
     
   try{
     
-    const xEstimateBillType =queryPreauthSubmissionDto.PatientInfo.EstimateBillType
-    const xEstimateAutoByOrderSet =queryPreauthSubmissionDto.PatientInfo.EstimateAutoByOrderSet
-    const xEstimateByVN =queryPreauthSubmissionDto.PatientInfo.EstimateByVN
-    if ((xEstimateBillType=== "1")&&(xEstimateByVN !=="")){
+    
 
-      const TrakcarepatientInfo = await this.trakcareService.getPreAuthBilling(xEstimateByVN);
+      const TrakcarepatientInfo = await this.trakcareService.getPreAuthBilling(queryPreauthSubmissionDto.PatientInfo.VN);
       const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
       if (TrakcarepatientInfoStatusCode !==200){
         this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
@@ -1202,81 +1346,76 @@ export class PreauthSubmissionService {
           TotalBillAmount: TrakcarepatientInfo.TotalBillAmount ? TrakcarepatientInfo.TotalBillAmount : '',
           InvoiceNumber:TrakcarepatientInfo.InvoiceNumber ? TrakcarepatientInfo.InvoiceNumber : '',
          } 
-         queryPreauthSubmissionDto.PatientInfo.EstTotal = xResultInfo.TotalBillAmount
-
-         if(xQueryBilling){
-          await Promise.all(
-            xQueryBilling.map(async (prebilling) => {
-                return await prismaProgest.prebillingtransactions.create({
+        }
+//          if(xQueryBilling){
+//           await Promise.all(
+//             xQueryBilling.map(async (prebilling) => {
+//                 return await prismaProgest.prebillingtransactions.create({
                   
-                    data: {
-                        insurerid: queryPreauthSubmissionDto.PatientInfo.InsurerCode,
-                        refid: queryPreauthSubmissionDto.PatientInfo.RefId,
-                        transactionno: queryPreauthSubmissionDto.PatientInfo.TransactionNo,
-                        hn: queryPreauthSubmissionDto.PatientInfo.HN,
-                        vn: queryPreauthSubmissionDto.PatientInfo.VN,
-                        localbillingcode: prebilling.LocalBillingCode,
-                        localbillingname: prebilling.LocalBillingName,
-                        simbbillingcode: prebilling.SimbBillingCode,
-                        payorbillingcode: prebilling.PayorBillingCode,
-                        billingdiscount: prebilling.BillingDiscount,
-                        billinginitial: prebilling.BillingInitial,
-                        billingnetamount: prebilling.BillingInitial,
-                        totalbillamount:  queryPreauthSubmissionDto.PatientInfo.EstTotal,
+//                     data: {
+//                         insurerid: queryPreauthSubmissionDto.PatientInfo.InsurerCode,
+//                         refid: queryPreauthSubmissionDto.PatientInfo.RefId,
+//                         transactionno: queryPreauthSubmissionDto.PatientInfo.TransactionNo,
+//                         hn: queryPreauthSubmissionDto.PatientInfo.HN,
+//                         vn: queryPreauthSubmissionDto.PatientInfo.VN,
+//                         localbillingcode: prebilling.LocalBillingCode,
+//                         localbillingname: prebilling.LocalBillingName,
+//                         simbbillingcode: prebilling.SimbBillingCode,
+//                         payorbillingcode: prebilling.PayorBillingCode,
+//                         billingdiscount: prebilling.BillingDiscount,
+//                         billinginitial: prebilling.BillingInitial,
+//                         billingnetamount: prebilling.BillingInitial,
                       
-                    }
-                });
-            })
-        );
-         }
-      }
-    }
-    else if ((xEstimateBillType=== "2")&&(xEstimateAutoByOrderSet !=="")){}
-    else if (xEstimateBillType=== "3"){
+//                     }
+//                 });
+//             })
+//         );
+//          }
+//       }
+
       
 
-const newQueryBillingInfoDtoDatabaseBodyDto ={
-  RefId:queryPreauthSubmissionDto.PatientInfo.RefId,
-  TransactionNo:queryPreauthSubmissionDto.PatientInfo.TransactionNo,
-  InsurerCode:queryPreauthSubmissionDto.PatientInfo.InsurerCode,
-  HN:queryPreauthSubmissionDto.PatientInfo.HN,
-  VN:queryPreauthSubmissionDto.PatientInfo.VN,
-}
+// const newQueryBillingInfoDtoDatabaseBodyDto ={
+//   RefId:queryPreauthSubmissionDto.PatientInfo.RefId,
+//   TransactionNo:queryPreauthSubmissionDto.PatientInfo.TransactionNo,
+//   InsurerCode:queryPreauthSubmissionDto.PatientInfo.InsurerCode,
+//   HN:queryPreauthSubmissionDto.PatientInfo.HN,
+//   VN:queryPreauthSubmissionDto.PatientInfo.VN,
+// }
 
-const getPreBillingformDatabase = await this.utilsService.getPreBillingformDatabase(newQueryBillingInfoDtoDatabaseBodyDto)
+// const getPreBillingformDatabase = await this.utilsService.getPreBillingformDatabase(newQueryBillingInfoDtoDatabaseBodyDto)
 
-if (getPreBillingformDatabase && getPreBillingformDatabase.Result.PreBillingInfo && getPreBillingformDatabase.Result.PreBillingInfo.length > 0) {
-  newResultBillingInfoDto= await Promise.all(
-    getPreBillingformDatabase.Result.PreBillingInfo.map(async (item) => {
-      newTotalBillAmount = item.TotalBillAmount     
-    return {
-      LocalBillingCode: item.LocalBillingCode,
-      LocalBillingName: item.LocalBillingName,
-      SimbBillingCode: item.SimbBillingCode,
-      PayorBillingCode: item.PayorBillingCode,
-      BillingDiscount: item.BillingDiscount,
-      BillingInitial: item.BillingInitial,
-      BillingNetAmount: item.BillingNetAmount,
-      //TotalBillAmount: item.TotalBillAmount,    
-    };
+// if (getPreBillingformDatabase && getPreBillingformDatabase.Result.PreBillingInfo && getPreBillingformDatabase.Result.PreBillingInfo.length > 0) {
+//   newResultBillingInfoDto= await Promise.all(
+//     getPreBillingformDatabase.Result.PreBillingInfo.map(async (item) => {
+//       newTotalBillAmount = item.TotalBillAmount     
+//     return {
+//       LocalBillingCode: item.LocalBillingCode,
+//       LocalBillingName: item.LocalBillingName,
+//       SimbBillingCode: item.SimbBillingCode,
+//       PayorBillingCode: item.PayorBillingCode,
+//       BillingDiscount: item.BillingDiscount,
+//       BillingInitial: item.BillingInitial,
+//       BillingNetAmount: item.BillingNetAmount,
+//       //TotalBillAmount: item.TotalBillAmount,    
+//     };
    
 
-  })
-);
-}else{
-  newResultBillingInfoDto = [{
-    LocalBillingCode: '',
-    LocalBillingName: '',
-    SimbBillingCode: '',
-    PayorBillingCode: '',
-    BillingInitial: '',
-    BillingDiscount: '',
-    BillingNetAmount: '',
-  }];
-}
+//   })
+// );
+// }else{
+//   newResultBillingInfoDto = [{
+//     LocalBillingCode: '',
+//     LocalBillingName: '',
+//     SimbBillingCode: '',
+//     PayorBillingCode: '',
+//     BillingInitial: '',
+//     BillingDiscount: '',
+//     BillingNetAmount: '',
+//   }];
+// }
 
-    }
-    else if (xEstimateBillType=== "4"){}
+    
 
   
     let newResultPreAuthBillingDto= new ResultPreAuthBillingDto();

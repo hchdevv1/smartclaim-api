@@ -168,6 +168,11 @@ export type prebillingtransactions = $Result.DefaultSelection<Prisma.$prebilling
  * 
  */
 export type servicesetting_illnesstype = $Result.DefaultSelection<Prisma.$servicesetting_illnesstypePayload>
+/**
+ * Model packagebundle
+ * 
+ */
+export type packagebundle = $Result.DefaultSelection<Prisma.$packagebundlePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -601,6 +606,16 @@ export class PrismaClient<
     * ```
     */
   get servicesetting_illnesstype(): Prisma.servicesetting_illnesstypeDelegate<ExtArgs>;
+
+  /**
+   * `prisma.packagebundle`: Exposes CRUD operations for the **packagebundle** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Packagebundles
+    * const packagebundles = await prisma.packagebundle.findMany()
+    * ```
+    */
+  get packagebundle(): Prisma.packagebundleDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1072,7 +1087,8 @@ export namespace Prisma {
     diagnosistransactions: 'diagnosistransactions',
     preauthnotetransactions: 'preauthnotetransactions',
     prebillingtransactions: 'prebillingtransactions',
-    servicesetting_illnesstype: 'servicesetting_illnesstype'
+    servicesetting_illnesstype: 'servicesetting_illnesstype',
+    packagebundle: 'packagebundle'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1088,7 +1104,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage" | "accidenttransactions22" | "concurrentnotetransactions" | "diagnosistransactions" | "preauthnotetransactions" | "prebillingtransactions" | "servicesetting_illnesstype"
+      modelProps: "accidentcauseover45days" | "accidentplace" | "accidenttransactions" | "causeofinjurydetail" | "causeofinjuryside" | "causeofinjurywoundtype" | "claimants" | "claimdocuments" | "claimstatus" | "diagnosistypemapping" | "documenttype" | "idtype" | "illnesssurgery" | "illnesstype" | "injurydetail" | "insurers" | "medicaltransactions" | "policytype" | "proceduretransactions" | "servicesetting" | "transactionclaim" | "transactionclaimstatus" | "anesthesialist" | "indicationsforadmission" | "opeartionispackage" | "accidenttransactions22" | "concurrentnotetransactions" | "diagnosistransactions" | "preauthnotetransactions" | "prebillingtransactions" | "servicesetting_illnesstype" | "packagebundle"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3259,6 +3275,76 @@ export namespace Prisma {
           count: {
             args: Prisma.servicesetting_illnesstypeCountArgs<ExtArgs>
             result: $Utils.Optional<Servicesetting_illnesstypeCountAggregateOutputType> | number
+          }
+        }
+      }
+      packagebundle: {
+        payload: Prisma.$packagebundlePayload<ExtArgs>
+        fields: Prisma.packagebundleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.packagebundleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.packagebundleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>
+          }
+          findFirst: {
+            args: Prisma.packagebundleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.packagebundleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>
+          }
+          findMany: {
+            args: Prisma.packagebundleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>[]
+          }
+          create: {
+            args: Prisma.packagebundleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>
+          }
+          createMany: {
+            args: Prisma.packagebundleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.packagebundleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>[]
+          }
+          delete: {
+            args: Prisma.packagebundleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>
+          }
+          update: {
+            args: Prisma.packagebundleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>
+          }
+          deleteMany: {
+            args: Prisma.packagebundleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.packagebundleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.packagebundleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$packagebundlePayload>
+          }
+          aggregate: {
+            args: Prisma.PackagebundleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePackagebundle>
+          }
+          groupBy: {
+            args: Prisma.packagebundleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PackagebundleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.packagebundleCountArgs<ExtArgs>
+            result: $Utils.Optional<PackagebundleCountAggregateOutputType> | number
           }
         }
       }
@@ -35880,30 +35966,35 @@ export namespace Prisma {
     id: number | null
     servicesettingid: number | null
     illnesstypeid: number | null
+    insurerid: number | null
   }
 
   export type Servicesetting_illnesstypeSumAggregateOutputType = {
     id: number | null
     servicesettingid: number | null
     illnesstypeid: number | null
+    insurerid: number | null
   }
 
   export type Servicesetting_illnesstypeMinAggregateOutputType = {
     id: number | null
     servicesettingid: number | null
     illnesstypeid: number | null
+    insurerid: number | null
   }
 
   export type Servicesetting_illnesstypeMaxAggregateOutputType = {
     id: number | null
     servicesettingid: number | null
     illnesstypeid: number | null
+    insurerid: number | null
   }
 
   export type Servicesetting_illnesstypeCountAggregateOutputType = {
     id: number
     servicesettingid: number
     illnesstypeid: number
+    insurerid: number
     _all: number
   }
 
@@ -35912,30 +36003,35 @@ export namespace Prisma {
     id?: true
     servicesettingid?: true
     illnesstypeid?: true
+    insurerid?: true
   }
 
   export type Servicesetting_illnesstypeSumAggregateInputType = {
     id?: true
     servicesettingid?: true
     illnesstypeid?: true
+    insurerid?: true
   }
 
   export type Servicesetting_illnesstypeMinAggregateInputType = {
     id?: true
     servicesettingid?: true
     illnesstypeid?: true
+    insurerid?: true
   }
 
   export type Servicesetting_illnesstypeMaxAggregateInputType = {
     id?: true
     servicesettingid?: true
     illnesstypeid?: true
+    insurerid?: true
   }
 
   export type Servicesetting_illnesstypeCountAggregateInputType = {
     id?: true
     servicesettingid?: true
     illnesstypeid?: true
+    insurerid?: true
     _all?: true
   }
 
@@ -36029,6 +36125,7 @@ export namespace Prisma {
     id: number
     servicesettingid: number
     illnesstypeid: number
+    insurerid: number | null
     _count: Servicesetting_illnesstypeCountAggregateOutputType | null
     _avg: Servicesetting_illnesstypeAvgAggregateOutputType | null
     _sum: Servicesetting_illnesstypeSumAggregateOutputType | null
@@ -36054,6 +36151,7 @@ export namespace Prisma {
     id?: boolean
     servicesettingid?: boolean
     illnesstypeid?: boolean
+    insurerid?: boolean
     illnesstype?: boolean | illnesstypeDefaultArgs<ExtArgs>
     servicesetting?: boolean | servicesettingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicesetting_illnesstype"]>
@@ -36062,6 +36160,7 @@ export namespace Prisma {
     id?: boolean
     servicesettingid?: boolean
     illnesstypeid?: boolean
+    insurerid?: boolean
     illnesstype?: boolean | illnesstypeDefaultArgs<ExtArgs>
     servicesetting?: boolean | servicesettingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servicesetting_illnesstype"]>
@@ -36070,6 +36169,7 @@ export namespace Prisma {
     id?: boolean
     servicesettingid?: boolean
     illnesstypeid?: boolean
+    insurerid?: boolean
   }
 
   export type servicesetting_illnesstypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -36091,6 +36191,7 @@ export namespace Prisma {
       id: number
       servicesettingid: number
       illnesstypeid: number
+      insurerid: number | null
     }, ExtArgs["result"]["servicesetting_illnesstype"]>
     composites: {}
   }
@@ -36489,6 +36590,7 @@ export namespace Prisma {
     readonly id: FieldRef<"servicesetting_illnesstype", 'Int'>
     readonly servicesettingid: FieldRef<"servicesetting_illnesstype", 'Int'>
     readonly illnesstypeid: FieldRef<"servicesetting_illnesstype", 'Int'>
+    readonly insurerid: FieldRef<"servicesetting_illnesstype", 'Int'>
   }
     
 
@@ -36818,6 +36920,990 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: servicesetting_illnesstypeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model packagebundle
+   */
+
+  export type AggregatePackagebundle = {
+    _count: PackagebundleCountAggregateOutputType | null
+    _avg: PackagebundleAvgAggregateOutputType | null
+    _sum: PackagebundleSumAggregateOutputType | null
+    _min: PackagebundleMinAggregateOutputType | null
+    _max: PackagebundleMaxAggregateOutputType | null
+  }
+
+  export type PackagebundleAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PackagebundleSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PackagebundleMinAggregateOutputType = {
+    id: number | null
+    packagecode: string | null
+    packagedesc: string | null
+    localbillingcode: string | null
+    localbillingname: string | null
+    simbbillingcode: string | null
+    payorbillingcode: string | null
+    billinginitial: string | null
+    billingdiscount: string | null
+    billingnetamount: string | null
+    totalbillamount: string | null
+  }
+
+  export type PackagebundleMaxAggregateOutputType = {
+    id: number | null
+    packagecode: string | null
+    packagedesc: string | null
+    localbillingcode: string | null
+    localbillingname: string | null
+    simbbillingcode: string | null
+    payorbillingcode: string | null
+    billinginitial: string | null
+    billingdiscount: string | null
+    billingnetamount: string | null
+    totalbillamount: string | null
+  }
+
+  export type PackagebundleCountAggregateOutputType = {
+    id: number
+    packagecode: number
+    packagedesc: number
+    localbillingcode: number
+    localbillingname: number
+    simbbillingcode: number
+    payorbillingcode: number
+    billinginitial: number
+    billingdiscount: number
+    billingnetamount: number
+    totalbillamount: number
+    _all: number
+  }
+
+
+  export type PackagebundleAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type PackagebundleSumAggregateInputType = {
+    id?: true
+  }
+
+  export type PackagebundleMinAggregateInputType = {
+    id?: true
+    packagecode?: true
+    packagedesc?: true
+    localbillingcode?: true
+    localbillingname?: true
+    simbbillingcode?: true
+    payorbillingcode?: true
+    billinginitial?: true
+    billingdiscount?: true
+    billingnetamount?: true
+    totalbillamount?: true
+  }
+
+  export type PackagebundleMaxAggregateInputType = {
+    id?: true
+    packagecode?: true
+    packagedesc?: true
+    localbillingcode?: true
+    localbillingname?: true
+    simbbillingcode?: true
+    payorbillingcode?: true
+    billinginitial?: true
+    billingdiscount?: true
+    billingnetamount?: true
+    totalbillamount?: true
+  }
+
+  export type PackagebundleCountAggregateInputType = {
+    id?: true
+    packagecode?: true
+    packagedesc?: true
+    localbillingcode?: true
+    localbillingname?: true
+    simbbillingcode?: true
+    payorbillingcode?: true
+    billinginitial?: true
+    billingdiscount?: true
+    billingnetamount?: true
+    totalbillamount?: true
+    _all?: true
+  }
+
+  export type PackagebundleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which packagebundle to aggregate.
+     */
+    where?: packagebundleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of packagebundles to fetch.
+     */
+    orderBy?: packagebundleOrderByWithRelationInput | packagebundleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: packagebundleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` packagebundles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` packagebundles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned packagebundles
+    **/
+    _count?: true | PackagebundleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PackagebundleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PackagebundleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PackagebundleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PackagebundleMaxAggregateInputType
+  }
+
+  export type GetPackagebundleAggregateType<T extends PackagebundleAggregateArgs> = {
+        [P in keyof T & keyof AggregatePackagebundle]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePackagebundle[P]>
+      : GetScalarType<T[P], AggregatePackagebundle[P]>
+  }
+
+
+
+
+  export type packagebundleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: packagebundleWhereInput
+    orderBy?: packagebundleOrderByWithAggregationInput | packagebundleOrderByWithAggregationInput[]
+    by: PackagebundleScalarFieldEnum[] | PackagebundleScalarFieldEnum
+    having?: packagebundleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PackagebundleCountAggregateInputType | true
+    _avg?: PackagebundleAvgAggregateInputType
+    _sum?: PackagebundleSumAggregateInputType
+    _min?: PackagebundleMinAggregateInputType
+    _max?: PackagebundleMaxAggregateInputType
+  }
+
+  export type PackagebundleGroupByOutputType = {
+    id: number
+    packagecode: string | null
+    packagedesc: string | null
+    localbillingcode: string | null
+    localbillingname: string | null
+    simbbillingcode: string | null
+    payorbillingcode: string | null
+    billinginitial: string | null
+    billingdiscount: string | null
+    billingnetamount: string | null
+    totalbillamount: string | null
+    _count: PackagebundleCountAggregateOutputType | null
+    _avg: PackagebundleAvgAggregateOutputType | null
+    _sum: PackagebundleSumAggregateOutputType | null
+    _min: PackagebundleMinAggregateOutputType | null
+    _max: PackagebundleMaxAggregateOutputType | null
+  }
+
+  type GetPackagebundleGroupByPayload<T extends packagebundleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PackagebundleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PackagebundleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PackagebundleGroupByOutputType[P]>
+            : GetScalarType<T[P], PackagebundleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type packagebundleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    packagecode?: boolean
+    packagedesc?: boolean
+    localbillingcode?: boolean
+    localbillingname?: boolean
+    simbbillingcode?: boolean
+    payorbillingcode?: boolean
+    billinginitial?: boolean
+    billingdiscount?: boolean
+    billingnetamount?: boolean
+    totalbillamount?: boolean
+  }, ExtArgs["result"]["packagebundle"]>
+
+  export type packagebundleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    packagecode?: boolean
+    packagedesc?: boolean
+    localbillingcode?: boolean
+    localbillingname?: boolean
+    simbbillingcode?: boolean
+    payorbillingcode?: boolean
+    billinginitial?: boolean
+    billingdiscount?: boolean
+    billingnetamount?: boolean
+    totalbillamount?: boolean
+  }, ExtArgs["result"]["packagebundle"]>
+
+  export type packagebundleSelectScalar = {
+    id?: boolean
+    packagecode?: boolean
+    packagedesc?: boolean
+    localbillingcode?: boolean
+    localbillingname?: boolean
+    simbbillingcode?: boolean
+    payorbillingcode?: boolean
+    billinginitial?: boolean
+    billingdiscount?: boolean
+    billingnetamount?: boolean
+    totalbillamount?: boolean
+  }
+
+
+  export type $packagebundlePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "packagebundle"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      packagecode: string | null
+      packagedesc: string | null
+      localbillingcode: string | null
+      localbillingname: string | null
+      simbbillingcode: string | null
+      payorbillingcode: string | null
+      billinginitial: string | null
+      billingdiscount: string | null
+      billingnetamount: string | null
+      totalbillamount: string | null
+    }, ExtArgs["result"]["packagebundle"]>
+    composites: {}
+  }
+
+  type packagebundleGetPayload<S extends boolean | null | undefined | packagebundleDefaultArgs> = $Result.GetResult<Prisma.$packagebundlePayload, S>
+
+  type packagebundleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<packagebundleFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PackagebundleCountAggregateInputType | true
+    }
+
+  export interface packagebundleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['packagebundle'], meta: { name: 'packagebundle' } }
+    /**
+     * Find zero or one Packagebundle that matches the filter.
+     * @param {packagebundleFindUniqueArgs} args - Arguments to find a Packagebundle
+     * @example
+     * // Get one Packagebundle
+     * const packagebundle = await prisma.packagebundle.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends packagebundleFindUniqueArgs>(args: SelectSubset<T, packagebundleFindUniqueArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Packagebundle that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {packagebundleFindUniqueOrThrowArgs} args - Arguments to find a Packagebundle
+     * @example
+     * // Get one Packagebundle
+     * const packagebundle = await prisma.packagebundle.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends packagebundleFindUniqueOrThrowArgs>(args: SelectSubset<T, packagebundleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Packagebundle that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {packagebundleFindFirstArgs} args - Arguments to find a Packagebundle
+     * @example
+     * // Get one Packagebundle
+     * const packagebundle = await prisma.packagebundle.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends packagebundleFindFirstArgs>(args?: SelectSubset<T, packagebundleFindFirstArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Packagebundle that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {packagebundleFindFirstOrThrowArgs} args - Arguments to find a Packagebundle
+     * @example
+     * // Get one Packagebundle
+     * const packagebundle = await prisma.packagebundle.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends packagebundleFindFirstOrThrowArgs>(args?: SelectSubset<T, packagebundleFindFirstOrThrowArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Packagebundles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {packagebundleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Packagebundles
+     * const packagebundles = await prisma.packagebundle.findMany()
+     * 
+     * // Get first 10 Packagebundles
+     * const packagebundles = await prisma.packagebundle.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const packagebundleWithIdOnly = await prisma.packagebundle.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends packagebundleFindManyArgs>(args?: SelectSubset<T, packagebundleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Packagebundle.
+     * @param {packagebundleCreateArgs} args - Arguments to create a Packagebundle.
+     * @example
+     * // Create one Packagebundle
+     * const Packagebundle = await prisma.packagebundle.create({
+     *   data: {
+     *     // ... data to create a Packagebundle
+     *   }
+     * })
+     * 
+     */
+    create<T extends packagebundleCreateArgs>(args: SelectSubset<T, packagebundleCreateArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Packagebundles.
+     * @param {packagebundleCreateManyArgs} args - Arguments to create many Packagebundles.
+     * @example
+     * // Create many Packagebundles
+     * const packagebundle = await prisma.packagebundle.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends packagebundleCreateManyArgs>(args?: SelectSubset<T, packagebundleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Packagebundles and returns the data saved in the database.
+     * @param {packagebundleCreateManyAndReturnArgs} args - Arguments to create many Packagebundles.
+     * @example
+     * // Create many Packagebundles
+     * const packagebundle = await prisma.packagebundle.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Packagebundles and only return the `id`
+     * const packagebundleWithIdOnly = await prisma.packagebundle.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends packagebundleCreateManyAndReturnArgs>(args?: SelectSubset<T, packagebundleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Packagebundle.
+     * @param {packagebundleDeleteArgs} args - Arguments to delete one Packagebundle.
+     * @example
+     * // Delete one Packagebundle
+     * const Packagebundle = await prisma.packagebundle.delete({
+     *   where: {
+     *     // ... filter to delete one Packagebundle
+     *   }
+     * })
+     * 
+     */
+    delete<T extends packagebundleDeleteArgs>(args: SelectSubset<T, packagebundleDeleteArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Packagebundle.
+     * @param {packagebundleUpdateArgs} args - Arguments to update one Packagebundle.
+     * @example
+     * // Update one Packagebundle
+     * const packagebundle = await prisma.packagebundle.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends packagebundleUpdateArgs>(args: SelectSubset<T, packagebundleUpdateArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Packagebundles.
+     * @param {packagebundleDeleteManyArgs} args - Arguments to filter Packagebundles to delete.
+     * @example
+     * // Delete a few Packagebundles
+     * const { count } = await prisma.packagebundle.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends packagebundleDeleteManyArgs>(args?: SelectSubset<T, packagebundleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Packagebundles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {packagebundleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Packagebundles
+     * const packagebundle = await prisma.packagebundle.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends packagebundleUpdateManyArgs>(args: SelectSubset<T, packagebundleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Packagebundle.
+     * @param {packagebundleUpsertArgs} args - Arguments to update or create a Packagebundle.
+     * @example
+     * // Update or create a Packagebundle
+     * const packagebundle = await prisma.packagebundle.upsert({
+     *   create: {
+     *     // ... data to create a Packagebundle
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Packagebundle we want to update
+     *   }
+     * })
+     */
+    upsert<T extends packagebundleUpsertArgs>(args: SelectSubset<T, packagebundleUpsertArgs<ExtArgs>>): Prisma__packagebundleClient<$Result.GetResult<Prisma.$packagebundlePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Packagebundles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {packagebundleCountArgs} args - Arguments to filter Packagebundles to count.
+     * @example
+     * // Count the number of Packagebundles
+     * const count = await prisma.packagebundle.count({
+     *   where: {
+     *     // ... the filter for the Packagebundles we want to count
+     *   }
+     * })
+    **/
+    count<T extends packagebundleCountArgs>(
+      args?: Subset<T, packagebundleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PackagebundleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Packagebundle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackagebundleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PackagebundleAggregateArgs>(args: Subset<T, PackagebundleAggregateArgs>): Prisma.PrismaPromise<GetPackagebundleAggregateType<T>>
+
+    /**
+     * Group by Packagebundle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {packagebundleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends packagebundleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: packagebundleGroupByArgs['orderBy'] }
+        : { orderBy?: packagebundleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, packagebundleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPackagebundleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the packagebundle model
+   */
+  readonly fields: packagebundleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for packagebundle.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__packagebundleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the packagebundle model
+   */ 
+  interface packagebundleFieldRefs {
+    readonly id: FieldRef<"packagebundle", 'Int'>
+    readonly packagecode: FieldRef<"packagebundle", 'String'>
+    readonly packagedesc: FieldRef<"packagebundle", 'String'>
+    readonly localbillingcode: FieldRef<"packagebundle", 'String'>
+    readonly localbillingname: FieldRef<"packagebundle", 'String'>
+    readonly simbbillingcode: FieldRef<"packagebundle", 'String'>
+    readonly payorbillingcode: FieldRef<"packagebundle", 'String'>
+    readonly billinginitial: FieldRef<"packagebundle", 'String'>
+    readonly billingdiscount: FieldRef<"packagebundle", 'String'>
+    readonly billingnetamount: FieldRef<"packagebundle", 'String'>
+    readonly totalbillamount: FieldRef<"packagebundle", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * packagebundle findUnique
+   */
+  export type packagebundleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * Filter, which packagebundle to fetch.
+     */
+    where: packagebundleWhereUniqueInput
+  }
+
+  /**
+   * packagebundle findUniqueOrThrow
+   */
+  export type packagebundleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * Filter, which packagebundle to fetch.
+     */
+    where: packagebundleWhereUniqueInput
+  }
+
+  /**
+   * packagebundle findFirst
+   */
+  export type packagebundleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * Filter, which packagebundle to fetch.
+     */
+    where?: packagebundleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of packagebundles to fetch.
+     */
+    orderBy?: packagebundleOrderByWithRelationInput | packagebundleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for packagebundles.
+     */
+    cursor?: packagebundleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` packagebundles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` packagebundles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of packagebundles.
+     */
+    distinct?: PackagebundleScalarFieldEnum | PackagebundleScalarFieldEnum[]
+  }
+
+  /**
+   * packagebundle findFirstOrThrow
+   */
+  export type packagebundleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * Filter, which packagebundle to fetch.
+     */
+    where?: packagebundleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of packagebundles to fetch.
+     */
+    orderBy?: packagebundleOrderByWithRelationInput | packagebundleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for packagebundles.
+     */
+    cursor?: packagebundleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` packagebundles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` packagebundles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of packagebundles.
+     */
+    distinct?: PackagebundleScalarFieldEnum | PackagebundleScalarFieldEnum[]
+  }
+
+  /**
+   * packagebundle findMany
+   */
+  export type packagebundleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * Filter, which packagebundles to fetch.
+     */
+    where?: packagebundleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of packagebundles to fetch.
+     */
+    orderBy?: packagebundleOrderByWithRelationInput | packagebundleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing packagebundles.
+     */
+    cursor?: packagebundleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` packagebundles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` packagebundles.
+     */
+    skip?: number
+    distinct?: PackagebundleScalarFieldEnum | PackagebundleScalarFieldEnum[]
+  }
+
+  /**
+   * packagebundle create
+   */
+  export type packagebundleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * The data needed to create a packagebundle.
+     */
+    data?: XOR<packagebundleCreateInput, packagebundleUncheckedCreateInput>
+  }
+
+  /**
+   * packagebundle createMany
+   */
+  export type packagebundleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many packagebundles.
+     */
+    data: packagebundleCreateManyInput | packagebundleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * packagebundle createManyAndReturn
+   */
+  export type packagebundleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many packagebundles.
+     */
+    data: packagebundleCreateManyInput | packagebundleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * packagebundle update
+   */
+  export type packagebundleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * The data needed to update a packagebundle.
+     */
+    data: XOR<packagebundleUpdateInput, packagebundleUncheckedUpdateInput>
+    /**
+     * Choose, which packagebundle to update.
+     */
+    where: packagebundleWhereUniqueInput
+  }
+
+  /**
+   * packagebundle updateMany
+   */
+  export type packagebundleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update packagebundles.
+     */
+    data: XOR<packagebundleUpdateManyMutationInput, packagebundleUncheckedUpdateManyInput>
+    /**
+     * Filter which packagebundles to update
+     */
+    where?: packagebundleWhereInput
+  }
+
+  /**
+   * packagebundle upsert
+   */
+  export type packagebundleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * The filter to search for the packagebundle to update in case it exists.
+     */
+    where: packagebundleWhereUniqueInput
+    /**
+     * In case the packagebundle found by the `where` argument doesn't exist, create a new packagebundle with this data.
+     */
+    create: XOR<packagebundleCreateInput, packagebundleUncheckedCreateInput>
+    /**
+     * In case the packagebundle was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<packagebundleUpdateInput, packagebundleUncheckedUpdateInput>
+  }
+
+  /**
+   * packagebundle delete
+   */
+  export type packagebundleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
+    /**
+     * Filter which packagebundle to delete.
+     */
+    where: packagebundleWhereUniqueInput
+  }
+
+  /**
+   * packagebundle deleteMany
+   */
+  export type packagebundleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which packagebundles to delete
+     */
+    where?: packagebundleWhereInput
+  }
+
+  /**
+   * packagebundle without action
+   */
+  export type packagebundleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the packagebundle
+     */
+    select?: packagebundleSelect<ExtArgs> | null
   }
 
 
@@ -37317,10 +38403,28 @@ export namespace Prisma {
   export const Servicesetting_illnesstypeScalarFieldEnum: {
     id: 'id',
     servicesettingid: 'servicesettingid',
-    illnesstypeid: 'illnesstypeid'
+    illnesstypeid: 'illnesstypeid',
+    insurerid: 'insurerid'
   };
 
   export type Servicesetting_illnesstypeScalarFieldEnum = (typeof Servicesetting_illnesstypeScalarFieldEnum)[keyof typeof Servicesetting_illnesstypeScalarFieldEnum]
+
+
+  export const PackagebundleScalarFieldEnum: {
+    id: 'id',
+    packagecode: 'packagecode',
+    packagedesc: 'packagedesc',
+    localbillingcode: 'localbillingcode',
+    localbillingname: 'localbillingname',
+    simbbillingcode: 'simbbillingcode',
+    payorbillingcode: 'payorbillingcode',
+    billinginitial: 'billinginitial',
+    billingdiscount: 'billingdiscount',
+    billingnetamount: 'billingnetamount',
+    totalbillamount: 'totalbillamount'
+  };
+
+  export type PackagebundleScalarFieldEnum = (typeof PackagebundleScalarFieldEnum)[keyof typeof PackagebundleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -39994,6 +41098,7 @@ export namespace Prisma {
     id?: IntFilter<"servicesetting_illnesstype"> | number
     servicesettingid?: IntFilter<"servicesetting_illnesstype"> | number
     illnesstypeid?: IntFilter<"servicesetting_illnesstype"> | number
+    insurerid?: IntNullableFilter<"servicesetting_illnesstype"> | number | null
     illnesstype?: XOR<IllnesstypeRelationFilter, illnesstypeWhereInput>
     servicesetting?: XOR<ServicesettingRelationFilter, servicesettingWhereInput>
   }
@@ -40002,6 +41107,7 @@ export namespace Prisma {
     id?: SortOrder
     servicesettingid?: SortOrder
     illnesstypeid?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
     illnesstype?: illnesstypeOrderByWithRelationInput
     servicesetting?: servicesettingOrderByWithRelationInput
   }
@@ -40014,6 +41120,7 @@ export namespace Prisma {
     NOT?: servicesetting_illnesstypeWhereInput | servicesetting_illnesstypeWhereInput[]
     servicesettingid?: IntFilter<"servicesetting_illnesstype"> | number
     illnesstypeid?: IntFilter<"servicesetting_illnesstype"> | number
+    insurerid?: IntNullableFilter<"servicesetting_illnesstype"> | number | null
     illnesstype?: XOR<IllnesstypeRelationFilter, illnesstypeWhereInput>
     servicesetting?: XOR<ServicesettingRelationFilter, servicesettingWhereInput>
   }, "id" | "servicesettingid_illnesstypeid">
@@ -40022,6 +41129,7 @@ export namespace Prisma {
     id?: SortOrder
     servicesettingid?: SortOrder
     illnesstypeid?: SortOrder
+    insurerid?: SortOrderInput | SortOrder
     _count?: servicesetting_illnesstypeCountOrderByAggregateInput
     _avg?: servicesetting_illnesstypeAvgOrderByAggregateInput
     _max?: servicesetting_illnesstypeMaxOrderByAggregateInput
@@ -40036,6 +41144,91 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"servicesetting_illnesstype"> | number
     servicesettingid?: IntWithAggregatesFilter<"servicesetting_illnesstype"> | number
     illnesstypeid?: IntWithAggregatesFilter<"servicesetting_illnesstype"> | number
+    insurerid?: IntNullableWithAggregatesFilter<"servicesetting_illnesstype"> | number | null
+  }
+
+  export type packagebundleWhereInput = {
+    AND?: packagebundleWhereInput | packagebundleWhereInput[]
+    OR?: packagebundleWhereInput[]
+    NOT?: packagebundleWhereInput | packagebundleWhereInput[]
+    id?: IntFilter<"packagebundle"> | number
+    packagecode?: StringNullableFilter<"packagebundle"> | string | null
+    packagedesc?: StringNullableFilter<"packagebundle"> | string | null
+    localbillingcode?: StringNullableFilter<"packagebundle"> | string | null
+    localbillingname?: StringNullableFilter<"packagebundle"> | string | null
+    simbbillingcode?: StringNullableFilter<"packagebundle"> | string | null
+    payorbillingcode?: StringNullableFilter<"packagebundle"> | string | null
+    billinginitial?: StringNullableFilter<"packagebundle"> | string | null
+    billingdiscount?: StringNullableFilter<"packagebundle"> | string | null
+    billingnetamount?: StringNullableFilter<"packagebundle"> | string | null
+    totalbillamount?: StringNullableFilter<"packagebundle"> | string | null
+  }
+
+  export type packagebundleOrderByWithRelationInput = {
+    id?: SortOrder
+    packagecode?: SortOrderInput | SortOrder
+    packagedesc?: SortOrderInput | SortOrder
+    localbillingcode?: SortOrderInput | SortOrder
+    localbillingname?: SortOrderInput | SortOrder
+    simbbillingcode?: SortOrderInput | SortOrder
+    payorbillingcode?: SortOrderInput | SortOrder
+    billinginitial?: SortOrderInput | SortOrder
+    billingdiscount?: SortOrderInput | SortOrder
+    billingnetamount?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
+  }
+
+  export type packagebundleWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: packagebundleWhereInput | packagebundleWhereInput[]
+    OR?: packagebundleWhereInput[]
+    NOT?: packagebundleWhereInput | packagebundleWhereInput[]
+    packagecode?: StringNullableFilter<"packagebundle"> | string | null
+    packagedesc?: StringNullableFilter<"packagebundle"> | string | null
+    localbillingcode?: StringNullableFilter<"packagebundle"> | string | null
+    localbillingname?: StringNullableFilter<"packagebundle"> | string | null
+    simbbillingcode?: StringNullableFilter<"packagebundle"> | string | null
+    payorbillingcode?: StringNullableFilter<"packagebundle"> | string | null
+    billinginitial?: StringNullableFilter<"packagebundle"> | string | null
+    billingdiscount?: StringNullableFilter<"packagebundle"> | string | null
+    billingnetamount?: StringNullableFilter<"packagebundle"> | string | null
+    totalbillamount?: StringNullableFilter<"packagebundle"> | string | null
+  }, "id">
+
+  export type packagebundleOrderByWithAggregationInput = {
+    id?: SortOrder
+    packagecode?: SortOrderInput | SortOrder
+    packagedesc?: SortOrderInput | SortOrder
+    localbillingcode?: SortOrderInput | SortOrder
+    localbillingname?: SortOrderInput | SortOrder
+    simbbillingcode?: SortOrderInput | SortOrder
+    payorbillingcode?: SortOrderInput | SortOrder
+    billinginitial?: SortOrderInput | SortOrder
+    billingdiscount?: SortOrderInput | SortOrder
+    billingnetamount?: SortOrderInput | SortOrder
+    totalbillamount?: SortOrderInput | SortOrder
+    _count?: packagebundleCountOrderByAggregateInput
+    _avg?: packagebundleAvgOrderByAggregateInput
+    _max?: packagebundleMaxOrderByAggregateInput
+    _min?: packagebundleMinOrderByAggregateInput
+    _sum?: packagebundleSumOrderByAggregateInput
+  }
+
+  export type packagebundleScalarWhereWithAggregatesInput = {
+    AND?: packagebundleScalarWhereWithAggregatesInput | packagebundleScalarWhereWithAggregatesInput[]
+    OR?: packagebundleScalarWhereWithAggregatesInput[]
+    NOT?: packagebundleScalarWhereWithAggregatesInput | packagebundleScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"packagebundle"> | number
+    packagecode?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    packagedesc?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    localbillingcode?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    localbillingname?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    simbbillingcode?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    payorbillingcode?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    billinginitial?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    billingdiscount?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    billingnetamount?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
+    totalbillamount?: StringNullableWithAggregatesFilter<"packagebundle"> | string | null
   }
 
   export type accidentcauseover45daysCreateInput = {
@@ -42758,6 +43951,7 @@ export namespace Prisma {
   }
 
   export type servicesetting_illnesstypeCreateInput = {
+    insurerid?: number | null
     illnesstype: illnesstypeCreateNestedOneWithoutServicesetting_illnesstypeInput
     servicesetting: servicesettingCreateNestedOneWithoutServicesetting_illnesstypeInput
   }
@@ -42766,9 +43960,11 @@ export namespace Prisma {
     id?: number
     servicesettingid: number
     illnesstypeid: number
+    insurerid?: number | null
   }
 
   export type servicesetting_illnesstypeUpdateInput = {
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
     illnesstype?: illnesstypeUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
     servicesetting?: servicesettingUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
   }
@@ -42777,22 +43973,120 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     servicesettingid?: IntFieldUpdateOperationsInput | number
     illnesstypeid?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type servicesetting_illnesstypeCreateManyInput = {
     id?: number
     servicesettingid: number
     illnesstypeid: number
+    insurerid?: number | null
   }
 
   export type servicesetting_illnesstypeUpdateManyMutationInput = {
-
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type servicesetting_illnesstypeUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     servicesettingid?: IntFieldUpdateOperationsInput | number
     illnesstypeid?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type packagebundleCreateInput = {
+    packagecode?: string | null
+    packagedesc?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+    totalbillamount?: string | null
+  }
+
+  export type packagebundleUncheckedCreateInput = {
+    id?: number
+    packagecode?: string | null
+    packagedesc?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+    totalbillamount?: string | null
+  }
+
+  export type packagebundleUpdateInput = {
+    packagecode?: NullableStringFieldUpdateOperationsInput | string | null
+    packagedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type packagebundleUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    packagecode?: NullableStringFieldUpdateOperationsInput | string | null
+    packagedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type packagebundleCreateManyInput = {
+    id?: number
+    packagecode?: string | null
+    packagedesc?: string | null
+    localbillingcode?: string | null
+    localbillingname?: string | null
+    simbbillingcode?: string | null
+    payorbillingcode?: string | null
+    billinginitial?: string | null
+    billingdiscount?: string | null
+    billingnetamount?: string | null
+    totalbillamount?: string | null
+  }
+
+  export type packagebundleUpdateManyMutationInput = {
+    packagecode?: NullableStringFieldUpdateOperationsInput | string | null
+    packagedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type packagebundleUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    packagecode?: NullableStringFieldUpdateOperationsInput | string | null
+    packagedesc?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    localbillingname?: NullableStringFieldUpdateOperationsInput | string | null
+    simbbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    payorbillingcode?: NullableStringFieldUpdateOperationsInput | string | null
+    billinginitial?: NullableStringFieldUpdateOperationsInput | string | null
+    billingdiscount?: NullableStringFieldUpdateOperationsInput | string | null
+    billingnetamount?: NullableStringFieldUpdateOperationsInput | string | null
+    totalbillamount?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -44836,30 +46130,85 @@ export namespace Prisma {
     id?: SortOrder
     servicesettingid?: SortOrder
     illnesstypeid?: SortOrder
+    insurerid?: SortOrder
   }
 
   export type servicesetting_illnesstypeAvgOrderByAggregateInput = {
     id?: SortOrder
     servicesettingid?: SortOrder
     illnesstypeid?: SortOrder
+    insurerid?: SortOrder
   }
 
   export type servicesetting_illnesstypeMaxOrderByAggregateInput = {
     id?: SortOrder
     servicesettingid?: SortOrder
     illnesstypeid?: SortOrder
+    insurerid?: SortOrder
   }
 
   export type servicesetting_illnesstypeMinOrderByAggregateInput = {
     id?: SortOrder
     servicesettingid?: SortOrder
     illnesstypeid?: SortOrder
+    insurerid?: SortOrder
   }
 
   export type servicesetting_illnesstypeSumOrderByAggregateInput = {
     id?: SortOrder
     servicesettingid?: SortOrder
     illnesstypeid?: SortOrder
+    insurerid?: SortOrder
+  }
+
+  export type packagebundleCountOrderByAggregateInput = {
+    id?: SortOrder
+    packagecode?: SortOrder
+    packagedesc?: SortOrder
+    localbillingcode?: SortOrder
+    localbillingname?: SortOrder
+    simbbillingcode?: SortOrder
+    payorbillingcode?: SortOrder
+    billinginitial?: SortOrder
+    billingdiscount?: SortOrder
+    billingnetamount?: SortOrder
+    totalbillamount?: SortOrder
+  }
+
+  export type packagebundleAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type packagebundleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    packagecode?: SortOrder
+    packagedesc?: SortOrder
+    localbillingcode?: SortOrder
+    localbillingname?: SortOrder
+    simbbillingcode?: SortOrder
+    payorbillingcode?: SortOrder
+    billinginitial?: SortOrder
+    billingdiscount?: SortOrder
+    billingnetamount?: SortOrder
+    totalbillamount?: SortOrder
+  }
+
+  export type packagebundleMinOrderByAggregateInput = {
+    id?: SortOrder
+    packagecode?: SortOrder
+    packagedesc?: SortOrder
+    localbillingcode?: SortOrder
+    localbillingname?: SortOrder
+    simbbillingcode?: SortOrder
+    payorbillingcode?: SortOrder
+    billinginitial?: SortOrder
+    billingdiscount?: SortOrder
+    billingnetamount?: SortOrder
+    totalbillamount?: SortOrder
+  }
+
+  export type packagebundleSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type insurersCreateNestedOneWithoutAccidentcauseover45daysInput = {
@@ -48975,12 +50324,14 @@ export namespace Prisma {
   }
 
   export type servicesetting_illnesstypeCreateWithoutIllnesstypeInput = {
+    insurerid?: number | null
     servicesetting: servicesettingCreateNestedOneWithoutServicesetting_illnesstypeInput
   }
 
   export type servicesetting_illnesstypeUncheckedCreateWithoutIllnesstypeInput = {
     id?: number
     servicesettingid: number
+    insurerid?: number | null
   }
 
   export type servicesetting_illnesstypeCreateOrConnectWithoutIllnesstypeInput = {
@@ -49086,6 +50437,7 @@ export namespace Prisma {
     id?: IntFilter<"servicesetting_illnesstype"> | number
     servicesettingid?: IntFilter<"servicesetting_illnesstype"> | number
     illnesstypeid?: IntFilter<"servicesetting_illnesstype"> | number
+    insurerid?: IntNullableFilter<"servicesetting_illnesstype"> | number | null
   }
 
   export type accidenttransactionsCreateWithoutInjurydetailInput = {
@@ -50851,12 +52203,14 @@ export namespace Prisma {
   }
 
   export type servicesetting_illnesstypeCreateWithoutServicesettingInput = {
+    insurerid?: number | null
     illnesstype: illnesstypeCreateNestedOneWithoutServicesetting_illnesstypeInput
   }
 
   export type servicesetting_illnesstypeUncheckedCreateWithoutServicesettingInput = {
     id?: number
     illnesstypeid: number
+    insurerid?: number | null
   }
 
   export type servicesetting_illnesstypeCreateOrConnectWithoutServicesettingInput = {
@@ -52598,20 +53952,24 @@ export namespace Prisma {
   export type servicesetting_illnesstypeCreateManyIllnesstypeInput = {
     id?: number
     servicesettingid: number
+    insurerid?: number | null
   }
 
   export type servicesetting_illnesstypeUpdateWithoutIllnesstypeInput = {
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
     servicesetting?: servicesettingUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
   }
 
   export type servicesetting_illnesstypeUncheckedUpdateWithoutIllnesstypeInput = {
     id?: IntFieldUpdateOperationsInput | number
     servicesettingid?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type servicesetting_illnesstypeUncheckedUpdateManyWithoutIllnesstypeInput = {
     id?: IntFieldUpdateOperationsInput | number
     servicesettingid?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type accidentcauseover45daysCreateManyInsurersInput = {
@@ -53485,20 +54843,24 @@ export namespace Prisma {
   export type servicesetting_illnesstypeCreateManyServicesettingInput = {
     id?: number
     illnesstypeid: number
+    insurerid?: number | null
   }
 
   export type servicesetting_illnesstypeUpdateWithoutServicesettingInput = {
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
     illnesstype?: illnesstypeUpdateOneRequiredWithoutServicesetting_illnesstypeNestedInput
   }
 
   export type servicesetting_illnesstypeUncheckedUpdateWithoutServicesettingInput = {
     id?: IntFieldUpdateOperationsInput | number
     illnesstypeid?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingInput = {
     id?: IntFieldUpdateOperationsInput | number
     illnesstypeid?: IntFieldUpdateOperationsInput | number
+    insurerid?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 
@@ -53654,6 +55016,10 @@ export namespace Prisma {
      * @deprecated Use servicesetting_illnesstypeDefaultArgs instead
      */
     export type servicesetting_illnesstypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = servicesetting_illnesstypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use packagebundleDefaultArgs instead
+     */
+    export type packagebundleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = packagebundleDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

@@ -85,20 +85,20 @@ class SearchPatientBodyDto{
     @IsOptional()
     AccidentDate?: string;
 
-    @IsString()
-    @IsOptional()
-    EstimateByVN?: string;
+    // @IsString()
+    // @IsOptional()
+    // EstimateByVN?: string;
     
-    @IsString()
-    @IsOptional()
-    EstimateBillType?: string;
+    // @IsString()
+    // @IsOptional()
+    // EstimateBillType?: string;
 
-    @IsString()
-    @IsOptional()
-    EstimateAutoByOrderSet?: string;
+    // @IsString()
+    // @IsOptional()
+    // EstimateAutoByOrderSet?: string;
 
 
-    @IsString()
-    @IsOptional()
-    EstTotal?: string;
+    // @IsString()
+    // @IsOptional()
+    // EstTotal?: string;
   }

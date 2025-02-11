@@ -1,5 +1,6 @@
-import {  IsInt,IsString } from 'class-validator';
+import {  IsInt,IsString ,IsArray, IsOptional,ValidateNested } from 'class-validator';
 import { HttpMessageDto } from './http-status-message.dto';
+import { Type } from 'class-transformer';
 
 export class aia_accessTokenDTO {
   accessTokenKey: string;
@@ -309,8 +310,68 @@ class ResultIndicationsForAdmissionInfo{
 
  insurers: InsurerDto;
 }
+export class ListPackageBundleDto {
+
+  HTTPStatus: HttpMessageDto;
+   Result?: ResultListPackageBundleInfo;
+}
+class ResultListPackageBundleInfo{
+
+ @IsString()
+ packagecode: string;
+
+ @IsString()
+ packagedesc: string;
+
+}
+export class PackageBundleDto {
+
+  HTTPStatus: HttpMessageDto;
+   Result?: PackageBundleResultInfo;
+}
 
 
+export class PackageBundleResultInfo {
+  @IsString()
+  packagecode: string;
+ 
+  @IsString()
+  packagedesc: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ResultPackageBundleInfo)
+  @IsOptional()
+  packagebundleinfo?: ResultPackageBundleInfo[];
+}
+
+
+export class ResultPackageBundleInfo{
+
+ @IsString()
+ localbillingcode: string;
+
+ @IsString()
+ localbillingname: string;
+
+ @IsString()
+ simbbillingcode: string;
+
+ @IsString()
+ payorbillingcode: string;
+
+ @IsString()
+ billinginitial: string;
+
+ @IsString()
+ billingdiscount: string;
+
+ @IsString()
+ billingnetamount: string;
+
+ @IsString()
+ totalbillamount:string;
+}
 
 export class DiagnosisTypeMappingDto {
   HTTPStatus: HttpMessageDto;
