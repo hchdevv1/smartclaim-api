@@ -1,9 +1,8 @@
-import { IsArray,IsInt, IsBoolean,IsOptional, IsString,ValidateNested  } from 'class-validator';
+import { IsArray,IsInt ,IsOptional, IsString,ValidateNested  } from 'class-validator';
 import { Type } from 'class-transformer';
-import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 
 
-export class QueryPreBillingDto {
+export class SubmitPreBillingDto {
     PatientInfo?: SearchPatientBodyDto
   }
    class SearchPatientBodyDto {
@@ -28,8 +27,6 @@ export class QueryPreBillingDto {
     @IsOptional()
     VN?: string;
 
-    @IsBoolean()
-    HavePreBilling: boolean;
 
     @IsArray()
     @ValidateNested({ each: true })
@@ -68,24 +65,3 @@ export class QueryPreBillingDto {
     @IsOptional()
     TotalBillAmount?: string;
   }
-
-  export class ResultSubmitPreBillingDto {
-
-    HTTPStatus: HttpMessageDto;
-    Result?: ResultInfo;
- }
-class ResultInfo{
-
-  
-  @IsString()
-  @IsOptional()
-  TotalBillAmount?: string;
-
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => QueryPreBilling)
-    @IsOptional()
-    PreBillingInfo?: QueryPreBilling[];
-
-
-}

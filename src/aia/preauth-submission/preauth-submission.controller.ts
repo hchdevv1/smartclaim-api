@@ -14,10 +14,7 @@ export class PreauthSubmissionController {
   constructor(private readonly preauthSubmissionService: PreauthSubmissionService) {}
 
   /// get from trakcare ///
-  @Get('/getListBilling/:xHN')
-  getListBilling(@Param('xHN') xHN: string ) {
-    return  this.preauthSubmissionService.getListBilling(xHN);
-  }
+ 
   @Post('/getListVisitClaimAIA')
   async getListVisitClaimAIA(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
         const result = this.preauthSubmissionService.getListVisitClaimAIA(queryPreauthSubmissionDto);
@@ -43,11 +40,29 @@ export class PreauthSubmissionController {
         const result = this.preauthSubmissionService.getPreAuthProcedure(queryPreauthSubmissionDto);
         return result
   }
+  //#region billing
+  @Get('/getListBilling/:xHN')
+  getListBilling(@Param('xHN') xHN: string ) {
+    return  this.preauthSubmissionService.getListBilling(xHN);
+  }
+  @Post('/setPreBilling')
+  async setPreBilling(@Body() queryPreBillingDto:QueryPreBillingDto){
+        const result = this.preauthSubmissionService.setPreBilling(queryPreBillingDto);
+        return result
+  }
   @Post('/getPreBilling')
   async getPreBilling(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
         const result = this.preauthSubmissionService.getPreBilling(queryPreauthSubmissionDto);
         return result
   }
+  
+  @Post('/SubmitPreBilling')
+  async SubmitPreBilling(@Body() queryPreBillingDto:QueryPreBillingDto){
+        const result = this.preauthSubmissionService.SubmitPreBilling(queryPreBillingDto);
+        return result
+  }
+  //#endregion
+
   @Post('/getPreAuthAccident')
   async getPreAuthAccident(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
         const result = this.preauthSubmissionService.getPreAuthAccident(queryPreauthSubmissionDto);
@@ -60,21 +75,19 @@ export class PreauthSubmissionController {
 
 //accident
 
-//billing
-
-
 @Post('/getPreAuthNote')
 async getPreAuthNote(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
       const result = this.preauthSubmissionService.getPreAuthNote(querySubmitPreAuthDto);
       return result
 }
 
-
 @Post('/getPackageBundle')
 async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
       const result = this.preauthSubmissionService.getPackageBundle(queryPackageBundleDto);
       return result
 }
+
+
 
   /// submit to data base ///
  
@@ -102,12 +115,6 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
   }
 
 
-
-  @Post('/SubmitPreBilling')
-  async SubmitPreBilling(@Body() queryPreBillingDto:QueryPreBillingDto){
-        const result = this.preauthSubmissionService.SubmitPreBilling(queryPreBillingDto);
-        return result
-  }
   
   @Post('/SubmitPreAuthNote')
   async SubmitPreAuthNote(@Body() queryPreAuthNoteDto:QueryPreAuthNoteDto){
