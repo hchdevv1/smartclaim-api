@@ -136,4 +136,11 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
         const result = this.preauthSubmissionService.UpdateReferenceVN(queryUpdateReferenceVNBodyDto);
         return result
   }
+
+
+    @Post('/checkeligiblePreAdmission')
+    async checkeligiblePreAdmission(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+          const result = this.preauthSubmissionService.checkeligiblePreAdmission(queryPreauthSubmissionDto);
+          return result
+    }
 }

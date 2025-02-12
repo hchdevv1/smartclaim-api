@@ -8,6 +8,7 @@ import { prismaProgest } from '../../database/database';
 import { Prisma } from '../../../prisma/generate-client-db';
 import { HttpStatusMessageService } from '../../utils/http-status-message/http-status-message.service';
 import { UtilsService } from '../../utils/utils.service';
+import { CheckEligibleService} from '../../aia/check-eligible/check-eligible.service';
 
 
 import { QueryDiagnosisDto ,ResultSubmitDiagnosisDto} from './dto/query-diagnoisis-preauth-submission.dto';
@@ -41,7 +42,7 @@ import { ResultPreAuthDiagnosisDto ,QueryDiagnosis} from './dto/result-diagnosis
 import { ResultPreAuthProcedurDto ,QueryProcedure} from './dto/result-procedure-preauth-submission.dto';
 import { ResultPreAuthAccidentDto } from './dto/result-accident-preauth-submission.dto';
 import { ResultPreAuthBillingDto ,QueryBilling} from './dto/result-billing-preauth-submission.dto';
-
+import { ResultCheckeligiblePreAdmissionDto ,CoverageList ,MessageList ,PolicyInfoList ,InsuranceEligibleData ,InsuranceCustomerDetail} from './dto/result-check-eligible-preadmission.dto';
 const httpStatusMessageService = new HttpStatusMessageService();
 const newHttpMessageDto =new HttpMessageDto();
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -55,7 +56,9 @@ export class PreauthSubmissionService {
   constructor(
     private readonly httpService: HttpService,
     private readonly trakcareService:TrakcareService,
-    private readonly utilsService:UtilsService
+    private readonly utilsService:UtilsService,
+    private readonly checkEligibleService:CheckEligibleService
+
   ) {}
   async getListBilling(xHN: string ){
   console.log(xHN)
@@ -3464,6 +3467,358 @@ return newResultSubmitIpdDischargeDto
   }
 }
 }
+ async checkeligiblePreAdmission(queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+
+    let RequesetBody ,PreauthInfo ,xResultInfo;
+     try{
+       RequesetBody ={
+
+         xRefID:queryPreauthSubmissionDto.PatientInfo.RefId||'',
+         xTransactionNo:queryPreauthSubmissionDto.PatientInfo.TransactionNo||'',
+         xInsurerCode:queryPreauthSubmissionDto.PatientInfo.InsurerCode,
+         xHN :queryPreauthSubmissionDto.PatientInfo.HN||'',
+         xVN: queryPreauthSubmissionDto.PatientInfo.VN||'',
+         xPID: queryPreauthSubmissionDto.PatientInfo.PID||'',
+         xPassportnumber:queryPreauthSubmissionDto.PatientInfo.PassportNumber||'',
+         xGivenNameTH : queryPreauthSubmissionDto.PatientInfo.GivenNameTH||'',
+         xSurnameTH : queryPreauthSubmissionDto.PatientInfo.SurnameTH||'',
+         xDateOfBirth :queryPreauthSubmissionDto.PatientInfo.DateOfBirth||''
+
+       }
+       const existingRecord = await prismaProgest.transactionclaim.findFirst({
+        where: {
+          refid: RequesetBody.xRefId,
+          transactionno: RequesetBody.xTransactionNo,
+        },
+      });
+      if (existingRecord){
+         PreauthInfo = {
+          xTransactionno :existingRecord.transactionno,
+          xRefid :existingRecord.refid,
+          xHN:existingRecord.hn,
+          xVN:existingRecord.vn,
+          xVisitDate:existingRecord.visitdate,
+          xVisitDateTime:existingRecord.visitdatetime,
+          xAccidentDate:existingRecord.accidentdate,
+          xPolicyTypeCode:existingRecord.policytypecode,
+          xSurgeryTypeCode:existingRecord.surgerytypecode,
+          xIdType:existingRecord.idtype,
+          xMembershipid:existingRecord.membershipid,
+          xPolicynumber:existingRecord.policynumber,
+          xCustomerid:existingRecord.customerid,
+          xIllnessTypeCode:existingRecord.illnesstypecode,
+          xPreauthReferClaimno:existingRecord.preauthreferclaimno,
+          xPreauthReferOCC:existingRecord.preauthreferocc,
+          xServiceSettingCode:"IPD",
+          xInsurerCode:13
+        }
+
+        const xRefId= await this.checkEligibleService.generateRefId('PRE'+PreauthInfo.xVN,PreauthInfo.xInsurerCode,PreauthInfo.xServiceSettingCode)
+        const xUsername=AIA_APIHopitalUsername;
+        const xHospitalCode =await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey);
+        const xInsurerCode=RequesetBody.xInsurerCode;
+        const xElectronicSignature='';
+        const xDataJsonType =3;
+        let DataJson_Id;
+
+        const xDataJson_IdType =PreauthInfo.xIdType
+
+       if (xDataJson_IdType==='NATIONAL_ID'){DataJson_Id =RequesetBody.xPID;}
+       else if (xDataJson_IdType==='PASSPORT'){DataJson_Id =RequesetBody.xPassportnumber;}
+       else if (xDataJson_IdType==='MEMBERSHIP_ID'){DataJson_Id =PreauthInfo.xMembershipid;}
+       else if (xDataJson_IdType==='POLICY_NUMBER'){DataJson_Id =PreauthInfo.xPolicyNumber;}
+       else if (xDataJson_IdType==='CUSTOMER_ID'){DataJson_Id =PreauthInfo.xCustomerId;}
+       else{DataJson_Id =RequesetBody.xPID;}
+
+        const xDataJson_Id =await this.utilsService.EncryptAESECB(DataJson_Id,AIA_APISecretkey);
+        const xPolicyType =PreauthInfo.xPolicyTypeCode;
+        const xServiceSetting =PreauthInfo.xServiceSettingCode;
+        const xIllnessType =PreauthInfo.xIllnessTypeCode;
+        const xSurgeryType =PreauthInfo.xSurgeryTypeCode;
+        let xFirstName =RequesetBody.xGivenNameTH;
+        if (xFirstName){ xFirstName =await this.utilsService.EncryptAESECB(xFirstName,AIA_APISecretkey);}
+        let xLastName =RequesetBody.xSurnameTH;
+        if (xLastName){ xLastName =await this.utilsService.EncryptAESECB(xLastName,AIA_APISecretkey);}
+        let xDob =RequesetBody.xDateOfBirth;
+        if (xDob){ xDob =await this.utilsService.EncryptAESECB(xDob,AIA_APISecretkey);}
+        const xVisitDateTime =PreauthInfo.xVisitDateTime||''; 
+        const xAccidentDate=PreauthInfo.xAccidentDate||'';
+
+          
+   const body_DataJson = {
+    IdType: xDataJson_IdType, 
+    Id:  xDataJson_Id, 
+    PolicyType: xPolicyType,
+    ServiceSetting: xServiceSetting,
+    IllnessType: xIllnessType,
+    SurgeryType: xSurgeryType,
+    Patient: {
+      FirstName:xFirstName,  
+      LastName: xLastName, 
+      Dob: xDob,
+      },
+      Visit: {
+        VisitDateTime: xVisitDateTime ,
+        AccidentDate:xAccidentDate||''
+      }
+    }
+    const body = {
+      RefId: xRefId,
+      Username: xUsername,
+      HospitalCode: xHospitalCode,
+      InsurerCode: xInsurerCode,
+      ElectronicSignature: xElectronicSignature,
+      DataJsonType: xDataJsonType,
+      DataJson: body_DataJson
+    };
+    const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
+    const ObjAccessTokenKey = ObjAccessToken.accessTokenKey
+    const apiURL= `${AIA_APIURL}/SmartClaim/checkEligible`;
+    const headers = {
+      'Content-Type':API_CONTENTTYPE,
+      'Ocp-Apim-Subscription-Key': AIA_APISubscription,
+      'Apim-Auth-Secure-Token': ObjAccessTokenKey
+    };
+    const responsefromAIA = await lastValueFrom(
+      this.httpService.post(apiURL, body, { headers })
+    );
+    const responeInputcode =responsefromAIA.data.Result.Code
+    if (responeInputcode !=='S'){
+      this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.data.Result.MessageTh,responsefromAIA.data.Result.MessageTh)
+    }else{
+      let xInsuranceResult= new InsuranceResult();
+      xInsuranceResult ={
+       Code:responsefromAIA.data.Result.Code ||'',
+       Message:responsefromAIA.data.Result.Message ||'',
+       MessageTh:responsefromAIA.data.Result.MessageTh ||'',
+      }
+      //console.log(xInsuranceResult)
+      const xMessageList: MessageList[] = responsefromAIA.data.Data.CoverageList ? responsefromAIA.data.Data.CoverageList.flatMap((coverageItem) => {
+        return coverageItem.MessageList.map((item) => {
+         const decryptedPolicyNo = this.utilsService.DecryptAESECB(item.PolicyNo, AIA_APISecretkey) || '';
+           return {
+             PolicyNo: decryptedPolicyNo, 
+             PlanName: item.PlanName,
+             MessageTh: item.MessageTh,
+             MessageEn: item.MessageEn,
+             RuleNo: item.RuleNo
+          };
+        });
+      }):[];
+     //console.log(xMessageList)
+      //console.log("xCoverageList")
+      const xCoverageList: CoverageList[] = responsefromAIA.data.Data.CoverageList ? responsefromAIA.data.Data.CoverageList.map((item) => {
+       const convertCoverageType =this.checkEligibleService.convertCoverageListType(item.Type)
+       return {
+          Type: convertCoverageType,  
+          Status:item.Status,
+          MessageList: Array.isArray(xMessageList) ? xMessageList : [] , 
+        };
+      }):[];
+      //console.log(xCoverageList)
+      //console.log("xPolicyInfoList")
+      const xPolicyInfoList: PolicyInfoList[] = responsefromAIA.data.Data.PolicyInfoList  ?  responsefromAIA.data.Data.PolicyInfoList.map((item) => {
+         const decryptedPolicyNo = this.utilsService.DecryptAESECB(item.PolicyNo, AIA_APISecretkey) || '';
+         const decryptedMembershipNo = this.utilsService.DecryptAESECB(item.MembershipNo, AIA_APISecretkey) || '';
+         const effectiveDate = new Date(item.EffectiveDate);
+         const formattedEffectiveDate = effectiveDate.toISOString().split('T')[0];
+       return {
+         PolicyNo: decryptedPolicyNo,
+         MembershipNo: decryptedMembershipNo,
+         PolicyDescription: item.PolicyDescription,  
+         EffectiveDate: formattedEffectiveDate,
+         Remark1: item.Remark1,  
+         Remark2:item.Remark2,
+         SpecialRemark1: item.SpecialRemark1,  
+         SpecialRemark2:item.SpecialRemark2
+        };
+      }):[];
+     
+      //console.log(xPolicyInfoList)
+      let xInsuranceData = new InsuranceEligibleData();
+      xInsuranceData={
+       RefId:responsefromAIA.data.Data.RefId ||'',
+       TransactionNo:responsefromAIA.data.Data.TransactionNo ||'',
+       InsurerCode:responsefromAIA.data.Data.InsurerCode ||'',
+       CoverageClaimStatus:Boolean(responsefromAIA.data.Data.CoverageClaimStatus) ||false,
+       RemarkList:[],
+       PolicyCoverageDesc:[],
+       CoverageList:Array.isArray(xCoverageList) ? xCoverageList : [] ,
+       PolicyInfoList: Array.isArray(xPolicyInfoList) ? xPolicyInfoList : [] 
+      }
+      //console.log(xInsuranceData)
+     let xinsuranceCustomerDetail = new InsuranceCustomerDetail();
+       xinsuranceCustomerDetail={
+         PolicyNo: await this.utilsService.DecryptAESECB(responsefromAIA.data.CustomerDetail.PolicyNo,AIA_APISecretkey) ||'',
+         MemberShipId:await this.utilsService.DecryptAESECB(responsefromAIA.data.CustomerDetail.MemberShipId,AIA_APISecretkey) ||'', //responsefromAIA.data.CustomerDetail.MemberShipId ||'',
+         FirstName:await this.utilsService.DecryptAESECB(responsefromAIA.data.CustomerDetail.FirstName,AIA_APISecretkey) ||'', //responsefromAIA.data.CustomerDetail.FirstName ||'',
+         LastName:await this.utilsService.DecryptAESECB(responsefromAIA.data.CustomerDetail.LastName,AIA_APISecretkey) ||'', //responsefromAIA.data.CustomerDetail.LastName ||'',
+         NationalId:await this.utilsService.DecryptAESECB(responsefromAIA.data.CustomerDetail.NationalId,AIA_APISecretkey) ||'', //responsefromAIA.data.CustomerDetail.NationalId ||''
+     
+       }
+        xResultInfo ={
+         InsuranceResult: xInsuranceResult,
+         InsuranceData: xInsuranceData,
+         InsuranceCustomerDetail :  xinsuranceCustomerDetail
+       } 
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+     
+       //#region  create transaction ipd
+     if(xInsuranceData.CoverageClaimStatus =true){
+      
+         const existingRecordTransactionc = await prismaProgest.transactionclaim.findFirst({
+                 where: {
+                   refid: xInsuranceData.RefId,
+                   //transactionno: xInsuranceData.TransactionNo,       
+                 },
+               });
+               if (!existingRecordTransactionc) {    
+                  await prismaProgest.transactionclaim.create({
+                   data: {
+                     
+                      visitdate:PreauthInfo.xVisitDate ,
+                     insurerid: 13 ,
+                     refid: xInsuranceData.RefId,
+                     transactionno: xInsuranceData.TransactionNo,
+                     hn:RequesetBody.xHN,
+                     vn:RequesetBody.xVN,
+                     idtype:PreauthInfo.xIdType,
+                     servicesettingcode:'IPD',
+                     policytypecode:PreauthInfo.xPolicyTypeCode,
+                      illnesstypecode:PreauthInfo.xIllnessTypeCode,
+                      surgerytypecode:PreauthInfo.xSurgeryTypeCode,
+                      preauthreferclaimno:PreauthInfo.xPreauthReferClaimno,
+                      preauthreferocc:PreauthInfo.xPreauthReferOCC,
+                       visitdatetime:PreauthInfo.xVisitDateTime,
+                       accidentdate:PreauthInfo.xAccidentDate,
+                     runningdocument:0,
+                     membershipid:PreauthInfo.xMembershipid,
+                     policynumber:PreauthInfo.xPolicynumber,
+                     customerid:PreauthInfo.xCustomerid,
+                     claimstatusdesc:'New pre-admission',
+                     claimstatusdesc_en:'New pre-admission',
+                     claimstatusdesc_th:'ผู้ป่วยใน',
+                //      visitlocation:RequesetBody.xVisitlocation,
+                    },
+                  });
+               }else{
+                if (existingRecordTransactionc) {
+                  await prismaProgest.transactionclaim.delete({
+                    where: { id: existingRecordTransactionc.id },
+                  });
+                  await prismaProgest.transactionclaim.create({
+                  data: {
+                    
+                     visitdate:PreauthInfo.xVisitDate ,
+                    insurerid: 13 ,
+                    refid: xInsuranceData.RefId,
+                    transactionno: xInsuranceData.TransactionNo,
+                    hn:RequesetBody.xHN,
+                    vn:RequesetBody.xVN,
+                    idtype:PreauthInfo.xIdType,
+                    servicesettingcode:'IPD',
+                    policytypecode:PreauthInfo.xPolicyTypeCode,
+                     illnesstypecode:PreauthInfo.xIllnessTypeCode,
+                     surgerytypecode:PreauthInfo.xSurgeryTypeCode,
+                     preauthreferclaimno:PreauthInfo.xPreauthReferClaimno,
+                     preauthreferocc:PreauthInfo.xPreauthReferOCC,
+                      visitdatetime:PreauthInfo.xVisitDateTime,
+                      accidentdate:PreauthInfo.xAccidentDate,
+                    runningdocument:0,
+                    membershipid:PreauthInfo.xMembershipid,
+                    policynumber:PreauthInfo.xPolicynumber,
+                    customerid:PreauthInfo.xCustomerid,
+                    claimstatusdesc:'New pre-admission',
+                    claimstatusdesc_en:'New pre-admission',
+                    claimstatusdesc_th:'ผู้ป่วยใน',
+               //      visitlocation:RequesetBody.xVisitlocation,
+                   },
+                 });
+                }
+               }
+              }
+       //#endregion
+    } 
+      }else{       
+          this.addFormatHTTPStatus(newHttpMessageDto,400,'TransactionNo not found','TransactionNo not found')
+      }
+
+ 
+   let newResultCheckeligiblePreAdmissionDto= new ResultCheckeligiblePreAdmissionDto();
+   newResultCheckeligiblePreAdmissionDto={
+     HTTPStatus:newHttpMessageDto,
+     Result:xResultInfo
+   }
+   return newResultCheckeligiblePreAdmissionDto
+     }catch(error)
+     {
+       if (error instanceof Prisma.PrismaClientInitializationError) {
+         throw new HttpException(
+          { 
+           HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+             error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+           },
+           },HttpStatus.INTERNAL_SERVER_ERROR );
+       }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+           throw new HttpException(
+             {  
+               HTTPStatus: {
+                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                 message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                 error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              },
+             },HttpStatus.INTERNAL_SERVER_ERROR ); 
+       }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+         if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+             message: 'Cannot connect to the database server. Please ensure it is running.',
+             error: 'Cannot connect to the database server. Please ensure it is running.',
+           },
+           }, HttpStatus.SERVICE_UNAVAILABLE);
+         }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'Invalid data format or conversion error.',
+             error: 'Invalid data format or conversion error.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.FORBIDDEN,
+             message: 'You do not have permission to perform this action.',
+             error: 'You do not have permission to perform this action.',
+           },
+           }, HttpStatus.FORBIDDEN);
+         }else if (error.message.includes('Unable to fit integer value')) {
+           // Handle integer overflow or similar errors
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'The integer value is too large for the database field.',
+             error: 'The integer value is too large for the database field.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }
+         else{
+           throw new HttpException({  
+             HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'An unexpected error occurred.',
+                error: 'An unexpected error occurred.',
+               },
+             },HttpStatus.INTERNAL_SERVER_ERROR,);
+         }
+       }
+     }
+   }
+
+
 /// Utils ///
 async convertDxTypeCode(inputInsurerCode:string,inputdxTypeCodeTrakcare:string) {
   const convertDxtypename = await this.utilsService.getDiagnosisTypeMapping(inputInsurerCode,inputdxTypeCodeTrakcare);
