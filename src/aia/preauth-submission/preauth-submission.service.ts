@@ -1699,6 +1699,133 @@ return newResultPreAuthBillingDto
       }
     }
   }
+  async previewPreBilling(queryPreBillingDto:QueryPreBillingDto){
+    try{
+      const xRefId =queryPreBillingDto.PatientInfo.RefId;
+      const xTransactionNo =queryPreBillingDto.PatientInfo.TransactionNo;
+     
+  const xTotalBillAmount='';
+  let PreBillingList :any;  
+          const existingPrebilling = await prismaProgest.prebillingtransactions.findMany({
+            where: {
+                refid: xRefId,
+                transactionno: xTransactionNo
+            }
+        });       
+        if ((existingPrebilling )||(existingPrebilling.length >0)) {
+          PreBillingList =await Promise.all(  existingPrebilling.map(async (item) => {
+      
+            return {
+              LocalBillingCode: item.localbillingcode,
+              LocalBillingName: item.localbillingname,
+              SimbBillingCode: item.simbbillingcode,
+              PayorBillingCode: item.payorbillingcode,
+              BillingInitial: item.billinginitial,
+              BillingDiscount: item.billingdiscount,
+              BillingNetAmount: item.billingnetamount,
+            };
+          })
+          );
+      
+        
+        }else{
+          console.log('iii')
+          PreBillingList = [{
+  
+            LocalBillingCode: '',
+            LocalBillingName: '',
+            SimbBillingCode: '',
+            PayorBillingCode: '',
+            BillingInitial: '',
+            BillingDiscount: '',
+            BillingNetAmount: '',
+           
+          }];
+          
+        }
+      
+     const xResultInfo ={
+          TotalBillAmount:xTotalBillAmount,
+          BillingInfo: PreBillingList,
+          InvoiceNumber:''
+         }       
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+  
+      let newResultSubmitPreBillingDto= new ResultSubmitPreBillingDto();
+      newResultSubmitPreBillingDto={
+              HTTPStatus:newHttpMessageDto,
+              Result:xResultInfo
+        }
+  
+      return newResultSubmitPreBillingDto
+    
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
+    }
 //#endregion "Billing"
 
   async getPreAuthNote(querySubmitPreAuthDto:QuerySubmitPreAuthDto){
@@ -2708,7 +2835,7 @@ try{
   xTransactionNo: querySubmitPreAuthDto.PatientInfo.TransactionNo,//'6f49b02c-4102-44e4-bd6a-c5bed5dc8b1c',
   xHN :querySubmitPreAuthDto.PatientInfo.HN ,
   xInsurerCode: querySubmitPreAuthDto.PatientInfo.InsurerCode, 
-  xVN: querySubmitPreAuthDto.PatientInfo.VN||'' ,
+  xVN: querySubmitPreAuthDto.PatientInfo.VN ,
   xVisitDateTime :querySubmitPreAuthDto.PatientInfo.VisitDateTime,
   xAccidentDate:querySubmitPreAuthDto.PatientInfo.AccidentDate,
   xAccidentPlaceCode :querySubmitPreAuthDto.PatientInfo.AccidentPlaceCode,

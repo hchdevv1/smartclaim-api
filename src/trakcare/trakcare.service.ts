@@ -400,8 +400,9 @@ async getListVisitClaimAIA( xVN: string ) {
     }
 return PatientInfo
 }
- //// * IPD * ////
- async getIPDVisit( xVN: string ) {
+//#region  IPD ///
+
+async getIPDVisit( xVN: string ) {
   let response:any ;
   let PatientInfo ;
   try{
@@ -589,6 +590,10 @@ async getIPDAccident( xVN: string ) {
     }
  return PatientInfo
 }
+
+//#endregion IPD
+//// * IPD * ////
+
 async getListBilling( xHN: string ) {
   let response:any ;
   let PatientInfo ;

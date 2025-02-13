@@ -119,5 +119,10 @@ getIPDInvestigation(@Param('xVN') xVN: string) {
 getIPDBilling(@Param('xVN') xVN: string) {
  return this.trakcareService.getIPDBilling(xVN);
 }
+// @Get('/getPreAuthBilling/:xVN')
+// getPreAuthBilling(@Param('xVN') xVN: string) {
+//  return this.trakcareService.getPreAuthBilling(xVN);
+// }
+
 
 }

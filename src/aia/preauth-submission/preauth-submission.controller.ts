@@ -61,6 +61,11 @@ export class PreauthSubmissionController {
         const result = this.preauthSubmissionService.SubmitPreBilling(queryPreBillingDto);
         return result
   }
+  @Post('/previewPreBilling')
+  async previewPreBilling(@Body() QueryPreBillingDto:QueryPreBillingDto){
+        const result = this.preauthSubmissionService.previewPreBilling(QueryPreBillingDto);
+        return result
+  }
   //#endregion
 
   @Post('/getPreAuthAccident')
@@ -69,8 +74,6 @@ export class PreauthSubmissionController {
         return result
   }
   /// get from data base ///
-
-
 //procedure
 
 //accident
@@ -86,9 +89,6 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
       const result = this.preauthSubmissionService.getPackageBundle(queryPackageBundleDto);
       return result
 }
-
-
-
   /// submit to data base ///
  
   @Post('/SubmitPreAuthVisit')
@@ -102,7 +102,6 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
         const result = this.preauthSubmissionService.SubmitDiagnosis(queryDiagnosisDto);
         return result
   }
-
   @Post('/SubmitProcedure')
   async SubmitProcedure(@Body() queryProcedureDto:QueryProcedureDto){
         const result = this.preauthSubmissionService.SubmitProcedure(queryProcedureDto);
@@ -113,31 +112,21 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
         const result = this.preauthSubmissionService.SubmitAccident(queryAccidentDto);
         return result
   }
-
-
-  
   @Post('/SubmitPreAuthNote')
   async SubmitPreAuthNote(@Body() queryPreAuthNoteDto:QueryPreAuthNoteDto){
         const result = this.preauthSubmissionService.SubmitPreAuthNote(queryPreAuthNoteDto);
         return result
   }
-
-
   @Post('/SubmitPreSubmissionToAIA')
   async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
-     
-
-    const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
+        const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
         return result
   }
-
   @Post('/UpdateReferenceVN')
   async UpdateReferenceVN(@Body() queryUpdateReferenceVNBodyDto:QueryUpdateReferenceVNBodyDto){
         const result = this.preauthSubmissionService.UpdateReferenceVN(queryUpdateReferenceVNBodyDto);
         return result
   }
-
-
     @Post('/checkeligiblePreAdmission')
     async checkeligiblePreAdmission(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
           const result = this.preauthSubmissionService.checkeligiblePreAdmission(queryPreauthSubmissionDto);
