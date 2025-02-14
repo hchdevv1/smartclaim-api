@@ -37,6 +37,7 @@ export class ResultReviewPreVisitInfoDto {
     IsPackage:boolean;
     ExpectedAdmitDate:string;
     TotalEstimatedCost:string;
+    AnesthesiaList:string;
   }
 
   export class AccidentDetailDto {

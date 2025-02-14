@@ -387,7 +387,6 @@ async getListVisitClaimAIA( xVN: string ) {
     );
   
     PatientInfo = response.data
-
   } catch(error)
     {
         if (error instanceof HttpException) {

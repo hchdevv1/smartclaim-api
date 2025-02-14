@@ -479,7 +479,7 @@ export class PreauthSubmissionService {
         IsPackage:getvisitformDatabase.Result.VisitInfo.IsPackage,
         ExpectedAdmitDate:getvisitformDatabase.Result.VisitInfo.ExpectedAdmitDate||'',
         TotalEstimatedCost:getvisitformDatabase.Result.VisitInfo.TotalEstimatedCost||'',
-
+        AnesthesiaList:getvisitformDatabase.Result.VisitInfo.AnesthesiaList
 
       }
 
@@ -518,7 +518,8 @@ export class PreauthSubmissionService {
           Weight:  '',
           IsIPDDischarge:'',
           ExpectedAdmitDate:'',
-          TotalEstimatedCost:''
+          TotalEstimatedCost:'',
+          AnesthesiaList:''
          }
          xResultInfo ={
           VisitInfo: xQueryVisit,
@@ -569,7 +570,7 @@ export class PreauthSubmissionService {
             HTTPStatus:newHttpMessageDto,
             Result:xResultInfo
       }
-  
+      console.log(newResultIpdDischargeVisitDto)
   return newResultIpdDischargeVisitDto
   }catch(error)
   {
@@ -748,8 +749,46 @@ export class PreauthSubmissionService {
   async getPreAuthDiagnosis(queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
     let xResultInfo;
   try{
-  
-    const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeDiagnosis(queryPreauthSubmissionDto.PatientInfo.VN);
+    const existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
+      where: {
+        refid: queryPreauthSubmissionDto.PatientInfo.RefId,
+        transactionno: queryPreauthSubmissionDto.PatientInfo.TransactionNo,
+      },
+    });
+    let xQueryDiagnosis: QueryDiagnosis[] 
+    const getDiagnosisformDatabase = await this.utilsService.getDiagnosisformDatabase(queryPreauthSubmissionDto.PatientInfo)
+
+    if (getDiagnosisformDatabase && getDiagnosisformDatabase.Result.DiagnosisInfo && getDiagnosisformDatabase.Result.DiagnosisInfo.length > 0) {
+       xQueryDiagnosis= await Promise.all(
+
+        getDiagnosisformDatabase.Result.DiagnosisInfo.map(async (item) => {
+        
+        return {
+        
+          
+          DxCode: item.Icd10,
+          DxName:  item.DxName,
+          Dxtypenametrakcare: 'OT',
+          Dxtypecodeinsurance: 'OT',
+          Dxtypenameinsurance: 'OT'
+        };
+      })
+      
+    );
+    
+    xResultInfo ={
+      DiagnosisInfo: xQueryDiagnosis,
+     } 
+    }else{
+    
+    let xRreferencevn
+    if (existingRecordtransactionclaim?.referencevn){
+     xRreferencevn =existingRecordtransactionclaim?.referencevn
+    }else{
+      xRreferencevn=queryPreauthSubmissionDto.PatientInfo.VN
+    }
+
+    const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeDiagnosis(xRreferencevn);
     const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
     if (TrakcarepatientInfoStatusCode !==200){
       this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
@@ -785,13 +824,12 @@ export class PreauthSubmissionService {
       xResultInfo ={
         DiagnosisInfo: xQueryDiagnosis,
        } 
-    }
+    }}
     let newResultIpdDischargeDiagnosisDto= new ResultPreAuthDiagnosisDto();
     newResultIpdDischargeDiagnosisDto={
             HTTPStatus:newHttpMessageDto,
             Result:xResultInfo
       }
-  
   return newResultIpdDischargeDiagnosisDto
   }catch(error)
   {
@@ -1030,6 +1068,9 @@ export class PreauthSubmissionService {
     HN:queryPreauthSubmissionDto.PatientInfo.HN,
   
   }
+  console.log('newQueryAccidentDatabaseBodyDto')
+  //console.log(newQueryAccidentDatabaseBodyDto)
+  console.log('-----')
   const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
   if (accidentDatabase.Result.AccidentDetailInfo.AccidentPlace.length>0){
   
@@ -2182,13 +2223,14 @@ if (xTransactionNo){
       const xHN =queryDiagnosisDto.PatientInfo.HN;
       const xVN =queryDiagnosisDto.PatientInfo.VN;
       const xHaveDiagnosis =Boolean(queryDiagnosisDto.PatientInfo.HaveDiagnosis) || false
-  
   let DiagnosisList;
   if (xHaveDiagnosis ==true){
-      
       if (Array.isArray(queryDiagnosisDto.PatientInfo.DiagnosisInfo)) {
-        DiagnosisList = queryDiagnosisDto.PatientInfo.DiagnosisInfo.map((diagnosis) => ({
-            Icd10: diagnosis.Icd10 || '',
+        DiagnosisList = queryDiagnosisDto.PatientInfo.DiagnosisInfo.map((diagnosis) => (
+          
+          {
+            
+            DXCode: diagnosis.DxCode || '',
             DxName: diagnosis.DxName || '',
             DxType: diagnosis.DxType || ''
           }));
@@ -2213,16 +2255,18 @@ if (xTransactionNo){
           await Promise.all(
             DiagnosisList.map(async (diagnosis) => {
                 return await prismaProgest.diagnosistransactions.create({
+                  
                     data: {
                         insurerid: xInsurerCode,
                         refid: xRefId,
                         transactionno: xTransactionNo,
                         hn: xHN,
                         vn: xVN,
-                        icd10: diagnosis.Icd10,
+                        icd10: diagnosis.DXCode ,
                         dxname: diagnosis.DxName,
                         dxtype: diagnosis.DxType
                     }
+                    
                 });
             })
         );
@@ -2476,11 +2520,15 @@ if (xTransactionNo){
       const xTransactionNo =queryAccidentDto.PatientInfo.TransactionNo;
       const xInsurerCode =queryAccidentDto.PatientInfo.InsurerCode;
       const xHN =queryAccidentDto.PatientInfo.HN;
-      //const xVN =queryAccidentDto.PatientInfo.VN;
-      const xHaveAccidentCauseOfInjuryDetail =(queryAccidentDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false
-      const xHaveAccidentInjuryDetail =(queryAccidentDto.PatientInfo.HaveAccidentInjuryDetail) || false
+      const xVN =queryAccidentDto.PatientInfo.VN;
+      const xHaveAccidentCauseOfInjuryDetail =queryAccidentDto.PatientInfo.HaveAccidentCauseOfInjuryDetail || false
+      const xHaveAccidentInjuryDetail =queryAccidentDto.PatientInfo.HaveAccidentInjuryDetail || false
       const xAccidentPlace =queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentPlace;
       const xAccidentDate =queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentDate;
+     console.log('-------^^^^------')
+      console.log(queryAccidentDto)
+      console.log('-------^^^^------')
+
   if ((xHaveAccidentCauseOfInjuryDetail ==true)||(xHaveAccidentInjuryDetail ==true)){
     
       await prismaProgest.$transaction(async (prisma) => {
@@ -2517,7 +2565,7 @@ if (xTransactionNo){
           refid: xRefId ,//queryAccidentDto.PatientInfo.RefId,
           transactionno: xTransactionNo,//queryAccidentDto.PatientInfo.TransactionNo,
           hn: xHN ,//queryAccidentDto.PatientInfo.HN,
-        //  vn: xVN ,//queryAccidentDto.PatientInfo.VN,
+          vn: xVN ,//queryAccidentDto.PatientInfo.VN,
           accidentplace: xAccidentPlace ,//queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentPlace,
           accidentdate: xAccidentDate //queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentDate,
         },
@@ -2838,7 +2886,7 @@ if (xTransactionNo){
   /// sent to aia
   async SubmitPreSubmissionToAIA(querySubmitPreAuthDto:QuerySubmitPreAuthDto){
     let xResultInfo;
-  
+    console.log('----- sent AIA')
   try{
    const RequesetBody ={
     xRefId:querySubmitPreAuthDto.PatientInfo.RefId, //'oljhnklefhbilubsEFJKLb65255555',
@@ -2864,7 +2912,19 @@ if (xTransactionNo){
     xDscDateTime:querySubmitPreAuthDto.PatientInfo.DscDateTime,
     xIndicationForAdmission:querySubmitPreAuthDto.PatientInfo.IndicationForAdmission,
    }
-   
+   const existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
+    where: {
+      refid: RequesetBody.xRefId,
+      transactionno: RequesetBody.xTransactionNo,
+    },
+  });
+  // if (existingRecordtransactionclaim.referencevn.length >0){
+  //  xRreferencevn =existingRecordtransactionclaim.referencevn
+  // }else{
+  //   xRreferencevn=RequesetBody.xVN
+  // }
+  //if (!xRreferencevn){ xRreferencevn = }
+  const xRreferencevn=RequesetBody.xVN
   //--> get Patient  <--//
   const getSubmitPreAuthPatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
   let newResultPatientInfoDto: ResultPatientInfoDto ;
@@ -2881,9 +2941,9 @@ if (xTransactionNo){
       Gender:''
     };
   }
+  //console.log(newResultPatientInfoDto)
   console.log('Patient done')
-  
-  // //--> get Visit  <--//
+  //#region  Visit
   const whereConditionsGetVisit = {
     ...(RequesetBody.xVN ? { vn: { equals: RequesetBody.xVN } } : {}),
     ...(RequesetBody.xRefId ? { refid: { equals: RequesetBody.xRefId } } : {}),
@@ -2934,53 +2994,12 @@ if (xTransactionNo){
       AnesthesiaList :getvisitformDatabase.Result.VisitInfo.AnesthesiaList,
       Weight: getvisitformDatabase.Result.VisitInfo.Weight||'',
       TotalEstimatedCost :getvisitformDatabase.Result.VisitInfo.TotalEstimatedCost,
-      IsPackage :getvisitformDatabase.Result.VisitInfo.IsPackage
+      IsPackage :getvisitformDatabase.Result.VisitInfo.IsPackage,
     }
-    console.log('get Visit  from database ==> Done')
-  }else{
-    let VNForVisitinfo ;
-   
-    const getIPDDischargeVisit = await this.trakcareService.getIPDVisit(VNForVisitinfo);
-    newResultVisitInfoDto= {
-      AccidentDate: getIPDDischargeVisit.VisitInfo.AccidentDate,
-      AdmitDateTime: getIPDDischargeVisit.VisitInfo.VisitDateTime,
-      AdditionalNote: getIPDDischargeVisit.VisitInfo.AdditionalNote,
-      AlcoholRelated: getIPDDischargeVisit.VisitInfo.AlcoholRelated,
-      An:  await this.utilsService.EncryptAESECB( getIPDDischargeVisit.VisitInfo.vn,AIA_APISecretkey) ,
-      ChiefComplaint: getIPDDischargeVisit.VisitInfo.ChiefComplaint,
-      ComaScore: getIPDDischargeVisit.VisitInfo.ComaScore,
-      DscDateTime: getIPDDischargeVisit.VisitInfo.DscDateTime,
-      DxFreeText: getIPDDischargeVisit.VisitInfo.DxFreeText,
-      ExpectedDayOfRecovery: '',
-      ExpectedLos:null,
-      ExpectedAdmitDate:getIPDDischargeVisit.VisitInfo.ExpectedAdmitDate,
-      Height: '',
-      IndicationForAdmission:RequesetBody.xIndicationForAdmission,
-      PhysicalExam: '',
-      PlanOfTreatment: '',
-      Pregnant: getIPDDischargeVisit.VisitInfo.Pregnant,
-      PresentIllness: '',
-      PreviousTreatmentDate: '',
-      PreviousTreatmentDetail: '',
-      PreauthReferClaimNo:RequesetBody.xPreauthReferClaimNo||'',
-      PreauthReferOcc:RequesetBody.xPreauthReferOcc||'',
-      PrivateCase: getIPDDischargeVisit.VisitInfo.PrivateCase,
-      SignSymptomsDate: '',
-      UnderlyingCondition: '',
-      VisitDateTime: getIPDDischargeVisit.VisitInfo.VisitDateTime,
-      VisitDate:getIPDDischargeVisit.VisitInfo.VisitDateTime.split(' ')[0],
-      Vn:  await this.utilsService.EncryptAESECB( getIPDDischargeVisit.VisitInfo.vn ,AIA_APISecretkey) ,
-      Weight: '',
-      AnesthesiaList:'',
-      TotalEstimatedCost:'',
-      IsPackage:null
-    }
-    console.log('getPreAuth Visit done')
   }
-  
    newResultVisitInfoDto.ExpectedLos = this.calculateDaysBetweenDates(newResultVisitInfoDto.VisitDateTime, newResultVisitInfoDto.DscDateTime);
-  
-  // //--> get VitalSignIn  <--//
+   //#endregion
+  //#region  VitalSign
   let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
   newResultVitalSignInfoDto = [{
     DiastolicBp: '',
@@ -2993,9 +3012,9 @@ if (xTransactionNo){
     VitalSignEntryDateTime: '',
     
   }];
-  console.log('getIPDitalSign done')
-  // //--> get Diagnosis  <--//
-  
+  console.log('VitalSign done')
+  //#endregion
+  //#region  Diagnosis
   let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
   const newQueryPreDiagnosisDatabaseBodyDto ={
     RefId:RequesetBody.xRefId,
@@ -3024,77 +3043,75 @@ if (xTransactionNo){
       Icd10: '',
     }];
   }
-  console.log('get Diagnosis done')
-  
-  let newAccidentDetail ; //= new ResultAccidentDetailDto();
-  if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
-  
-    let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
-  newQueryAccidentDatabaseBodyDto ={
-    RefId: RequesetBody.xRefId,
-    TransactionNo: RequesetBody.xTransactionNo,
-    InsurerCode:RequesetBody.xInsurerCode,
-    HN: RequesetBody.xHN,
-    VN: RequesetBody.xVN,
-  }
-  const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
-  const accidentDetailInfo = new AccidentDetailDto();
-  accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
-  accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
-  
-  if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
-    accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
-      const causeDetail = new CauseOfInjuryDetail();
-  
-        causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
-        causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
-        return causeDetail;
-    });
-  } 
-  if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
-    accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
-      const injuryDetail = new InjuryDetail();
-  
-        injuryDetail.WoundType = injury.WoundType || '';
-        injuryDetail.InjurySide = injury.InjurySide || '';
-        injuryDetail.InjuryArea = injury.InjuryArea || '';
-        return injuryDetail;
-    });
-  }
-   newAccidentDetail = {    
-    AccidentPlace: accidentDetailInfo.AccidentPlace,
-    AccidentDate: accidentDetailInfo.AccidentDate,
-    CauseOfInjuryDetail: accidentDetailInfo.CauseOfInjuryDetail,
-    InjuryDetail: accidentDetailInfo.InjuryDetail
-  };
-  
-  }else{
-    newAccidentDetail= {
-      "AccidentPlace": '',
-      "AccidentDate": '',
-      "CauseOfInjuryDetail": [
-          {
-              "CauseOfInjury": '',
-              "CommentOfInjury": ''
-          }
-      ],
-      "InjuryDetail": [
-          {
-              "WoundType": "",
-              "InjurySide": "",
-              "InjuryArea":''
-          }
-      ]
-  }
-  }
-  
-  
+  //console.log(newQueryDiagnosisInfoDto)
+  console.log('Diagnosis done')
+
+  //#endregion
+  //#region  AccidentDetail
+    let newAccidentDetail ; //= new ResultAccidentDetailDto();
+    if ((RequesetBody.xIllnessTypeCode='ACC')||(RequesetBody.xIllnessTypeCode='ER')){
+    
+      let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
+    newQueryAccidentDatabaseBodyDto ={
+      RefId: RequesetBody.xRefId,
+      TransactionNo: RequesetBody.xTransactionNo,
+      InsurerCode:RequesetBody.xInsurerCode,
+      HN: RequesetBody.xHN,
+      VN: RequesetBody.xVN,
+    }
+    const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
+    const accidentDetailInfo = new AccidentDetailDto();
+    accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+    accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+    
+    if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+      accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+        const causeDetail = new CauseOfInjuryDetail();
+    
+          causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+          causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+          return causeDetail;
+      });
+    } 
+    if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+      accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+        const injuryDetail = new InjuryDetail();
+    
+          injuryDetail.WoundType = injury.WoundType || '';
+          injuryDetail.InjurySide = injury.InjurySide || '';
+          injuryDetail.InjuryArea = injury.InjuryArea || '';
+          return injuryDetail;
+      });
+    }
+     newAccidentDetail = {    
+      AccidentPlace: accidentDetailInfo.AccidentPlace,
+      AccidentDate: accidentDetailInfo.AccidentDate,
+      CauseOfInjuryDetail: accidentDetailInfo.CauseOfInjuryDetail,
+      InjuryDetail: accidentDetailInfo.InjuryDetail
+    };
+    
+    }else{
+      newAccidentDetail= {
+        "AccidentPlace": '',
+        "AccidentDate": '',
+        "CauseOfInjuryDetail": [
+            {
+                "CauseOfInjury": '',
+                "CommentOfInjury": ''
+            }
+        ],
+        "InjuryDetail": [
+            {
+                "WoundType": "",
+                "InjurySide": "",
+                "InjuryArea":''
+            }
+        ]
+    }
+    }
+    //#endregion
+  //#region  Procedure
   let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
-  
-   // console.log('old procedure')
-    // RequesetBody.xRefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
-    // RequesetBody.xTransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
-    // RequesetBody.xVN ='O415202-67'
     const newQueryProcedeureDatabaseBodyDto ={
       RefId:RequesetBody.xRefId,
       TransactionNo:RequesetBody.xTransactionNo,
@@ -3104,7 +3121,7 @@ if (xTransactionNo){
     }
    
      const getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
-    // console.log('33333')
+  
     if (getIPDDischargeProcedure && getIPDDischargeProcedure.Result.ProcedureInfo && getIPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
        newResultProcedureInfoDto= await Promise.all(
         getIPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
@@ -3124,15 +3141,8 @@ if (xTransactionNo){
       ProcedureDate: '',
     }];
   }
-  
-  
-  // console.log('*******')
-  // console.log(getOPDDischargeProcedure.Result)
-  // console.log('*******')
-   //getOPDDischargeProcedure = await this.trakcareService.getOPDDischargeProcedure(RequesetBody.xVN); 
-  
-  
-  // //--> get Investigation  <--//
+  //#endregion
+  //#region  Investigation
   let newResultInvestigationInfoDto: ResultInvestigationInfoDto[] = [];
   newResultInvestigationInfoDto = [{
     InvestigationCode: '',
@@ -3141,8 +3151,9 @@ if (xTransactionNo){
     InvestigationResult: '',
     ResultDateTime: ''
   }];
-  console.log('fix Investigation done')
-  // //--> get OrderItem  <--//
+  console.log('Investigation done')
+  //#endregion
+  //#region  OrderItem
   let newResultOrderItemInfoDto : ResultOrderItemInfoDto[] = [];
   newResultOrderItemInfoDto = [{
   
@@ -3158,92 +3169,62 @@ if (xTransactionNo){
     SimbVersion: '',
     Terminology: ''
   }];
-  console.log('fix OrderItem done')
-  // //--> get Doctor  <--//
-  let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
-  newResultDoctorInfoDto = [{
-    DoctorLicense: '0000000000',
-    DoctorRole: '',
-    DoctorFirstName: '',
-    DoctorLastName: '',
-  
-  }];
-  console.log('fix Doctor done')
-  // //console.log(newResultDoctorInfoDto)
-  //  // ResultBillingInfoDto ,ResultTotalBillAmountInfoDto
-  // //--> get Billing  <--//
-  /*
-  const getOPDDischargeBilling = [] //await this.trakcareService.getIPDBilling(RequesetBody.xVN); 
-  let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
-  let  newTotalBillAmount ;
-     if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
-         newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
-         console.log('----- newTotalBillAmount')
-        // console.log(newTotalBillAmount)
-        newResultBillingInfoDto= await Promise.all(
-        getOPDDischargeBilling.BillingInfo.map(async (item) => {
-        return {
-          LocalBillingCode: item.LocalBillingCode,
-          LocalBillingName: item.LocalBillingName,
-          SimbBillingCode: item.SimbBillingCode,
-          PayorBillingCode: item.PayorBillingCode,
-          BillingInitial: item.BillingInitial,
-          BillingDiscount: item.BillingDiscount,
-          BillingNetAmount: item.BillingNetAmount,
-        };
-      })
-    );
-  } else {
-    newResultBillingInfoDto = [{
-  
-      LocalBillingCode: '',
-      LocalBillingName: '',
-      SimbBillingCode: '',
-      PayorBillingCode: '',
-      BillingInitial: '',
-      BillingDiscount: '',
-      BillingNetAmount: '',
+  console.log('OrderItem done')
+  //#endregion
+  //#region  Doctor
+
+const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(xRreferencevn); 
+ let newResultDoctorInfoDto: ResultDoctorInfoDto[] = [];
+   if (getOPDDischargeDoctor && getOPDDischargeDoctor.DoctorInfo && getOPDDischargeDoctor.DoctorInfo.length > 0) {
+     newResultDoctorInfoDto= await Promise.all(
+       getOPDDischargeDoctor.DoctorInfo.map(async (item) => {
+       return {
+         DoctorLicense: item.DoctorLicense.toString().padStart(10, '0'),
+         DoctorRole: item.DoctorRole,
+         DoctorFirstName: await this.utilsService.EncryptAESECB( item.DoctorFirstName,AIA_APISecretkey) ,
+         DoctorLastName: '' //await this.utilsService.EncryptAESECB( item.DoctorLastName,AIA_APISecretkey) ,
+       };
+     })
+   );
+ } else {
+   newResultDoctorInfoDto = [{
+     DoctorLicense: '',
+     DoctorRole: '',
+     DoctorFirstName: '',
+     DoctorLastName: '',
+   
+   }];
+ }
+ console.log('Doctor done')
+ //#endregion
+  //#region  PSS
+  const  newResultPSSInfoDto={
+    "Exclusion": "0",
+    "FinalScore": "0",
+    "Findings": [
+      {
+        "Description": "0",
+        "Exclusion": "0",
+        "Medical": "0",
+        "Reference": "0"
+      }
+    ],
+    "Id": "0",
+    "Medical": "0"
+  }
+  console.log('PPS done')
+  //#endregion
+  //#region  PreAuthnote
+    let newResultPreAuthNoteDto: ResultPreAuthNoteDto[] = [];
+    newResultPreAuthNoteDto = [{
+      PreAuthDatetime: '',
+      PreAuthDetail: '',
      
     }];
-    newTotalBillAmount=0
-  }
-  newResultBillingInfoDto = [{
+    //#endregion
   
-    LocalBillingCode: '2.1.1',
-    LocalBillingName: 'ค่าห้องผู้ป่วยใน',
-    SimbBillingCode: '2.1.1',
-    PayorBillingCode: '2.1.1',
-    BillingInitial: '10000',
-    BillingDiscount: '8000',
-    BillingNetAmount: '2000',
-   
-  }];
-  */
-  // const newQueryPreBillingDatabaseBodyDto ={
-  //   RefId:RequesetBody.xRefId,
-  //   TransactionNo:RequesetBody.xTransactionNo,
-  //   InsurerCode:RequesetBody.xInsurerCode,
-  //   HN:RequesetBody.xHN,
-  //   VN:RequesetBody.xVN
-  // }
-  
-  // const getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryPreBillingDatabaseBodyDto)
-  /*const newResultBillingInfoDto = [{
-  
-    LocalBillingCode: '2.1.1',
-    LocalBillingName: 'ค่าห้องผู้ป่วยใน',
-    SimbBillingCode: '2.1.1',
-    PayorBillingCode: '2.1.1',
-    BillingInitial: '10000',
-    BillingDiscount: '8000',
-    BillingNetAmount: '2000',
-   
-  }]; */
   
   let newTotalBillAmount =''
-  
-  
-  
   let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
   const newQueryBillingInfoDtoDatabaseBodyDto ={
     RefId:RequesetBody.xRefId,
@@ -3284,34 +3265,7 @@ if (xTransactionNo){
     }];
   }
   console.log('billing done')
-  //  //  
-  //--> get PSS  Fixed<--//
-  const  newResultPSSInfoDto={
-    "Exclusion": "0",
-    "FinalScore": "0",
-    "Findings": [
-      {
-        "Description": "0",
-        "Exclusion": "0",
-        "Medical": "0",
-        "Reference": "0"
-      }
-    ],
-    "Id": "0",
-    "Medical": "0"
-  }
-  console.log('PPS done')
 
-  
-  let newResultPreAuthNoteDto: ResultPreAuthNoteDto[] = [];
-  newResultPreAuthNoteDto = [{
-    PreAuthDatetime: '',
-    PreAuthDetail: '',
-   
-  }];
-  // //--> get AttachDocList  <--//
-  // console.log('------')
-  
   const QueryCreateClaimDocumentDtoBody={
     RefId:RequesetBody.xRefId,
     TransactionNo:RequesetBody.xTransactionNo,
@@ -3376,9 +3330,7 @@ if (xTransactionNo){
   //const dummyDataRequest =new DummyDataRequest1();
   //const newOPDDischargeResponseDto  =dummyDataRequest.PatientInfo
   // DummyDataRequest1
-  console.log('=++++++++++=')
-  console.log(newOPDDischargeResponseDto.DataJson)
-  console.log('=++++++++++=')
+  //console.log(newOPDDischargeResponseDto.DataJson)
   
    //////////////////////////////////////
         const ObjAccessToken = await this.utilsService.requestAccessToken_AIA();
@@ -3403,8 +3355,10 @@ if (xTransactionNo){
           })
         )
     );
+    console.log('------ AIA')
     console.log(responsefromAIA)
-  
+    console.log('------ AIA')
+
     const responeInputcode = responsefromAIA.Result.Code
     if (responeInputcode !=='S'){
       this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
@@ -3495,7 +3449,9 @@ if (xTransactionNo){
         //illnesstypecode:RequesetBody.xIllnessTypeCode,
         servicesettingcode:RequesetBody.xServiceSettingCode,
         surgerytypecode:RequesetBody.xSurgeryTypeCode,
-        runningdocument:RequesetBody.xRunningdocument
+        runningdocument:RequesetBody.xRunningdocument,
+        preauthreferclaimno:RequesetBody.xPreauthReferClaimNo,
+        preauthreferocc:RequesetBody.xPreauthReferOcc
       },
     });
   }else{
@@ -3521,7 +3477,9 @@ if (xTransactionNo){
         //illnesstypecode:RequesetBody.xIllnessTypeCode,
         servicesettingcode:RequesetBody.xServiceSettingCode,
         surgerytypecode:RequesetBody.xSurgeryTypeCode,
-        runningdocument:RequesetBody.xRunningdocument
+        runningdocument:RequesetBody.xRunningdocument,
+        preauthreferclaimno:RequesetBody.xPreauthReferClaimNo,
+        preauthreferocc:RequesetBody.xPreauthReferOcc
       },
     });
   
@@ -4373,7 +4331,6 @@ return newResultSubmitIpdDischargeDto
 }
 }
  async checkeligiblePreAdmission(queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
-
     let RequesetBody ,PreauthInfo ,xResultInfo;
      try{
        RequesetBody ={
@@ -4417,7 +4374,11 @@ return newResultSubmitIpdDischargeDto
           xServiceSettingCode:"IPD",
           xInsurerCode:13
         }
+       console.log('-----1----')
+       console.log(RequesetBody)
+       console.log('---------')
 
+       console.log(PreauthInfo)
         const xRefId= await this.checkEligibleService.generateRefId('PRE'+PreauthInfo.xVN,PreauthInfo.xInsurerCode,PreauthInfo.xServiceSettingCode)
         const xUsername=AIA_APIHopitalUsername;
         const xHospitalCode =await this.utilsService.EncryptAESECB(AIA_APIHospitalCode,AIA_APISecretkey);
@@ -4425,15 +4386,18 @@ return newResultSubmitIpdDischargeDto
         const xElectronicSignature='';
         const xDataJsonType =3;
         let DataJson_Id;
+        console.log('-----2---')
 
         const xDataJson_IdType =PreauthInfo.xIdType
 
        if (xDataJson_IdType==='NATIONAL_ID'){DataJson_Id =RequesetBody.xPID;}
        else if (xDataJson_IdType==='PASSPORT'){DataJson_Id =RequesetBody.xPassportnumber;}
        else if (xDataJson_IdType==='MEMBERSHIP_ID'){DataJson_Id =PreauthInfo.xMembershipid;}
-       else if (xDataJson_IdType==='POLICY_NUMBER'){DataJson_Id =PreauthInfo.xPolicyNumber;}
-       else if (xDataJson_IdType==='CUSTOMER_ID'){DataJson_Id =PreauthInfo.xCustomerId;}
+       else if (xDataJson_IdType==='POLICY_NUMBER'){DataJson_Id =PreauthInfo.xPolicynumber;}
+       else if (xDataJson_IdType==='CUSTOMER_ID'){DataJson_Id =PreauthInfo.xCustomerid;}
        else{DataJson_Id =RequesetBody.xPID;}
+       
+       console.log('-----3----')
 
         const xDataJson_Id =await this.utilsService.EncryptAESECB(DataJson_Id,AIA_APISecretkey);
         const xPolicyType =PreauthInfo.xPolicyTypeCode;
@@ -4448,6 +4412,7 @@ return newResultSubmitIpdDischargeDto
         if (xDob){ xDob =await this.utilsService.EncryptAESECB(xDob,AIA_APISecretkey);}
         const xVisitDateTime =PreauthInfo.xVisitDateTime||''; 
         const xAccidentDate=PreauthInfo.xAccidentDate||'';
+        console.log('-----4----')
 
           
    const body_DataJson = {
@@ -4487,17 +4452,42 @@ return newResultSubmitIpdDischargeDto
     const responsefromAIA = await lastValueFrom(
       this.httpService.post(apiURL, body, { headers })
     );
+
+  console.log(responsefromAIA.data.Result)
+  /*
+  {
+  Code: 'compare.date.before',
+  Message: 'IncurredDate must be before or the same as SubmissionDate',
+  MessageTh: 'IncurredDate จะต้องเกิดขึ้นก่อน หรือเป็นวันเดียวกันกับ SubmissionDate'
+}
+  */
+  
+
     const responeInputcode =responsefromAIA.data.Result.Code
     if (responeInputcode !=='S'){
+
+
       this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.data.Result.MessageTh,responsefromAIA.data.Result.MessageTh)
+      console.log(newHttpMessageDto)
+      //return newHttpMessageDto
+      // let newResultCheckeligiblePreAdmissionDto= new ResultCheckeligiblePreAdmissionDto();
+      // newResultCheckeligiblePreAdmissionDto={
+      //   HTTPStatus:newHttpMessageDto,
+      //   Result:xResultInfo
+      // }
+      console.log('-----5 end result error ----')
+
+      // return newResultCheckeligiblePreAdmissionDto
     }else{
+      console.log('-----5 result no error ----')
+
       let xInsuranceResult= new InsuranceResult();
       xInsuranceResult ={
        Code:responsefromAIA.data.Result.Code ||'',
        Message:responsefromAIA.data.Result.Message ||'',
        MessageTh:responsefromAIA.data.Result.MessageTh ||'',
       }
-      //console.log(xInsuranceResult)
+      console.log(xInsuranceResult)
       const xMessageList: MessageList[] = responsefromAIA.data.Data.CoverageList ? responsefromAIA.data.Data.CoverageList.flatMap((coverageItem) => {
         return coverageItem.MessageList.map((item) => {
          const decryptedPolicyNo = this.utilsService.DecryptAESECB(item.PolicyNo, AIA_APISecretkey) || '';
@@ -4538,8 +4528,9 @@ return newResultSubmitIpdDischargeDto
          SpecialRemark2:item.SpecialRemark2
         };
       }):[];
-     
-      //console.log(xPolicyInfoList)
+      console.log('------responsefromAIA -----')
+
+      console.log(responsefromAIA.data.Data)
       let xInsuranceData = new InsuranceEligibleData();
       xInsuranceData={
        RefId:responsefromAIA.data.Data.RefId ||'',
@@ -4551,7 +4542,10 @@ return newResultSubmitIpdDischargeDto
        CoverageList:Array.isArray(xCoverageList) ? xCoverageList : [] ,
        PolicyInfoList: Array.isArray(xPolicyInfoList) ? xPolicyInfoList : [] 
       }
-      //console.log(xInsuranceData)
+      console.log('---------- -----')
+
+      console.log(xInsuranceData)
+      console.log('------xInsuranceData -----')
      let xinsuranceCustomerDetail = new InsuranceCustomerDetail();
        xinsuranceCustomerDetail={
          PolicyNo: await this.utilsService.DecryptAESECB(responsefromAIA.data.CustomerDetail.PolicyNo,AIA_APISecretkey) ||'',
@@ -4633,9 +4627,10 @@ return newResultSubmitIpdDischargeDto
                     membershipid:PreauthInfo.xMembershipid,
                     policynumber:PreauthInfo.xPolicynumber,
                     customerid:PreauthInfo.xCustomerid,
-                    claimstatusdesc:'New pre-admission',
-                    claimstatusdesc_en:'New pre-admission',
-                    claimstatusdesc_th:'ผู้ป่วยใน',
+                  
+                    claimstatusdesc:'waitting for discharge',
+                    claimstatusdesc_en:'waitting for discharge',
+                    claimstatusdesc_th:'รอการส่งเคลม',
                //      visitlocation:RequesetBody.xVisitlocation,
                    },
                  });
@@ -4644,7 +4639,7 @@ return newResultSubmitIpdDischargeDto
               }
        //#endregion
     } 
-      }else{       
+      }else{     
           this.addFormatHTTPStatus(newHttpMessageDto,400,'TransactionNo not found','TransactionNo not found')
       }
 

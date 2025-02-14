@@ -50,7 +50,7 @@ export class QueryDiagnosisDto {
 
     @IsString()
     @IsOptional()
-    Icd10?: string;
+    DxCode?: string;
 
   }
 

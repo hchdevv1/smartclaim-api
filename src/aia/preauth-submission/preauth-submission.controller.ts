@@ -91,7 +91,7 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
        const result = this.preauthSubmissionService.SubmitPreAuthVisit(querySubmitPreAuthDto);
        return result
  }
- 
+
  //#endregion
 
   @Post('/SubmitDiagnosis')
@@ -120,6 +120,12 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
         const result = this.preauthSubmissionService.UpdateReferenceVN(queryUpdateReferenceVNBodyDto);
         return result
   }
+  
+  @Post('/SubmitPreSubmissionToAIA')
+async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
+      const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
+      return result
+}
     @Post('/checkeligiblePreAdmission')
     async checkeligiblePreAdmission(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
           const result = this.preauthSubmissionService.checkeligiblePreAdmission(queryPreauthSubmissionDto);
@@ -128,11 +134,7 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
 
 //#region  Feed data And Submit to AIA
 
-@Post('/SubmitPreSubmissionToAIA')
-async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
-      const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
-      return result
-}
+
 
 //#endregion
 
