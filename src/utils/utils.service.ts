@@ -1477,7 +1477,7 @@ async getListPackageBundle() {
 	  FROM public.packagebundle
 	  group by packagecode, packagedesc
     order by packagecode asc`;
-    console.log(packageBundle)
+    //console.log(packageBundle)
      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
      let  newListPackageBundleDto = new ListPackageBundleDto();
      newListPackageBundleDto={
@@ -2149,8 +2149,7 @@ if(visittransactionsInfo){
     IsIPDDischarge:visittransactionsInfo.isipddischarge,
     AdmitDateTime:visittransactionsInfo.admitdatetime
   };
-
-  //console.log(visitDatabaseResultInfo)
+ 
   //console.log('yyy222yyy')
       // this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       
@@ -3159,7 +3158,7 @@ async getFileAsBase64(id: number) {
         throw new NotFoundException('File not found');
       }
   // console.log('kkkkk')
-  console.log(fileRecord)
+  //console.log(fileRecord)
   const filePath = join(__dirname, '..', '..', fileRecord.filepath);
       const fileBuffer = readFileSync(filePath);
       const base64File = fileBuffer.toString('base64');
@@ -3427,9 +3426,9 @@ async DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocume
      documentname:xDocumentName
      }
 
-      console.log('xxxx'+  fileRecord.filepath)
+    //  console.log('xxxx'+  fileRecord.filepath)
     }
-    console.log('yyyy')
+   // console.log('yyyy')
 
 
   }catch (error) {
@@ -3453,7 +3452,7 @@ async DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocume
 
 
 async getListDocumentforAttachDocList(queryListDocumentforAttachDocListDto: QueryListDocumentforAttachDocListDto) {
-  console.log('getListDocumentforAttachDocList')
+  //console.log('getListDocumentforAttachDocList')
    const xRefId = queryListDocumentforAttachDocListDto.PatientInfo.RefId;
    //const xDocumenttypeCode = queryListDocumentforAttachDocListDto.PatientInfo.DocumenttypeCode;
    const xTransactionNo = queryListDocumentforAttachDocListDto.PatientInfo.TransactionNo;
@@ -3494,7 +3493,7 @@ async getListDocumentforAttachDocList(queryListDocumentforAttachDocListDto: Quer
       }),
     );
  
-    console.log('Result Attach Doc List:', newResultAttachDocListInfoDto);
+    //console.log('Result Attach Doc List:', newResultAttachDocListInfoDto);
  
     return newResultAttachDocListInfoDto;
  

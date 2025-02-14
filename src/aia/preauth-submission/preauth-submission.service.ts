@@ -61,13 +61,12 @@ export class PreauthSubmissionService {
 
   ) {}
   async getListBilling(xHN: string ){
-  console.log(xHN)
     let arrayItemBillingCheckBalance;
     const newHttpMessageDto =new HttpMessageDto();
      try{
        
       const TrakcarepatientInfo = await this.trakcareService.getListBilling(xHN)
-  console.log(TrakcarepatientInfo)
+  //console.log(TrakcarepatientInfo)
       if (TrakcarepatientInfo.ItemBillingCheckBalance){
         arrayItemBillingCheckBalance = {
      
@@ -476,9 +475,14 @@ export class PreauthSubmissionService {
         IndicationForAdmission: getvisitformDatabase.Result.VisitInfo.IndicationForAdmission||'',
         DscDateTime: getvisitformDatabase.Result.VisitInfo.DscDateTime||'',
         AdmitDateTime: getvisitformDatabase.Result.VisitInfo.AdmitDateTime||'',
-        IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge
+        IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge,
+        IsPackage:getvisitformDatabase.Result.VisitInfo.IsPackage,
+        ExpectedAdmitDate:getvisitformDatabase.Result.VisitInfo.ExpectedAdmitDate||'',
+        TotalEstimatedCost:getvisitformDatabase.Result.VisitInfo.TotalEstimatedCost||'',
+
 
       }
+
  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       xResultInfo ={
         VisitInfo: newResultReviewVisitInfoDto,
@@ -512,7 +516,9 @@ export class PreauthSubmissionService {
           VisitDateTime: '',
           Vn:  '',
           Weight:  '',
-          IsIPDDischarge:''
+          IsIPDDischarge:'',
+          ExpectedAdmitDate:'',
+          TotalEstimatedCost:''
          }
          xResultInfo ={
           VisitInfo: xQueryVisit,
@@ -1170,9 +1176,8 @@ let PreBillingList,xTotalBillAmount;
               transactionno: xTransactionNo
           }
       });
-      console.log(existingPrebilling)
+      //console.log(existingPrebilling)
       if (!existingPrebilling || existingPrebilling.length === 0) {
-        console.log('---')
         PreBillingList = [{
 
           LocalBillingCode: '2.1.1',
@@ -1405,7 +1410,6 @@ return newResultPreAuthBillingDto
   async getPackageBundle(queryPackageBundleDto:QueryPackageBundleDto){
     let xResultInfo;
     
-    //console.log(xx)
     let newQueryPackageBundleBilling : QueryPackageBundleBilling[] = [];
   try{
     const newqueryPackageBundleDto ={
@@ -1728,7 +1732,6 @@ return newResultPreAuthBillingDto
       
         
         }else{
-          console.log('iii')
           PreBillingList = [{
   
             LocalBillingCode: '',
@@ -1975,8 +1978,8 @@ return newResultPreAuthBillingDto
     const xVN =querySubmitPreAuthDto.PatientInfo.VN;
     const xVisitDateTime =querySubmitPreAuthDto.PatientInfo.VisitDateTime||'';
 
-    //const xComaScore =querySubmitPreAuthDto.PatientInfo.ComaScore||'';
-    //const xExpectedDayOfRecovery =querySubmitPreAuthDto.PatientInfo.ExpectedDayOfRecovery||'';
+    const xComaScore =querySubmitPreAuthDto.PatientInfo.ComaScore||'';
+    const xExpectedDayOfRecovery =querySubmitPreAuthDto.PatientInfo.ExpectedDayOfRecovery||'';
 
   
     const xPreauthReferClaimNo =querySubmitPreAuthDto.PatientInfo.PreauthReferClaimNo||'';
@@ -1989,6 +1992,9 @@ return newResultPreAuthBillingDto
     const xTotalEstimatedCost =querySubmitPreAuthDto.PatientInfo.TotalEstimatedCost||null;
     const xIndicationForAdmission =querySubmitPreAuthDto.PatientInfo.IndicationForAdmission||'';
     const xDxFreeText =querySubmitPreAuthDto.PatientInfo.DxFreeText||'';
+    const xPhysicalExam =querySubmitPreAuthDto.PatientInfo.PhysicalExam||'';
+    const xChiefComplaint =querySubmitPreAuthDto.PatientInfo.ChiefComplaint||'';
+    const xPresentIllness =querySubmitPreAuthDto.PatientInfo.PresentIllness||'';
     const xSignSymptomsDate =querySubmitPreAuthDto.PatientInfo.SignSymptomsDate||'';
     const xAlcoholRelated =Boolean(querySubmitPreAuthDto.PatientInfo.AlcoholRelated) || false;
     const xPregnant =Boolean(querySubmitPreAuthDto.PatientInfo.Pregnant) || false;
@@ -1997,12 +2003,12 @@ return newResultPreAuthBillingDto
     const xPreviousTreatmentDetail =querySubmitPreAuthDto.PatientInfo.PreviousTreatmentDetail||'';
     ////////////////////////
     const xHaveProcedure =Boolean(querySubmitPreAuthDto.PatientInfo.HaveProcedure) || false;
-    const xHaveAccidentCauseOfInjuryDetail =Boolean(querySubmitPreAuthDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false;
-    const xHaveAccidentInjuryDetail =Boolean(querySubmitPreAuthDto.PatientInfo.HaveAccidentInjuryDetail) || false;
+    const xHaveAccidentCauseOfInjuryDetail =(querySubmitPreAuthDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false;
+    const xHaveAccidentInjuryDetail =(querySubmitPreAuthDto.PatientInfo.HaveAccidentInjuryDetail) || false;
     const xHaveDiagnosis =querySubmitPreAuthDto.PatientInfo.HaveDiagnosis||false;
     const xHavepreBilling =querySubmitPreAuthDto.PatientInfo.HavepreBilling||false;
     const xHavePreAuthNote =querySubmitPreAuthDto.PatientInfo.HavePreAuthNote||false;
-
+  
 if (xTransactionNo){
  
   try {
@@ -2034,10 +2040,15 @@ if (xTransactionNo){
         anesthesialist:xAnesthesiaList,
 
         expectedadmitdate:xExpectedAdmitDate,
+        expecteddayofrecovery:xExpectedDayOfRecovery,
+        comascore:xComaScore,
         dscdatetime:xDscDateTime,
         totalestimatedcost:xTotalEstimatedCost,
         indicationforadmission: xIndicationForAdmission,
         dxfreetext: xDxFreeText,
+        physicalexam:xPhysicalExam,
+        chiefcomplaint:xChiefComplaint,
+        presentillness:xPresentIllness,
         signsymptomsdate: xSignSymptomsDate,
         alcoholrelated: xAlcoholRelated,
         pregnant:xPregnant,
@@ -2466,8 +2477,8 @@ if (xTransactionNo){
       const xInsurerCode =queryAccidentDto.PatientInfo.InsurerCode;
       const xHN =queryAccidentDto.PatientInfo.HN;
       //const xVN =queryAccidentDto.PatientInfo.VN;
-      const xHaveAccidentCauseOfInjuryDetail =Boolean(queryAccidentDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false
-      const xHaveAccidentInjuryDetail =Boolean(queryAccidentDto.PatientInfo.HaveAccidentInjuryDetail) || false
+      const xHaveAccidentCauseOfInjuryDetail =(queryAccidentDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false
+      const xHaveAccidentInjuryDetail =(queryAccidentDto.PatientInfo.HaveAccidentInjuryDetail) || false
       const xAccidentPlace =queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentPlace;
       const xAccidentDate =queryAccidentDto.PatientInfo.AccidentDetailInfo.AccidentDate;
   if ((xHaveAccidentCauseOfInjuryDetail ==true)||(xHaveAccidentInjuryDetail ==true)){
@@ -3076,7 +3087,6 @@ if (xTransactionNo){
       ]
   }
   }
-  console.log(newAccidentDetail)
   
   
   let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];

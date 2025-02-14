@@ -73,11 +73,7 @@ export class PreauthSubmissionController {
         const result = this.preauthSubmissionService.getPreAuthAccident(queryPreauthSubmissionDto);
         return result
   }
-  /// get from data base ///
-//procedure
-
-//accident
-
+/// get from data base ///
 @Post('/getPreAuthNote')
 async getPreAuthNote(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
       const result = this.preauthSubmissionService.getPreAuthNote(querySubmitPreAuthDto);
@@ -89,14 +85,15 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
       const result = this.preauthSubmissionService.getPackageBundle(queryPackageBundleDto);
       return result
 }
-  /// submit to data base ///
+ //#region  Submit to database
+ @Post('/SubmitPreAuthVisit')
+ async SubmitPreAuthVisit(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
+       const result = this.preauthSubmissionService.SubmitPreAuthVisit(querySubmitPreAuthDto);
+       return result
+ }
  
-  @Post('/SubmitPreAuthVisit')
-  async SubmitPreAuthVisit(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
-        //const result = queryIPDVisitDto
-        const result = this.preauthSubmissionService.SubmitPreAuthVisit(querySubmitPreAuthDto);
-        return result
-  }
+ //#endregion
+
   @Post('/SubmitDiagnosis')
   async SubmitDiagnosis(@Body() queryDiagnosisDto:QueryDiagnosisDto){
         const result = this.preauthSubmissionService.SubmitDiagnosis(queryDiagnosisDto);

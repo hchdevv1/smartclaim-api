@@ -34,7 +34,9 @@ export class ResultReviewPreVisitInfoDto {
     PreauthReferOcc: string; 
     IndicationForAdmission:string;
     DscDateTime:string;
-
+    IsPackage:boolean;
+    ExpectedAdmitDate:string;
+    TotalEstimatedCost:string;
   }
 
   export class AccidentDetailDto {

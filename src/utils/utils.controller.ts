@@ -141,8 +141,8 @@ async getFilemany(@Param('id') id: string) {
 }
 ))
 async uploadFile(@UploadedFile()  file: Express.Multer.File ,@Body() body: QueryCreateClaimDocumentDtoBodyDto) {
- console.log('File received:', file);  // แสดงข้อมูลของไฟล์
-console.log('Body received:', body);  // แสดงข้อมูลที่ส่งมาพร้อมกับไฟล์
+//  console.log('File received:', file);  // แสดงข้อมูลของไฟล์
+// console.log('Body received:', body);  // แสดงข้อมูลที่ส่งมาพร้อมกับไฟล์
 
   const result = await this.utilsService.saveFile(file,body)
   return {
