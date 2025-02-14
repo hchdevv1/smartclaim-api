@@ -117,11 +117,7 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
         const result = this.preauthSubmissionService.SubmitPreAuthNote(queryPreAuthNoteDto);
         return result
   }
-  @Post('/SubmitPreSubmissionToAIA')
-  async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
-        const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
-        return result
-  }
+ 
   @Post('/UpdateReferenceVN')
   async UpdateReferenceVN(@Body() queryUpdateReferenceVNBodyDto:QueryUpdateReferenceVNBodyDto){
         const result = this.preauthSubmissionService.UpdateReferenceVN(queryUpdateReferenceVNBodyDto);
@@ -132,4 +128,15 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
           const result = this.preauthSubmissionService.checkeligiblePreAdmission(queryPreauthSubmissionDto);
           return result
     }
+
+//#region  Feed data And Submit to AIA
+
+@Post('/SubmitPreSubmissionToAIA')
+async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
+      const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
+      return result
+}
+
+//#endregion
+
 }

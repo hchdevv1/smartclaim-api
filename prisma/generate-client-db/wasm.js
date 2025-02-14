@@ -346,8 +346,7 @@ exports.Prisma.ServicesettingScalarFieldEnum = {
   id: 'id',
   servicesettingcode: 'servicesettingcode',
   servicesettingdesc: 'servicesettingdesc',
-  insurerid: 'insurerid',
-  abbreviation: 'abbreviation'
+  insurerid: 'insurerid'
 };
 
 exports.Prisma.TransactionclaimScalarFieldEnum = {
@@ -398,7 +397,6 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   preauthreferocc: 'preauthreferocc',
   reservedate: 'reservedate',
   isipddischarge: 'isipddischarge',
-  servicesettingabbr: 'servicesettingabbr',
   referencevn: 'referencevn'
 };
 

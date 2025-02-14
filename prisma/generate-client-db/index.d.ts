@@ -24117,7 +24117,6 @@ export namespace Prisma {
     servicesettingcode: string | null
     servicesettingdesc: string | null
     insurerid: number | null
-    abbreviation: string | null
   }
 
   export type ServicesettingMaxAggregateOutputType = {
@@ -24125,7 +24124,6 @@ export namespace Prisma {
     servicesettingcode: string | null
     servicesettingdesc: string | null
     insurerid: number | null
-    abbreviation: string | null
   }
 
   export type ServicesettingCountAggregateOutputType = {
@@ -24133,7 +24131,6 @@ export namespace Prisma {
     servicesettingcode: number
     servicesettingdesc: number
     insurerid: number
-    abbreviation: number
     _all: number
   }
 
@@ -24153,7 +24150,6 @@ export namespace Prisma {
     servicesettingcode?: true
     servicesettingdesc?: true
     insurerid?: true
-    abbreviation?: true
   }
 
   export type ServicesettingMaxAggregateInputType = {
@@ -24161,7 +24157,6 @@ export namespace Prisma {
     servicesettingcode?: true
     servicesettingdesc?: true
     insurerid?: true
-    abbreviation?: true
   }
 
   export type ServicesettingCountAggregateInputType = {
@@ -24169,7 +24164,6 @@ export namespace Prisma {
     servicesettingcode?: true
     servicesettingdesc?: true
     insurerid?: true
-    abbreviation?: true
     _all?: true
   }
 
@@ -24264,7 +24258,6 @@ export namespace Prisma {
     servicesettingcode: string
     servicesettingdesc: string
     insurerid: number | null
-    abbreviation: string | null
     _count: ServicesettingCountAggregateOutputType | null
     _avg: ServicesettingAvgAggregateOutputType | null
     _sum: ServicesettingSumAggregateOutputType | null
@@ -24291,7 +24284,6 @@ export namespace Prisma {
     servicesettingcode?: boolean
     servicesettingdesc?: boolean
     insurerid?: boolean
-    abbreviation?: boolean
     insurers?: boolean | servicesetting$insurersArgs<ExtArgs>
     servicesetting_illnesstype?: boolean | servicesetting$servicesetting_illnesstypeArgs<ExtArgs>
     _count?: boolean | ServicesettingCountOutputTypeDefaultArgs<ExtArgs>
@@ -24302,7 +24294,6 @@ export namespace Prisma {
     servicesettingcode?: boolean
     servicesettingdesc?: boolean
     insurerid?: boolean
-    abbreviation?: boolean
     insurers?: boolean | servicesetting$insurersArgs<ExtArgs>
   }, ExtArgs["result"]["servicesetting"]>
 
@@ -24311,7 +24302,6 @@ export namespace Prisma {
     servicesettingcode?: boolean
     servicesettingdesc?: boolean
     insurerid?: boolean
-    abbreviation?: boolean
   }
 
   export type servicesettingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -24334,7 +24324,6 @@ export namespace Prisma {
       servicesettingcode: string
       servicesettingdesc: string
       insurerid: number | null
-      abbreviation: string | null
     }, ExtArgs["result"]["servicesetting"]>
     composites: {}
   }
@@ -24734,7 +24723,6 @@ export namespace Prisma {
     readonly servicesettingcode: FieldRef<"servicesetting", 'String'>
     readonly servicesettingdesc: FieldRef<"servicesetting", 'String'>
     readonly insurerid: FieldRef<"servicesetting", 'Int'>
-    readonly abbreviation: FieldRef<"servicesetting", 'String'>
   }
     
 
@@ -25180,7 +25168,6 @@ export namespace Prisma {
     preauthreferocc: string | null
     reservedate: string | null
     isipddischarge: boolean | null
-    servicesettingabbr: string | null
     referencevn: string | null
   }
 
@@ -25232,7 +25219,6 @@ export namespace Prisma {
     preauthreferocc: string | null
     reservedate: string | null
     isipddischarge: boolean | null
-    servicesettingabbr: string | null
     referencevn: string | null
   }
 
@@ -25284,7 +25270,6 @@ export namespace Prisma {
     preauthreferocc: number
     reservedate: number
     isipddischarge: number
-    servicesettingabbr: number
     referencevn: number
     _all: number
   }
@@ -25356,7 +25341,6 @@ export namespace Prisma {
     preauthreferocc?: true
     reservedate?: true
     isipddischarge?: true
-    servicesettingabbr?: true
     referencevn?: true
   }
 
@@ -25408,7 +25392,6 @@ export namespace Prisma {
     preauthreferocc?: true
     reservedate?: true
     isipddischarge?: true
-    servicesettingabbr?: true
     referencevn?: true
   }
 
@@ -25460,7 +25443,6 @@ export namespace Prisma {
     preauthreferocc?: true
     reservedate?: true
     isipddischarge?: true
-    servicesettingabbr?: true
     referencevn?: true
     _all?: true
   }
@@ -25599,7 +25581,6 @@ export namespace Prisma {
     preauthreferocc: string | null
     reservedate: string | null
     isipddischarge: boolean | null
-    servicesettingabbr: string | null
     referencevn: string | null
     _count: TransactionclaimCountAggregateOutputType | null
     _avg: TransactionclaimAvgAggregateOutputType | null
@@ -25670,7 +25651,6 @@ export namespace Prisma {
     preauthreferocc?: boolean
     reservedate?: boolean
     isipddischarge?: boolean
-    servicesettingabbr?: boolean
     referencevn?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
@@ -25723,7 +25703,6 @@ export namespace Prisma {
     preauthreferocc?: boolean
     reservedate?: boolean
     isipddischarge?: boolean
-    servicesettingabbr?: boolean
     referencevn?: boolean
     claimants?: boolean | transactionclaim$claimantsArgs<ExtArgs>
   }, ExtArgs["result"]["transactionclaim"]>
@@ -25776,7 +25755,6 @@ export namespace Prisma {
     preauthreferocc?: boolean
     reservedate?: boolean
     isipddischarge?: boolean
-    servicesettingabbr?: boolean
     referencevn?: boolean
   }
 
@@ -25840,7 +25818,6 @@ export namespace Prisma {
       preauthreferocc: string | null
       reservedate: string | null
       isipddischarge: boolean | null
-      servicesettingabbr: string | null
       referencevn: string | null
     }, ExtArgs["result"]["transactionclaim"]>
     composites: {}
@@ -26283,7 +26260,6 @@ export namespace Prisma {
     readonly preauthreferocc: FieldRef<"transactionclaim", 'String'>
     readonly reservedate: FieldRef<"transactionclaim", 'String'>
     readonly isipddischarge: FieldRef<"transactionclaim", 'Boolean'>
-    readonly servicesettingabbr: FieldRef<"transactionclaim", 'String'>
     readonly referencevn: FieldRef<"transactionclaim", 'String'>
   }
     
@@ -38202,8 +38178,7 @@ export namespace Prisma {
     id: 'id',
     servicesettingcode: 'servicesettingcode',
     servicesettingdesc: 'servicesettingdesc',
-    insurerid: 'insurerid',
-    abbreviation: 'abbreviation'
+    insurerid: 'insurerid'
   };
 
   export type ServicesettingScalarFieldEnum = (typeof ServicesettingScalarFieldEnum)[keyof typeof ServicesettingScalarFieldEnum]
@@ -38257,7 +38232,6 @@ export namespace Prisma {
     preauthreferocc: 'preauthreferocc',
     reservedate: 'reservedate',
     isipddischarge: 'isipddischarge',
-    servicesettingabbr: 'servicesettingabbr',
     referencevn: 'referencevn'
   };
 
@@ -40064,7 +40038,6 @@ export namespace Prisma {
     servicesettingcode?: StringFilter<"servicesetting"> | string
     servicesettingdesc?: StringFilter<"servicesetting"> | string
     insurerid?: IntNullableFilter<"servicesetting"> | number | null
-    abbreviation?: StringNullableFilter<"servicesetting"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
     servicesetting_illnesstype?: Servicesetting_illnesstypeListRelationFilter
   }
@@ -40074,7 +40047,6 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     servicesettingdesc?: SortOrder
     insurerid?: SortOrderInput | SortOrder
-    abbreviation?: SortOrderInput | SortOrder
     insurers?: insurersOrderByWithRelationInput
     servicesetting_illnesstype?: servicesetting_illnesstypeOrderByRelationAggregateInput
   }
@@ -40087,7 +40059,6 @@ export namespace Prisma {
     servicesettingcode?: StringFilter<"servicesetting"> | string
     servicesettingdesc?: StringFilter<"servicesetting"> | string
     insurerid?: IntNullableFilter<"servicesetting"> | number | null
-    abbreviation?: StringNullableFilter<"servicesetting"> | string | null
     insurers?: XOR<InsurersNullableRelationFilter, insurersWhereInput> | null
     servicesetting_illnesstype?: Servicesetting_illnesstypeListRelationFilter
   }, "id">
@@ -40097,7 +40068,6 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     servicesettingdesc?: SortOrder
     insurerid?: SortOrderInput | SortOrder
-    abbreviation?: SortOrderInput | SortOrder
     _count?: servicesettingCountOrderByAggregateInput
     _avg?: servicesettingAvgOrderByAggregateInput
     _max?: servicesettingMaxOrderByAggregateInput
@@ -40113,7 +40083,6 @@ export namespace Prisma {
     servicesettingcode?: StringWithAggregatesFilter<"servicesetting"> | string
     servicesettingdesc?: StringWithAggregatesFilter<"servicesetting"> | string
     insurerid?: IntNullableWithAggregatesFilter<"servicesetting"> | number | null
-    abbreviation?: StringNullableWithAggregatesFilter<"servicesetting"> | string | null
   }
 
   export type transactionclaimWhereInput = {
@@ -40167,7 +40136,6 @@ export namespace Prisma {
     preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
-    servicesettingabbr?: StringNullableFilter<"transactionclaim"> | string | null
     referencevn?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }
@@ -40220,7 +40188,6 @@ export namespace Prisma {
     preauthreferocc?: SortOrderInput | SortOrder
     reservedate?: SortOrderInput | SortOrder
     isipddischarge?: SortOrderInput | SortOrder
-    servicesettingabbr?: SortOrderInput | SortOrder
     referencevn?: SortOrderInput | SortOrder
     claimants?: claimantsOrderByWithRelationInput
   }
@@ -40276,7 +40243,6 @@ export namespace Prisma {
     preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
-    servicesettingabbr?: StringNullableFilter<"transactionclaim"> | string | null
     referencevn?: StringNullableFilter<"transactionclaim"> | string | null
     claimants?: XOR<ClaimantsNullableRelationFilter, claimantsWhereInput> | null
   }, "id">
@@ -40329,7 +40295,6 @@ export namespace Prisma {
     preauthreferocc?: SortOrderInput | SortOrder
     reservedate?: SortOrderInput | SortOrder
     isipddischarge?: SortOrderInput | SortOrder
-    servicesettingabbr?: SortOrderInput | SortOrder
     referencevn?: SortOrderInput | SortOrder
     _count?: transactionclaimCountOrderByAggregateInput
     _avg?: transactionclaimAvgOrderByAggregateInput
@@ -40389,7 +40354,6 @@ export namespace Prisma {
     preauthreferocc?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableWithAggregatesFilter<"transactionclaim"> | boolean | null
-    servicesettingabbr?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
     referencevn?: StringNullableWithAggregatesFilter<"transactionclaim"> | string | null
   }
 
@@ -42816,7 +42780,6 @@ export namespace Prisma {
   export type servicesettingCreateInput = {
     servicesettingcode: string
     servicesettingdesc: string
-    abbreviation?: string | null
     insurers?: insurersCreateNestedOneWithoutServicesettingInput
     servicesetting_illnesstype?: servicesetting_illnesstypeCreateNestedManyWithoutServicesettingInput
   }
@@ -42826,14 +42789,12 @@ export namespace Prisma {
     servicesettingcode: string
     servicesettingdesc: string
     insurerid?: number | null
-    abbreviation?: string | null
     servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedCreateNestedManyWithoutServicesettingInput
   }
 
   export type servicesettingUpdateInput = {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutServicesettingNestedInput
     servicesetting_illnesstype?: servicesetting_illnesstypeUpdateManyWithoutServicesettingNestedInput
   }
@@ -42843,7 +42804,6 @@ export namespace Prisma {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingNestedInput
   }
 
@@ -42852,13 +42812,11 @@ export namespace Prisma {
     servicesettingcode: string
     servicesettingdesc: string
     insurerid?: number | null
-    abbreviation?: string | null
   }
 
   export type servicesettingUpdateManyMutationInput = {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type servicesettingUncheckedUpdateManyInput = {
@@ -42866,7 +42824,6 @@ export namespace Prisma {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionclaimCreateInput = {
@@ -42914,7 +42871,6 @@ export namespace Prisma {
     preauthreferocc?: string | null
     reservedate?: string | null
     isipddischarge?: boolean | null
-    servicesettingabbr?: string | null
     referencevn?: string | null
     claimants?: claimantsCreateNestedOneWithoutTransactionclaimInput
   }
@@ -42967,7 +42923,6 @@ export namespace Prisma {
     preauthreferocc?: string | null
     reservedate?: string | null
     isipddischarge?: boolean | null
-    servicesettingabbr?: string | null
     referencevn?: string | null
   }
 
@@ -43016,7 +42971,6 @@ export namespace Prisma {
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
     referencevn?: NullableStringFieldUpdateOperationsInput | string | null
     claimants?: claimantsUpdateOneWithoutTransactionclaimNestedInput
   }
@@ -43069,7 +43023,6 @@ export namespace Prisma {
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
     referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -43121,7 +43074,6 @@ export namespace Prisma {
     preauthreferocc?: string | null
     reservedate?: string | null
     isipddischarge?: boolean | null
-    servicesettingabbr?: string | null
     referencevn?: string | null
   }
 
@@ -43170,7 +43122,6 @@ export namespace Prisma {
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
     referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -43222,7 +43173,6 @@ export namespace Prisma {
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
     referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -45481,7 +45431,6 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     servicesettingdesc?: SortOrder
     insurerid?: SortOrder
-    abbreviation?: SortOrder
   }
 
   export type servicesettingAvgOrderByAggregateInput = {
@@ -45494,7 +45443,6 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     servicesettingdesc?: SortOrder
     insurerid?: SortOrder
-    abbreviation?: SortOrder
   }
 
   export type servicesettingMinOrderByAggregateInput = {
@@ -45502,7 +45450,6 @@ export namespace Prisma {
     servicesettingcode?: SortOrder
     servicesettingdesc?: SortOrder
     insurerid?: SortOrder
-    abbreviation?: SortOrder
   }
 
   export type servicesettingSumOrderByAggregateInput = {
@@ -45563,7 +45510,6 @@ export namespace Prisma {
     preauthreferocc?: SortOrder
     reservedate?: SortOrder
     isipddischarge?: SortOrder
-    servicesettingabbr?: SortOrder
     referencevn?: SortOrder
   }
 
@@ -45624,7 +45570,6 @@ export namespace Prisma {
     preauthreferocc?: SortOrder
     reservedate?: SortOrder
     isipddischarge?: SortOrder
-    servicesettingabbr?: SortOrder
     referencevn?: SortOrder
   }
 
@@ -45676,7 +45621,6 @@ export namespace Prisma {
     preauthreferocc?: SortOrder
     reservedate?: SortOrder
     isipddischarge?: SortOrder
-    servicesettingabbr?: SortOrder
     referencevn?: SortOrder
   }
 
@@ -49163,7 +49107,6 @@ export namespace Prisma {
     preauthreferocc?: string | null
     reservedate?: string | null
     isipddischarge?: boolean | null
-    servicesettingabbr?: string | null
     referencevn?: string | null
   }
 
@@ -49213,7 +49156,6 @@ export namespace Prisma {
     preauthreferocc?: string | null
     reservedate?: string | null
     isipddischarge?: boolean | null
-    servicesettingabbr?: string | null
     referencevn?: string | null
   }
 
@@ -49364,7 +49306,6 @@ export namespace Prisma {
     preauthreferocc?: StringNullableFilter<"transactionclaim"> | string | null
     reservedate?: StringNullableFilter<"transactionclaim"> | string | null
     isipddischarge?: BoolNullableFilter<"transactionclaim"> | boolean | null
-    servicesettingabbr?: StringNullableFilter<"transactionclaim"> | string | null
     referencevn?: StringNullableFilter<"transactionclaim"> | string | null
   }
 
@@ -51148,7 +51089,6 @@ export namespace Prisma {
   export type servicesettingCreateWithoutInsurersInput = {
     servicesettingcode: string
     servicesettingdesc: string
-    abbreviation?: string | null
     servicesetting_illnesstype?: servicesetting_illnesstypeCreateNestedManyWithoutServicesettingInput
   }
 
@@ -51156,7 +51096,6 @@ export namespace Prisma {
     id?: number
     servicesettingcode: string
     servicesettingdesc: string
-    abbreviation?: string | null
     servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedCreateNestedManyWithoutServicesettingInput
   }
 
@@ -51867,7 +51806,6 @@ export namespace Prisma {
     servicesettingcode?: StringFilter<"servicesetting"> | string
     servicesettingdesc?: StringFilter<"servicesetting"> | string
     insurerid?: IntNullableFilter<"servicesetting"> | number | null
-    abbreviation?: StringNullableFilter<"servicesetting"> | string | null
   }
 
   export type insurersCreateWithoutPolicytypeInput = {
@@ -53558,7 +53496,6 @@ export namespace Prisma {
   export type servicesettingCreateWithoutServicesetting_illnesstypeInput = {
     servicesettingcode: string
     servicesettingdesc: string
-    abbreviation?: string | null
     insurers?: insurersCreateNestedOneWithoutServicesettingInput
   }
 
@@ -53567,7 +53504,6 @@ export namespace Prisma {
     servicesettingcode: string
     servicesettingdesc: string
     insurerid?: number | null
-    abbreviation?: string | null
   }
 
   export type servicesettingCreateOrConnectWithoutServicesetting_illnesstypeInput = {
@@ -53613,7 +53549,6 @@ export namespace Prisma {
   export type servicesettingUpdateWithoutServicesetting_illnesstypeInput = {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     insurers?: insurersUpdateOneWithoutServicesettingNestedInput
   }
 
@@ -53622,7 +53557,6 @@ export namespace Prisma {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
     insurerid?: NullableIntFieldUpdateOperationsInput | number | null
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type causeofinjurydetailCreateManyAccidenttransactionsInput = {
@@ -53721,7 +53655,6 @@ export namespace Prisma {
     preauthreferocc?: string | null
     reservedate?: string | null
     isipddischarge?: boolean | null
-    servicesettingabbr?: string | null
     referencevn?: string | null
   }
 
@@ -53770,7 +53703,6 @@ export namespace Prisma {
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
     referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -53820,7 +53752,6 @@ export namespace Prisma {
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
     referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -53870,7 +53801,6 @@ export namespace Prisma {
     preauthreferocc?: NullableStringFieldUpdateOperationsInput | string | null
     reservedate?: NullableStringFieldUpdateOperationsInput | string | null
     isipddischarge?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    servicesettingabbr?: NullableStringFieldUpdateOperationsInput | string | null
     referencevn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -54189,7 +54119,6 @@ export namespace Prisma {
     id?: number
     servicesettingcode: string
     servicesettingdesc: string
-    abbreviation?: string | null
   }
 
   export type accidentcauseover45daysUpdateWithoutInsurersInput = {
@@ -54821,7 +54750,6 @@ export namespace Prisma {
   export type servicesettingUpdateWithoutInsurersInput = {
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     servicesetting_illnesstype?: servicesetting_illnesstypeUpdateManyWithoutServicesettingNestedInput
   }
 
@@ -54829,7 +54757,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     servicesetting_illnesstype?: servicesetting_illnesstypeUncheckedUpdateManyWithoutServicesettingNestedInput
   }
 
@@ -54837,7 +54764,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     servicesettingcode?: StringFieldUpdateOperationsInput | string
     servicesettingdesc?: StringFieldUpdateOperationsInput | string
-    abbreviation?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type servicesetting_illnesstypeCreateManyServicesettingInput = {

@@ -283,7 +283,6 @@ model servicesetting {
   servicesettingcode         String                       @db.VarChar(255)
   servicesettingdesc         String                       @db.VarChar(255)
   insurerid                  Int?
-  abbreviation               String?                      @db.VarChar(255)
   insurers                   insurers?                    @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
   servicesetting_illnesstype servicesetting_illnesstype[]
 }
@@ -336,7 +335,6 @@ model transactionclaim {
   preauthreferocc         String?    @db.VarChar(255)
   reservedate             String?    @db.VarChar(100)
   isipddischarge          Boolean?
-  servicesettingabbr      String?    @db.VarChar(100)
   referencevn             String?    @db.VarChar
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }

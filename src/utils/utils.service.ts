@@ -422,7 +422,6 @@ export class UtilsService {
       select:{
         servicesettingcode :true,
         servicesettingdesc:true,
-        abbreviation:true,
         insurerid:true,
         insurers:{
           select:{
