@@ -1427,7 +1427,7 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
 
     const xAnesthesiaList =queryIPDVisitDto.PatientInfo.AnesthesiaList||'';
     const xAdmitDateTime =queryIPDVisitDto.PatientInfo.AdmitDateTime||'';
-    //const xIsIPDDischarge = queryIPDVisitDto.PatientInfo.IsIPDDischarge||null ;
+    const xIsIPDDischarge = queryIPDVisitDto.PatientInfo.IsIPDDischarge||null ;
 
 if (xTransactionNo){
  
@@ -1483,7 +1483,7 @@ if (xTransactionNo){
         totalestimatedcost:xTotalEstimatedCost,
         anesthesialist:xAnesthesiaList,
         admitdatetime:xAdmitDateTime,
-       // isipddischarge:xIsIPDDischarge,
+        isipddischarge:xIsIPDDischarge,
       },
     });
     
@@ -1503,7 +1503,7 @@ if (xTransactionNo){
         data: {
           preauthreferclaimno:xPreauthReferClaimNo,
           preauthreferocc:xPreauthReferOcc,
-          //isipddischarge:xIsIPDDischarge
+          isipddischarge:xIsIPDDischarge
         },
       });
     }
