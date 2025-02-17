@@ -428,6 +428,33 @@ async getIPDVisit( xVN: string ) {
     }
 return PatientInfo
 }
+async getIPDVisitIsDischarge( xVN: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getIPDVisitIsDischarge/${xVN}`)
+    );
+    const presentIllness = response.data?.VisitInfo?.PresentIllness ?? "";
+    response.data.VisitInfo.PresentIllness = presentIllness 
+      ? this.cleanSpecialCharacters(presentIllness) 
+      : presentIllness;
+
+    PatientInfo = response.data
+
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+return PatientInfo
+}
 async getIPDVitalSign( xVN: string ) {
   let response:any ;
   let PatientInfo ;

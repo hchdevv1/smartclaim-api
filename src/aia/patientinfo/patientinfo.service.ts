@@ -944,7 +944,7 @@ export class PatientinfoService {
         IsIPDDischarge:null,
         PreauthReferClaimNo:'',
         PreauthReferOcc:'',
-        ReferenceVN:''
+        ReferenceVN:'',
     };
         xResultInfo = {
         TransactionClaimInfo: [xQueryVisit],

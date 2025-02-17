@@ -192,5 +192,8 @@ export class ResultTransactionClaimDto {
     @IsString()
     @IsOptional()
     ReferenceVN?: string;
+
+    @IsBoolean()
+    IsIPDDischarge: boolean;
     
   }

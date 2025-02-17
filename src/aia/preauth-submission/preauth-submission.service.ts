@@ -4595,9 +4595,9 @@ return newResultSubmitIpdDischargeDto
                      membershipid:PreauthInfo.xMembershipid,
                      policynumber:PreauthInfo.xPolicynumber,
                      customerid:PreauthInfo.xCustomerid,
-                     claimstatusdesc:'New pre-admission',
-                     claimstatusdesc_en:'New pre-admission',
-                     claimstatusdesc_th:'ผู้ป่วยใน',
+                     claimstatusdesc:'waitting for discharge',
+                     claimstatusdesc_en:'waitting for discharge',
+                     claimstatusdesc_th:'รอการส่งเคลม',
                 //      visitlocation:RequesetBody.xVisitlocation,
                     },
                   });

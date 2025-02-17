@@ -91,4 +91,9 @@ export class IpdDischargeController {
     const result = this.ipdDischargeService.SubmitIPDDischargeToAIA(querySubmitIpdDischargeDto);
         return result
   }
+    @Post('/ReviewIPDDischarge')
+    async ReviewIPDDischarge(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
+          const result = this.ipdDischargeService.ReviewIPDDischarge(queryIpdDischargeDto);
+          return result
+    }
 }

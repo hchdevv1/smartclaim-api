@@ -1,4 +1,4 @@
-import {  IsInt,  IsString ,IsOptional} from 'class-validator';
+import {  IsInt,  IsString ,IsOptional ,IsBoolean} from 'class-validator';
 
 export class QueryIpdDischargeDto {
     PatientInfo?: SearchPatientBodyDto
@@ -69,4 +69,7 @@ class SearchPatientBodyDto{
     @IsString()
     @IsOptional()
     AccidentDate?: string;
+
+       @IsBoolean()
+        IsIPDDischarge?: boolean;
   }
