@@ -482,7 +482,7 @@ export class PreauthSubmissionService {
         AnesthesiaList:getvisitformDatabase.Result.VisitInfo.AnesthesiaList
 
       }
-
+console.log('---test')
  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       xResultInfo ={
         VisitInfo: newResultReviewVisitInfoDto,
@@ -2912,13 +2912,14 @@ if (xTransactionNo){
     xDscDateTime:querySubmitPreAuthDto.PatientInfo.DscDateTime,
     xIndicationForAdmission:querySubmitPreAuthDto.PatientInfo.IndicationForAdmission,
    }
-   let existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
+   const existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
     where: {
       refid: RequesetBody.xRefId,
       transactionno: RequesetBody.xTransactionNo,
     },
   });
-  // if (existingRecordtransactionclaim.referencevn.length >0){
+  console.log(existingRecordtransactionclaim)
+    // if (existingRecordtransactionclaim.referencevn.length >0){
   //  xRreferencevn =existingRecordtransactionclaim.referencevn
   // }else{
   //   xRreferencevn=RequesetBody.xVN
