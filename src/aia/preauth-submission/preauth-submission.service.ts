@@ -2025,7 +2025,7 @@ return newResultPreAuthBillingDto
   
     const xPreauthReferClaimNo =querySubmitPreAuthDto.PatientInfo.PreauthReferClaimNo||'';
     const xPreauthOcc =querySubmitPreAuthDto.PatientInfo.PreauthReferOcc||'';
-    const xIsPackage =Boolean(querySubmitPreAuthDto.PatientInfo.IsPackage) || false;
+    const xIsPackage =querySubmitPreAuthDto.PatientInfo.IsPackage || false;
     const xAnesthesiaList =querySubmitPreAuthDto.PatientInfo.AnesthesiaList||'';
     ////////////////////////
     const xExpectedAdmitDate =querySubmitPreAuthDto.PatientInfo.ExpectedAdmitDate||'';
@@ -2912,7 +2912,7 @@ if (xTransactionNo){
     xDscDateTime:querySubmitPreAuthDto.PatientInfo.DscDateTime,
     xIndicationForAdmission:querySubmitPreAuthDto.PatientInfo.IndicationForAdmission,
    }
-   const existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
+   let existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
     where: {
       refid: RequesetBody.xRefId,
       transactionno: RequesetBody.xTransactionNo,
