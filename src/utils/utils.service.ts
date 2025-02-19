@@ -548,7 +548,10 @@ export class UtilsService {
             SLDesc ='Pre-Authorization - ' + item.illnesstype.illnesstypedesc
 
           }else if (item.servicesetting.servicesettingcode == "IPD"){ 
-            SLDesc ='ผู้ป่วยใน - ' + item.illnesstype.illnesstypedesc
+            if (item.illnesstype.illnesstypecode=="DAY"){SLDesc =item.illnesstype.illnesstypedesc}
+            else{
+              SLDesc ='ผู้ป่วยใน - ' + item.illnesstype.illnesstypedesc
+            }         
           }else if (item.servicesetting.servicesettingcode == "OPD"){ 
             // if ((item.illnesstype.illnesstypecode =="ILL")||(item.illnesstype.illnesstypecode =="ACC")||(item.illnesstype.illnesstypecode =="ER")||(item.illnesstype.illnesstypecode =="FU")||(item.illnesstype.illnesstypecode =="DEN")){
               SLDesc = 'ผู้ป่วยนอก - ' + item.illnesstype.illnesstypedesc

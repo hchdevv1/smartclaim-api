@@ -36,7 +36,7 @@ import { QueryAccidentDatabaseBodyDto  ,
   CauseOfInjuryDetail,InjuryDetail
 }  from '../../utils/dto/result-accident-databse.dto';
 
-import { ResultReviewIPDVisitInfoDto  ,AccidentDetailDto} from './dto/review-ipd-discharge.dto';
+import { ResultReviewIPDVisitInfoDto,  AccidentDetailDto} from './dto/review-ipd-discharge.dto';
 
 const httpStatusMessageService = new HttpStatusMessageService();
 const newHttpMessageDto =new HttpMessageDto();
@@ -73,11 +73,11 @@ let DxFreeTextTemp,PhysicalExamTemp ,PresentIllnessTemp ,ChiefComplaintTemp ,Pla
 
 if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
   const getvisitformDatabaseIsIPDDischarge = await this.trakcareService.getIPDVisitIsDischarge(queryIpdDischargeDto.PatientInfo.VN);
-  const DxFreeTextIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.DxFreeText
-  const PhysicalExamIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PhysicalExam
-  const PresentIllnessIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PresentIllness
-  const ChiefComplaintTempIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.ChiefComplaint
-  const PlanOfTreatmenTempIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PlanOfTreatment
+  const DxFreeTextIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.DxFreeText.slice(0,200)
+  const PhysicalExamIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PhysicalExam.slice(0,1000)
+  const PresentIllnessIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PresentIllness.slice(0,500)
+  const ChiefComplaintTempIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.ChiefComplaint.slice(0,200)
+  const PlanOfTreatmenTempIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PlanOfTreatment.slice(0,500)
 
 
   DxFreeTextTemp= DxFreeTextIsDischarge
@@ -86,15 +86,17 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
   ChiefComplaintTemp = ChiefComplaintTempIsDischarge
   PlanOfTreatmenTemp = PlanOfTreatmenTempIsDischarge
 }else{
+  console.log('BBB')
 
   getvisitformDatabase = await this.utilsService.getvisitIPDformDatabase(newQueryVisitDatabaseBodyDto)
-  DxFreeTextTemp= getvisitformDatabase.Result.VisitInfo.DxFreeText
-  PhysicalExamTemp=getvisitformDatabase.Result.VisitInfo.PhysicalExam
-  PresentIllnessTemp = getvisitformDatabase.Result.VisitInfo.PresentIllness
-  ChiefComplaintTemp = getvisitformDatabase.Result.VisitInfo.ChiefComplaint
-  PlanOfTreatmenTemp = getvisitformDatabase.Result.VisitInfo.PlanOfTreatment
+  DxFreeTextTemp= getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200)
+  PhysicalExamTemp=getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000)
+  PresentIllnessTemp = getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500)
+  ChiefComplaintTemp = getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200)
+  PlanOfTreatmenTemp = getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,500)
 }
-
+console.log(getvisitformDatabase)
+console.log('------')
 //console.log(getvisitformDatabase)
     if (getvisitformDatabase?.Result?.VisitInfo?.VisitDateTime?.length >0){ 
 
@@ -108,7 +110,7 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
         ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
         Height: getvisitformDatabase.Result.VisitInfo.Height||'',
         PhysicalExam: PhysicalExamTemp||'', //getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
-        PlanOfTreatment: PlanOfTreatmenTemp ||'' ,//getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
+        PlanOfTreatment: PlanOfTreatmenTemp ||'',//getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
         Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
         PresentIllness: PresentIllnessTemp||'', // getvisitformDatabase.Result.VisitInfo.PresentIllness||'',
         PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
@@ -184,7 +186,7 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
             AccidentDate: TrakcarepatientInfo.VisitInfo.AccidentDate || '',
             AdditionalNote: TrakcarepatientInfo.VisitInfo.AdditionalNote || '',
             AdmitDateTime: TrakcarepatientInfo.VisitInfo.AdmitDateTime || '',
-            AlcoholRelated: Boolean(TrakcarepatientInfo.VisitInfo.AlcoholRelated) || false,
+            AlcoholRelated: TrakcarepatientInfo.VisitInfo.AlcoholRelated || false,
             ChiefComplaint: TrakcarepatientInfo.VisitInfo.ChiefComplaint || '',
             ComaScore: TrakcarepatientInfo.VisitInfo.ComaScore || '',
             DxFreeText: TrakcarepatientInfo.VisitInfo.DxFreeText || '',
@@ -196,11 +198,11 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
             PlanOfTreatment: TrakcarepatientInfo.VisitInfo.PlanOfTreatment || '',
             PreauthReferClaimNo: TrakcarepatientInfo.VisitInfo.PreauthReferClaimNo || '',
             PreauthOcc: TrakcarepatientInfo.VisitInfo.PreauthOcc || '',
-            Pregnant: Boolean(TrakcarepatientInfo.VisitInfo.Pregnant) || false,
+            Pregnant: TrakcarepatientInfo.VisitInfo.Pregnant || false,
             PresentIllness: TrakcarepatientInfo.VisitInfo.PresentIllness || '',
             PreviousTreatmentDate: TrakcarepatientInfo.VisitInfo.PreviousTreatmentDate || '',
             PreviousTreatmentDetail: TrakcarepatientInfo.VisitInfo.PreviousTreatmentDetail || '',
-            PrivateCase: Boolean(TrakcarepatientInfo.VisitInfo.PrivateCase) || false,
+            PrivateCase: TrakcarepatientInfo.VisitInfo.PrivateCase || false,
             ProcedureFreeText: TrakcarepatientInfo.VisitInfo.ProcedureFreeText || '',
             SignSymptomsDate: TrakcarepatientInfo.VisitInfo.SignSymptomsDate || '',
             UnderlyingCondition: TrakcarepatientInfo.VisitInfo.UnderlyingCondition || '',
@@ -223,7 +225,9 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
             HTTPStatus:newHttpMessageDto,
             Result:xResultInfo
       }
-  
+  console.log('newResultIpdDischargeVisitDto')
+  console.log(newResultIpdDischargeVisitDto)
+
   return newResultIpdDischargeVisitDto
   }catch(error)
   {
@@ -1430,13 +1434,13 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
     const xVN =queryIPDVisitDto.PatientInfo.VN;
 
     const xVisitDateTime =queryIPDVisitDto.PatientInfo.VisitDateTime||'';
-    const xDxFreeText =queryIPDVisitDto.PatientInfo.DxFreeText||'';
-    const xPresentIllness =queryIPDVisitDto.PatientInfo.PresentIllness||'';
-    const xChiefComplaint =queryIPDVisitDto.PatientInfo.ChiefComplaint||'';
+    const xDxFreeText =queryIPDVisitDto.PatientInfo.DxFreeText.slice(0,200)||'';
+    const xPresentIllness =queryIPDVisitDto.PatientInfo.PresentIllness.slice(0,500)||'';
+    const xChiefComplaint =queryIPDVisitDto.PatientInfo.ChiefComplaint.slice(0,200)||'';
     const xUnderlyingCondition =queryIPDVisitDto.PatientInfo.UnderlyingCondition||'';
-    const xPhysicalExam =queryIPDVisitDto.PatientInfo.PhysicalExam||'';
-    const xPlanOfTreatment =queryIPDVisitDto.PatientInfo.PlanOfTreatment||'';
-    const xProcedureFreeText =queryIPDVisitDto.PatientInfo.ProcedureFreeText||'';
+    const xPhysicalExam =queryIPDVisitDto.PatientInfo.PhysicalExam.slice(0,1000)||'';
+    const xPlanOfTreatment =queryIPDVisitDto.PatientInfo.PlanOfTreatment.slice(0,500)||'';
+    const xProcedureFreeText =queryIPDVisitDto.PatientInfo.ProcedureFreeText.slice(0,500)||'';
     const xAdditionalNote =queryIPDVisitDto.PatientInfo.AdditionalNote||'';
     const xSignSymptomsDate =queryIPDVisitDto.PatientInfo.SignSymptomsDate||'';
     const xComaScore =queryIPDVisitDto.PatientInfo.ComaScore||'';
@@ -1445,9 +1449,9 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
     const xHaveProcedure =Boolean(queryIPDVisitDto.PatientInfo.HaveProcedure) || false;
     const xHaveAccidentCauseOfInjuryDetail =Boolean(queryIPDVisitDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false;
     const xHaveAccidentInjuryDetail =Boolean(queryIPDVisitDto.PatientInfo.HaveAccidentInjuryDetail) || false;
-    const xAlcoholRelated =Boolean(queryIPDVisitDto.PatientInfo.AlcoholRelated) || false;
-    const xPregnant =Boolean(queryIPDVisitDto.PatientInfo.Pregnant) || false;
-    const xPrivateCase =Boolean(queryIPDVisitDto.PatientInfo.PrivateCase) || false;
+    const xAlcoholRelated =(queryIPDVisitDto.PatientInfo.AlcoholRelated) || false;
+    const xPregnant =(queryIPDVisitDto.PatientInfo.Pregnant) || false;
+    const xPrivateCase =(queryIPDVisitDto.PatientInfo.PrivateCase) || false;
     const xHeight =queryIPDVisitDto.PatientInfo.Height||'';
     const xWeight =queryIPDVisitDto.PatientInfo.Weight||'';
 
@@ -1456,7 +1460,7 @@ async SubmitIPDVisit(queryIPDVisitDto:QueryIPDVisitDto){
     const xPreauthReferClaimNo =queryIPDVisitDto.PatientInfo.PreauthReferClaimNo||'';
     const xPreauthReferOcc =queryIPDVisitDto.PatientInfo.PreauthReferOcc||'';
     const xPreviousTreatmentDate =queryIPDVisitDto.PatientInfo.PreviousTreatmentDate||'';
-    const xPreviousTreatmentDetail =queryIPDVisitDto.PatientInfo.PreviousTreatmentDetail||'';
+    const xPreviousTreatmentDetail =queryIPDVisitDto.PatientInfo.PreviousTreatmentDetail.slice(0,20)||'';
 
     const xDscDateTime =queryIPDVisitDto.PatientInfo.DscDateTime||'';
     const xIsPackage =Boolean(queryIPDVisitDto.PatientInfo.IsPackage) || false;
@@ -2690,8 +2694,8 @@ const QueryCreateClaimDocumentDtoBody={
   UploadedBy:'',
   Runningdocument:0
 }
-// console.log('-- QueryCreateClaimDocumentDtoBody ---')
-//console.log(QueryCreateClaimDocumentDtoBody)
+console.log('-- QueryCreateClaimDocumentDtoBody ---')
+console.log(QueryCreateClaimDocumentDtoBody)
 
 
 const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
@@ -2705,7 +2709,9 @@ let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
     };
   })
 );
+console.log('newResultVisitInfoDto')
 
+console.log(newResultVisitInfoDto)
 // console.log(newResultBillingInfoDto)
 let newResultDataJsonDto =new ResultDataJsonDto();
  newResultDataJsonDto ={
@@ -2754,7 +2760,7 @@ console.log('================= apiURL =================')
 console.log(RequesetBody.xIsIPDDischarge)
 console.log(apiURL)
 console.log('================= apiURL =================')
-//apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
+apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
 
   const body = newOPDDischargeResponseDto
   const headers = {
@@ -2776,13 +2782,16 @@ console.log('================= apiURL =================')
  
     //const xDummyDataRespone1 =new DummyDataRespone1();
 //const responsefromAIA  =xDummyDataRespone1.res
-    
+     console.log(responsefromAIA)
+
   const responeInputcode = responsefromAIA.Result.Code
   // console.log('======> responeInputcode =')
   // console.log(responeInputcode)
   if (responeInputcode !=='S'){
-    this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
+    console.log('ffffff')
+    this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.Message,responsefromAIA.Result.MessageTh)
   }else{
+    console.log('yyyyyy')
 
     let xInsuranceResult= new InsuranceResult();
     xInsuranceResult ={
@@ -3003,244 +3012,7 @@ return newResultSubmitIpdDischargeDto
   }
 }
 }
-//#region  Review
-async ReviewIPDDischarge(queryIpdDischargeDto:QueryIpdDischargeDto){
-  let xResultInfo;
-try{
-  const newQueryVisitDatabaseBodyDto ={
-    RefId: queryIpdDischargeDto.PatientInfo.RefId,
-    TransactionNo: queryIpdDischargeDto.PatientInfo.TransactionNo,
-    InsurerCode:queryIpdDischargeDto.PatientInfo.InsurerCode,
-    HN: queryIpdDischargeDto.PatientInfo.HN,
-    VN: queryIpdDischargeDto.PatientInfo.VN,
-    IsIPDDischarge :queryIpdDischargeDto.PatientInfo.IsIPDDischarge
-  
-  }
-let getvisitformDatabase :any
-let DxFreeTextTemp,PhysicalExamTemp ,PresentIllnessTemp ,ChiefComplaintTemp ,PlanOfTreatmenTemp:any
 
-if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
-const getvisitformDatabaseIsIPDDischarge = await this.trakcareService.getIPDVisitIsDischarge(queryIpdDischargeDto.PatientInfo.VN);
-const DxFreeTextIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.DxFreeText
-const PhysicalExamIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PhysicalExam
-const PresentIllnessIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PresentIllness
-const ChiefComplaintTempIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.ChiefComplaint
-const PlanOfTreatmenTempIsDischarge = getvisitformDatabaseIsIPDDischarge.VisitInfo.PlanOfTreatment
-
-
-DxFreeTextTemp= DxFreeTextIsDischarge
-PhysicalExamTemp= PhysicalExamIsDischarge
-PresentIllnessTemp =PresentIllnessIsDischarge
-ChiefComplaintTemp = ChiefComplaintTempIsDischarge
-PlanOfTreatmenTemp = PlanOfTreatmenTempIsDischarge
-}else{
-
-getvisitformDatabase = await this.utilsService.getvisitIPDformDatabase(newQueryVisitDatabaseBodyDto)
-DxFreeTextTemp= getvisitformDatabase.Result.VisitInfo.DxFreeText
-PhysicalExamTemp=getvisitformDatabase.Result.VisitInfo.PhysicalExam
-PresentIllnessTemp = getvisitformDatabase.Result.VisitInfo.PresentIllness
-ChiefComplaintTemp = getvisitformDatabase.Result.VisitInfo.ChiefComplaint
-PlanOfTreatmenTemp = getvisitformDatabase.Result.VisitInfo.PlanOfTreatment
-}
-
-//console.log(getvisitformDatabase)
-  if (getvisitformDatabase?.Result?.VisitInfo?.VisitDateTime?.length >0){ 
-
-    const newResultReviewVisitInfoDto : ResultReviewIPDVisitInfoDto= {
-      
-      AdditionalNote: getvisitformDatabase.Result.VisitInfo.AdditionalNote||'',
-      AlcoholRelated: getvisitformDatabase.Result.VisitInfo.AlcoholRelated||false,
-      ChiefComplaint: ChiefComplaintTemp||'' ,//getvisitformDatabase.Result.VisitInfo.ChiefComplaint||'',
-      ComaScore: getvisitformDatabase.Result.VisitInfo.ComaScore||'',
-      DxFreeText:DxFreeTextTemp||'', // getvisitformDatabase.Result.VisitInfo.DxFreeText||'',
-      ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
-      Height: getvisitformDatabase.Result.VisitInfo.Height||'',
-      PhysicalExam: PhysicalExamTemp||'', //getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
-      PlanOfTreatment: PlanOfTreatmenTemp ||'' ,//getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
-      Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
-      PresentIllness: PresentIllnessTemp||'', // getvisitformDatabase.Result.VisitInfo.PresentIllness||'',
-      PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
-      PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail||'',
-      PrivateCase: getvisitformDatabase.Result.VisitInfo.PrivateCase||false,
-      ProcedureFreeText: getvisitformDatabase.Result.VisitInfo.ProcedureFreeText,
-      SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
-      UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
-      VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
-      VN:  getvisitformDatabase.Result.VisitInfo.VN||'',
-      Weight: getvisitformDatabase.Result.VisitInfo.Weight||'',
-      An:  getvisitformDatabase.Result.VisitInfo.VN||'',
-
-      PreauthReferClaimNo: getvisitformDatabase.Result.VisitInfo.PreauthReferClaimNo||'',
-      PreauthReferOcc: getvisitformDatabase.Result.VisitInfo.PreauthReferOcc||'',
-      IndicationForAdmission: getvisitformDatabase.Result.VisitInfo.IndicationForAdmission||'',
-      DscDateTime: getvisitformDatabase.Result.VisitInfo.DscDateTime||'',
-      AdmitDateTime: getvisitformDatabase.Result.VisitInfo.AdmitDateTime||'',
-      IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge
-
-    }
-this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-    xResultInfo ={
-      VisitInfo: newResultReviewVisitInfoDto,
-     } 
-  }else{
-    let TrakcarepatientInfo:any
-    if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
-
-     TrakcarepatientInfo = await this.trakcareService.getIPDVisitIsDischarge(queryIpdDischargeDto.PatientInfo.VN);
-
-   }else{
-
-     TrakcarepatientInfo = await this.trakcareService.getIPDVisit(queryIpdDischargeDto.PatientInfo.VN);
-
-   }
-    const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
-    if (TrakcarepatientInfoStatusCode !==200){
-      this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
-      const xQueryVisit ={    
-        FurtherClaimId:  '', 
-        AccidentCauseOver45Days: '',
-        AdditionalNote:  '',
-        AlcoholRelated: '',
-        ChiefComplaint:  '',
-        ComaScore: '',
-        DxFreeText:  '',
-        ExpectedDayOfRecovery: '',
-        Height: '',
-        PhysicalExam: '',
-        PlanOfTreatment: '',
-        Pregnant: '',
-        PresentIllness: '',
-        PreviousTreatmentDate:  '',
-        PreviousTreatmentDetail: '',
-        PrivateCase:'',
-        ProcedureFreeText:  '',
-        SignSymptomsDate:  '',
-        UnderlyingCondition:  '',
-        VisitDateTime: '',
-        Vn:  '',
-        Weight:  '',
-        IsIPDDischarge:''
-       }
-       xResultInfo ={
-        VisitInfo: xQueryVisit,
-       } 
-    }else{
-      
-      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-        const xQueryVisit: QueryVisit = TrakcarepatientInfo.VisitInfo ? {
-          
-          AccidentDate: TrakcarepatientInfo.VisitInfo.AccidentDate || '',
-          AdditionalNote: TrakcarepatientInfo.VisitInfo.AdditionalNote || '',
-          AdmitDateTime: TrakcarepatientInfo.VisitInfo.AdmitDateTime || '',
-          AlcoholRelated: Boolean(TrakcarepatientInfo.VisitInfo.AlcoholRelated) || false,
-          ChiefComplaint: TrakcarepatientInfo.VisitInfo.ChiefComplaint || '',
-          ComaScore: TrakcarepatientInfo.VisitInfo.ComaScore || '',
-          DxFreeText: TrakcarepatientInfo.VisitInfo.DxFreeText || '',
-          ExpectedDayOfRecovery: TrakcarepatientInfo.VisitInfo.ExpectedDayOfRecovery || '',
-          ExpectedLos: TrakcarepatientInfo.VisitInfo.ExpectedLos || '',
-          Height: TrakcarepatientInfo.VisitInfo.Height || '',
-          IndicationForAdmission: TrakcarepatientInfo.VisitInfo.IndicationForAdmission || '',
-          PhysicalExam: TrakcarepatientInfo.VisitInfo.PhysicalExam || '',
-          PlanOfTreatment: TrakcarepatientInfo.VisitInfo.PlanOfTreatment || '',
-          PreauthReferClaimNo: TrakcarepatientInfo.VisitInfo.PreauthReferClaimNo || '',
-          PreauthOcc: TrakcarepatientInfo.VisitInfo.PreauthOcc || '',
-          Pregnant: Boolean(TrakcarepatientInfo.VisitInfo.Pregnant) || false,
-          PresentIllness: TrakcarepatientInfo.VisitInfo.PresentIllness || '',
-          PreviousTreatmentDate: TrakcarepatientInfo.VisitInfo.PreviousTreatmentDate || '',
-          PreviousTreatmentDetail: TrakcarepatientInfo.VisitInfo.PreviousTreatmentDetail || '',
-          PrivateCase: Boolean(TrakcarepatientInfo.VisitInfo.PrivateCase) || false,
-          ProcedureFreeText: TrakcarepatientInfo.VisitInfo.ProcedureFreeText || '',
-          SignSymptomsDate: TrakcarepatientInfo.VisitInfo.SignSymptomsDate || '',
-          UnderlyingCondition: TrakcarepatientInfo.VisitInfo.UnderlyingCondition || '',
-          VisitDate: TrakcarepatientInfo.VisitInfo.VisitDate || '',
-          VisitDateTime: TrakcarepatientInfo.VisitInfo.VisitDateTime || '',
-          DscDateTime: TrakcarepatientInfo.VisitInfo.DscDateTime || '',
-          Vn: TrakcarepatientInfo.VisitInfo.Vn || '',
-          An: TrakcarepatientInfo.VisitInfo.An || '',
-          Weight: TrakcarepatientInfo.VisitInfo.Weight || '',
-          IsIPDDischarge: Boolean(TrakcarepatientInfo.VisitInfo.IsIPDDischarge) || false
-      } : {};
-      xResultInfo ={
-        VisitInfo: xQueryVisit,
-       } 
-    }
-   // console.log(' -----get data from trakcare ----')
-  }
-  let newResultIpdDischargeVisitDto= new ResultIpdDischargeVisitDto();
-  newResultIpdDischargeVisitDto={
-          HTTPStatus:newHttpMessageDto,
-          Result:xResultInfo
-    }
-
-return newResultIpdDischargeVisitDto
-}catch(error)
-{
-  if (error instanceof Prisma.PrismaClientInitializationError) {
-    throw new HttpException(
-     { 
-      HTTPStatus: {
-        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-        message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
-        error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
-      },
-      },HttpStatus.INTERNAL_SERVER_ERROR );
-  }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      throw new HttpException(
-        {  
-          HTTPStatus: {
-            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
-            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
-         },
-        },HttpStatus.INTERNAL_SERVER_ERROR ); 
-  }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
-    if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
-      throw new HttpException({
-        HTTPStatus: {
-        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
-        message: 'Cannot connect to the database server. Please ensure it is running.',
-        error: 'Cannot connect to the database server. Please ensure it is running.',
-      },
-      }, HttpStatus.SERVICE_UNAVAILABLE);
-    }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
-      throw new HttpException({
-        HTTPStatus: {
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: 'Invalid data format or conversion error.',
-        error: 'Invalid data format or conversion error.',
-      },
-      }, HttpStatus.BAD_REQUEST);
-    }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
-      throw new HttpException({
-        HTTPStatus: {
-        statusCode: HttpStatus.FORBIDDEN,
-        message: 'You do not have permission to perform this action.',
-        error: 'You do not have permission to perform this action.',
-      },
-      }, HttpStatus.FORBIDDEN);
-    }else if (error.message.includes('Unable to fit integer value')) {
-      // Handle integer overflow or similar errors
-      throw new HttpException({
-        HTTPStatus: {
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: 'The integer value is too large for the database field.',
-        error: 'The integer value is too large for the database field.',
-      },
-      }, HttpStatus.BAD_REQUEST);
-    }
-    else{
-      throw new HttpException({  
-        HTTPStatus: {
-           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-           message: 'An unexpected error occurred.',
-           error: 'An unexpected error occurred.',
-          },
-        },HttpStatus.INTERNAL_SERVER_ERROR,);
-    }
-  }
-}
-}
-//#endregion
 
 /// Utils ///
 async convertDxTypeCode(inputInsurerCode:string,inputdxTypeCodeTrakcare:string) {

@@ -88,7 +88,6 @@ export class CheckClaimStatusService {
     // const xDummyDataRespone1 =new DummyDataRespone1();
     // const responsefromAIA  =xDummyDataRespone1.res
       const responeInputcode =responsefromAIA.Result.Code
-      //console.log(responsefromAIA.Data.AttachDocList.Base64Data)
       if (responeInputcode !=='S'){
         this.addFormatHTTPStatus(newHttpMessageDto,400,responsefromAIA.Result.MessageTh,responsefromAIA.Result.MessageTh)
       }else{
@@ -175,7 +174,6 @@ const transactionclaimexistingRecord = await prismaProgest.transactionclaim.find
    
   },
 });
-
 if (transactionclaimexistingRecord) {
   const updateclaimcode =claimcode
   const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus

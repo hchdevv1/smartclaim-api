@@ -93,7 +93,7 @@ export class IpdDischargeController {
   }
     @Post('/ReviewIPDDischarge')
     async ReviewIPDDischarge(@Body() queryIpdDischargeDto:QueryIpdDischargeDto){
-          const result = this.ipdDischargeService.ReviewIPDDischarge(queryIpdDischargeDto);
+          const result = 'this.ipdDischargeService.ReviewIPDDischarge(queryIpdDischargeDto);'
           return result
     }
 }
