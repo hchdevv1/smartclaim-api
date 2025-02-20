@@ -2,7 +2,7 @@ import { Controller ,Get ,Param ,Post ,Body} from '@nestjs/common';
 import { PreauthSubmissionService } from './preauth-submission.service';
 import { QueryDiagnosisDto} from './dto/query-diagnoisis-preauth-submission.dto';
 import { QueryPreAuthNoteDto } from './dto/query-preauthnote-preauth-submission.dto';
-import { QueryPreBillingDto } from './dto/query-prebilling-preauth-submission.dto';
+import { QueryPreBillingDto ,DeletePreBillingDto} from './dto/query-prebilling-preauth-submission.dto';
 import { QuerySubmitPreAuthDto} from './dto/query-submit-preauth-submission.dto';
 import { QueryAccidentDto } from './dto/query-accident-preauth-submission.dto';
 import { QueryProcedureDto } from './dto/query-procedure-preauth-submission.dto';
@@ -52,7 +52,7 @@ export class PreauthSubmissionController {
   }
   @Post('/getPreBilling')
   async getPreBilling(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
-        const result = this.preauthSubmissionService.getPreBilling(queryPreauthSubmissionDto);
+        const result =this.preauthSubmissionService.getPreBilling(queryPreauthSubmissionDto);
         return result
   }
   
@@ -64,6 +64,22 @@ export class PreauthSubmissionController {
   @Post('/previewPreBilling')
   async previewPreBilling(@Body() QueryPreBillingDto:QueryPreBillingDto){
         const result = this.preauthSubmissionService.previewPreBilling(QueryPreBillingDto);
+        return result
+  }
+  @Post('/InsertPreBilling')
+  async InsertPreBilling(@Body() queryPreBillingDto:QueryPreBillingDto){
+        const result = this.preauthSubmissionService.InsertPreBilling(queryPreBillingDto);
+        return result
+  }
+  
+  @Post('/deletePreBillingById')
+  async deletePreBillingById(@Body() deletePreBillingDto:DeletePreBillingDto){
+        const result = this.preauthSubmissionService.deletePreBillingById(deletePreBillingDto);
+        return result
+  }
+  @Post('/deletePreBillingByRefId')
+  async deletePreBillingByRefId(@Body() deletePreBillingDto:DeletePreBillingDto){
+        const result = this.preauthSubmissionService.deletePreBillingByRefId(deletePreBillingDto);
         return result
   }
   //#endregion

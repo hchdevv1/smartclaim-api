@@ -13,7 +13,7 @@ import { CheckEligibleService} from '../../aia/check-eligible/check-eligible.ser
 
 import { QueryDiagnosisDto ,ResultSubmitDiagnosisDto} from './dto/query-diagnoisis-preauth-submission.dto';
 import { QueryPreAuthNoteDto ,ResultSubmitPreAuthNoteDto} from './dto/query-preauthnote-preauth-submission.dto';
-import { QueryPreBillingDto ,ResultSubmitPreBillingDto} from './dto/query-prebilling-preauth-submission.dto';
+import { QueryPreBillingDto ,ResultSubmitPreBillingDto ,DeletePreBillingDto} from './dto/query-prebilling-preauth-submission.dto';
 import { QuerySubmitPreAuthDto} from './dto/query-submit-preauth-submission.dto';
 import { QueryPreauthSubmissionDto } from './dto/query-preauth-submission.dto';
 import { QueryClaimFormListInfo , ResultClaimFormListDto} from './dto/result-listclaim-preauth-submission.dto';
@@ -446,23 +446,25 @@ export class PreauthSubmissionService {
     }
     const getvisitformDatabase = await this.utilsService.getPrevisitformDatabase(newQueryVisitDatabaseBodyDto)
     if (getvisitformDatabase?.Result?.VisitInfo?.VisitDateTime?.length >0){ 
-
+      if (getvisitformDatabase.Result.VisitInfo.ChiefComplaint){
+        getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200)
+      }
       const newResultReviewVisitInfoDto : ResultReviewPreVisitInfoDto= {
         AdditionalNote: getvisitformDatabase.Result.VisitInfo.AdditionalNote||'',
         AlcoholRelated: getvisitformDatabase.Result.VisitInfo.AlcoholRelated||false,
-        ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200)||'',
+        ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint? getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200):'',
         ComaScore: getvisitformDatabase.Result.VisitInfo.ComaScore||'',
-        DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200)||'',
+        DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText? getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200):'',
         ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
         Height: getvisitformDatabase.Result.VisitInfo.Height||'',
-        PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000)||'',
-        PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,500)||'',
+        PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam? getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000):'',
+        PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment? getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,500):'',
         Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
-        PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500)||'',
+        PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness? getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500):'',
         PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
-        PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail.slice(0,20)||'',
+        PreviousTreatmentDetail:getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail? getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail.slice(0,20):'',
         PrivateCase: getvisitformDatabase.Result.VisitInfo.PrivateCase||false,
-        ProcedureFreeText: getvisitformDatabase.Result.VisitInfo.ProcedureFreeText.slice(0,500),
+        ProcedureFreeText:getvisitformDatabase.Result.VisitInfo.ProcedureFreeText? getvisitformDatabase.Result.VisitInfo.ProcedureFreeText.slice(0,500):'',
         SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
         UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
         VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
@@ -533,23 +535,23 @@ export class PreauthSubmissionService {
             AdditionalNote: TrakcarepatientInfo.VisitInfo.AdditionalNote || '',
             AdmitDateTime: TrakcarepatientInfo.VisitInfo.AdmitDateTime || '',
             AlcoholRelated: TrakcarepatientInfo.VisitInfo.AlcoholRelated || false,
-            ChiefComplaint: TrakcarepatientInfo.VisitInfo.ChiefComplaint.slice(0,200) || '',
+            ChiefComplaint: TrakcarepatientInfo.VisitInfo.ChiefComplaint? TrakcarepatientInfo.VisitInfo.ChiefComplaint.slice(0,200): '',
             ComaScore: TrakcarepatientInfo.VisitInfo.ComaScore || '',
-            DxFreeText: TrakcarepatientInfo.VisitInfo.DxFreeText.slice(0,200) || '',
+            DxFreeText: TrakcarepatientInfo.VisitInfo.DxFreeText? TrakcarepatientInfo.VisitInfo.DxFreeText.slice(0,200) : '',
             ExpectedDayOfRecovery: TrakcarepatientInfo.VisitInfo.ExpectedDayOfRecovery || '',
             ExpectedLos: TrakcarepatientInfo.VisitInfo.ExpectedLos || '',
             Height: TrakcarepatientInfo.VisitInfo.Height || '',
             IndicationForAdmission: TrakcarepatientInfo.VisitInfo.IndicationForAdmission || '',
-            PhysicalExam: TrakcarepatientInfo.VisitInfo.PhysicalExam.slice(0,1000) || '',
-            PlanOfTreatment: TrakcarepatientInfo.VisitInfo.PlanOfTreatment.slice(0,500) || '',
+            PhysicalExam: TrakcarepatientInfo.VisitInfo.PhysicalExam? TrakcarepatientInfo.VisitInfo.PhysicalExam.slice(0,1000):'',
+            PlanOfTreatment: TrakcarepatientInfo.VisitInfo.PlanOfTreatment ? TrakcarepatientInfo.VisitInfo.PlanOfTreatment.slice(0,500) : '',
             PreauthReferClaimNo: TrakcarepatientInfo.VisitInfo.PreauthReferClaimNo || '',
             PreauthOcc: TrakcarepatientInfo.VisitInfo.PreauthOcc || '',
             Pregnant: TrakcarepatientInfo.VisitInfo.Pregnant || false,
-            PresentIllness: TrakcarepatientInfo.VisitInfo.PresentIllness.slice(0,500) || '',
+            PresentIllness: TrakcarepatientInfo.VisitInfo.PresentIllness? TrakcarepatientInfo.VisitInfo.PresentIllness.slice(0,500) : '',
             PreviousTreatmentDate: TrakcarepatientInfo.VisitInfo.PreviousTreatmentDate || '',
-            PreviousTreatmentDetail: TrakcarepatientInfo.VisitInfo.PreviousTreatmentDetail.slice(0,20) || '',
+            PreviousTreatmentDetail: TrakcarepatientInfo.VisitInfo.PreviousTreatmentDetail ? TrakcarepatientInfo.VisitInfo.PreviousTreatmentDetail.slice(0,20) : '',
             PrivateCase: TrakcarepatientInfo.VisitInfo.PrivateCase || false,
-            ProcedureFreeText: TrakcarepatientInfo.VisitInfo.ProcedureFreeText.slice(0,500) || '',
+            ProcedureFreeText: TrakcarepatientInfo.VisitInfo.ProcedureFreeText ? TrakcarepatientInfo.VisitInfo.ProcedureFreeText.slice(0,500) : '',
             SignSymptomsDate: TrakcarepatientInfo.VisitInfo.SignSymptomsDate || '',
             UnderlyingCondition: TrakcarepatientInfo.VisitInfo.UnderlyingCondition || '',
             VisitDate: TrakcarepatientInfo.VisitInfo.VisitDate || '',
@@ -1745,11 +1747,267 @@ return newResultPreAuthBillingDto
       }
     }
   }
+  async InsertPreBilling(queryPreBillingDto:QueryPreBillingDto){
+    //let ResponeTrakcareHTTPStatus;
+    try{
+      const xRefId =queryPreBillingDto.PatientInfo.RefId;
+      const xTransactionNo =queryPreBillingDto.PatientInfo.TransactionNo;
+      const xInsurerCode =queryPreBillingDto.PatientInfo.InsurerCode;
+      const xHN =queryPreBillingDto.PatientInfo.HN;
+      const xVN =queryPreBillingDto.PatientInfo.VN;
+  let PreBillingList;
+  
+      
+      if (Array.isArray(queryPreBillingDto.PatientInfo.PreBillingInfo)) {
+        PreBillingList = queryPreBillingDto.PatientInfo.PreBillingInfo.map((prebilling) => ({
+          LocalBillingCode: prebilling.LocalBillingCode || '',
+          LocalBillingName: prebilling.LocalBillingName || '',
+          SimbBillingCode: prebilling.SimbBillingCode || '',
+          PayorBillingCode: prebilling.PayorBillingCode || '',
+          BillingInitial: prebilling.BillingInitial || '',
+          BillingDiscount: prebilling.BillingDiscount || '',
+          BillingNetAmount: prebilling.BillingNetAmount || '',
+          TotalBillAmount:prebilling.TotalBillAmount||'',
+          }));
+        //   const existingPrebilling = await prismaProgest.prebillingtransactions.findMany({
+        //     where: {
+        //         refid: xRefId,
+        //         transactionno: xTransactionNo
+        //     }
+        // });
+      //   if (existingPrebilling.length > 0) {
+      //     await Promise.all(
+      //       existingPrebilling.map(async (prebilling) => {
+      //             return await prismaProgest.prebillingtransactions.delete({
+      //                 where: {
+      //                     id: prebilling.id // ใช้ id ในการลบ
+      //                 }
+      //             });
+      //         })
+      //     );
+      // }
+  
+          await Promise.all(
+            PreBillingList.map(async (prebilling) => {
+                return await prismaProgest.prebillingtransactions.create({
+                    data: {
+                        insurerid: xInsurerCode,
+                        refid: xRefId,
+                        transactionno: xTransactionNo,
+                        hn: xHN,
+                        vn: xVN,
+                        localbillingcode: prebilling.LocalBillingCode,
+                        localbillingname: prebilling.LocalBillingName,
+                        simbbillingcode: prebilling.SimbBillingCode,
+                        payorbillingcode: prebilling.PayorBillingCode,
+                        billingdiscount: prebilling.BillingDiscount,
+                        billinginitial: prebilling.BillingInitial,
+                        billingnetamount: prebilling.BillingInitial,
+                        totalbillamount:prebilling.TotalBillAmount
+                      
+                    }
+                });
+            })
+        );
+  
+      } else {
+        PreBillingList = [];
+      }
+     // console.log(xHaveProcedure)
+      
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+  
+
+      
+      let newResultSubmitPreBillingDto= new ResultSubmitPreBillingDto();
+      newResultSubmitPreBillingDto={
+              HTTPStatus:newHttpMessageDto,
+              Result:PreBillingList
+        }
+  
+      return newResultSubmitPreBillingDto
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+         
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+  }
+  async deletePreBillingByRefId(deletePreBillingDto:DeletePreBillingDto){
+    //let ResponeTrakcareHTTPStatus;
+    try{
+      const xRefId =deletePreBillingDto.PatientInfo.RefId;
+      const xTransactionNo =deletePreBillingDto.PatientInfo.TransactionNo;
+      let PreBillingList;
+      const existingPrebilling = await prismaProgest.prebillingtransactions.findMany({
+            where: {
+                refid: xRefId,
+                transactionno: xTransactionNo
+            }
+        });
+        if (existingPrebilling.length > 0) {
+          await Promise.all(
+            existingPrebilling.map(async (prebilling) => {
+                  return await prismaProgest.prebillingtransactions.delete({
+                      where: {
+                          id: prebilling.id // ใช้ id ในการลบ
+                      }
+                  });
+              })
+          );
+      
+  
+          PreBillingList = [];
+  
+      } else {
+        PreBillingList = [];
+      }
+     // console.log(xHaveProcedure)
+      
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'delete sucess','')
+  
+
+      
+      let newResultSubmitPreBillingDto= new ResultSubmitPreBillingDto();
+      newResultSubmitPreBillingDto={
+              HTTPStatus:newHttpMessageDto,
+              Result:PreBillingList
+        }
+  
+      return newResultSubmitPreBillingDto
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+         
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+  }
   async previewPreBilling(queryPreBillingDto:QueryPreBillingDto){
     try{
       const xRefId =queryPreBillingDto.PatientInfo.RefId;
       const xTransactionNo =queryPreBillingDto.PatientInfo.TransactionNo;
-     
   const xTotalBillAmount='';
   let PreBillingList :any;  
           const existingPrebilling = await prismaProgest.prebillingtransactions.findMany({
@@ -1757,11 +2015,14 @@ return newResultPreAuthBillingDto
                 refid: xRefId,
                 transactionno: xTransactionNo
             }
-        });       
+        });     
+        console.log(existingPrebilling)
+  
         if ((existingPrebilling )||(existingPrebilling.length >0)) {
           PreBillingList =await Promise.all(  existingPrebilling.map(async (item) => {
       
             return {
+              BillingID:item.id,
               LocalBillingCode: item.localbillingcode,
               LocalBillingName: item.localbillingname,
               SimbBillingCode: item.simbbillingcode,
@@ -1776,7 +2037,7 @@ return newResultPreAuthBillingDto
         
         }else{
           PreBillingList = [{
-  
+            BillingID:'',
             LocalBillingCode: '',
             LocalBillingName: '',
             SimbBillingCode: '',
@@ -1871,6 +2132,135 @@ return newResultPreAuthBillingDto
     }
   }
     }
+ async deletePreBillingById(deletePreBillingDto:DeletePreBillingDto){
+      try{
+        const xRefId =deletePreBillingDto.PatientInfo.RefId;
+        const xTransactionNo =deletePreBillingDto.PatientInfo.TransactionNo;
+        const xBillingID =Number(deletePreBillingDto.PatientInfo.BillingID);
+    const xTotalBillAmount='';
+    let PreBillingList :any;  
+            const existingPrebilling = await prismaProgest.prebillingtransactions.findFirst({
+              where: {
+                  refid: xRefId,
+                  transactionno: xTransactionNo,
+                  id:xBillingID
+              }
+          });     
+
+          if (existingPrebilling ) {
+            PreBillingList =[{
+                BillingID:existingPrebilling.id,
+                LocalBillingCode: existingPrebilling.localbillingcode,
+                LocalBillingName: existingPrebilling.localbillingname,
+                SimbBillingCode: existingPrebilling.simbbillingcode,
+                PayorBillingCode: existingPrebilling.payorbillingcode,
+                BillingInitial: existingPrebilling.billinginitial,
+                BillingDiscount: existingPrebilling.billingdiscount,
+                BillingNetAmount: existingPrebilling.billingnetamount,
+
+              }];
+
+            
+       await await prismaProgest.prebillingtransactions.delete({  where: {  id:xBillingID,   }, });
+          
+          }else{
+
+            PreBillingList = [{
+              BillingID:'',
+              LocalBillingCode: '',
+              LocalBillingName: '',
+              SimbBillingCode: '',
+              PayorBillingCode: '',
+              BillingInitial: '',
+              BillingDiscount: '',
+              BillingNetAmount: '',
+             
+            }];
+            
+          }
+        
+       const xResultInfo ={
+            TotalBillAmount:xTotalBillAmount,
+            BillingInfo: PreBillingList,
+            InvoiceNumber:''
+           }       
+        this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    
+        let newResultSubmitPreBillingDto= new ResultSubmitPreBillingDto();
+        newResultSubmitPreBillingDto={
+                HTTPStatus:newHttpMessageDto,
+                Result:xResultInfo
+          }
+    
+        return newResultSubmitPreBillingDto
+      
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+      }
 //#endregion "Billing"
 
   async getPreAuthNote(querySubmitPreAuthDto:QuerySubmitPreAuthDto){

@@ -89,3 +89,34 @@ class ResultInfo{
 
 
 }
+export class DeletePreBillingDto {
+  PatientInfo?: DeletePatientBillingBodyDto
+}
+class DeletePatientBillingBodyDto {
+    
+  @IsInt()
+  @IsOptional()
+  InsurerCode:number
+
+  @IsString()
+  @IsOptional()
+  RefId?: string;
+
+  @IsString()
+  @IsOptional()
+  TransactionNo?: string;
+
+  @IsString()
+  @IsOptional()
+  HN?: string;
+
+  @IsString()
+  @IsOptional()
+  VN?: string;
+
+ 
+  @IsString()
+  @IsOptional()
+  BillingID?: string;
+
+}

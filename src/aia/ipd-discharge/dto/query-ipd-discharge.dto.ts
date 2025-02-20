@@ -72,4 +72,14 @@ class SearchPatientBodyDto{
 
        @IsBoolean()
         IsIPDDischarge?: boolean;
+
+        @IsBoolean()
+        @IsOptional()
+
+        HaveAccidentCauseOfInjuryDetail?: boolean;
+        @IsBoolean()
+        @IsOptional()
+
+        HaveAccidentInjuryDetail?: boolean;
+       
   }
