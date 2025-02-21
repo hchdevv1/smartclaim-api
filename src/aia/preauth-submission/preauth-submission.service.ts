@@ -43,6 +43,8 @@ import { ResultPreAuthProcedurDto ,QueryProcedure} from './dto/result-procedure-
 import { ResultPreAuthAccidentDto } from './dto/result-accident-preauth-submission.dto';
 import { ResultPreAuthBillingDto ,QueryBilling} from './dto/result-billing-preauth-submission.dto';
 import { ResultCheckeligiblePreAdmissionDto ,CoverageList ,MessageList ,PolicyInfoList ,InsuranceEligibleData ,InsuranceCustomerDetail} from './dto/result-check-eligible-preadmission.dto';
+import { ResultlistICDDxInfoDto} from './dto/result-ICDDx.dto';
+import { ResultlistICD9InfoDto } from './dto/result-ICD9.dto';
 const httpStatusMessageService = new HttpStatusMessageService();
 const newHttpMessageDto =new HttpMessageDto();
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -5098,7 +5100,215 @@ return newResultSubmitIpdDischargeDto
      }
    }
 
+   async getICDDx(xICDDxCode: string ){
+    let arrayICDDxInfo;
+    const newHttpMessageDto =new HttpMessageDto();
+     try{
+       
+      const TrakcareICDDxInfo = await this.trakcareService.getICDDx(xICDDxCode)
+  //console.log(TrakcarepatientInfo)
+      if (TrakcareICDDxInfo.ICDDxInfo){
+        arrayICDDxInfo = {
+     
+          ICDDxInfo: TrakcareICDDxInfo.ICDDxInfo.map((item) => ({
+          ICDDxId: item.ICDDxId,
+          ICDDxCode: item.ICDDxCode,
+          ICDDx: item.ICDDx,
+      
+    }))
+       }
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+ 
+      }else{
+        arrayICDDxInfo = [{
+ 
+          ICDDxId: '',
+          ICDDxCode: '',
+          ICDDx: '',
+         }];
+         this.addFormatHTTPStatus(newHttpMessageDto,400,'','')
+      }
+  
+ 
+ 
+   let newResultlistBillingCheckBalanceDto= new ResultlistICDDxInfoDto();
+   newResultlistBillingCheckBalanceDto={
+     HTTPStatus:newHttpMessageDto,
+     Result:  arrayICDDxInfo
+   }
+   
+   return newResultlistBillingCheckBalanceDto
+     }catch(error)
+     {
+       if (error instanceof Prisma.PrismaClientInitializationError) {
+         throw new HttpException(
+          { 
+           HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+             error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+           },
+           },HttpStatus.INTERNAL_SERVER_ERROR );
+       }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+           throw new HttpException(
+             {  
+               HTTPStatus: {
+                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                 message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                 error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              },
+             },HttpStatus.INTERNAL_SERVER_ERROR ); 
+       }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+         if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+             message: 'Cannot connect to the database server. Please ensure it is running.',
+             error: 'Cannot connect to the database server. Please ensure it is running.',
+           },
+           }, HttpStatus.SERVICE_UNAVAILABLE);
+         }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'Invalid data format or conversion error.',
+             error: 'Invalid data format or conversion error.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.FORBIDDEN,
+             message: 'You do not have permission to perform this action.',
+             error: 'You do not have permission to perform this action.',
+           },
+           }, HttpStatus.FORBIDDEN);
+         }else if (error.message.includes('Unable to fit integer value')) {
+           // Handle integer overflow or similar errors
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'The integer value is too large for the database field.',
+             error: 'The integer value is too large for the database field.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }
+         else{
+           throw new HttpException({  
+             HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'An unexpected error occurred.',
+                error: 'An unexpected error occurred.',
+               },
+             },HttpStatus.INTERNAL_SERVER_ERROR,);
+         }
+       }
+     }
+   }
+   async getICD9(xICD9Code: string ){
+    let arrayICD9Info;
+    const newHttpMessageDto =new HttpMessageDto();
+     try{
+       
+      const TrakcareICD9Info = await this.trakcareService.getICD9(xICD9Code)
+      if (TrakcareICD9Info.ObjICD9Info){
+        arrayICD9Info = {
+     
+          ICD9Info: TrakcareICD9Info.ObjICD9Info.map((item) => ({
+            ICD9Id: item.ICD9Id,
+            ICD9Code: item.ICD9Code,
+            ICD9Desc: item.ICD9Desc,
+      
+    }))
+       }
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+ 
+      }else{
+        arrayICD9Info = [{
+          ICD9Id: '',
+          ICD9Code: '',
+          ICD9Desc: '',
+         }];
+         this.addFormatHTTPStatus(newHttpMessageDto,400,'','')
+      }
 
+ 
+ 
+   let newResultlistBillingCheckBalanceDto= new ResultlistICD9InfoDto();
+   newResultlistBillingCheckBalanceDto={
+     HTTPStatus:newHttpMessageDto,
+     Result:  arrayICD9Info
+   }
+   
+   return newResultlistBillingCheckBalanceDto
+     }catch(error)
+     {
+       if (error instanceof Prisma.PrismaClientInitializationError) {
+         throw new HttpException(
+          { 
+           HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+             error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+           },
+           },HttpStatus.INTERNAL_SERVER_ERROR );
+       }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+           throw new HttpException(
+             {  
+               HTTPStatus: {
+                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                 message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                 error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              },
+             },HttpStatus.INTERNAL_SERVER_ERROR ); 
+       }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+         if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+             message: 'Cannot connect to the database server. Please ensure it is running.',
+             error: 'Cannot connect to the database server. Please ensure it is running.',
+           },
+           }, HttpStatus.SERVICE_UNAVAILABLE);
+         }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'Invalid data format or conversion error.',
+             error: 'Invalid data format or conversion error.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.FORBIDDEN,
+             message: 'You do not have permission to perform this action.',
+             error: 'You do not have permission to perform this action.',
+           },
+           }, HttpStatus.FORBIDDEN);
+         }else if (error.message.includes('Unable to fit integer value')) {
+           // Handle integer overflow or similar errors
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'The integer value is too large for the database field.',
+             error: 'The integer value is too large for the database field.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }
+         else{
+           throw new HttpException({  
+             HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'An unexpected error occurred.',
+                error: 'An unexpected error occurred.',
+               },
+             },HttpStatus.INTERNAL_SERVER_ERROR,);
+         }
+       }
+     }
+   }
+   
 /// Utils ///
 async convertDxTypeCode(inputInsurerCode:string,inputdxTypeCodeTrakcare:string) {
   const convertDxtypename = await this.utilsService.getDiagnosisTypeMapping(inputInsurerCode,inputdxTypeCodeTrakcare);

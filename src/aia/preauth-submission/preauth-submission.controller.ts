@@ -150,7 +150,14 @@ async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthD
 
 //#region  Feed data And Submit to AIA
 
-
+@Get('/getICDDx/:xICDDxCode')
+getICDDx(@Param('xICDDxCode') xICDDxCode: string ) {
+    return  this.preauthSubmissionService.getICDDx(xICDDxCode);
+  }
+  @Get('/getICD9/:xICD9Code')
+getICD9(@Param('xICD9Code') xICD9Code: string ) {
+    return  this.preauthSubmissionService.getICD9(xICD9Code);
+  }
 
 //#endregion
 

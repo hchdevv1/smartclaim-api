@@ -119,6 +119,14 @@ getIPDInvestigation(@Param('xVN') xVN: string) {
 getIPDBilling(@Param('xVN') xVN: string) {
  return this.trakcareService.getIPDBilling(xVN);
 }
+@Get('/getICDDx/:xICDDxCode')
+getICDDx(@Param('xICDDxCode') xICDDxCode: string) {
+ return this.trakcareService.getICDDx(xICDDxCode);
+}
+@Get('/getICD9/:xICD9Code')
+getICD9(@Param('xICD9Code') xICD9Code: string) {
+ return this.trakcareService.getICD9(xICD9Code);
+}
 // @Get('/getPreAuthBilling/:xVN')
 // getPreAuthBilling(@Param('xVN') xVN: string) {
 //  return this.trakcareService.getPreAuthBilling(xVN);

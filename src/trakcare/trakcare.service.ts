@@ -660,6 +660,48 @@ async getPreAuthBilling( xVN: string ) {
     }
  return PatientInfo
 }
+async getICDDx( xICDDxCode: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getICDDx/${xICDDxCode}}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
+async getICD9( xICD9Code: string ) {
+  let response:any ;
+  let PatientInfo ;
+  try{
+     response = await firstValueFrom(
+      this.httpService.get(`${TRAKCARE_APIURL}/getICD9/${xICD9Code}}`)
+    );
+    PatientInfo = response.data
+  } catch(error)
+    {
+        if (error instanceof HttpException) {
+          throw error;
+       }  throw new HttpException(
+         {  statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessageTrakcare(HttpStatus.INTERNAL_SERVER_ERROR)
+         },HttpStatus.INTERNAL_SERVER_ERROR );
+        
+    }
+ return PatientInfo
+}
+
+
 cleanSpecialCharacters(text: string): string {
   return text
     .replace(/\r\n/g, ' ')        // ลบ \r\n แทนที่ด้วยช่องว่าง
