@@ -432,6 +432,20 @@ export class AccidentDatabaseResultInfo {
 }
 
 
+export class QueryConcurNote{
+
+
+  @IsString()
+  @IsOptional()
+  ConcurrentDatetime?: string;
+
+  @IsString()
+  @IsOptional()
+  ConcurrentDetail?: string;
+
+
+
+}
   ////
 export class ResultReviewDataJsonDto {
     @IsObject()
@@ -480,6 +494,10 @@ export class ResultReviewDataJsonDto {
     @IsString()
     @IsOptional()
     InvoiceNumber?: string;
+
+    @IsArray()
+    @IsOptional()
+    Note?: QueryConcurNote[];
 }
 
 ////////////////////////////

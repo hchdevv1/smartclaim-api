@@ -91,18 +91,15 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
   ChiefComplaintTemp = ChiefComplaintTempIsDischarge
   PlanOfTreatmenTemp = PlanOfTreatmenTempIsDischarge
 }else{
-  console.log('BBB')
 
   getvisitformDatabase = await this.utilsService.getvisitIPDformDatabase(newQueryVisitDatabaseBodyDto)
-  DxFreeTextTemp= getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200)
-  PhysicalExamTemp=getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000)
-  PresentIllnessTemp = getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500)
-  ChiefComplaintTemp = getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200)
-  PlanOfTreatmenTemp = getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,200)
+  DxFreeTextTemp= getvisitformDatabase.Result.VisitInfo.DxFreeText? getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200):''
+  PhysicalExamTemp=getvisitformDatabase.Result.VisitInfo.PhysicalExam? getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000):''
+  PresentIllnessTemp = getvisitformDatabase.Result.VisitInfo.PresentIllness? getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500):''
+  ChiefComplaintTemp = getvisitformDatabase.Result.VisitInfo.ChiefComplaint? getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200):''
+  PlanOfTreatmenTemp = getvisitformDatabase.Result.VisitInfo.PlanOfTreatment? getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,200):''
 }
-console.log(getvisitformDatabase)
-console.log('------')
-//console.log(getvisitformDatabase)
+
     if (getvisitformDatabase?.Result?.VisitInfo?.VisitDateTime?.length >0){ 
 
       const newResultReviewVisitInfoDto : ResultIPDVisitInfoDto= {
@@ -114,7 +111,7 @@ console.log('------')
         DxFreeText:DxFreeTextTemp||'', // getvisitformDatabase.Result.VisitInfo.DxFreeText||'',
         ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
         Height: getvisitformDatabase.Result.VisitInfo.Height||'',
-        PhysicalExam: PhysicalExamTemp||'', //getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
+        PhysicalExam: PhysicalExamTemp? PhysicalExamTemp.slice(0,1000):'', //getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
         PlanOfTreatment: PlanOfTreatmenTemp ||'',//getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
         Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
         PresentIllness: PresentIllnessTemp||'', // getvisitformDatabase.Result.VisitInfo.PresentIllness||'',
@@ -231,7 +228,6 @@ console.log('------')
             Result:xResultInfo
       }
   console.log('newResultIpdDischargeVisitDto')
-  console.log(newResultIpdDischargeVisitDto)
 
   return newResultIpdDischargeVisitDto
   }catch(error)
@@ -2228,20 +2224,20 @@ if (existingVisitRecord){
     AdditionalNote: getvisitformDatabase.Result.VisitInfo.AdditionalNote||'',
     AlcoholRelated: getvisitformDatabase.Result.VisitInfo.AlcoholRelated||false,
     An:  await this.utilsService.EncryptAESECB( getvisitformDatabase.Result.VisitInfo.VN,AIA_APISecretkey) ,
-    ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint||'',
+    ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint ? getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200):'',
     ComaScore: getvisitformDatabase.Result.VisitInfo.ComaScore||'',
     DscDateTime:getvisitformDatabase.Result.VisitInfo.DscDateTime,
-    DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText||'',
+    DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText? getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200):'',
     ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
     ExpectedLos:null,
     Height: getvisitformDatabase.Result.VisitInfo.Height||'',
     IndicationForAdmission:getvisitformDatabase.Result.VisitInfo.IndicationForAdmission,
-    PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
-    PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
+    PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam? getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000):'',
+    PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment? getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,500):'',
     Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
-    PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness||'',
+    PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness?getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500):'',
     PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
-    PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail||'',
+    PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail?  getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail.slice(0,20):'',
     PreauthReferClaimNo:getvisitformDatabase.Result.VisitInfo.PreauthReferClaimNo,
     PreauthReferOcc: getvisitformDatabase.Result.VisitInfo.PreauthReferOcc,
     PrivateCase: getvisitformDatabase.Result.VisitInfo.PrivateCase||false,
@@ -2265,15 +2261,15 @@ if (existingVisitRecord){
     AdditionalNote: getIPDDischargeVisit.VisitInfo.AdditionalNote,
     AlcoholRelated: getIPDDischargeVisit.VisitInfo.AlcoholRelated,
     An:  await this.utilsService.EncryptAESECB( getIPDDischargeVisit.VisitInfo.vn,AIA_APISecretkey) ,
-    ChiefComplaint: getIPDDischargeVisit.VisitInfo.ChiefComplaint,
+    ChiefComplaint: getIPDDischargeVisit.VisitInfo.ChiefComplaint? getIPDDischargeVisit.VisitInfo.ChiefComplaint.slice(0,200):'',
     ComaScore: getIPDDischargeVisit.VisitInfo.ComaScore,
     DscDateTime: getIPDDischargeVisit.VisitInfo.DscDateTime,
-    DxFreeText: getIPDDischargeVisit.VisitInfo.DxFreeText,
+    DxFreeText: getIPDDischargeVisit.VisitInfo.DxFreeText?getIPDDischargeVisit.VisitInfo.DxFreeText.slice(0.200):'',
     ExpectedDayOfRecovery: '',
     ExpectedLos:null,
     Height: '',
     IndicationForAdmission:RequesetBody.xIndicationForAdmission,
-    PhysicalExam: '',
+    PhysicalExam: getIPDDischargeVisit.VisitInfo.PhysicalExam,
     PlanOfTreatment: '',
     Pregnant: getIPDDischargeVisit.VisitInfo.Pregnant,
     PresentIllness: '',
@@ -3025,11 +3021,7 @@ try{
   xTransactionNo: queryIpdDischargeDto.PatientInfo.TransactionNo,
   xHN :queryIpdDischargeDto.PatientInfo.HN ,
   xInsurerCode: queryIpdDischargeDto.PatientInfo.InsurerCode, 
-  xVN: queryIpdDischargeDto.PatientInfo.VN ,
-  xHaveProcedure: queryIpdDischargeDto.PatientInfo.VN ,
-  xHaveAccidentCauseOfInjuryDetail: queryIpdDischargeDto.PatientInfo.HaveAccidentCauseOfInjuryDetail ,
-  xHaveAccidentInjuryDetail: queryIpdDischargeDto.PatientInfo.HaveAccidentInjuryDetail ,
-
+  xVN: queryIpdDischargeDto.PatientInfo.VN 
  }
 //#region  review patient
  const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
@@ -3217,10 +3209,10 @@ if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
 //#endregion
 //#region  review Investigation
 let newResultReviewInvestigationInfoDto: ResultReviewInvestigationInfoDto[] = [];
-const getOPDDischargeInvestigation = await this.trakcareService.getOPDDischargeInvestigation(RequesetBody.xVN); 
-  if (getOPDDischargeInvestigation && getOPDDischargeInvestigation.InvestigationInfo && getOPDDischargeInvestigation.InvestigationInfo.length > 0) {
+const getIPDInvestigation = await this.trakcareService.getIPDInvestigation(RequesetBody.xVN); 
+  if (getIPDInvestigation && getIPDInvestigation.InvestigationInfo && getIPDInvestigation.InvestigationInfo.length > 0) {
     newResultReviewInvestigationInfoDto= await Promise.all(
-      getOPDDischargeInvestigation.InvestigationInfo.map(async (item) => {
+      getIPDInvestigation.InvestigationInfo.map(async (item) => {
       return {
         InvestigationCode: item.InvestigationCode,
         InvestigationGroup: item.InvestigationGroup,
@@ -3341,21 +3333,71 @@ const getOPDDischargeBilling = await this.trakcareService.getOPDDischargeBilling
   newTotalBillAmount=0
 }
 //#endregion
+//#region  review Note
+
+const whereConditions = {
+    
+  ...(RequesetBody.xVN? { vn: { equals: RequesetBody.xVN } } : {}),
+  ...(RequesetBody.xRefId? { refid: { equals: RequesetBody.xRefId  } } : {}),
+  ...(RequesetBody.xTransactionNo ? { transactionno: { equals: RequesetBody.xTransactionNo  } } : {}),
+
+};
+const existingConcurrentNoteRecord = await prismaProgest.concurrentnotetransactions.findFirst({
+  where: whereConditions
+});
+let newQueryConcurNote: QueryConcurNote[] = [];
+
+if (existingConcurrentNoteRecord){
+
+const newQueryConcurrentNoteDatabaseBodyDto ={
+  RefId:queryIpdDischargeDto.PatientInfo.RefId,
+  TransactionNo: queryIpdDischargeDto.PatientInfo.TransactionNo,
+  InsurerCode:queryIpdDischargeDto.PatientInfo.InsurerCode,
+  HN:queryIpdDischargeDto.PatientInfo.HN,
+  VN:queryIpdDischargeDto.PatientInfo.VN
+}
+ const getConcurNoteformDatabase = await this.utilsService.getConcurNoteformDatabase(newQueryConcurrentNoteDatabaseBodyDto)
+
+ if (getConcurNoteformDatabase && getConcurNoteformDatabase.Result.ConcurNoteList && getConcurNoteformDatabase.Result.ConcurNoteList.length > 0) {
+  newQueryConcurNote= await Promise.all(
+    getConcurNoteformDatabase.Result.ConcurNoteList.map(async (item) => {
+     return {
+      ConcurrentDatetime: item.ConcurrentDatetime,
+      ConcurrentDetail: item.ConcurrentDetail,
+       
+     };
+   })
+ );
+} else {
+newQueryConcurNote = [{
+  ConcurrentDatetime: '',
+  ConcurrentDetail: '',
+ }];
+}
+}else{
+newQueryConcurNote = [{
+  ConcurrentDatetime: '',
+  ConcurrentDetail: '',
+}];
+}
+
+//#endregion
 
 let newResultReviewDataJsonDto =new ResultReviewDataJsonDto();
 newResultReviewDataJsonDto ={
-  Patient :newResultReviewPatientInfoDto,
-   Visit: newResultReviewVisitInfoDto,  // --->>>>> Here
+   Patient :newResultReviewPatientInfoDto,
+   Visit: newResultReviewVisitInfoDto, 
    VitalSign :newResultReviewVitalSignInfoDto,
-  Diagnosis :newResultReviewDiagnosisInfoDto,
-  AccidentDetail:accidentDetailInfo,  // --->>>>> Here
-   Procedure :newResultProcedureDatabaseInfoDto,  // --->>>>> Here  done
+   Diagnosis :newResultReviewDiagnosisInfoDto,
+   AccidentDetail:accidentDetailInfo,  
+   Procedure :newResultProcedureDatabaseInfoDto, 
    Investigation :newResultReviewInvestigationInfoDto,
-  OrderItem :newResultReviewOrderItemInfoDto,
-  Doctor : newResultReviewDoctorInfoDto,
-  Billing :newResultReviewBillingInfoDto,
+   OrderItem :newResultReviewOrderItemInfoDto,
+   Doctor : newResultReviewDoctorInfoDto,
+   Billing :newResultReviewBillingInfoDto,
    TotalBillAmount:newTotalBillAmount,
-   InvoiceNumber:newInvoiceNumber
+   InvoiceNumber:newInvoiceNumber,
+   Note:newQueryConcurNote
 }
     let xInsuranceResult= new InsuranceResult();
     xInsuranceResult ={
@@ -3383,18 +3425,8 @@ if ((newResultReviewDataJsonDto.TotalBillAmount)||(newResultReviewDataJsonDto.In
       transactionno: RequesetBody.xTransactionNo,
       vn: RequesetBody.xVN
     },
-    data: QueryUpdateBill  // ใช้ filteredQueryUpdateBill ที่ถูกต้อง
+    data: QueryUpdateBill 
   });
-
-
-
-  // await prismaProgest.transactionclaim.update({
-  //    where: {
-  //       refid: RequesetBody.xRefId,
-  //       transactionno: RequesetBody.xTransactionNo,
-  //      vn:RequesetBody.xVN
-  //     },data:filteredQueryUpdateBill
-  // });
 
 }
 

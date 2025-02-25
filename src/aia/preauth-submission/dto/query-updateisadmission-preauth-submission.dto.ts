@@ -1,8 +1,8 @@
 
-import {  IsString ,IsOptional} from 'class-validator';
+import {  IsString ,IsOptional, IsBoolean} from 'class-validator';
 import { HttpMessageDto } from '../../../utils/dto/http-status-message.dto';
 
-export class QueryUpdateReferenceVNBodyDto {
+export class QueryUpdateIsAdmissionBodyDto {
     PatientInfo?: SearchPatientBodyDto
   }
 class SearchPatientBodyDto{
@@ -23,21 +23,19 @@ class SearchPatientBodyDto{
     @IsOptional()
     VN?: string;
 
-    @IsString()
+    @IsBoolean()
     @IsOptional()
-    ReferenceVN?: string;
-
-    IsAdmission
+    IsAdmission?:boolean
     
   }
 
 
-  export class ResultSubmitUpdateReferenceVNDto {
+  export class ResultSubmitUpdateIsAdmissionDto {
 
     HTTPStatus: HttpMessageDto;
-    Result?: ResultUpdateReferenceVNBodyDto;
+    Result?: ResultUpdateIsAdmissionBodyDto;
  }
-class ResultUpdateReferenceVNBodyDto {
+class ResultUpdateIsAdmissionBodyDto {
     
     @IsString()
     @IsOptional()

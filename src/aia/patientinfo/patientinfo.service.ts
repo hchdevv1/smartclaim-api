@@ -901,7 +901,8 @@ export class PatientinfoService {
             IsIPDDischarge:claim.isipddischarge,
             PreauthReferClaimNo:claim.preauthreferclaimno,
             PreauthReferOcc:claim.preauthreferocc,
-            ReferenceVN:claim.referencevn
+            ReferenceVN:claim.referencevn,
+            IsAdmission:claim.isadmission
         })),
     };
     // console.log('===xxxx===')
@@ -945,6 +946,8 @@ export class PatientinfoService {
         PreauthReferClaimNo:'',
         PreauthReferOcc:'',
         ReferenceVN:'',
+        IsAdmission:null
+
     };
         xResultInfo = {
         TransactionClaimInfo: [xQueryVisit],

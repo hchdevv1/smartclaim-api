@@ -29,7 +29,7 @@ import { ResultPatientInfoDto ,ResultVisitInfoDto,ResultVitalSignInfoDto
 import { QueryAccidentDatabaseBodyDto  ,
   CauseOfInjuryDetail,InjuryDetail
 }  from '../../utils/dto/result-accident-databse.dto';
-import { AccidentDetailDto ,ResultReviewPreVisitInfoDto } from './dto/review-preauth-submission.dto';
+import { AccidentDetailDto , } from './dto/review-preauth-submission.dto';
 import { QueryVisit ,ResultPreAuthVisitDto} from './dto/result-visit-preauth-submission.dto';
 import { QueryAccidentDto  ,ResultSubmitAccidentDto} from './dto/query-accident-preauth-submission.dto';
 import { QueryProcedureDto ,ResultSubmitProcedureDto } from './dto/query-procedure-preauth-submission.dto';
@@ -45,6 +45,14 @@ import { ResultPreAuthBillingDto ,QueryBilling} from './dto/result-billing-preau
 import { ResultCheckeligiblePreAdmissionDto ,CoverageList ,MessageList ,PolicyInfoList ,InsuranceEligibleData ,InsuranceCustomerDetail} from './dto/result-check-eligible-preadmission.dto';
 import { ResultlistICDDxInfoDto} from './dto/result-ICDDx.dto';
 import { ResultlistICD9InfoDto } from './dto/result-ICD9.dto';
+import { QueryUpdateIsAdmissionBodyDto ,ResultSubmitUpdateIsAdmissionDto} from './dto/query-updateisadmission-preauth-submission.dto';
+import { ResultReviewDataJsonDto ,ResultReviewPatientInfoDto ,ResultReviewOpdDischargeDto  ,QueryConcurNote
+  ,ResultReviewVisitInfoDto ,ResultReviewPreVisitInfoDto
+  ,ResultReviewVitalSignInfoDto
+  ,ResultReviewBillingInfoDto ,ResultReviewDoctorInfoDto ,ResultReviewOrderItemInfoDto ,ResultReviewInvestigationInfoDto ,ResultReviewDiagnosisInfoDto
+} from './dto/review-preauth-submission.dto';
+import { QueryProcedeureDatabaseBodyDto ,ResultProcedureDatabaseInfoDto } from '../../utils/dto/result-procedure-databse.dto';
+
 const httpStatusMessageService = new HttpStatusMessageService();
 const newHttpMessageDto =new HttpMessageDto();
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -367,6 +375,121 @@ export class PreauthSubmissionService {
         }
   
       return newResultSubmitUpdateReferenceVNDto
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+         
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+  }
+  
+  async UpdateIsAdmission(queryUpdateIsAdmissionBodyDto:QueryUpdateIsAdmissionBodyDto){
+    let updatestatus;
+    try{
+      const xRefId =queryUpdateIsAdmissionBodyDto.PatientInfo.RefId;
+      const xTransactionNo =queryUpdateIsAdmissionBodyDto.PatientInfo.TransactionNo;
+      const xHN =queryUpdateIsAdmissionBodyDto.PatientInfo.HN;
+      const xVN =queryUpdateIsAdmissionBodyDto.PatientInfo.VN
+      const xIsAdmission =queryUpdateIsAdmissionBodyDto.PatientInfo.IsAdmission;
+
+  if ((xTransactionNo)){
+        const existingTransaction = await prismaProgest.transactionclaim.findFirst({
+          where: {
+            refid: xRefId,
+            transactionno: xTransactionNo,
+            vn :xVN,
+            hn :xHN
+          },
+        });
+    
+        if (existingTransaction) {
+    
+          await prismaProgest.transactionclaim.update({
+            where: {
+              id: existingTransaction.id, // Use the ID of the existing record
+            },
+            data: {
+              isadmission:xIsAdmission
+            },
+          });
+          updatestatus = 'The record has been successfully updated.'
+          this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+        }else{
+          updatestatus = 'The record has not been updated.'
+          this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid TransactionNo','')
+        }
+  }else{
+    updatestatus = 'The record has not been updated.'
+      this.addFormatHTTPStatus(newHttpMessageDto,400,'Invalid TransactionNo','')
+  }
+  
+      let newResultSubmitUpdateIsAdmissionDto= new ResultSubmitUpdateIsAdmissionDto();
+      newResultSubmitUpdateIsAdmissionDto={
+              HTTPStatus:newHttpMessageDto,
+              Result:updatestatus
+        }
+      return newResultSubmitUpdateIsAdmissionDto
     }catch(error)
     {
       if (error instanceof Prisma.PrismaClientInitializationError) {
@@ -2426,16 +2549,16 @@ return newResultPreAuthBillingDto
     const xDscDateTime =querySubmitPreAuthDto.PatientInfo.DscDateTime||'';
     const xTotalEstimatedCost =querySubmitPreAuthDto.PatientInfo.TotalEstimatedCost||null;
     const xIndicationForAdmission =querySubmitPreAuthDto.PatientInfo.IndicationForAdmission||'';
-    const xDxFreeText =querySubmitPreAuthDto.PatientInfo.DxFreeText||'';
-    const xPhysicalExam =querySubmitPreAuthDto.PatientInfo.PhysicalExam||'';
-    const xChiefComplaint =querySubmitPreAuthDto.PatientInfo.ChiefComplaint||'';
-    const xPresentIllness =querySubmitPreAuthDto.PatientInfo.PresentIllness||'';
+    const xDxFreeText =querySubmitPreAuthDto.PatientInfo.DxFreeText? querySubmitPreAuthDto.PatientInfo.DxFreeText.slice(0,200):'';
+    const xPhysicalExam =querySubmitPreAuthDto.PatientInfo.PhysicalExam? querySubmitPreAuthDto.PatientInfo.PhysicalExam.slice(0,1000):'';
+    const xChiefComplaint = querySubmitPreAuthDto.PatientInfo.ChiefComplaint?  querySubmitPreAuthDto.PatientInfo.ChiefComplaint.slice(0,200):'';
+    const xPresentIllness =querySubmitPreAuthDto.PatientInfo.PresentIllness? querySubmitPreAuthDto.PatientInfo.PresentIllness.slice(0,500):'';
     const xSignSymptomsDate =querySubmitPreAuthDto.PatientInfo.SignSymptomsDate||'';
     const xAlcoholRelated =Boolean(querySubmitPreAuthDto.PatientInfo.AlcoholRelated) || false;
     const xPregnant =Boolean(querySubmitPreAuthDto.PatientInfo.Pregnant) || false;
     const xPrivateCase =Boolean(querySubmitPreAuthDto.PatientInfo.PrivateCase) || false;
     const xPreviousTreatmentDate =querySubmitPreAuthDto.PatientInfo.PreviousTreatmentDate||'';
-    const xPreviousTreatmentDetail =querySubmitPreAuthDto.PatientInfo.PreviousTreatmentDetail||'';
+    const xPreviousTreatmentDetail =querySubmitPreAuthDto.PatientInfo.PreviousTreatmentDetail ? querySubmitPreAuthDto.PatientInfo.PreviousTreatmentDetail.slice(0,200):'';
     ////////////////////////
     const xHaveProcedure =Boolean(querySubmitPreAuthDto.PatientInfo.HaveProcedure) || false;
     const xHaveAccidentCauseOfInjuryDetail =(querySubmitPreAuthDto.PatientInfo.HaveAccidentCauseOfInjuryDetail) || false;
@@ -5099,6 +5222,499 @@ return newResultSubmitIpdDischargeDto
        }
      }
    }
+async ReviewPreAuth(queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+  let xResultInfo;
+try{
+ const RequesetBody ={
+  xRefId:queryPreauthSubmissionDto.PatientInfo.RefId, 
+  xTransactionNo: queryPreauthSubmissionDto.PatientInfo.TransactionNo,
+  xHN :queryPreauthSubmissionDto.PatientInfo.HN ,
+  xInsurerCode: queryPreauthSubmissionDto.PatientInfo.InsurerCode, 
+  xVN: queryPreauthSubmissionDto.PatientInfo.VN 
+ }
+//#region  review patient
+ const getOPDDischargePatient = await this.trakcareService.getOPDDischargePatient(RequesetBody.xHN);
+let newResultReviewPatientInfoDto: ResultReviewPatientInfoDto ;
+if (getOPDDischargePatient && getOPDDischargePatient.PatientInfo && getOPDDischargePatient.PatientInfo.HN.length > 0) {
+ let convertgender =getOPDDischargePatient.PatientInfo.Gender
+ if (convertgender==='F'){convertgender = 'Female'}else{convertgender ='Male'}
+  newResultReviewPatientInfoDto = {
+      Dob: getOPDDischargePatient.PatientInfo.Dob ,
+      Hn: getOPDDischargePatient.PatientInfo.HN ,
+      Gender: convertgender //getOPDDischargePatient.PatientInfo.Gender
+ };
+}else{
+  newResultReviewPatientInfoDto = {
+    Dob:'',
+    Hn:'',
+    Gender:''
+  };
+}
+//#endregion
+//#region  review Visit
+const newQueryVisitDatabaseBodyDto ={
+  RefId: RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN: RequesetBody.xHN,
+  VN: RequesetBody.xVN,
+
+}
+const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
+const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
+  FurtherClaimId: getvisitformDatabase.Result.VisitInfo.FurtherClaimId||'',
+  AccidentCauseOver45Days: getvisitformDatabase.Result.VisitInfo.AccidentCauseOver45Days||'',
+  AdditionalNote: getvisitformDatabase.Result.VisitInfo.AdditionalNote||'',
+  AlcoholRelated: getvisitformDatabase.Result.VisitInfo.AlcoholRelated||false,
+  ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint||'',
+  ComaScore: getvisitformDatabase.Result.VisitInfo.ComaScore||'',
+  DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText||'',
+  ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
+  Height: getvisitformDatabase.Result.VisitInfo.Height||'',
+  PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam||'',
+  PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment||'',
+  Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
+  PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness||'',
+  PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
+  PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail||'',
+  PrivateCase: getvisitformDatabase.Result.VisitInfo.PrivateCase||false,
+  ProcedureFreeText: getvisitformDatabase.Result.VisitInfo.ProcedureFreeText,
+  SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
+  UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
+  VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
+  VN:  getvisitformDatabase.Result.VisitInfo.VN||'',
+  Weight: getvisitformDatabase.Result.VisitInfo.Weight||''
+}
+//#endregion
+//#region  review Vitalsign
+const getOPDDischargeVitalSign = await this.trakcareService.getOPDDischargeVitalSign(RequesetBody.xVN);
+let newResultReviewVitalSignInfoDto: ResultReviewVitalSignInfoDto[] = [];
+  if (getOPDDischargeVitalSign && getOPDDischargeVitalSign.VitalSignInfo && getOPDDischargeVitalSign.VitalSignInfo.length > 0) {
+    newResultReviewVitalSignInfoDto= await Promise.all(
+      getOPDDischargeVitalSign.VitalSignInfo.map(async (item) => {
+      return {
+        DiastolicBp: +item.DiastolicBp,
+        HeartRate:  +item.HeartRate,
+        OxygenSaturation:  +item.OxygenSaturation,
+        PainScore:  +item.PainScore,
+        RespiratoryRate: +item.RespiratoryRate,
+        SystolicBp:  +item.SystolicBp,
+        Temperature:  +parseFloat(item.Temperature).toFixed(2),
+        VitalSignEntryDateTime:  item.VitalSignEntryDateTime,
+      };
+    })
+  ); 
+} else {
+  newResultReviewVitalSignInfoDto = [{
+    DiastolicBp: '',
+    HeartRate: '',
+    OxygenSaturation: '',
+    PainScore: '',
+    RespiratoryRate: '',
+    SystolicBp: '',
+    Temperature: '',
+    VitalSignEntryDateTime: '',
+    
+  }];
+}
+//#endregion
+//#region  review Diagnosis
+const getOPDDischargeDiagnosis = await this.trakcareService.getOPDDischargeDiagnosis(RequesetBody.xVN);
+let getDiagnosisTypeMapping 
+let newResultReviewDiagnosisInfoDto: ResultReviewDiagnosisInfoDto[] = [];
+  if (getOPDDischargeDiagnosis && getOPDDischargeDiagnosis.DiagnosisInfo && getOPDDischargeDiagnosis.DiagnosisInfo.length > 0) {
+
+   newResultReviewDiagnosisInfoDto= await Promise.all(
+      getOPDDischargeDiagnosis.DiagnosisInfo.map(async (item) => {
+       getDiagnosisTypeMapping = await this.utilsService.getDiagnosisTypeMapping(
+        ''+RequesetBody.xInsurerCode, 
+        item.DxTypeCode
+      );
+      if (item.DxTypeCode === getDiagnosisTypeMapping.dxtypecodetrakcare) {
+        item.DxTypeCode = getDiagnosisTypeMapping.dxtypecodeinsurance;
+      }
+      return {
+        DxName: item.DxName,
+        DxType: item.Dxtypenameinsurance,
+        Icd10: item.DxCode,
+        
+      };
+    })
+  );
+  
+} else {
+  newResultReviewDiagnosisInfoDto = [{
+    DxName: '',
+    DxType: '',
+    Icd10: '',
+  }];
+}
+//#endregion
+//#region  review Procedure
+let newResultProcedureDatabaseInfoDto: ResultProcedureDatabaseInfoDto[] = [];
+let newQueryProcedeureDatabaseBodyDto = new QueryProcedeureDatabaseBodyDto();
+newQueryProcedeureDatabaseBodyDto ={
+ 
+  RefId: RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN: RequesetBody.xHN,
+  VN: RequesetBody.xVN,
+
+}
+
+const getOPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
+if (getOPDDischargeProcedure && getOPDDischargeProcedure.Result && getOPDDischargeProcedure.Result.ProcedureInfo && getOPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
+  newResultProcedureDatabaseInfoDto = await Promise.all(
+      getOPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
+          return {
+              Icd9: item.Icd9,
+              ProcedureName: item.ProcedureName,
+              ProcedureDate: item.ProcedureDate,
+          };
+      })
+  );
+}
+else {
+  newResultProcedureDatabaseInfoDto = [{
+    Icd9: '',
+    ProcedureName: '',
+    ProcedureDate: '',
+  }];
+}
+//#endregion
+//#region  review AccidentDetail
+let newQueryAccidentDatabaseBodyDto = new QueryAccidentDatabaseBodyDto();
+newQueryAccidentDatabaseBodyDto ={
+  RefId: RequesetBody.xRefId,
+  TransactionNo: RequesetBody.xTransactionNo,
+  InsurerCode:RequesetBody.xInsurerCode,
+  HN: RequesetBody.xHN,
+  VN: RequesetBody.xVN,
+}
+const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
+const accidentDetailInfo = new AccidentDetailDto();
+accidentDetailInfo.AccidentPlace = accidentDatabase.Result.AccidentDetailInfo.AccidentPlace || '';
+accidentDetailInfo.AccidentDate = accidentDatabase.Result.AccidentDetailInfo.AccidentDate || '';
+// จัดการ CauseOfInjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail) {
+    accidentDetailInfo.CauseOfInjuryDetail = accidentDatabase.Result.AccidentDetailInfo.CauseOfInjuryDetail.map(cause => {
+        const causeDetail = new CauseOfInjuryDetail();
+        causeDetail.CauseOfInjury = cause.CauseOfInjury || '';
+        causeDetail.CommentOfInjury = cause.CommentOfInjury || '';
+        return causeDetail;
+    });
+} 
+// จัดการ InjuryDetail
+if (accidentDatabase.Result.AccidentDetailInfo.InjuryDetail) {
+    accidentDetailInfo.InjuryDetail = accidentDatabase.Result.AccidentDetailInfo.InjuryDetail.map(injury => {
+        const injuryDetail = new InjuryDetail();
+        injuryDetail.WoundType = injury.WoundType || '';
+        injuryDetail.InjurySide = injury.InjurySide || '';
+        injuryDetail.InjuryArea = injury.InjuryArea || '';
+        return injuryDetail;
+    });
+}
+//#endregion
+//#region  review Investigation
+let newResultReviewInvestigationInfoDto: ResultReviewInvestigationInfoDto[] = [];
+const getIPDInvestigation = await this.trakcareService.getIPDInvestigation(RequesetBody.xVN); 
+  if (getIPDInvestigation && getIPDInvestigation.InvestigationInfo && getIPDInvestigation.InvestigationInfo.length > 0) {
+    newResultReviewInvestigationInfoDto= await Promise.all(
+      getIPDInvestigation.InvestigationInfo.map(async (item) => {
+      return {
+        InvestigationCode: item.InvestigationCode,
+        InvestigationGroup: item.InvestigationGroup,
+        InvestigationName: item.InvestigationName,
+        InvestigationResult: item.InvestigationResult,
+        ResultDateTime: item.ResultDateTime,
+      };
+    })
+  );
+} else {
+  newResultReviewInvestigationInfoDto = [{
+    InvestigationCode: '',
+    InvestigationGroup: '',
+    InvestigationName: '',
+    InvestigationResult: '',
+    ResultDateTime: ''
+  }];
+}
+//#endregion
+//#region  review Orderitem
+let newResultReviewOrderItemInfoDto : ResultReviewOrderItemInfoDto[] = [];
+const getOPDDischargeOrderItem = await this.trakcareService.getOPDDischargeOrderItem(RequesetBody.xVN); 
+   if (getOPDDischargeOrderItem && getOPDDischargeOrderItem.OrderItemInfo && getOPDDischargeOrderItem.OrderItemInfo.length > 0) {
+    newResultReviewOrderItemInfoDto= await Promise.all(
+      getOPDDischargeOrderItem.OrderItemInfo.map(async (item) => {
+      return {
+        ItemId: item.ItemId,
+        ItemName: item.ItemName,
+        ItemAmount: item.ItemAmount,
+        Discount: item.Discount,
+        Initial: item.Initial,
+
+        LocalBillingCode: item.LocalBillingCode,
+        LocalBillingName: item.LocalBillingName,
+        Location: item.Location,
+
+        NetAmount: item.NetAmount,
+        SimbVersion: item.SimbVersion,
+        Terminology: item.Terminology,
+
+      };
+    })
+  );
+} else {
+  newResultReviewOrderItemInfoDto = [{
+
+    ItemId: '',
+    ItemName: '',
+    ItemAmount: '',
+    Discount: '',
+    Initial: '',
+    LocalBillingCode: '',
+    LocalBillingName: '',
+    Location: '',
+    NetAmount: '',
+    SimbVersion: '',
+    Terminology: ''
+  }];
+}
+//#endregion// //--> get Doctor  <--//
+//#region  review Doctor
+let newResultReviewDoctorInfoDto: ResultReviewDoctorInfoDto[] = [];
+const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(RequesetBody.xVN); 
+  if (getOPDDischargeDoctor && getOPDDischargeDoctor.DoctorInfo && getOPDDischargeDoctor.DoctorInfo.length > 0) {
+    newResultReviewDoctorInfoDto= await Promise.all(
+      getOPDDischargeDoctor.DoctorInfo.map(async (item) => {
+      return {
+        DoctorLicense: item.DoctorLicense.toString().padStart(10, '0'),
+        DoctorRole: item.DoctorRole,
+        DoctorFirstName: item.DoctorFirstName,
+        DoctorLastName: '' //await this.utilsService.EncryptAESECB( item.DoctorLastName,AIA_APISecretkey) ,
+      };
+    })
+  );
+} else {
+  newResultReviewDoctorInfoDto = [{
+    DoctorLicense: '',
+    DoctorRole: '',
+    DoctorFirstName: '',
+    DoctorLastName: '',
+  
+  }];
+}
+//#endregion 
+//#region  review Billing
+let newResultReviewBillingInfoDto : ResultReviewBillingInfoDto[] = [];
+let  newTotalBillAmount ;
+let newInvoiceNumber ;
+const getOPDDischargeBilling = await this.trakcareService.getOPDDischargeBilling(RequesetBody.xVN); 
+   if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
+       newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
+       newInvoiceNumber =getOPDDischargeBilling.InvoiceNumber
+       newResultReviewBillingInfoDto= await Promise.all(
+      getOPDDischargeBilling.BillingInfo.map(async (item) => {
+      return {
+        LocalBillingCode: item.LocalBillingCode,
+        LocalBillingName: item.LocalBillingName,
+        SimbBillingCode: item.SimbBillingCode,
+        PayorBillingCode: item.PayorBillingCode,
+        BillingInitial: item.BillingInitial,
+        BillingDiscount: item.BillingDiscount,
+        BillingNetAmount: item.BillingNetAmount,
+      };
+    })
+  );
+} else {
+  newResultReviewBillingInfoDto = [{
+
+    LocalBillingCode: '',
+    LocalBillingName: '',
+    SimbBillingCode: '',
+    PayorBillingCode: '',
+    BillingInitial: '',
+    BillingDiscount: '',
+    BillingNetAmount: '',
+   
+  }];
+  newTotalBillAmount=0
+}
+//#endregion
+//#region  review Note
+
+const whereConditions = {
+    
+  ...(RequesetBody.xVN? { vn: { equals: RequesetBody.xVN } } : {}),
+  ...(RequesetBody.xRefId? { refid: { equals: RequesetBody.xRefId  } } : {}),
+  ...(RequesetBody.xTransactionNo ? { transactionno: { equals: RequesetBody.xTransactionNo  } } : {}),
+
+};
+const existingConcurrentNoteRecord = await prismaProgest.concurrentnotetransactions.findFirst({
+  where: whereConditions
+});
+let newQueryConcurNote: QueryConcurNote[] = [];
+
+if (existingConcurrentNoteRecord){
+
+const newQueryConcurrentNoteDatabaseBodyDto ={
+  RefId:queryPreauthSubmissionDto.PatientInfo.RefId,
+  TransactionNo: queryPreauthSubmissionDto.PatientInfo.TransactionNo,
+  InsurerCode:queryPreauthSubmissionDto.PatientInfo.InsurerCode,
+  HN:queryPreauthSubmissionDto.PatientInfo.HN,
+  VN:queryPreauthSubmissionDto.PatientInfo.VN
+}
+ const getConcurNoteformDatabase = await this.utilsService.getConcurNoteformDatabase(newQueryConcurrentNoteDatabaseBodyDto)
+
+ if (getConcurNoteformDatabase && getConcurNoteformDatabase.Result.ConcurNoteList && getConcurNoteformDatabase.Result.ConcurNoteList.length > 0) {
+  newQueryConcurNote= await Promise.all(
+    getConcurNoteformDatabase.Result.ConcurNoteList.map(async (item) => {
+     return {
+      ConcurrentDatetime: item.ConcurrentDatetime,
+      ConcurrentDetail: item.ConcurrentDetail,
+       
+     };
+   })
+ );
+} else {
+newQueryConcurNote = [{
+  ConcurrentDatetime: '',
+  ConcurrentDetail: '',
+ }];
+}
+}else{
+newQueryConcurNote = [{
+  ConcurrentDatetime: '',
+  ConcurrentDetail: '',
+}];
+}
+
+//#endregion
+
+let newResultReviewDataJsonDto =new ResultReviewDataJsonDto();
+newResultReviewDataJsonDto ={
+   Patient :newResultReviewPatientInfoDto,
+   Visit: newResultReviewVisitInfoDto, 
+   VitalSign :newResultReviewVitalSignInfoDto,
+   Diagnosis :newResultReviewDiagnosisInfoDto,
+   AccidentDetail:accidentDetailInfo,  
+   Procedure :newResultProcedureDatabaseInfoDto, 
+   Investigation :newResultReviewInvestigationInfoDto,
+   OrderItem :newResultReviewOrderItemInfoDto,
+   Doctor : newResultReviewDoctorInfoDto,
+   Billing :newResultReviewBillingInfoDto,
+   TotalBillAmount:newTotalBillAmount,
+   InvoiceNumber:newInvoiceNumber,
+   Note:newQueryConcurNote
+}
+    let xInsuranceResult= new InsuranceResult();
+    xInsuranceResult ={
+     Code:'200',
+     Message:'sucess',
+     MessageTh:'test'
+    }
+   
+xResultInfo ={
+    InsuranceResult: xInsuranceResult,
+    InsuranceData:newResultReviewDataJsonDto
+  } 
+
+if ((newResultReviewDataJsonDto.TotalBillAmount)||(newResultReviewDataJsonDto.InvoiceNumber)){
+
+  const QueryUpdateBill = {
+    ...(newResultReviewDataJsonDto.TotalBillAmount ? { totalbillamount: newResultReviewDataJsonDto.TotalBillAmount } : {}),
+    ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: newResultReviewDataJsonDto.InvoiceNumber } : {}),
+  };
+
+
+  await prismaProgest.transactionclaim.updateMany({
+    where: {
+      refid: RequesetBody.xRefId,
+      transactionno: RequesetBody.xTransactionNo,
+      vn: RequesetBody.xVN
+    },
+    data: QueryUpdateBill 
+  });
+
+}
+
+  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+  
+  let newResultReviewOpdDischargeDto= new ResultReviewOpdDischargeDto();
+  newResultReviewOpdDischargeDto={
+          HTTPStatus:newHttpMessageDto,
+          Result:xResultInfo
+    }
+
+return newResultReviewOpdDischargeDto
+}catch(error)
+{
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    throw new HttpException(
+     { 
+      HTTPStatus: {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+      },
+      },HttpStatus.INTERNAL_SERVER_ERROR );
+  }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new HttpException(
+        {  
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+         },
+        },HttpStatus.INTERNAL_SERVER_ERROR ); 
+  }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+    if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+        message: 'Cannot connect to the database server. Please ensure it is running.',
+        error: 'Cannot connect to the database server. Please ensure it is running.',
+      },
+      }, HttpStatus.SERVICE_UNAVAILABLE);
+    }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Invalid data format or conversion error.',
+        error: 'Invalid data format or conversion error.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.FORBIDDEN,
+        message: 'You do not have permission to perform this action.',
+        error: 'You do not have permission to perform this action.',
+      },
+      }, HttpStatus.FORBIDDEN);
+    }else if (error.message.includes('Unable to fit integer value')) {
+      // Handle integer overflow or similar errors
+      throw new HttpException({
+        HTTPStatus: {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'The integer value is too large for the database field.',
+        error: 'The integer value is too large for the database field.',
+      },
+      }, HttpStatus.BAD_REQUEST);
+    }
+    else{
+      throw new HttpException({  
+        HTTPStatus: {
+           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+           message: 'An unexpected error occurred.',
+           error: 'An unexpected error occurred.',
+          },
+        },HttpStatus.INTERNAL_SERVER_ERROR,);
+    }
+  }
+}
+}
 
    async getICDDx(xICDDxCode: string ){
     let arrayICDDxInfo;

@@ -9,6 +9,7 @@ import { QueryProcedureDto } from './dto/query-procedure-preauth-submission.dto'
 import { QueryPreauthSubmissionDto } from './dto/query-preauth-submission.dto';
 import { QueryUpdateReferenceVNBodyDto } from './dto/query-updatereferencevn-preauth-submission.dto';
 import { QueryPackageBundleDto } from './dto/query-packagebundle-preauth-submission.dto';
+import { QueryUpdateIsAdmissionBodyDto } from './dto/query-updateisadmission-preauth-submission.dto';
 @Controller('/v1/preauth-submission')
 export class PreauthSubmissionController {
   constructor(private readonly preauthSubmissionService: PreauthSubmissionService) {}
@@ -137,6 +138,12 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
         return result
   }
   
+  @Post('/UpdateIsAdmission')
+  async UpdateIsAdmission(@Body() queryUpdateIsAdmissionBodyDto:QueryUpdateIsAdmissionBodyDto){
+        const result = this.preauthSubmissionService.UpdateIsAdmission(queryUpdateIsAdmissionBodyDto);
+        return result
+  }
+
   @Post('/SubmitPreSubmissionToAIA')
 async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthDto){
       const result = this.preauthSubmissionService.SubmitPreSubmissionToAIA(querySubmitPreAuthDto);
@@ -147,7 +154,12 @@ async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthD
           const result = this.preauthSubmissionService.checkeligiblePreAdmission(queryPreauthSubmissionDto);
           return result
     }
-
+    @Post('/ReviewPreAuth')
+    async ReviewPreAuth(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+          const result = this.preauthSubmissionService.ReviewPreAuth(queryPreauthSubmissionDto);
+          return result
+    }
+    
 //#region  Feed data And Submit to AIA
 
 @Get('/getICDDx/:xICDDxCode')

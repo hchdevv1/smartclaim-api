@@ -1716,37 +1716,7 @@ async getvisitformDatabase(queryVisitDatabaseBodyDto: QueryVisitDatabaseBodyDto)
      
     },
   });
-///////////////////  
-// console.log(xVN)
-// console.log(xRefId)
-// console.log(xTransactionNo)
 
-// Query by vn only
-// const queryByVN = await prismaProgest.medicaltransactions.findMany({
-//   where: {
-//     vn: xVN,
-//   },
-// });
-// console.log('Query by VN:', queryByVN);
-
-// // Query by refid only
-// const queryByRefId = await prismaProgest.medicaltransactions.findMany({
-//   where: {
-//     refid: xRefId,
-//   },
-// });
-// console.log('Query by RefId:', queryByRefId);
-
-// // Query by transactionno only
-// const queryByTransactionNo = await prismaProgest.medicaltransactions.findMany({
-//   where: {
-//     transactionno: xTransactionNo,
-//   },
-// });
-// console.log('Query by TransactionNo:', queryByTransactionNo);
-
-
-//////
 const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst({ 
   where: {
     vn: xVN,
@@ -1805,10 +1775,7 @@ if(visittransactionsInfo){
     Weight:visittransactionsInfo.weight,
 
   };
-  //console.log(visitDatabaseResultInfo)
-  //console.log('yyy222yyy')
-      // this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-      
+
      
        if (!visitDatabaseResultInfo.VisitInfo) {
       
