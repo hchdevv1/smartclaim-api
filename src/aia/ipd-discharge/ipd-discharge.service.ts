@@ -884,7 +884,7 @@ try{
 
    
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-    const xQueryBilling = [{ 
+    const xQueryBilling = { 
     LocalBillingCode: '2.1.1',
     LocalBillingName: 'ค่าห้องผู้ป่วยใน',
     SimbBillingCode: '2.1.1',
@@ -892,7 +892,7 @@ try{
     BillingInitial: '10000',
     BillingDiscount: '8000',
     BillingNetAmount: '2000',
-  }];
+  };
 /* 
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
    const xQueryBilling ={    
@@ -906,7 +906,7 @@ try{
      }*/
      xResultInfo ={
       BillingInfo: [xQueryBilling],
-      TotalBillAmount:'',
+      TotalBillAmount:'2000',
       InvoiceNumber:''
      } 
   }else{
@@ -2890,7 +2890,7 @@ console.log('================= apiURL =================')
 console.log(RequesetBody.xIsIPDDischarge)
 console.log(apiURL)
 console.log('================= apiURL =================')
-apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
+// apiURL= `${AIA_APIURL}/SmartClaim/ipdAdmission`;
 
   const body = newOPDDischargeResponseDto
   const headers = {
