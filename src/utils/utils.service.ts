@@ -1907,7 +1907,8 @@ const visittransactionsInfo = await prismaProgest.medicaltransactions.findFirst(
          isipddischarge:true,
          admitdatetime:true,
          previoustreatmentdate:true,
-         previoustreatmentdetail:true
+         previoustreatmentdetail:true,
+         
          
          
   },

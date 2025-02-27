@@ -70,9 +70,10 @@ async getIPDVisit(queryIpdDischargeDto:QueryIpdDischargeDto){
       InsurerCode:queryIpdDischargeDto.PatientInfo.InsurerCode,
       HN: queryIpdDischargeDto.PatientInfo.HN,
       VN: queryIpdDischargeDto.PatientInfo.VN,
-      IsIPDDischarge :queryIpdDischargeDto.PatientInfo.IsIPDDischarge
-    
+      IsIPDDischarge :queryIpdDischargeDto.PatientInfo.IsIPDDischarge,
+      PreauthReferClaimNo:queryIpdDischargeDto.PatientInfo.PreauthReferClaimNo,
     }
+
 let getvisitformDatabase :any
 let DxFreeTextTemp,PhysicalExamTemp ,PresentIllnessTemp ,ChiefComplaintTemp ,PlanOfTreatmenTemp:any
 
@@ -93,6 +94,9 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
 }else{
 
   getvisitformDatabase = await this.utilsService.getvisitIPDformDatabase(newQueryVisitDatabaseBodyDto)
+   //anesthesialist
+  
+
   DxFreeTextTemp= getvisitformDatabase.Result.VisitInfo.DxFreeText? getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200):''
   PhysicalExamTemp=getvisitformDatabase.Result.VisitInfo.PhysicalExam? getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000):''
   PresentIllnessTemp = getvisitformDatabase.Result.VisitInfo.PresentIllness? getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500):''
@@ -131,9 +135,12 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
         IndicationForAdmission: getvisitformDatabase.Result.VisitInfo.IndicationForAdmission||'',
         DscDateTime: getvisitformDatabase.Result.VisitInfo.DscDateTime||'',
         AdmitDateTime: getvisitformDatabase.Result.VisitInfo.AdmitDateTime||'',
-        IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge
-
+        IsIPDDischarge:getvisitformDatabase.Result.VisitInfo.IsIPDDischarge,
+        AnesthesiaList:getvisitformDatabase.Result.VisitInfo.AnesthesiaList
       }
+      console.log('----00000----')
+      console.log(newResultReviewVisitInfoDto.AnesthesiaList)
+      console.log('----00000----')
  this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
       xResultInfo ={
         VisitInfo: newResultReviewVisitInfoDto,
@@ -175,7 +182,8 @@ if (newQueryVisitDatabaseBodyDto.IsIPDDischarge == true){
           VisitDateTime: '',
           Vn:  '',
           Weight:  '',
-          IsIPDDischarge:''
+          IsIPDDischarge:'',
+          AnesthesiaList:''
          }
          xResultInfo ={
           VisitInfo: xQueryVisit,
@@ -872,8 +880,22 @@ try{
   // console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
+
+
+   
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+    const xQueryBilling = [{ 
+    LocalBillingCode: '2.1.1',
+    LocalBillingName: 'ค่าห้องผู้ป่วยใน',
+    SimbBillingCode: '2.1.1',
+    PayorBillingCode: '2.1.1',
+    BillingInitial: '10000',
+    BillingDiscount: '8000',
+    BillingNetAmount: '2000',
+  }];
+/* 
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
-    const xQueryBilling ={    
+   const xQueryBilling ={    
       LocalBillingCode: '', 
       LocalBillingName: '',
       SimbBillingCode: '',
@@ -881,7 +903,7 @@ try{
       BillingInitial:'',
       BillingDiscount: '',
       BillingNetAmount:''
-     }
+     }*/
      xResultInfo ={
       BillingInfo: [xQueryBilling],
       TotalBillAmount:'',
@@ -984,6 +1006,9 @@ return newResultIpdDischargeBillingDto
 async getIPDDischargeProcedure(queryIpdDischargeDto:QueryIpdDischargeDto){
   let xResultInfo;
 try{
+// console.log('--------<<<<P>>>>>-----------')
+// console.log(queryIpdDischargeDto.PatientInfo.PreauthReferClaimNo)
+// console.log('--------<<<<P>>>>>')
 
   const whereConditions = {
     
@@ -992,13 +1017,15 @@ try{
     ...(queryIpdDischargeDto .PatientInfo. TransactionNo ? { transactionno: { equals: queryIpdDischargeDto .PatientInfo. TransactionNo } } : {}),
 
   };
+  console.log(whereConditions)
   const existingProcedureRecord = await prismaProgest.proceduretransactions.findFirst({
     where: whereConditions
   });
+
+  console.log(existingProcedureRecord)
+
  if (existingProcedureRecord){
-// queryOpdDischargeDto.PatientInfo.RefId  ='ccXwZWYmukJdvzFrWaccN8bNr83caECQjC+vvuEaIKY=';
-// queryOpdDischargeDto.PatientInfo.TransactionNo  ='5c5aabb3-b919-4ee8-ac42-848ae4d5f55a';
-//   queryOpdDischargeDto.PatientInfo.VN ='O415202-67'
+
   const newQueryProcedeureDatabaseBodyDto ={
     RefId:queryIpdDischargeDto.PatientInfo.RefId,
     TransactionNo: queryIpdDischargeDto.PatientInfo.TransactionNo,
@@ -1040,20 +1067,114 @@ try{
  }
  }else{
 
+  
+
+
+  
   const TrakcarepatientInfo = await this.trakcareService.getIPDProcedure(queryIpdDischargeDto.PatientInfo.VN);
   //console.log(TrakcarepatientInfo)
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
-    this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
-    const xQueryProcedure =[{    
-      Icd9: '', 
-      ProcedureName: '',
-      ProcedureDate: '',
-     }]
-     xResultInfo ={
-      ProcedureInfo: [xQueryProcedure],
-     } 
+   
+
+    const existingTransactionRecord = await prismaProgest.transactionclaim.findFirst({
+      where: { refid: queryIpdDischargeDto.PatientInfo.RefId,
+        transactionno: queryIpdDischargeDto.PatientInfo.TransactionNo,  
+      } 
+    });
+    if (existingTransactionRecord){
+      const preauthreferclaimno =existingTransactionRecord.preauthreferclaimno
+      if (preauthreferclaimno){
+        console.log('ssss')
+        const existingPreauthreferclaimno = await prismaProgest.transactionclaim.findFirst({
+          where: { claimno:preauthreferclaimno
+          
+          } 
+        });
+        const PreauthreferxHN =existingPreauthreferclaimno.hn
+        const PreauthreferxVN =existingPreauthreferclaimno.vn
+
+        const PreauthreferxRefid =existingPreauthreferclaimno.refid
+        const PreauthreferxTransactionno =existingPreauthreferclaimno.transactionno
+
+
+        const whereConditions = {
+    
+          ...(PreauthreferxVN? { vn: { equals: PreauthreferxVN } } : {}),
+          ...(PreauthreferxRefid ? { refid: { equals: PreauthreferxRefid  } } : {}),
+          ...(PreauthreferxTransactionno ? { transactionno: { equals: PreauthreferxTransactionno } } : {}),
+      
+        };
+        const existingProcedurePreauthreRecord = await prismaProgest.proceduretransactions.findFirst({
+          where: whereConditions
+        });
+
+//#region  pp
+if (existingProcedurePreauthreRecord){
+const newQueryProcedeureDatabaseBodyDto ={
+  RefId:PreauthreferxRefid,
+  TransactionNo: PreauthreferxTransactionno,
+  InsurerCode:13,
+  HN:PreauthreferxHN,
+  VN:PreauthreferxVN
+}
+ let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
+ const getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
+
+ if (getIPDDischargeProcedure && getIPDDischargeProcedure.Result.ProcedureInfo && getIPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
+    newResultProcedureInfoDto= await Promise.all(
+      getIPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
+     return {
+       Icd9: item.Icd9,
+       ProcedureName: item.ProcedureName,
+       ProcedureDate: item.ProcedureDate,
+       
+     };
+   })
+ );
+ this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+ xResultInfo ={
+  ProcedureInfo: newResultProcedureInfoDto,
+ } 
+}else{
+  this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+  const xQueryProcedure =[{    
+    Icd9: '', 
+    ProcedureName: '',
+    ProcedureDate: '',
+   }]
+   xResultInfo ={
+    ProcedureInfo: [xQueryProcedure],
+   } 
+}
+}
+//#endregion
+      }else{
+        this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+        const xQueryProcedure =[{    
+          Icd9: '', 
+          ProcedureName: '',
+          ProcedureDate: '',
+         }]
+         xResultInfo ={
+          ProcedureInfo: [xQueryProcedure],
+         } 
+      }
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+      const xQueryProcedure =[{    
+        Icd9: '', 
+        ProcedureName: '',
+        ProcedureDate: '',
+       }]
+       xResultInfo ={
+        ProcedureInfo: [xQueryProcedure],
+       } 
+    }
+    
+    
   }else{
+   
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
     const xQueryProcedure: QueryProcedure[] = TrakcarepatientInfo.ProcedureInfo ? 
     TrakcarepatientInfo.ProcedureInfo.map((item) => {
@@ -1067,6 +1188,7 @@ try{
       ProcedureInfo: xQueryProcedure,
      } 
   }
+
  }
 
   let newResultIpdDischargeProcedurDto= new ResultIpdDischargeProcedurDto();
@@ -2630,20 +2752,21 @@ let  newTotalBillAmount ;
     })
   );
 } else {
-  newResultBillingInfoDto = [{
+  if (newResultVisitInfoDto.IsIPDDischarge==true){
+    newResultBillingInfoDto = [{
 
-    LocalBillingCode: '',
-    LocalBillingName: '',
-    SimbBillingCode: '',
-    PayorBillingCode: '',
-    BillingInitial: '',
-    BillingDiscount: '',
-    BillingNetAmount: '',
-   
-  }];
-  newTotalBillAmount=0
-}
-/*
+      LocalBillingCode: '',
+      LocalBillingName: '',
+      SimbBillingCode: '',
+      PayorBillingCode: '',
+      BillingInitial: '',
+      BillingDiscount: '',
+      BillingNetAmount: '',
+     
+    }];
+    newTotalBillAmount=0
+  }else{
+    
 newResultBillingInfoDto = [{
 
   LocalBillingCode: '2.1.1',
@@ -2655,7 +2778,13 @@ newResultBillingInfoDto = [{
   BillingNetAmount: '2000',
  
 }];
-newTotalBillAmount=2000 */
+newTotalBillAmount=2000 
+
+  
+  }
+
+}
+
 // console.log('billing done')
 //  //  
 //--> get PSS  Fixed<--//
@@ -3411,24 +3540,24 @@ xResultInfo ={
     InsuranceData:newResultReviewDataJsonDto
   } 
 
-if ((newResultReviewDataJsonDto.TotalBillAmount)||(newResultReviewDataJsonDto.InvoiceNumber)){
+// if ((newResultReviewDataJsonDto.TotalBillAmount)||(newResultReviewDataJsonDto.InvoiceNumber)){
 
-  const QueryUpdateBill = {
-    ...(newResultReviewDataJsonDto.TotalBillAmount ? { totalbillamount: newResultReviewDataJsonDto.TotalBillAmount } : {}),
-    ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: newResultReviewDataJsonDto.InvoiceNumber } : {}),
-  };
+//   const QueryUpdateBill = {
+//     ...(newResultReviewDataJsonDto.TotalBillAmount ? { totalbillamount: newResultReviewDataJsonDto.TotalBillAmount } : {}),
+//     ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: newResultReviewDataJsonDto.InvoiceNumber } : {}),
+//   };
 
 
-  await prismaProgest.transactionclaim.updateMany({
-    where: {
-      refid: RequesetBody.xRefId,
-      transactionno: RequesetBody.xTransactionNo,
-      vn: RequesetBody.xVN
-    },
-    data: QueryUpdateBill 
-  });
+//   await prismaProgest.transactionclaim.updateMany({
+//     where: {
+//       refid: RequesetBody.xRefId,
+//       transactionno: RequesetBody.xTransactionNo,
+//       vn: RequesetBody.xVN
+//     },
+//     data: QueryUpdateBill 
+//   });
 
-}
+// }
 
   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
   

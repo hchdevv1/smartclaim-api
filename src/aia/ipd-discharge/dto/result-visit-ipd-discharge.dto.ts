@@ -247,5 +247,7 @@ export class ResultIpdDischargeVisitDto {
     @IsOptional()
     IsIPDDischarge:boolean;
 
-
+    @IsString()
+    @IsOptional()
+    AnesthesiaList:string;
   }

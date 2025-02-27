@@ -5620,24 +5620,7 @@ xResultInfo ={
     InsuranceData:newResultReviewDataJsonDto
   } 
 
-if ((newResultReviewDataJsonDto.TotalBillAmount)||(newResultReviewDataJsonDto.InvoiceNumber)){
 
-  const QueryUpdateBill = {
-    ...(newResultReviewDataJsonDto.TotalBillAmount ? { totalbillamount: newResultReviewDataJsonDto.TotalBillAmount } : {}),
-    ...(newResultReviewDataJsonDto.InvoiceNumber ? { invoicenumber: newResultReviewDataJsonDto.InvoiceNumber } : {}),
-  };
-
-
-  await prismaProgest.transactionclaim.updateMany({
-    where: {
-      refid: RequesetBody.xRefId,
-      transactionno: RequesetBody.xTransactionNo,
-      vn: RequesetBody.xVN
-    },
-    data: QueryUpdateBill 
-  });
-
-}
 
   this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
   
