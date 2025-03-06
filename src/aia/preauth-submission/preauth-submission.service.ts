@@ -1914,6 +1914,8 @@ return newResultPreAuthBillingDto
   
           await Promise.all(
             PreBillingList.map(async (prebilling) => {
+              console.log('-----^^^^^------')
+              console.log(prebilling.LocalBillingName)
                 return await prismaProgest.prebillingtransactions.create({
                     data: {
                         insurerid: xInsurerCode,
@@ -1933,8 +1935,10 @@ return newResultPreAuthBillingDto
                     }
                 });
             })
+            
         );
-  
+       // console.log('-----^^^^^------')
+
       } else {
         PreBillingList = [];
       }

@@ -817,9 +817,19 @@ export class PatientinfoService {
     const xInvoiceNumber =querySearchTransection.PatientInfo.InvoiceNumber
     const xStatusClaimCode =querySearchTransection.PatientInfo.StatusClaimCode
     const xServiceSettingCode =querySearchTransection.PatientInfo.ServiceSettingCode
-    const xVisitDatefrom = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDatefrom);
-    const xVisitDateto = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDateto);
+    const xVisitDatefrom =querySearchTransection.PatientInfo.VisitDatefrom? this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDatefrom):'';
+    const xVisitDateto = querySearchTransection.PatientInfo.VisitDateto ? this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.VisitDateto):'';
+    // const xStatusChangedAtDatefrom = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.StatusChangedAtDatefrom);
+    // const xStatusChangedAtDateto = this.formatDateToYYYYMMDD(querySearchTransection.PatientInfo.StatusChangedAtDateto);
+
     const hasVisitDate = xVisitDatefrom && xVisitDateto && xVisitDatefrom !== "" && xVisitDateto !== "";
+
+    //const hasStatusChangedAt = xStatusChangedAtDatefrom && xStatusChangedAtDateto && xStatusChangedAtDatefrom !== "" && xStatusChangedAtDateto !== "";
+    // console.log(xStatusChangedAtDatefrom)
+
+    // console.log(xStatusChangedAtDateto)
+
+    //console.log(hasStatusChangedAt)
     const whereConditions = {
     ...(xHN ? { hn: { equals: xHN } } : {}),
     ...(xVN ? { vn: { equals: xVN } } : {}),
@@ -832,9 +842,14 @@ export class PatientinfoService {
       visitdate: {
           gte: xVisitDatefrom, 
           lte: xVisitDateto  
-      }
-  } : {}),
+          }} : {}),
+    // ...(hasStatusChangedAt ? {
+    //   status_changed_at: {
+    //     gte: new Date(xStatusChangedAtDatefrom), 
+    //     lte: new Date(xStatusChangedAtDateto)  
+    //      }} : {}),
   };
+  console.log(whereConditions)
       const   ResultQuery = await prismaProgest.transactionclaim.findMany({
           
             where: whereConditions
@@ -850,18 +865,21 @@ export class PatientinfoService {
                 surname_th: true,
               }
             }
-          },orderBy: {
+          }
+          ,orderBy: {
             status_changed_at: 'asc', // จัดเรียงตามลำดับเวลาแบบ ascending (จากเก่ามาใหม่)
           }
         });
-   
-     
+        console.log('ResultQuery')
+
+        console.log(ResultQuery)
+
     
     let xResultInfo: ResultTransactionInfo;
     //console.log('------')
     //console.log(ResultQuery)
     if (ResultQuery.length>0) {
-     // console.log('------')
+      console.log('------')
       xResultInfo = {
         TransactionClaimInfo: ResultQuery.map((claim) => ({
             RefId: claim.refid ,  // Default value if refid is undefined
@@ -894,6 +912,7 @@ export class PatientinfoService {
             FurtherClaimId:claim.furtherclaimid||'',
             AccidentDate:claim.accidentdate||'',
             VisitDateTime:claim.visitdatetime||'',
+            CreateDate:claim.status_changed_at,
             //Runningdocument:claim.runningdocument.toNumber(),
             FurtherClaimVN:claim.furtherclaimvn||'',
             VisitLocation:claim.visitlocation||'',
@@ -938,6 +957,7 @@ export class PatientinfoService {
         FurtherClaimId:'',
         AccidentDate:'',
         VisitDateTime:'',
+        CreateDate:'',
         Runningdocument:0,
         FurtherClaimVN:'',
         VisitLocation:'',

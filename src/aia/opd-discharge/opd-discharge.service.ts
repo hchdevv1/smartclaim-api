@@ -51,7 +51,6 @@ const AIA_APIHospitalCode =process.env.AIA_APIHospitalCode;
 const AIA_APIHopitalUsername=process.env.AIA_APIHopitalUsername;
 const AIA_APISubscription =process.env.AIA_APISubscription;
 const API_CONTENTTYPE = process.env.API_CONTENTTYPE
-// const DUMMY_National_ID = process.env.DUMMY_National_ID
 
 
 @Injectable()
@@ -75,25 +74,24 @@ try{
   }
   const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
   if (getvisitformDatabase?.Result?.VisitInfo?.VisitDateTime?.length >0){ 
-//    console.log('AAAAA')
     const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
       FurtherClaimId: getvisitformDatabase.Result.VisitInfo.FurtherClaimId||'',
       AccidentCauseOver45Days: getvisitformDatabase.Result.VisitInfo.AccidentCauseOver45Days||'',
       AdditionalNote: getvisitformDatabase.Result.VisitInfo.AdditionalNote||'',
       AlcoholRelated: getvisitformDatabase.Result.VisitInfo.AlcoholRelated||false,
-      ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200)||'',
+      ChiefComplaint: getvisitformDatabase.Result.VisitInfo.ChiefComplaint ? getvisitformDatabase.Result.VisitInfo.ChiefComplaint.slice(0,200):'',
       ComaScore: getvisitformDatabase.Result.VisitInfo.ComaScore||'',
-      DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200)||'',
+      DxFreeText: getvisitformDatabase.Result.VisitInfo.DxFreeText ? getvisitformDatabase.Result.VisitInfo.DxFreeText.slice(0,200):'',
       ExpectedDayOfRecovery: getvisitformDatabase.Result.VisitInfo.ExpectedDayOfRecovery||'',
       Height: getvisitformDatabase.Result.VisitInfo.Height||'',
-      PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000)||'',
-      PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,500)||'',
+      PhysicalExam: getvisitformDatabase.Result.VisitInfo.PhysicalExam? getvisitformDatabase.Result.VisitInfo.PhysicalExam.slice(0,1000):'',
+      PlanOfTreatment: getvisitformDatabase.Result.VisitInfo.PlanOfTreatment ?getvisitformDatabase.Result.VisitInfo.PlanOfTreatment.slice(0,500):'',
       Pregnant: getvisitformDatabase.Result.VisitInfo.Pregnant||false,
-      PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500)||'',
+      PresentIllness: getvisitformDatabase.Result.VisitInfo.PresentIllness? getvisitformDatabase.Result.VisitInfo.PresentIllness.slice(0,500):'',
       PreviousTreatmentDate: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDate||'',
-      PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail.slice(0,20)||'',
+      PreviousTreatmentDetail: getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail? getvisitformDatabase.Result.VisitInfo.PreviousTreatmentDetail.slice(0,20):'',
       PrivateCase: getvisitformDatabase.Result.VisitInfo.PrivateCase||false,
-      ProcedureFreeText: getvisitformDatabase.Result.VisitInfo.ProcedureFreeText.slice(0,500),
+      ProcedureFreeText: getvisitformDatabase.Result.VisitInfo.ProcedureFreeText? getvisitformDatabase.Result.VisitInfo.ProcedureFreeText.slice(0,500):'',
       SignSymptomsDate:getvisitformDatabase.Result.VisitInfo.SignSymptomsDate|| '',
       UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
       VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
@@ -104,11 +102,9 @@ try{
     xResultInfo ={
       VisitInfo: newResultReviewVisitInfoDto,
      } 
-   // console.log(newResultReviewVisitInfoDto)
-    // console.log('----get visit from database---')
   }else{
-    const FurtherClaimVN =queryOpdDischargeDto.PatientInfo.FurtherClaimVN
-    if (FurtherClaimVN){queryOpdDischargeDto.PatientInfo.VN = FurtherClaimVN}
+     const FurtherClaimVN =queryOpdDischargeDto.PatientInfo.FurtherClaimVN
+     if (FurtherClaimVN){queryOpdDischargeDto.PatientInfo.VN = FurtherClaimVN}
     const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeVisit(queryOpdDischargeDto.PatientInfo.VN);
     const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
     if (TrakcarepatientInfoStatusCode !==200){
@@ -141,6 +137,7 @@ try{
         VisitInfo: xQueryVisit,
        } 
     }else{
+
       if (FurtherClaimVN){
         const getVisitDateTimeCurrentVN = await this.trakcareService.getEpisodeInfoByVN(queryOpdDischargeDto.PatientInfo.VN);
         const CurrentVisitDateTime =getVisitDateTimeCurrentVN?.VisitInfo?.VisitDateTime
@@ -849,6 +846,16 @@ try{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
     const xQueryBilling: QueryBilling[] = TrakcarepatientInfo.BillingInfo ? 
     TrakcarepatientInfo.BillingInfo.map((item) => {
+
+      if (item.LocalBillingCode =='0101015'){
+        console.log('Vitamin')
+        item.LocalBillingCode ='0101013'
+        item.LocalBillingName ='1.1.1(13) ค่ายาผู้ป่วยนอก'
+        item.SimbBillingCode ='1.1.1(13)'
+        item.PayorBillingCode ='1.1.1(13)'
+  
+      }
+
     return {
       LocalBillingCode: item.LocalBillingCode||'', 
       LocalBillingName: item.LocalBillingName||'',
@@ -1975,7 +1982,8 @@ try{
   xSurgeryTypeCode:querySubmitOpdDischargeDto.PatientInfo.SurgeryTypeCode,
   xIllnessTypeCode:querySubmitOpdDischargeDto.PatientInfo.IllnessTypeCode,
   xRunningdocument:querySubmitOpdDischargeDto.PatientInfo.Runningdocument,
-  xFurtherClaimVN :querySubmitOpdDischargeDto.PatientInfo.FurtherClaimVN
+  xFurtherClaimVN :querySubmitOpdDischargeDto.PatientInfo.FurtherClaimVN,
+  xOrderVitamin: querySubmitOpdDischargeDto.PatientInfo.OrderVitamin,
  }
  const FurtherClaimVN =RequesetBody.xFurtherClaimVN
  
@@ -2463,10 +2471,16 @@ let newResultBillingInfoDto : ResultBillingInfoDto[] = [];
 let  newTotalBillAmount ;
    if (getOPDDischargeBilling && getOPDDischargeBilling.BillingInfo && getOPDDischargeBilling.BillingInfo.length > 0) {
        newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
-       console.log('----- newTotalBillAmount')
       // console.log(newTotalBillAmount)
       newResultBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
+      if (item.LocalBillingCode =='0101015'){
+                console.log('Vitamin')
+            item.LocalBillingCode ='0101013'
+            item.LocalBillingName ='1.1.1(13) ค่ายาผู้ป่วยนอก'
+            item.SimbBillingCode ='1.1.1(13)'
+            item.PayorBillingCode ='1.1.1(13)'  
+          }
       return {
         LocalBillingCode: item.LocalBillingCode,
         LocalBillingName: item.LocalBillingName,

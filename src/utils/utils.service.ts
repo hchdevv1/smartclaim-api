@@ -1585,6 +1585,8 @@ async getPackageBundle(xPackageCode: string ) {
       billingnetamount:true,
       totalbillamount:true
      
+      },orderBy:{
+        id:'desc'
       }
      })
      if (!packagebundle || packagebundle.length === 0) {
@@ -3211,7 +3213,9 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
 
     
     };
-   //console.log("whereConditions:", whereConditions);
+    console.log('------^^^^^^')
+   console.log("whereConditions:", whereConditions);
+   console.log('------^^^^^^')
 
 
     const fileRecords = await prismaProgest.claimdocuments.findMany({
@@ -3219,9 +3223,10 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
       //where: { vn: { equals: 'O504393-67' } },
       //select: {hn:true,documentname:true}
     });
+    let filesAsBase64
    // console.log(fileRecords);
-
-    const filesAsBase64 = await Promise.all(
+    if(fileRecords){
+     filesAsBase64 = await Promise.all(
       fileRecords.map(async (fileRecord) => {
         //const filePath = join(__dirname, '..', '..', fileRecord.filepath);
        // const fileBuffer = readFileSync(filePath);
@@ -3234,7 +3239,13 @@ async saveFile(file: Express.Multer.File ,body: QueryCreateClaimDocumentDtoBodyD
           //base64: base64File, // ข้อมูลไฟล์เป็น Base64
         };
       }),
-    );
+    );}else{
+      filesAsBase64={
+        filename:'',
+        originalname:'',
+        documenttypecode:''
+      }
+    }
    // console.log(filename)
   return filesAsBase64
 }
@@ -3319,6 +3330,26 @@ async UpdateDocumentTypeCode(querylistDocumentNameDtoBodyDto: QuerylistDocumentN
   const TransactionNo = querylistDocumentNameDtoBodyDto.PatientInfo.TransactionNo;
   const DocumenttypeCode =querylistDocumentNameDtoBodyDto.PatientInfo.DocumenttypeCode;
   const DocumentName = querylistDocumentNameDtoBodyDto.PatientInfo.DocumentName;
+
+  const fileRecord = await prismaProgest.claimdocuments.findFirst({
+    where: {
+      refid: RefId,
+      transactionno: TransactionNo,
+      documentname: DocumentName,
+    },
+  });
+  await prismaProgest.claimdocuments.updateMany({
+    where: {
+      refid: RefId,
+      transactionno: TransactionNo,
+      documentname: DocumentName,
+    },
+    data: {
+      isclaimexcluded: true,
+      originaldocumenttypecode: fileRecord.documenttypecode
+    }
+   
+  });
   await prismaProgest.claimdocuments.updateMany({
     where: {
         refid:RefId,
@@ -3421,6 +3452,127 @@ async DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocume
      return newResultDeleteDocumentByDocNameDto ;
 }
 
+async isClaimExcludedByDocName(queryDeleteDocumentByDocNameDto: QueryDeleteDocumentByDocNameDto) {
+  //isClaimExcludedByDocName
+  const xRefId = queryDeleteDocumentByDocNameDto.PatientInfo.RefId;
+  const xTransactionNo = queryDeleteDocumentByDocNameDto.PatientInfo.TransactionNo;
+  const xDocumentName = queryDeleteDocumentByDocNameDto.PatientInfo.DocumentName;
+
+   let  DeleteDocumentInfo;
+   try{
+   // 1. ดึงข้อมูลไฟล์จากฐานข้อมูลก่อน (เพื่อเอา path ของไฟล์ที่จะลบ)
+   const fileRecord = await prismaProgest.claimdocuments.findFirst({
+     where: {
+       refid: xRefId,
+       transactionno: xTransactionNo,
+       documentname: xDocumentName,
+     },
+   });
+
+   if (!fileRecord) {
+     this.addFormatHTTPStatus(newHttpMessageDto,400,'File not found in database','File not found in database')
+     DeleteDocumentInfo={
+       status: "File not found in database",
+       documentname:xDocumentName
+       }  
+     // throw new Error('File not found in database');
+   }else{
+console.log('000000')
+console.log(fileRecord.documenttypecode)
+
+    
+
+     await prismaProgest.claimdocuments.updateMany({
+      where: {
+        refid: xRefId,
+        transactionno: xTransactionNo,
+        documentname: xDocumentName,
+      },
+      data: {
+        isclaimexcluded: true,
+        documenttypecode: fileRecord.originaldocumenttypecode
+      }
+     
+    });
+ 
+     // 3. ลบไฟล์จากระบบไฟล์
+    
+    this.addFormatHTTPStatus(newHttpMessageDto,200,'File Excluded successfully!','File and record deleted successfully!')
+
+    DeleteDocumentInfo={
+    status: "File and record Excluded successfully",
+    documentname:xDocumentName
+    }
+
+   //  console.log('xxxx'+  fileRecord.filepath)
+   }
+  // console.log('yyyy')
+
+
+ }catch (error) {
+   console.error('Error deleting file and record:', error);
+   this.addFormatHTTPStatus(newHttpMessageDto,500,'Error deleting file and record','Error deleting file and record')
+   DeleteDocumentInfo={
+     status: "Error deleting file and record",
+     documentname:xDocumentName
+     }  
+   //throw new Error('Failed to delete file or record');
+ }
+   
+ let newResultDeleteDocumentByDocNameDto= new ResultDeleteDocumentByDocNameDto();
+     newResultDeleteDocumentByDocNameDto={
+           HTTPStatus:newHttpMessageDto,
+           Result:DeleteDocumentInfo
+   }
+
+    return newResultDeleteDocumentByDocNameDto ;
+}
+async getlistDocumentClaim(querylistDocumentNameDtoBodyDto: QuerylistDocumentNameDtoBodyDto) {
+  
+  const HN =querylistDocumentNameDtoBodyDto.PatientInfo.HN;
+  const VN = querylistDocumentNameDtoBodyDto.PatientInfo.VN;
+  const RefId = querylistDocumentNameDtoBodyDto.PatientInfo.RefId;
+  const TransactionNo = querylistDocumentNameDtoBodyDto.PatientInfo.TransactionNo;
+  const DocumenttypeCode =querylistDocumentNameDtoBodyDto.PatientInfo.DocumenttypeCode;
+  const Runningdocument =querylistDocumentNameDtoBodyDto.PatientInfo.Runningdocument;
+  const isClaimExcludedByDocName =false
+  const whereConditions = {
+    ...(HN ? { hn: { equals: HN } } : {}),
+    ...(VN ? { vn: { equals: VN } } : {}),
+    ...(RefId ? { refid: { equals: RefId } } : {}),
+    ...(TransactionNo ? { transactionno: { equals: TransactionNo } } : {}),
+    ...(DocumenttypeCode ? { documenttypecode: { equals: DocumenttypeCode } } : {}),
+    ...(Runningdocument ? { runningdocument: { equals: Runningdocument } } : {}),
+    ...(isClaimExcludedByDocName ? { isClaimExcludedByDocName: { not: true } } : {}),
+
+  };
+ //console.log("whereConditions:", whereConditions);
+
+
+  const fileRecords = await prismaProgest.claimdocuments.findMany({
+    where: whereConditions,
+    //where: { vn: { equals: 'O504393-67' } },
+    //select: {hn:true,documentname:true}
+  });
+  //console.log(fileRecords);
+  const filesAsBase64 = await Promise.all(
+    fileRecords.map(async (fileRecord) => {
+      //const filePath = join(__dirname, '..', '..', fileRecord.filepath);
+     // const fileBuffer = readFileSync(filePath);
+      //const base64File = fileBuffer.toString('base64');
+      return {
+        filename: fileRecord.documentname ,
+        originalname: fileRecord.originalname,
+        documenttypecode : fileRecord.documenttypecode,
+        isClaimExcludedByDocName: fileRecord.isclaimexcluded
+         //fileRecord.filepath.split('/').pop(), // ชื่อไฟล์
+        //base64: base64File, // ข้อมูลไฟล์เป็น Base64
+      };
+    }),
+  );
+ //console.log(filesAsBase64)
+return filesAsBase64
+}
 
 async getListDocumentforAttachDocList(queryListDocumentforAttachDocListDto: QueryListDocumentforAttachDocListDto) {
   //console.log('getListDocumentforAttachDocList')

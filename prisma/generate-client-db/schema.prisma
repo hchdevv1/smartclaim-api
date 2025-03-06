@@ -90,24 +90,26 @@ model claimants {
 }
 
 model claimdocuments {
-  id               Int       @id @default(autoincrement())
-  insurerid        Int?
-  refid            String?   @db.VarChar(255)
-  transactionno    String?   @db.VarChar(255)
-  hn               String?   @db.VarChar(10)
-  vn               String?   @db.VarChar(10)
-  documentname     String?   @db.VarChar(100)
-  documenttypecode String?   @db.VarChar(50)
-  documenttypename String?   @db.VarChar(100)
-  serverpath       String?   @db.VarChar(255)
-  filepath         String    @db.VarChar(255)
-  filesize         BigInt?
-  filemimetype     String?   @db.VarChar(100)
-  uploaddate       DateTime? @default(now()) @db.Timestamp(6)
-  uploadedby       String?   @db.VarChar(50)
-  originalname     String?   @db.VarChar(255)
-  runningdocument  Decimal?  @db.Decimal
-  insurers         insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
+  id                       Int       @id @default(autoincrement())
+  insurerid                Int?
+  refid                    String?   @db.VarChar(255)
+  transactionno            String?   @db.VarChar(255)
+  hn                       String?   @db.VarChar(10)
+  vn                       String?   @db.VarChar(10)
+  documentname             String?   @db.VarChar(100)
+  documenttypecode         String?   @db.VarChar(50)
+  documenttypename         String?   @db.VarChar(100)
+  serverpath               String?   @db.VarChar(255)
+  filepath                 String    @db.VarChar(255)
+  filesize                 BigInt?
+  filemimetype             String?   @db.VarChar(100)
+  uploaddate               DateTime? @default(now()) @db.Timestamp(6)
+  uploadedby               String?   @db.VarChar(50)
+  originalname             String?   @db.VarChar(255)
+  runningdocument          Decimal?  @db.Decimal
+  isclaimexcluded          Boolean?
+  originaldocumenttypecode String?   @db.VarChar(255)
+  insurers                 insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model claimstatus {
@@ -386,23 +388,6 @@ model opeartionispackage {
   insurers  insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model accidenttransactions22 {
-  id              Int       @id(map: "accidenttransactions_pkey") @default(autoincrement())
-  insurerid       Int?
-  refid           String?   @db.VarChar(255)
-  transactionno   String?   @db.VarChar(255)
-  hn              String?   @db.VarChar(10)
-  vn              String?   @db.VarChar(10)
-  accidentplace   String?   @db.VarChar(10)
-  accidentdate    String?   @db.VarChar(20)
-  causeofinjury   String?   @db.VarChar(500)
-  commentofinjury String?   @db.VarChar(500)
-  woundtype       String?   @db.VarChar(500)
-  injuryside      String?   @db.VarChar(500)
-  injuryarea      String?   @db.VarChar(500)
-  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "accidenttransactions_insurerid_fkey")
-}
-
 model concurrentnotetransactions {
   id                 Int       @id @default(autoincrement())
   insurerid          Int?
@@ -481,4 +466,21 @@ model packagebundle {
   billingdiscount  String? @db.VarChar(255)
   billingnetamount String? @db.VarChar(255)
   totalbillamount  String? @db.VarChar(100)
+}
+
+model accidenttransactions22 {
+  id              Int       @id(map: "accidenttransactions_pkey") @default(autoincrement())
+  insurerid       Int?
+  refid           String?   @db.VarChar(255)
+  transactionno   String?   @db.VarChar(255)
+  hn              String?   @db.VarChar(10)
+  vn              String?   @db.VarChar(10)
+  accidentplace   String?   @db.VarChar(10)
+  accidentdate    String?   @db.VarChar(20)
+  causeofinjury   String?   @db.VarChar(500)
+  commentofinjury String?   @db.VarChar(500)
+  woundtype       String?   @db.VarChar(500)
+  injuryside      String?   @db.VarChar(500)
+  injuryarea      String?   @db.VarChar(500)
+  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "accidenttransactions_insurerid_fkey")
 }

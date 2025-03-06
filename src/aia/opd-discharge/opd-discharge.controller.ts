@@ -14,6 +14,7 @@ export class OpdDischargeController {
 
   @Post('/getOPDDischargeVisit')
   async getOPDDischargeVisit(@Body() queryOpdDischargeDto:QueryOpdDischargeDto){
+      console.log('ppp')
         const result = this.opdDischargeService.getOPDDischargeVisit(queryOpdDischargeDto);
         return result
   }

@@ -184,6 +184,17 @@ async DeleteDocumentByDocName(@Body() queryDeleteDocumentByDocNameDto:QueryDelet
   const fileData = await this.utilsService.DeleteDocumentByDocName(queryDeleteDocumentByDocNameDto);
   return fileData;
 }
+@Post('/isClaimExcludedByDocName') //prod
+async isClaimExcludedByDocName(@Body() queryDeleteDocumentByDocNameDto:QueryDeleteDocumentByDocNameDto){
+ 
+  const fileData = await this.utilsService.isClaimExcludedByDocName(queryDeleteDocumentByDocNameDto);
+  return fileData;
+}
+@Post('/getlistDocumentClaim') //prod
+async getlistDocumentClaim(@Body() querylistDocumentNameDtoBodyDto:QuerylistDocumentNameDtoBodyDto){
+     const result = await this.utilsService.getlistDocumentClaim(querylistDocumentNameDtoBodyDto);
+     return result
+}
 @Post('/UpdateDocumentTypeCode') //prod
 async UpdateDocumentTypeCode(@Body() querylistDocumentNameDtoBodyDto:QuerylistDocumentNameDtoBodyDto){
  

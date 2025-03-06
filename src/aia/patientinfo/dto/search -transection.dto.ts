@@ -51,6 +51,14 @@ export class QuerySearchTransection {
     @IsString()
     @IsOptional()
     ServiceSettingAbbr?: string;
+
+    @IsDate()
+    @IsOptional()
+    StatusChangedAtDatefrom?: string;
+
+    @IsDate()
+    @IsOptional()
+    StatusChangedAtDateto?: string;
     
   }
 
@@ -110,6 +118,8 @@ export class ResultTransactionClaimDto {
     @IsString()
     @IsOptional()
     VisitDate?: string;
+
+   
 
     @IsString()
     @IsNotEmpty()

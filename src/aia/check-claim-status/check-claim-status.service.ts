@@ -101,36 +101,58 @@ export class CheckClaimStatusService {
       //  const DecryptDocument =await this.utilsService.DecryptAESECB(responsefromAIA.Data.AttachDocList.Base64Data, AIA_APISecretkey);
      // const DecryptDocument = await this.utilsService.DecryptAESECB('doc.Base64Data', AIA_APISecretkey);
      let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+     
      if (responsefromAIA.Data.AttachDocList.length >0){
      xResultAttachDocListInfoDto = await Promise.all(
        responsefromAIA.Data.AttachDocList.map(async (doc) => {
+        
          try {
            const DecryptDocument = await this.utilsService.DecryptAESECB( doc.Base64Data, AIA_APISecretkey, );
-            await this.utilsService.saveBase64File(DecryptDocument, doc.DocName);
-            await prismaProgest.claimdocuments.create({
-              data: {
-                hn: RequesetBody.xHN, // ปรับข้อมูลตามที่ต้องการ
-                vn: RequesetBody.xVN,
-                refid: RequesetBody.xRefId,
-                insurerid:13,
-                transactionno: RequesetBody.xTransactionNo,
-                documenttypecode: '007',
-                documenttypename:'pdf',
-                originalname: doc.DocName,
-                documentname: RequesetBody.xVN+'-'+'007'+'-'+Math.round(Math.random() * 186).toString(3)+'.'+'pdf',
-                filesize: null,
-                filemimetype: 'application/pdf',
-                serverpath: 'path-to-server', 
-                filepath: `./uploads/pdf/`+doc.DocName, // เส้นทางที่เก็บไฟล์
-                uploaddate: new Date(),
-                uploadedby: null,
-               runningdocument:Math.round(Math.random() * 186).toString(3)
-              },
-            });
-           return {
-             Base64Data: doc.Base64Data,
-             DocName: doc.DocName,
-           };
+           
+           await this.utilsService.saveBase64File(DecryptDocument, doc.DocName);
+
+           const existingOriginalname = await prismaProgest.claimdocuments.findMany({
+            where: {
+               originalname: doc.DocName
+            }
+        }); 
+        if (!existingOriginalname || (Array.isArray(existingOriginalname) && existingOriginalname.length === 0)) {
+          
+          await prismaProgest.claimdocuments.create({
+            data: {
+              hn: queryCheckClaimStatusBodyDto.PatientInfo.HN, //RequesetBody.xHN, // ปรับข้อมูลตามที่ต้องการ
+              vn: queryCheckClaimStatusBodyDto.PatientInfo.VN, //RequesetBody.xVN,
+              refid: RequesetBody.xRefId,
+              insurerid:13,
+              transactionno: RequesetBody.xTransactionNo,
+              documenttypecode: '007',
+              documenttypename:'pdf',
+              originalname: doc.DocName,
+              documentname: RequesetBody.xVN+'-'+'007'+'-'+Math.round(Math.random() * 186).toString(3)+'.'+'pdf',
+              filesize: null,
+              filemimetype: 'application/pdf',
+              serverpath: 'path-to-server', 
+              filepath: `./uploads/pdf/`+doc.DocName, // เส้นทางที่เก็บไฟล์
+              uploaddate: new Date(),
+              uploadedby: null,
+             runningdocument:Math.round(Math.random() * 186).toString(3)
+            },
+          });
+         
+         return {
+           Base64Data: doc.Base64Data,
+           DocName: doc.DocName,
+         };
+
+        }else{
+          return {
+            Base64Data: doc.Base64Data,
+            DocName: doc.DocName,
+          };
+
+        }
+       
+
          } catch (error) {
            console.error(`Error processing document ${doc.DocName}:`, error);
            return {
@@ -142,7 +164,9 @@ export class CheckClaimStatusService {
      );
      console.log(xResultAttachDocListInfoDto[0].DocName)
     }
-//  const uploadBase64File = await this.utilsService.saveBase64File(xResultAttachDocListInfoDto.Base64Data, xResultAttachDocListInfoDto.DocName);
+ //const uploadBase64File = await this.utilsService.saveBase64File(xResultAttachDocListInfoDto.Base64Data, xResultAttachDocListInfoDto.DocName);
+ 
+ //const saveFileToDatabase = await this.utilsService.saveFile(xResultAttachDocListInfoDto.Base64Data, xResultAttachDocListInfoDto.DocName);
 
  // โฟลเดอร์สำหรับเก็บไฟล์
  

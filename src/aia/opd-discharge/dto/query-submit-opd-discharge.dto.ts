@@ -187,6 +187,12 @@ class SearchPatientBodyDto{
     @IsString()
     @IsOptional()
     FurtherClaimVN?: string;
+
+
+
+    @IsBoolean()
+    @IsOptional()
+    OrderVitamin?: boolean;
   }
 class QueryProcedure{
 

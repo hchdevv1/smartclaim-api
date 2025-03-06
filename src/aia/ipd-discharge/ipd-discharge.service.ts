@@ -533,14 +533,17 @@ try{
   const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
   if (TrakcarepatientInfoStatusCode !==200){
     this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
-    const xQueryDiagnosis =[{    
+   
+   
+   
+    const xQueryDiagnosis ={    
       DxTypeCode: '', 
       DxCode: '',
       DxName: '',
       Dxtypenametrakcare: '',
       Dxtypecodeinsurance: '',
       Dxtypenameinsurance: ''
-     }]
+     }
      xResultInfo ={
       DiagnosisInfo: [xQueryDiagnosis],
      } 
@@ -2460,9 +2463,7 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
       if (item.DxTypeCode === getDiagnosisTypeMapping.Result.dxtypecodetrakcare) {
         item.DxTypeCode = getDiagnosisTypeMapping.Result.dxtypecodeinsurance;
       }
-      const countDiag =getIPDDischargeDiagnosis.DiagnosisInfo.length
-      const FirstTextDxCode = item.DxCode[0]
-      if ((countDiag ===1) &&(FirstTextDxCode ==='Z')){
+      if (item.DxCode){
         return {
           DxName: item.DxName,
           DxType: item.DxTypeCode,
@@ -2470,25 +2471,41 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
           
         };
       }else{
+        if (newResultVisitInfoDto.IsIPDDischarge==true){
 
-        return {
-          DxName: item.DxName,
-          DxType: item.DxTypeCode,
-          Icd10: item.DxCode,
-          
-        };
+          return {
+            DxName: '',
+            DxType:'',
+            Icd10: ''
+          };
+        }else{
+          return {
+            DxName: '',
+            DxType:'OT',
+            Icd10: 'J10.1'
+            
+          };
+        }
       }
-
-     
     })
   );
   
 } else {
+  if (newResultVisitInfoDto.IsIPDDischarge==true){
+    newQueryDiagnosisInfoDto = [{
+      DxName: '',
+      DxType: '',
+      Icd10: '',
+    }];
+  }
+ else{
   newQueryDiagnosisInfoDto = [{
     DxName: '',
-    DxType: '',
-    Icd10: '',
+    DxType: 'OT',
+    Icd10: 'J10.1',
   }];
+ } 
+  
 }
 // console.log(newQueryDiagnosisInfoDto)
 // console.log('getIPDDischargeDiagnosis done')

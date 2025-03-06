@@ -208,7 +208,9 @@ exports.Prisma.ClaimdocumentsScalarFieldEnum = {
   uploaddate: 'uploaddate',
   uploadedby: 'uploadedby',
   originalname: 'originalname',
-  runningdocument: 'runningdocument'
+  runningdocument: 'runningdocument',
+  isclaimexcluded: 'isclaimexcluded',
+  originaldocumenttypecode: 'originaldocumenttypecode'
 };
 
 exports.Prisma.ClaimstatusScalarFieldEnum = {
@@ -443,22 +445,6 @@ exports.Prisma.OpeartionispackageScalarFieldEnum = {
   insurerid: 'insurerid'
 };
 
-exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
-  id: 'id',
-  insurerid: 'insurerid',
-  refid: 'refid',
-  transactionno: 'transactionno',
-  hn: 'hn',
-  vn: 'vn',
-  accidentplace: 'accidentplace',
-  accidentdate: 'accidentdate',
-  causeofinjury: 'causeofinjury',
-  commentofinjury: 'commentofinjury',
-  woundtype: 'woundtype',
-  injuryside: 'injuryside',
-  injuryarea: 'injuryarea'
-};
-
 exports.Prisma.ConcurrentnotetransactionsScalarFieldEnum = {
   id: 'id',
   insurerid: 'insurerid',
@@ -531,6 +517,22 @@ exports.Prisma.PackagebundleScalarFieldEnum = {
   totalbillamount: 'totalbillamount'
 };
 
+exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
+  id: 'id',
+  insurerid: 'insurerid',
+  refid: 'refid',
+  transactionno: 'transactionno',
+  hn: 'hn',
+  vn: 'vn',
+  accidentplace: 'accidentplace',
+  accidentdate: 'accidentdate',
+  causeofinjury: 'causeofinjury',
+  commentofinjury: 'commentofinjury',
+  woundtype: 'woundtype',
+  injuryside: 'injuryside',
+  injuryarea: 'injuryarea'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -573,13 +575,13 @@ exports.Prisma.ModelName = {
   anesthesialist: 'anesthesialist',
   indicationsforadmission: 'indicationsforadmission',
   opeartionispackage: 'opeartionispackage',
-  accidenttransactions22: 'accidenttransactions22',
   concurrentnotetransactions: 'concurrentnotetransactions',
   diagnosistransactions: 'diagnosistransactions',
   preauthnotetransactions: 'preauthnotetransactions',
   prebillingtransactions: 'prebillingtransactions',
   servicesetting_illnesstype: 'servicesetting_illnesstype',
-  packagebundle: 'packagebundle'
+  packagebundle: 'packagebundle',
+  accidenttransactions22: 'accidenttransactions22'
 };
 
 /**
