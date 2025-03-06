@@ -916,6 +916,16 @@ try{
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
     const xQueryBilling: QueryBilling[] = TrakcarepatientInfo.BillingInfo ? 
     TrakcarepatientInfo.BillingInfo.map((item) => {
+
+
+ if (item.LocalBillingCode =='0101015'){
+  console.log('Vitamin')
+  item.LocalBillingCode ='0101013'
+  item.LocalBillingName ='1.1.1(13) ค่ายาผู้ป่วยนอก'
+  item.SimbBillingCode ='1.1.1(13)'
+  item.PayorBillingCode ='1.1.1(13)'
+
+}
     return {
       LocalBillingCode: item.LocalBillingCode||'', 
       LocalBillingName: item.LocalBillingName||'',
@@ -2757,6 +2767,14 @@ let  newTotalBillAmount ;
        newTotalBillAmount = getOPDDischargeBilling.TotalBillAmount
       newResultBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
+
+      if (item.LocalBillingCode =='0101015'){
+          console.log('Vitamin')
+          item.LocalBillingCode ='0101013'
+          item.LocalBillingName ='1.1.1(13) ค่ายาผู้ป่วยนอก'
+          item.SimbBillingCode ='1.1.1(13)'
+        item.PayorBillingCode ='1.1.1(13)'
+}
       return {
         LocalBillingCode: item.LocalBillingCode,
         LocalBillingName: item.LocalBillingName,
