@@ -855,6 +855,13 @@ try{
         item.PayorBillingCode ='1.1.1(13)'
   
       }
+      if (item.LocalBillingCode =='01230001'){
+        console.log('ค่าวิสัญญีแพทย์ และ/ หรือ วิสัญญีพยาบาล')
+        item.LocalBillingCode ='0121001'
+        item.LocalBillingName ='1.2.1(1) ค่าตรวจรักษากรณีผู้ป่วยนอก'
+        item.SimbBillingCode ='1.2.1(1)'
+        item.PayorBillingCode ='1.2.1(1)'
+      }
 
     return {
       LocalBillingCode: item.LocalBillingCode||'', 
@@ -2481,6 +2488,14 @@ let  newTotalBillAmount ;
             item.SimbBillingCode ='1.1.1(13)'
             item.PayorBillingCode ='1.1.1(13)'  
           }
+          if (item.LocalBillingCode =='01230001'){
+            console.log('ค่าวิสัญญีแพทย์ และ/ หรือ วิสัญญีพยาบาล')
+            item.LocalBillingCode ='0121001'
+            item.LocalBillingName ='1.2.1(1) ค่าตรวจรักษากรณีผู้ป่วยนอก'
+            item.SimbBillingCode ='1.2.1(1)'
+            item.PayorBillingCode ='1.2.1(1)'
+          }
+    
       return {
         LocalBillingCode: item.LocalBillingCode,
         LocalBillingName: item.LocalBillingName,

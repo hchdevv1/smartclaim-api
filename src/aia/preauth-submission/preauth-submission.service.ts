@@ -45,6 +45,7 @@ import { ResultPreAuthBillingDto ,QueryBilling} from './dto/result-billing-preau
 import { ResultCheckeligiblePreAdmissionDto ,CoverageList ,MessageList ,PolicyInfoList ,InsuranceEligibleData ,InsuranceCustomerDetail} from './dto/result-check-eligible-preadmission.dto';
 import { ResultlistICDDxInfoDto} from './dto/result-ICDDx.dto';
 import { ResultlistICD9InfoDto } from './dto/result-ICD9.dto';
+import { ResultBillingSubInfoDto } from './dto/result-BillingSub.dto';
 import { QueryUpdateIsAdmissionBodyDto ,ResultSubmitUpdateIsAdmissionDto} from './dto/query-updateisadmission-preauth-submission.dto';
 import { ResultReviewDataJsonDto ,ResultReviewPatientInfoDto ,ResultReviewOpdDischargeDto  ,QueryConcurNote
   ,ResultReviewVisitInfoDto ,ResultReviewPreVisitInfoDto
@@ -5511,6 +5512,7 @@ const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(R
 }
 //#endregion 
 //#region  review Billing
+ // get from prebill
 let newResultReviewBillingInfoDto : ResultReviewBillingInfoDto[] = [];
 let  newTotalBillAmount ;
 let newInvoiceNumber ;
@@ -5912,6 +5914,116 @@ return newResultReviewOpdDischargeDto
      }
    }
    
+
+   
+
+   async getBillingSubgroup(xBillingCode: string ){
+
+    let arrayBillingSubInfo;
+    const newHttpMessageDto =new HttpMessageDto();
+     try{
+       
+      const TrakcareBillingSubInfo = await this.trakcareService.getBillingSubgroup(xBillingCode)
+      if (TrakcareBillingSubInfo.ObjBillingSubInfo){
+        arrayBillingSubInfo = {
+     
+          BillingSubInfo: TrakcareBillingSubInfo.ObjBillingSubInfo.map((item) => ({
+            LocalBillingId: item.LocalBillingId,
+            LocalBillingCode: item.LocalBillingCode,
+            LocalBillingName: item.LocalBillingName,
+            SimbBillingCode: item.SimbBillingCode,
+            PayorBillingCode: item.PayorBillingCode,
+    }))
+       }
+       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+ 
+      }else{
+        arrayBillingSubInfo = [{
+          LocalBillingId: '',
+          LocalBillingCode: '',
+          LocalBillingName: '',
+          SimbBillingCode: '',
+          PayorBillingCode: '',
+         }];
+         this.addFormatHTTPStatus(newHttpMessageDto,400,'','')
+      }
+
+ 
+ 
+   let newResultBillingSubInfoDto= new ResultBillingSubInfoDto();
+   newResultBillingSubInfoDto={
+     HTTPStatus:newHttpMessageDto,
+     Result:  arrayBillingSubInfo
+   }
+   
+   return newResultBillingSubInfoDto
+     }catch(error)
+     {
+       if (error instanceof Prisma.PrismaClientInitializationError) {
+         throw new HttpException(
+          { 
+           HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+             error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+           },
+           },HttpStatus.INTERNAL_SERVER_ERROR );
+       }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+           throw new HttpException(
+             {  
+               HTTPStatus: {
+                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                 message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                 error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              },
+             },HttpStatus.INTERNAL_SERVER_ERROR ); 
+       }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+         if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+             message: 'Cannot connect to the database server. Please ensure it is running.',
+             error: 'Cannot connect to the database server. Please ensure it is running.',
+           },
+           }, HttpStatus.SERVICE_UNAVAILABLE);
+         }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'Invalid data format or conversion error.',
+             error: 'Invalid data format or conversion error.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.FORBIDDEN,
+             message: 'You do not have permission to perform this action.',
+             error: 'You do not have permission to perform this action.',
+           },
+           }, HttpStatus.FORBIDDEN);
+         }else if (error.message.includes('Unable to fit integer value')) {
+           // Handle integer overflow or similar errors
+           throw new HttpException({
+             HTTPStatus: {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: 'The integer value is too large for the database field.',
+             error: 'The integer value is too large for the database field.',
+           },
+           }, HttpStatus.BAD_REQUEST);
+         }
+         else{
+           throw new HttpException({  
+             HTTPStatus: {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'An unexpected error occurred.',
+                error: 'An unexpected error occurred.',
+               },
+             },HttpStatus.INTERNAL_SERVER_ERROR,);
+         }
+       }
+     }
+   }
 /// Utils ///
 async convertDxTypeCode(inputInsurerCode:string,inputdxTypeCodeTrakcare:string) {
   const convertDxtypename = await this.utilsService.getDiagnosisTypeMapping(inputInsurerCode,inputdxTypeCodeTrakcare);

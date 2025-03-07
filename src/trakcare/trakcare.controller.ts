@@ -127,6 +127,10 @@ getICDDx(@Param('xICDDxCode') xICDDxCode: string) {
 getICD9(@Param('xICD9Code') xICD9Code: string) {
  return this.trakcareService.getICD9(xICD9Code);
 }
+@Get('/getBillingSubgroup/:xBillingCode')
+getBillingSubgroup(@Param('xBillingCode') xBillingCode: string) {
+ return this.trakcareService.getBillingSubgroup(xBillingCode);
+}
 // @Get('/getPreAuthBilling/:xVN')
 // getPreAuthBilling(@Param('xVN') xVN: string) {
 //  return this.trakcareService.getPreAuthBilling(xVN);

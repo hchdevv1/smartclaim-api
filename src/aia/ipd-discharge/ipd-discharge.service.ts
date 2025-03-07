@@ -920,10 +920,10 @@ try{
 
  if (item.LocalBillingCode =='0101015'){
   console.log('Vitamin')
-  item.LocalBillingCode ='0101013'
-  item.LocalBillingName ='1.1.1(13) ค่ายาผู้ป่วยนอก'
-  item.SimbBillingCode ='1.1.1(13)'
-  item.PayorBillingCode ='1.1.1(13)'
+  item.LocalBillingCode ='0101012'
+  item.LocalBillingName ='1.1.1(12) ค่ายาผู้ป่วยใน'
+  item.SimbBillingCode ='1.1.1(12)'
+  item.PayorBillingCode ='1.1.1(12)'
 
 }
     return {
@@ -2768,13 +2768,14 @@ let  newTotalBillAmount ;
       newResultBillingInfoDto= await Promise.all(
       getOPDDischargeBilling.BillingInfo.map(async (item) => {
 
-      if (item.LocalBillingCode =='0101015'){
+        if (item.LocalBillingCode =='0101015'){
           console.log('Vitamin')
-          item.LocalBillingCode ='0101013'
-          item.LocalBillingName ='1.1.1(13) ค่ายาผู้ป่วยนอก'
-          item.SimbBillingCode ='1.1.1(13)'
-        item.PayorBillingCode ='1.1.1(13)'
-}
+          item.LocalBillingCode ='0101012'
+          item.LocalBillingName ='1.1.1(12) ค่ายาผู้ป่วยใน'
+          item.SimbBillingCode ='1.1.1(12)'
+          item.PayorBillingCode ='1.1.1(12)'
+        
+        }
       return {
         LocalBillingCode: item.LocalBillingCode,
         LocalBillingName: item.LocalBillingName,

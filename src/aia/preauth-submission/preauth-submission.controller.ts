@@ -170,7 +170,10 @@ getICDDx(@Param('xICDDxCode') xICDDxCode: string ) {
 getICD9(@Param('xICD9Code') xICD9Code: string ) {
     return  this.preauthSubmissionService.getICD9(xICD9Code);
   }
-
+  @Get('/getBillingSubgroup/:xBillingCode')
+  getBillingSubgroup(@Param('xBillingCode') xBillingCode: string ) {
+    return  this.preauthSubmissionService.getBillingSubgroup(xBillingCode);
+  }
 //#endregion
 
 }
