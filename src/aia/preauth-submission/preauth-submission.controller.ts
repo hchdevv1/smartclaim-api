@@ -116,6 +116,12 @@ async getPackageBundle(@Body() queryPackageBundleDto:QueryPackageBundleDto){
         const result = this.preauthSubmissionService.SubmitDiagnosis(queryDiagnosisDto);
         return result
   }
+  
+  @Post('/ReloadDiagnosis')
+  async ReloadDiagnosis(@Body() queryDiagnosisDto:QueryDiagnosisDto){
+        const result = this.preauthSubmissionService.ReloadDiagnosis(queryDiagnosisDto);
+        return result
+  }
   @Post('/SubmitProcedure')
   async SubmitProcedure(@Body() queryProcedureDto:QueryProcedureDto){
         const result = this.preauthSubmissionService.SubmitProcedure(queryProcedureDto);

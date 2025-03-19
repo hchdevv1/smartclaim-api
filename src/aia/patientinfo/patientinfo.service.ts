@@ -849,7 +849,7 @@ export class PatientinfoService {
     //     lte: new Date(xStatusChangedAtDateto)  
     //      }} : {}),
   };
-  console.log(whereConditions)
+  // console.log(whereConditions)
       const   ResultQuery = await prismaProgest.transactionclaim.findMany({
           
             where: whereConditions
@@ -870,9 +870,9 @@ export class PatientinfoService {
             status_changed_at: 'asc', // จัดเรียงตามลำดับเวลาแบบ ascending (จากเก่ามาใหม่)
           }
         });
-        console.log('ResultQuery')
+       // console.log('ResultQuery')
 
-        console.log(ResultQuery)
+       //console.log(ResultQuery)
 
     
     let xResultInfo: ResultTransactionInfo;

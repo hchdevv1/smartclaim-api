@@ -103,7 +103,7 @@ model claimdocuments {
   filepath                 String    @db.VarChar(255)
   filesize                 BigInt?
   filemimetype             String?   @db.VarChar(100)
-  uploaddate               DateTime? @default(now()) @db.Timestamp(6)
+  uploaddate               DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamp(6)
   uploadedby               String?   @db.VarChar(50)
   originalname             String?   @db.VarChar(255)
   runningdocument          Decimal?  @db.Decimal
@@ -186,7 +186,6 @@ model insurers {
   accidentcauseover45days    accidentcauseover45days[]
   accidentplace              accidentplace[]
   accidenttransactions       accidenttransactions[]
-  accidenttransactions22     accidenttransactions22[]
   anesthesialist             anesthesialist[]
   causeofinjuryside          causeofinjuryside[]
   causeofinjurywoundtype     causeofinjurywoundtype[]
@@ -326,19 +325,21 @@ model transactionclaim {
   surgerytypecode         String?    @db.VarChar(255)
   visitdatetime           String?    @db.VarChar(255)
   runningdocument         Decimal?   @db.Decimal
+  totalbillamount         Decimal?   @db.Decimal(10, 2)
   policynumber            String?    @db.VarChar
   membershipid            String?    @db.VarChar
   furtherclaimvn          String?    @db.VarChar
   customerid              String?    @db.VarChar
-  totalbillamount         Decimal?   @db.Decimal(10, 2)
   visitlocation           String?    @db.VarChar(255)
   paymentdate             String?    @db.VarChar
   preauthreferclaimno     String?    @db.VarChar(100)
   preauthreferocc         String?    @db.VarChar(255)
   reservedate             String?    @db.VarChar(100)
   isipddischarge          Boolean?
+  servicesettingabbr      String?    @db.VarChar(100)
   referencevn             String?    @db.VarChar
   isadmission             Boolean?
+  accidentcauseover45days String?    @db.VarChar(2)
   claimants               claimants? @relation(fields: [hn, insurerid], references: [hn, insurerid], onDelete: NoAction, onUpdate: NoAction, map: "fk_claimants_hn_insurerid")
 }
 
@@ -444,14 +445,12 @@ model prebillingtransactions {
 }
 
 model servicesetting_illnesstype {
-  id               Int            @id @default(autoincrement())
+  id               Int            @id
   servicesettingid Int
   illnesstypeid    Int
   insurerid        Int?
-  illnesstype      illnesstype    @relation(fields: [illnesstypeid], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  servicesetting   servicesetting @relation(fields: [servicesettingid], references: [id], onDelete: Cascade, onUpdate: NoAction)
-
-  @@unique([servicesettingid, illnesstypeid])
+  illnesstype      illnesstype    @relation(fields: [illnesstypeid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  servicesetting   servicesetting @relation(fields: [servicesettingid], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model packagebundle {
@@ -466,21 +465,4 @@ model packagebundle {
   billingdiscount  String? @db.VarChar(255)
   billingnetamount String? @db.VarChar(255)
   totalbillamount  String? @db.VarChar(100)
-}
-
-model accidenttransactions22 {
-  id              Int       @id(map: "accidenttransactions_pkey") @default(autoincrement())
-  insurerid       Int?
-  refid           String?   @db.VarChar(255)
-  transactionno   String?   @db.VarChar(255)
-  hn              String?   @db.VarChar(10)
-  vn              String?   @db.VarChar(10)
-  accidentplace   String?   @db.VarChar(10)
-  accidentdate    String?   @db.VarChar(20)
-  causeofinjury   String?   @db.VarChar(500)
-  commentofinjury String?   @db.VarChar(500)
-  woundtype       String?   @db.VarChar(500)
-  injuryside      String?   @db.VarChar(500)
-  injuryarea      String?   @db.VarChar(500)
-  insurers        insurers? @relation(fields: [insurerid], references: [insurerid], onDelete: NoAction, onUpdate: NoAction, map: "accidenttransactions_insurerid_fkey")
 }

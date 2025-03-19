@@ -83,6 +83,7 @@ export class RetrieveFurtherClaimListService {
           )
       );
       console.log(responsefromAIA)
+      console.log(responsefromAIA.Data.FurtherClaimList)
 
       const responeInputcode =responsefromAIA.Result.Code
       if (responeInputcode !=='S'){

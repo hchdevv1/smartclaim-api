@@ -189,6 +189,9 @@ class CreateTransactionBodyDto{
     @IsOptional()
     AccidentDate?: string;
     
+    @IsString()
+    @IsOptional()
+    Accidentcauseover45days?: string;
           
     @IsInt()
     @IsOptional()

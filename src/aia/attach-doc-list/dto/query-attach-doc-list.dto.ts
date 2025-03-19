@@ -1,4 +1,4 @@
-import {  IsInt,  IsString ,IsOptional} from 'class-validator';
+import {  IsInt,  IsString ,IsOptional ,IsBoolean} from 'class-validator';
 
 export class QueryAttachBodyDto {
     PatientInfo?: SearchPatientBodyDto
@@ -48,5 +48,9 @@ class SearchPatientBodyDto{
     @IsInt()
     @IsOptional()
     Runningdocument?:number
+
+    @IsBoolean()
+    @IsOptional()
+    IsRequestDispute?: boolean;
     
   }

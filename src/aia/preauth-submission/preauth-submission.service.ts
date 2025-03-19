@@ -885,8 +885,10 @@ export class PreauthSubmissionService {
     });
     let xQueryDiagnosis: QueryDiagnosis[] 
     const getDiagnosisformDatabase = await this.utilsService.getDiagnosisformDatabase(queryPreauthSubmissionDto.PatientInfo)
+    console.log('----- >getDiagnosisformDatabase-----')
 
-    if (getDiagnosisformDatabase && getDiagnosisformDatabase.Result.DiagnosisInfo && getDiagnosisformDatabase.Result.DiagnosisInfo.length > 0) {
+    console.log(getDiagnosisformDatabase.Result.DiagnosisInfo)
+    if (getDiagnosisformDatabase && getDiagnosisformDatabase.Result?.DiagnosisInfo && getDiagnosisformDatabase.Result?.DiagnosisInfo.length > 0) {
        xQueryDiagnosis= await Promise.all(
 
         getDiagnosisformDatabase.Result.DiagnosisInfo.map(async (item) => {
@@ -901,9 +903,7 @@ export class PreauthSubmissionService {
           Dxtypenameinsurance: 'OT'
         };
       })
-      
     );
-    
     xResultInfo ={
       DiagnosisInfo: xQueryDiagnosis,
      } 
@@ -1053,7 +1053,7 @@ export class PreauthSubmissionService {
      let newResultProcedureInfoDto: ResultProcedureInfoDto[] = [];
      const getIPDDischargeProcedure = await this.utilsService.getProcedureformDatabase(newQueryProcedeureDatabaseBodyDto)
   
-     if (getIPDDischargeProcedure && getIPDDischargeProcedure.Result.ProcedureInfo && getIPDDischargeProcedure.Result.ProcedureInfo.length > 0) {
+     if (getIPDDischargeProcedure && getIPDDischargeProcedure.Result?.ProcedureInfo && getIPDDischargeProcedure.Result?.ProcedureInfo.length > 0) {
         newResultProcedureInfoDto= await Promise.all(
           getIPDDischargeProcedure.Result.ProcedureInfo.map(async (item) => {
          return {
@@ -1194,11 +1194,11 @@ export class PreauthSubmissionService {
     InsurerCode:queryPreauthSubmissionDto.PatientInfo.InsurerCode,
     VN: queryPreauthSubmissionDto.PatientInfo.VN,
     HN:queryPreauthSubmissionDto.PatientInfo.HN,
-  
+    IllnessTypeCode :queryPreauthSubmissionDto.PatientInfo.IllnessTypeCode
   }
   //console.log('newQueryAccidentDatabaseBodyDto')
   //console.log(newQueryAccidentDatabaseBodyDto)
-  //console.log('-----')
+ 
   const accidentDatabase = await this.utilsService.getAccidentformDatabase(newQueryAccidentDatabaseBodyDto);
   if (accidentDatabase.Result.AccidentDetailInfo.AccidentPlace.length>0){
   
@@ -1237,21 +1237,41 @@ export class PreauthSubmissionService {
    } 
   this.addFormatHTTPStatus(newHttpMessageDto,200,'suceess','')
   }else{
-   const xCauseOfInjuryDetail =[{
-      CauseOfInjury: '',
-      CommentOfInjury: '',
-     } ]
-     const  xInjuryDetail =[{
-      WoundType: '',
-      InjurySide: '',
-      InjuryArea: '',
-     } ]
-     const xQueryAccident ={    
-      AccidentPlace: '', 
-      AccidentDate: '',
-      CauseOfInjuryDetail:xCauseOfInjuryDetail,
-      InjuryDetail:xInjuryDetail
-     }
+    let xQueryAccident
+    if (newQueryAccidentDatabaseBodyDto.IllnessTypeCode='ACC'){
+      const xCauseOfInjuryDetail =[{
+        CauseOfInjury: 'X599',
+        CommentOfInjury: '',
+       } ]
+       const  xInjuryDetail =[{
+        WoundType: '',
+        InjurySide: '',
+        InjuryArea: 'X599',
+       } ]
+        xQueryAccident ={    
+        AccidentPlace: '', 
+        AccidentDate: '',
+        CauseOfInjuryDetail:xCauseOfInjuryDetail,
+        InjuryDetail:xInjuryDetail
+       }
+    }else{
+      const xCauseOfInjuryDetail =[{
+        CauseOfInjury: '',
+        CommentOfInjury: '',
+       } ]
+       const  xInjuryDetail =[{
+        WoundType: '',
+        InjurySide: '',
+        InjuryArea: '',
+       } ]
+        xQueryAccident ={    
+        AccidentPlace: '', 
+        AccidentDate: '',
+        CauseOfInjuryDetail:xCauseOfInjuryDetail,
+        InjuryDetail:xInjuryDetail
+       }
+    }
+   
     xResultInfo ={
           AccidentDetailInfo: xQueryAccident,
          }  
@@ -1262,7 +1282,7 @@ export class PreauthSubmissionService {
             HTTPStatus:newHttpMessageDto,
             Result:xResultInfo
       }
-  
+
   return newResultPreAuthAccidentDto
   }catch(error)
   {
@@ -2136,6 +2156,7 @@ return newResultPreAuthBillingDto
   }
   async previewPreBilling(queryPreBillingDto:QueryPreBillingDto){
     try{
+      console.log('--- > previewPreBilling')
       const xRefId =queryPreBillingDto.PatientInfo.RefId;
       const xTransactionNo =queryPreBillingDto.PatientInfo.TransactionNo;
   const xTotalBillAmount='';
@@ -2147,10 +2168,11 @@ return newResultPreAuthBillingDto
             }
         });     
         console.log(existingPrebilling)
-  
-        if ((existingPrebilling )||(existingPrebilling.length >0)) {
+        console.log(existingPrebilling.length)
+
+        if ((existingPrebilling )&&(existingPrebilling.length >0)) {
+
           PreBillingList =await Promise.all(  existingPrebilling.map(async (item) => {
-      
             return {
               BillingID:item.id,
               LocalBillingCode: item.localbillingcode,
@@ -2164,22 +2186,25 @@ return newResultPreAuthBillingDto
           })
           );
       
-        
         }else{
+          console.log('B')
+
           PreBillingList = [{
-            BillingID:'',
-            LocalBillingCode: '',
-            LocalBillingName: '',
-            SimbBillingCode: '',
-            PayorBillingCode: '',
-            BillingInitial: '',
-            BillingDiscount: '',
-            BillingNetAmount: '',
+         
+
+            BillingID:'1',
+            LocalBillingCode: '0101012',
+            LocalBillingName: '1.1.1(12) ค่ายาผู้ป่วยใน',
+            SimbBillingCode: '1.1.1(12)',
+            PayorBillingCode: '1.1.1(12)',
+            BillingInitial: '0',
+            BillingDiscount: '0',
+            BillingNetAmount: '0',
            
           }];
           
         }
-      
+
      const xResultInfo ={
           TotalBillAmount:xTotalBillAmount,
           BillingInfo: PreBillingList,
@@ -2572,6 +2597,8 @@ return newResultPreAuthBillingDto
     const xHavepreBilling =querySubmitPreAuthDto.PatientInfo.HavepreBilling||false;
     const xHavePreAuthNote =querySubmitPreAuthDto.PatientInfo.HavePreAuthNote||false;
   
+    console.log('---->')
+    console.log(xDxFreeText)
 if (xTransactionNo){
  
   try {
@@ -2608,7 +2635,7 @@ if (xTransactionNo){
         dscdatetime:xDscDateTime,
         totalestimatedcost:xTotalEstimatedCost,
         indicationforadmission: xIndicationForAdmission,
-        dxfreetext: xDxFreeText,
+        dxfreetext: this.ReplaceSpacialCharacter(xDxFreeText),
         physicalexam:xPhysicalExam,
         chiefcomplaint:xChiefComplaint,
         presentillness:xPresentIllness,
@@ -2736,8 +2763,188 @@ if (xTransactionNo){
     }
   }
   }
+  async ReloadDiagnosis(queryDiagnosisDto:QueryDiagnosisDto){
+    //let ResponeTrakcareHTTPStatus;
+    try{
+      const xRefId =queryDiagnosisDto.PatientInfo.RefId;
+      const xTransactionNo =queryDiagnosisDto.PatientInfo.TransactionNo;
+      const xInsurerCode =queryDiagnosisDto.PatientInfo.InsurerCode;
+      const xHN =queryDiagnosisDto.PatientInfo.HN;
+      const xVN =queryDiagnosisDto.PatientInfo.VN;
+      const xHaveDiagnosis =Boolean(queryDiagnosisDto.PatientInfo.HaveDiagnosis) || false
+      // console.log('-----^^^^^^----')
+      // console.log(queryDiagnosisDto.PatientInfo.DiagnosisInfo)
+      // console.log('-----^^^^^^----')
+
+  let DiagnosisList;
+  if (xHaveDiagnosis ==true){
+      if (Array.isArray(queryDiagnosisDto.PatientInfo.DiagnosisInfo)) {
+        DiagnosisList = queryDiagnosisDto.PatientInfo.DiagnosisInfo.map((diagnosis) => (
+          
+          {
+            
+            DXCode: diagnosis.DxCode || '',
+            DxName: diagnosis.DxName || '',
+            DxType: diagnosis.DxType || ''
+          }));
+          const existingProcedures = await prismaProgest.diagnosistransactions.findMany({
+            where: {
+                refid: xRefId,
+                transactionno: xTransactionNo
+            }
+          });
+//#region 'get diagnosis from trakcare
+const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeDiagnosis(xVN);
+if ( TrakcarepatientInfo.statusCode ==200){
+  const xQueryDiagnosis: QueryDiagnosis[] = TrakcarepatientInfo.DiagnosisInfo ? 
+  await Promise.all(  TrakcarepatientInfo.DiagnosisInfo.map(async (item) => {
+    return {
+      DxTypeCode: item.DxTypeCode||'', 
+      DxCode: item.DxCode||'',
+      DxName: item.DxName||'',
+    };
+  })
+) : [];
+//#region  'Entries icd10'
+const EntriesfromTrakcare = xQueryDiagnosis.map((item) => ({
+  DXCode: item.DxCode,
+  DxName: item.DxName,
+  DxType: ''
+  
+}));
+DiagnosisList.push(...EntriesfromTrakcare)
+//#endregion
+}
+//#endregion
+        if (existingProcedures.length > 0) {
+          await Promise.all(
+              existingProcedures.map(async (diagnosis) => {
+                  return await prismaProgest.diagnosistransactions.delete({
+                      where: {
+                          id: diagnosis.id // ใช้ id ในการลบ
+                      }
+                  });
+              })
+          );
+      }
+
+  
+          await Promise.all(
+            DiagnosisList.map(async (diagnosis) => {
+                return await prismaProgest.diagnosistransactions.create({
+                  
+                    data: {
+                        insurerid: xInsurerCode,
+                        refid: xRefId,
+                        transactionno: xTransactionNo,
+                        hn: xHN,
+                        vn: xVN,
+                        icd10: diagnosis.DXCode ,
+                        dxname: diagnosis.DxName,
+                        dxtype: diagnosis.DxType
+                    }
+                    
+                });
+            })
+        );
+      } else {
+        DiagnosisList = [];
+      }
+     // console.log(xHaveProcedure)
+      
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+  }else{
+    DiagnosisList = [
+          {
+              "Icd10": "",
+              "DxName": "",
+              "DxType": ""
+          }
+      ]
+   // console.log(xHaveProcedure)
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'Invalid Diagnosis','')
+  }
+  
+    
+      
+      let newResultSubmitDiagnosisDto= new ResultSubmitDiagnosisDto();
+      newResultSubmitDiagnosisDto={
+              HTTPStatus:newHttpMessageDto,
+              Result:DiagnosisList
+        }
+  
+      return newResultSubmitDiagnosisDto
+    }catch(error)
+    {
+      if (error instanceof Prisma.PrismaClientInitializationError) {
+        throw new HttpException(
+         { 
+          HTTPStatus: {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+            error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          },
+         
+          },HttpStatus.INTERNAL_SERVER_ERROR );
+      }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new HttpException(
+            {  
+              HTTPStatus: {
+                statusCode:error.code,// HttpStatus.INTERNAL_SERVER_ERROR,
+                message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+                error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+             },
+            },HttpStatus.INTERNAL_SERVER_ERROR ); 
+      }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+        if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+            message: 'Cannot connect to the database server. Please ensure it is running.',
+            error: 'Cannot connect to the database server. Please ensure it is running.',
+          },
+          }, HttpStatus.SERVICE_UNAVAILABLE);
+        }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'Invalid data format or conversion error.',
+            error: 'Invalid data format or conversion error.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.FORBIDDEN,
+            message: 'You do not have permission to perform this action.',
+            error: 'You do not have permission to perform this action.',
+          },
+          }, HttpStatus.FORBIDDEN);
+        }else if (error.message.includes('Unable to fit integer value')) {
+          // Handle integer overflow or similar errors
+          throw new HttpException({
+            HTTPStatus: {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: 'The integer value is too large for the database field.',
+            error: 'The integer value is too large for the database field.',
+          },
+          }, HttpStatus.BAD_REQUEST);
+        }
+        else{
+          throw new HttpException({  
+            HTTPStatus: {
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message: 'An unexpected error occurred.',
+               error: 'An unexpected error occurred.',
+              },
+            },HttpStatus.INTERNAL_SERVER_ERROR,);
+        }
+      }
+    }
+  }
   async SubmitDiagnosis(queryDiagnosisDto:QueryDiagnosisDto){
     //let ResponeTrakcareHTTPStatus;
+    //ReloadDiagnosis
     try{
       const xRefId =queryDiagnosisDto.PatientInfo.RefId;
       const xTransactionNo =queryDiagnosisDto.PatientInfo.TransactionNo;
@@ -3434,13 +3641,13 @@ if (xTransactionNo){
     xDscDateTime:querySubmitPreAuthDto.PatientInfo.DscDateTime,
     xIndicationForAdmission:querySubmitPreAuthDto.PatientInfo.IndicationForAdmission,
    }
-   const existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
-    where: {
-      refid: RequesetBody.xRefId,
-      transactionno: RequesetBody.xTransactionNo,
-    },
-  });
-   console.log(existingRecordtransactionclaim)
+  //  const existingRecordtransactionclaim = await prismaProgest.transactionclaim.findFirst({
+  //   where: {
+  //     refid: RequesetBody.xRefId,
+  //     transactionno: RequesetBody.xTransactionNo,
+  //   },
+  // });
+   //console.log(existingRecordtransactionclaim)
     // if (existingRecordtransactionclaim.referencevn.length >0){
   //  xRreferencevn =existingRecordtransactionclaim.referencevn
   // }else{
@@ -3545,7 +3752,7 @@ if (xTransactionNo){
     VN:RequesetBody.xVN
   }
   const getDiagnosisformDatabase = await this.utilsService.getDiagnosisformDatabase(newQueryPreDiagnosisDatabaseBodyDto)
-  if (getDiagnosisformDatabase && getDiagnosisformDatabase.Result.DiagnosisInfo && getDiagnosisformDatabase.Result.DiagnosisInfo.length > 0) {
+  if (getDiagnosisformDatabase && getDiagnosisformDatabase.Result?.DiagnosisInfo && getDiagnosisformDatabase.Result?.DiagnosisInfo.length > 0) {
     newQueryDiagnosisInfoDto= await Promise.all(
       getDiagnosisformDatabase.Result.DiagnosisInfo.map(async (item) => {
       return {
@@ -3792,8 +3999,7 @@ const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(x
     UploadedBy:'',
     Runningdocument:0
   }
-  
-  
+
   const getListDocumentByTransection = await this.utilsService.getListDocumentByTransactionNo(QueryCreateClaimDocumentDtoBody); 
   let newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
    newResultAttachDocListInfoDto = await Promise.all(
@@ -3805,6 +4011,7 @@ const getOPDDischargeDoctor = await this.trakcareService.getOPDDischargeDoctor(x
       };
     })
   );
+
   const newIsPackage =newResultVisitInfoDto.IsPackage;
   const newAnesthesiaList= [newResultVisitInfoDto.AnesthesiaList];
   const newTotalEstimatedCost =newResultVisitInfoDto.TotalEstimatedCost;
@@ -6042,7 +6249,28 @@ calculateDaysBetweenDates(startDate: string, endDate: string): number {
 
   return Math.ceil(differenceInDays) === 0 ? 1 : differenceInDays; //Math.ceil(differenceInDays); // ปัดขึ้นให้เป็นจำนวนเต็ม
 }
+ReplaceSpacialCharacter(inputString: string, ): string {
+  
+  const SpacialCharacter ={
+    '-':'',
+    '+':'',
+    '*':'',
+    '&':'',
+    '^':'',
+    '$':'',
+    '#':'',
+    '%':'',
+    '@':'',
+    ';':'',
+    '!':'',
+    ':':'',
+    '{':'',
+    '}':''
+  }
+const newinputString =inputString.replace(/[-+*&^$#%@;{}:!]/g,m=>SpacialCharacter[m])
 
+  return newinputString
+}
   addFormatHTTPStatus(data: HttpMessageDto,inputstatusCode:number,inputmessage:string,inputerror:string):void{  
     if(inputstatusCode !==200){
         if(data){

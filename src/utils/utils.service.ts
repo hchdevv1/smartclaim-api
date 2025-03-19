@@ -877,6 +877,8 @@ async getClaimStatusCodeByDescription(xInsurercode: string,xDesc: string ) {
       claimstatuscode :true,
     },
      })
+     console.log('claimstatus-->')
+    console.log(claimstatus)
      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
      let  newClaimStatusDto= new ClaimStatusDto();
      newClaimStatusDto={
@@ -3628,6 +3630,8 @@ async getListDocumentByTransactionNo(queryCreateClaimDocumentDtoBodyDto: QueryCr
   const RefId = queryCreateClaimDocumentDtoBodyDto.RefId;
   const TransactionNo = queryCreateClaimDocumentDtoBodyDto.TransactionNo;
   const Runningdocument = queryCreateClaimDocumentDtoBodyDto.Runningdocument;
+  const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
+
   //const InsurerCode = queryCreateClaimDocumentDtoBodyDto.InsurerCodes;
 // console.log(VN)
 // console.log(RefId)
@@ -3650,13 +3654,12 @@ const whereConditions = {
     // }
     where :whereConditions
     });
-    
-     //console.log(fileRecords)
-     if (fileRecords.length === 0) {
-       throw new NotFoundException('Files not found');
-     }
-     const newResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
 
+     if (fileRecords.length === 0) {
+        console.log('pdf null')
+        // throw new NotFoundException('Files not found');
+     }else{
+    
     //  await Promise.all(
     //    fileRecords.map(async (fileRecord) => {
     //      const filePath = join(__dirname, '..', '..', fileRecord.filepath);
@@ -3695,9 +3698,8 @@ const whereConditions = {
         }
       }),
     );
- 
+  }
     //console.log('Result Attach Doc List:', newResultAttachDocListInfoDto);
- 
     return newResultAttachDocListInfoDto;
  
 }

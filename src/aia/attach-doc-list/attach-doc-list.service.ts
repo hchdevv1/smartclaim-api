@@ -42,6 +42,7 @@ export class AttachDocListService {
          xInvoiceNumber :queryBillingSubmissionBodyDto.PatientInfo.InvoiceNumber,
          xDocumenttypeCode :queryBillingSubmissionBodyDto.PatientInfo.DocumenttypeCode,
          xRunningdocument :queryBillingSubmissionBodyDto.PatientInfo.Runningdocument,
+         xIsRequestDispute:queryBillingSubmissionBodyDto.PatientInfo.IsRequestDispute
        }
 
 

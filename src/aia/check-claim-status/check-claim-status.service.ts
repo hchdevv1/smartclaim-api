@@ -85,6 +85,9 @@ export class CheckClaimStatusService {
             })
           )
       );
+      console.log('====responsefromAIA===')
+
+      console.log(responsefromAIA)
     // const xDummyDataRespone1 =new DummyDataRespone1();
     // const responsefromAIA  =xDummyDataRespone1.res
       const responeInputcode =responsefromAIA.Result.Code
@@ -103,6 +106,7 @@ export class CheckClaimStatusService {
      let xResultAttachDocListInfoDto: ResultAttachDocListInfoDto[] = [];
      
      if (responsefromAIA.Data.AttachDocList.length >0){
+      console.log('----!!!1')
      xResultAttachDocListInfoDto = await Promise.all(
        responsefromAIA.Data.AttachDocList.map(async (doc) => {
         
@@ -170,9 +174,10 @@ export class CheckClaimStatusService {
 
  // โฟลเดอร์สำหรับเก็บไฟล์
  
+ console.log('----!!!2')
 
 const xClaimStatusCode = await this.utilsService.getClaimStatusCodeByDescription('13', responsefromAIA.Data.ClaimStatus);
-const claimcode = xClaimStatusCode.Result[0].claimstatuscode;
+const claimcode = xClaimStatusCode?.Result[0]?.claimstatuscode;
 
         let xInsuranceData = new InsuranceData();
         xInsuranceData={
@@ -181,7 +186,7 @@ const claimcode = xClaimStatusCode.Result[0].claimstatuscode;
           InsurerCode:responsefromAIA.Data.InsurerCode,
           BatchNumber:responsefromAIA.Data.BatchNumber||'',
           ClaimStatus:responsefromAIA.Data.ClaimStatus||'',
-          ClaimStatusCode:claimcode,
+          ClaimStatusCode:claimcode||'',
           ClaimStatusDesc:responsefromAIA.Data.ClaimStatusDesc||'',
           ClaimStatusDesc_EN:responsefromAIA.Data.ClaimStatus||'',
           ClaimStatusDesc_TH:responsefromAIA.Data.ClaimStatusDesc||'',
@@ -198,7 +203,9 @@ const transactionclaimexistingRecord = await prismaProgest.transactionclaim.find
    
   },
 });
+
 if (transactionclaimexistingRecord) {
+  console.log('----!!!4')
   const updateclaimcode =claimcode
   const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus
   const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc
@@ -237,8 +244,10 @@ const transactionclaimstatusexistingRecord = await prismaProgest.transactionclai
     claimstatuscode:claimcode
   },
 });
+console.log('----!!!5')
+console.log(transactionclaimstatusexistingRecord)
 if (transactionclaimstatusexistingRecord) {
-  
+  console.log('----!!!6')
   // const updateclaimcode =claimcode;
   // const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus;
   // const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc;
@@ -279,7 +288,7 @@ if (transactionclaimstatusexistingRecord) {
     // QueryUpdatetransactionclaimstatus
   });
 }else{
-
+  console.log('----!!!7')
     await prismaProgest.transactionclaimstatus.create({
     data: {
       insurerid: RequesetBody.xInsurerCode ,
@@ -311,7 +320,10 @@ if (transactionclaimstatusexistingRecord) {
          HTTPStatus:newHttpMessageDto,
          Result:xResultInfo
  }
-     
+     console.log('-------->>>>>  newResultCheckClaimStatusDto')
+     console.log(newResultCheckClaimStatusDto)
+     console.log('-------->>>>>  newResultCheckClaimStatusDto')
+
        return newResultCheckClaimStatusDto
       } catch(error)
       {

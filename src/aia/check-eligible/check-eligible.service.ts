@@ -510,6 +510,7 @@ export class CheckEligibleService {
           xPolicyNumber: queryCreateTransactionBodyDto.PatientInfo.PolicyNumber||'',
           xCustomerId: queryCreateTransactionBodyDto.PatientInfo.CustomerId||'',
           xVisitlocation :queryCreateTransactionBodyDto.PatientInfo.Visitlocation||'',
+          xAccidentcauseover45days:queryCreateTransactionBodyDto.PatientInfo.Accidentcauseover45days||''
         }
         let checkVisitNumberStatusCode=200
         if (RequesetBody.xFurtherClaimVN.length >0){
@@ -563,6 +564,7 @@ export class CheckEligibleService {
               claimstatusdesc_en:'waitting for discharge',
               claimstatusdesc_th:'รอการส่งเคลม',
               visitlocation:RequesetBody.xVisitlocation,
+              accidentcauseover45days:RequesetBody.xAccidentcauseover45days
             },
           });
 
@@ -620,6 +622,8 @@ export class CheckEligibleService {
    const  updatexPolicyNumber= RequesetBody.xPolicyNumber;
    const  updatexCustomerId= RequesetBody.updatexCustomerId;
    const  updatexVisitlocation= RequesetBody.xVisitlocation;
+   const  updatexAccidentCauseOver45Days= RequesetBody.xAccidentCauseOver45Days;
+
           const existingRecord = await prismaProgest.transactionclaim.findFirst({
             where: {
               refid: RequesetBody.xRefID,
@@ -648,6 +652,9 @@ export class CheckEligibleService {
               ...(updatexMembershipId ? { membershipid: updatexMembershipId } : {}),
               ...(updatexPolicyNumber ? { policynumber: updatexPolicyNumber } : {}),
               ...(updatexCustomerId ? { customerid: updatexCustomerId } : {}),
+              ...(updatexAccidentCauseOver45Days ? { accidentcauseover45days: updatexAccidentCauseOver45Days } : {}),
+
+              
               claimstatusdesc:'waitting for discharge',
               claimstatusdesc_en:'waitting for discharge',
               claimstatusdesc_th:'รอการส่งเคลม',

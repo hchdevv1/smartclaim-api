@@ -388,19 +388,21 @@ exports.Prisma.TransactionclaimScalarFieldEnum = {
   surgerytypecode: 'surgerytypecode',
   visitdatetime: 'visitdatetime',
   runningdocument: 'runningdocument',
+  totalbillamount: 'totalbillamount',
   policynumber: 'policynumber',
   membershipid: 'membershipid',
   furtherclaimvn: 'furtherclaimvn',
   customerid: 'customerid',
-  totalbillamount: 'totalbillamount',
   visitlocation: 'visitlocation',
   paymentdate: 'paymentdate',
   preauthreferclaimno: 'preauthreferclaimno',
   preauthreferocc: 'preauthreferocc',
   reservedate: 'reservedate',
   isipddischarge: 'isipddischarge',
+  servicesettingabbr: 'servicesettingabbr',
   referencevn: 'referencevn',
-  isadmission: 'isadmission'
+  isadmission: 'isadmission',
+  accidentcauseover45days: 'accidentcauseover45days'
 };
 
 exports.Prisma.TransactionclaimstatusScalarFieldEnum = {
@@ -517,22 +519,6 @@ exports.Prisma.PackagebundleScalarFieldEnum = {
   totalbillamount: 'totalbillamount'
 };
 
-exports.Prisma.Accidenttransactions22ScalarFieldEnum = {
-  id: 'id',
-  insurerid: 'insurerid',
-  refid: 'refid',
-  transactionno: 'transactionno',
-  hn: 'hn',
-  vn: 'vn',
-  accidentplace: 'accidentplace',
-  accidentdate: 'accidentdate',
-  causeofinjury: 'causeofinjury',
-  commentofinjury: 'commentofinjury',
-  woundtype: 'woundtype',
-  injuryside: 'injuryside',
-  injuryarea: 'injuryarea'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -580,8 +566,7 @@ exports.Prisma.ModelName = {
   preauthnotetransactions: 'preauthnotetransactions',
   prebillingtransactions: 'prebillingtransactions',
   servicesetting_illnesstype: 'servicesetting_illnesstype',
-  packagebundle: 'packagebundle',
-  accidenttransactions22: 'accidenttransactions22'
+  packagebundle: 'packagebundle'
 };
 
 /**

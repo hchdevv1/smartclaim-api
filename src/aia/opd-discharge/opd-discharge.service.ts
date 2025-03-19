@@ -72,6 +72,18 @@ try{
     VN: queryOpdDischargeDto.PatientInfo.VN,
   
   }
+
+  const existingTransaction = await prismaProgest.transactionclaim.findFirst({
+    where: {
+      refid: queryOpdDischargeDto.PatientInfo.RefId,
+      transactionno: queryOpdDischargeDto.PatientInfo.TransactionNo,
+    },
+  });
+let xAccidentcauseover45days=''
+if (existingTransaction?.accidentcauseover45days){
+   xAccidentcauseover45days =existingTransaction.accidentcauseover45days
+}else{xAccidentcauseover45days=''}
+
   const getvisitformDatabase = await this.utilsService.getvisitformDatabase(newQueryVisitDatabaseBodyDto)
   if (getvisitformDatabase?.Result?.VisitInfo?.VisitDateTime?.length >0){ 
     const newResultReviewVisitInfoDto : ResultReviewVisitInfoDto= {
@@ -96,7 +108,7 @@ try{
       UnderlyingCondition: getvisitformDatabase.Result.VisitInfo.UnderlyingCondition||'',
       VisitDateTime: getvisitformDatabase.Result.VisitInfo.VisitDateTime,
       VN:  getvisitformDatabase.Result.VisitInfo.VN||'',
-      Weight: getvisitformDatabase.Result.VisitInfo.Weight||''
+      Weight: getvisitformDatabase.Result.VisitInfo.Weight||'',
     }
     this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
     xResultInfo ={
@@ -146,7 +158,7 @@ try{
       this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
         const xQueryVisit: QueryVisit = TrakcarepatientInfo.VisitInfo ? {
           FurtherClaimId: TrakcarepatientInfo.VisitInfo.FurtherClaimId || '', 
-          AccidentCauseOver45Days: TrakcarepatientInfo.VisitInfo.AccidentCauseOver45Days || '',
+          AccidentCauseOver45Days: xAccidentcauseover45days , //TrakcarepatientInfo.VisitInfo.AccidentCauseOver45Days || '', // here adjust 45 day condition
           AdditionalNote: TrakcarepatientInfo.VisitInfo.AdditionalNote || '',
           AlcoholRelated: Boolean(TrakcarepatientInfo.VisitInfo.AlcoholRelated) || false,
           ChiefComplaint: TrakcarepatientInfo.VisitInfo.ChiefComplaint.slice(0,200) || '',
@@ -2131,7 +2143,7 @@ else {VNForDiagnosisinfo =RequesetBody.xVN}
 const getOPDDischargeDiagnosis = await this.trakcareService.getOPDDischargeDiagnosis(VNForDiagnosisinfo);
 let getDiagnosisTypeMapping 
 let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
-  if (getOPDDischargeDiagnosis && getOPDDischargeDiagnosis.DiagnosisInfo && getOPDDischargeDiagnosis.DiagnosisInfo.length > 0) {
+  if (getOPDDischargeDiagnosis && getOPDDischargeDiagnosis?.DiagnosisInfo && getOPDDischargeDiagnosis?.DiagnosisInfo.length > 0) {
 
    newQueryDiagnosisInfoDto= await Promise.all(
       getOPDDischargeDiagnosis.DiagnosisInfo.map(async (item) => {
@@ -2142,7 +2154,7 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
       if (item.DxTypeCode === getDiagnosisTypeMapping.Result.dxtypecodetrakcare) {
         item.DxTypeCode = getDiagnosisTypeMapping.Result.dxtypecodeinsurance;
       }
-      const countDiag =getOPDDischargeDiagnosis.DiagnosisInfo.length
+     /* const countDiag =getOPDDischargeDiagnosis.DiagnosisInfo.length
       const FirstTextDxCode = item.DxCode[0]
       if ((countDiag ===1) &&(FirstTextDxCode ==='Z')){
         return {
@@ -2159,8 +2171,13 @@ let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
           Icd10: item.DxCode,
           
         };
-      }
-
+      } */
+      return {
+        DxName: item.DxName,
+        DxType: item.DxTypeCode,
+        Icd10: item.DxCode,
+        
+      };
      
     })
   );
