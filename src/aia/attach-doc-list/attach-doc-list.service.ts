@@ -44,7 +44,7 @@ export class AttachDocListService {
          xRunningdocument :queryBillingSubmissionBodyDto.PatientInfo.Runningdocument,
          xIsRequestDispute:queryBillingSubmissionBodyDto.PatientInfo.IsRequestDispute
        }
-
+if (RequesetBody.xIsRequestDispute === true ){ RequesetBody.xDocumenttypeCode ='014'}
 
 const ListDocumentforAttachDocListBody={
   PatientInfo:{
@@ -81,6 +81,7 @@ const ListDocumentforAttachDocListBody={
 
        const body_DataJson = {}
        const body = {
+         IsRequestDispute: RequesetBody.xIsRequestDispute,
          RefId: RequesetBody.xRefId,
          TransactionNo: RequesetBody.xTransactionNo,
          Username: xUsername,

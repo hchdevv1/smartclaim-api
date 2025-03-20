@@ -85,9 +85,6 @@ export class CheckClaimStatusService {
             })
           )
       );
-      console.log('====responsefromAIA===')
-
-      console.log(responsefromAIA)
     // const xDummyDataRespone1 =new DummyDataRespone1();
     // const responsefromAIA  =xDummyDataRespone1.res
       const responeInputcode =responsefromAIA.Result.Code
@@ -166,15 +163,11 @@ export class CheckClaimStatusService {
          }
        }),
      );
-     console.log(xResultAttachDocListInfoDto[0].DocName)
+    // console.log(xResultAttachDocListInfoDto[0].DocName)
     }
  //const uploadBase64File = await this.utilsService.saveBase64File(xResultAttachDocListInfoDto.Base64Data, xResultAttachDocListInfoDto.DocName);
  
  //const saveFileToDatabase = await this.utilsService.saveFile(xResultAttachDocListInfoDto.Base64Data, xResultAttachDocListInfoDto.DocName);
-
- // โฟลเดอร์สำหรับเก็บไฟล์
- 
- console.log('----!!!2')
 
 const xClaimStatusCode = await this.utilsService.getClaimStatusCodeByDescription('13', responsefromAIA.Data.ClaimStatus);
 const claimcode = xClaimStatusCode?.Result[0]?.claimstatuscode;
@@ -205,7 +198,6 @@ const transactionclaimexistingRecord = await prismaProgest.transactionclaim.find
 });
 
 if (transactionclaimexistingRecord) {
-  console.log('----!!!4')
   const updateclaimcode =claimcode
   const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus
   const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc
@@ -244,10 +236,9 @@ const transactionclaimstatusexistingRecord = await prismaProgest.transactionclai
     claimstatuscode:claimcode
   },
 });
-console.log('----!!!5')
-console.log(transactionclaimstatusexistingRecord)
+
 if (transactionclaimstatusexistingRecord) {
-  console.log('----!!!6')
+
   // const updateclaimcode =claimcode;
   // const updateclaimstatusdesc =responsefromAIA.Data.ClaimStatus;
   // const updateclaimstatusdesc_th =responsefromAIA.Data.ClaimStatusDesc;
@@ -320,10 +311,7 @@ if (transactionclaimstatusexistingRecord) {
          HTTPStatus:newHttpMessageDto,
          Result:xResultInfo
  }
-     console.log('-------->>>>>  newResultCheckClaimStatusDto')
-     console.log(newResultCheckClaimStatusDto)
-     console.log('-------->>>>>  newResultCheckClaimStatusDto')
-
+   
        return newResultCheckClaimStatusDto
       } catch(error)
       {
