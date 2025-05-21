@@ -1,0 +1,33 @@
+import { TrakcareService } from './trakcare.service';
+export declare class TrakcareController {
+    private readonly trakcareService;
+    constructor(trakcareService: TrakcareService);
+    getPatientInfoByPID(xPID: string): Promise<any>;
+    getPatientInfoByHN(xHN: string): Promise<any>;
+    getPatientInfoByPassportNumber(xHN: string): Promise<any>;
+    getEpisodeByHN(xHN: string, xEpiDate: string, xEpiType: string): Promise<any>;
+    getEpisodeInfoByVN(xVN: string): Promise<any>;
+    getOPDDischargeVisit(xVN: string): Promise<any>;
+    getOPDDischargeDiagnosis(xVN: string): Promise<any>;
+    getOPDDischargeDoctor(xVN: string): Promise<any>;
+    getOPDDischargeProcedure(xVN: string): Promise<any>;
+    getOPDDischargeInvestigation(xVN: string): Promise<any>;
+    getOPDDischargeVitalSign(xVN: string): Promise<any>;
+    getOPDDischargeAccident(xVN: string): Promise<any>;
+    getOPDDischargePatient(xHN: string): Promise<any>;
+    getOPDDischargeOrderItem(xVN: string): Promise<any>;
+    getOPDDischargeBilling(xVN: string): Promise<any>;
+    getOPDCheckBalance(xVN: string): Promise<any>;
+    checkVisitNumberAvailable(xHN: string, xVN: string): Promise<any>;
+    getListVisitClaimAIA(xVN: string): Promise<any>;
+    getIPDVisit(xVN: string): Promise<any>;
+    getIPDVitalSign(xVN: string): Promise<any>;
+    getIPDDoctor(xVN: string): Promise<any>;
+    getIPDDiagnosis(xVN: string): Promise<any>;
+    getIPDInvestigation(xVN: string): Promise<any>;
+    getIPDOrderItem(xVN: string): Promise<any>;
+    getIPDBilling(xVN: string): Promise<any>;
+    getICDDx(xICDDxCode: string): Promise<any>;
+    getICD9(xICD9Code: string): Promise<any>;
+    getBillingSubgroup(xBillingCode: string): Promise<any>;
+}
