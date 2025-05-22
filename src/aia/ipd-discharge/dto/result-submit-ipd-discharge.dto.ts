@@ -416,6 +416,9 @@ export class ResultDataJsonDto {
 
     @IsArray()
     ConcurrentNote: ConcurrentNoteDto[];
+
+     @IsString()
+    OtherInsurer: string;
 }
 export class ResultPatientInfoDto {
     Dob: string; // ชื่อโรค

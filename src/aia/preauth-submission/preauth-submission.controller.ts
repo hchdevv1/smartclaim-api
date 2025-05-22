@@ -165,7 +165,11 @@ async SubmitPreSubmissionToAIA(@Body() querySubmitPreAuthDto:QuerySubmitPreAuthD
           const result = this.preauthSubmissionService.ReviewPreAuth(queryPreauthSubmissionDto);
           return result
     }
-    
+     @Post('/getPreAuthVitalSign')
+      async getPreAuthVitalSign(@Body() queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+            const result = this.preauthSubmissionService.getPreAuthVitalSign(queryPreauthSubmissionDto);
+            return result
+      }
 //#region  Feed data And Submit to AIA
 
 @Get('/getICDDx/:xICDDxCode')

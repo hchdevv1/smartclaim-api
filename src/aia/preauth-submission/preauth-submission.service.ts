@@ -53,7 +53,7 @@ import { ResultReviewDataJsonDto ,ResultReviewPatientInfoDto ,ResultReviewOpdDis
   ,ResultReviewBillingInfoDto ,ResultReviewDoctorInfoDto ,ResultReviewOrderItemInfoDto ,ResultReviewInvestigationInfoDto ,ResultReviewDiagnosisInfoDto
 } from './dto/review-preauth-submission.dto';
 import { QueryProcedeureDatabaseBodyDto ,ResultProcedureDatabaseInfoDto } from '../../utils/dto/result-procedure-databse.dto';
-
+import { QueryVitalSign, ResultPreAuthVitalSignDto } from './dto/result-vitalsign-preauth-submission.dto'
 const httpStatusMessageService = new HttpStatusMessageService();
 const newHttpMessageDto =new HttpMessageDto();
 const AIA_APIURL= process.env.AIA_APIURL;
@@ -3729,18 +3729,10 @@ DiagnosisList.push(...EntriesfromTrakcare)
    newResultVisitInfoDto.ExpectedLos = this.calculateDaysBetweenDates(newResultVisitInfoDto.VisitDateTime, newResultVisitInfoDto.DscDateTime);
    //#endregion
   //#region  VitalSign
-  let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
+  /*let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
   newResultVitalSignInfoDto = [{
      
-    /*DiastolicBp: '90',
-     HeartRate: '91',
-     OxygenSaturation: '99',
-     PainScore: '0',
-     RespiratoryRate: '20',
-     SystolicBp: '146',
-     Temperature: '37.1',
-     VitalSignEntryDateTime: '2025-04-28 00:00',
-    */
+   
     DiastolicBp: '',
     HeartRate: '',
     OxygenSaturation: '',
@@ -3751,6 +3743,39 @@ DiagnosisList.push(...EntriesfromTrakcare)
     VitalSignEntryDateTime: '',
     
   }];
+*/
+  const getOPDDischargeVitalSign = await this.trakcareService.getOPDDischargeVitalSign(RequesetBody.xVN);
+  let newResultVitalSignInfoDto: ResultVitalSignInfoDto[] = [];
+    if (getOPDDischargeVitalSign && getOPDDischargeVitalSign.VitalSignInfo && getOPDDischargeVitalSign.VitalSignInfo.length > 0) {
+        newResultVitalSignInfoDto= await Promise.all(
+        getOPDDischargeVitalSign.VitalSignInfo.map(async (item) => {
+        return {
+          DiastolicBp: +item.DiastolicBp,
+          HeartRate:  +item.HeartRate,
+          OxygenSaturation:  +item.OxygenSaturation,
+          PainScore:  +item.PainScore,
+          RespiratoryRate: +item.RespiratoryRate,
+          SystolicBp:  +item.SystolicBp,
+          Temperature:  +parseFloat(item.Temperature).toFixed(2),
+          VitalSignEntryDateTime:  item.VitalSignEntryDateTime,
+        };
+      })
+    ); 
+  } else {
+    newResultVitalSignInfoDto = [{
+      DiastolicBp: '',
+      HeartRate: '',
+      OxygenSaturation: '',
+      PainScore: '',
+      RespiratoryRate: '',
+      SystolicBp: '',
+      Temperature: '',
+      VitalSignEntryDateTime: '',
+      
+    }];
+  }
+  console.log('getVitalSign done')
+
   //#endregion
   //#region  Diagnosis
   let newQueryDiagnosisInfoDto: ResultDiagnosisInfoDto[] = [];
@@ -5921,7 +5946,119 @@ return newResultReviewOpdDischargeDto
   }
 }
 }
-
+async getPreAuthVitalSign(queryPreauthSubmissionDto:QueryPreauthSubmissionDto){
+    let xResultInfo;
+ try{
+   
+    const TrakcarepatientInfo = await this.trakcareService.getOPDDischargeVitalSign(queryPreauthSubmissionDto.PatientInfo.VN);
+    const TrakcarepatientInfoStatusCode =TrakcarepatientInfo.statusCode ? TrakcarepatientInfo.statusCode :400
+    if (TrakcarepatientInfoStatusCode !==200){
+      this.addFormatHTTPStatus(newHttpMessageDto,400,TrakcarepatientInfo.message,TrakcarepatientInfo.message)
+      const xQueryVitalSign ={    
+          DiastolicBp: '', 
+          HeartRate: '',
+          OxygenSaturation: '',
+          PainScore: '',
+          RespiratoryRate: '',
+          SystolicBp:'',
+          Temperature: '',
+          VitalSignEntryDateTime: '',
+       }
+       xResultInfo ={
+        VitalSignInfo: [xQueryVitalSign],
+       } 
+    }else{
+      this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
+      const xQueryVitalSign: QueryVitalSign[] = TrakcarepatientInfo.VitalSignInfo ? TrakcarepatientInfo.VitalSignInfo.map((item) => {
+        return {
+          DiastolicBp: item.DiastolicBp||'', 
+          HeartRate: item.HeartRate||'',
+          OxygenSaturation: item.OxygenSaturation||'',
+          PainScore: item.PainScore||'',
+          RespiratoryRate: item.RespiratoryRate||'',
+          SystolicBp: item.SystolicBp||'',
+          Temperature: item.Temperature||'',
+          VitalSignEntryDateTime: item.VitalSignEntryDateTime||'',
+         };
+       }):[];
+      xResultInfo ={
+        VitalSignInfo: xQueryVitalSign,
+       } 
+    }
+    let newResultPreAuthVitalSignDto= new ResultPreAuthVitalSignDto();
+        newResultPreAuthVitalSignDto={
+            HTTPStatus:newHttpMessageDto,
+            Result:xResultInfo
+      }
+ 
+return newResultPreAuthVitalSignDto
+  }catch(error)
+  {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      throw new HttpException(
+       { 
+        HTTPStatus: {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+          error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR)),
+        },
+        },HttpStatus.INTERNAL_SERVER_ERROR );
+    }else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          {  
+            HTTPStatus: {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+              error: httpStatusMessageService.getHttpStatusMessage( (HttpStatus.INTERNAL_SERVER_ERROR),error.code),
+           },
+          },HttpStatus.INTERNAL_SERVER_ERROR ); 
+    }else{    // กรณีเกิดข้อผิดพลาดอื่น ๆ
+      if (error.message.includes('Connection') || error.message.includes('ECONNREFUSED')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.SERVICE_UNAVAILABLE,
+          message: 'Cannot connect to the database server. Please ensure it is running.',
+          error: 'Cannot connect to the database server. Please ensure it is running.',
+        },
+        }, HttpStatus.SERVICE_UNAVAILABLE);
+      }else if (error.message.includes('Conversion') || error.message.includes('Invalid input syntax')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Invalid data format or conversion error.',
+          error: 'Invalid data format or conversion error.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }else if (error.message.includes('Permission') || error.message.includes('Access denied')) {
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.FORBIDDEN,
+          message: 'You do not have permission to perform this action.',
+          error: 'You do not have permission to perform this action.',
+        },
+        }, HttpStatus.FORBIDDEN);
+      }else if (error.message.includes('Unable to fit integer value')) {
+        // Handle integer overflow or similar errors
+        throw new HttpException({
+          HTTPStatus: {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'The integer value is too large for the database field.',
+          error: 'The integer value is too large for the database field.',
+        },
+        }, HttpStatus.BAD_REQUEST);
+      }
+      else{
+        throw new HttpException({  
+          HTTPStatus: {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: 'An unexpected error occurred.',
+             error: 'An unexpected error occurred.',
+            },
+          },HttpStatus.INTERNAL_SERVER_ERROR,);
+      }
+    }
+  }
+}
    async getICDDx(xICDDxCode: string ){
     let arrayICDDxInfo;
     const newHttpMessageDto =new HttpMessageDto();

@@ -788,9 +788,9 @@ async getListPolicyNo(queryEligibleBodyDto : QueryEligibleBodyDto){
   }
 
   const existingRecord = await prismaProgest.policynumbertransactions.findMany({
-          distinct: ['policynumber'], // เงื่อนไขไม่ให้ policynumber ซ้ำ
+          distinct: ['policynumber'], 
           orderBy: {
-                  policynumber: 'asc', // เรียงตามเลข policynumber จากน้อยไปมาก
+                  policynumber: 'asc', 
            },
         select: {
               refid:true,
@@ -900,8 +900,7 @@ async getListPolicyNo(queryEligibleBodyDto : QueryEligibleBodyDto){
 
   const existingRecord = await prismaProgest.policynumbertransactions.findMany({
           where: {
-            refid: RequesetBody.xRefID,
-                 
+            refid: RequesetBody.xRefID,         
           },
         });
       if (! existingRecord){
@@ -909,7 +908,6 @@ async getListPolicyNo(queryEligibleBodyDto : QueryEligibleBodyDto){
       }else{
 
          this.addFormatHTTPStatus(newHttpMessageDto,200,'','')
-         console.log(existingRecord)
      newFindPolicyNumberInfo = existingRecord.map((record) => ({
       RefId: record.refid,
       HN: record.hn,
@@ -921,8 +919,6 @@ async getListPolicyNo(queryEligibleBodyDto : QueryEligibleBodyDto){
       MessageTH: record.messageth,
     }));   
       }
-
- 
    newPolicyNumberListDto = {
       HTTPStatus: newHttpMessageDto,
       Result: {

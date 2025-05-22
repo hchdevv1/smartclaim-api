@@ -2315,7 +2315,7 @@ try{
   xPreauthReferClaimNo:querySubmitIpdDischargeDto.PatientInfo.PreauthReferClaimNo,
   xPreauthReferOcc:querySubmitIpdDischargeDto.PatientInfo.PreauthReferOcc,
   xIsIPDDischarge:querySubmitIpdDischargeDto.PatientInfo.IsIPDDischarge,
-
+  xOtherInsurer:querySubmitIpdDischargeDto.PatientInfo.OtherInsurer
   
  }
  ////////////////////////////////////////)'
@@ -2912,6 +2912,7 @@ let newResultDataJsonDto =new ResultDataJsonDto();
   Doctor : newResultDoctorInfoDto,
   Billing :newResultBillingInfoDto,
    TotalBillAmount:newTotalBillAmount,
+   OtherInsurer:RequesetBody.xOtherInsurer,
    Pss: newResultPSSInfoDto,
    ConcurrentNote: newResultConcurrentNoteDto
 }
